@@ -102,15 +102,6 @@ function opportunityBlock(water) {
   return block;
 }
 
-const CORRECTION_MARK = 'Correction (2026-09-22, evidence ledger):';
-function stripCorrectionNotes(notes) {
-  // Idempotency: remove a previously appended correction appendix before
-  // re-running, so apply is safe to repeat.
-  if (!notes) return '';
-  const at = notes.indexOf(CORRECTION_MARK);
-  return (at >= 0 ? notes.slice(0, at) : notes).trim();
-}
-
 let applied = 0;
 let corrected = 0;
 const ownerReport = [];

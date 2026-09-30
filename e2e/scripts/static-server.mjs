@@ -1,4 +1,3 @@
-/* eslint-disable no-undef -- Node script run directly (no bundler types) */
 /**
  * Minimal static file server for Lighthouse CI — ROLE 5.
  * Zero dependencies (Node http/fs) so qa.yml needs no extra tooling.

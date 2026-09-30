@@ -18,7 +18,7 @@
  *
  *   node packages/content/scripts/wave-ledgers/apply-ledgers.mjs [--dry-run]
  */
-import { readFileSync, writeFileSync, readdirSync } from 'node:fs';
+import { readFileSync, writeFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parse, stringify } from 'yaml';
@@ -30,8 +30,6 @@ const catalogDir = join(root, 'packages', 'content', 'streams', 'tn');
 const TWRA_STOCK = 'https://www.tn.gov/twra/fishing/trout-information-stockings.html';
 
 const { waters } = JSON.parse(readFileSync(join(ledgerDir, 'ledger', 'waters.json'), 'utf8'));
-const { rows: diffRows } = JSON.parse(readFileSync(join(ledgerDir, 'ledger', 'diff.json'), 'utf8'));
-const diffBySlug = new Map(diffRows.map((r) => [r.slug, r]));
 const bySlug = new Map();
 for (const w of waters) if (!bySlug.has(w.slug)) bySlug.set(w.slug, w); // first block wins (wave order)
 
@@ -51,33 +49,6 @@ const CLAIM = [
   { slug: 'little-tennessee-river', fields: { species: 'trout', stockingProgram: true, fishery: 'stocked', yearRound: false, seasonMonths: [2, 3, 4], seasonKind: 'programmatic' }, src: 'https://www.tn.gov/twra/fishing/where-to-fish/east-tennessee-r4/tellico-reservoir.html', why: 'Trout water is the Chilhowee-tailwater reach (upper Little Tennessee arm); late-winter/early-spring rainbow plants per TWRA.' },
 ];
 const STRIP_DROP_FIELDS = ['fishery', 'yearRound', 'seasonMonths', 'seasonKind'];
-
-// --- Batch B derivation ------------------------------------------------------
-const MONTH_WORDS = { january: 1, february: 2, march: 3, april: 4, may: 5, june: 6, july: 7, august: 8, september: 9, october: 10, november: 11, december: 12 };
-
-// clean month-name windows ONLY (no numeric event dates — those are noise)
-function nameRangeMonths(text) {
-  const t = text.toLowerCase();
-  const set = new Set();
-  const M = 'january|february|march|april|may|june|july|august|september|october|november|december';
-  for (const m of t.matchAll(new RegExp(`\\b(${M})\\s+(?:through|to)\\s+(${M})\\b`, 'g'))) {
-    const a = MONTH_WORDS[m[1]];
-    const z = MONTH_WORDS[m[2]];
-    if (a <= z) for (let i = a; i <= z; i++) set.add(i);
-    else {
-      for (let i = a; i <= 12; i++) set.add(i);
-      for (let i = 1; i <= z; i++) set.add(i);
-    }
-  }
-  for (const m of t.matchAll(new RegExp(`\\b(${M})\\b`, 'g'))) set.add(MONTH_WORDS[m[1]]);
-  if (/year-round|all year/i.test(t)) for (let i = 1; i <= 12; i++) set.add(i);
-  if (set.size === 0) return null;
-  return [...set].sort((a, b) => a - b);
-}
-
-function stockingText(b) {
-  return (b.slots.Stocking ?? []).map((s) => s.value).join(' ');
-}
 
 // --- build ops ---------------------------------------------------------------
 const ops = []; // {slug, batch, fields:{set:{}, remove:[]}, notesAdd, srcAdd}

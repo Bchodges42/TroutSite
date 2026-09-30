@@ -134,7 +134,7 @@ for (const w of catalog) {
     qualifications: [],
     backbone: {
       scheduleProgram: bySlug.get(w.slug)
-        ? (({ rows, ...rest }) => ({ ...rest }))(bySlug.get(w.slug))
+        ? (({ rows: _rows, ...rest }) => ({ ...rest }))(bySlug.get(w.slug))
         : null,
       reservoirYearRoundList: RESERVOIR_YEAR_ROUND[w.slug]
         ? { species: RESERVOIR_YEAR_ROUND[w.slug], source: 'TWRA trout page reservoir section (captures/twra-trout-page.txt), retrieved 2026-09-22' }
