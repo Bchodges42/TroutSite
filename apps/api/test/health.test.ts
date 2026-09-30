@@ -307,15 +307,61 @@ describe('GET /healthz degraded (2026-09-16 skew retro)', () => {
     expect(body.degradedReasons.join(' ')).toMatch(/snapshots: running for 1h/);
   });
 
-  it('stays clean when the pipeline is fresh and ok', async () => {
+  it('stays clean when every scheduled job is fresh and ok (F05 expected set)', async () => {
     insertJob('ok', { job: 'seed', startedMinAgo: 60, finishedMinAgo: 59 });
-    insertJob('ok', { startedMinAgo: 30, finishedMinAgo: 29 });
+    for (const job of ['gauges', 'pressure', 'snapshots', 'stocking', 'evidence']) {
+      insertJob('ok', { job, startedMinAgo: 30, finishedMinAgo: 29 });
+    }
     app = buildApp({ logger: false, db: env.db, webPublicDir: env.snapshotsDir });
     await app.ready();
     const body = (await app.inject({ method: 'GET', url: '/healthz' })).json();
     expect(body.ok).toBe(true);
     expect(body.degraded).toBe(false);
     expect(body.degradedReasons).toEqual([]);
+  });
+
+  // F05: the audit's production shape — the hourly seed/gauges/snapshots loop
+  // green while stocking/evidence/pressure were never scheduled at all. A job
+  // with NO jobs_log row used to be invisible to health; once the host
+  // demonstrably runs the pipeline, never-run expected jobs must degrade it.
+  it('reports never-run expected jobs once the pipeline has run at all (F05)', async () => {
+    insertJob('ok', { job: 'seed', startedMinAgo: 60, finishedMinAgo: 59 });
+    insertJob('ok', { job: 'gauges', startedMinAgo: 30, finishedMinAgo: 29 });
+    insertJob('ok', { job: 'snapshots', startedMinAgo: 30, finishedMinAgo: 29 });
+    app = buildApp({ logger: false, db: env.db, webPublicDir: env.snapshotsDir });
+    await app.ready();
+    const body = (await app.inject({ method: 'GET', url: '/healthz' })).json();
+    expect(body.ok).toBe(true); // read path unaffected — degraded only
+    expect(body.degraded).toBe(true);
+    const reasons = body.degradedReasons.join(' | ');
+    expect(reasons).toContain('pressure: no run ever recorded (expected hourly pipeline)');
+    expect(reasons).toContain('stocking: no run ever recorded (expected daily feeds)');
+    expect(reasons).toContain('evidence: no run ever recorded (expected daily feeds)');
+    // seed is deploy/refresh-inline, not a scheduled job — never-run is not reported for it.
+    expect(reasons).not.toContain('seed: no run ever recorded');
+  });
+
+  it('stays silent about never-run jobs when nothing has ever run (bare/portal DB)', async () => {
+    // A jobs_log with no pipeline rows at all (fresh host) has no signal about
+    // whether the pipeline is supposed to run here — do not nag.
+    insertJob('ok', { job: 'unrelated', startedMinAgo: 30, finishedMinAgo: 29 });
+    app = buildApp({ logger: false, db: env.db, webPublicDir: env.snapshotsDir });
+    await app.ready();
+    const body = (await app.inject({ method: 'GET', url: '/healthz' })).json();
+    expect(body.degraded).toBe(false);
+    expect(body.degradedReasons).toEqual([]);
+  });
+
+  it('flags a daily feed that finished more than 48h ago (F05)', async () => {
+    for (const job of ['gauges', 'pressure', 'snapshots', 'evidence']) {
+      insertJob('ok', { job, startedMinAgo: 30, finishedMinAgo: 29 });
+    }
+    insertJob('ok', { job: 'stocking', startedMinAgo: 50 * 60, finishedMinAgo: 49 * 60 });
+    app = buildApp({ logger: false, db: env.db, webPublicDir: env.snapshotsDir });
+    await app.ready();
+    const body = (await app.inject({ method: 'GET', url: '/healthz' })).json();
+    expect(body.degraded).toBe(true);
+    expect(body.degradedReasons.join(' ')).toMatch(/stocking: finished 49h ago \(daily feeds expected <48h\)/);
   });
 
   it('the bare app keeps the exact contract shape {ok:true}', async () => {

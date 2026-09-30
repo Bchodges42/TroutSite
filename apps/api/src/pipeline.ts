@@ -14,8 +14,15 @@ import { parseTvaObservations } from './evidence/tva-provider.js';
 import { parseTwraEvidence } from './evidence/twra-evidence.js';
 import { TWRA_PAGE_URL } from './ingest/stocking/tn.js';
 import { startJob } from './jobs/run.js';
+import { runPressureJob } from './evidence/nws-provider.js';
 
-export type JobName = 'gauges' | 'stocking' | 'evidence' | 'snapshots';
+/**
+ * Dispatcher job names (F05): 'pressure' is the NWS area pressure/rain job —
+ * reachable from BOTH stacks (dev pm2 cron AND the canonical Windows refresh)
+ * through `ingest --job=pressure` / runJob, instead of living only in its
+ * declaration and tests.
+ */
+export type JobName = 'gauges' | 'stocking' | 'evidence' | 'snapshots' | 'pressure';
 
 export interface PipelineConfig {
   snapshotsDir: string;
@@ -215,24 +222,50 @@ export async function runJob(
   db: Db,
   cfg: PipelineConfig,
   job: JobName,
-  opts: { now?: Date; states?: string[] } = {},
+  opts: { now?: Date; states?: string[]; fetchImpl?: typeof fetch } = {},
 ): Promise<JobOutcome> {
   const now = opts.now ?? new Date();
+  if (job === 'pressure') {
+    // F05: NWS area pressure/rain through the dispatcher. The job soft-fails
+    // per station; a COMPLETE failure (every station errored, nothing stored)
+    // is a failed dispatch, mirroring the F33 outcome discipline.
+    const result = await runPressureJob(db, {
+      userAgent: cfg.userAgent,
+      now,
+      ...(opts.fetchImpl ? { fetchImpl: opts.fetchImpl } : {}),
+    });
+    const snap = buildSnapshots({ db, snapshotsDir: cfg.snapshotsDir, contentPackDir: cfg.contentPackDir, now });
+    const completeFailure = result.errors > 0 && result.stored === 0;
+    return { job, ok: !completeFailure, detail: { ...result, snapshots: snap.files.length } };
+  }
   if (job === 'gauges') {
-    await runGaugesJob(db, {
+    const usgsResult = await runGaugesJob(db, {
       userAgent: cfg.userAgent,
       provider: cfg.usgsProvider,
       waterDataApiKey: cfg.usgsWaterDataApiKey,
     });
     // Non-USGS gauge sources (TVA + USACE) into gauge_readings_raw — the same
     // lane, its own jobs_log row; build.ts still keys staleness on 'gauges'.
-    await runConditionsReadingsJob(db, {
+    const conditions = await runConditionsReadingsJob(db, {
       userAgent: cfg.userAgent,
       releaseSchedules: true,
       includeReservoirs: true,
     });
     const snap = buildSnapshots({ db, snapshotsDir: cfg.snapshotsDir, contentPackDir: cfg.contentPackDir, now });
-    return { job, ok: true, detail: { ...snap, files: snap.files.length } };
+    // F33: the dispatcher no longer swallows the ingestion result. A complete
+    // conditions failure (every station errored, nothing stored) is a failed
+    // dispatch even though the bridge soft-failed internally.
+    const conditionsFailed = conditions.errors > 0 && conditions.gauges === 0;
+    return {
+      job,
+      ok: !conditionsFailed,
+      detail: {
+        usgs: { items: usgsResult.items, sites: usgsResult.sites, warnings: usgsResult.warnings },
+        conditionsIngest: conditions,
+        ...snap,
+        files: snap.files.length,
+      },
+    };
   }
   if (job === 'stocking') {
     const result = await runStockingJob(
@@ -256,7 +289,9 @@ export async function runJob(
       { now },
     );
     const snap = buildSnapshots({ db, snapshotsDir: cfg.snapshotsDir, contentPackDir: cfg.contentPackDir, now });
-    return { job, ok: true, detail: { ...result, snapshots: snap.files.length } };
+    // F33: a failed evidence run (every expected observation source down) is a
+    // failed dispatch — the payload still stores, carrying last-good data.
+    return { job, ok: result.outcome !== 'failed', detail: { ...result, snapshots: snap.files.length } };
   }
   const handle = startJob(db, 'snapshots');
   try {

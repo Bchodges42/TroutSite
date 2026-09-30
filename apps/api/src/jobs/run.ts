@@ -92,12 +92,34 @@ export function jobHealthy(db: Db, job: string): boolean {
   return row?.status === 'ok';
 }
 
-/** Jobs whose output feeds the hourly snapshot pipeline (refresh-data cadence). */
-const HOURLY_PIPELINE_JOBS = new Set(['seed', 'snapshots']);
 /** A finished hourly-pipeline job older than this missed ~24 hourly cadences. */
 export const HOURLY_PIPELINE_MAX_AGE_HOURS = 24;
 /** A 'running' row older than this is a stuck run, not a live one. */
 const STUCK_RUN_HOURS = 1;
+
+/**
+ * Scheduler expectations (F05): every job the schedule SHOULD run, with its
+ * staleness budget. Hourly pipeline jobs get 24 h (missed ~24 cadences);
+ * the daily stocking/evidence feeds get 48 h (two missed dailies). This is
+ * what makes a MISSING feed visible: production Windows ran the hourly
+ * seed→gauges→snapshots loop for months with stocking/evidence/pressure
+ * never scheduled at all, and health stayed green because only jobs with a
+ * jobs_log row were ever inspected.
+ */
+export interface ExpectedJobSpec {
+  /** A finished run older than this — or the total absence of runs while the
+   *  pipeline demonstrably runs — degrades /healthz. */
+  staleAfterHours: number;
+  /** Human label for the degraded reason. */
+  label: string;
+}
+export const EXPECTED_JOBS: Record<string, ExpectedJobSpec> = {
+  gauges: { staleAfterHours: 24, label: 'hourly pipeline' },
+  pressure: { staleAfterHours: 24, label: 'hourly pipeline' },
+  snapshots: { staleAfterHours: HOURLY_PIPELINE_MAX_AGE_HOURS, label: 'hourly pipeline' },
+  stocking: { staleAfterHours: 48, label: 'daily feeds' },
+  evidence: { staleAfterHours: 48, label: 'daily feeds' },
+};
 
 /**
  * Pipeline-health reasons for /healthz `degraded` (2026-09-16 skew retro).
@@ -107,9 +129,9 @@ const STUCK_RUN_HOURS = 1;
  * every visitor saw good (stale) data while the snapshots job errored hourly,
  * and /healthz answered ok:true with the error buried in `jobs` where nothing
  * read it. `degraded` is the additive surface for exactly that: an errored job,
- * a stuck run, or an hourly-pipeline job gone quiet — without flipping ok (a
- * stale-but-serving site is not down, so verify-site/deploy/watchdog keep
- * acting on ok alone).
+ * a stuck run, an hourly-pipeline job gone quiet — or (F05) an expected job
+ * with NO run at all — without flipping ok (a stale-but-serving site is not
+ * down, so verify-site/deploy/watchdog keep acting on ok alone).
  */
 export function jobDegradation(jobs: Record<string, JobRunSummary>, now = new Date()): string[] {
   const reasons: string[] = [];
@@ -119,7 +141,8 @@ export function jobDegradation(jobs: Record<string, JobRunSummary>, now = new Da
       reasons.push(`${job.job}: last run errored${err}`);
       continue;
     }
-    if (!HOURLY_PIPELINE_JOBS.has(job.job)) continue;
+    const spec = EXPECTED_JOBS[job.job];
+    if (!spec) continue;
     if (job.status === 'running') {
       const hours = (now.getTime() - Date.parse(job.startedAt)) / 3_600_000;
       if (Number.isFinite(hours) && hours > STUCK_RUN_HOURS) {
@@ -129,10 +152,21 @@ export function jobDegradation(jobs: Record<string, JobRunSummary>, now = new Da
     }
     if (job.status === 'ok' && job.finishedAt) {
       const hours = (now.getTime() - Date.parse(job.finishedAt)) / 3_600_000;
-      if (Number.isFinite(hours) && hours > HOURLY_PIPELINE_MAX_AGE_HOURS) {
+      if (Number.isFinite(hours) && hours > spec.staleAfterHours) {
         reasons.push(
-          `${job.job}: finished ${Math.floor(hours)}h ago (hourly pipeline expected <${HOURLY_PIPELINE_MAX_AGE_HOURS}h)`,
+          `${job.job}: finished ${Math.floor(hours)}h ago (${spec.label} expected <${spec.staleAfterHours}h)`,
         );
+      }
+    }
+  }
+  // F05: never-run expected jobs. Only reported once this host demonstrably
+  // runs the pipeline (some expected job has a row) — a bare/portal-only DB
+  // with an empty jobs_log has nothing to compare against and stays silent.
+  const anyPipelineRun = Object.values(jobs).some((j) => EXPECTED_JOBS[j.job] !== undefined);
+  if (anyPipelineRun) {
+    for (const [name, spec] of Object.entries(EXPECTED_JOBS)) {
+      if (!jobs[name]) {
+        reasons.push(`${name}: no run ever recorded (expected ${spec.label})`);
       }
     }
   }

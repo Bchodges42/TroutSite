@@ -4,6 +4,7 @@
 # the snapshot trees after the cron process went quiet. Run this hourly from a
 # schedule (install-schedules.sh registers it) so the feed stays fresh:
 #   deploy-stamp guard → seed catalog → ingest fresh USGS gauge readings →
+#   ingest NWS pressure/rain (F05) → [daily-feeds mode: stocking + evidence] →
 #   regenerate all snapshot JSON.
 # Never touches portal data or the logbook; gauge-ingest failures are logged,
 # not fatal. Skew and snapshot failures page the owner (alert.sh dedup).
@@ -83,6 +84,35 @@ if pnpm --filter api ingest --job=gauges >> "$LOG" 2>&1; then
   log "gauge ingestion ok"
 else
   log "WARN — gauge ingestion failed (network/USGS?); regenerating from last-known readings"
+fi
+
+# --- NWS area pressure/rain (F05): hourly regional context --------------------
+# The dispatcher job (`ingest --job=pressure`) fills region_pressure /
+# region_precipitation, which the fishability snapshot publishes as area
+# context. ~9 stations per run; failures are last-known-honest, not fatal.
+if pnpm --filter api ingest --job=pressure >> "$LOG" 2>&1; then
+  log "pressure/rain ingestion ok"
+else
+  log "WARN — pressure ingestion failed (NWS down?); area context stays last-known"
+fi
+
+# --- daily feeds (F05): stocking + evidence on the canonical Windows stack ----
+# This host has no pm2 cron; install-schedules.sh registers trout-refresh-feeds
+# (daily 06:00), which re-enters THIS script with TROUT_REFRESH_FEEDS=1 so the
+# once-daily ingestion runs under the same deploy-stamp guard, seed rule and
+# alert dedup as the hourly refresh. The dev pm2 cron (cron.ts) keeps its own
+# 06:00/06:20 stocking/evidence schedule — the two stacks stay separate.
+if [ "${TROUT_REFRESH_FEEDS:-0}" = "1" ]; then
+  if pnpm --filter api ingest --job=stocking >> "$LOG" 2>&1; then
+    log "stocking ingestion ok"
+  else
+    log "WARN — stocking ingestion failed (source down?); last-known stocking rows survive"
+  fi
+  if pnpm --filter api ingest --job=evidence >> "$LOG" 2>&1; then
+    log "evidence ingestion ok"
+  else
+    log "WARN — evidence ingestion failed (source down?); last-good evidence survives (healthz flags the job)"
+  fi
 fi
 
 if pnpm --filter api snapshots >> "$LOG" 2>&1; then
