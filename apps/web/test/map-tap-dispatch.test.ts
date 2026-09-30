@@ -15,7 +15,8 @@ import { dispatchMapTap, type MapTapSurface } from '../src/features/map/Tennesse
 const POINT = { x: 20, y: 20 };
 const LNG_LAT = { lng: -86.1, lat: 35.8 };
 
-function surface(overrides: Partial<MapTapSurface> = {}): MapTapSurface {
+type PlainSurface = MapTapSurface<{ x: number; y: number }, { lng: number; lat: number }>;
+function surface(overrides: Partial<PlainSurface> = {}): PlainSurface {
   return {
     overlayAt: vi.fn(() => null),
     overlayFeatureAt: vi.fn(() => undefined),

@@ -63,27 +63,20 @@ export function mapStyleKey(
  * overlapping gauge never opened on touchscreens.
  */
 export type MapTapKind = 'gauge' | 'stocking' | 'attractor' | 'river' | null;
-export interface MapTapSurface {
+export interface MapTapSurface<PointT, LngLatT> {
   /** Overlay-dot hit test (enabled overlays only). */
-  overlayAt(point: { x: number; y: number }): { kind: 'gauge' | 'stocking' | 'attractor' } | null;
+  overlayAt(point: PointT): { kind: 'gauge' | 'stocking' | 'attractor' } | null;
   /** The overlay feature to popup at this point (a tighter query than the hit test). */
-  overlayFeatureAt(
-    kind: 'gauge' | 'stocking' | 'attractor',
-    point: { x: number; y: number },
-  ): unknown | undefined;
+  overlayFeatureAt(kind: 'gauge' | 'stocking' | 'attractor', point: PointT): unknown | undefined;
   /** The visible river (or still water) to select at this point, if any. */
-  riverAt(point: { x: number; y: number }): string | null;
-  openOverlay(
-    kind: 'gauge' | 'stocking' | 'attractor',
-    feature: unknown,
-    lngLat: { lng: number; lat: number },
-  ): void;
+  riverAt(point: PointT): string | null;
+  openOverlay(kind: 'gauge' | 'stocking' | 'attractor', feature: unknown, lngLat: LngLatT): void;
   selectRiver(id: string): void;
 }
-export function dispatchMapTap(
-  surface: MapTapSurface,
-  point: { x: number; y: number },
-  lngLat: { lng: number; lat: number },
+export function dispatchMapTap<PointT extends { x: number; y: number }, LngLatT extends { lng: number; lat: number }>(
+  surface: MapTapSurface<PointT, LngLatT>,
+  point: PointT,
+  lngLat: LngLatT,
 ): MapTapKind {
   const overlay = surface.overlayAt(point);
   if (overlay) {
@@ -796,7 +789,7 @@ export function TennesseeMap(props: Props) {
     });
     // F45: the tap surface — ONE overlay-first dispatch routine shared by the
     // touch and click handlers below. Priority: gauges, stocking, attractors.
-    const tapSurface: MapTapSurface = {
+    const tapSurface: MapTapSurface<maplibregl.Point, maplibregl.LngLat> = {
       overlayAt: (point) => overlayAt(point),
       overlayFeatureAt: (kind, point) => {
         const group = OVERLAY_GROUPS.find((g) => g.kind === kind)!;
