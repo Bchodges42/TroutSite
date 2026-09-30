@@ -213,6 +213,9 @@ export function WaterOverviewCard({
         <Link className="secondary-action" to={toCompare}>
           Compare
         </Link>
+        <Link className="secondary-action" to={`/trips?waters=${encodeURIComponent(waterId)}`}>
+          Prepare trip
+        </Link>
         {actions.matchHatch && (
           <Link className="text-action" to={toHatch}>
             Match hatch

@@ -12,6 +12,8 @@ import { ShopsPage } from './pages/ShopsPage';
 import { LogbookPage } from './pages/LogbookPage';
 import { MyWatersPage } from './pages/MyWatersPage';
 import { ComparePage } from './pages/ComparePage';
+import { TripsPage } from './pages/TripsPage';
+import { CorrectionsPage } from './pages/CorrectionsPage';
 import { SettingsPage } from './pages/SettingsPage';
 import { AboutPrivacyPage } from './pages/AboutPrivacyPage';
 import { FishingInfoPage } from './pages/FishingInfoPage';
@@ -39,6 +41,8 @@ export function App() {
         <Route path="logbook" element={<LogbookPage />} />
         <Route path="my-waters" element={<MyWatersPage />} />
         <Route path="compare" element={<ComparePage />} />
+        <Route path="trips" element={<TripsPage />} />
+        <Route path="corrections" element={<CorrectionsPage />} />
         <Route path="settings" element={<SettingsPage />} />
         <Route path="about" element={<AboutPrivacyPage />} />
         <Route path="fishing-info" element={<FishingInfoPage />} />

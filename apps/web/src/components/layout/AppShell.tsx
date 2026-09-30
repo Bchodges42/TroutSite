@@ -15,6 +15,7 @@ import { SPRING } from '../motion/atlas-motion';
 import {
   BookIcon,
   BugIcon,
+  CalendarIcon,
   ChartIcon,
   CloseIcon,
   FishIcon,
@@ -37,6 +38,7 @@ import { useStreamsCatalog } from '../../lib/useStreamsCatalog';
 // before the utility pages below it.
 const moreLinks = [
   { to: '/my-waters', label: 'My Waters', Icon: LocationIcon },
+  { to: '/trips', label: 'Trips', Icon: CalendarIcon },
   { to: '/regulations', label: 'Regulations', Icon: ListIcon },
   { to: '/conditions', label: 'Conditions', Icon: WavesIcon },
   { to: '/compare', label: 'Compare waters', Icon: ChartIcon },
