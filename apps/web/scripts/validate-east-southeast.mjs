@@ -10,8 +10,10 @@
  * unexplained line gaps (islands) · inlet/outlet terminal distances (line
  * endpoints vs lake polygons / dam anchors / other lines) · duplicate
  * overlapping reaches · catalog/geometry parity · missing priority lakes ·
- * cross-state retention (South Holston VA portion) · passive named lakes
- * lacking interactive replacements.
+ * cross-state retention (South Holston VA portion).
+ * (The retired passive-lakes check was removed 2026-09-29 with the empty
+ * public/atlas/lakes.geojson artifact it dereferenced — KNOWN-ISSUES F26;
+ * every formerly passive named lake now ships an interactive replacement.)
  *
  * Run: node scripts/validate-east-southeast.mjs
  */
@@ -214,14 +216,11 @@ for (const id of [
 ]) {
   if (!ids.has(id)) fail(id, 'priority lake missing from delivery');
 }
-// passive named lakes lacking interactive replacements
-const passive = JSON.parse(readFileSync(path.join(webRoot, 'public', 'atlas', 'lakes.geojson'), 'utf8'));
-for (const f of passive.features) {
-  const id = f.properties?.id;
-  if (['boone-lake', 'watauga-lake', 'tellico-lake', 'parksville-lake', 'nickajack-lake'].includes(id) && !ids.has(id)) {
-    fail(id, 'still passive in lakes.geojson with no interactive replacement');
-  }
-}
+// (F26, 2026-09-29 audit) The retired passive-lakes check — which dereferenced
+// the intentionally removed empty public/atlas/lakes.geojson and crashed the
+// whole gate with ENOENT — is gone. Every formerly passive named lake
+// (boone, watauga, tellico, parksville, nickajack) ships an interactive
+// replacement and is covered by the priority-lake parity check above.
 
 // ---- cross-state retention (South Holston must include the VA portion)
 const sh = lakes.get('south-holston-lake');
