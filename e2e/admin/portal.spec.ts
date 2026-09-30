@@ -47,6 +47,19 @@ test('shop token logs in and shows the composer', async ({ page }) => {
   await expect(page.getByLabel('Report body')).toBeVisible();
 });
 
+test('F06: published history is reachable from the portal ORIGIN (proxied public read)', async ({
+  request,
+}) => {
+  // The admin fetches /v1/reports/recent.json same-origin; before the F06 fix the
+  // static server 404'd this path (only /v1/portal was forwarded) and "My reports"
+  // could never load even though login/publish worked.
+  const res = await request.get('/v1/reports/recent.json');
+  expect(res.ok()).toBeTruthy();
+  expect(res.headers()['content-type'] ?? '').toContain('application/json');
+  const body = (await res.json()) as unknown[];
+  expect(Array.isArray(body)).toBeTruthy();
+});
+
 test('submitted report lands in reports/recent.json with attribution', async ({
   page,
   request,
@@ -58,16 +71,16 @@ test('submitted report lands in reports/recent.json with attribution', async ({
   await expect(page.getByRole('heading', { name: 'Test Fly Shop (fixture)' })).toBeVisible();
 
   await page.getByLabel('Water').selectOption('watauga-river');
-  await page.getByLabel('Report body').fill(
-    'Blue-winged olives came off in the rain mid-afternoon; fish keyed on size 20 emergers in the slow seam below the bridge.',
-  );
+  const body =
+    'Blue-winged olives came off in the rain mid-afternoon; fish keyed on size 20 emergers in the slow seam below the bridge.';
+  await page.getByLabel('Report body').fill(body);
   await page.getByRole('button', { name: 'Publish report' }).click();
   await expect(page.getByText(/Published.+thank you/i)).toBeVisible();
 
   // The API regenerates the snapshot inline on accept — verify the public feed.
   const recent = await request.get(`${E2E_API}/v1/reports/recent.json`);
   expect(recent.ok()).toBeTruthy();
-  const body = (await recent.json()) as {
+  const list = (await recent.json()) as {
     shopId: string;
     shopName: string;
     streamId?: string;
@@ -75,10 +88,22 @@ test('submitted report lands in reports/recent.json with attribution', async ({
     attributionUrl: string;
     photoUrl?: string;
   }[];
-  const mine = body.find((r) => r.streamId === 'watauga-river');
+  const mine = list.find((r) => r.streamId === 'watauga-river');
   expect(mine, 'the published report appears in the public feed').toBeTruthy();
   expect(mine?.shopId).toBe('test-fly-shop');
   expect(mine?.shopName).toBe('Test Fly Shop (fixture)');
   expect(mine?.attributionUrl).toMatch(/^https:\/\//);
   expect(mine?.body).not.toContain('<'); // sanitized plain text
+
+  // F06 regression, HTTP level: the SAME feed must be reachable from the PORTAL
+  // origin (static-server proxy), not only from the API origin above.
+  const viaPortal = await request.get('/v1/reports/recent.json');
+  expect(viaPortal.ok()).toBeTruthy();
+
+  // F06 regression, UI level: "My reports" loads through the portal origin and
+  // shows the just-published report.
+  await page.getByRole('button', { name: 'My reports' }).click();
+  await expect(page.getByText(/size 20 emergers/)).toBeVisible();
+  // F15: the accepted report is no longer an editable draft in this browser.
+  await expect(page.getByText('No drafts yet')).toBeVisible();
 });
