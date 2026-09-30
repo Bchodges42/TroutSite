@@ -32,6 +32,7 @@ import { FishabilityCard } from '../components/FishabilityCard';
 import { buildSurfaceOverview } from '../features/waters/buildSurfaceOverview';
 import { WaterOverviewCard } from '../features/waters/WaterOverviewCard';
 import { ReleasesPanel } from '../features/waters/ReleasesPanel';
+import { GaugeHistorySection } from '../features/waters/GaugeHistoryChart';
 import { SolarWindowsCard } from '../components/SolarWindowsCard';
 import { stockingEventState, stockingPrecisionDate } from './StockingPage';
 import { itemsForWater, useFishingInfo } from '../lib/fishingInfo';
@@ -412,6 +413,15 @@ export function StreamDetailPage() {
             <h2 className="section-title">Gauge readings</h2>
             <ReadingsTable readings={readings} tempUnit={settings.tempUnit} />
           </div>
+
+          {/* ADR 0014: per-gauge recent history — renders NOTHING until a
+          history snapshot actually resolves (loading/404/failure), so the page
+          is unchanged until the API lane lands /v1/gauge-history/*.json. */}
+          <GaugeHistorySection
+            streamId={stream.id}
+            gaugeIds={stream.gaugeIds}
+            className="mt-4"
+          />
         </>
       )}
 
@@ -537,6 +547,15 @@ export function StreamDetailPage() {
             </li>
           ))}
         </ul>
+        <p className="mt-3 text-sm">
+          <Link
+            to={`/corrections?water=${encodeURIComponent(stream.id)}`}
+            className="focus-ring text-sm underline"
+            style={{ color: 'var(--trout-color-text-muted)' }}
+          >
+            Spot something wrong on this page? Suggest a correction
+          </Link>
+        </p>
       </Card>
     </main>
   );
