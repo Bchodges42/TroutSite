@@ -53,8 +53,14 @@ log() { # tee is not guaranteed in portable shells — echo + append instead
 }
 
 if bash infra/verify-site.sh --url "$URL" >> "$LOG" 2>&1; then
-  log "OK — read path green on $URL"
-  trout_maybe_push "OK" "Trout server recovered" "The read path is green again (watchdog verify passed)." "default"
+  # F47 (2026-09-29 audit): the old order pushed "recovered" BEFORE looking at
+  # healthz, so a green read path over a failing pipeline announced recovery on
+  # entry, and every later degraded check re-announced recovery (the status
+  # file flipped to OK only in the dispatch's eyes) while the real DEGRADED
+  # page was deduplicated away. Read health once, decide the final state, then
+  # dispatch exactly one transition: recovery is announced only when the state
+  # actually becomes OK.
+  #
   # Truthful healthz (2026-09-16 skew retro): `ok` gates the read path;
   # `degraded` means a pipeline job is erroring or the hourly build went quiet
   # while visitors still see the last-good data. That is exactly the ten-day
@@ -78,6 +84,8 @@ if bash infra/verify-site.sh --url "$URL" >> "$LOG" 2>&1; then
       "$(trout_alert_context "Jobs are failing or stale while the site keeps serving last-good data: $degraded — inspect backups/refresh-data.log; a skew REFUSED line there means deploy.sh must run.")" "high"
     trout_set_status "DEGRADED"
   else
+    log "OK — read path green on $URL"
+    trout_maybe_push "OK" "Trout server recovered" "The read path is green again (watchdog verify passed)." "default"
     trout_set_status "OK"
   fi
   # Skew context (no push — refresh-data's guard pages about skew hourly): if
