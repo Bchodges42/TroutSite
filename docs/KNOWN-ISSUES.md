@@ -421,9 +421,11 @@ repair audit is `docs/reports/2026-09-22-evidence-branch-repair.md`.
 ## SENIOR CODE AUDIT 2026-09-29 — REMEDIATION WORKLIST (F01–F48)
 
 Full report: [`reports/2026-09-29-senior-code-audit.md`](reports/2026-09-29-senior-code-audit.md)
-(2 P1, 41 P2, 5 P3 @ canon 14a92bc). Remediation runs in waves on
-`codex/audit-remediation-20260929`; this list is updated as findings land.
-Wave 1 integrated @ 31437a6 (gates: build/content/test 893/infra 12/lint all green).
+(2 P1, 41 P2, 5 P3 @ canon 14a92bc). Remediation ran in waves on
+`codex/audit-remediation-20260929` — **all 48 findings fixed and independently
+verified**; per-finding mechanisms below, full evidence in
+[`reports/2026-09-30-audit-remediation.md`](reports/2026-09-30-audit-remediation.md).
+Final gates: build/content/units 1073/infra 18/lint 0, Playwright 107/107.
 
 ### Wave 1 — urgent integrity and test foundation (MERGED)
 
@@ -514,7 +516,7 @@ Wave 1 integrated @ 31437a6 (gates: build/content/test 893/infra 12/lint all gre
   → Fixed (lane A): pressure context age-gated at build (6 h window, matching the rain gate); expired rows omitted with a warning; payload keeps observedAt for Wave-3 client display.
   → Fixed (lane A, API lane A wave 2): pressure context is age-gated at build (6 h window, matching the rain gate) and the client card displays the observation age ("observed 2 hours ago") alongside the station.
 
-### Wave 3 — freshness, maps, accessibility, user-facing truth (MERGED @ 11b2901; all 22 findings fixed; real-geometry e2e run pending)
+### Wave 3 — freshness, maps, accessibility, user-facing truth (MERGED; all 22 findings fixed and verified)
 
 - [x] **F04 P2** — cached species assessments keep current confidence indefinitely.
   → Fixed (lane A): snapshots are stamped with current observation ages at the data boundary (pure stampCurrentAges, injected clock); past the 3-h reading window an assessment renders as Historical (chip + reduced confidence + explicit line), never as current-high.

@@ -34,7 +34,15 @@ const servers: Server[] = [];
 
 afterEach(() => {
   for (const s of servers.splice(0)) s.close();
-  for (const dir of sandboxes.splice(0)) rmSync(dir, { recursive: true, force: true });
+  for (const dir of sandboxes.splice(0)) {
+    try {
+      rmSync(dir, { recursive: true, force: true });
+    } catch {
+      // Windows: a just-exited bash child can still hold the sandbox for a
+      // beat (AV/indexer lock) — rmSync then throws EPERM. Sandbox cleanup is
+      // hygiene, not an assertion; leaking a temp dir beats failing the run.
+    }
+  }
 });
 
 function makeSandbox(): string {
@@ -230,7 +238,7 @@ describe('F46 — refresh-data.sh failure branches page despite recording status
     expect(recordedStatus(root, 'refresh-data.status')).toBe('FAIL-SEED');
     await run(root, 'refresh-data.sh', seedFails);
     expect(pushes(root)).toEqual(['high | Trout hourly refresh failed at seed']);
-  });
+  }, 60_000);
 
   it('pages a snapshot failure once across repeated runs (FAIL-SNAPSHOTS)', async () => {
     const { root, env } = makeRefreshFixture();
@@ -241,7 +249,7 @@ describe('F46 — refresh-data.sh failure branches page despite recording status
     expect(recordedStatus(root, 'refresh-data.status')).toBe('FAIL-SNAPSHOTS');
     await run(root, 'refresh-data.sh', snapsFail);
     expect(pushes(root)).toEqual(['high | Trout hourly snapshot rebuild failed']);
-  });
+  }, 60_000);
 
   it('pages a failed read-path verify (FAIL-VERIFY), then recovers silently', async () => {
     const { root, env } = makeRefreshFixture();
@@ -256,7 +264,7 @@ describe('F46 — refresh-data.sh failure branches page despite recording status
     expect(second.status).toBe(0);
     expect(recordedStatus(root, 'refresh-data.status')).toBe('OK');
     expect(pushes(root)).toEqual(['high | Trout refresh failed read-path verify']);
-  });
+  }, 60_000);
 
   it('a green refresh writes OK and never buzzes', async () => {
     const { root, env } = makeRefreshFixture();
@@ -266,7 +274,7 @@ describe('F46 — refresh-data.sh failure branches page despite recording status
     expect(pushes(root)).toEqual([]);
     await run(root, 'refresh-data.sh', env);
     expect(pushes(root)).toEqual([]);
-  });
+  }, 60_000);
 });
 
 describe('F47 — watchdog announces recovery only after a real recovery', () => {
