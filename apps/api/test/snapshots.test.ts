@@ -1,8 +1,9 @@
-import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { closeSync, existsSync, mkdirSync, openSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import {
   ConditionSnapshotSchema,
+  FishabilitySnapshotSchema,
   ShopSchema,
   ShopReportSchema,
   StreamSchema,
@@ -426,6 +427,227 @@ describe('publishReportFeed (feed-scoped publication for the portal report route
       env2.db.close();
       rmSync(env2.dir, { recursive: true, force: true });
     }
+  });
+});
+
+/** F21: per-file atomic writes do not give GENERATION atomicity. A build that
+ *  throws halfway (here: a valid catalog change followed by an invalid
+ *  release-schedule payload, the audit's exact repro) must leave the prior
+ *  published generation byte-identical — the whole new generation is staged
+ *  and validated before any live file is touched, promotion preserves the
+ *  prior tree until it fully succeeds, and an interrupted promotion is
+ *  recovered (rolled back) by the next build. */
+describe('buildSnapshots generation atomicity (F21)', () => {
+  let env: TestEnv;
+
+  beforeEach(() => {
+    env = makeEnv();
+  });
+
+  afterEach(() => {
+    env.db.close();
+    rmSync(env.dir, { recursive: true, force: true });
+  });
+
+  /** New-generation content in the DB (renamed stream) + an invalid
+   *  release-schedule payload: staging throws ZodError on the schedule AFTER
+   *  the catalog has been built into the staged generation. */
+  function tamperForStagingFailure(): void {
+    env.db.prepare("UPDATE streams SET name = 'Tampered Name (F21)' WHERE id = 'watauga-river'").run();
+    env.db
+      .prepare('INSERT INTO release_schedules (water_id, location_id, retrieved_at, payload) VALUES (?, ?, ?, ?)')
+      .run('watauga-river', 'WL', NOW.toISOString(), JSON.stringify({ waterId: 42 }));
+  }
+
+  function stageOrPrevLeftovers(): string[] {
+    return readdirSync(env.snapshotsDir).filter((f) => f.startsWith('.snap-stage-') || f.startsWith('.snap-prev-'));
+  }
+
+  it('a build that fails mid-generation leaves every live file byte-identical (no mixed generation)', () => {
+    buildSnapshots({ db: env.db, snapshotsDir: env.snapshotsDir, now: NOW });
+    const baseline = snapshotContents(env.snapshotsDir);
+    expect(baseline.has(join('v1', 'streams.json'))).toBe(true);
+
+    tamperForStagingFailure();
+    expect(() => buildSnapshots({ db: env.db, snapshotsDir: env.snapshotsDir, now: NOW })).toThrow();
+
+    // The live tree is exactly the prior generation: same file set, same bytes.
+    const after = snapshotContents(env.snapshotsDir);
+    expect([...after.keys()].sort()).toEqual([...baseline.keys()].sort());
+    for (const [rel, content] of baseline) {
+      expect(after.get(rel)).toBe(content);
+    }
+    const streams = JSON.parse(after.get(join('v1', 'streams.json'))!) as { id: string; name: string }[];
+    expect(streams.find((s) => s.id === 'watauga-river')?.name).not.toBe('Tampered Name (F21)');
+    // No staging/backup directories left behind in the served public tree.
+    expect(stageOrPrevLeftovers()).toEqual([]);
+  });
+
+  it('after a failed build, a valid rebuild still promotes the new generation everywhere', () => {
+    buildSnapshots({ db: env.db, snapshotsDir: env.snapshotsDir, now: NOW });
+    tamperForStagingFailure();
+    expect(() => buildSnapshots({ db: env.db, snapshotsDir: env.snapshotsDir, now: NOW })).toThrow();
+
+    // Repair the payload (keep the renamed stream) and rebuild: the new
+    // generation must actually publish — the atomicity must not freeze the tree.
+    env.db.prepare('DELETE FROM release_schedules').run();
+    buildSnapshots({ db: env.db, snapshotsDir: env.snapshotsDir, now: NOW });
+    const streams = JSON.parse(
+      readFileSync(join(env.snapshotsDir, 'v1', 'streams.json'), 'utf8'),
+    ) as { id: string; name: string }[];
+    expect(streams.find((s) => s.id === 'watauga-river')?.name).toBe('Tampered Name (F21)');
+    expect(stageOrPrevLeftovers()).toEqual([]);
+  });
+
+  it('a promotion that fails midway is rolled back to the prior generation', () => {
+    buildSnapshots({ db: env.db, snapshotsDir: env.snapshotsDir, now: NOW });
+    const baseline = snapshotContents(env.snapshotsDir);
+
+    // Valid new generation, but make one destination un-promotable: hold an
+    // open handle on live v1/streams.json (a Windows sharing lock — an
+    // AV/indexer holding a file behaves the same, and CI/production are
+    // windows-latest). Staging is unaffected (it writes under the staging
+    // dir), promotion is sorted, so every earlier file IS renamed into place
+    // — a genuinely mixed live tree — before the streams.json rename fails.
+    env.db.prepare("UPDATE streams SET name = 'Tampered Name (F21)' WHERE id = 'watauga-river'").run();
+    const fd = openSync(join(env.snapshotsDir, 'v1', 'streams.json'), 'r');
+    try {
+      expect(() => buildSnapshots({ db: env.db, snapshotsDir: env.snapshotsDir, now: NOW })).toThrow();
+
+      // The partial promotion was rolled back: every live file — including
+      // the obstructed one, whose prior bytes the rollback restores through
+      // the open handle — is byte-identical to the prior generation, and no
+      // staging/backup leftovers remain (rollback succeeded, backup consumed).
+      const after = snapshotContents(env.snapshotsDir);
+      expect([...after.keys()].sort()).toEqual([...baseline.keys()].sort());
+      for (const [rel, content] of baseline) {
+        expect(after.get(rel)).toBe(content);
+      }
+      const streams = JSON.parse(after.get(join('v1', 'streams.json'))!) as { id: string; name: string }[];
+      expect(streams.find((s) => s.id === 'watauga-river')?.name).not.toBe('Tampered Name (F21)');
+      expect(stageOrPrevLeftovers()).toEqual([]);
+    } finally {
+      closeSync(fd);
+    }
+  });
+
+  it('recovers an interrupted promotion on the next build: prior generation is restored, staging leftovers cleaned', () => {
+    buildSnapshots({ db: env.db, snapshotsDir: env.snapshotsDir, now: NOW });
+    const baseline = snapshotContents(env.snapshotsDir);
+
+    // Simulate process death mid-promotion: the backup of the prior generation
+    // exists, the live catalog file is half-overwritten, and a stale staging
+    // directory lingers — all under pids that are not running.
+    const deadPid = 999999;
+    const prevDir = join(env.snapshotsDir, `.snap-prev-${deadPid}`);
+    const stageDir = join(env.snapshotsDir, `.snap-stage-${deadPid}`);
+    mkdirSync(join(prevDir, 'v1'), { recursive: true });
+    for (const [rel, content] of baseline) {
+      const dest = join(prevDir, rel);
+      mkdirSync(dirname(dest), { recursive: true });
+      writeFileSync(dest, content);
+    }
+    writeFileSync(join(env.snapshotsDir, 'v1', 'streams.json'), '{"half":"promoted"}');
+    mkdirSync(stageDir, { recursive: true });
+    writeFileSync(join(stageDir, 'junk.json'), '{}');
+
+    // Next build: recovery restores the prior generation BEFORE staging; the
+    // rebuild itself then fails again (still-tampered payload) but the live
+    // tree must be the recovered prior generation, leftovers gone.
+    tamperForStagingFailure();
+    expect(() => buildSnapshots({ db: env.db, snapshotsDir: env.snapshotsDir, now: NOW })).toThrow();
+    const after = snapshotContents(env.snapshotsDir);
+    expect(after.get(join('v1', 'streams.json'))).toBe(baseline.get(join('v1', 'streams.json')));
+    expect([...after.keys()].sort()).toEqual([...baseline.keys()].sort());
+    expect(stageOrPrevLeftovers()).toEqual([]);
+  });
+});
+
+/** F48: a fresh fishability snapshot must not present a dead feed's pressure
+ *  trend as current area context. region_pressure rows are only published into
+ *  pressureContext while their observation is fresh at build time (≤6 h — 2×
+ *  the 3 h ingest acceptance window, matching the region_precipitation gate);
+ *  an expired row is omitted (treated as unavailable) and warned about. The
+ *  payload keeps observedAt so the client can always display the age. */
+describe('pressure context freshness (F48)', () => {
+  let env: TestEnv;
+  const NOW_MS = NOW.getTime();
+
+  beforeEach(() => {
+    env = makeEnv();
+  });
+
+  afterEach(() => {
+    env.db.close();
+    rmSync(env.dir, { recursive: true, force: true });
+  });
+
+  function giveWataugaTargetSpecies(): string {
+    env.db
+      .prepare("UPDATE streams SET target_species = ? WHERE id = 'watauga-river'")
+      .run('["smallmouth-bass"]');
+    return (
+      env.db.prepare("SELECT region_id FROM streams WHERE id = 'watauga-river'").get() as {
+        region_id: string;
+      }
+    ).region_id;
+  }
+
+  function insertPressure(regionId: string, observedAgoMin: number): void {
+    env.db
+      .prepare(
+        `INSERT INTO region_pressure (region_id, observed_at, retrieved_at, pressure_hpa, trend_hpa_3h, trend_direction, station)
+         VALUES (?, ?, ?, ?, ?, ?, ?)`,
+      )
+      .run(
+        regionId,
+        new Date(NOW_MS - observedAgoMin * 60_000).toISOString(),
+        NOW.toISOString(),
+        1014.5,
+        -3,
+        'falling',
+        'KTRI',
+      );
+  }
+
+  function readFishability(): FishabilitySnapshotSchema['_output'] {
+    return FishabilitySnapshotSchema.parse(
+      JSON.parse(readFileSync(join(env.snapshotsDir, 'v1', 'fishability', 'watauga-river.json'), 'utf8')),
+    );
+  }
+
+  it('omits an expired pressure record (28 days old — the audit repro) and warns instead of publishing it', () => {
+    const regionId = giveWataugaTargetSpecies();
+    insertPressure(regionId, 28 * 24 * 60);
+    const result = buildSnapshots({ db: env.db, snapshotsDir: env.snapshotsDir, now: NOW });
+    expect(readFishability().pressureContext).toBeUndefined();
+    expect(result.warnings.some((w) => w.includes('pressure') && w.includes(regionId))).toBe(true);
+  });
+
+  it('still publishes a fresh pressure record unchanged (payload contract intact)', () => {
+    const regionId = giveWataugaTargetSpecies();
+    insertPressure(regionId, 30);
+    const result = buildSnapshots({ db: env.db, snapshotsDir: env.snapshotsDir, now: NOW });
+    const ctx = readFishability().pressureContext;
+    expect(ctx).toBeDefined();
+    expect(ctx!.observedAt).toBe(new Date(NOW_MS - 30 * 60_000).toISOString());
+    expect(ctx!.station).toBe('KTRI');
+    expect(ctx!.deltaHpa).toBe(-3);
+    expect(ctx!.direction).toBe('falling');
+    expect(ctx!.label).toBe('Area pressure falling -3 hPa over about 3 hours');
+    expect(result.warnings.some((w) => w.includes('pressure'))).toBe(false);
+  });
+
+  it('applies the 6 h boundary: just inside is published, just outside is omitted', () => {
+    const regionId = giveWataugaTargetSpecies();
+    insertPressure(regionId, 5 * 60 + 59); // 5h59m — inside the window
+    buildSnapshots({ db: env.db, snapshotsDir: env.snapshotsDir, now: NOW });
+    expect(readFishability().pressureContext).toBeDefined();
+
+    env.db.prepare('DELETE FROM region_pressure').run();
+    insertPressure(regionId, 6 * 60 + 1); // 6h01m — outside the window
+    buildSnapshots({ db: env.db, snapshotsDir: env.snapshotsDir, now: NOW });
+    expect(readFishability().pressureContext).toBeUndefined();
   });
 });
 

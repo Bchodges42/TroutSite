@@ -1,5 +1,6 @@
-import { existsSync, readdirSync, readFileSync, rmSync } from 'node:fs';
-import { join } from 'node:path';
+import { createHash } from 'node:crypto';
+import { cpSync, existsSync, mkdirSync, readdirSync, readFileSync, renameSync, rmSync, statSync } from 'node:fs';
+import { dirname, join, relative } from 'node:path';
 import {
   BugTaxonSchema,
   ConditionSnapshotSchema,
@@ -211,25 +212,105 @@ export function publishReportFeed(opts: { db: Db; snapshotsDir: string; now: Dat
 }
 
 /**
- * Regenerate every snapshot file into apps/web/public AT the URLs the frozen
- * ENDPOINTS map serves (GET /v1/* → static JSON) plus the bundled content pack
+ * Regenerate every snapshot file for the URLs the frozen ENDPOINTS map serves
+ * (GET /v1/* → static JSON) plus the bundled content pack
  * (/content/{taxa,patterns}.json). All payloads are validated against the frozen
- * contract schemas BEFORE writing; writes are atomic (temp + rename).
+ * contract schemas BEFORE anything is published.
+ *
+ * Generation atomicity (F21, 2026-09-29 audit): per-file atomic writes do not
+ * give GENERATION atomicity — a build that threw halfway used to leave part of
+ * the new generation published next to the old one. The builder therefore:
+ *   1. recovers any interrupted promotion (restores the preserved prior
+ *      generation, removes stale staging dirs),
+ *   2. builds and validates the ENTIRE new generation inside a staging
+ *      directory (seeded from the current live trees, so files this run does
+ *      not regenerate — evidence, hatch charts — carry forward and prunes see
+ *      them); any error here leaves the live tree untouched,
+ *   3. promotes: backs up the live trees, renames every staged file into
+ *      place (fast per-file atomic renames — Windows has no atomic dir-swap),
+ *      removes entries the new generation dropped, and VERIFIES the live file
+ *      set and bytes equal the staged generation,
+ *   4. on any promotion failure restores the preserved prior generation.
+ * The prior generation survives every failure point: staging error (untouched),
+ * mid-promotion error (rolled back from the backup; if the rollback itself is
+ * obstructed, the backup directory is retained and the next build retries),
+ * process death between steps (the same recovery runs at step 1 of the next
+ * build). Served URLs and bytes are unchanged — files still land at
+ * snapshotsDir/v1/** and snapshotsDir/content/**.
  *
  * Stale signal: ConditionSnapshot.nextExpectedUpdate is now+1h while the last gauges
  * job was healthy, `now` when it errored (immediately stale for consumers). Stocking
  * staleness rides on each event's fetchedAt (failed states are not rewritten).
  */
 export function buildSnapshots(opts: BuildOptions): SnapshotResult {
+  const { snapshotsDir } = opts;
+  recoverInterruptedPromotion(snapshotsDir);
+  const stageDir = join(snapshotsDir, `${STAGE_PREFIX}${process.pid}`);
+  rmSync(stageDir, { recursive: true, force: true });
+  mkdirSync(stageDir, { recursive: true });
+  try {
+    const result = buildGeneration(opts, stageDir);
+    promoteGeneration(snapshotsDir, stageDir);
+    // Report files at their live URLs — the staging prefix is an implementation
+    // detail (callers slice these paths against snapshotsDir).
+    result.files = result.files.map((p) => remapStagePathToLive(p, stageDir, snapshotsDir));
+    return result;
+  } finally {
+    // On success promotion already consumed the staging tree; on any failure
+    // this removes the partial generation. Either way nothing is left behind.
+    rmSync(stageDir, { recursive: true, force: true });
+  }
+}
+
+/** The publication-managed subtrees of snapshotsDir (everything the builder writes). */
+const MANAGED_TREES = ['v1', 'content'] as const;
+const STAGE_PREFIX = '.snap-stage-';
+const PREV_PREFIX = '.snap-prev-';
+const REMOVED_SUFFIX = ' (removed)';
+
+/**
+ * Build-time freshness gate for fishability pressureContext (F48): a
+ * region_pressure row is only published while its observation is inside this
+ * window; an expired row is treated as unavailable (the context is omitted —
+ * a stopped feed must not keep presenting an old 3-hour trend as current).
+ * The window is 6 h = 2× the ingest acceptance window (PRESSURE_STALE_MINUTES,
+ * 3 h): the pressure job only writes rows whose observation was ≤3 h old and
+ * builds run hourly, so healthy rows are ≤~4 h old here — 6 h never drops a
+ * live row while a frozen one is dropped by the next build after the window.
+ * It matches the region_precipitation gate below, so area context has one
+ * freshness rule. The payload keeps observedAt, so clients can display the
+ * observation age; no recent observations = no context.
+ */
+const PRESSURE_CONTEXT_MAX_AGE_MS = 6 * 60 * 60_000;
+
+function remapStagePathToLive(p: string, stageDir: string, liveDir: string): string {
+  const removed = p.endsWith(REMOVED_SUFFIX);
+  const base = removed ? p.slice(0, -REMOVED_SUFFIX.length) : p;
+  const live = join(liveDir, relative(stageDir, base));
+  return removed ? `${live}${REMOVED_SUFFIX}` : live;
+}
+
+/** Build and validate the whole generation into `outDir` (a staging directory). */
+function buildGeneration(opts: BuildOptions, outDir: string): SnapshotResult {
   const { db, snapshotsDir, now } = opts;
   const conditionsTtl = opts.conditionsTtlMs ?? 3_600_000;
   const files: string[] = [];
   const warnings: string[] = [];
-  const v1Dir = join(snapshotsDir, 'v1');
+  const v1Dir = join(outDir, 'v1');
+
+  // Seed the staging tree from the current live generation: files this run does
+  // not regenerate (e.g. /v1/evidence/waters.json before its first job) must
+  // carry forward, and the prune passes below must see them.
+  for (const tree of MANAGED_TREES) {
+    const liveTree = join(snapshotsDir, tree);
+    if (existsSync(liveTree)) cpSync(liveTree, join(outDir, tree), { recursive: true });
+  }
 
   // ── v1/streams.json (GET /v1/streams → Stream[]) ───────────────────────────
   // The ?state= query is answered live by the API route, which filters this file.
-  const streamRows = db.prepare('SELECT * FROM streams ORDER BY name').all() as StreamRow[];
+  // archived_at IS NULL = the F22 removal policy: seed-archived waters keep
+  // their report history in the DB but leave the published catalog here.
+  const streamRows = db.prepare('SELECT * FROM streams WHERE archived_at IS NULL ORDER BY name').all() as StreamRow[];
   const streams = rowsToStreams(streamRows);
   const streamsPath = join(v1Dir, 'streams.json');
   writeJsonAtomic(streamsPath, streams);
@@ -326,7 +407,8 @@ export function buildSnapshots(opts: BuildOptions): SnapshotResult {
 
   // ── v1/shops/{state}.json (Shop[]) ─────────────────────────────────────────
   const shopsByState: Record<string, number> = {};
-  const shopRows = db.prepare('SELECT * FROM shops ORDER BY state_id, name').all() as ShopRow[];
+  // F22: archived shops keep report history but leave the published catalog.
+  const shopRows = db.prepare('SELECT * FROM shops WHERE archived_at IS NULL ORDER BY state_id, name').all() as ShopRow[];
   const shopsByStateMap = new Map<string, Shop[]>();
   for (const shop of rowsToShops(shopRows)) {
     const list = shopsByStateMap.get(shop.stateId) ?? [];
@@ -345,7 +427,7 @@ export function buildSnapshots(opts: BuildOptions): SnapshotResult {
   // ── v1/reports/recent.json (ShopReport[], last 30 days) ────────────────────
   // F02: the same feed-scoped publication the portal report route uses, so the
   // scheduled build and the live route write identical bytes at the same URL.
-  const reportFeed = publishReportFeed({ db, snapshotsDir, now });
+  const reportFeed = publishReportFeed({ db, snapshotsDir: outDir, now });
   files.push(reportFeed.path);
 
   // ── v1/evidence/waters.json (WaterEvidence[], data-sources lane) ───────────
@@ -396,8 +478,8 @@ export function buildSnapshots(opts: BuildOptions): SnapshotResult {
     contentPack = true;
     const taxa = readPackEntities(join(packDir, 'bugs.json'), 'taxa', BugTaxonSchema);
     const patterns = readPackEntities(join(packDir, 'patterns.json'), 'patterns', FlyPatternSchema);
-    const taxaPath = join(snapshotsDir, 'content', 'taxa.json');
-    const patternsPath = join(snapshotsDir, 'content', 'patterns.json');
+    const taxaPath = join(outDir, 'content', 'taxa.json');
+    const patternsPath = join(outDir, 'content', 'patterns.json');
     writeJsonAtomic(taxaPath, taxa);
     writeJsonAtomic(patternsPath, patterns);
     files.push(taxaPath, patternsPath);
@@ -407,7 +489,7 @@ export function buildSnapshots(opts: BuildOptions): SnapshotResult {
     if (existsSync(fishingPackPath)) {
       const fishingRaw = JSON.parse(readFileSync(fishingPackPath, 'utf8')) as { fishing?: unknown };
       const fishing = FishingInformationSchema.parse(fishingRaw.fishing);
-      const fishingPath = join(snapshotsDir, 'content', 'fishing.json');
+      const fishingPath = join(outDir, 'content', 'fishing.json');
       writeJsonAtomic(fishingPath, fishing);
       files.push(fishingPath);
     } else {
@@ -465,6 +547,265 @@ function readPackEntities<T>(path: string, key: string, schema: { parse: (v: unk
 }
 
 /**
+ * Promote a fully staged generation onto the live tree (F21). The prior
+ * generation is copied to a backup directory FIRST and only removed after the
+ * promotion verifies; every failure between the two restores the backup.
+ *
+ * Windows notes: there is no atomic directory replacement, so promotion is a
+ * sorted pass of per-file atomic renames (rename-over-existing is atomic per
+ * file). Transient destination locks (AV/indexer holding a just-written file)
+ * retry briefly instead of failing the whole publication. Sorted order keeps
+ * failures reproducible, and rollback best-effort restores every restorable
+ * path; a path whose restore is obstructed keeps its backup copy on disk (the
+ * backup directory is then retained and the next build's recovery retries it).
+ */
+function promoteGeneration(liveDir: string, stageDir: string): void {
+  // Capture the staged manifest BEFORE promoting: the renames below MOVE files
+  // out of staging, so verification and extras-removal must work from this
+  // snapshot of the generation (file set, directory set, content hashes).
+  const stagedRel = stagedFileList(stageDir);
+  const stagedFiles = new Set(stagedRel);
+  const stagedDirs = new Set(stagedDirList(stageDir));
+  const stagedHashes = new Map<string, string>();
+  for (const rel of stagedRel) stagedHashes.set(rel, hashFile(join(stageDir, rel)));
+  const backupDir = join(liveDir, `${PREV_PREFIX}${process.pid}`);
+  rmSync(backupDir, { recursive: true, force: true });
+  let backupMade = false;
+  for (const tree of MANAGED_TREES) {
+    const liveTree = join(liveDir, tree);
+    if (existsSync(liveTree)) {
+      cpSync(liveTree, join(backupDir, tree), { recursive: true });
+      backupMade = true;
+    }
+  }
+  try {
+    // 1. Fast switch: rename every staged file over its live URL.
+    for (const rel of stagedRel) {
+      const dest = join(liveDir, rel);
+      mkdirSync(dirname(dest), { recursive: true });
+      renameWithRetry(join(stageDir, rel), dest);
+    }
+    // 2. Remove live entries the new generation dropped. Staging was seeded
+    //    from the live trees, so anything live without a staged counterpart is
+    //    a deliberate prune (or foreign debris — the dir==contract invariant
+    //    prunes it exactly like the per-directory prune passes do).
+    for (const tree of MANAGED_TREES) {
+      const liveTree = join(liveDir, tree);
+      if (existsSync(liveTree)) removeLiveExtras(liveTree, tree, stagedFiles, stagedDirs);
+    }
+    // 3. Verify the switch against the captured manifest: the live file set
+    //    equals the staged set, byte for byte. This is what makes the
+    //    promotion "controlled" rather than a best-effort copy.
+    const liveRel = liveFileList(liveDir);
+    if (liveRel.length !== stagedRel.length || liveRel.some((r) => !stagedFiles.has(r))) {
+      throw new Error(
+        `promoted file set does not match the staged generation (live=${liveRel.length} staged=${stagedRel.length})`,
+      );
+    }
+    for (const rel of stagedRel) {
+      if (hashFile(join(liveDir, rel)) !== stagedHashes.get(rel)) {
+        throw new Error(`promoted file ${rel} does not match the staged generation`);
+      }
+    }
+  } catch (err) {
+    if (backupMade) {
+      try {
+        restoreGeneration(liveDir, backupDir);
+        rmSync(backupDir, { recursive: true, force: true });
+      } catch (restoreErr) {
+        throw new Error(
+          `snapshot promotion failed (${(err as Error).message}) and rollback was incomplete (${(restoreErr as Error).message}); prior generation kept at ${backupDir}`,
+        );
+      }
+    }
+    throw err;
+  }
+  rmSync(backupDir, { recursive: true, force: true });
+}
+
+/**
+ * Restore the preserved generation in `backupDir` over the live tree: copy
+ * every backup file back, then remove live entries the prior generation does
+ * not have (added by the failed promotion). Per-file best-effort so one
+ * obstructed path cannot stop the rest of the rollback; throws if ANY path
+ * could not be restored (caller keeps the backup in that case).
+ */
+function restoreGeneration(liveDir: string, backupDir: string): void {
+  const backupRel = stagedFileList(backupDir);
+  const failures: string[] = [];
+  for (const rel of backupRel) {
+    const dest = join(liveDir, rel);
+    try {
+      mkdirSync(dirname(dest), { recursive: true });
+      cpSync(join(backupDir, rel), dest);
+    } catch {
+      failures.push(rel);
+    }
+  }
+  const backupSet = new Set(backupRel);
+  for (const tree of MANAGED_TREES) {
+    const liveTree = join(liveDir, tree);
+    if (existsSync(liveTree)) {
+      for (const rel of scanTree(liveTree).files) {
+        const abs = join(liveTree, rel);
+        if (backupSet.has(join(tree, rel))) continue;
+        try {
+          rmSync(abs, { recursive: statSync(abs).isDirectory(), force: true });
+        } catch {
+          failures.push(join(tree, rel));
+        }
+      }
+    }
+  }
+  if (failures.length > 0) {
+    throw new Error(`could not restore: ${failures.join(', ')}`);
+  }
+}
+
+/**
+ * Startup recovery for a promotion interrupted by process death (F21): a
+ * `.snap-prev-*` directory means death between backup and cleanup — restore it
+ * (the last complete generation wins) and drop it. Stale staging directories
+ * are partial work by definition and are removed. Directories owned by a live
+ * process are left alone (concurrent builds by pid).
+ */
+function recoverInterruptedPromotion(liveDir: string): void {
+  let entries: string[];
+  try {
+    entries = readdirSync(liveDir);
+  } catch {
+    return;
+  }
+  for (const entry of entries) {
+    if (!entry.startsWith(PREV_PREFIX)) continue;
+    if (ownedByLiveProcess(entry, PREV_PREFIX)) continue;
+    const backupDir = join(liveDir, entry);
+    try {
+      restoreGeneration(liveDir, backupDir);
+      rmSync(backupDir, { recursive: true, force: true });
+    } catch (err) {
+      // Obstructed restore: keep the backup for the next recovery attempt and
+      // continue — a fully staged+promoted generation will overwrite the tree
+      // below anyway. Never let recovery block publication outright.
+      process.stderr.write(`snapshot recovery could not restore ${backupDir}: ${(err as Error).message}\n`);
+    }
+  }
+  for (const entry of entries) {
+    if (!entry.startsWith(STAGE_PREFIX)) continue;
+    if (ownedByLiveProcess(entry, STAGE_PREFIX)) continue;
+    rmSync(join(liveDir, entry), { recursive: true, force: true });
+  }
+}
+
+function ownedByLiveProcess(entry: string, prefix: string): boolean {
+  const pid = Number.parseInt(entry.slice(prefix.length), 10);
+  if (!Number.isInteger(pid) || pid === process.pid) return false;
+  try {
+    process.kill(pid, 0);
+    return true;
+  } catch (err) {
+    return (err as NodeJS.ErrnoException).code === 'EPERM'; // exists, not ours to signal
+  }
+}
+
+function liveFileList(liveDir: string): string[] {
+  return stagedFileList(liveDir);
+}
+
+/** Relative file paths (sorted) under each managed tree of root. */
+function stagedFileList(root: string): string[] {
+  const out: string[] = [];
+  for (const tree of MANAGED_TREES) {
+    for (const rel of scanTree(join(root, tree)).files) out.push(join(tree, rel));
+  }
+  return out.sort();
+}
+
+/** Relative directory paths (sorted) under each managed tree of root. */
+function stagedDirList(root: string): string[] {
+  const out: string[] = [];
+  for (const tree of MANAGED_TREES) {
+    for (const rel of scanTree(join(root, tree)).dirs) out.push(join(tree, rel));
+  }
+  return out.sort();
+}
+
+/** Relative file + directory paths under root ([] when it does not exist). */
+function scanTree(root: string): { files: string[]; dirs: string[] } {
+  const files: string[] = [];
+  const dirs: string[] = [];
+  walk(root, '');
+  return { files: files.sort(), dirs: dirs.sort() };
+  function walk(base: string, prefix: string): void {
+    let entries: string[];
+    try {
+      entries = readdirSync(join(base, prefix));
+    } catch {
+      return;
+    }
+    for (const entry of entries) {
+      const rel = prefix ? join(prefix, entry) : entry;
+      const p = join(base, rel);
+      if (statSync(p).isDirectory()) {
+        dirs.push(rel);
+        walk(base, rel);
+      } else {
+        files.push(rel);
+      }
+    }
+  }
+}
+
+/** Remove live entries that have no counterpart in the staged generation. */
+function removeLiveExtras(
+  liveDir: string,
+  prefix: string,
+  stagedFiles: Set<string>,
+  stagedDirs: Set<string>,
+): void {
+  for (const entry of readdirSync(liveDir)) {
+    const p = join(liveDir, entry);
+    const rel = prefix ? join(prefix, entry) : entry;
+    const isDir = statSync(p).isDirectory();
+    if (stagedFiles.has(rel) || stagedDirs.has(rel)) {
+      if (isDir) removeLiveExtras(p, rel, stagedFiles, stagedDirs);
+    } else {
+      rmSync(p, { recursive: isDir, force: true });
+    }
+  }
+}
+
+function hashFile(path: string): string {
+  return createHash('sha256').update(readFileSync(path)).digest('hex');
+}
+
+/**
+ * renameSync with a short retry for transient Windows destination locks
+ * (EPERM/EBUSY/EACCES from an AV/indexer holding the target file). Other
+ * errors (e.g. the destination is a directory) surface immediately.
+ */
+function renameWithRetry(src: string, dest: string, attempts = 5): void {
+  let last: unknown;
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    try {
+      renameSync(src, dest);
+      return;
+    } catch (err) {
+      last = err;
+      const code = (err as NodeJS.ErrnoException).code;
+      if (code !== 'EPERM' && code !== 'EBUSY' && code !== 'EACCES') throw err;
+    }
+    sleepSync(25 * attempt);
+  }
+  throw last;
+}
+
+/** Synchronous backoff (Atomics.wait — no timers, works anywhere in Node). */
+function sleepSync(ms: number): void {
+  Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms);
+}
+
+/**
  * Emit /v1/fishability/{streamId}.json for every water with targetSpecies and
  * prune files for waters that no longer have any. Returns the waters emitted.
  */
@@ -518,14 +859,28 @@ function emitFishability(
       trend_direction: 'rising' | 'falling' | 'stable';
       station: string;
     }[];
+    // F48: an observation older than the freshness window is unavailable
+    // context, not current context — omit it (the ingest job leaves the last
+    // accepted row in place when a feed goes quiet, so age must be re-checked
+    // here at every build, not just at ingest time).
+    const expiredPressureRegions: string[] = [];
     for (const r of rows) {
       if (r.trend_hpa_3h === null) continue;
+      if (ctx.now.getTime() - Date.parse(r.observed_at) > PRESSURE_CONTEXT_MAX_AGE_MS) {
+        expiredPressureRegions.push(r.region_id);
+        continue;
+      }
       pressureByRegion.set(r.region_id, {
         deltaHpa: r.trend_hpa_3h,
         station: r.station,
         observedAt: r.observed_at,
         direction: r.trend_direction,
       });
+    }
+    if (expiredPressureRegions.length > 0) {
+      ctx.warnings.push(
+        `region pressure older than ${PRESSURE_CONTEXT_MAX_AGE_MS / 3_600_000}h omitted from fishability context (feed stale?): ${expiredPressureRegions.sort().join(', ')}`,
+      );
     }
   } catch {
     // Table missing (pre-009 DB) — pressure context is honestly absent.

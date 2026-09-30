@@ -67,7 +67,9 @@ describe('migrations', () => {
     // + 017_stream_opportunity (ADR 0010 authored fishery-opportunity block).
     // + 018_report_idempotency_key (F02: partial UNIQUE (shop_id, idempotency_key)
     //   so retries of an accepted portal report replay instead of double-inserting).
-    expect(applied).toHaveLength(18);
+    // + 019_stream_shop_archival (F22: archived_at removal policy — seeded rows
+    //   whose YAML disappears are archived, never left active or hard-deleted).
+    expect(applied).toHaveLength(19);
     expect(applied[0]!.name).toMatch(/^001_/);
     expect(applied[1]!.name).toMatch(/^002_/);
     expect(applied[2]!.name).toMatch(/^003_/);
@@ -82,6 +84,23 @@ describe('migrations', () => {
     expect(applied[15]!.name).toMatch(/^016_/);
     expect(applied[16]!.name).toMatch(/^017_/);
     expect(applied[17]!.name).toMatch(/^018_/);
+    expect(applied[18]!.name).toMatch(/^019_/);
+  });
+
+  it('adds archived_at to streams and shops (F22 removal policy: NULL = active)', () => {
+    const columns = (t: string) =>
+      (
+        db.prepare(`SELECT name FROM pragma_table_info('${t}')`).all() as { name: string }[]
+      ).map((c) => c.name);
+    expect(columns('streams')).toContain('archived_at');
+    expect(columns('shops')).toContain('archived_at');
+    // Existing rows are active after the additive migration.
+    db.prepare(
+      "INSERT INTO streams (id, name, state_id, waterbody_type, region_id) VALUES ('legacy-water', 'Legacy', 'TN', 'river', 'r')",
+    ).run();
+    expect(
+      db.prepare("SELECT archived_at FROM streams WHERE id = 'legacy-water'").get(),
+    ).toMatchObject({ archived_at: null });
   });
 
   it('enforces one row per (shop, idempotency key) so report retries cannot double-insert', () => {
