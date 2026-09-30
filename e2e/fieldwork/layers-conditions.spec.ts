@@ -27,6 +27,35 @@ async function ready(page: Page) {
   await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-ready', '1');
 }
 
+/**
+ * Poll a post-swap map attribute while nudging one repaint per attempt.
+ *
+ * The designed theme/terrain swap rewrites `data-map-theme` inside a
+ * `map.once('render')` armed at the END of the presentation apply — but
+ * MapLibre `idle` fires only AFTER the last frame, so a fully settled,
+ * fully cached map (this suite's reload/back-forward steps land exactly
+ * there) can go static before that arming ever sees a frame and the
+ * attribute never lands. The component nudges renders in its own swap
+ * path for precisely this deadlock; the test does the same through the
+ * documented e2e handle. Assertion semantics unchanged — this supplies
+ * the missing frame, it does not relax what is asserted.
+ */
+async function expectMapAttributeAfterRepaint(
+  page: Page,
+  attribute: string,
+  value: string | RegExp,
+) {
+  await expect
+    .poll(async () => {
+      await page.evaluate(() => {
+        (window as unknown as { __troutMap?: { triggerRepaint: () => void } }).__troutMap
+          ?.triggerRepaint();
+      });
+      return page.getByTestId('river-map').getAttribute(attribute);
+    })
+    .toBe(value);
+}
+
 function mapLayers(page: Page) {
   return page.getByTestId('river-map').getAttribute('data-map-layers');
 }
@@ -167,8 +196,13 @@ test.describe('Layers panel', () => {
     await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-sources', /roads-0/, { timeout: 20_000 });
 
     // Theme change rebuilds the style and must rebuild BOTH optional layers.
+    // The theme swap is async BY DESIGN (TennesseeMap: clear data-map-theme →
+    // setStyle → idle → presentation apply → render → rewrite data-map-theme),
+    // and the final rewrite arms on the first rendered frame AFTER apply — a
+    // fully settled cached map can go static before that frame arrives, so the
+    // poll nudges one repaint per attempt (see expectMapAttributeAfterRepaint).
     await page.getByRole('button', { name: /Switch to Nightfall theme/i }).click();
-    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-theme', 'nightfall');
+    await expectMapAttributeAfterRepaint(page, 'data-map-theme', 'nightfall');
     await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-sources', /hillshade/, { timeout: 20_000 });
     await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-sources', /roads-0/, { timeout: 20_000 });
     const layers = (await mapLayers(page)) ?? '';

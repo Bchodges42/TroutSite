@@ -70,8 +70,62 @@ async function select(page: Page, name: string) {
 async function ready(page: Page) {
   await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-ready', '1');
 }
+/**
+ * Wait until the map camera attributes (data-center/data-zoom, written on
+ * moveend) are stable across consecutive samples. Pixel-sampling specs compute
+ * a fixed screen pixel FROM these attributes; under 2-worker load the old
+ * fixed `waitForTimeout(350)` sleeps after keyboard pans regularly sampled a
+ * still-settling camera, so the sampled pixel no longer corresponded to the
+ * asserted coordinate and the 5s expect.poll starved. Stability of the same
+ * signal the specs already poll replaces the fixed sleep — no assertion is
+ * relaxed by this.
+ */
+async function cameraSettled(page: Page) {
+  await expect
+    .poll(
+      async () => {
+        const el = page.getByTestId('river-map');
+        const before =
+          (await el.getAttribute('data-center')) + '/' + (await el.getAttribute('data-zoom'));
+        await page.waitForTimeout(250);
+        const after =
+          (await el.getAttribute('data-center')) + '/' + (await el.getAttribute('data-zoom'));
+        return before === after;
+      },
+      { timeout: 15_000 },
+    )
+    .toBe(true);
+}
 async function noOverflow(page: Page) {
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+}
+/**
+ * Poll a post-swap map attribute while nudging one repaint per attempt.
+ *
+ * The designed theme swap rewrites `data-map-theme` inside a
+ * `map.once('render')` armed at the END of the presentation apply — but
+ * MapLibre `idle` fires only AFTER the last frame, so a fully settled,
+ * fully cached map (the pixel-sampling tests park the camera exactly
+ * there) can go static before that arming sees a frame and the attribute
+ * never lands. The component nudges renders in its own swap path for
+ * precisely this deadlock; the test does the same through the documented
+ * e2e handle. Assertion semantics unchanged — this supplies the missing
+ * frame, it does not relax what is asserted.
+ */
+async function expectMapAttributeAfterRepaint(
+  page: Page,
+  attribute: string,
+  value: string | RegExp,
+) {
+  await expect
+    .poll(async () => {
+      await page.evaluate(() => {
+        (window as unknown as { __troutMap?: { triggerRepaint: () => void } }).__troutMap
+          ?.triggerRepaint();
+      });
+      return page.getByTestId('river-map').getAttribute(attribute);
+    })
+    .toBe(value);
 }
 async function mapViewportCoordinate(page: Page, longitude: number, latitude: number) {
   return page.getByTestId('river-map').evaluate(
@@ -952,6 +1006,10 @@ test('East Tennessee relief never paints a rectangle outside the state at zoom 8
     await page.locator('.maplibregl-canvas').press('ArrowRight');
     await page.waitForTimeout(350);
   }
+  // The ArrowRight pans land on moveend; sample pixels only once the camera
+  // attributes stopped moving (see cameraSettled — the old fixed sleep sampled
+  // a still-settling camera under 2-worker load and starved the poll below).
+  await cameraSettled(page);
   const screenshots = fileURLToPath(new URL('../../artifacts/screenshots/', import.meta.url));
   await mkdir(screenshots, { recursive: true });
   const checkPixel = async (x: number, y: number, color: number[]) => {
@@ -973,6 +1031,7 @@ test('East Tennessee relief never paints a rectangle outside the state at zoom 8
       Math.round(Number(await page.getByTestId('river-map').getAttribute('data-zoom'))),
     )
     .toBe(8);
+  await cameraSettled(page);
   // A fixed North Carolina coordinate beyond East Tennessee remains map ground,
   // not the former rectangular terrain acquisition extent.
   let outside = await mapViewportCoordinate(page, -82.9, 35.4);
@@ -992,6 +1051,7 @@ test('East Tennessee relief never paints a rectangle outside the state at zoom 8
       Math.round(Number(await page.getByTestId('river-map').getAttribute('data-zoom'))),
     )
     .toBe(9);
+  await cameraSettled(page);
   outside = await mapViewportCoordinate(page, -82.9, 35.4);
   await checkPixel(
     Math.round(mapBounds.x + outside.x),
@@ -999,8 +1059,13 @@ test('East Tennessee relief never paints a rectangle outside the state at zoom 8
     [16, 33, 37],
   );
   await page.screenshot({ path: screenshots + '/nightfall-east-9.png' });
+  // Theme rebuild is the async designed swap chain (clear data-map-theme →
+  // setStyle → idle → apply → render → rewrite); the pixel-sampling steps
+  // park the camera fully static, so the final rewrite (armed on the first
+  // rendered frame AFTER apply) needs a repaint nudge to land at all — see
+  // expectMapAttributeAfterRepaint.
   await page.getByRole('button', { name: 'Switch to Daybreak theme', exact: true }).click();
-  await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-theme', 'daybreak');
+  await expectMapAttributeAfterRepaint(page, 'data-map-theme', 'daybreak');
   await checkPixel(
     Math.round(mapBounds.x + outside.x),
     Math.round(mapBounds.y + outside.y),
@@ -1020,8 +1085,16 @@ test('representative desktop and mobile inspector views remain readable', async 
   await expect(page.locator('.hatch-preview')).toContainText('Midge Larva');
   await page.screenshot({ path: screenshots + '/daybreak-desktop-inspector.png' });
   await page.setViewportSize({ width: 390, height: 844 });
+  // F17 (designed behavior): below 480px the header quick-settings cluster
+  // collapses into the overflow menu, so the theme toggle is reachable only
+  // through "Open menu" — exactly one instance is ever in the a11y tree. The
+  // old direct click raced the CSS collapse and stranded under load.
+  await page.getByRole('button', { name: 'Open menu' }).click();
   await page.getByRole('button', { name: 'Switch to Nightfall theme', exact: true }).click();
-  await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-theme', 'nightfall');
+  await page.getByRole('button', { name: 'Close menu' }).click();
+  await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-theme', 'nightfall', {
+    timeout: 20_000,
+  });
   const selectedLabel = page.locator('.river-map-label.selected');
   await expect(selectedLabel).toBeVisible();
   const labelBounds = await selectedLabel.boundingBox();
