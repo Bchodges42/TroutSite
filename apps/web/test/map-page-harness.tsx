@@ -24,7 +24,6 @@ export interface MapPageHarness {
 }
 
 declare global {
-  // eslint-disable-next-line no-var
   var __tnMapRecords: Array<Record<string, unknown>> | undefined;
   var __mapPageSearch: string | undefined;
 }
