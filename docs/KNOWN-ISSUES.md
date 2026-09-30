@@ -472,30 +472,46 @@ Wave 1 integrated @ 31437a6 (gates: build/content/test 893/infra 12/lint all gre
   Fixed: health read once, final state decided, recovery only on true degraded→OK.
   Branch w1c `3b8d9a4`.
 
-### Wave 2 — data publication and source integrity (IN PROGRESS)
+### Wave 2 — data publication and source integrity (MERGED @ 6e47601 + lint follow-up; api 323 / admin 32 / web 387 / contracts 200 / content 19, infra 12, lint green)
 
-- [ ] **F05 P2** — production WinSW refresh omits stocking/evidence feeds; NWS pressure
+
+- [x] **F05 P2** — production WinSW refresh omits stocking/evidence feeds; NWS pressure
   job has no application caller; missing/never-run expected jobs escape health.
-- [ ] **F06 P2** — portal-origin "My reports" fetches `/v1/reports/recent.json` which
+  → Fixed (lane C): refresh-data ingests pressure hourly; new daily `trout-refresh-feeds` schtasks task runs stocking+evidence under the deploy-stamp guard; pressure wired as dispatcher job (`--job=pressure`); EXPECTED_JOBS health reports stale/never-run jobs.
+- [x] **F06 P2** — portal-origin "My reports" fetches `/v1/reports/recent.json` which
   the portal proxy does not forward (404).
-- [ ] **F14 P2** — public gauge route: unbounded distinct-key upstream fan-out, no
+  → Fixed (lane E): static-server forwards the allowlisted public read GET/HEAD `/v1/reports/recent.json`; e2e validates "My reports" from the portal origin.
+- [x] **F14 P2** — public gauge route: unbounded distinct-key upstream fan-out, no
   cache eviction/concurrency cap.
-- [ ] **F15 P2** — accepted publication leaves a reusable draft; local-save failure
+  → Fixed (lane C): upstream concurrency cap (4) + bounded queue (503 GaugeNowBusy on overflow) + 2000-entry cache with expired-then-oldest eviction; unwired gauges stay fetchable.
+- [x] **F15 P2** — accepted publication leaves a reusable draft; local-save failure
   reported as publish failure.
-- [ ] **F16 P2** — unpublished drafts shared across shop identities.
-- [ ] **F21 P2** — failed snapshot build publishes part of the new generation
+  → Fixed (lane E): server acceptance is final — draft removed on 2xx, local-save failures surface separately; admin sends a stable per-draft `Idempotency-Key` (F02 replay contract).
+- [x] **F16 P2** — unpublished drafts shared across shop identities.
+  → Fixed (lane E): drafts namespaced/ownership-bound per shopId and re-validated on read; legacy v1 drafts quarantined with count-only disclosure + explicit two-step clear.
+- [x] **F21 P2** — failed snapshot build publishes part of the new generation
   (per-file atomicity, no generation atomicity).
-- [ ] **F22 P2** — catalog seeding retains deleted waters and partly applies failed runs.
-- [ ] **F23 P2** — rollback rebuilds with new dependencies and different publication
+  → Fixed (lane A): staged-generation build → backup-then-promote with sha256 verification and verified rollback; interrupted promotions recover on the next build.
+- [x] **F22 P2** — catalog seeding retains deleted waters and partly applies failed runs.
+  → Fixed (lane A): seed validates every file before one transaction; removals soft-archive (`archived_at`, migration 019); returning YAML reactivates.
+- [x] **F23 P2** — rollback rebuilds with new dependencies and different publication
   steps; announces success on partial restoration.
-- [ ] **F24 P2** — archive/restore deletes the good tree before promotion succeeds.
-- [ ] **F33 P2** — complete upstream ingestion failure recorded as a healthy run;
+  → Fixed (lane B): rollback reinstalls from the restored lockfile and reuses the ordinary real-data/SEO pipeline (shared prerender_and_marketing); success announced only when every rollback step verifies.
+- [x] **F24 P2** — archive/restore deletes the good tree before promotion succeeds.
+  → Fixed (lane B): retain-until-promoted — old generation renamed aside, staged swap verified, only then aside deleted; every failure undoes into place; batch restore undoes atomically.
+- [x] **F33 P2** — complete upstream ingestion failure recorded as a healthy run;
   last-good evidence observations discarded.
-- [ ] **F35 P2** — month-only stocking schedules ignore remaining months this year.
-- [ ] **F36 P2** — TWRA raw captures collide on one filename (schedule vs completed grid).
-- [ ] **F37 P2** — NWS rainfall parsing rejects the real quantitative-value shape.
-- [ ] **F38 P2** — KMOR/KMRN weather-station mappings point at the wrong localities.
-- [ ] **F48 P2** — fresh snapshots carry expired pressure trend indefinitely.
+  → Fixed (lane C): evidence job outcome ok/degraded/failed from expected sources; failed → jobs_log error → healthz degraded; last-good observations carried forward with stale-last-good provenance; gauges dispatcher propagates failure.
+- [x] **F35 P2** — month-only stocking schedules ignore remaining months this year.
+  → Fixed (lane D): nearestListedMonthDate picks the nearest listed current/future month, rolling the year only after all listed months pass; precision stays month.
+- [x] **F36 P2** — TWRA raw captures collide on one filename (schedule vs completed grid).
+  → Fixed (lane D): captures named {runStamp}.{seq}.{gridKind}.{source}.{suffix} + URL/sha256 manifest written last as the commit record; grids never collide.
+- [x] **F37 P2** — NWS rainfall parsing rejects the real quantitative-value shape.
+  → Fixed (lane C): quantitative-value object parsed (value/unitCode; null = no-data; documented unit conversion); authentic KBNA fixture replaces the invented scalar.
+- [x] **F38 P2** — KMOR/KMRN weather-station mappings point at the wrong localities.
+  → Fixed (lane C): Pigeon/French Broad → KMOR (verified Morristown TN); Caney Fork → KCSV (Crossville, verified); out-of-state KMRN removed; official provenance recorded.
+- [x] **F48 P2** — fresh snapshots carry expired pressure trend indefinitely.
+  → Fixed (lane A): pressure context age-gated at build (6 h window, matching the rain gate); expired rows omitted with a warning; payload keeps observedAt for Wave-3 client display.
 
 ### Wave 3 — freshness, maps, accessibility, user-facing truth (QUEUED)
 

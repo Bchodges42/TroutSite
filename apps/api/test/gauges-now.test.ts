@@ -291,7 +291,7 @@ describe('gauge-now fan-out bounds (F14)', () => {
   it('sweeps expired negative entries before evicting live ones', async () => {
     const clock = { now: 1_000 };
     const fetchImpl = vi.fn(async (input: Parameters<typeof fetch>[0]) => {
-      const id = /USGS-(\d+)/.exec(String(input))?.[1] ?? '';
+      void String(input);
       return { ok: true, status: 200, json: async () => ({ features: [] }) } as Response;
     });
     const cache = createGaugeNowCache({
