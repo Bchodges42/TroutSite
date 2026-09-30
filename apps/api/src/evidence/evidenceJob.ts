@@ -1,9 +1,10 @@
-import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { WaterEvidenceSetSchema } from '@trout/contracts';
 import type { EvidenceStockingEvent, EvidenceError, WaterObservation } from '@trout/contracts';
 import type { Db } from '../db.js';
 import { startJob, type JobDetail } from '../jobs/run.js';
+import { saveRawCaptures } from '../ingest/stockingJob.js';
 import { fetchUsgsObservations } from './usgs-provider.js';
 import { fetchTvaObservations } from './tva-provider.js';
 import { fetchTwraArtifacts, parseTwraEvidence } from './twra-evidence.js';
@@ -165,10 +166,9 @@ export async function runEvidenceJob(db: Db, cfg: { contentPackDir: string; rawD
   if (twra) {
     try {
       const artifacts = await fetchTwraArtifacts({ userAgent: usgsUa, fetchImpl });
-      // Raw audit trail (§8): keep exactly what TWRA published.
-      const rawDir = join(cfg.rawDir, 'evidence');
-      mkdirSync(rawDir, { recursive: true });
-      for (const a of artifacts) writeFileSync(join(rawDir, `${now.toISOString().slice(0, 10)}.twra.${a.suffix}`), a.content, 'utf8');
+      // Raw audit trail (§8): keep exactly what TWRA published — one collision-proof
+      // file per fetched artifact (F36) plus a URL/hash manifest as the commit record.
+      saveRawCaptures(join(cfg.rawDir, 'evidence'), now, artifacts);
 
       const parsed = parseTwraEvidence(artifacts, { now });
       warnings.push(...parsed.warnings.map((w) => `TWRA: ${w}`));

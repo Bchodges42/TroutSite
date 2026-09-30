@@ -1,4 +1,4 @@
-import { existsSync, rmSync, statSync } from 'node:fs';
+import { existsSync, readdirSync, rmSync } from 'node:fs';
 import { join } from 'node:path';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { StockingEventSchema } from '@trout/contracts';
@@ -9,6 +9,7 @@ import {
   normalizeTwra,
   parseInlineTable,
   parseMonthInitials,
+  resolveDate,
   TWRA_PAGE_URL,
 } from '../src/ingest/stocking/tn.js';
 import type { RawFetch } from '../src/ingest/stocking/types.js';
@@ -89,6 +90,36 @@ describe('TWRA adapter — normalize (pure)', () => {
     expect(parseMonthInitials('M, A, M, J, J, A, S')).toEqual([3, 4, 5, 6, 7, 8, 9]);
   });
 
+  it('resolves month-only rows to the NEAREST listed month, not the first (F35)', () => {
+    const lateSept = new Date('2026-09-29T12:00:00Z');
+    // The audit's exact cases: Tims Ford lists M–D but used to resolve to March 2027;
+    // Normandy lists J,F,M,N,D but used to resolve to January 2027.
+    expect(resolveDate({ 'STOCKING MONTHS': 'M, A, M, J, J, A, S, O, N, D' } as never, lateSept).date).toBe('2026-09-01');
+    expect(resolveDate({ 'STOCKING MONTHS': 'J, F, M, N, D' } as never, lateSept).date).toBe('2026-11-01');
+    expect(resolveDate({ 'STOCKING MONTHS': 'M, A, M, J, J, A, S' } as never, lateSept).date).toBe('2026-09-01');
+    // Current month counts as current/future: nearest listed month at/after now.
+    expect(resolveDate({ 'STOCKING MONTHS': 'J, F, M, S' } as never, new Date('2026-09-15T12:00:00Z')).date).toBe('2026-09-01');
+    expect(resolveDate({ 'STOCKING MONTHS': 'F, N, D' } as never, lateSept).date).toBe('2026-11-01');
+  });
+
+  it('rolls a month-only row to next year only after ALL listed months passed (F35)', () => {
+    const lateSept = new Date('2026-09-29T12:00:00Z');
+    expect(resolveDate({ 'STOCKING MONTHS': 'M, A' } as never, lateSept).date).toBe('2027-03-01');
+    expect(resolveDate({ 'STOCKING MONTHS': 'A' } as never, lateSept).date).toBe('2027-04-01');
+    // Year boundary: December with a J,F,M schedule rolls to January.
+    expect(resolveDate({ 'STOCKING MONTHS': 'J, F, M' } as never, new Date('2026-12-15T12:00:00Z')).date).toBe('2027-01-01');
+  });
+
+  it('month-only rows keep month precision and first-of-month (never a fabricated day)', () => {
+    const lateSept = new Date('2026-09-29T12:00:00Z');
+    for (const months of ['M, A, M, J, J, A, S, O, N, D', 'J, F, M, N, D', 'M, A']) {
+      const r = resolveDate({ 'STOCKING MONTHS': months } as never, lateSept);
+      expect(r.precision).toBe('month');
+      expect(r.date?.endsWith('-01')).toBe(true);
+      expect(r.warnings).toEqual([]);
+    }
+  });
+
   it('inline-table parser maps header names to row fields', () => {
     const { rows, warnings } = parseInlineTable(readFixture('TN/2026-09-03-redesign.html'));
     expect(warnings).toHaveLength(0);
@@ -123,9 +154,16 @@ describe('runStockingJob', () => {
     expect(result.ok).toBe(true);
     expect(result.items).toBeGreaterThan(500);
 
-    // Raw snapshot saved on every fetch (non-negotiable #2): {raw}/{state}/{date}.{suffix}
-    expect(statSync(join(env.rawDir, 'TN', '2026-09-02.html')).isFile()).toBe(true);
-    expect(statSync(join(env.rawDir, 'TN', '2026-09-02.exceldriven.json')).isFile()).toBe(true);
+    // Raw snapshot saved on every fetch (non-negotiable #2), collision-proof (F36):
+    // one file per fetched artifact — {runStamp}.{seq}.{kind?}.{source-slug}.{suffix} —
+    // plus a manifest.json. The mock page wires TWO datatable URLs (both answered with
+    // the schedule fixture); each must land in its OWN file, never overwrite the other.
+    const tnDir = join(env.rawDir, 'TN');
+    const files = readdirSync(tnDir).sort();
+    expect(files.length).toBe(4); // html + 2 distinct json captures + manifest
+    expect(files.filter((f) => f.endsWith('.exceldriven.json')).length).toBe(2);
+    expect(files.some((f) => f.endsWith('manifest.json'))).toBe(true);
+    expect(files.every((f) => f.startsWith('20260902T160000Z'))).toBe(true);
 
     const rows = env.db.prepare('SELECT COUNT(*) AS n FROM stocking_events').get() as { n: number };
     expect(rows.n).toBe(result.items);
@@ -163,8 +201,11 @@ describe('runStockingJob', () => {
       artifacts: [{ suffix: 'html', content: '<html></html>', url: TWRA_PAGE_URL }],
       fetchedAt: NOW.toISOString(),
     };
-    saveRawArtifacts(env.rawDir, 'TN', NOW, raw);
-    expect(existsSync(join(env.rawDir, 'TN', '2026-09-02.html'))).toBe(true);
+    const written = saveRawArtifacts(env.rawDir, 'TN', NOW, raw);
+    expect(written.length).toBe(1);
+    expect(existsSync(written[0] as string)).toBe(true);
+    expect(existsSync(join(env.rawDir, 'TN', '20260902T160000Z.00.trout-information-stockings.html'))).toBe(true);
+    expect(existsSync(join(env.rawDir, 'TN', '20260902T160000Z.manifest.json'))).toBe(true);
   });
 });
 

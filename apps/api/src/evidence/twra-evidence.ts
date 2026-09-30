@@ -1,9 +1,20 @@
 import { EvidenceStockingEventSchema } from '@trout/contracts';
 import type { EvidenceStockingEvent } from '@trout/contracts';
 import { fetchWithRetry } from '../lib/retry.js';
-import { extractDatatableJsonPaths, parseInlineTable, resolveDate, TWRA_PAGE_URL } from '../ingest/stocking/tn.js';
-import type { TwraRow } from '../ingest/stocking/tn.js';
-import { parseDatatableJson } from '../ingest/stocking/tn.js';
+import {
+  classifyTwraGrid,
+  extractDatatableJsonPaths,
+  parseDatatableJson,
+  parseInlineTable,
+  resolveDate,
+  TWRA_PAGE_URL,
+} from '../ingest/stocking/tn.js';
+import type { TwraGridKind, TwraRow } from '../ingest/stocking/tn.js';
+
+// Grid classification is defined once in the TWRA stocking adapter (single source
+// of truth, no import cycle); re-exported here for the evidence layer.
+export { classifyTwraGrid };
+export type { TwraGridKind };
 
 /**
  * TWRA stockings page → evidence stocking events (data-sources lane).
@@ -19,17 +30,6 @@ import { parseDatatableJson } from '../ingest/stocking/tn.js';
  *      bi-weekly. → status 'reported-complete' (TWRA's own statement, no counts).
  * Grid identity comes from the COLUMN SIGNATURE, not the URL or page position.
  */
-
-export type TwraGridKind = 'schedule' | 'recent' | 'unknown';
-
-/** Classify a datatable row set by its column signature. */
-export function classifyTwraGrid(rows: Record<string, unknown>[]): TwraGridKind {
-  if (rows.length === 0) return 'unknown';
-  const keys = new Set(Object.keys(rows[0] ?? {}).map((k) => k.toUpperCase()));
-  if (keys.has('REGION') && keys.has('LOCATION')) return 'schedule';
-  if (keys.has('DESTINATION') && keys.has('STOCKING DATE')) return 'recent';
-  return 'unknown';
-}
 
 /** Published species text → verbatim lowercase list (never inferred from names). */
 export function parseTwraSpeciesList(raw: string | undefined): string[] | undefined {
@@ -199,7 +199,9 @@ export interface TwraFetchOptions {
 }
 
 /** Fetch the page + every datatable JSON it references (artifacts for parseTwraEvidence). */
-export async function fetchTwraArtifacts(opts: TwraFetchOptions): Promise<{ suffix: string; content: string; url: string }[]> {
+export async function fetchTwraArtifacts(opts: TwraFetchOptions): Promise<
+  { suffix: string; content: string; url: string; captureKind?: string }[]
+> {
   const doFetch = opts.fetchImpl ?? fetch;
   const pageRes = await fetchWithRetry(() =>
     doFetch(TWRA_PAGE_URL, {
@@ -221,7 +223,17 @@ export async function fetchTwraArtifacts(opts: TwraFetchOptions): Promise<{ suff
       }),
     );
     if (!jres.ok) throw new Error(`TWRA datatable fetch failed: HTTP ${jres.status} (${url})`);
-    artifacts.push({ suffix: path.endsWith('.json') ? 'exceldriven.json' : path.slice(path.lastIndexOf('.') + 1), content: await jres.text(), url });
+    // F36: tag each grid by column-signature kind so the raw capture names (and
+    // any consumer) can tell the schedule grid from the recent-report grid — the
+    // shared 'exceldriven.json' suffix alone collides one onto the other.
+    const content = await jres.text();
+    const kind = classifyTwraGrid(parseDatatableJson(content).rows as Record<string, unknown>[]);
+    artifacts.push({
+      suffix: path.endsWith('.json') ? 'exceldriven.json' : path.slice(path.lastIndexOf('.') + 1),
+      content,
+      url,
+      ...(kind === 'schedule' || kind === 'recent' ? { captureKind: kind } : {}),
+    });
   }
   return artifacts;
 }
