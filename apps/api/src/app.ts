@@ -296,8 +296,19 @@ export function buildApp(options: BuildAppOptions = {}): FastifyInstance {
   }
 
   // SPA fallback for client-side routes (react-router): unknown non-API paths
-  // serve the PWA shell. /v1/* and /content/* stay 404 (they are API surface).
+  // serve the PWA shell. F28: the fallback answers ONLY for real app routes —
+  // /v1/* and /content/* stay 404 (they are API surface), every static asset
+  // namespace stays 404 when the file is missing (a readiness probe fetching
+  // an absent /atlas/ tile must never receive the HTML shell with a 200), and
+  // any path whose final segment looks like a file (contains a dot) is an
+  // asset request, never a client route.
   if (distIndex) {
+    const ASSET_NAMESPACES = ['/atlas', '/assets', '/content-pack', '/fonts', '/icons', '/img'];
+    const isAssetPath = (url: string) => {
+      if (ASSET_NAMESPACES.some((ns) => url === ns || url.startsWith(ns + '/'))) return true;
+      const lastSegment = url.slice(url.lastIndexOf('/') + 1);
+      return lastSegment.includes('.');
+    };
     app.setNotFoundHandler((req, reply) => {
       const url = req.url.split('?')[0] ?? '/';
       if (req.method !== 'GET' && req.method !== 'HEAD') {
@@ -307,7 +318,8 @@ export function buildApp(options: BuildAppOptions = {}): FastifyInstance {
         url.startsWith('/v1/') ||
         url === '/v1' ||
         url.startsWith('/content/') ||
-        url === '/content'
+        url === '/content' ||
+        isAssetPath(url)
       ) {
         return reply.code(404).send({ error: 'not found' });
       }

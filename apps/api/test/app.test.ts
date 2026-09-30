@@ -172,6 +172,40 @@ describe('static read path (ADR 0004, integration §12 #10)', () => {
     expect(backingFile.statusCode).toBe(404);
   });
 
+  // F28 — the SPA fallback is for client routes only. A missing static asset
+  // (an atlas tile, a hashed chunk, a font, an image) must answer 404; the old
+  // catch-all served the HTML shell with a 200, so the map's terrain readiness
+  // probe certified a nonexistent tile from the shell's content-type.
+  it('keeps missing static asset paths out of the PWA shell fallback', async () => {
+    app = buildApp({
+      logger: false,
+      webPublicDir: join(dir, 'public'),
+      webDistDir: join(dir, 'dist'),
+    });
+    await app.ready();
+
+    for (const asset of [
+      '/atlas/topo/hillshade/7/33/50.webp',
+      '/atlas/roads-manifest.json',
+      '/assets/missing-chunk.js',
+      '/img/taxa/missing.jpg',
+      '/fonts/missing.woff2',
+      '/icons/missing.svg',
+      '/content-pack/missing.json',
+      '/sw.js',
+      '/manifest.webmanifest',
+    ]) {
+      const res = await app.inject({ method: 'GET', url: asset });
+      expect(res.statusCode, asset).toBe(404);
+      expect(res.headers['content-type'], asset).not.toContain('text/html');
+    }
+
+    // Real client routes still get the shell.
+    const deep = await app.inject({ method: 'GET', url: '/conditions/caney-fork-river' });
+    expect(deep.statusCode).toBe(200);
+    expect(deep.body).toContain('trout-pwa');
+  });
+
   it('answers GET /v1/streams live from the snapshot file', async () => {
     app = buildApp({
       logger: false,
