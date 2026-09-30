@@ -512,40 +512,63 @@ Wave 1 integrated @ 31437a6 (gates: build/content/test 893/infra 12/lint all gre
   → Fixed (lane C): Pigeon/French Broad → KMOR (verified Morristown TN); Caney Fork → KCSV (Crossville, verified); out-of-state KMRN removed; official provenance recorded.
 - [x] **F48 P2** — fresh snapshots carry expired pressure trend indefinitely.
   → Fixed (lane A): pressure context age-gated at build (6 h window, matching the rain gate); expired rows omitted with a warning; payload keeps observedAt for Wave-3 client display.
+  → Fixed (lane A, API lane A wave 2): pressure context is age-gated at build (6 h window, matching the rain gate) and the client card displays the observation age ("observed 2 hours ago") alongside the station.
 
-### Wave 3 — freshness, maps, accessibility, user-facing truth (IN PROGRESS — 7 fixed by the coordinator lane, remainder in flight)
+### Wave 3 — freshness, maps, accessibility, user-facing truth (MERGED @ 11b2901; all 22 findings fixed; real-geometry e2e run pending)
 
-- [ ] **F04 P2** — cached species assessments keep current confidence indefinitely.
-- [ ] **F07 P2** — marketing embed reverses assessed semantics; different score bands.
-- [ ] **F08 P2** — stocking plans acquire exact dates and completion labels across
+- [x] **F04 P2** — cached species assessments keep current confidence indefinitely.
+  → Fixed (lane A): snapshots are stamped with current observation ages at the data boundary (pure stampCurrentAges, injected clock); past the 3-h reading window an assessment renders as Historical (chip + reduced confidence + explicit line), never as current-high.
+- [x] **F07 P2** — marketing embed reverses assessed semantics; different score bands.
+  → Fixed (lane D): scorePresentation honors assessed — unassessed renders an honest unavailable state (never a verdict), assessed 0 is Poor, bands aligned to the PWA (70/40).
+- [x] **F08 P2** — stocking plans acquire exact dates and completion labels across
   React/prerender/Astro.
+  → Fixed (lane D): shared schedule-only vocabulary across React/prerender/Astro — Scheduled / Past-scheduled (never "reported released/completed"; the feed carries no completion field), precision-aware dates (month → "December 2026", week → "Week of …").
 - [x] **F09 P2** — repeated prerender nests homepage body inside other routes.
+  → Fixed (coordinator lane): pristine-shell normalization — stripPrerenderedRoot restores the empty #root and head whitespace is collapsed; three consecutive prerender runs are byte-identical with per-route bodies (apps/web/scripts/prerender-shell.mjs + pinned unit tests).
   → Fixed (coordinator lane): pristine-shell normalization — stripPrerenderedRoot restores the empty #root and head whitespace is collapsed; three consecutive prerender runs are byte-identical with per-route bodies (apps/web/scripts/prerender-shell.mjs + pinned unit tests).
 - [x] **F11 P2** — solar equation-of-time missing radians→degrees (9.67 min drift).
   → Fixed (coordinator lane): equation of time now 4·radToDeg(E) (apps/web/src/lib/solar.ts); EOT pinned across the annual range against the standard independent approximation and NOAA crossing references corrected (the old Memphis reference encoded the bug).
+  → Fixed (coordinator lane): equation of time now 4·radToDeg(E) (apps/web/src/lib/solar.ts); EOT pinned across the annual range against the standard independent approximation and NOAA crossing references corrected (the old Memphis reference encoded the bug).
 - [x] **F12 P2** — UTC calendar days become local draft dates / "today's" windows.
+  → Fixed (coordinator lane): civilDate() + solarWindowsForCivilDate() drive the "Today's windows" card; draft todayIso() uses the local civil calendar; time acquisition stays in callers.
   → Fixed (coordinator lane): civilDate() + solarWindowsForCivilDate() drive the "Today's windows" card; draft todayIso() uses the local civil calendar; time acquisition stays in callers.
 - [x] **F13 P2** — rapid preference patches overwrite each other.
   → Fixed (coordinator lane): preference updates merge the LATEST stored record inside a serialized Dexie readwrite transaction; rapid patches can no longer overwrite each other.
-- [ ] **F17 P2** — header overflows a 320px viewport (nav off-screen).
-- [ ] **F18 P2** — blocked storage read blanks the map entry page.
-- [ ] **F20 P2** — light-theme legend text near-white-on-white (1.13:1).
-- [ ] **F25 P2** — invisible oversized legend wrapper blocks the desktop zoom button.
+  → Fixed (coordinator lane): preference updates merge the LATEST stored record inside a serialized Dexie readwrite transaction; rapid patches can no longer overwrite each other.
+- [x] **F17 P2** — header overflows a 320px viewport (nav off-screen).
+  → Fixed (lane C): below 640px the header wraps (search returns as a full-width row — it had been display:none, which also caused Wave-1 focus-restore misses); quick-settings collapse into the overflow drawer ≤480px; 44px targets kept; built-CSS contract pinned by tests (real-geometry proof: coordinator e2e no-overflow guards).
+- [x] **F18 P2** — blocked storage read blanks the map entry page.
+  → Fixed (lane C): legend preference reads/writes are guarded with in-memory fallback (theme-storage pattern); a blocked Storage no longer unmounts the map page.
+- [x] **F20 P2** — light-theme legend text near-white-on-white (1.13:1).
+  → Fixed (lane C): legend text uses shared theme tokens; computed WCAG contrast pinned for all five presets (daybreak 14.3:1 text / 6.1:1 muted vs the audited 1.13/2.17).
+- [x] **F25 P2** — invisible oversized legend wrapper blocks the desktop zoom button.
+  → Fixed (lane C): the legend wrapper is content-sized AND pointer-events:none with per-control auto (specificity-safe over .map-bottom > *); the Wave-1 zoom fixme in e2e/fieldwork/ui.spec.ts is restored as a live test.
 - [x] **F26 P3** — regional geometry validator dereferences retired lakes.geojson.
   → Fixed (coordinator lane): the retired passive-lakes check was removed; the validator completes (48 features / 18 lakes / 30 reaches / 0 errors) with all remaining geometry checks intact.
-- [ ] **F27 P2** — marketing footer targets below minimum size/spacing (9 templates).
-- [ ] **F28 P2** — terrain readiness probes a missing tile; SPA 200 shell masquerades
+  → Fixed (coordinator lane): the retired passive-lakes check was removed; the validator completes (48 features / 18 lakes / 30 reaches / 0 errors) with all remaining geometry checks intact.
+- [x] **F27 P2** — marketing footer targets below minimum size/spacing (9 templates).
+  → Fixed (lane D): footer/header nav links get 44px min-height target boxes + explicit row gap (global.css; no font-size inflation).
+- [x] **F28 P2** — terrain readiness probes a missing tile; SPA 200 shell masquerades
   as a tile.
+  → Fixed (lane B): manifest declares a verified shipped probe tile (z8/66/100); readiness requires image/* content-type (a 200 text/html SPA shell is never availability); the API SPA fallback answers only real client routes — asset namespaces 404 when missing.
 - [x] **F30 P3** — "All fish" accessible name mismatch.
   → Fixed (coordinator lane): accessible name is "All fish mode", containing the exact visible text.
-- [ ] **F31 P2** — non-map routes eagerly load the entire map/route bundle.
+  → Fixed (coordinator lane): accessible name is "All fish mode", containing the exact visible text.
+- [x] **F31 P2** — non-map routes eagerly load the entire map/route bundle.
+  → Fixed (lane E): all 16 routes lazy behind one Suspense boundary — eager entry 2,093,239 B → 571,064 B (−72.7%); MapLibre isolated in lazy chunks (1.13 MB map + 487 kB worker); all 39 chunks precached (SW manifest verified), budget 12.48/25 MB; bundle-split-check gate wired into both build flavors.
 - [x] **F39 P3** — inert newsletter form reports success on 405/500.
   → Fixed (coordinator lane): only verified 2xx claims subscription success; 405/5xx disclose failure; 404/501 stay the documented v1 demo stub.
-- [ ] **F40 P2** — map never requests West Tennessee hatch charts.
-- [ ] **F42 P3** — QA crossing overlay computed on the wrong segment parameter.
-- [ ] **F43 P2** — map Trout controls cannot override a saved All-fish preference.
-- [ ] **F44 P2** — fishability/focus/palette changes do not invalidate memoized map colors.
-- [ ] **F45 P2** — touch taps select a river before an overlapping gauge/stocking overlay.
+  → Fixed (coordinator lane): only verified 2xx claims subscription success; 405/5xx disclose failure; 404/501 stay the documented v1 demo stub.
+- [x] **F40 P2** — map never requests West Tennessee hatch charts.
+  → Fixed (lane B): requested regions derive from the regions registry (hatch-calendar source of truth) — tn-west included; the hardcoded 11-region array is gone.
+- [x] **F42 P3** — QA crossing overlay computed on the wrong segment parameter.
+  → Fixed (lane B): crossing point uses the intersection parameter of the segment actually returned (t = d3/(d3−d4)); asymmetric-crossing test pins the exact intersection.
+- [x] **F43 P2** — map Trout controls cannot override a saved All-fish preference.
+  → Fixed (lane B): all three map controls write an explicit species selection (species=trout/species=all); parameter removal stays reserved for the site-wide header toggle.
+- [x] **F44 P2** — fishability/focus/palette changes do not invalidate memoized map colors.
+  → Fixed (lane B): featureColors memo deps now include per-water fishability payload, focus species, and the resolved palette signature; TennesseeMap style-swap key includes the palette; delayed-response and palette-change tests pin the repaint.
+- [x] **F45 P2** — touch taps select a river before an overlapping gauge/stocking overlay.
+  → Fixed (lane B): one exported dispatchMapTap routine serves touch and click — overlay dot first (gauge→stocking→attractor), river fall-through, duplicate event suppressed only after dispatch.
 
 ## REGRESSION TESTS TO ADD ALONGSIDE THE FIXES
 
