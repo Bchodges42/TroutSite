@@ -1,4 +1,4 @@
-import { GaugeReadingSchema } from '@trout/contracts';
+import { GaugeReadingSchema, READING_STALE_MINUTES } from '@trout/contracts';
 import type { GaugeReading } from '@trout/contracts';
 import { fetchWithRetry } from '../lib/retry.js';
 
@@ -58,7 +58,18 @@ function normalizeSite(id: string): string | null {
   return match?.[1] ?? null;
 }
 
-/** Parse one recorded or live OGC FeatureCollection into merged gauge rows. */
+/**
+ * Parse one recorded or live OGC FeatureCollection into merged gauge rows.
+ *
+ * Each parameter keeps its OWN observation time (F01, 2026-09-29 audit): the
+ * reading's `timestamp` is the newest surviving metric's time, and any metric
+ * observed at a different instant is recorded in `metricTimes`. T1-6 parity
+ * with the legacy parser: a parameter older than the shared freshness window
+ * (READING_STALE_MINUTES — the same 3 h the scorer's staleness contract uses)
+ * relative to the site's newest observation is dropped instead of merged — a
+ * stopped temperature sensor must not ride along under a fresh flow stamp,
+ * and the flow sensor must not renew the temperature's freshness.
+ */
 export function parseWaterDataResponse(payload: unknown): GaugeReading[] {
   const features = (payload as WaterDataFeatureCollection | null)?.features ?? [];
   const bySite = new Map<string, { cfs?: { value: number; timestamp: string }; heightFt?: { value: number; timestamp: string }; tempC?: { value: number; timestamp: string }; dissolvedOxygenMgL?: { value: number; timestamp: string }; precipitationMm?: { value: number; timestamp: string } }>();
@@ -78,17 +89,33 @@ export function parseWaterDataResponse(payload: unknown): GaugeReading[] {
     bySite.set(gaugeId, current);
   }
   return [...bySite.entries()].flatMap(([gaugeId, fields]) => {
-    const values = Object.values(fields);
-    const timestamp = values.sort((a, b) => Date.parse(b.timestamp) - Date.parse(a.timestamp))[0]?.timestamp;
-    if (!timestamp) return [];
+    const entries = Object.entries(fields) as [keyof typeof fields, { value: number; timestamp: string }][];
+    const times = entries.map(([, m]) => Date.parse(m.timestamp)).filter((ms) => !Number.isNaN(ms));
+    if (times.length === 0) return [];
+    // T1-6: drop metrics older than the freshness window relative to the site's
+    // newest observation — absolute age is enforced downstream against the
+    // per-metric times (latestReadings, scoreFishability), never against
+    // another metric's stamp.
+    const newest = Math.max(...times);
+    const metricTimes: NonNullable<GaugeReading['metricTimes']> = {};
+    const merged: { cfs?: number; heightFt?: number; tempC?: number; dissolvedOxygenMgL?: number; precipitationMm?: number } = {};
+    let timestamp: string | undefined;
+    for (const [field, metric] of entries) {
+      if (newest - Date.parse(metric.timestamp) > READING_STALE_MINUTES * 60_000) continue;
+      merged[field] = metric.value;
+      if (timestamp === undefined || Date.parse(metric.timestamp) > Date.parse(timestamp)) timestamp = metric.timestamp;
+    }
+    if (timestamp === undefined) return [];
+    for (const [field, metric] of entries) {
+      if (merged[field] === undefined) continue;
+      if (Date.parse(metric.timestamp) === Date.parse(timestamp)) continue;
+      metricTimes[field] = metric.timestamp;
+    }
     const parsed = GaugeReadingSchema.safeParse({
       gaugeId,
-      ...(fields.cfs ? { cfs: fields.cfs.value } : {}),
-      ...(fields.heightFt ? { heightFt: fields.heightFt.value } : {}),
-      ...(fields.tempC ? { tempC: fields.tempC.value } : {}),
-      ...(fields.dissolvedOxygenMgL ? { dissolvedOxygenMgL: fields.dissolvedOxygenMgL.value } : {}),
-      ...(fields.precipitationMm ? { precipitationMm: fields.precipitationMm.value } : {}),
+      ...merged,
       timestamp,
+      ...(Object.keys(metricTimes).length > 0 ? { metricTimes } : {}),
     });
     return parsed.success ? [parsed.data] : [];
   });
