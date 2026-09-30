@@ -28,6 +28,7 @@
 import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import { stripPrerenderedRoot } from './prerender-shell.mjs';
 
 const webRoot = dirname(fileURLToPath(import.meta.url)); // apps/web/scripts
 const appRoot = dirname(webRoot); // apps/web
@@ -195,7 +196,18 @@ const DEFAULT_TITLE = '<title>Trout — Match the Hatch &amp; Stream Conditions<
 
 const shell = readFileSync(shellPath, 'utf8');
 const TITLE_RE = /<title>[\s\S]*?<\/title>/;
-const pristineShell = shell.replace(INJECTED_TAGS_RE, '').replace(TITLE_RE, DEFAULT_TITLE);
+// F09: normalize the shell back to pristine before templating, so repeated
+// runs are byte-stable — the home page overwrote dist/index.html on the
+// previous run, carrying injected head tags (whose indentation grew every
+// run), blank-line residue, and a filled #root into what this script treats
+// as the shell. Consume the title's leading whitespace, collapse whitespace-
+// only lines, and restore the empty root (see prerender-shell.mjs).
+const pristineShell = stripPrerenderedRoot(
+  shell
+    .replace(INJECTED_TAGS_RE, '')
+    .replace(/[ \t]*<title>[\s\S]*?<\/title>/, DEFAULT_TITLE)
+    .replace(/\n[ \t]*(?=\n)/g, ''),
+);
 
 /**
  * Build one prerendered page from the built shell:

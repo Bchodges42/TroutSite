@@ -513,27 +513,34 @@ Wave 1 integrated @ 31437a6 (gates: build/content/test 893/infra 12/lint all gre
 - [x] **F48 P2** — fresh snapshots carry expired pressure trend indefinitely.
   → Fixed (lane A): pressure context age-gated at build (6 h window, matching the rain gate); expired rows omitted with a warning; payload keeps observedAt for Wave-3 client display.
 
-### Wave 3 — freshness, maps, accessibility, user-facing truth (QUEUED)
+### Wave 3 — freshness, maps, accessibility, user-facing truth (IN PROGRESS — 7 fixed by the coordinator lane, remainder in flight)
 
 - [ ] **F04 P2** — cached species assessments keep current confidence indefinitely.
 - [ ] **F07 P2** — marketing embed reverses assessed semantics; different score bands.
 - [ ] **F08 P2** — stocking plans acquire exact dates and completion labels across
   React/prerender/Astro.
-- [ ] **F09 P2** — repeated prerender nests homepage body inside other routes.
-- [ ] **F11 P2** — solar equation-of-time missing radians→degrees (9.67 min drift).
-- [ ] **F12 P2** — UTC calendar days become local draft dates / "today's" windows.
-- [ ] **F13 P2** — rapid preference patches overwrite each other.
+- [x] **F09 P2** — repeated prerender nests homepage body inside other routes.
+  → Fixed (coordinator lane): pristine-shell normalization — stripPrerenderedRoot restores the empty #root and head whitespace is collapsed; three consecutive prerender runs are byte-identical with per-route bodies (apps/web/scripts/prerender-shell.mjs + pinned unit tests).
+- [x] **F11 P2** — solar equation-of-time missing radians→degrees (9.67 min drift).
+  → Fixed (coordinator lane): equation of time now 4·radToDeg(E) (apps/web/src/lib/solar.ts); EOT pinned across the annual range against the standard independent approximation and NOAA crossing references corrected (the old Memphis reference encoded the bug).
+- [x] **F12 P2** — UTC calendar days become local draft dates / "today's" windows.
+  → Fixed (coordinator lane): civilDate() + solarWindowsForCivilDate() drive the "Today's windows" card; draft todayIso() uses the local civil calendar; time acquisition stays in callers.
+- [x] **F13 P2** — rapid preference patches overwrite each other.
+  → Fixed (coordinator lane): preference updates merge the LATEST stored record inside a serialized Dexie readwrite transaction; rapid patches can no longer overwrite each other.
 - [ ] **F17 P2** — header overflows a 320px viewport (nav off-screen).
 - [ ] **F18 P2** — blocked storage read blanks the map entry page.
 - [ ] **F20 P2** — light-theme legend text near-white-on-white (1.13:1).
 - [ ] **F25 P2** — invisible oversized legend wrapper blocks the desktop zoom button.
-- [ ] **F26 P3** — regional geometry validator dereferences retired lakes.geojson.
+- [x] **F26 P3** — regional geometry validator dereferences retired lakes.geojson.
+  → Fixed (coordinator lane): the retired passive-lakes check was removed; the validator completes (48 features / 18 lakes / 30 reaches / 0 errors) with all remaining geometry checks intact.
 - [ ] **F27 P2** — marketing footer targets below minimum size/spacing (9 templates).
 - [ ] **F28 P2** — terrain readiness probes a missing tile; SPA 200 shell masquerades
   as a tile.
-- [ ] **F30 P3** — "All fish" accessible name mismatch.
+- [x] **F30 P3** — "All fish" accessible name mismatch.
+  → Fixed (coordinator lane): accessible name is "All fish mode", containing the exact visible text.
 - [ ] **F31 P2** — non-map routes eagerly load the entire map/route bundle.
-- [ ] **F39 P3** — inert newsletter form reports success on 405/500.
+- [x] **F39 P3** — inert newsletter form reports success on 405/500.
+  → Fixed (coordinator lane): only verified 2xx claims subscription success; 405/5xx disclose failure; 404/501 stay the documented v1 demo stub.
 - [ ] **F40 P2** — map never requests West Tennessee hatch charts.
 - [ ] **F42 P3** — QA crossing overlay computed on the wrong segment parameter.
 - [ ] **F43 P2** — map Trout controls cannot override a saved All-fish preference.

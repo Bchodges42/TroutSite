@@ -27,8 +27,27 @@ export function useSettings(): [SettingsRecord, (patch: Partial<SettingsRecord>)
 
   const settings: SettingsRecord = { ...DEFAULT_SETTINGS, ...(stored ?? {}) };
   const update = (patch: Partial<SettingsRecord>) => {
-    const next = { ...settings, ...patch };
-    void db.settings.put({ key: SETTINGS_KEY, value: next });
+    // F13 (2026-09-29 audit): merge against the LATEST STORED record inside a
+    // serialized readwrite transaction. Merging against this render's captured
+    // `settings` let two rapid patches overwrite each other — the second put
+    // wrote the first patch's old values back (all/empty-focus then
+    // trout/smallmouth-focus). Dexie runs same-table readwrite transactions
+    // one at a time, so each patch now reads what the previous one wrote.
+    void db
+      .transaction('readwrite', db.settings, async () => {
+        const row = await db.settings.get(SETTINGS_KEY);
+        const next: SettingsRecord = {
+          ...DEFAULT_SETTINGS,
+          ...((row?.value as Partial<SettingsRecord>) ?? {}),
+          ...patch,
+        };
+        await db.settings.put({ key: SETTINGS_KEY, value: next });
+      })
+      .catch((err: unknown) => {
+        // A failed preference write must not masquerade as success — but it
+        // also must not crash the UI over an optional preference.
+        console.warn('[settings] preference update failed', err);
+      });
   };
 
   return [settings, update];

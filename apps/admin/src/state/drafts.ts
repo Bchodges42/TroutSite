@@ -46,8 +46,16 @@ export function uid(): string {
     : `draft-${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
 }
 
-export function todayIso(): string {
-  return new Date().toISOString().slice(0, 10);
+/**
+ * F12 (2026-09-29 audit): the draft's default report date is the LOCAL civil
+ * calendar date, not the UTC day — `toISOString().slice(0,10)` returned
+ * tomorrow's date for an evening visitor west of UTC. The instant is
+ * injectable so tests can pin an evening local time.
+ */
+export function todayIso(now: Date = new Date()): string {
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const day = String(now.getDate()).padStart(2, '0');
+  return `${now.getFullYear()}-${month}-${day}`;
 }
 
 export function emptyDraft(shopId: string): ReportDraft {
