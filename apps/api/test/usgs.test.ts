@@ -213,12 +213,13 @@ describe('F34: latest-value selection must order mixed-offset timestamps by inst
   });
 
   /** The audit probe: the repeated daylight-saving hour (2026-11-01, America/Chicago).
-   *  01:45-05:00 = 06:45Z; 01:15-06:00 = 07:15Z (the LATER instant, earlier local text). */
+   *  01:45-05:00 = 06:45Z; 01:15-06:00 = 07:15Z (the LATER instant, earlier local text).
+   *  Site 03486000 is the gauge the seeded fixture content wires to watauga-river. */
   const dstPayload = (cfs: string, dateTime: string) => ({
     value: {
       timeSeries: [
         {
-          sourceInfo: { siteCode: [{ value: '03586500' }] },
+          sourceInfo: { siteCode: [{ value: '03486000' }] },
           variable: { variableCode: [{ value: '00060' }] },
           values: [{ value: [{ value: cfs, dateTime }] }],
         },
@@ -231,7 +232,7 @@ describe('F34: latest-value selection must order mixed-offset timestamps by inst
       value: {
         timeSeries: [
           {
-            sourceInfo: { siteCode: [{ value: '03586500' }] },
+            sourceInfo: { siteCode: [{ value: '03486000' }] },
             variable: { variableCode: [{ value: '00010' }] },
             values: [
               {
@@ -293,12 +294,12 @@ describe('F34: latest-value selection must order mixed-offset timestamps by inst
       value: {
         timeSeries: [
           {
-            sourceInfo: { siteCode: [{ value: '03586500' }] },
+            sourceInfo: { siteCode: [{ value: '03486000' }] },
             variable: { variableCode: [{ value: '00060' }] },
             values: [{ value: [{ value: '120', dateTime: '2026-09-02T14:30:00.000-05:00' }] }], // 19:30Z
           },
           {
-            sourceInfo: { siteCode: [{ value: '03586500' }] },
+            sourceInfo: { siteCode: [{ value: '03486000' }] },
             variable: { variableCode: [{ value: '00010' }] },
             values: [{ value: [{ value: '18', dateTime: '2026-09-02T12:30:00.000-05:00' }] }], // 17:30Z
           },

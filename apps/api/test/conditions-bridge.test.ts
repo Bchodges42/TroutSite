@@ -150,8 +150,9 @@ describe('buildConditionsReading (observation → GaugeReading merge)', () => {
     expect(result?.reading.cfs).toBe(100);
     expect(result?.reading.tempC).toBe(12);
     expect(result?.reading.timestamp).toBe('2026-11-01T01:15:00-06:00');
-    // The discharge keeps its own observation time for freshness gates.
-    expect(result?.reading.metricTimes).toMatchObject({ 'discharge-cfs': '2026-11-01T01:45:00-05:00' });
+    // The discharge keeps its own observation time for freshness gates
+    // (metricTimes is keyed by the GaugeReading field names).
+    expect(result?.reading.metricTimes).toMatchObject({ cfs: '2026-11-01T01:45:00-05:00' });
   });
 
   it('F01: preserves per-metric observation times in the reading and payload', () => {
@@ -160,11 +161,11 @@ describe('buildConditionsReading (observation → GaugeReading merge)', () => {
       obs({ metric: 'temperature-c', value: 12, observedAt: '2026-09-08T14:00:00-04:00' }),
     ]);
     expect(result?.reading.timestamp).toBe('2026-09-08T15:00:00-04:00');
-    expect(result?.reading.metricTimes).toMatchObject({ 'temperature-c': '2026-09-08T14:00:00-04:00' });
+    expect(result?.reading.metricTimes).toMatchObject({ tempC: '2026-09-08T14:00:00-04:00' });
     const payload = JSON.parse(result?.payload ?? '{}') as {
       metricTimes?: Record<string, string>;
     };
-    expect(payload.metricTimes).toMatchObject({ 'temperature-c': '2026-09-08T14:00:00-04:00' });
+    expect(payload.metricTimes).toMatchObject({ tempC: '2026-09-08T14:00:00-04:00' });
   });
 });
 

@@ -14,10 +14,34 @@ const fixture = JSON.parse(
 
 describe('USGS Water Data OGC API', () => {
   it('parses mixed string/number features, offsets, and DO while dropping sentinel rows', () => {
+    // UPDATED with the F01 fix (2026-09-29 audit): the recorded fixture's
+    // discharge/temperature/DO are stamped 12:00Z while gage height is
+    // 12:01-04:00 (= 16:01Z) — 4h01m newer. The old expectation merged those
+    // 4h-old metrics under the fresh height stamp (the exact laundering F01
+    // bans); the T1-6 freshness window (3 h, same as the legacy parser)
+    // now drops them and the reading carries the height metric only.
     const rows = parseWaterDataResponse(fixture);
     expect(rows).toEqual([
       {
         gaugeId: '03518500',
+        heightFt: 4.2,
+        timestamp: '2026-09-13T16:01:00.000Z',
+      },
+    ]);
+  });
+
+  it('merges parameters observed at the same instant (offsets normalized) under one stamp', () => {
+    const rows = parseWaterDataResponse({
+      features: [
+        { properties: { monitoring_location_id: 'USGS-1', parameter_code: '00060', time: '2026-09-13T16:01:00Z', value: 245 } },
+        { properties: { monitoring_location_id: 'USGS-1', parameter_code: '00065', time: '2026-09-13T12:01:00-04:00', value: 4.2 } },
+        { properties: { monitoring_location_id: 'USGS-1', parameter_code: '00010', time: '2026-09-13T16:01:00Z', value: 16.4 } },
+        { properties: { monitoring_location_id: 'USGS-1', parameter_code: '00300', time: '2026-09-13T16:01:00Z', value: 7.1 } },
+      ],
+    });
+    expect(rows).toEqual([
+      {
+        gaugeId: '1',
         cfs: 245,
         heightFt: 4.2,
         tempC: 16.4,

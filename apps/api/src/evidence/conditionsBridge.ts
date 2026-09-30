@@ -63,12 +63,16 @@ export interface ConditionsReading {
  * Merge one gauge's newest-wins observations into a single GaugeReading the way
  * parseInstantValues merges USGS parameters: newest observation per metric wins,
  * the reading timestamp is the newest INCLUDED metric's observedAt, and
- * any metric without a column is skipped. T1-6: a
+ * any metric without a column is skipped. Newest-wins and the merge stamp are
+ * chosen by PARSED INSTANT, never string order (F34 — TVA offsets differ by
+ * zone label and the DST repeated hour mixes them). T1-6: a
  * metric whose own observation is older than the freshness window
  * (READING_STALE_MINUTES, the scorer's staleness contract) relative to the
  * gauge's newest observation is dropped instead of merged — a dead discharge
- * sensor must not ride along under a fresh stage timestamp. Returns null when
- * nothing conditions-relevant survived validation.
+ * sensor must not ride along under a fresh stage timestamp. Metrics included
+ * at a different instant than the merged stamp keep their own time in
+ * metricTimes (F01). Returns null when nothing conditions-relevant survived
+ * validation.
  */
 export function buildConditionsReading(
   gaugeId: string,
@@ -76,11 +80,13 @@ export function buildConditionsReading(
   obs: WaterObservation[],
   rawByMetric: Partial<Record<WaterObservation['metric'], unknown>> = {},
 ): ConditionsReading | null {
-  const sorted = [...obs].sort((a, b) => b.observedAt.localeCompare(a.observedAt));
+  const sorted = [...obs].sort((a, b) => Date.parse(b.observedAt) - Date.parse(a.observedAt));
   const newest = sorted[0]?.observedAt;
   const newestMs = newest ? Date.parse(newest) : Number.NaN;
   const fields: GaugeReading = { gaugeId, timestamp: newest ?? new Date(0).toISOString() };
   const rows: Record<string, unknown> = {};
+  /** The chosen observation per included field (for per-metric freshness times). */
+  const chosen: Partial<Record<'cfs' | 'heightFt' | 'tempC' | 'dissolvedOxygenMgL' | 'reservoirLevelFt' | 'precipitationMm', WaterObservation>> = {};
   let timestamp: string | undefined;
   for (const o of sorted) {
     const field = METRIC_FIELD[o.metric];
@@ -94,13 +100,31 @@ export function buildConditionsReading(
       continue;
     }
     fields[field] = o.value;
+    chosen[field] = o;
     rows[o.metric] = rawByMetric[o.metric] ?? { observedAt: o.observedAt, value: o.value };
-    if (timestamp === undefined || o.observedAt > timestamp) timestamp = o.observedAt;
+    if (timestamp === undefined || observedMs > Date.parse(timestamp)) timestamp = o.observedAt;
   }
   if (timestamp === undefined) return null;
-  const parsed = GaugeReadingSchema.safeParse({ ...fields, timestamp });
+  const metricTimes: NonNullable<GaugeReading['metricTimes']> = {};
+  for (const [field, o] of Object.entries(chosen) as [keyof typeof chosen, WaterObservation][]) {
+    if (Date.parse(o.observedAt) === Date.parse(timestamp)) continue;
+    metricTimes[field] = o.observedAt;
+  }
+  const parsed = GaugeReadingSchema.safeParse({
+    ...fields,
+    timestamp,
+    ...(Object.keys(metricTimes).length > 0 ? { metricTimes } : {}),
+  });
   if (!parsed.success) return null;
-  return { reading: parsed.data, payload: JSON.stringify({ source, gaugeId, rows }) };
+  return {
+    reading: parsed.data,
+    payload: JSON.stringify({
+      source,
+      gaugeId,
+      rows,
+      ...(Object.keys(metricTimes).length > 0 ? { metricTimes } : {}),
+    }),
+  };
 }
 
 /** Find the exact TVA row behind an observation (for the raw audit payload). */
