@@ -158,4 +158,29 @@ describe('invalidateStaleTopoCache', () => {
     await invalidateStaleTopoCache(GOOD_TOPO);
     expect(localStorage.getItem('trout:topo-generated')).toBe(GOOD_TOPO.generated);
   });
+
+  // F29 — the marker may only advance once the deletion actually succeeded;
+  // a failed delete must stay retryable on the very next call.
+  it('does not record the generation when the deletion fails, and retries next call', async () => {
+    let deleteCalls = 0;
+    let failDelete = true;
+    vi.stubGlobal('caches', {
+      delete: async (name: string) => {
+        deleteCalls += 1;
+        if (failDelete) throw new Error('transient deletion failure');
+        return true;
+      },
+    });
+    localStorage.setItem('trout:topo-generated', 'old-generation');
+
+    const first = await invalidateStaleTopoCache({ ...GOOD_TOPO, generated: 'new-generation' });
+    expect(first).toBe(false);
+    expect(localStorage.getItem('trout:topo-generated')).toBe('old-generation');
+
+    failDelete = false;
+    const second = await invalidateStaleTopoCache({ ...GOOD_TOPO, generated: 'new-generation' });
+    expect(second).toBe(true);
+    expect(deleteCalls).toBe(2); // the failed purge was retried
+    expect(localStorage.getItem('trout:topo-generated')).toBe('new-generation');
+  });
 });
