@@ -72,10 +72,12 @@ test('offline: hatch flow, charts, and last-known conditions stay fully function
   // search-first page, fed entirely from the cached snapshots while offline
   await expect(page.getByText('Tailwaters now')).toBeVisible();
   await page.locator('li', { hasText: 'Boone Tailwater' }).first().click();
-  await expect(page.getByRole('heading', { name: 'Boone Tailwater' })).toBeVisible();
-  // September sits outside Boone's authored stocking window (Dec/Mar/Apr):
-  // the honest seasonal state replaces the score assessment offline.
-  await expect(page.getByText(/PROGRAMMATIC — out of season; raw readings shown/)).toBeVisible();
+  // The detail heading carries the full catalog name.
+  await expect(page.getByRole('heading', { name: /Boone Tailwater/ })).toBeVisible();
+  // Boone is a documented year-round fishery (ADR 0010): the cached assessment
+  // stays a score offline — the programmatic stocking schedule never demotes it
+  // to "out of season", whatever the month.
+  await expect(page.getByText(/out of season/i)).toHaveCount(0);
   await expect(page.getByText(/Offline · last known/).first()).toBeVisible();
 
   // restart resilience: the shell, catalog, and cached data survive a reload

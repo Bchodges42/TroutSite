@@ -1,0 +1,52 @@
+{
+  "streamId": "harpeth-river",
+  "fetchedAt": "2026-09-30T05:02:09Z",
+  "bySpecies": {
+    "smallmouth-bass": {
+      "comfort": {
+        "species": "smallmouth-bass",
+        "value": 40,
+        "reasons": [
+          "Water temperature 27.5°C is above smallmouth bass's comfort range (20–26.7°C) — fish have moved to cooler water or stopped feeding."
+        ],
+        "assessed": true,
+        "freshness": {
+          "observedAt": "2026-09-30T04:56:09Z",
+          "ageMinutes": 38
+        }
+      },
+      "activity": {
+        "total": 43,
+        "components": [
+          {
+            "factor": "water-temperature",
+            "value": 40,
+            "contribution": -7,
+            "weight": 0.7,
+            "evidenceUrl": "https://waterdata.usgs.gov/monitoring-location/03432350",
+            "confidence": "measured",
+            "label": "Water temperature"
+          },
+          {
+            "factor": "spawn-state",
+            "value": 50,
+            "contribution": 0,
+            "weight": 0.3,
+            "evidenceUrl": "https://mdc.mo.gov/discover-nature/field-guide/smallmouth-bass",
+            "confidence": "heuristic",
+            "label": "Spawn state: none for smallmouth bass at this temperature (heuristic estimate)"
+          }
+        ],
+        "spawnState": "N_A",
+        "flowTrend": {
+          "direction": "rising",
+          "magnitude": 15,
+          "confidence": "derived",
+          "evidenceUrl": "https://waterdata.usgs.gov/monitoring-location/03432350",
+          "observedAt": "2026-09-30T04:56:09Z",
+          "label": "Flow trend: rising (15 cfs change; context only)"
+        }
+      }
+    }
+  }
+}

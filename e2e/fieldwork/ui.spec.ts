@@ -20,7 +20,11 @@ declare global {
 const sharp = createRequire(new URL('../../apps/web/package.json', import.meta.url))('sharp');
 
 const catalogPath = fileURLToPath(
-  new URL('../../apps/web/public/v1/streams.json', import.meta.url),
+  // The GENERATED fixture catalog (the same tree the fixture build serves).
+  // The old seam read apps/web/public/v1/streams.json — a gitignored ROLE 3/6
+  // regeneration output that may not exist (or may be stale) in a checkout,
+  // which made the whole gate depend on untracked local state (F10).
+  new URL('../../apps/web/fixtures/data/v1/streams', import.meta.url),
 );
 const riversPath = fileURLToPath(
   new URL('../../apps/web/public/atlas/rivers.geojson', import.meta.url),
@@ -149,9 +153,12 @@ async function scanLinePointOnce(page: Page, riverId: string): Promise<{ x: numb
       if (!hitEl || !String(hitEl.className).includes('maplibregl-canvas')) continue;
       const feats = m.queryRenderedFeatures([[p.x - 5, p.y - 5], [p.x + 5, p.y + 5]], { layers });
       if (!feats.length) continue;
-      // Mirror the app's own distance model exactly (TennesseeMap hit()).
-      const segDist = (line: Array<[number, number]>) => {
-        let nearest = Infinity;
+    // Mirror the app's own distance model exactly (TennesseeMap hit() ->
+    // selection.ts distanceToGeometry: point-to-SEGMENT distance over every
+    // line of a LineString/MultiLineString, flattened).
+    const segDist = (lines: Array<Array<[number, number]>>) => {
+      let nearest = Infinity;
+      for (const line of lines) {
         for (let i = 1; i < line.length; i++) {
           const a = m.project(line[i - 1]);
           const b = m.project(line[i]);
@@ -161,7 +168,8 @@ async function scanLinePointOnce(page: Page, riverId: string): Promise<{ x: numb
           const t = len ? Math.max(0, Math.min(1, ((p.x - a.x) * dx + (p.y - a.y) * dy) / len)) : 0;
           nearest = Math.min(nearest, Math.hypot(p.x - a.x - t * dx, p.y - a.y - t * dy));
         }
-        return nearest;
+      }
+      return nearest;
       };
       const best = feats
         .map((f) => ({
@@ -230,14 +238,37 @@ async function scanPolygonPoint(page: Page): Promise<{ x: number; y: number }> {
         const b = el.getBoundingClientRect();
         return { x: b.x - origin.x, y: b.y - origin.y, w: b.width, h: b.height };
       });
-    const distance = (f: { layer: { id: string }; geometry: { type: string }; coordinates?: [number, number] }, point: { x: number; y: number }) => {
+    // Mirror selection.ts distanceToGeometry: polygons score by hit-layer
+    // priority, points by pixel distance, lines by point-to-SEGMENT distance
+    // over every flattened line (a flat proxy would let a line whose true
+    // distance exceeds the polygon's priority still steal the tap).
+    const segDist = (lines: Array<Array<[number, number]>>) => {
+      let nearest = Infinity;
+      for (const line of lines) {
+        for (let i = 1; i < line.length; i++) {
+          const a = m.project(line[i - 1]);
+          const b = m.project(line[i]);
+          const dx = b.x - a.x;
+          const dy = b.y - a.y;
+          const len = dx * dx + dy * dy;
+          const t = len ? Math.max(0, Math.min(1, ((p.x - a.x) * dx + (p.y - a.y) * dy) / len)) : 0;
+          nearest = Math.min(nearest, Math.hypot(p.x - a.x - t * dx, p.y - a.y - t * dy));
+        }
+      }
+      return nearest;
+    };
+    const distance = (f: { layer: { id: string }; geometry: { type: string; coordinates?: unknown } }, point: { x: number; y: number }) => {
       if (f.geometry.type === 'Polygon' || f.geometry.type === 'MultiPolygon')
         return f.layer.id === 'rivers-water-hit' ? 6 : 9;
       if (f.geometry.type === 'Point') {
-        const pr = m.project(f.coordinates as [number, number]);
+        const pr = m.project((f.geometry.coordinates as [number, number]));
         return Math.hypot(point.x - pr.x, point.y - pr.y);
       }
-      return 5.5;
+      return segDist(
+        f.geometry.type === 'LineString'
+          ? [f.geometry.coordinates as Array<[number, number]>]
+          : (f.geometry.coordinates as Array<Array<[number, number]>>),
+      );
     };
     for (let lon = -87.1; lon <= -86.5; lon += 0.008) {
       for (let lat = 36.24; lat <= 36.66; lat += 0.008) {
@@ -332,6 +363,16 @@ async function mockCatalogPolygon(page: Page) {
       approximate: true,
       bounds: [longitude - 0.32, latitude - 0.22, longitude + 0.32, latitude + 0.22],
       labelAnchor: [longitude, latitude],
+      // Test-only tier override. The real beech-lake is editorially
+      // 'reference', and the catalog tier filter only makes reference waters
+      // hittable at zoom >= 9 (mapStyle MAP_ZOOM_TIERS) — above the enforced
+      // mobile minimum zoom this spec's camera can reach. Without this the
+      // mocked polygon never enters the hit layers and the scan can find no
+      // tap point (the F10 touch-polygon drift: a display-tier campaign
+      // changed the water's editorial tier under a test that predates it).
+      // The oversized polygon is this spec's own geometry; pinning its tier
+      // keeps the scenario about polygon SELECTION, not catalog tiering.
+      displayTier: 'featured',
     };
     await route.fulfill({
       status: 200,
@@ -357,8 +398,9 @@ test('the map opens full-bleed and the water atlas is summonable', async ({ page
   // The field-atlas index (list + filters) remains reachable at ?atlas=1.
   await page.goto('/?atlas=1');
   await expect(page.getByRole('heading', { name: 'Find your water.' })).toBeVisible();
-  // 148-water pack: trout mode = 103 trout + 37 unverified-species + 1 stocked warmwater.
-  await expect(page.locator('.water-row')).toHaveCount(141);
+  // 190-water pack: trout mode excludes the 56 opportunity-adjudicated
+  // warmwater-focus waters (no stocking program) — 134 rows stay discoverable.
+  await expect(page.locator('.water-row')).toHaveCount(134);
   await page.getByRole('button', { name: 'Close water list' }).click();
   // The atlas has one chrome path: the layers panel no longer duplicates it,
   // and the menu no longer carries 'Open water atlas' or 'Browse all waters'.
@@ -610,8 +652,8 @@ test('WebGL failure has a usable list alternative', async ({ page }) => {
   await expect(page.getByRole('heading', { name: 'Explore without the map.' })).toBeVisible();
   await page.getByRole('link', { name: 'Browse all waters →', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Browse streams', exact: true })).toBeVisible();
-  // Full catalog: all 148 waters, every species state.
-  await expect(page.locator('.list-row')).toHaveCount(148);
+  // Full catalog: all 190 waters of the current pack, every species state.
+  await expect(page.locator('.list-row')).toHaveCount(190);
 });
 
 test('offline and unassessed presentation never claim live or zero Poor', async ({
@@ -733,6 +775,40 @@ test.describe('touch polygon selection', () => {
               const b = el.getBoundingClientRect();
               return { x: b.x - origin.x, y: b.y - origin.y, w: b.width, h: b.height };
             });
+          // Mirror selection.ts distanceToGeometry (segment distance for lines,
+          // flattened) — a flat proxy lets near-miss centerlines steal the tap.
+          const pointToSegment = (p: { x: number; y: number }, a: [number, number], b: [number, number]) => {
+            const pa = m.project(a);
+            const pb = m.project(b);
+            const dx = pb.x - pa.x;
+            const dy = pb.y - pa.y;
+            const len = dx * dx + dy * dy;
+            const t = len ? Math.max(0, Math.min(1, ((p.x - pa.x) * dx + (p.y - pa.y) * dy) / len)) : 0;
+            return Math.hypot(p.x - pa.x - t * dx, p.y - pa.y - t * dy);
+          };
+          const segDist = (p: { x: number; y: number }, lines: Array<Array<[number, number]>>) => {
+            let nearest = Infinity;
+            for (const line of lines) {
+              for (let i = 1; i < line.length; i++) {
+                nearest = Math.min(nearest, pointToSegment(p, line[i - 1], line[i]));
+              }
+            }
+            return nearest;
+          };
+          const distance = (p: { x: number; y: number }, f: { layer: { id: string }; geometry: { type: string; coordinates?: unknown } }) => {
+            const g = f.geometry;
+            if (g.type === 'Polygon' || g.type === 'MultiPolygon') return f.layer.id === 'rivers-water-hit' ? 6 : 9;
+            if (g.type === 'Point' || g.type === 'MultiPoint') {
+              const pr = m.project((g.type === 'Point' ? g.coordinates : (g.coordinates as Array<[number, number]>)[0]) as [number, number]);
+              return Math.hypot(p.x - pr.x, p.y - pr.y);
+            }
+            return segDist(
+              p,
+              g.type === 'LineString'
+                ? [g.coordinates as Array<[number, number]>]
+                : (g.coordinates as Array<Array<[number, number]>>),
+            );
+          };
           for (let lon = -87.1; lon <= -86.5; lon += 0.008) {
             for (let lat = 36.24; lat <= 36.66; lat += 0.008) {
               const p = m.project([lon, lat]);
@@ -744,7 +820,7 @@ test.describe('touch polygon selection', () => {
               let bestId: string | null = null;
               let bestD = Infinity;
               for (const f of feats) {
-                const d = f.geometry.type === 'Polygon' ? (f.layer.id === 'rivers-water-hit' ? 6 : 9) : 5.5;
+                const d = distance(p, f);
                 if (d < bestD) {
                   bestD = d;
                   bestId = String(f.properties.id);

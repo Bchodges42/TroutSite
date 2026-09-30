@@ -1,0 +1,87 @@
+{
+  "streamId": "calderwood-lake",
+  "fetchedAt": "2026-09-30T05:02:09Z",
+  "bySpecies": {
+    "largemouth-bass": {
+      "comfort": {
+        "species": "largemouth-bass",
+        "value": 40,
+        "reasons": [
+          "Water temperature 25°C is below largemouth bass's comfort range (26.7–30°C) — fish are sluggish and feeding is limited."
+        ],
+        "assessed": true,
+        "freshness": {
+          "observedAt": "2026-09-30T04:27:09Z",
+          "ageMinutes": 67
+        }
+      },
+      "activity": {
+        "total": 0,
+        "components": []
+      }
+    },
+    "smallmouth-bass": {
+      "comfort": {
+        "species": "smallmouth-bass",
+        "value": 90,
+        "reasons": [
+          "Water temperature 25°C is in the optimal range for smallmouth bass (20–26.7°C)."
+        ],
+        "assessed": true,
+        "freshness": {
+          "observedAt": "2026-09-30T04:27:09Z",
+          "ageMinutes": 67
+        }
+      },
+      "activity": {
+        "total": 0,
+        "components": []
+      }
+    },
+    "crappie": {
+      "comfort": {
+        "species": "crappie",
+        "value": 0,
+        "reasons": [
+          "No cited temperature comfort bands for this species yet — not guessed."
+        ],
+        "assessed": false,
+        "freshness": null
+      },
+      "activity": {
+        "total": 0,
+        "components": []
+      }
+    },
+    "bluegill": {
+      "comfort": {
+        "species": "bluegill",
+        "value": 0,
+        "reasons": [
+          "No cited temperature comfort bands for this species yet — not guessed."
+        ],
+        "assessed": false,
+        "freshness": null
+      },
+      "activity": {
+        "total": 0,
+        "components": []
+      }
+    },
+    "channel-catfish": {
+      "comfort": {
+        "species": "channel-catfish",
+        "value": 0,
+        "reasons": [
+          "No cited temperature comfort bands for this species yet — not guessed."
+        ],
+        "assessed": false,
+        "freshness": null
+      },
+      "activity": {
+        "total": 0,
+        "components": []
+      }
+    }
+  }
+}

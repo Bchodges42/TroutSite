@@ -1,0 +1,194 @@
+{
+  "streamId": "tellico-lake",
+  "fetchedAt": "2026-09-30T05:02:09Z",
+  "bySpecies": {
+    "largemouth-bass": {
+      "comfort": {
+        "species": "largemouth-bass",
+        "value": 40,
+        "reasons": [
+          "Water temperature 16°C is below largemouth bass's comfort range (26.7–30°C) — fish are sluggish and feeding is limited."
+        ],
+        "assessed": true,
+        "freshness": {
+          "observedAt": "2026-09-30T04:49:09Z",
+          "ageMinutes": 45
+        }
+      },
+      "activity": {
+        "total": 43,
+        "components": [
+          {
+            "factor": "water-temperature",
+            "value": 40,
+            "contribution": -7,
+            "weight": 0.7,
+            "evidenceUrl": "https://www.tva.com/environment/lake-levels",
+            "confidence": "measured",
+            "label": "Water temperature"
+          },
+          {
+            "factor": "spawn-state",
+            "value": 50,
+            "contribution": 0,
+            "weight": 0.3,
+            "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/watts-bar-reservoir.html",
+            "confidence": "heuristic",
+            "label": "On beds — handle and release quickly (heuristic estimate)"
+          }
+        ],
+        "spawnState": "SPAWNING",
+        "flowTrend": {
+          "direction": "rising",
+          "magnitude": 1,
+          "confidence": "derived",
+          "evidenceUrl": "https://www.tva.com/environment/lake-levels",
+          "observedAt": "2026-09-30T04:49:09Z",
+          "label": "Flow trend: rising (1 cfs change; context only)"
+        }
+      }
+    },
+    "smallmouth-bass": {
+      "comfort": {
+        "species": "smallmouth-bass",
+        "value": 40,
+        "reasons": [
+          "Water temperature 16°C is below smallmouth bass's comfort range (20–26.7°C) — fish are sluggish and feeding is limited."
+        ],
+        "assessed": true,
+        "freshness": {
+          "observedAt": "2026-09-30T04:49:09Z",
+          "ageMinutes": 45
+        }
+      },
+      "activity": {
+        "total": 43,
+        "components": [
+          {
+            "factor": "water-temperature",
+            "value": 40,
+            "contribution": -7,
+            "weight": 0.7,
+            "evidenceUrl": "https://www.tva.com/environment/lake-levels",
+            "confidence": "measured",
+            "label": "Water temperature"
+          },
+          {
+            "factor": "spawn-state",
+            "value": 50,
+            "contribution": 0,
+            "weight": 0.3,
+            "evidenceUrl": "https://mdc.mo.gov/discover-nature/field-guide/smallmouth-bass",
+            "confidence": "heuristic",
+            "label": "On beds — handle and release quickly (heuristic estimate)"
+          }
+        ],
+        "spawnState": "SPAWNING",
+        "flowTrend": {
+          "direction": "rising",
+          "magnitude": 1,
+          "confidence": "derived",
+          "evidenceUrl": "https://www.tva.com/environment/lake-levels",
+          "observedAt": "2026-09-30T04:49:09Z",
+          "label": "Flow trend: rising (1 cfs change; context only)"
+        }
+      }
+    },
+    "spotted-bass": {
+      "comfort": {
+        "species": "spotted-bass",
+        "value": 0,
+        "reasons": [
+          "No cited temperature comfort bands for this species yet — not guessed."
+        ],
+        "assessed": false,
+        "freshness": null
+      },
+      "activity": {
+        "total": 0,
+        "components": []
+      }
+    },
+    "crappie": {
+      "comfort": {
+        "species": "crappie",
+        "value": 0,
+        "reasons": [
+          "No cited temperature comfort bands for this species yet — not guessed."
+        ],
+        "assessed": false,
+        "freshness": null
+      },
+      "activity": {
+        "total": 0,
+        "components": []
+      }
+    },
+    "bluegill": {
+      "comfort": {
+        "species": "bluegill",
+        "value": 0,
+        "reasons": [
+          "No cited temperature comfort bands for this species yet — not guessed."
+        ],
+        "assessed": false,
+        "freshness": null
+      },
+      "activity": {
+        "total": 0,
+        "components": []
+      }
+    },
+    "channel-catfish": {
+      "comfort": {
+        "species": "channel-catfish",
+        "value": 0,
+        "reasons": [
+          "No cited temperature comfort bands for this species yet — not guessed."
+        ],
+        "assessed": false,
+        "freshness": null
+      },
+      "activity": {
+        "total": 0,
+        "components": []
+      }
+    },
+    "striped-bass": {
+      "comfort": {
+        "species": "striped-bass",
+        "value": 90,
+        "reasons": [
+          "Water temperature 16°C is in the optimal range for striped bass (14.6–22°C)."
+        ],
+        "assessed": true,
+        "freshness": {
+          "observedAt": "2026-09-30T04:49:09Z",
+          "ageMinutes": 45
+        }
+      },
+      "activity": {
+        "total": 90,
+        "components": [
+          {
+            "factor": "water-temperature",
+            "value": 90,
+            "contribution": 40,
+            "weight": 1,
+            "evidenceUrl": "https://www.tva.com/environment/lake-levels",
+            "confidence": "measured",
+            "label": "Water temperature"
+          }
+        ],
+        "flowTrend": {
+          "direction": "rising",
+          "magnitude": 1,
+          "confidence": "derived",
+          "evidenceUrl": "https://www.tva.com/environment/lake-levels",
+          "observedAt": "2026-09-30T04:49:09Z",
+          "label": "Flow trend: rising (1 cfs change; context only)"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,143 @@
+{
+  "streamId": "watauga-lake",
+  "fetchedAt": "2026-09-30T05:02:09Z",
+  "bySpecies": {
+    "largemouth-bass": {
+      "comfort": {
+        "species": "largemouth-bass",
+        "value": 40,
+        "reasons": [
+          "Water temperature 14°C is below largemouth bass's comfort range (26.7–30°C) — fish are sluggish and feeding is limited."
+        ],
+        "assessed": true,
+        "freshness": {
+          "observedAt": "2026-09-30T04:39:09Z",
+          "ageMinutes": 55
+        }
+      },
+      "activity": {
+        "total": 52,
+        "components": [
+          {
+            "factor": "water-temperature",
+            "value": 40,
+            "contribution": -7,
+            "weight": 0.7,
+            "evidenceUrl": "https://www.tva.com/environment/lake-levels",
+            "confidence": "measured",
+            "label": "Water temperature"
+          },
+          {
+            "factor": "spawn-state",
+            "value": 80,
+            "contribution": 9,
+            "weight": 0.3,
+            "evidenceUrl": "https://www.tn.gov/twra/fishing/where-to-fish/cumberland-plateau-r3/watts-bar-reservoir.html",
+            "confidence": "heuristic",
+            "label": "Spawn state: pre-spawn — largemouth bass are staging and feeding hard (heuristic estimate)"
+          }
+        ],
+        "spawnState": "PRE_SPAWN",
+        "flowTrend": {
+          "direction": "falling",
+          "magnitude": 8,
+          "confidence": "derived",
+          "evidenceUrl": "https://www.tva.com/environment/lake-levels",
+          "observedAt": "2026-09-30T04:39:09Z",
+          "label": "Flow trend: falling (8 cfs change; context only)"
+        }
+      }
+    },
+    "smallmouth-bass": {
+      "comfort": {
+        "species": "smallmouth-bass",
+        "value": 40,
+        "reasons": [
+          "Water temperature 14°C is below smallmouth bass's comfort range (20–26.7°C) — fish are sluggish and feeding is limited."
+        ],
+        "assessed": true,
+        "freshness": {
+          "observedAt": "2026-09-30T04:39:09Z",
+          "ageMinutes": 55
+        }
+      },
+      "activity": {
+        "total": 52,
+        "components": [
+          {
+            "factor": "water-temperature",
+            "value": 40,
+            "contribution": -7,
+            "weight": 0.7,
+            "evidenceUrl": "https://www.tva.com/environment/lake-levels",
+            "confidence": "measured",
+            "label": "Water temperature"
+          },
+          {
+            "factor": "spawn-state",
+            "value": 80,
+            "contribution": 9,
+            "weight": 0.3,
+            "evidenceUrl": "https://mdc.mo.gov/discover-nature/field-guide/smallmouth-bass",
+            "confidence": "heuristic",
+            "label": "Spawn state: pre-spawn — smallmouth bass are staging and feeding hard (heuristic estimate)"
+          }
+        ],
+        "spawnState": "PRE_SPAWN",
+        "flowTrend": {
+          "direction": "falling",
+          "magnitude": 8,
+          "confidence": "derived",
+          "evidenceUrl": "https://www.tva.com/environment/lake-levels",
+          "observedAt": "2026-09-30T04:39:09Z",
+          "label": "Flow trend: falling (8 cfs change; context only)"
+        }
+      }
+    },
+    "spotted-bass": {
+      "comfort": {
+        "species": "spotted-bass",
+        "value": 0,
+        "reasons": [
+          "No cited temperature comfort bands for this species yet — not guessed."
+        ],
+        "assessed": false,
+        "freshness": null
+      },
+      "activity": {
+        "total": 0,
+        "components": []
+      }
+    },
+    "crappie": {
+      "comfort": {
+        "species": "crappie",
+        "value": 0,
+        "reasons": [
+          "No cited temperature comfort bands for this species yet — not guessed."
+        ],
+        "assessed": false,
+        "freshness": null
+      },
+      "activity": {
+        "total": 0,
+        "components": []
+      }
+    },
+    "bluegill": {
+      "comfort": {
+        "species": "bluegill",
+        "value": 0,
+        "reasons": [
+          "No cited temperature comfort bands for this species yet — not guessed."
+        ],
+        "assessed": false,
+        "freshness": null
+      },
+      "activity": {
+        "total": 0,
+        "components": []
+      }
+    }
+  }
+}

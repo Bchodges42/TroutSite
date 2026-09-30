@@ -1,0 +1,111 @@
+{
+  "streamId": "tims-ford-lake",
+  "fetchedAt": "2026-09-30T05:02:09Z",
+  "bySpecies": {
+    "largemouth-bass": {
+      "comfort": {
+        "species": "largemouth-bass",
+        "value": 0,
+        "reasons": [
+          "No water-temperature reading is available for this water."
+        ],
+        "assessed": false,
+        "freshness": null
+      },
+      "activity": {
+        "total": 0,
+        "components": []
+      }
+    },
+    "smallmouth-bass": {
+      "comfort": {
+        "species": "smallmouth-bass",
+        "value": 0,
+        "reasons": [
+          "No water-temperature reading is available for this water."
+        ],
+        "assessed": false,
+        "freshness": null
+      },
+      "activity": {
+        "total": 0,
+        "components": []
+      }
+    },
+    "spotted-bass": {
+      "comfort": {
+        "species": "spotted-bass",
+        "value": 0,
+        "reasons": [
+          "No cited temperature comfort bands for this species yet — not guessed."
+        ],
+        "assessed": false,
+        "freshness": null
+      },
+      "activity": {
+        "total": 0,
+        "components": []
+      }
+    },
+    "crappie": {
+      "comfort": {
+        "species": "crappie",
+        "value": 0,
+        "reasons": [
+          "No cited temperature comfort bands for this species yet — not guessed."
+        ],
+        "assessed": false,
+        "freshness": null
+      },
+      "activity": {
+        "total": 0,
+        "components": []
+      }
+    },
+    "bluegill": {
+      "comfort": {
+        "species": "bluegill",
+        "value": 0,
+        "reasons": [
+          "No cited temperature comfort bands for this species yet — not guessed."
+        ],
+        "assessed": false,
+        "freshness": null
+      },
+      "activity": {
+        "total": 0,
+        "components": []
+      }
+    },
+    "channel-catfish": {
+      "comfort": {
+        "species": "channel-catfish",
+        "value": 0,
+        "reasons": [
+          "No cited temperature comfort bands for this species yet — not guessed."
+        ],
+        "assessed": false,
+        "freshness": null
+      },
+      "activity": {
+        "total": 0,
+        "components": []
+      }
+    },
+    "striped-bass": {
+      "comfort": {
+        "species": "striped-bass",
+        "value": 0,
+        "reasons": [
+          "No water-temperature reading is available for this water."
+        ],
+        "assessed": false,
+        "freshness": null
+      },
+      "activity": {
+        "total": 0,
+        "components": []
+      }
+    }
+  }
+}

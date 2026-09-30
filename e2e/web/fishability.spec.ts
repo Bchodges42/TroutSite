@@ -8,10 +8,10 @@ import { fileURLToPath } from 'node:url';
  * snapshots (dist/v1/fishability/<id>.json). These specs pin the species-mode
  * setting, the focus picker, and the comfort-only presentation end-to-end.
  *
- * The catalog is served via page.route from the fixture file: the static
- * server resolves '/v1/streams' to the generated public/v1/streams.json
- * (gitignored, regenerated from the real content pack — no targetSpecies
- * until Session B's F3 lands), which would starve the fishability UI.
+ * The catalog is served via page.route from the fixture file: identical to
+ * what the fixture build serves at /v1/streams (the generated tree copied into
+ * dist), pinned here so the fishability semantics under test cannot drift with
+ * the served build.
  */
 const fixtureCatalog = fileURLToPath(new URL('../../apps/web/fixtures/data/v1/streams', import.meta.url));
 
@@ -31,13 +31,16 @@ test('all-fish mode + focus: map rows wear the species fishability', async ({ pa
   const row = page.locator('.water-row', { hasText: 'Harpeth River' }).first();
   // Harpeth's typed species is smallmouth bass (species-evidence pass); its
   // fishability is computed deterministically from the fixture conditions
-  // readings (demo plan → warm demo temp → outside-optimal comfort = 40).
+  // readings (curated warm plan → outside-optimal comfort = 40).
   // The index fetch (per-water files) lands after first paint under the SW
-  // precache, hence the generous timeout.
-  await expect(row.locator('.status-text')).toHaveText('Fair', { timeout: 15_000 });
+  // precache, hence the generous timeout. The status line wears the water's
+  // adjudicated opportunity headline (mixed winter-trout stocking + warmwater
+  // — ADR 0010); the fishability metric itself is the row's number.
+  await expect(row.locator('.status-text')).toHaveText('Mixed fishery', { timeout: 15_000 });
   await expect(row.locator('.water-row-meta small')).toHaveText('40 / 100');
   // A trout water with no focus-species entry keeps its OWN trout-condition
-  // metric (fixture: Doe River scores Poor) — no fishability borrow.
+  // metric (fixture: Doe River scores Poor; its year-round regulatory status
+  // keeps the metric visible in September) — no fishability borrow.
   const doe = page.locator('.water-row', { hasText: 'Doe River' }).first();
   await expect(doe.locator('.status-text')).toHaveText('Poor');
 });
@@ -95,20 +98,25 @@ test.describe('focus wiring hotfix', () => {
     const allFish = page.getByRole('button', { name: 'All fish' }).first();
     await allFish.click();
     await expect(allFish).toHaveAttribute('aria-pressed', 'true');
-    await page.waitForTimeout(300); // let the Dexie write land
+    await page.waitForTimeout(300); // let the Dexie write land before navigating
     await page.goto('/conditions/harpeth-river');
-    // Default focus = the first species the snapshot carries (largemouth bass).
+    // Default focus = the first species the snapshot carries. The reviewed
+    // pack types Harpeth for smallmouth bass only — the card renders what the
+    // water actually has.
     await expect(page.locator('.fishability-card')).toBeVisible();
     await expect(
-      page.locator('.fishability-card').getByRole('heading', { name: 'Largemouth bass' }),
+      page.locator('.fishability-card').getByRole('heading', { name: 'Smallmouth bass' }),
     ).toBeVisible();
   });
 
   test('the card picker swaps the species shown and persists the choice', async ({ page }) => {
+    // The picker only mounts on waters carrying MORE THAN ONE species; the
+    // reviewed pack types Harpeth for smallmouth alone. Center Hill Lake
+    // carries six (largemouth/smallmouth/spotted/crappie/bluegill/catfish).
     await page.goto('/settings');
     await page.getByRole('button', { name: 'All fish' }).first().click();
     await page.waitForTimeout(300);
-    await page.goto('/conditions/harpeth-river');
+    await page.goto('/conditions/center-hill-lake');
     const picker = page.getByTestId('fishability-species-picker');
     await expect(picker).toBeVisible();
     await picker.selectOption('bluegill');
