@@ -6,10 +6,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc --noEmit -p tsconfig.json && node scripts/copy-pack-fallback.mjs && vite build && node scripts/size-budget.mjs",
+    "build": "tsc --noEmit -p tsconfig.json && node scripts/copy-pack-fallback.mjs && vite build && node scripts/size-budget.mjs && node scripts/bundle-split-check.mjs",
     "prerender": "node scripts/prerender.mjs",
     "build:seo": "pnpm run build && pnpm run prerender",
-    "build:fixtures": "tsc --noEmit -p tsconfig.json && vite build --config vite.fixtures.config.ts && node scripts/size-budget.mjs",
+    "build:fixtures": "tsc --noEmit -p tsconfig.json && vite build --config vite.fixtures.config.ts && node scripts/size-budget.mjs && node scripts/bundle-split-check.mjs",
     "preview": "vite preview",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit -p tsconfig.json",
