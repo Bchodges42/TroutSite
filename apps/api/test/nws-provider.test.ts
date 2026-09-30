@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { rmSync } from 'node:fs';
+import { join } from 'node:path';
 import {
   NWS_PRESSURE_STATIONS,
   PRESSURE_STALE_MINUTES,
@@ -11,7 +12,8 @@ import {
   runPressureJob,
   type NwsPressurePoint,
 } from '../src/evidence/nws-provider.js';
-import { makeEnv, readFixture, type TestEnv } from './helpers.js';
+import { runJob, type PipelineConfig } from '../src/pipeline.js';
+import { fixturesDir, makeEnv, readFixture, type TestEnv } from './helpers.js';
 
 const NOW = new Date('2026-09-12T17:05:00Z');
 const NOW_MS = NOW.getTime();
@@ -251,6 +253,76 @@ describe('runPressureJob', () => {
 
   it('builds the documented observations URL', () => {
     expect(nwsObservationsUrl('KTYS', 12)).toBe('https://api.weather.gov/stations/KTYS/observations?limit=12');
+  });
+
+  // F05: the pressure job is reachable through the pipeline dispatcher — the
+  // same runJob the dev pm2 cron and the Windows refresh (`ingest
+  // --job=pressure`) use — instead of living only in this file's direct calls.
+  describe('runJob dispatch: pressure (F05)', () => {
+    let env: TestEnv;
+
+    beforeEach(() => {
+      env = makeEnv();
+    });
+
+    afterEach(() => {
+      env.db.close();
+      rmSync(env.dir, { recursive: true, force: true });
+    });
+
+    function cfg(): PipelineConfig {
+      return {
+        snapshotsDir: env.snapshotsDir,
+        contentPackDir: join(fixturesDir(), 'content-pack-does-not-exist'),
+        rawDir: env.rawDir,
+        userAgent: 'trout-test/1.0 (test@example.com)',
+        usgsProvider: 'waterdata',
+        fixturesDir: fixturesDir(),
+      };
+    }
+
+    function servingAll(body: string, status = 200): { fetchImpl: typeof fetch } {
+      const fetchImpl = (async (input: Parameters<typeof fetch>[0]): Promise<Response> => {
+        const url = typeof input === 'string' ? input : input.toString();
+        const station = /stations\/([^/]+)\//.exec(url)?.[1] ?? '';
+        if (!station) return new Response('unexpected', { status: 404 });
+        return new Response(body, { status });
+      }) as typeof fetch;
+      return { fetchImpl };
+    }
+
+    it('dispatches the pressure job, stores region rows, logs ok, and rebuilds snapshots', async () => {
+      const outcome = await runJob(env.db, cfg(), 'pressure', {
+        now: NOW,
+        fetchImpl: servingAll(readFixture('NWS/observations-kbna.json')).fetchImpl,
+      });
+      expect(outcome.job).toBe('pressure');
+      expect(outcome.ok).toBe(true);
+      expect(outcome.detail.errors).toBe(0);
+      expect(outcome.detail.stored).toBe(Object.keys(NWS_PRESSURE_STATIONS).length);
+      expect(outcome.detail.rainStored).toBe(Object.keys(NWS_PRESSURE_STATIONS).length);
+      expect(outcome.detail.snapshots as number).toBeGreaterThan(0);
+
+      const row = env.db.prepare('SELECT pressure_hpa, station FROM region_pressure WHERE region_id = ?').get(
+        'tn-middle-nashville',
+      ) as { pressure_hpa: number; station: string };
+      expect(row.pressure_hpa).toBe(1015);
+      expect(row.station).toBe('KBNA');
+      const jobRow = env.db.prepare("SELECT status FROM jobs_log WHERE job = 'pressure' ORDER BY id DESC LIMIT 1").get() as {
+        status: string;
+      };
+      expect(jobRow.status).toBe('ok');
+    });
+
+    it('reports a failed dispatch when every station errors and nothing is stored', async () => {
+      const outcome = await runJob(env.db, cfg(), 'pressure', {
+        now: NOW,
+        fetchImpl: servingAll('gone', 503).fetchImpl,
+      });
+      expect(outcome.ok).toBe(false);
+      expect(outcome.detail.errors).toBeGreaterThan(0);
+      expect(outcome.detail.stored).toBe(0);
+    });
   });
 
   it('maps every region to an officially verified station (F38, no out-of-state or swapped stations)', () => {
