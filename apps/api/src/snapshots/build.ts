@@ -308,7 +308,9 @@ function buildGeneration(opts: BuildOptions, outDir: string): SnapshotResult {
 
   // ── v1/streams.json (GET /v1/streams → Stream[]) ───────────────────────────
   // The ?state= query is answered live by the API route, which filters this file.
-  const streamRows = db.prepare('SELECT * FROM streams ORDER BY name').all() as StreamRow[];
+  // archived_at IS NULL = the F22 removal policy: seed-archived waters keep
+  // their report history in the DB but leave the published catalog here.
+  const streamRows = db.prepare('SELECT * FROM streams WHERE archived_at IS NULL ORDER BY name').all() as StreamRow[];
   const streams = rowsToStreams(streamRows);
   const streamsPath = join(v1Dir, 'streams.json');
   writeJsonAtomic(streamsPath, streams);
@@ -405,7 +407,8 @@ function buildGeneration(opts: BuildOptions, outDir: string): SnapshotResult {
 
   // ── v1/shops/{state}.json (Shop[]) ─────────────────────────────────────────
   const shopsByState: Record<string, number> = {};
-  const shopRows = db.prepare('SELECT * FROM shops ORDER BY state_id, name').all() as ShopRow[];
+  // F22: archived shops keep report history but leave the published catalog.
+  const shopRows = db.prepare('SELECT * FROM shops WHERE archived_at IS NULL ORDER BY state_id, name').all() as ShopRow[];
   const shopsByStateMap = new Map<string, Shop[]>();
   for (const shop of rowsToShops(shopRows)) {
     const list = shopsByStateMap.get(shop.stateId) ?? [];
