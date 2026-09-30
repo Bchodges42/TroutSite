@@ -53,6 +53,54 @@ export function mapStyleKey(
   return themeId + ':' + String(basemap) + ':' + String(hasRoads) + ':' + JSON.stringify(map);
 }
 
+/**
+ * One overlay-first tap routine for BOTH mouse clicks and touch taps (F45):
+ * a gauge/stocking/attractor dot on a river dispatches the overlay popup and
+ * never selects the water beneath it; without an overlay hit the tap selects
+ * the river. Returns what dispatched, so the caller can suppress the
+ * synthetic duplicate click only AFTER the intended action ran — the old
+ * touch path selected the river first and set the suppression timer, so an
+ * overlapping gauge never opened on touchscreens.
+ */
+export type MapTapKind = 'gauge' | 'stocking' | 'attractor' | 'river' | null;
+export interface MapTapSurface {
+  /** Overlay-dot hit test (enabled overlays only). */
+  overlayAt(point: { x: number; y: number }): { kind: 'gauge' | 'stocking' | 'attractor' } | null;
+  /** The overlay feature to popup at this point (a tighter query than the hit test). */
+  overlayFeatureAt(
+    kind: 'gauge' | 'stocking' | 'attractor',
+    point: { x: number; y: number },
+  ): unknown | undefined;
+  /** The visible river (or still water) to select at this point, if any. */
+  riverAt(point: { x: number; y: number }): string | null;
+  openOverlay(
+    kind: 'gauge' | 'stocking' | 'attractor',
+    feature: unknown,
+    lngLat: { lng: number; lat: number },
+  ): void;
+  selectRiver(id: string): void;
+}
+export function dispatchMapTap(
+  surface: MapTapSurface,
+  point: { x: number; y: number },
+  lngLat: { lng: number; lat: number },
+): MapTapKind {
+  const overlay = surface.overlayAt(point);
+  if (overlay) {
+    const feature = surface.overlayFeatureAt(overlay.kind, point);
+    if (feature !== undefined) {
+      surface.openOverlay(overlay.kind, feature, lngLat);
+      return overlay.kind;
+    }
+  }
+  const id = surface.riverAt(point);
+  if (id) {
+    surface.selectRiver(id);
+    return 'river';
+  }
+  return null;
+}
+
 function projectGeometry(
   map: maplibregl.Map,
   geometry: maplibregl.MapGeoJSONFeature['geometry'],
@@ -746,45 +794,52 @@ export function TennesseeMap(props: Props) {
     map.on('touchstart', (e) => {
       touchStart = e.originalEvent.touches.length === 1 ? e.point : null;
     });
+    // F45: the tap surface — ONE overlay-first dispatch routine shared by the
+    // touch and click handlers below. Priority: gauges, stocking, attractors.
+    const tapSurface: MapTapSurface = {
+      overlayAt: (point) => overlayAt(point),
+      overlayFeatureAt: (kind, point) => {
+        const group = OVERLAY_GROUPS.find((g) => g.kind === kind)!;
+        try {
+          return map.queryRenderedFeatures(
+            [
+              [point.x - 8, point.y - 8],
+              [point.x + 8, point.y + 8],
+            ],
+            { layers: [group.layer] },
+          )[0];
+        } catch {
+          return undefined; // layer mid-style-swap; fall through to the river
+        }
+      },
+      riverAt: (point) => hit(point),
+      openOverlay: (kind, feature, lngLat) => {
+        if (kind === 'gauge') openGaugePopup(feature as maplibregl.MapGeoJSONFeature, lngLat);
+        else if (kind === 'stocking') openStockingPopup(feature as maplibregl.MapGeoJSONFeature, lngLat);
+        else openAttractorPopup(feature as maplibregl.MapGeoJSONFeature, lngLat);
+      },
+      selectRiver: (id) => latest.current.onSelect(id),
+    };
     map.on('touchend', (e) => {
       const start = touchStart;
       touchStart = null;
       if (!start || Math.hypot(e.point.x - start.x, e.point.y - start.y) > 10) return;
-      const id = hit(e.point);
-      if (id) {
-        lastTouchSelection = Date.now();
-        latest.current.onSelect(id);
-      }
+      // F45: overlay-first dispatch for touch too — the old touch path
+      // selected the river straight from the hit test and armed the
+      // suppression timer, so a gauge/stocking/attractor dot on a river could
+      // never open its popup on a touchscreen. The synthetic click that
+      // follows is suppressed only AFTER the intended action dispatched.
+      const dispatched = dispatchMapTap(tapSurface, e.point, e.lngLat);
+      if (dispatched) lastTouchSelection = Date.now();
     });
     map.on('touchcancel', () => {
       touchStart = null;
     });
     map.on('click', (e) => {
+      // A touch tap already dispatched through the SAME routine above; this
+      // synthetic duplicate is suppressed, never re-dispatched.
       if (Date.now() - lastTouchSelection < 500) return;
-      const overlay = overlayAt(e.point);
-      if (overlay) {
-        let feature: maplibregl.MapGeoJSONFeature | undefined;
-        try {
-          const group = OVERLAY_GROUPS.find((g) => g.kind === overlay.kind)!;
-          feature = map.queryRenderedFeatures(
-            [
-              [e.point.x - 8, e.point.y - 8],
-              [e.point.x + 8, e.point.y + 8],
-            ],
-            { layers: [group.layer] },
-          )[0];
-        } catch {
-          feature = undefined;
-        }
-        if (feature) {
-          if (overlay.kind === 'gauge') openGaugePopup(feature, e.lngLat);
-          else if (overlay.kind === 'stocking') openStockingPopup(feature, e.lngLat);
-          else openAttractorPopup(feature, e.lngLat);
-          return; // an overlay tap is not a water selection
-        }
-      }
-      const id = hit(e.point);
-      if (id) latest.current.onSelect(id);
+      dispatchMapTap(tapSurface, e.point, e.lngLat);
     });
     map.on('mouseout', () => {
       if (hovered) map.setFeatureState({ source: 'rivers', id: hovered }, { hover: false });
