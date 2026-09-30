@@ -187,6 +187,29 @@ export interface SnapshotResult {
   warnings: string[];
 }
 
+export interface ReportFeedResult {
+  /** Absolute path of the feed file (v1/reports/recent.json under snapshotsDir). */
+  path: string;
+  reports: number;
+}
+
+/**
+ * Regenerate ONLY the report feed (v1/reports/recent.json) from the accepted
+ * shop_reports rows. This is the publication entry point for the portal's
+ * POST /v1/portal/reports route (F02, 2026-09-29 audit): the route must never
+ * run the whole builder — it has no content pack, so a full rebuild would
+ * rewrite every species assessment as an honest-but-degraded cannot-assess row.
+ * The feed itself needs only the database (last 30 days, newest first), so no
+ * reference pack is involved. buildSnapshots reuses this exact function during
+ * scheduled runs, so both paths write identical bytes at the same URL.
+ */
+export function publishReportFeed(opts: { db: Db; snapshotsDir: string; now: Date }): ReportFeedResult {
+  const reports = recentReports(opts.db, opts.now);
+  const path = join(opts.snapshotsDir, 'v1', 'reports', 'recent.json');
+  writeJsonAtomic(path, reports);
+  return { path, reports: reports.length };
+}
+
 /**
  * Regenerate every snapshot file into apps/web/public AT the URLs the frozen
  * ENDPOINTS map serves (GET /v1/* → static JSON) plus the bundled content pack
@@ -320,10 +343,10 @@ export function buildSnapshots(opts: BuildOptions): SnapshotResult {
   pruneStateFiles(shopsDir, [...shopsByStateMap.keys()], files);
 
   // ── v1/reports/recent.json (ShopReport[], last 30 days) ────────────────────
-  const reports = recentReports(db, now);
-  const reportsPath = join(v1Dir, 'reports', 'recent.json');
-  writeJsonAtomic(reportsPath, reports);
-  files.push(reportsPath);
+  // F02: the same feed-scoped publication the portal report route uses, so the
+  // scheduled build and the live route write identical bytes at the same URL.
+  const reportFeed = publishReportFeed({ db, snapshotsDir, now });
+  files.push(reportFeed.path);
 
   // ── v1/evidence/waters.json (WaterEvidence[], data-sources lane) ───────────
   // Re-emits the newest evidence_runs payload (written by the evidence job). No
@@ -425,7 +448,7 @@ export function buildSnapshots(opts: BuildOptions): SnapshotResult {
     stockingByState,
     stockingRecentByState,
     shopsByState,
-    reports: reports.length,
+    reports: reportFeed.reports,
     hatchCharts,
     contentPack,
     evidenceWaters,
