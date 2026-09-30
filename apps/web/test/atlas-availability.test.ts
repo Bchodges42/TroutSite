@@ -165,7 +165,7 @@ describe('invalidateStaleTopoCache', () => {
     let deleteCalls = 0;
     let failDelete = true;
     vi.stubGlobal('caches', {
-      delete: async (name: string) => {
+      delete: async (_name: string) => {
         deleteCalls += 1;
         if (failDelete) throw new Error('transient deletion failure');
         return true;
