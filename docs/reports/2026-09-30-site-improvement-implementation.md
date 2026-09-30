@@ -5,61 +5,47 @@ fleet on a fresh clone at canon `origin/main @ 14a92bc`. **Not merged to main,
 not deployed** — per AGENTS.md, main moves only by the owner. Pushed to GitHub
 for review/finish-off.
 
-## Shipped (9 commits, all gates green)
+## FINAL STATE (tip `d8c393b`)
+
+After the first push (`36aaef2`), the audit-remediation branch
+`codex/audit-remediation-20260929` (F01–F48) was **merged into this line**
+(`de6c5b3`; one conflict — App.tsx, resolved to the remediation's lazy-route
+structure with the new routes re-added), and the three remaining handoff items
+were implemented by a second fleet:
 
 | Commit | Scope |
 |---|---|
-| `c027602` | Foundation: Dexie v2 additive stores (savedWaters, waterGroups, trips, downloadManifests, photos; logbook v2 optional fields) + `lib/waterOverview.ts` presentation model + ADR 0012/0013 |
-| `978883a` | Richer private logbook: editing, photos (compressed, EXIF-stripped), filters/search, honest summaries (blank trips ≠ zero catch), export v2 + v1/v2 import, full backup |
-| `4e91ea8` | Forgiving search: reviewed abbreviation map, tiered ranking, restrained typo matching (first-letter anchored), county/type disambiguation, explicit scope widening, never silently selects |
-| `0506435` | My Waters: saves + private groups, shared-feed condition cards, retired-id history, offline-first |
-| `454f633` | Compare waters: ≤3 waters, URL-shareable, desktop columns / mobile cards, unassessed stays unassessed, no cross-river ranking |
-| `b01570e` | Water Overview card on inspector + detail (one composed model, per-metric ages), ReleasesPanel (TVA schedules, DST-correct), routes/nav wiring |
-| `a45169e…` (fixup) | Deterministic manifest tie-break |
-| wave-B commits | Trips planner (`/trips`, ?waters= handoff, record→logbook), gauge-history charts (web side, hidden until data exists; ADR 0014 = API handoff), corrections workflow (form + receipt status + ADR 0015 = API handoff), `/trips` + `/corrections` routes, "Prepare trip" + "Suggest a correction" entry points |
+| `b9c55b7` | **Gauge-history API (ADR 0014)** — `/v1/gauge-history/{gaugeId}.json` emitted from `gauge_readings_raw` in `snapshots/build.ts` (dedupe per timestamp, newest `fetched_at` wins per metric, 90-day floor, per-gauge prune); contracts v2.5.0 `GaugeHistorySchema` + `ENDPOINTS.gaugeHistory`; web schema re-pointed — **the charts feature is now live end-to-end** |
+| `6f59cd9` | **Corrections service (ADR 0015)** — `POST /v1/corrections` (strict same-origin, 16 KiB cap, per-IP sliding-window limits 5/h+20/d, honeypot silent-discard, duplicate clustering, email never persisted) + `GET /v1/corrections/status/:code` (hash-only receipts, Crockford `XXXXX-XXXXX-XXXXX`) + moderator review surface (separate `CORRECTIONS_MODERATOR_TOKEN`, fail-closed 503, audit trail) + `/corrections/review` page (token per session, never stored). Both env vars unset ⇒ feature 503s and the web stays honest. **Needs the owner's security review before production** |
+| `245555e` | **Offline pack builder** — `packBuilder.ts` (water/trip pack plans: catalog, conditions, releases-if-tailrace, hatch, geometry, optional terrain) + `packCache.ts` (Cache-Storage `trout-packs-v1` pinning, per-section verified readiness, quota handling, shared-asset-safe removal) + Download/Verify/Remove UI on Trips, My Waters cards, and a Settings "Downloaded packs" section. Personal data proven untouchable by test |
+| `d8c393b` | Integration sweep — remediation-era test-file type repairs (tree is now `tsc --noEmit` clean across contracts/api/web), ComparePage stable memo inputs, bundle-split gate updated for the 5 new routes, lint errors cleared |
 
-Gates at final push: **web 545/545** (+170 new tests), tsc clean, `pnpm -r build`
-green, size-budget OK. Contracts/api/admin/marketing untouched.
+Gates at final push: **contracts 206 (+coverage gate) · api 365 · web 673 ·
+content 19 · marketing 31 · admin 33**, `pnpm -r lint` 0 errors (remaining
+warnings pre-exist on the remediation branch in its own map files),
+`pnpm -r build` green incl. size budget + bundle-split gate. One known
+load-flake: `infra-alert-transitions` times out only under full-suite parallel
+load; 12/12 in isolation (remediation-era behavior, not touched here).
 
-## Deliberate lease discipline (audit-remediation campaign F01–F48)
+## Remaining (honest)
 
-The remediation ledger's file leases were honored except where integration
-required a **minimal additive touch** — flagged here for the remediation
-coordinator's merges:
-
-- `App.tsx` (W3-E): 4 route imports + 4 route lines.
-- `AppShell.tsx` (W3-C): 3 icon imports, 3 moreLinks entries, nothing else.
-- `RiverSearch.tsx` — NOT in the lease table; extended in place (keyboard/ARIA preserved; `fieldwork.test.tsx` untouched, 20/20).
-- `RiverDrawer.tsx` + `StreamDetailPage.tsx` — insert-only edits (VIEWS lane diff: +31/0 and +26/0; later +1 releases section, +1 gauge-history section, +1 corrections link — all additive, no restructuring).
-- `test/mobile-detail.test.tsx` — 2 ambiguous-text waits re-scoped (the overview card legitimately repeats the water name); no assertions weakened.
-- NOT touched: FishabilityCard.tsx, fishability.ts, waterDecision.ts (consumed only), solar.ts, settings.tsx, RiverMapPage.tsx, TennesseeMap.tsx, useRiverMapData.ts, index.css, snapshots.ts, atlasAvailability.ts, contracts/**, apps/api/**, apps/admin/**, apps/marketing/**, infra/**, e2e/**.
-
-## Remaining work (the finish-off list)
-
-1. **Gauge history API** (per ADR 0014): emit `/v1/gauge-history/{gaugeId}.json`
-   from `gauge_readings_raw` in `snapshots/build.ts` (W2-A lease), move
-   `GaugeHistorySchema` into contracts + `ENDPOINTS.gaugeHistory`. The web
-   section self-enables on first 200 — zero further web work.
-2. **Corrections API** (per ADR 0015): `POST /v1/corrections` +
-   `GET /v1/corrections/status/:code`, receipt hash-only storage, moderation
-   queue + review surface, rate limits, retention. Web form/status UI is
-   complete and honest about the not-yet-shipped transport. Needs the
-   security review the owner flagged (this is the un-deferred security wave).
-3. **Offline pack builder**: SW pinning is W1-D lease territory; Dexie
-   manifests + readiness are live. "Download" buttons intentionally absent.
-4. **Watchlist alerts** — not started; plan gates it on a privacy/ops design
-   review (phase 5). Owner dashboard, verified-access records, shop widgets —
-   not started (admin/portal/content leases; access records need field-verified
-   pilot data).
-5. Third Vaul snap point (polish 2) — deliberately not added; plan requires a
-   usability review first, and RiverMapPage.tsx is W3-B-leased.
-6. Product verification: real-Edge journey checks (IAB cannot render the WebGL
-   map) on `?river=`, `/my-waters`, `/compare`, `/trips`, `/corrections`,
-   drawer overview, releases panel on a tailwater; both themes + 390px.
+1. **Corrections security review** (owner) before enabling the env vars in
+   production — ADR 0015 is the review artifact. Durable abuse-ledger table
+   (cross-restart rate-limit metadata) deliberately deferred.
+2. **SW fetch fallback for `trout-packs-v1`** (generateSW → injectManifest
+   swap): today pinned JSON serves offline via `fetchSnapshot`'s cache-recovery
+   tier and terrain via the existing CacheFirst route; the precise
+   implementation note for the SW swap is in the PACKS lane report. Only a
+   real-browser airplane-mode restart test can prove the full loop.
+3. Corrections purge cron hook: `purgeExpiredCorrections(db, now)` exported,
+   not wired into cron (scheduler files are infra ops).
+4. Not started (plan-gated): watchlist alerts (privacy/ops design review),
+   owner dashboard, verified-access records (needs field-verified pilots),
+   shop widgets, third Vaul snap point (usability review).
 
 ## Verification for a reviewer
 
 ```
 git fetch origin feat/site-improvement-20260930
-pnpm install && pnpm -r build && pnpm --filter @trout/web test
+pnpm install && pnpm -r build && pnpm -r test
 ```
