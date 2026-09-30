@@ -32,19 +32,40 @@ export const NWS_OBSERVATIONS_URL = 'https://api.weather.gov/stations';
  * streams YAML regionId values, 2026-09 capture). One station may serve several
  * adjacent regions — pressure varies slowly over tens of km, and honesty about
  * granularity beats false precision.
+ *
+ * PROVENANCE (F38, verified 2026-09-29 against api.weather.gov/stations/{id} —
+ * one read-only GET per station; official name / coordinates / county below):
+ *   KNQA  Millington Municipal Airport           (-89.87028, 35.35667) TNC157
+ *   KBNA  Nashville International Airport         (-86.68917, 36.11889) TNC037
+ *   KSYI  Shelbyville Bomar Field                 (-86.4425,  35.5594)  TNC003
+ *   KMOR  Morristown Moore-Murrell Airport, TN    (-83.3754,  36.1794)  TNC063 (Hamblen Co.)
+ *   KCSV  Crossville Memorial-Whitson Field       (-85.085,   35.95139) TNC035
+ *   KTRI  Tri-City Airport (Bristol/JC/Kingsport) (-82.39889, 36.47972) TNC163
+ *   KTYS  Knoxville McGhee Tyson                  (-83.98583, 35.81806) TNC009
+ *   KGKT  Sevierville Gatlinburg–Pigeon Forge     (-83.53334, 35.85681) TNC155
+ *   KCHA  Chattanooga Lovell Field                (-85.2,     35.03333) TNC065
+ * Corrections the verification forced (the old mapping had swapped these two):
+ *   - KMOR genuinely IS Morristown TN (Hamblen County, between Douglas and
+ *     Cherokee lakes) — it belongs to the Pigeon/French Broad region. The old
+ *     table called it "Tullahoma" on Caney Fork, ~210 km away.
+ *   - KMRN is Morganton-Lenoir, NORTH CAROLINA (-81.60971, 35.81922, NCC023) —
+ *     it was serving this Tennessee region from out of state and is REMOVED.
+ *   - Caney Fork takes KCSV: the Caney Fork rises on the Cumberland Plateau
+ *     near Crossville, so this is the nearest verified station (~50 km) and,
+ *     for sea-level pressure, elevation-independent.
  */
 export const NWS_PRESSURE_STATIONS: Record<string, { station: string; note: string }> = {
   'tn-west': { station: 'KNQA', note: 'Millington (Memphis area) ASOS' },
   'tn-middle-nashville': { station: 'KBNA', note: 'Nashville International ASOS' },
   'tn-middle-duck-elk': { station: 'KSYI', note: 'Shelbyville ASOS (Duck/Elk basin)' },
-  'tn-middle-caney-fork': { station: 'KMOR', note: 'Tullahoma ASOS (Caney Fork headwaters edge)' },
+  'tn-middle-caney-fork': { station: 'KCSV', note: 'Crossville ASOS (Caney Fork headwaters rise near Crossville; F38-verified 2026-09-29)' },
   'tn-upper-cumberland': { station: 'KCSV', note: 'Crossville ASOS (Upper Cumberland)' },
   'tn-cumberland-plateau': { station: 'KCSV', note: 'Crossville ASOS (plateau)' },
   'tn-northeast-watauga': { station: 'KTRI', note: 'Tri-Cities ASOS (Watauga NE)' },
   'tn-east-holston': { station: 'KTRI', note: 'Tri-Cities ASOS (Holston)' },
   'tn-east-clinch': { station: 'KTYS', note: 'Knoxville ASOS (Clinch valley edge)' },
   'tn-east-smokies': { station: 'KGKT', note: 'Gatlinburg–Pigeon Forge ASOS (Smokies)' },
-  'tn-east-pigeon-frenchbroad': { station: 'KMRN', note: 'Morristown ASOS (Pigeon/French Broad)' },
+  'tn-east-pigeon-frenchbroad': { station: 'KMOR', note: 'Morristown Moore-Murrell ASOS (Hamblen Co. TN, Douglas/Cherokee lakes; F38-verified 2026-09-29)' },
   'tn-se-hiwassee': { station: 'KCHA', note: 'Chattanooga ASOS (Hiwassee SE edge)' },
 };
 

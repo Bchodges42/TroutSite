@@ -252,6 +252,23 @@ describe('runPressureJob', () => {
   it('builds the documented observations URL', () => {
     expect(nwsObservationsUrl('KTYS', 12)).toBe('https://api.weather.gov/stations/KTYS/observations?limit=12');
   });
+
+  it('maps every region to an officially verified station (F38, no out-of-state or swapped stations)', () => {
+    // F38: the official metadata probe (2026-09-29) showed KMOR is Morristown
+    // Moore-Murrell TN (-83.3754, 36.1794) — not a "Tullahoma" Caney Fork
+    // station — and KMRN is Morganton-Lenoir, NORTH CAROLINA. The corrected
+    // table must keep them that way.
+    expect(NWS_PRESSURE_STATIONS['tn-east-pigeon-frenchbroad']?.station).toBe('KMOR');
+    expect(NWS_PRESSURE_STATIONS['tn-middle-caney-fork']?.station).toBe('KCSV');
+    // The out-of-state Morganton-Lenoir NC station never serves a TN region.
+    for (const { station } of Object.values(NWS_PRESSURE_STATIONS)) {
+      expect(station).not.toBe('KMRN');
+      expect(station).toMatch(/^K[A-Z]{3}$/);
+    }
+    // 12 regions share 9 distinct verified stations.
+    expect(Object.keys(NWS_PRESSURE_STATIONS).length).toBe(12);
+    expect(new Set(Object.values(NWS_PRESSURE_STATIONS).map((s) => s.station)).size).toBe(9);
+  });
 });
 
 /**
