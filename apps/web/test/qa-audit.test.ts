@@ -160,6 +160,44 @@ describe('qa audit — self-crossings', () => {
     expect(byKind(report, 'self-crossing')).toHaveLength(1);
   });
 
+  // F42 — the reported point must be the real intersection. The old
+  // crossPoint computed the parameter along the SECOND segment (where B
+  // crosses A's support line) and applied it to A's endpoints, so asymmetric
+  // crossings were marked ~300 m off-target on a different reach.
+  it('marks an asymmetric crossing at its true intersection point', () => {
+    // Part A: horizontal stem 1000 m east from (-86, 35.6). Part B descends
+    // through A at 40% along A but 75% along B — deliberately asymmetric, so
+    // the two segments' intersection parameters disagree.
+    const a0: LngLat = [-86, 35.6];
+    const a1: LngLat = [-86 + kmLon(1000), 35.6];
+    const xi = -86 + kmLon(400); // crossing sits 40% along A
+    const b0: LngLat = [xi - kmLon(300), 35.6 + km(600)];
+    const b1: LngLat = [xi + kmLon(100), 35.6 - km(200)];
+    // True intersection: B crosses y = 35.6 at 75% along itself, landing on xi.
+    const expected: LngLat = [xi, 35.6];
+    const bowtie = line('asymmetric-crossing', [[a0, a1], [b0, b1]]);
+    const report = auditRivers({ features: [bowtie] });
+    const crossings = byKind(report, 'self-crossing');
+    expect(crossings).toHaveLength(1);
+    const [gx, gy] = crossings[0]!.point;
+    expect(gx).toBeCloseTo(expected[0], 9);
+    expect(gy).toBeCloseTo(expected[1], 9);
+    // The point sits strictly INSIDE both segments (a wrong-segment parameter
+    // lands elsewhere along the crossed segment).
+    const insideFraction = (p: LngLat, u: LngLat, v: LngLat) => {
+      const t = ((p[0] - u[0]) * (v[0] - u[0]) + (p[1] - u[1]) * (v[1] - u[1])) /
+        ((v[0] - u[0]) ** 2 + (v[1] - u[1]) ** 2);
+      return t;
+    };
+    const p: LngLat = [gx, gy];
+    expect(insideFraction(p, a0, a1)).toBeCloseTo(0.4, 6);
+    expect(insideFraction(p, a0, a1)).toBeGreaterThan(0.05);
+    expect(insideFraction(p, a0, a1)).toBeLessThan(0.95);
+    expect(insideFraction(p, b0, b1)).toBeCloseTo(0.75, 6);
+    expect(insideFraction(p, b0, b1)).toBeGreaterThan(0.05);
+    expect(insideFraction(p, b0, b1)).toBeLessThan(0.95);
+  });
+
   it('does not flag a clean river or legit junctions', () => {
     const clean = line('clean', [
       [
