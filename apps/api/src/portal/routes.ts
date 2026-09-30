@@ -1,12 +1,13 @@
 import { randomUUID } from 'node:crypto';
 import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
 import { ShopReportSchema } from '@trout/contracts';
+import type { ShopReport } from '@trout/contracts';
 import { z } from 'zod';
 import type { Db } from '../db.js';
 import { deterministicId } from '../lib/ids.js';
 import { sanitizePlainText, sanitizeSlug } from '../lib/sanitize.js';
 import { bearerToken, signShopToken, verifyShopToken } from './tokens.js';
-import { buildSnapshots } from '../snapshots/build.js';
+import { publishReportFeed } from '../snapshots/build.js';
 
 /** In-memory rate limit per shop token (privacy: nothing persisted, no IPs). */
 export class RateLimiter {
@@ -79,11 +80,89 @@ function deny(reply: { code: (n: number) => { send: (b: unknown) => void } }, co
  * The only live write surface in the product (§6): GET /v1/portal/me and
  * POST /v1/portal/reports. Auth = HMAC shop token; content = sanitized plain text
  * plus structured pattern references; every accepted report lands in SQLite and
- * regenerates reports/recent.json.
+ * regenerates ONLY the reports/recent.json feed (F02, 2026-09-29 audit — never
+ * the whole snapshot set; see publishReportFeed in snapshots/build.ts).
  */
 /** Attaches the verified shopId to the request once auth succeeds. */
 interface AuthedRequest {
   shopId?: string;
+}
+
+/** Feed half of the POST /v1/portal/reports response (F02 truthfulness). */
+interface FeedStatus {
+  published: boolean;
+}
+
+/** Printable ASCII without spaces, 1–200 chars (an opaque client-chosen token). */
+const IDEMPOTENCY_KEY_PATTERN = /^[\x21-\x7E]{1,200}$/;
+
+/**
+ * F02 idempotency mechanism: an optional `Idempotency-Key` request header
+ * (migration 018 adds the partial UNIQUE index on (shop_id, idempotency_key)).
+ * Retrying an accepted report with the same key replays the stored report
+ * instead of inserting a second row. Reports published without a key behave
+ * exactly as before (each POST is a new report).
+ */
+function idempotencyKeyFrom(headers: FastifyRequest['headers']): { key?: string; invalid?: boolean } {
+  const raw = headers['idempotency-key'];
+  if (raw === undefined) return {};
+  const value = (Array.isArray(raw) ? raw[0] : raw)?.trim();
+  if (!value || !IDEMPOTENCY_KEY_PATTERN.test(value)) return { invalid: true };
+  return { key: value };
+}
+
+interface StoredReportRow {
+  id: string;
+  shop_id: string;
+  stream_id: string | null;
+  date: string;
+  body: string;
+  hot_patterns: string;
+  attribution_url: string;
+  photo_url: string | null;
+  published_at: string;
+  shop_name: string;
+}
+
+/** The stored report behind an idempotency key, revalidated against the contract. */
+function storedReport(db: Db, shopId: string, idempotencyKey: string): ShopReport | undefined {
+  const row = db
+    .prepare(
+      `SELECT r.id, r.shop_id, r.stream_id, r.date, r.body, r.hot_patterns, r.attribution_url, r.photo_url, r.published_at,
+              s.name AS shop_name
+       FROM shop_reports r JOIN shops s ON s.id = r.shop_id
+       WHERE r.shop_id = ? AND r.idempotency_key = ?`,
+    )
+    .get(shopId, idempotencyKey) as StoredReportRow | undefined;
+  if (!row) return undefined;
+  return ShopReportSchema.parse({
+    id: row.id,
+    shopId: row.shop_id,
+    shopName: row.shop_name,
+    streamId: row.stream_id ?? undefined,
+    date: row.date,
+    body: row.body,
+    hotPatterns: JSON.parse(row.hot_patterns),
+    attributionUrl: row.attribution_url,
+    ...(row.photo_url ? { photoUrl: row.photo_url } : {}),
+    publishedAt: row.published_at,
+  });
+}
+
+/**
+ * Best-effort report-feed refresh (F02): acceptance and feed publication are
+ * separate steps. A feed-write failure never rejects an accepted report — it is
+ * reported truthfully in the response and healed by the scheduled snapshots job,
+ * which writes the same feed via buildSnapshots → publishReportFeed.
+ */
+function tryPublishFeed(deps: PortalDeps, now: Date, log: { warn(obj: unknown, msg: string): void }): FeedStatus {
+  try {
+    publishReportFeed({ db: deps.db, snapshotsDir: deps.snapshotsDir, now });
+    return { published: true };
+  } catch (err) {
+    log.warn({ err }, 'report feed refresh failed — report accepted; scheduled snapshots job will refresh the feed');
+    return { published: false };
+  }
 }
 
 export function registerPortalRoutes(app: FastifyInstance, deps: PortalDeps): void {
@@ -148,6 +227,19 @@ export function registerPortalRoutes(app: FastifyInstance, deps: PortalDeps): vo
     { onRequest: requireShop },
     async (req: FastifyRequest & AuthedRequest, reply) => {
       const shopId = req.shopId!;
+
+      // F02 idempotent replay, BEFORE the rate limiter: a retry of an accepted
+      // report returns the stored report without burning another window slot.
+      const key = idempotencyKeyFrom(req.headers);
+      if (key.invalid) return deny(reply, 400, 'invalid idempotency key');
+      if (key.key) {
+        const existing = storedReport(deps.db, shopId, key.key);
+        if (existing) {
+          const feed = tryPublishFeed(deps, new Date(), req.log);
+          return reply.code(200).send({ report: existing, idempotentReplay: true, feed });
+        }
+      }
+
       if (!limiter.allow(shopId)) return deny(reply, 429, 'too many reports — try again later');
       const shop = deps.db.prepare('SELECT * FROM shops WHERE id = ?').get(shopId) as ShopRow;
 
@@ -194,27 +286,46 @@ export function registerPortalRoutes(app: FastifyInstance, deps: PortalDeps): vo
     }
     const report = candidate.data;
 
-    deps.db
-      .prepare(
-        `INSERT INTO shop_reports (id, shop_id, stream_id, date, body, hot_patterns, attribution_url, photo_url, published_at)
-         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-      )
-      .run(
-        report.id,
-        report.shopId,
-        report.streamId ?? null,
-        report.date,
-        report.body,
-        JSON.stringify(report.hotPatterns),
-        report.attributionUrl,
-        report.photoUrl ?? null,
-        report.publishedAt,
-      );
+    // Durable acceptance (F02): this row IS the accepted report. Acceptance and
+    // feed publication are separate steps — a feed failure below must neither
+    // reject the POST nor hide the accepted write (no more 500-after-INSERT).
+    try {
+      deps.db
+        .prepare(
+          `INSERT INTO shop_reports (id, shop_id, stream_id, date, body, hot_patterns, attribution_url, photo_url, published_at, idempotency_key)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        )
+        .run(
+          report.id,
+          report.shopId,
+          report.streamId ?? null,
+          report.date,
+          report.body,
+          JSON.stringify(report.hotPatterns),
+          report.attributionUrl,
+          report.photoUrl ?? null,
+          report.publishedAt,
+          key.key ?? null,
+        );
+    } catch (err) {
+      // Concurrent twins of one retry: the partial UNIQUE index on
+      // (shop_id, idempotency_key) let exactly one row win — replay it.
+      if (key.key) {
+        const existing = storedReport(deps.db, shopId, key.key);
+        if (existing) {
+          const feed = tryPublishFeed(deps, now, req.log);
+          return reply.code(200).send({ report: existing, idempotentReplay: true, feed });
+        }
+      }
+      throw err;
+    }
 
-    // The report must appear in the next snapshot with attribution (DoD) — regenerate now.
-    buildSnapshots({ db: deps.db, snapshotsDir: deps.snapshotsDir, now });
+    // The report must appear in the next feed refresh with attribution (DoD) —
+    // publish ONLY the feed now (F02: never the whole snapshot set, which would
+    // overwrite species assessments without their reference pack).
+    const feed = tryPublishFeed(deps, now, req.log);
 
-    return reply.code(201).send({ report });
+    return reply.code(201).send({ report, feed });
     },
   );
 }

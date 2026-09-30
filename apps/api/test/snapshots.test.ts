@@ -9,7 +9,7 @@ import {
   StockingEventSchema,
   scoreConditions,
 } from '@trout/contracts';
-import { buildSnapshots, recentReports } from '../src/snapshots/build.js';
+import { buildSnapshots, publishReportFeed, recentReports } from '../src/snapshots/build.js';
 import { runGaugesJob } from '../src/ingest/usgs.js';
 import { runStockingJob } from '../src/ingest/stockingJob.js';
 import { TWRA_PAGE_URL } from '../src/ingest/stocking/tn.js';
@@ -383,8 +383,69 @@ describe('content pack emission', () => {
   });
 });
 
+/** F02: the portal report route publishes ONLY the report feed — never the rest
+ *  of the snapshot set (it has no content pack, so a full rebuild would degrade
+ *  every species assessment). Pins the feed-scoped entry point's byte scope. */
+describe('publishReportFeed (feed-scoped publication for the portal report route)', () => {
+  it('rewrites only v1/reports/recent.json and leaves every other snapshot byte-identical', () => {
+    const env2 = makeEnv();
+    try {
+      buildSnapshots({ db: env2.db, snapshotsDir: env2.snapshotsDir, now: NOW });
+      const before = snapshotContents(env2.snapshotsDir);
+      expect(before.has(join('v1', 'reports', 'recent.json'))).toBe(true);
+
+      // A new accepted report lands in SQLite (the portal route's durable step).
+      const shop = env2.db.prepare("SELECT id, website_url FROM shops WHERE id='test-fly-shop'").get() as {
+        id: string;
+        website_url: string;
+      };
+      const publishedAt = NOW.toISOString();
+      env2.db
+        .prepare(
+          `INSERT INTO shop_reports (id, shop_id, stream_id, date, body, hot_patterns, attribution_url, published_at)
+           VALUES (?, ?, 'watauga-river', ?, 'Fresh report from the portal route', '[]', ?, ?)`,
+        )
+        .run(deterministicId('report', shop.id), shop.id, publishedAt.slice(0, 10), shop.website_url, publishedAt);
+
+      const result = publishReportFeed({ db: env2.db, snapshotsDir: env2.snapshotsDir, now: NOW });
+      expect(result.reports).toBe(1);
+      expect(result.path.endsWith(join('v1', 'reports', 'recent.json'))).toBe(true);
+
+      const after = snapshotContents(env2.snapshotsDir);
+      const feedRel = join('v1', 'reports', 'recent.json');
+      for (const [rel, content] of before) {
+        if (rel === feedRel) continue;
+        expect(after.get(rel)).toBe(content);
+      }
+      expect([...after.keys()].sort()).toEqual([...before.keys()].sort());
+
+      const feed = JSON.parse(after.get(feedRel)!) as { body: string }[];
+      expect(feed).toHaveLength(1);
+      expect(feed[0]!.body).toContain('portal route');
+    } finally {
+      env2.db.close();
+      rmSync(env2.dir, { recursive: true, force: true });
+    }
+  });
+});
+
 function readOut(dir: string, rel: string): string {
   return JSON.stringify(JSON.parse(readFileSync(join(dir, rel), 'utf8')));
+}
+
+/** Relative path → raw file content for every file under dir (byte-scope checks). */
+function snapshotContents(dir: string): Map<string, string> {
+  const out = new Map<string, string>();
+  walk(dir, '');
+  return out;
+  function walk(abs: string, rel: string): void {
+    for (const entry of readdirSync(abs)) {
+      const absEntry = join(abs, entry);
+      const relEntry = rel ? join(rel, entry) : entry;
+      if (statSync(absEntry).isDirectory()) walk(absEntry, relEntry);
+      else out.set(relEntry, readFileSync(absEntry, 'utf8'));
+    }
+  }
 }
 
 function writeRaw(path: string, content: string): void {
