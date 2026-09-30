@@ -2,18 +2,35 @@
 /**
  * Fishability score badge — renders the score computed by the frozen
  * `scoreConditions()` pure function (loaded at build time). Static by design.
+ * F07: assessment-aware — an unassessed snapshot shows the honest "No data"
+ * state (never a numeric verdict), while an assessed zero renders as Poor
+ * (lethal-clamp semantics). Bands are the PWA's 70/40 via scorePresentation.
  */
-import { scoreLabel } from '../lib/format';
+import { scorePresentation } from '../lib/format';
 
 export interface Props {
   value: number;
+  /** From ConditionScore.assessed; absent on pre-field legacy snapshots. */
+  assessed?: boolean;
 }
 
-const { value } = Astro.props;
-const color = value >= 75 ? '#15803d' : value >= 50 ? '#d97706' : value > 0 ? '#b91c1c' : '#94a3b8';
+const { value, assessed } = Astro.props;
+const score = scorePresentation(value, assessed);
 ---
 
-<span class="score">
-  <span class="dot" style={`background:${color}`} aria-hidden="true"></span>
-  <span>{value}<span style="color:var(--muted)">/100</span> · {scoreLabel(value)}</span>
-</span>
+{
+  score.assessed ? (
+    <span class="score">
+      <span class="dot" style={`background:${score.color}`} aria-hidden="true" />
+      <span>
+        {value}
+        <span style="color:var(--muted)">/100</span> · {score.label}
+      </span>
+    </span>
+  ) : (
+    <span class="score">
+      <span class="dot" style={`background:${score.color}`} aria-hidden="true" />
+      <span style="color:var(--muted)">No data — conditions not assessed</span>
+    </span>
+  )
+}

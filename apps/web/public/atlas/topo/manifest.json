@@ -24,6 +24,7 @@
     "pattern": "hillshade/{z}/{x}/{y}.webp",
     "minZoom": 7,
     "maxZoom": 11,
+    "probe": "hillshade/8/66/100.webp",
     "tiles": 531,
     "bytes": 13452156,
     "encoding": "shadow-alpha",

@@ -1,9 +1,10 @@
-import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { WaterEvidenceSetSchema } from '@trout/contracts';
-import type { EvidenceStockingEvent, EvidenceError, WaterObservation } from '@trout/contracts';
+import type { EvidenceStockingEvent, EvidenceError, WaterEvidence, WaterObservation } from '@trout/contracts';
 import type { Db } from '../db.js';
 import { startJob, type JobDetail } from '../jobs/run.js';
+import { saveRawCaptures } from '../ingest/stockingJob.js';
 import { fetchUsgsObservations } from './usgs-provider.js';
 import { fetchTvaObservations } from './tva-provider.js';
 import { fetchTwraArtifacts, parseTwraEvidence } from './twra-evidence.js';
@@ -20,11 +21,20 @@ import type { FishingInfoDocument } from './assemble.js';
  * per-water WaterEvidence set, and store it (audit trail + snapshot source).
  *
  * Soft-fail by source: a failing upstream becomes per-water error entries in the
- * payload — the run itself only hard-fails on a crash (DB etc.), mirroring the
- * stocking job discipline.
+ * payload; the run itself only hard-fails on a crash (DB etc.). F33: OUTCOME is
+ * decided from the expected sources and their returned errors — a run in which
+ * EVERY expected observation source failed (zero fresh observations) is recorded
+ * as jobs_log status 'error' (health can see it) while the payload still stores,
+ * carrying the previous run's observations forward with explicit age/error
+ * provenance instead of replacing usable data with an empty list.
  */
 
+export type EvidenceJobOutcome = 'ok' | 'degraded' | 'failed';
+
 export interface EvidenceJobResult extends JobDetail {
+  /** ok: every expected source answered. degraded: some failed, data stored.
+   *  failed: every expected OBSERVATION source failed with zero fresh observations. */
+  outcome: EvidenceJobOutcome;
   waters: number;
   observations: number;
   scheduled: number;
@@ -34,6 +44,8 @@ export interface EvidenceJobResult extends JobDetail {
   errors: number;
   warnings: string[];
   unresolvedAliasRows: { name: string; county?: string; reason: string }[];
+  /** Waters whose published observations are last-good carry-forwards (F33). */
+  lastGoodWaters: number;
 }
 
 export interface RunEvidenceOptions {
@@ -119,6 +131,14 @@ export async function runEvidenceJob(db: Db, cfg: { contentPackDir: string; rawD
 
   // ── USGS ────────────────────────────────────────────────────────────────────
   const allGauges = [...gaugeOwners.keys()];
+  // F33: per-source outcome tracking — expected vs failed drives the job outcome.
+  const usgsExpected = usgs && allGauges.length > 0;
+  let usgsFailed = false;
+  const tvaMonitorIds = Object.keys(TVA_MONITORS);
+  const tvaExpected = tva && tvaMonitorIds.length > 0;
+  let tvaFailedCount = 0;
+  const twraExpected = twra;
+  let twraFailed = false;
   if (usgs && allGauges.length > 0) {
     try {
       const obs = await fetchUsgsObservations(allGauges, { userAgent: usgsUa, fetchImpl });
@@ -134,10 +154,12 @@ export async function runEvidenceJob(db: Db, cfg: { contentPackDir: string; rawD
         for (const waterId of gaugeOwners.get(site) ?? []) addObservations(waterId, siteObs);
       }
       if (obs.length === 0) {
+        usgsFailed = true; // an empty catalog-wide response is a failed refresh, not success (F33)
         const affected = allGauges.flatMap((g) => gaugeOwners.get(g) ?? []);
         addError(affected, 'usgs-nwis-iv', 'empty-response', 'USGS returned no time series for the catalog gauges');
       }
     } catch (err) {
+      usgsFailed = true;
       const affected = allGauges.flatMap((g) => gaugeOwners.get(g) ?? []);
       addError(affected, 'usgs-nwis-iv', errorCode(err), err instanceof Error ? err.message : String(err));
       warnings.push(`USGS fetch failed: ${(err as Error).message}`);
@@ -152,6 +174,7 @@ export async function runEvidenceJob(db: Db, cfg: { contentPackDir: string; rawD
         addObservations(waterId, obs);
         await new Promise((r) => setTimeout(r, 300)); // politeness gap (Cloudflare front)
       } catch (err) {
+        tvaFailedCount += 1;
         addError([waterId], 'tva-restapi', errorCode(err), `TVA ${monitor.locationId}: ${(err as Error).message}`);
         warnings.push(`TVA ${monitor.locationId} failed: ${(err as Error).message}`);
       }
@@ -165,16 +188,18 @@ export async function runEvidenceJob(db: Db, cfg: { contentPackDir: string; rawD
   if (twra) {
     try {
       const artifacts = await fetchTwraArtifacts({ userAgent: usgsUa, fetchImpl });
-      // Raw audit trail (§8): keep exactly what TWRA published.
-      const rawDir = join(cfg.rawDir, 'evidence');
-      mkdirSync(rawDir, { recursive: true });
-      for (const a of artifacts) writeFileSync(join(rawDir, `${now.toISOString().slice(0, 10)}.twra.${a.suffix}`), a.content, 'utf8');
+      // Raw audit trail (§8): keep exactly what TWRA published — one collision-proof
+      // file per fetched artifact (F36) plus a URL/hash manifest as the commit record.
+      saveRawCaptures(join(cfg.rawDir, 'evidence'), now, artifacts);
 
       const parsed = parseTwraEvidence(artifacts, { now });
       warnings.push(...parsed.warnings.map((w) => `TWRA: ${w}`));
 
       const scheduleGridMissing = parsed.warnings.some((w) => w.includes('schedule grid not found'));
       const recentGridMissing = parsed.warnings.some((w) => w.includes('recent-report grid not found'));
+      // A missing grid is a pre-existing soft-fail condition (per-water
+      // 'source-grid-missing' errors + warning) — a one-grid page is normal
+      // for TWRA and must not flip the job outcome (F33 tracks FETCH failures).
       if (scheduleGridMissing) {
         addError(waters.map((w) => w.id), 'twra-stockings', 'source-grid-missing', 'TWRA schedule grid was not found in the captured page/JSON');
       }
@@ -212,6 +237,7 @@ export async function runEvidenceJob(db: Db, cfg: { contentPackDir: string; rawD
         now,
       ).length;
     } catch (err) {
+      twraFailed = true;
       addError(waters.map((w) => w.id), 'twra-stockings', errorCode(err), err instanceof Error ? err.message : String(err));
       addError(waters.map((w) => w.id), 'twra-recent-stockings', errorCode(err), err instanceof Error ? err.message : String(err));
       warnings.push(`TWRA fetch failed: ${(err as Error).message}`);
@@ -238,7 +264,52 @@ export async function runEvidenceJob(db: Db, cfg: { contentPackDir: string; rawD
     for (const i of assembled.invalid) warnings.push(`invalid evidence for ${i.waterId}: ${i.issues}`);
   }
 
-  const payload = WaterEvidenceSetSchema.parse(assembled.evidence);
+  // ── Last-good preservation (F33) ───────────────────────────────────────────
+  // When an observation source failed and a water would publish ZERO
+  // observations, carry the previous run's observations forward with explicit
+  // age/error provenance — a failed refresh must not REPLACE usable public
+  // data with an empty list. Only observation-source failures trigger this
+  // (a stocking-only gap never blanks observations).
+  const priorRow = db
+    .prepare('SELECT retrieved_at, payload FROM evidence_runs ORDER BY retrieved_at DESC, id DESC LIMIT 1')
+    .get() as { retrieved_at: string; payload: string } | undefined;
+  const priorByWater = new Map<string, WaterEvidence>();
+  if (priorRow) {
+    const parsed = WaterEvidenceSetSchema.safeParse(JSON.parse(priorRow.payload) as unknown);
+    if (parsed.success) for (const e of parsed.data) priorByWater.set(e.waterId, e);
+  }
+  const freshObservations = [...observationsByWater.values()].reduce((n, list) => n + list.length, 0);
+  let lastGoodWaters = 0;
+  const finalEvidence = assembled.evidence.map((e) => {
+    if (e.observations.length > 0 || !priorRow) return e;
+    const failedObsSources = e.errors.filter(
+      (err) => err.sourceId === 'usgs-nwis-iv' || err.sourceId === 'tva-restapi',
+    );
+    if (failedObsSources.length === 0) return e;
+    const prior = priorByWater.get(e.waterId);
+    if (!prior || prior.observations.length === 0) return e;
+    lastGoodWaters += 1;
+    const ageHours = Math.max(
+      0,
+      Math.round((now.getTime() - Date.parse(priorRow.retrieved_at)) / 3_600_000),
+    );
+    return {
+      ...e,
+      observations: [...prior.observations].sort(
+        (a, b) => Date.parse(a.observedAt) - Date.parse(b.observedAt) || a.metric.localeCompare(b.metric),
+      ),
+      errors: [
+        ...e.errors,
+        ...failedObsSources.map((err) => ({
+          sourceId: err.sourceId,
+          code: 'stale-last-good',
+          message: `Upstream refresh failed — observations carried forward from the ${priorRow.retrieved_at} run (~${ageHours}h old at assembly); refresh error: ${err.message}`,
+        })),
+      ],
+    };
+  });
+
+  const payload = WaterEvidenceSetSchema.parse(finalEvidence);
   const totalObservations = payload.reduce((n, e) => n + e.observations.length, 0);
   const totalErrors = payload.reduce((n, e) => n + e.errors.length, 0);
 
@@ -252,7 +323,25 @@ export async function runEvidenceJob(db: Db, cfg: { contentPackDir: string; rawD
   });
   store();
 
+  // ── Outcome (F33): decided from expected sources + returned errors ─────────
+  // failed  = every EXPECTED observation source failed (USGS/TVA) and the run
+  //           captured zero fresh observations — recorded as jobs_log 'error'
+  //           so health surfaces it; the payload still stores (last-good).
+  // degraded= at least one expected source failed, but data was refreshed.
+  // ok      = every expected source answered.
+  const expectedObsSources = (usgsExpected ? 1 : 0) + (tvaExpected ? 1 : 0);
+  const allObsSourcesFailed =
+    (usgsExpected ? usgsFailed : true) && (tvaExpected ? tvaFailedCount === tvaMonitorIds.length : true);
+  const anySourceFailed = usgsFailed || tvaFailedCount > 0 || (twraExpected && twraFailed);
+  const outcome: EvidenceJobOutcome =
+    expectedObsSources > 0 && allObsSourcesFailed && freshObservations === 0
+      ? 'failed'
+      : anySourceFailed
+        ? 'degraded'
+        : 'ok';
+
   const result: EvidenceJobResult = {
+    outcome,
     waters: payload.length,
     observations: totalObservations,
     scheduled,
@@ -262,8 +351,19 @@ export async function runEvidenceJob(db: Db, cfg: { contentPackDir: string; rawD
     errors: totalErrors,
     warnings,
     unresolvedAliasRows,
+    lastGoodWaters,
   };
-  handle.ok(result);
+  if (outcome === 'failed') {
+    handle.fail(
+      new Error(
+        `every expected observation source failed — ${freshObservations} fresh observations` +
+          (lastGoodWaters > 0 ? ` (${lastGoodWaters} waters carry last-good data)` : ''),
+      ),
+      result,
+    );
+  } else {
+    handle.ok(result);
+  }
   return result;
 }
 

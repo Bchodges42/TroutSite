@@ -6,6 +6,12 @@ export interface RawArtifact {
   suffix: string;
   content: string;
   url: string;
+  /**
+   * Stable capture identity for the saved filename (F36): which grid/kind the
+   * artifact is (e.g. TWRA 'schedule' | 'recent'). Distinct captureKind values
+   * keep one fetched artifact from overwriting another that shares a suffix.
+   */
+  captureKind?: string;
 }
 
 /** What an adapter's fetchLatest() hands to normalize(). */

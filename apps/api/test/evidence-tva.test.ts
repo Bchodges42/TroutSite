@@ -75,4 +75,24 @@ describe('evidence: TVA provider parsing', () => {
     const obs = parseTvaObservations(norrisFixture, { locationId: 'NRST1' });
     expect(obs.every((o) => o.qualifier === undefined)).toBe(true);
   });
+
+  it('resolves the DST fall-back repeated hour by parsed instant, whichever order rows arrive (F34 residue)', () => {
+    // 2026-11-01 fall-back: the 1 AM wall-clock hour exists twice with
+    // different embedded offsets — 1 AM EDT = 05:00Z, 1 AM EST = 06:00Z.
+    // Newest-wins and output order must follow INSTANTS, never text: with
+    // text comparison the newer mixed-offset stamp can lose to (or be
+    // ordered behind) the older local-clock value. The mixed-offset pair is
+    // exercised in both arrival orders.
+    const est = { Day: '11/01/2026', Time: '1 AM EST', AverageHourlyDischarge: '200' }; // 06:00Z — newest
+    const edt = { Day: '11/01/2026', Time: '1 AM EDT', AverageHourlyDischarge: '100' }; // 05:00Z
+    for (const rows of [
+      [edt, est],
+      [est, edt], // newest arrives first — dedupe must still keep it
+    ]) {
+      const obs = parseTvaObservations(rows, { locationId: 'TEST1' });
+      expect(obs).toHaveLength(1);
+      expect(obs[0]?.observedAt).toBe('2026-11-01T01:00:00-05:00');
+      expect(obs[0]?.value).toBe(200);
+    }
+  });
 });

@@ -28,7 +28,7 @@ export function SpeciesModeToggle() {
           key={mode}
           type="button"
           aria-pressed={settings.speciesMode === mode}
-          aria-label={mode === 'trout' ? 'Trout mode' : 'All-fish mode'}
+          aria-label={mode === 'trout' ? 'Trout mode' : 'All fish mode'}
           onClick={() => setMode(mode)}
         >
           {mode === 'trout' ? 'Trout' : 'All fish'}

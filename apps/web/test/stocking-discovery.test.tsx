@@ -7,12 +7,27 @@ import { StockingPage } from '../src/pages/StockingPage';
 import { SettingsProvider } from '../src/lib/settings';
 import type { StockingEvent } from '@trout/contracts';
 
+/**
+ * Date-rot guard: the page filters every view through a rolling window
+ * (default 90 days; cutoff = Date.now() − days, StockingPage `filtered`),
+ * so absolute mock dates cross out of it as the calendar advances —
+ * 2026-07-02 fell out of the 90-day window exactly on 2026-09-30 and the
+ * catalog test started expecting 10 rows and finding 9. Mock dates are now
+ * generated relative to Date.now(), keeping each event on the side of the
+ * window its assertions need (all stocking history INSIDE the 90-day
+ * window; the 2027-style future Duck River plan stays future) and
+ * preserving the original newest-first order.
+ */
+function dateOffset(days: number): string {
+  return new Date(Date.now() + days * 24 * 3600_000).toISOString().slice(0, 10);
+}
+
 function event(overrides: Partial<StockingEvent> & { id: string }): StockingEvent {
   return {
     stateId: 'TN',
     streamName: 'Test Water',
     species: 'rainbow',
-    date: '2026-08-01',
+    date: dateOffset(-45),
     datePrecision: 'day',
     sourceUrl: 'https://www.tn.gov/twra/fishing/trout-information-stockings.html',
     fetchedAt: '2026-09-04T20:00:00Z',
@@ -21,16 +36,16 @@ function event(overrides: Partial<StockingEvent> & { id: string }): StockingEven
 }
 
 const EVENTS: StockingEvent[] = [
-  event({ id: 'e1', streamName: 'Clinch River', date: '2026-08-28', datePrecision: 'day', species: 'rainbow', count: 4200, county: 'Anderson' }),
-  event({ id: 'e2', streamName: 'Caney Fork River', date: '2026-08-25', datePrecision: 'week', species: 'brown', count: 5200, county: 'Warren' }),
-  event({ id: 'e3', streamName: 'Hiwassee River', date: '2026-08-20', datePrecision: 'month', species: 'rainbow', county: 'Polk' }),
-  event({ id: 'e4', streamName: 'Duck River', date: '2027-03-01', datePrecision: 'week', species: 'brown', county: 'Marshall' }),
-  event({ id: 'e5', streamName: 'Elk River', date: '2026-08-10', datePrecision: 'day', species: 'brown', count: 900, county: 'Franklin' }),
-  event({ id: 'e6', streamName: 'Watauga River', date: '2026-08-05', datePrecision: 'day', species: 'rainbow', count: 3100, county: 'Carter' }),
-  event({ id: 'e7', streamName: 'South Fork Holston River', date: '2026-07-30', datePrecision: 'day', species: 'brown', county: 'Sullivan' }),
-  event({ id: 'e8', streamName: 'Obey River', date: '2026-07-22', datePrecision: 'week', species: 'rainbow', count: 2500, county: 'Clay' }),
-  event({ id: 'e9', streamName: 'Tellico River', date: '2026-07-15', datePrecision: 'month', species: 'brook', county: 'Monroe' }),
-  event({ id: 'e10', streamName: 'Harpeth River', date: '2026-07-02', datePrecision: 'day', species: 'rainbow', count: 1400, county: 'Williamson' }),
+  event({ id: 'e1', streamName: 'Clinch River', date: dateOffset(-10), datePrecision: 'day', species: 'rainbow', count: 4200, county: 'Anderson' }),
+  event({ id: 'e2', streamName: 'Caney Fork River', date: dateOffset(-15), datePrecision: 'week', species: 'brown', count: 5200, county: 'Warren' }),
+  event({ id: 'e3', streamName: 'Hiwassee River', date: dateOffset(-20), datePrecision: 'month', species: 'rainbow', county: 'Polk' }),
+  event({ id: 'e4', streamName: 'Duck River', date: dateOffset(150), datePrecision: 'week', species: 'brown', county: 'Marshall' }),
+  event({ id: 'e5', streamName: 'Elk River', date: dateOffset(-30), datePrecision: 'day', species: 'brown', count: 900, county: 'Franklin' }),
+  event({ id: 'e6', streamName: 'Watauga River', date: dateOffset(-40), datePrecision: 'day', species: 'rainbow', count: 3100, county: 'Carter' }),
+  event({ id: 'e7', streamName: 'South Fork Holston River', date: dateOffset(-50), datePrecision: 'day', species: 'brown', county: 'Sullivan' }),
+  event({ id: 'e8', streamName: 'Obey River', date: dateOffset(-60), datePrecision: 'week', species: 'rainbow', count: 2500, county: 'Clay' }),
+  event({ id: 'e9', streamName: 'Tellico River', date: dateOffset(-70), datePrecision: 'month', species: 'brook', county: 'Monroe' }),
+  event({ id: 'e10', streamName: 'Harpeth River', date: dateOffset(-80), datePrecision: 'day', species: 'rainbow', count: 1400, county: 'Williamson' }),
 ];
 
 function renderPage(initialEntry = '/stocking') {
@@ -75,12 +90,15 @@ describe('Stocking discovery — progressive disclosure with honest data states'
     ).toBeInTheDocument();
   });
 
-  it('distinguishes reported completions, schedules, and date precision', async () => {
+  it('distinguishes past-scheduled plans, upcoming plans, and date precision', async () => {
     renderPage();
     await screen.findByText('Latest published');
-    expect(screen.getAllByText('Reported completed').length).toBeGreaterThan(0);
-    expect(screen.getAllByText(/Week of · reported/).length).toBeGreaterThan(0);
-    expect(screen.getAllByText(/Month window · reported/).length).toBeGreaterThan(0);
+    // F08 (2026-09-29 audit): a past date is NOT a completed-release report —
+    // the feed has no completion field, so plans stay plans in every state.
+    expect(screen.getAllByText('Past-scheduled').length).toBeGreaterThan(0);
+    expect(screen.queryByText('Reported completed')).not.toBeInTheDocument();
+    expect(screen.getAllByText(/Week of · past-scheduled/).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/Month window · past-scheduled/).length).toBeGreaterThan(0);
     expect(screen.getAllByText(/not field-verified/i).length).toBeGreaterThan(0);
   });
 
@@ -120,7 +138,7 @@ describe('Stocking discovery — progressive disclosure with honest data states'
     const firstRow = () => screen.getAllByRole('listitem')[0]?.querySelector('span')?.textContent;
     const combobox = screen.getByRole('combobox', { name: 'Sort entries' });
 
-    // Default: newest first — the 2027 Duck River schedule tops the list.
+    // Default: newest first — the future Duck River schedule tops the list.
     expect(await firstRow()).toContain('Duck River');
     await user.selectOptions(combobox, 'location');
     await waitFor(() => expect(firstRow()).toContain('Caney Fork River'));

@@ -1,11 +1,12 @@
 // OWNER: ROLE 4. Weekly report composer: stream picker, plain-text body, hot-patterns picker
-// (fed by the content pack), optional photo URL. Drafts save locally; publishing posts to
-// POST /v1/portal/reports (the product's only live write route).
+// (fed by the content pack), optional photo URL. Drafts save locally (scoped to the signed-in
+// shop — F16); publishing posts to POST /v1/portal/reports (the product's only live write
+// route) with a stable Idempotency-Key (F02/F15).
 import { useMemo, useState, type FormEvent } from 'react';
 import { Button, Card, Chip } from '@trout/ui';
 import type { FlyPattern, HotPattern, ShopReport, Stream } from '@trout/contracts';
-import { publishReport, ApiError } from '../api/client.js';
-import { emptyDraft, saveDraft, type ReportDraft } from '../state/drafts.js';
+import { publishReport, idempotencyKeyFor, ApiError } from '../api/client.js';
+import { emptyDraft, saveDraft, deleteDraft, type ReportDraft } from '../state/drafts.js';
 import type { Catalog } from '../pack.js';
 
 const BODY_MIN = 10;
@@ -49,19 +50,25 @@ function toInput(draft: ReportDraft): Parameters<typeof publishReport>[0] {
 
 export function ComposerView({
   catalog,
+  shopId,
   initialDraft,
   onSaved,
   onPublished,
 }: {
   catalog: Catalog;
+  /** Verified shop identity (from GET /v1/portal/me) — drafts are scoped to it (F16). */
+  shopId: string;
   initialDraft?: ReportDraft | null;
   onSaved?: () => void;
   onPublished?: (report: ShopReport) => void;
 }) {
-  const [draft, setDraft] = useState<ReportDraft>(() => initialDraft ?? emptyDraft());
+  const [draft, setDraft] = useState<ReportDraft>(() => initialDraft ?? emptyDraft(shopId));
   const [errors, setErrors] = useState<DraftErrors>({});
   const [status, setStatus] = useState<'idle' | 'saving' | 'publishing' | 'published'>('idle');
   const [apiError, setApiError] = useState<string | null>(null);
+  // Local-storage problems are surfaced SEPARATELY from the server result (F15):
+  // neither of these ever claims the publish itself failed.
+  const [localError, setLocalError] = useState<string | null>(null);
 
   const patternsByName = useMemo(() => {
     const m = new Map<string, FlyPattern>();
@@ -99,10 +106,17 @@ export function ComposerView({
 
   function handleSave(event: FormEvent) {
     event.preventDefault();
-    saveDraft(draft);
-    setStatus('saving');
-    setErrors({});
-    onSaved?.();
+    setLocalError(null);
+    try {
+      saveDraft(shopId, draft);
+      setStatus('saving');
+      setErrors({});
+      onSaved?.();
+    } catch {
+      // A failed LOCAL save says so — it is not a server rejection (F15).
+      setStatus('idle');
+      setLocalError('The draft could not be saved in this browser (storage full or blocked). Copy the text somewhere safe — publishing is unaffected.');
+    }
   }
 
   async function handlePublish(event: FormEvent) {
@@ -110,16 +124,32 @@ export function ComposerView({
     const found = validate(draft);
     setErrors(found);
     setApiError(null);
+    setLocalError(null);
     if (Object.keys(found).length > 0) return;
     setStatus('publishing');
+    // Stable per (draft id + content revision): an unchanged retry reuses the SAME
+    // key so the server replays the accepted report instead of double-inserting.
+    const idempotencyKey = idempotencyKeyFor(draft.id, toInput(draft));
     try {
-      const report = await publishReport(toInput(draft));
-      // Published — the draft's job is done.
-      saveDraft({ ...draft });
+      const report = await publishReport(toInput(draft), { idempotencyKey });
+      // SERVER ACCEPTANCE IS FINAL (F15): the report is published with attribution.
+      // Nothing after this point may report the publish as failed. The draft's job
+      // is done — it must not stay editable, or the same body could be published
+      // again (a duplicate).
       setStatus('published');
-      setDraft(emptyDraft());
+      setDraft(emptyDraft(shopId));
       onPublished?.(report);
+      // Local cleanup is best-effort and reported separately: a failed localStorage
+      // write must never turn an accepted publish into a reported failure.
+      try {
+        deleteDraft(shopId, draft.id);
+      } catch {
+        setLocalError('Published — but the local draft copy could not be removed from this browser (storage full or blocked). Delete it manually under "My reports" to avoid republishing it.');
+      }
     } catch (err) {
+      // Not accepted: the draft (and its idempotency key derivation) stays intact —
+      // a retry of the same content derives the SAME key, so the server replays any
+      // report that was in fact accepted despite the error the client saw.
       setStatus('idle');
       setApiError(err instanceof ApiError ? err.message : 'Publishing failed — check your connection.');
     }
@@ -242,6 +272,11 @@ export function ComposerView({
         {apiError ? (
           <p className="portal-error" role="alert">
             {apiError}
+          </p>
+        ) : null}
+        {localError ? (
+          <p className="portal-error" role="alert">
+            {localError}
           </p>
         ) : null}
         {status === 'published' ? (

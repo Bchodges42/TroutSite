@@ -30,6 +30,17 @@ export default defineConfig({
   retries: process.env.CI ? 1 : 0,
   reporter: process.env.CI ? [['list'], ['html', { open: 'never' }]] : 'list',
   timeout: 30_000,
+  expect: {
+    // E2E-integration fix: the web-assertion default (5s) starved at
+    // --workers=2 whenever two MapLibre specs ran concurrently (the config
+    // comment above already documents that parallel WebGL + service-worker
+    // boots starve this suite). Every heavy map surface boots behind the
+    // product's own 15s load watchdog (TennesseeMap), so 15s is the matching
+    // assertion budget: genuinely broken maps still fail (data-map-failed
+    // trips at the same 15s), they just get the same headroom the product
+    // grants itself. Assertion semantics unchanged — budget only.
+    timeout: 15_000,
+  },
 
   use: {
     trace: 'retain-on-failure',

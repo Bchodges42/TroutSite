@@ -10,7 +10,7 @@ import type { Db } from './db.js';
 import { latestJobRuns, jobDegradation } from './jobs/run.js';
 import { conditionsFeedHealth, fishabilityFeedHealth } from './snapshots/health.js';
 import { registerPortalRoutes, type PortalDeps } from './portal/routes.js';
-import { createGaugeNowCache, type GaugeNowCache } from './lib/gauge-now.js';
+import { createGaugeNowCache, GaugeNowBusyError, type GaugeNowCache } from './lib/gauge-now.js';
 
 export interface BuildAppOptions {
   logger?: boolean;
@@ -180,7 +180,9 @@ export function buildApp(options: BuildAppOptions = {}): FastifyInstance {
   // Map gauge layer: one live reading per tapped gauge. The gauge catalog is a
   // static asset (/atlas/gauges-tn.geojson); only the tapped gauge is fetched,
   // cached (TTL + negative + in-flight dedupe) and served stale if USGS is
-  // down — an upstream blip degrades, never 500s the map. On-demand route,
+  // down — an upstream blip degrades, never 500s the map. F14: the cache also
+  // bounds upstream fan-out (global concurrency cap + bounded wait queue);
+  // overflow answers 503 busy instead of piling up. On-demand route,
   // deliberately not part of the frozen /v1 snapshot surface.
   const gaugeNow = options.gaugesNow ?? createGaugeNowCache();
   app.get('/v1/gauges/:gaugeId/now', async (req, reply) => {
@@ -199,6 +201,9 @@ export function buildApp(options: BuildAppOptions = {}): FastifyInstance {
         fetchedAt: new Date(entry.fetchedAt).toISOString(),
       };
     } catch (err) {
+      if (err instanceof GaugeNowBusyError) {
+        return reply.code(503).send({ error: 'gauge service busy, retry shortly' });
+      }
       req.log.warn({ err }, 'gauge-now: USGS fetch failed');
       return reply.code(502).send({ error: 'gauge source unavailable' });
     }
@@ -291,8 +296,19 @@ export function buildApp(options: BuildAppOptions = {}): FastifyInstance {
   }
 
   // SPA fallback for client-side routes (react-router): unknown non-API paths
-  // serve the PWA shell. /v1/* and /content/* stay 404 (they are API surface).
+  // serve the PWA shell. F28: the fallback answers ONLY for real app routes —
+  // /v1/* and /content/* stay 404 (they are API surface), every static asset
+  // namespace stays 404 when the file is missing (a readiness probe fetching
+  // an absent /atlas/ tile must never receive the HTML shell with a 200), and
+  // any path whose final segment looks like a file (contains a dot) is an
+  // asset request, never a client route.
   if (distIndex) {
+    const ASSET_NAMESPACES = ['/atlas', '/assets', '/content-pack', '/fonts', '/icons', '/img'];
+    const isAssetPath = (url: string) => {
+      if (ASSET_NAMESPACES.some((ns) => url === ns || url.startsWith(ns + '/'))) return true;
+      const lastSegment = url.slice(url.lastIndexOf('/') + 1);
+      return lastSegment.includes('.');
+    };
     app.setNotFoundHandler((req, reply) => {
       const url = req.url.split('?')[0] ?? '/';
       if (req.method !== 'GET' && req.method !== 'HEAD') {
@@ -302,7 +318,8 @@ export function buildApp(options: BuildAppOptions = {}): FastifyInstance {
         url.startsWith('/v1/') ||
         url === '/v1' ||
         url.startsWith('/content/') ||
-        url === '/content'
+        url === '/content' ||
+        isAssetPath(url)
       ) {
         return reply.code(404).send({ error: 'not found' });
       }

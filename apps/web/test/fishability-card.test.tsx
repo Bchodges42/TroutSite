@@ -2,9 +2,10 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { cleanup, render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { FishabilityCard } from '../src/components/FishabilityCard';
+import { FishabilityCard, pressureAgeText } from '../src/components/FishabilityCard';
 import { SettingsProvider } from '../src/lib/settings';
 import { db } from '../src/lib/db';
+import type { PressureContext } from '@trout/contracts';
 
 /**
  * F6 TASK 2/3 — the FishabilityCard: comfort-only presentation (the activity
@@ -215,6 +216,132 @@ describe('FishabilityCard', () => {
     await seedSettings('all');
     const c2 = renderCard('/');
     expect(c2.container.querySelector('.fishability-card')).toBeNull();
+  });
+});
+
+/**
+ * F04 — cached assessments must not read as current forever, and F48 — the
+ * pressure context shows its observation age. Fixtures build observedAt
+ * relative to the real clock (the hooks stamp the payload at the data
+ * boundary), so ages are deterministic without fake timers.
+ */
+const minutesAgoIso = (minutes: number) => new Date(Date.now() - minutes * 60_000).toISOString();
+
+function snapshotForAges(options: {
+  comfortAgeMinutes?: number | null;
+  comfortFrozenAgeMinutes?: number;
+  pressureAgeMinutes?: number | null;
+}) {
+  const comfortFresh =
+    options.comfortAgeMinutes == null
+      ? null
+      : {
+          observedAt: minutesAgoIso(options.comfortAgeMinutes),
+          ageMinutes: options.comfortFrozenAgeMinutes ?? 30,
+        };
+  const pressureContext = {
+    direction: 'falling',
+    deltaHpa: -2.4,
+    station: 'KCSV',
+    confidence: 'derived',
+    evidenceUrl: 'https://api.weather.gov/stations/KCSV/observations',
+    observedAt: minutesAgoIso(options.pressureAgeMinutes ?? 0),
+    label: 'Area pressure falling -2.4 hPa over about 3 hours',
+  };
+  return {
+    streamId: 'aged',
+    fetchedAt: minutesAgoIso(5),
+    pressureContext,
+    bySpecies: {
+      'largemouth-bass': {
+        comfort: {
+          species: 'largemouth-bass',
+          value: 84,
+          reasons: ['Temperature is in the optimal range for largemouth bass'],
+          assessed: true,
+          freshness: comfortFresh,
+        },
+        activity: { total: 0, components: [] },
+      },
+    },
+  };
+}
+
+function renderAgedCard(snapshot: unknown) {
+  vi.stubGlobal(
+    'fetch',
+    vi.fn(async () =>
+      new Response(JSON.stringify(snapshot), {
+        status: 200,
+        headers: { 'content-type': 'application/json' },
+      }),
+    ) as unknown as typeof fetch,
+  );
+  const client = new QueryClient({
+    defaultOptions: { queries: { networkMode: 'offlineFirst', retry: false } },
+  });
+  return render(
+    <QueryClientProvider client={client}>
+      <SettingsProvider>
+        <MemoryRouter initialEntries={['/?focus=largemouth-bass']}>
+          <FishabilityCard streamId="aged" />
+        </MemoryRouter>
+      </SettingsProvider>
+    </QueryClientProvider>,
+  );
+}
+
+describe('FishabilityCard — F04 historical framing and F48 pressure age', () => {
+  it('F48 — shows the pressure observation age alongside the station', async () => {
+    await seedSettings('all');
+    renderAgedCard(snapshotForAges({ comfortAgeMinutes: 30, pressureAgeMinutes: 120 }));
+    const note = await screen.findByRole('note', { name: 'Weather context' });
+    expect(note).toHaveTextContent(/observed 2 hours ago/i);
+    expect(note).toHaveTextContent(/KCSV/);
+  });
+
+  it('F48 — renders no age claim when observedAt is absent or unreadable (never fabricated)', () => {
+    // The contract schema demands observedAt, so the hook path cannot deliver
+    // a context row without one — the no-claim branch is defense in depth for
+    // additive/legacy payload shapes and is tested at its decision point (the
+    // pure helper, clock injected).
+    const withoutObservedAt = {
+      direction: 'falling',
+      deltaHpa: -2.4,
+      station: 'KCSV',
+      confidence: 'derived',
+      evidenceUrl: 'https://api.weather.gov/stations/KCSV/observations',
+      label: 'Area pressure falling -2.4 hPa over about 3 hours',
+    } as unknown as PressureContext;
+    expect(pressureAgeText(withoutObservedAt, Date.parse('2026-09-29T12:00:00Z'))).toBeNull();
+    const unreadable = { ...withoutObservedAt, observedAt: 'not-a-timestamp' } as unknown as PressureContext;
+    expect(pressureAgeText(unreadable, Date.parse('2026-09-29T12:00:00Z'))).toBeNull();
+    const present = { ...withoutObservedAt, observedAt: '2026-09-29T10:00:00Z' } as unknown as PressureContext;
+    expect(pressureAgeText(present, Date.parse('2026-09-29T12:00:00Z'))).toBe('2 hours ago');
+  });
+
+  it('F04 — a month-old cached assessment reads as historical, not current', async () => {
+    await seedSettings('all');
+    renderAgedCard(
+      snapshotForAges({ comfortAgeMinutes: 30 * 24 * 60, comfortFrozenAgeMinutes: 30 }),
+    );
+    expect(
+      await screen.findByText(/Historical assessment — observed .*not current conditions/i),
+    ).toBeInTheDocument();
+    // The score is kept and honestly framed, not silently dropped…
+    expect(
+      screen.getByLabelText('Largemouth bass fishability 84 out of 100 — Good'),
+    ).toBeInTheDocument();
+    // …and a visible historical chip guards the header pill.
+    expect(screen.getByText('Historical')).toBeInTheDocument();
+  });
+
+  it('F04 — a fresh assessment keeps the plain observed line with no historical label', async () => {
+    await seedSettings('all');
+    renderAgedCard(snapshotForAges({ comfortAgeMinutes: 30 }));
+    expect(await screen.findByText(/^Observed /)).toBeInTheDocument();
+    expect(screen.queryByText('Historical')).toBeNull();
+    expect(screen.queryByText(/not current conditions/)).toBeNull();
   });
 });
 

@@ -45,10 +45,17 @@ const { heading = 'Weekly stocking digest' } = Astro.props;
           headers: { 'content-type': 'application/json' },
           body: JSON.stringify({ email }),
         });
+        // F39 (2026-09-29 audit): only a verified successful subscription may
+        // claim success. 404/501 remain the documented v1 demo stub; every
+        // other non-2xx (the static server's 405, a 5xx outage) discloses
+        // failure honestly instead of confirming a subscription that did not
+        // happen.
         result.textContent =
           res.status === 501 || res.status === 404
             ? 'Demo mode: the digest endpoint is stubbed in v1 — see GROWTH.md for the v2 plan.'
-            : "Thanks — you're on the list.";
+            : res.ok
+              ? "Thanks — you're on the list."
+              : 'The digest service did not accept this request (status ' + res.status + '). Nothing was subscribed.';
       } catch {
         result.textContent = 'Demo mode: the digest endpoint is stubbed in v1 (offline).';
       }

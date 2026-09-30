@@ -418,6 +418,160 @@ repair audit is `docs/reports/2026-09-22-evidence-branch-repair.md`.
   marketing "our data & sources" page (T2-54 extension); consider a
   ledger-diff review surface for future re-adjudications.
 
+## SENIOR CODE AUDIT 2026-09-29 — REMEDIATION WORKLIST (F01–F48)
+
+Full report: [`reports/2026-09-29-senior-code-audit.md`](reports/2026-09-29-senior-code-audit.md)
+(2 P1, 41 P2, 5 P3 @ canon 14a92bc). Remediation ran in waves on
+`codex/audit-remediation-20260929` — **all 48 findings fixed and independently
+verified**; per-finding mechanisms below, full evidence in
+[`reports/2026-09-30-audit-remediation.md`](reports/2026-09-30-audit-remediation.md).
+Final gates: build/content/units 1073/infra 18/lint 0, Playwright 107/107.
+
+### Wave 1 — urgent integrity and test foundation (MERGED)
+
+- [x] **F01 P1** — Water Data parser merged every parameter under the newest metric's
+  timestamp, so a working flow sensor kept a stopped temperature sensor fresh
+  (`usgs-waterdata.ts:80`). Fixed: additive `metricTimes` per-metric map
+  (contracts gauge schema), parser preserves per-metric observation times, T1-6
+  freshness gate ported to the default parser, `scoreFishability` freshness keys off
+  `metricTimes.tempC`. Branch w1a `cdb4421`.
+- [x] **F02 P1** — POST /v1/portal/reports ran the whole snapshot builder without the
+  content pack, wiping species assessments catalog-wide; INSERT preceded snapshot I/O
+  so a failed feed write double-inserted on retry. Fixed: route publishes only
+  `v1/reports/recent.json` via `publishReportFeed` (same bytes as scheduled builds);
+  acceptance separated from feed publication (201 + `feed.published` truth);
+  optional `Idempotency-Key` header replays the stored report (migration 018 partial
+  UNIQUE index). Admin client adoption of the header tracked in F15. Branch w1b `d92d119`.
+- [x] **F03 P2** — known-offline branch skipped the Dexie/SW recovery tier (installed
+  SW content unused with empty Dexie). Fixed: offline path shares the recovery tier;
+  Workbox `__WB_REVISION__` keys recovered with `ignoreSearch` fallback. Branch w1d `06b16a5`.
+- [x] **F10 P2** — browser e2e gate red (ignored-data leakage, no fishability fixtures,
+  obsolete 148-water/month-policy expectations). Fixed: deterministic fixture tree
+  (explicit clock, fishability + stocking-recent emission, isolated from gitignored
+  snapshots), specs updated to current policy, touch-polygon failure diagnosed as
+  harness (reference-tier hit-layer mismatch). Suite: 105 passed / 0 failed / 1
+  documented fixme pending F25. Branch w1e `b7ef57e`.
+- [x] **F19 P2** — recursive lint gate red (27 errors/33 warnings). Fixed: script
+  runtime globals configured, real dead symbols removed; `pnpm -r lint` exits 0.
+  Branch w1e `1a1bb89`.
+- [x] **F29 P3** — terrain cache invalidation recorded the new generation before
+  `caches.delete` succeeded. Fixed: delete first, marker advances only on success,
+  retryable. Branch w1d `06b16a5`.
+- [x] **F32 P2** — a failed Dexie cache write discarded the successful fresh fetch and
+  served stale data. Fixed: persistence is best-effort; validated current response
+  always returned (`live:true`) with `persisted` surfaced. Branch w1d `06b16a5`.
+- [x] **F34 P2** — latest-value selection ordered ISO timestamps as text in SQL and
+  evidence providers (DST repeated hour hid newer readings). Fixed:
+  `latestReadings` orders by `julianday(observed_at)`, evidence providers compare
+  parsed instants. TVA-provider instance of the same bug fixed in the F05 wave. Branch w1a `cdb4421`.
+- [x] **F41 P2** — transient cluster fetch failure cached for the whole map session.
+  Fixed: failed/null promises evicted, bounded retry with cooldown, valid-empty kept
+  distinct from error. Branch w1d `06b16a5`.
+- [x] **F46 P2** — failure status writes preceded transition checks, suppressing
+  backup/refresh failure pages. Fixed: `trout_alert_init` owns prior-state capture;
+  dispatch order can no longer erase a transition. Branch w1c `3b8d9a4`.
+- [x] **F47 P2** — watchdog announced recovery on every persistently-degraded check.
+  Fixed: health read once, final state decided, recovery only on true degraded→OK.
+  Branch w1c `3b8d9a4`.
+
+### Wave 2 — data publication and source integrity (MERGED @ 6e47601 + lint follow-up; api 323 / admin 32 / web 387 / contracts 200 / content 19, infra 12, lint green)
+
+
+- [x] **F05 P2** — production WinSW refresh omits stocking/evidence feeds; NWS pressure
+  job has no application caller; missing/never-run expected jobs escape health.
+  → Fixed (lane C): refresh-data ingests pressure hourly; new daily `trout-refresh-feeds` schtasks task runs stocking+evidence under the deploy-stamp guard; pressure wired as dispatcher job (`--job=pressure`); EXPECTED_JOBS health reports stale/never-run jobs.
+- [x] **F06 P2** — portal-origin "My reports" fetches `/v1/reports/recent.json` which
+  the portal proxy does not forward (404).
+  → Fixed (lane E): static-server forwards the allowlisted public read GET/HEAD `/v1/reports/recent.json`; e2e validates "My reports" from the portal origin.
+- [x] **F14 P2** — public gauge route: unbounded distinct-key upstream fan-out, no
+  cache eviction/concurrency cap.
+  → Fixed (lane C): upstream concurrency cap (4) + bounded queue (503 GaugeNowBusy on overflow) + 2000-entry cache with expired-then-oldest eviction; unwired gauges stay fetchable.
+- [x] **F15 P2** — accepted publication leaves a reusable draft; local-save failure
+  reported as publish failure.
+  → Fixed (lane E): server acceptance is final — draft removed on 2xx, local-save failures surface separately; admin sends a stable per-draft `Idempotency-Key` (F02 replay contract).
+- [x] **F16 P2** — unpublished drafts shared across shop identities.
+  → Fixed (lane E): drafts namespaced/ownership-bound per shopId and re-validated on read; legacy v1 drafts quarantined with count-only disclosure + explicit two-step clear.
+- [x] **F21 P2** — failed snapshot build publishes part of the new generation
+  (per-file atomicity, no generation atomicity).
+  → Fixed (lane A): staged-generation build → backup-then-promote with sha256 verification and verified rollback; interrupted promotions recover on the next build.
+- [x] **F22 P2** — catalog seeding retains deleted waters and partly applies failed runs.
+  → Fixed (lane A): seed validates every file before one transaction; removals soft-archive (`archived_at`, migration 019); returning YAML reactivates.
+- [x] **F23 P2** — rollback rebuilds with new dependencies and different publication
+  steps; announces success on partial restoration.
+  → Fixed (lane B): rollback reinstalls from the restored lockfile and reuses the ordinary real-data/SEO pipeline (shared prerender_and_marketing); success announced only when every rollback step verifies.
+- [x] **F24 P2** — archive/restore deletes the good tree before promotion succeeds.
+  → Fixed (lane B): retain-until-promoted — old generation renamed aside, staged swap verified, only then aside deleted; every failure undoes into place; batch restore undoes atomically.
+- [x] **F33 P2** — complete upstream ingestion failure recorded as a healthy run;
+  last-good evidence observations discarded.
+  → Fixed (lane C): evidence job outcome ok/degraded/failed from expected sources; failed → jobs_log error → healthz degraded; last-good observations carried forward with stale-last-good provenance; gauges dispatcher propagates failure.
+- [x] **F35 P2** — month-only stocking schedules ignore remaining months this year.
+  → Fixed (lane D): nearestListedMonthDate picks the nearest listed current/future month, rolling the year only after all listed months pass; precision stays month.
+- [x] **F36 P2** — TWRA raw captures collide on one filename (schedule vs completed grid).
+  → Fixed (lane D): captures named {runStamp}.{seq}.{gridKind}.{source}.{suffix} + URL/sha256 manifest written last as the commit record; grids never collide.
+- [x] **F37 P2** — NWS rainfall parsing rejects the real quantitative-value shape.
+  → Fixed (lane C): quantitative-value object parsed (value/unitCode; null = no-data; documented unit conversion); authentic KBNA fixture replaces the invented scalar.
+- [x] **F38 P2** — KMOR/KMRN weather-station mappings point at the wrong localities.
+  → Fixed (lane C): Pigeon/French Broad → KMOR (verified Morristown TN); Caney Fork → KCSV (Crossville, verified); out-of-state KMRN removed; official provenance recorded.
+- [x] **F48 P2** — fresh snapshots carry expired pressure trend indefinitely.
+  → Fixed (lane A): pressure context age-gated at build (6 h window, matching the rain gate); expired rows omitted with a warning; payload keeps observedAt for Wave-3 client display.
+  → Fixed (lane A, API lane A wave 2): pressure context is age-gated at build (6 h window, matching the rain gate) and the client card displays the observation age ("observed 2 hours ago") alongside the station.
+
+### Wave 3 — freshness, maps, accessibility, user-facing truth (MERGED; all 22 findings fixed and verified)
+
+- [x] **F04 P2** — cached species assessments keep current confidence indefinitely.
+  → Fixed (lane A): snapshots are stamped with current observation ages at the data boundary (pure stampCurrentAges, injected clock); past the 3-h reading window an assessment renders as Historical (chip + reduced confidence + explicit line), never as current-high.
+- [x] **F07 P2** — marketing embed reverses assessed semantics; different score bands.
+  → Fixed (lane D): scorePresentation honors assessed — unassessed renders an honest unavailable state (never a verdict), assessed 0 is Poor, bands aligned to the PWA (70/40).
+- [x] **F08 P2** — stocking plans acquire exact dates and completion labels across
+  React/prerender/Astro.
+  → Fixed (lane D): shared schedule-only vocabulary across React/prerender/Astro — Scheduled / Past-scheduled (never "reported released/completed"; the feed carries no completion field), precision-aware dates (month → "December 2026", week → "Week of …").
+- [x] **F09 P2** — repeated prerender nests homepage body inside other routes.
+  → Fixed (coordinator lane): pristine-shell normalization — stripPrerenderedRoot restores the empty #root and head whitespace is collapsed; three consecutive prerender runs are byte-identical with per-route bodies (apps/web/scripts/prerender-shell.mjs + pinned unit tests).
+  → Fixed (coordinator lane): pristine-shell normalization — stripPrerenderedRoot restores the empty #root and head whitespace is collapsed; three consecutive prerender runs are byte-identical with per-route bodies (apps/web/scripts/prerender-shell.mjs + pinned unit tests).
+- [x] **F11 P2** — solar equation-of-time missing radians→degrees (9.67 min drift).
+  → Fixed (coordinator lane): equation of time now 4·radToDeg(E) (apps/web/src/lib/solar.ts); EOT pinned across the annual range against the standard independent approximation and NOAA crossing references corrected (the old Memphis reference encoded the bug).
+  → Fixed (coordinator lane): equation of time now 4·radToDeg(E) (apps/web/src/lib/solar.ts); EOT pinned across the annual range against the standard independent approximation and NOAA crossing references corrected (the old Memphis reference encoded the bug).
+- [x] **F12 P2** — UTC calendar days become local draft dates / "today's" windows.
+  → Fixed (coordinator lane): civilDate() + solarWindowsForCivilDate() drive the "Today's windows" card; draft todayIso() uses the local civil calendar; time acquisition stays in callers.
+  → Fixed (coordinator lane): civilDate() + solarWindowsForCivilDate() drive the "Today's windows" card; draft todayIso() uses the local civil calendar; time acquisition stays in callers.
+- [x] **F13 P2** — rapid preference patches overwrite each other.
+  → Fixed (coordinator lane): preference updates merge the LATEST stored record inside a serialized Dexie readwrite transaction; rapid patches can no longer overwrite each other.
+  → Fixed (coordinator lane): preference updates merge the LATEST stored record inside a serialized Dexie readwrite transaction; rapid patches can no longer overwrite each other.
+- [x] **F17 P2** — header overflows a 320px viewport (nav off-screen).
+  → Fixed (lane C): below 640px the header wraps (search returns as a full-width row — it had been display:none, which also caused Wave-1 focus-restore misses); quick-settings collapse into the overflow drawer ≤480px; 44px targets kept; built-CSS contract pinned by tests (real-geometry proof: coordinator e2e no-overflow guards).
+- [x] **F18 P2** — blocked storage read blanks the map entry page.
+  → Fixed (lane C): legend preference reads/writes are guarded with in-memory fallback (theme-storage pattern); a blocked Storage no longer unmounts the map page.
+- [x] **F20 P2** — light-theme legend text near-white-on-white (1.13:1).
+  → Fixed (lane C): legend text uses shared theme tokens; computed WCAG contrast pinned for all five presets (daybreak 14.3:1 text / 6.1:1 muted vs the audited 1.13/2.17).
+- [x] **F25 P2** — invisible oversized legend wrapper blocks the desktop zoom button.
+  → Fixed (lane C): the legend wrapper is content-sized AND pointer-events:none with per-control auto (specificity-safe over .map-bottom > *); the Wave-1 zoom fixme in e2e/fieldwork/ui.spec.ts is restored as a live test.
+- [x] **F26 P3** — regional geometry validator dereferences retired lakes.geojson.
+  → Fixed (coordinator lane): the retired passive-lakes check was removed; the validator completes (48 features / 18 lakes / 30 reaches / 0 errors) with all remaining geometry checks intact.
+  → Fixed (coordinator lane): the retired passive-lakes check was removed; the validator completes (48 features / 18 lakes / 30 reaches / 0 errors) with all remaining geometry checks intact.
+- [x] **F27 P2** — marketing footer targets below minimum size/spacing (9 templates).
+  → Fixed (lane D): footer/header nav links get 44px min-height target boxes + explicit row gap (global.css; no font-size inflation).
+- [x] **F28 P2** — terrain readiness probes a missing tile; SPA 200 shell masquerades
+  as a tile.
+  → Fixed (lane B): manifest declares a verified shipped probe tile (z8/66/100); readiness requires image/* content-type (a 200 text/html SPA shell is never availability); the API SPA fallback answers only real client routes — asset namespaces 404 when missing.
+- [x] **F30 P3** — "All fish" accessible name mismatch.
+  → Fixed (coordinator lane): accessible name is "All fish mode", containing the exact visible text.
+  → Fixed (coordinator lane): accessible name is "All fish mode", containing the exact visible text.
+- [x] **F31 P2** — non-map routes eagerly load the entire map/route bundle.
+  → Fixed (lane E): all 16 routes lazy behind one Suspense boundary — eager entry 2,093,239 B → 571,064 B (−72.7%); MapLibre isolated in lazy chunks (1.13 MB map + 487 kB worker); all 39 chunks precached (SW manifest verified), budget 12.48/25 MB; bundle-split-check gate wired into both build flavors.
+- [x] **F39 P3** — inert newsletter form reports success on 405/500.
+  → Fixed (coordinator lane): only verified 2xx claims subscription success; 405/5xx disclose failure; 404/501 stay the documented v1 demo stub.
+  → Fixed (coordinator lane): only verified 2xx claims subscription success; 405/5xx disclose failure; 404/501 stay the documented v1 demo stub.
+- [x] **F40 P2** — map never requests West Tennessee hatch charts.
+  → Fixed (lane B): requested regions derive from the regions registry (hatch-calendar source of truth) — tn-west included; the hardcoded 11-region array is gone.
+- [x] **F42 P3** — QA crossing overlay computed on the wrong segment parameter.
+  → Fixed (lane B): crossing point uses the intersection parameter of the segment actually returned (t = d3/(d3−d4)); asymmetric-crossing test pins the exact intersection.
+- [x] **F43 P2** — map Trout controls cannot override a saved All-fish preference.
+  → Fixed (lane B): all three map controls write an explicit species selection (species=trout/species=all); parameter removal stays reserved for the site-wide header toggle.
+- [x] **F44 P2** — fishability/focus/palette changes do not invalidate memoized map colors.
+  → Fixed (lane B): featureColors memo deps now include per-water fishability payload, focus species, and the resolved palette signature; TennesseeMap style-swap key includes the palette; delayed-response and palette-change tests pin the repaint.
+- [x] **F45 P2** — touch taps select a river before an overlapping gauge/stocking overlay.
+  → Fixed (lane B): one exported dispatchMapTap routine serves touch and click — overlay dot first (gauge→stocking→attractor), river fall-through, duplicate event suppressed only after dispatch.
+
 ## REGRESSION TESTS TO ADD ALONGSIDE THE FIXES
 
 Conditional HEAD on every static mount (T0-1) · deploy-failure → rollback path (T0-2) ·

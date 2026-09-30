@@ -117,11 +117,20 @@ export function parseTvaObservations(
       });
       if (!parsed.success) continue;
       const prev = byMetric.get(metric);
-      if (!prev || parsed.data.observedAt > prev.observedAt) byMetric.set(metric, parsed.data);
+      // F34 residue (Wave-1 handoff): newest-wins by PARSED INSTANT, never
+      // text — parseTvaTimestamp embeds EST/EDT/CST/CDT offsets, and across
+      // the DST fall-back the same wall-clock hour exists twice (mixed
+      // offsets), where text order ranks the OLDER instant as newer.
+      if (
+        !prev ||
+        Date.parse(parsed.data.observedAt) > Date.parse(prev.observedAt)
+      ) {
+        byMetric.set(metric, parsed.data);
+      }
     }
   }
   return [...byMetric.values()].sort(
-    (a, b) => a.observedAt.localeCompare(b.observedAt) || a.metric.localeCompare(b.metric),
+    (a, b) => Date.parse(a.observedAt) - Date.parse(b.observedAt) || a.metric.localeCompare(b.metric),
   );
 }
 

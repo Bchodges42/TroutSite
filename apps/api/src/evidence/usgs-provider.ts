@@ -67,12 +67,25 @@ function normalizeTimestamp(usgs: string): string | null {
   return d.toISOString();
 }
 
-/** Newest usable point of a series by its own dateTime (ties → last occurrence). */
+/**
+ * Newest usable point of a series by its own dateTime, compared as PARSED
+ * INSTANTS (F34): source dateTimes may carry different UTC offsets (the DST
+ * repeated hour mixes -05:00/-06:00 within one series), where text order
+ * hides the newer observation behind the older local-clock value.
+ * Ties → last occurrence.
+ */
 function newestValue(series: UsgsSeriesJson): UsgsValueJson | undefined {
   const values = series.values?.[0]?.value ?? [];
-  const usable = values.filter((v) => typeof v?.value === 'string' && typeof v?.dateTime === 'string');
+  const usable = values.filter(
+    (v) =>
+      typeof v?.value === 'string' &&
+      typeof v?.dateTime === 'string' &&
+      Number.isFinite(Date.parse(v.dateTime)),
+  );
   if (usable.length === 0) return undefined;
-  return usable.reduce((newest, v) => (v.dateTime >= newest.dateTime ? v : newest));
+  return usable.reduce((newest, v) =>
+    Date.parse(v.dateTime) >= Date.parse(newest.dateTime) ? v : newest,
+  );
 }
 
 /**
@@ -117,10 +130,12 @@ export function parseUsgsObservations(
   for (const o of out) {
     const key = `${o.sourceUrl}|${o.metric}`;
     const prev = byKey.get(key);
-    if (!prev || o.observedAt > prev.observedAt) byKey.set(key, o);
+    // Instant comparison — mixed offsets make text order lie (F34).
+    if (!prev || Date.parse(o.observedAt) > Date.parse(prev.observedAt)) byKey.set(key, o);
   }
   return [...byKey.values()].sort(
-    (a, b) => a.observedAt.localeCompare(b.observedAt) || a.metric.localeCompare(b.metric),
+    (a, b) =>
+      Date.parse(a.observedAt) - Date.parse(b.observedAt) || a.metric.localeCompare(b.metric),
   );
 }
 

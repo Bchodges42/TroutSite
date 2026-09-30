@@ -6,7 +6,11 @@ import { createRequire } from 'node:module';
 // Existing image library, used only to inspect rendered pixels in this UI regression.
 const sharp = createRequire(new URL('../../apps/web/package.json', import.meta.url))('sharp');
 
-const streamsPath = fileURLToPath(new URL('../../apps/web/public/v1/streams.json', import.meta.url));
+const streamsPath = fileURLToPath(
+  // The GENERATED fixture catalog (the same tree the fixture build serves) —
+  // not the gitignored public/v1 snapshot the old seam read (F10).
+  new URL('../../apps/web/fixtures/data/v1/streams', import.meta.url),
+);
 const riversPath = fileURLToPath(new URL('../../apps/web/public/atlas/rivers.geojson', import.meta.url));
 
 /**
@@ -21,6 +25,35 @@ const riversPath = fileURLToPath(new URL('../../apps/web/public/atlas/rivers.geo
 
 async function ready(page: Page) {
   await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-ready', '1');
+}
+
+/**
+ * Poll a post-swap map attribute while nudging one repaint per attempt.
+ *
+ * The designed theme/terrain swap rewrites `data-map-theme` inside a
+ * `map.once('render')` armed at the END of the presentation apply — but
+ * MapLibre `idle` fires only AFTER the last frame, so a fully settled,
+ * fully cached map (this suite's reload/back-forward steps land exactly
+ * there) can go static before that arming ever sees a frame and the
+ * attribute never lands. The component nudges renders in its own swap
+ * path for precisely this deadlock; the test does the same through the
+ * documented e2e handle. Assertion semantics unchanged — this supplies
+ * the missing frame, it does not relax what is asserted.
+ */
+async function expectMapAttributeAfterRepaint(
+  page: Page,
+  attribute: string,
+  value: string | RegExp,
+) {
+  await expect
+    .poll(async () => {
+      await page.evaluate(() => {
+        (window as unknown as { __troutMap?: { triggerRepaint: () => void } }).__troutMap
+          ?.triggerRepaint();
+      });
+      return page.getByTestId('river-map').getAttribute(attribute);
+    })
+    .toBe(value);
 }
 
 function mapLayers(page: Page) {
@@ -163,8 +196,13 @@ test.describe('Layers panel', () => {
     await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-sources', /roads-0/, { timeout: 20_000 });
 
     // Theme change rebuilds the style and must rebuild BOTH optional layers.
+    // The theme swap is async BY DESIGN (TennesseeMap: clear data-map-theme →
+    // setStyle → idle → presentation apply → render → rewrite data-map-theme),
+    // and the final rewrite arms on the first rendered frame AFTER apply — a
+    // fully settled cached map can go static before that frame arrives, so the
+    // poll nudges one repaint per attempt (see expectMapAttributeAfterRepaint).
     await page.getByRole('button', { name: /Switch to Nightfall theme/i }).click();
-    await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-theme', 'nightfall');
+    await expectMapAttributeAfterRepaint(page, 'data-map-theme', 'nightfall');
     await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-sources', /hillshade/, { timeout: 20_000 });
     await expect(page.getByTestId('river-map')).toHaveAttribute('data-map-sources', /roads-0/, { timeout: 20_000 });
     const layers = (await mapLayers(page)) ?? '';
@@ -293,17 +331,28 @@ test.describe('Layers panel', () => {
 });
 
 test.describe('condition presentation', () => {
+  // The mocks below must WIN over the served fixture data. The service worker
+  // runtime-caches /v1/* (B10) and SW fetches bypass page.route, so without
+  // blocking it the app silently receives the dist fixture catalog instead of
+  // this crafted one (the exact drift class F10 documents). Same seam as the
+  // ui.spec fallback/polygon describes.
+  test.use({ serviceWorkers: 'block' });
   // A tiny crafted catalog + snapshot set exercising every assessment state.
   // Scores are the frozen scoreConditions model's business — the FIXTURES
   // below reuse the committed fixture generator's values, hand-pinned here to
-  // specific presentations.
+  // specific presentations. Every line water carries a minimal hydroIdentity:
+  // the frozen StreamSchema requires it for river/creek/tailrace waters, and a
+  // catalog that fails validation is discarded in favor of the bundled
+  // fallback (the outage-fix behavior), which would silently swap the catalog
+  // under test.
+  const hydroIdentity = { gnisIds: ['00000001'], huc8s: ['05130000'] };
   const CATALOG = [
-    { id: 'good-water', name: 'Good Water', stateId: 'TN', waterbodyType: 'river', regionId: 'tn-east-holston', gaugeIds: ['g1'], stockingProgram: true, species: 'trout', idealFlow: [{ min: 100, max: 400, unit: 'cfs' }], officialSources: [] },
-    { id: 'zero-water', name: 'Zero Water', stateId: 'TN', waterbodyType: 'river', regionId: 'tn-east-holston', gaugeIds: ['g2'], stockingProgram: false, species: 'trout', idealFlow: [{ min: 50, max: 250, unit: 'cfs' }], officialSources: [] },
-    { id: 'unassessed-water', name: 'Unassessed Water', stateId: 'TN', waterbodyType: 'creek', regionId: 'tn-east-holston', gaugeIds: ['g3'], stockingProgram: false, species: 'trout', idealFlow: [], officialSources: [] },
-    { id: 'stale-water', name: 'Stale Water', stateId: 'TN', waterbodyType: 'river', regionId: 'tn-east-holston', gaugeIds: ['g4'], stockingProgram: false, species: 'trout', idealFlow: [{ min: 100, max: 400, unit: 'cfs' }], officialSources: [] },
-    { id: 'warm-water', name: 'Warm Water', stateId: 'TN', waterbodyType: 'river', regionId: 'tn-east-holston', gaugeIds: [], stockingProgram: true, species: 'warmwater', idealFlow: [{ min: 100, max: 400, unit: 'cfs' }], officialSources: [] },
-    { id: 'no-snapshot-water', name: 'No Snapshot Water', stateId: 'TN', waterbodyType: 'creek', regionId: 'tn-east-holston', gaugeIds: [], stockingProgram: false, species: 'trout', idealFlow: [], officialSources: [] },
+    { id: 'good-water', name: 'Good Water', stateId: 'TN', waterbodyType: 'river', regionId: 'tn-east-holston', hydroIdentity, gaugeIds: ['g1'], stockingProgram: true, species: 'trout', idealFlow: [{ min: 100, max: 400, unit: 'cfs' }], officialSources: [] },
+    { id: 'zero-water', name: 'Zero Water', stateId: 'TN', waterbodyType: 'river', regionId: 'tn-east-holston', hydroIdentity, gaugeIds: ['g2'], stockingProgram: false, species: 'trout', idealFlow: [{ min: 50, max: 250, unit: 'cfs' }], officialSources: [] },
+    { id: 'unassessed-water', name: 'Unassessed Water', stateId: 'TN', waterbodyType: 'creek', regionId: 'tn-east-holston', hydroIdentity, gaugeIds: ['g3'], stockingProgram: false, species: 'trout', idealFlow: [], officialSources: [] },
+    { id: 'stale-water', name: 'Stale Water', stateId: 'TN', waterbodyType: 'river', regionId: 'tn-east-holston', hydroIdentity, gaugeIds: ['g4'], stockingProgram: false, species: 'trout', idealFlow: [{ min: 100, max: 400, unit: 'cfs' }], officialSources: [] },
+    { id: 'warm-water', name: 'Warm Water', stateId: 'TN', waterbodyType: 'river', regionId: 'tn-east-holston', hydroIdentity, gaugeIds: [], stockingProgram: true, species: 'warmwater', idealFlow: [{ min: 100, max: 400, unit: 'cfs' }], officialSources: [] },
+    { id: 'no-snapshot-water', name: 'No Snapshot Water', stateId: 'TN', waterbodyType: 'creek', regionId: 'tn-east-holston', hydroIdentity, gaugeIds: [], stockingProgram: false, species: 'trout', idealFlow: [], officialSources: [] },
   ];
   const minutesAgo = (m: number) => new Date(Date.now() - m * 60_000).toISOString().replace(/\.\d{3}Z$/, 'Z');
   const CONDS = [

@@ -12,12 +12,15 @@ test('conditions opens search-first; search discloses waters; detail shows reaso
   expect(listSize).toBeGreaterThan(0);
   expect(listSize).toBeLessThanOrEqual(8);
 
-  // Boone's authored stocking window (Dec/Mar/Apr) excludes September — the
-  // honest seasonal state replaces the score pill (T1-19 states ship).
+  // Boone is a documented YEAR-ROUND fishery whose Dec/Mar/Apr rows are the
+  // programmatic stocking schedule — ADR 0010: a schedule is never a presence
+  // or closure claim, so September wears the score pill, never "Out of
+  // season" (fixture: demo plan scores Boone 90).
   const booneRow = page.locator('li', { hasText: 'Boone Tailwater' }).first();
-  await expect(booneRow.getByText('Out of season')).toBeVisible();
+  await expect(booneRow.getByText('Out of season')).toHaveCount(0);
+  await expect(booneRow.getByText('90')).toBeVisible();
   // In-season gauged tailwaters carry their score pills straight from the
-  // snapshot (Caney Fork's authored window runs Mar–Dec).
+  // snapshot (Caney Fork's fixture plan scores 80).
   const caneyRow = page.locator('li', { hasText: 'Caney Fork' }).first();
   await expect(caneyRow.getByText('80')).toBeVisible();
 

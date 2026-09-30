@@ -26,17 +26,51 @@ fi
 START_REV="$(git rev-parse HEAD)"
 MUTATED=0
 HAD_ROLLBACK=0
+# F23: every rollback step that can fail records it here. A green read-path
+# check alone is NOT proof the last-good state is back — an old process can
+# answer health while dist/marketing/prerendered pages do not match the
+# restored checkout — so the success announcement is gated on BOTH.
+ROLLBACK_OK=1
 BACKUPS="$ROOT/backups"
 VERIFY_URL="${TROUT_VERIFY_URL:-http://127.0.0.1:8787}"
 mkdir -p "$BACKUPS"
 
+# The publication steps that consume the snapshot trees (per-route SEO pages +
+# the marketing build). ONE implementation shared by the ordinary deploy below
+# and rollback(): the last-good rebuild must go through the exact same steps as
+# the deploy that produced those trees. F23: rollback used to rebuild with
+# `pnpm -r build` only — no prerender (PWA route bodies vanished) and no
+# MARKETING_DATA_DIR (marketing silently fell back to bundled fixtures), so a
+# "successful" rollback replaced factual output with fixture pages.
+prerender_and_marketing() {
+  echo "[deploy] prerender per-route SEO pages + sitemap.xml (reads the snapshot trees on disk)"
+  if [ -f apps/web/public/v1/streams.json ] || [ -f apps/web/public/v1/streams ]; then
+    pnpm --filter @trout/web prerender
+  else
+    echo "[deploy] WARN — no /v1 snapshots yet; skipping prerender (deep links serve the SPA shell)"
+  fi
+
+  echo "[deploy] rebuild marketing from real snapshot JSON (§12 #3)"
+  if [ -f apps/web/public/v1/streams.json ]; then
+    MARKETING_DATA_DIR="$(pwd)/apps/web/public" pnpm --filter @trout/marketing build
+  else
+    echo "[deploy] no /v1 snapshots yet — marketing stays on bundled fixtures"
+  fi
+}
+
 rollback() {
   # Called from the EXIT trap (MUTATED=1) or the failed final verification —
   # both mean: new state was staged but never proven. Best-effort by design:
-  # every step is guarded so the trap itself can never fail its way out.
+  # every step is guarded so the trap itself can never fail its way out, and
+  # each step that fails clears ROLLBACK_OK so the summary below stays truthful.
   echo "[deploy] ROLLBACK — returning the served state to the pre-deploy point ($START_REV)"
   if [ "$HAD_ROLLBACK" = "1" ]; then
-    bash infra/restore-snapshots.sh || echo "[deploy] WARN — snapshot restore failed; generated trees left as-is"
+    if bash infra/restore-snapshots.sh; then
+      echo "[deploy] last-good snapshot trees restored"
+    else
+      echo "[deploy] WARN — snapshot restore failed; generated trees left as-is"
+      ROLLBACK_OK=0
+    fi
   else
     echo "[deploy] no pre-deploy rollback point existed; generated trees left as-is"
   fi
@@ -44,12 +78,39 @@ rollback() {
     echo "[deploy] checkout back at $START_REV"
   else
     echo "[deploy] WARN — git reset to $START_REV failed; inspect the checkout manually"
+    ROLLBACK_OK=0
   fi
-  pnpm -r build >/dev/null 2>&1 || echo "[deploy] WARN — rebuild of $START_REV failed; dist may not match the checkout"
+  # F23: the reset put the OLD lockfile back, but node_modules still matches
+  # the deploy that just failed — rebuilding $START_REV against NEW
+  # dependencies can fail (or mis-build) exactly like the deploy did.
+  # Reinstall first, from the restored lockfile, before any rebuild.
+  if pnpm install --frozen-lockfile >/dev/null 2>&1; then
+    echo "[deploy] dependencies reinstalled from the restored lockfile"
+  else
+    echo "[deploy] WARN — pnpm install for $START_REV failed; node_modules may not match the restored lockfile"
+    ROLLBACK_OK=0
+  fi
+  if pnpm -r build >/dev/null 2>&1; then
+    if ! prerender_and_marketing >/dev/null 2>&1; then
+      echo "[deploy] WARN — prerender/marketing rebuild for $START_REV failed; SEO pages and marketing may not match the restored snapshots"
+      ROLLBACK_OK=0
+    fi
+  else
+    echo "[deploy] WARN — rebuild of $START_REV failed; dist may not match the checkout"
+    ROLLBACK_OK=0
+  fi
   bash infra/restart-app.sh || true
   if bash infra/verify-site.sh --url "$VERIFY_URL" --wait 30 --deep >/dev/null 2>&1; then
-    echo "[deploy] ROLLED BACK — last-good state is serving again (checkout at $START_REV)."
-    echo "[deploy] Fix the failing step above, then re-run this deploy."
+    if [ "$ROLLBACK_OK" = "1" ]; then
+      echo "[deploy] ROLLED BACK — last-good state is serving again (checkout at $START_REV)."
+      echo "[deploy] Fix the failing step above, then re-run this deploy."
+    else
+      # F23: a green read-path check is not a rollback success — an old
+      # process answering health says nothing about the restored code, deps,
+      # dist, prerendered routes or marketing output.
+      echo "[deploy] ROLLBACK INCOMPLETE — the read path answers, but the last-good code/artifact state did NOT rebuild."
+      echo "[deploy] Fix the failing step above before anything is redeployed; see RUNBOOK §4/§9."
+    fi
   else
     echo "[deploy] rollback did not fully heal the read path — run:"
     echo "[deploy]   bash infra/verify-site.sh   (details) and see RUNBOOK §4/§9."
@@ -127,19 +188,9 @@ else
   echo "[deploy] snapshot script not present in apps/api yet (ROLE 3) — skipping"
 fi
 
-echo "[deploy] prerender per-route SEO pages + sitemap.xml (reads the snapshots above)"
-if [ -f apps/web/public/v1/streams.json ] || [ -f apps/web/public/v1/streams ]; then
-  pnpm --filter @trout/web prerender
-else
-  echo "[deploy] WARN — no /v1 snapshots yet; skipping prerender (deep links serve the SPA shell)"
-fi
-
-echo "[deploy] rebuild marketing from real snapshot JSON (§12 #3)"
-if [ -f apps/web/public/v1/streams.json ]; then
-  MARKETING_DATA_DIR="$(pwd)/apps/web/public" pnpm --filter @trout/marketing build
-else
-  echo "[deploy] no /v1 snapshots yet — marketing stays on bundled fixtures"
-fi
+# Same publication pipeline rollback() uses — one implementation, so the
+# last-good rebuild can never drift from the ordinary deploy (F23).
+prerender_and_marketing
 
 echo "[deploy] restart serving processes (host-specific: pm2 or Windows service)"
 # Host-agnostic: pm2 reload on the runbook setup, WinSW service restart on the

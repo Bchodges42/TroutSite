@@ -1,6 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 import { ENDPOINTS, FishabilitySnapshotSchema } from '@trout/contracts';
-import type { FishabilitySnapshot, SpeciesKey, Stream } from '@trout/contracts';
+import type {
+  ActivityOutlook,
+  FishabilityScore,
+  FishabilitySnapshot,
+  SpeciesKey,
+  Stream,
+} from '@trout/contracts';
 import { fetchSnapshot, type SnapshotResult } from './snapshots';
 
 /**
@@ -13,10 +19,76 @@ import { fetchSnapshot, type SnapshotResult } from './snapshots';
  */
 const FISHABILITY_TTL_MIN = 60;
 
+/**
+ * F04 (2026-09-29 audit): a snapshot served from the device cache keeps its
+ * generation-time `freshness.ageMinutes` forever — a month-old assessed-90
+ * comfort would still claim it was scored 30 minutes ago. These hooks are the
+ * data boundary where the real clock lives, so every served snapshot is
+ * stamped: each comfort's freshness gains `currentAgeMinutes`, the age of the
+ * supporting observation NOW. Pure consumers (waterDecision, the contracts
+ * scoring) read the stamp instead of acquiring time; absent stamp =
+ * generation-time age is the only known age (pre-stamp caches, direct test
+ * fixtures).
+ */
+export type StampedFreshness = {
+  observedAt: string;
+  ageMinutes: number;
+  currentAgeMinutes?: number;
+};
+
+export type StampedComfort = Omit<FishabilityScore, 'freshness'> & {
+  freshness: StampedFreshness | null;
+};
+
+export type StampedFishabilitySnapshot = Omit<FishabilitySnapshot, 'bySpecies'> & {
+  bySpecies: Record<SpeciesKey, { comfort: StampedComfort; activity: ActivityOutlook }>;
+};
+
+/**
+ * Pure (clock injected — same discipline as the contracts scoring): shallow-
+ * clone `snapshot` stamping every assessed comfort's freshness with
+ * `currentAgeMinutes`, floored to whole minutes and clamped at 0. An
+ * unreadable observedAt gets no stamp (an unknown age is never invented).
+ * Inputs are never mutated.
+ */
+export function stampCurrentAges(snapshot: FishabilitySnapshot, nowMs: number): StampedFishabilitySnapshot {
+  // Keys are copied verbatim from the (already SpeciesKey-keyed) input record.
+  const bySpecies = {} as StampedFishabilitySnapshot['bySpecies'];
+  for (const [species, entry] of Object.entries(snapshot.bySpecies)) {
+    const freshness = entry.comfort.freshness;
+    const observedMs = freshness ? Date.parse(freshness.observedAt) : Number.NaN;
+    const stamped: StampedFishabilitySnapshot['bySpecies'][SpeciesKey] = {
+      ...entry,
+      comfort: {
+        ...entry.comfort,
+        freshness: freshness
+          ? {
+              ...freshness,
+              ...(Number.isFinite(observedMs)
+                ? { currentAgeMinutes: Math.max(0, Math.floor((nowMs - observedMs) / 60_000)) }
+                : {}),
+            }
+          : null,
+      },
+    };
+    bySpecies[species as SpeciesKey] = stamped;
+  }
+  return { ...snapshot, bySpecies };
+}
+
 export function useFishabilityForWater(streamId: string | undefined) {
-  return useQuery<SnapshotResult<FishabilitySnapshot>>({
+  return useQuery<SnapshotResult<StampedFishabilitySnapshot>>({
     queryKey: ['snapshot', streamId ? ENDPOINTS.fishabilityForWater(streamId) : ''],
-    queryFn: () => fetchSnapshot(ENDPOINTS.fishabilityForWater(streamId!), FishabilitySnapshotSchema, FISHABILITY_TTL_MIN),
+    queryFn: async () => {
+      const res = await fetchSnapshot(
+        ENDPOINTS.fishabilityForWater(streamId!),
+        FishabilitySnapshotSchema,
+        FISHABILITY_TTL_MIN,
+      );
+      // F04: the boundary acquires the clock; the served payload gains the
+      // current observation ages the view layer needs.
+      return { ...res, data: stampCurrentAges(res.data, Date.now()) };
+    },
     enabled: Boolean(streamId),
     staleTime: FISHABILITY_TTL_MIN * 60_000,
     gcTime: Number.POSITIVE_INFINITY,
@@ -44,10 +116,10 @@ export function useFishabilityIndex(
 ) {
   const ids = streams && focus ? watersForSpecies(streams, focus) : [];
   const key = focus ? focus + ':' + ids.join(',') : '';
-  return useQuery<Record<string, FishabilitySnapshot>>({
+  return useQuery<Record<string, StampedFishabilitySnapshot>>({
     queryKey: ['fishability-index', key],
     queryFn: async () => {
-      const out: Record<string, FishabilitySnapshot> = {};
+      const out: Record<string, StampedFishabilitySnapshot> = {};
       const load = async (id: string): Promise<boolean> => {
         try {
           const res = await fetchSnapshot(
@@ -55,7 +127,7 @@ export function useFishabilityIndex(
             FishabilitySnapshotSchema,
             FISHABILITY_TTL_MIN,
           );
-          out[id] = res.data;
+          out[id] = stampCurrentAges(res.data, Date.now());
           return true;
         } catch {
           // Absent file = not scored (honest unassessed); a transient failure

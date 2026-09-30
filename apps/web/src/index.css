@@ -280,6 +280,20 @@ a {
      its labels to fragments ("Trout" → "t"). The search field absorbs. */
   flex-shrink: 0;
 }
+/* F17: the species + theme toggles travel together. Below 480px the cluster
+   (~230px with the non-shrinking toggles, before brand and menu button)
+   cannot coexist with them inside a 320px viewport — the audit measured
+   scrollWidth 378 with the menu button starting at x=333.5 — so the group
+   collapses out of the header and the identical controls render inside the
+   overflow menu (.menu-quick-settings). Exactly one copy is ever visible. */
+.header-quick-settings {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.menu-quick-settings {
+  display: none;
+}
 .privacy-note {
   display: flex;
   align-items: center;
@@ -293,6 +307,9 @@ a {
   justify-content: center;
   gap: 7px;
   min-height: 44px;
+  /* Touch convention (F17): with the name hidden on small screens the bare
+     glyph collapses to ~15px wide — keep the tap target at least 44px square. */
+  min-width: 44px;
   font-size: 13px;
   color: var(--ui-muted);
 }
@@ -794,6 +811,23 @@ a {
   pointer-events: none;
 }
 .map-bottom > * {
+  pointer-events: auto;
+}
+/* F25: .map-bottom is absolutely positioned and shrink-to-fit, so it is as
+   wide as its sibling help paragraph (866px measured in the audit). The
+   legend's bare relative wrapper stretched to that width and, through the
+   `> *` rule above, became an invisible hit area that intercepted the
+   bottom-right zoom-button click. This rule out-specifies `> *` ((0,2,0) vs
+   (0,1,0)), so the slot itself is click-through and sized to its contents
+   regardless of cascade order; the actual chip/panel re-enable pointer
+   events below, which keeps the legend's own controls and the sibling help
+   links working. */
+.map-bottom > .map-legend-slot {
+  position: relative;
+  pointer-events: none;
+  width: fit-content;
+}
+.map-legend-slot > * {
   pointer-events: auto;
 }
 .map-legend {
@@ -2053,16 +2087,59 @@ continuous corridor under a dashed quiet line — not a bare thin dash. */
   }
 }
 @media (max-width: 640px) {
+  /* F17: the single-row header overflowed a 320px viewport (audit measured
+     scrollWidth 378 with the menu button off-screen). The header reflows to
+     two rows — brand + actions, then the search as a full-width row — so the
+     menu button AND the search stay visible and usable on phones, and every
+     control keeps its 44px touch target. On the map page the flex column
+     lets the map absorb the taller header; other pages simply scroll. */
+  .app-header {
+    flex-wrap: wrap;
+    height: auto;
+    min-height: 64px;
+    row-gap: 8px;
+    padding: 10px 14px;
+  }
   .header-search {
-    display: none;
+    order: 9;
+    flex: 1 1 100%;
   }
   .header-actions {
     gap: 10px;
   }
+  .header-quick-settings {
+    gap: 10px;
+  }
+}
+/* F17: below 480px the quick-settings cluster (species + theme toggles,
+   ~180px combined) no longer fits beside the brand and the menu button in a
+   320px viewport, so it collapses into the overflow menu where the identical
+   controls render as roomy, full-width touch rows. The menu itself (brand
+   ~130px + 44px menu button) and the wrapped search row both fit 320px. */
+@media (max-width: 480px) {
+  .header-quick-settings {
+    display: none;
+  }
+  .menu-quick-settings {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 12px;
+    padding-top: 14px;
+    border-top: 1px solid var(--ui-border);
+  }
+  /* Roomier rows inside the drawer: keep the 44px+ touch targets generous. */
+  .menu-quick-settings .species-mode-toggle button {
+    padding: 0 14px;
+  }
 }
 @media (max-width: 360px) {
   .app-header {
-    padding: 0 12px;
+    /* F17: the header wraps on phones, so this narrowest case keeps the
+       vertical padding instead of the old `padding: 0 12px` zeroing it. */
+    padding: 8px 12px;
   }
   .header-search .search-input {
     padding-left: 35px;

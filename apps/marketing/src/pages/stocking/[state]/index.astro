@@ -11,7 +11,7 @@ import Disclaimer from '../../../components/Disclaimer.astro';
 import AdSlot from '../../../components/AdSlot.astro';
 import { LAUNCH_STATES } from '../../../data/states';
 import { getStockingEvents } from '../../../data/load';
-import { monthName, formatDate } from '../../../lib/format';
+import { monthName, stockingPrecisionDate, type StockingPrecision } from '../../../lib/format';
 import { datasetLd, faqLd, breadcrumbLd, absoluteUrl } from '../../../lib/seo';
 
 export function getStaticPaths() {
@@ -24,14 +24,27 @@ export function getStaticPaths() {
 const { state } = Astro.props;
 const events = getStockingEvents(state.id);
 
-// Season calendar: month → event count, species set, latest date (real data, not filler).
-const byMonth = new Map<number, { count: number; species: Set<string>; latest: string }>();
+// Season calendar: month → entry count, species set, latest entry (real data,
+// not filler). F08: the latest entry keeps its published date precision.
+const byMonth = new Map<
+  number,
+  { count: number; species: Set<string>; latest: string; latestPrecision?: StockingPrecision }
+>();
 for (const e of events) {
   const m = Number.parseInt(e.date.slice(5, 7), 10);
-  const entry = byMonth.get(m) ?? { count: 0, species: new Set<string>(), latest: e.date };
+  const entry =
+    byMonth.get(m) ?? {
+      count: 0,
+      species: new Set<string>(),
+      latest: e.date,
+      latestPrecision: e.datePrecision as StockingPrecision | undefined,
+    };
   entry.count += 1;
   entry.species.add(e.species);
-  if (e.date > entry.latest) entry.latest = e.date;
+  if (e.date > entry.latest) {
+    entry.latest = e.date;
+    entry.latestPrecision = e.datePrecision as StockingPrecision | undefined;
+  }
   byMonth.set(m, entry);
 }
 const calendarMonths = [...byMonth.keys()].sort((a, b) => a - b);
@@ -86,28 +99,30 @@ const description = `${state.agency.short} trout stocking in ${state.name}: rece
   <table class="data-table">
     <caption>Stocking activity by month (from the event feed below)</caption>
     <thead>
-      <tr>
-        <th scope="col">Month</th>
-        <th scope="col" class="num">Events</th>
-        <th scope="col">Species</th>
-        <th scope="col">Most recent event</th>
-      </tr>
-    </thead>
-    <tbody>
-      {
-        calendarMonths.map((m) => {
-          const entry = byMonth.get(m)!;
-          return (
-            <tr>
-              <th scope="row">{monthName(m)}</th>
-              <td class="num">{entry.count}</td>
-              <td>{[...entry.species].join(', ')}</td>
-              <td>{formatDate(entry.latest)}</td>
-            </tr>
-          );
-        })
-      }
-    </tbody>
+        <tr>
+          <th scope="col">Month</th>
+          <th scope="col" class="num">Entries</th>
+          <th scope="col">Species</th>
+          <th scope="col">Latest published entry</th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          calendarMonths.map((m) => {
+            const entry = byMonth.get(m)!;
+            return (
+              <tr>
+                <th scope="row">{monthName(m)}</th>
+                <td class="num">{entry.count}</td>
+                <td>{[...entry.species].join(', ')}</td>
+                <td>
+                  {stockingPrecisionDate(entry.latest, entry.latestPrecision)}
+                </td>
+              </tr>
+            );
+          })
+        }
+      </tbody>
   </table>
 
   <h2>Recent stocking events</h2>

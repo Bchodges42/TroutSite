@@ -50,9 +50,14 @@ export function scoreFishability(
     return cannotAssess('No water-temperature reading is available for this water.');
   }
 
-  const observedAtMs = timestampMs(tempReading.timestamp);
+  // F01 (2026-09-29 audit): the temperature's OWN observation time is the only
+  // freshness truth. A merged reading stamped with a newer metric's time (fresh
+  // flow) must not renew temperature freshness — use metricTimes.tempC when
+  // the source reported the temperature at a different instant.
+  const tempObservedAt = tempReading.metricTimes?.tempC ?? tempReading.timestamp;
+  const observedAtMs = timestampMs(tempObservedAt);
   const ageMinutes = Math.max(0, Math.floor((nowMs - observedAtMs) / 60_000));
-  const freshness = { observedAt: tempReading.timestamp, ageMinutes };
+  const freshness = { observedAt: tempObservedAt, ageMinutes };
   const freshnessInvalid = !Number.isFinite(observedAtMs) || observedAtMs <= 0;
   if (freshnessInvalid) {
     return cannotAssess('The latest water-temperature observation has an unreadable timestamp.');

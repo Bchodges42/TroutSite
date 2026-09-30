@@ -93,8 +93,13 @@ export function assembleWaterEvidence(input: EvidenceInput): AssembledEvidence {
   const evidence: WaterEvidence[] = [];
   const invalid: { waterId: string; issues: string }[] = [];
   for (const w of input.waters) {
+    // F34 residue (Wave-1 handoff): one water merges sources with different
+    // offset styles (USGS -05:00/Z, TVA EST/EDT/CST/CDT), so ascending order
+    // is PARSED-INSTANT order — text order ranks a "01:00-05:00" TVA stamp
+    // after a "05:45Z" USGS stamp even though the USGS instant is 15 min
+    // older, hiding the truly newest reading at the end of the list.
     const observations = [...(input.observationsByWater.get(w.waterId) ?? [])].sort(
-      (a, b) => a.observedAt.localeCompare(b.observedAt) || a.metric.localeCompare(b.metric),
+      (a, b) => Date.parse(a.observedAt) - Date.parse(b.observedAt) || a.metric.localeCompare(b.metric),
     );
     const stockingEvents = [
       ...(input.scheduledByWater.get(w.waterId) ?? []),

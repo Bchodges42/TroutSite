@@ -52,6 +52,7 @@ export function PortalView({ shop, tokenExpiresAtMs, onSignOut }: {
         <ComposerView
           key={editDraft?.id ?? 'blank'}
           catalog={catalog}
+          shopId={shop.id}
           initialDraft={editDraft}
           onSaved={() => setRefreshKey((k) => k + 1)}
           onPublished={() => {

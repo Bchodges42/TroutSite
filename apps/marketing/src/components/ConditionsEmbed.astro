@@ -26,7 +26,7 @@ const firstGauge = gaugeIds[0];
         Build-time sample data — as of {formatDateTime(snapshot.fetchedAt)} (the app shows live
         hourly readings).
       </p>
-      <ScoreBadge value={snapshot.score.value} />
+      <ScoreBadge value={snapshot.score.value} assessed={snapshot.score.assessed} />
       <ul>
         {snapshot.score.reasons.map((reason) => (
           <li>{reason}</li>

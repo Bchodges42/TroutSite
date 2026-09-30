@@ -65,7 +65,11 @@ describe('migrations', () => {
     //   main already used 008 for target species).
     // + 016_stream_hydro_identity (GNIS/HUC identity for selectable lines).
     // + 017_stream_opportunity (ADR 0010 authored fishery-opportunity block).
-    expect(applied).toHaveLength(17);
+    // + 018_report_idempotency_key (F02: partial UNIQUE (shop_id, idempotency_key)
+    //   so retries of an accepted portal report replay instead of double-inserting).
+    // + 019_stream_shop_archival (F22: archived_at removal policy — seeded rows
+    //   whose YAML disappears are archived, never left active or hard-deleted).
+    expect(applied).toHaveLength(19);
     expect(applied[0]!.name).toMatch(/^001_/);
     expect(applied[1]!.name).toMatch(/^002_/);
     expect(applied[2]!.name).toMatch(/^003_/);
@@ -79,6 +83,50 @@ describe('migrations', () => {
     expect(applied[14]!.name).toMatch(/^015_/);
     expect(applied[15]!.name).toMatch(/^016_/);
     expect(applied[16]!.name).toMatch(/^017_/);
+    expect(applied[17]!.name).toMatch(/^018_/);
+    expect(applied[18]!.name).toMatch(/^019_/);
+  });
+
+  it('adds archived_at to streams and shops (F22 removal policy: NULL = active)', () => {
+    const columns = (t: string) =>
+      (
+        db.prepare(`SELECT name FROM pragma_table_info('${t}')`).all() as { name: string }[]
+      ).map((c) => c.name);
+    expect(columns('streams')).toContain('archived_at');
+    expect(columns('shops')).toContain('archived_at');
+    // Existing rows are active after the additive migration.
+    db.prepare(
+      "INSERT INTO streams (id, name, state_id, waterbody_type, region_id) VALUES ('legacy-water', 'Legacy', 'TN', 'river', 'r')",
+    ).run();
+    expect(
+      db.prepare("SELECT archived_at FROM streams WHERE id = 'legacy-water'").get(),
+    ).toMatchObject({ archived_at: null });
+  });
+
+  it('enforces one row per (shop, idempotency key) so report retries cannot double-insert', () => {
+    // openDb alone has no shops rows (seedContent is a test/seed step), so create
+    // two shops here for the per-shop scoping assertions.
+    db.prepare(
+      "INSERT INTO shops (id, name, state_id, town, website_url, reports_enabled) VALUES ('test-fly-shop', 'A', 'TN', 'X', 'https://example.com', 1)",
+    ).run();
+    db.prepare(
+      "INSERT INTO shops (id, name, state_id, town, website_url, reports_enabled) VALUES ('other-shop', 'B', 'TN', 'X', 'https://example.com', 1)",
+    ).run();
+    const insert = db.prepare(
+      `INSERT INTO shop_reports (id, shop_id, stream_id, date, body, hot_patterns, attribution_url, published_at, idempotency_key)
+       VALUES (?, 'test-fly-shop', null, '2026-09-29', 'body', '[]', 'https://example.com', '2026-09-29T00:00:00Z', ?)`,
+    );
+    insert.run('rep-a', 'key-1');
+    insert.run('rep-b', null); // keyless rows never collide
+    insert.run('rep-c', null);
+    expect(() => insert.run('rep-d', 'key-1')).toThrow(/UNIQUE/);
+    // Different shop, same key: independent.
+    expect(() =>
+      db.prepare(
+        `INSERT INTO shop_reports (id, shop_id, stream_id, date, body, hot_patterns, attribution_url, published_at, idempotency_key)
+         VALUES ('rep-e', 'other-shop', null, '2026-09-29', 'body', '[]', 'https://example.com', '2026-09-29T00:00:00Z', 'key-1')`,
+      ).run(),
+    ).not.toThrow();
   });
 
   it('reads migrations from the apps/api/migrations directory', () => {

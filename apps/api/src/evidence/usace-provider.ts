@@ -96,7 +96,7 @@ export interface ParsedUsaceSeries {
 
 /**
  * Pure parser for ONE A2W timeseries document. Newest usable point wins
- * (ISO-Z timestamps sort lexicographically); null values are skipped; a real
+ * (compared as parsed instants — F34); null values are skipped; a real
  * 0 is kept; an empty/unparseable body or values:[] yields a warning (the
  * series exists-but-said-nothing), never a thrown error and never a zero.
  */
@@ -124,7 +124,12 @@ export function parseUsaceSeries(
       warning: `USACE ${opts.tsid}: no usable values in the requested window`,
     };
   }
-  const [observedAt, raw] = usable.reduce((newest, p) => (p[0] >= newest[0] ? p : newest));
+  // Newest by PARSED INSTANT, never text order (F34): A2W publishes ISO-Z
+  // stamps (text order happens to work), but an offset-bearing pair must not
+  // regress this to string comparison. A non-parseable stamp (NaN) loses.
+  const [observedAt, raw] = usable.reduce((newest, p) =>
+    Date.parse(p[0]) >= Date.parse(newest[0]) ? p : newest,
+  );
   const unit = typeof payload.unit === 'string' ? payload.unit : '';
   const value =
     opts.metric === 'temperature-c' && unit !== 'C' ? fahrenheitToCelsius(raw) : raw;

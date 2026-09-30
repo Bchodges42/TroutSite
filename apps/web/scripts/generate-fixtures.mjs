@@ -1,20 +1,26 @@
-/* global console */
 /**
- * ROLE 2 fixture generator — writes apps/web/fixtures/data mirroring the frozen
+ * ROLE 2 fixture generator — writes the fixture tree mirroring the frozen
  * ENDPOINTS surface (§ scope 9) plus the /content content-pack convention.
  *
- * Scores are computed with the REAL scoreConditions() from @trout/contracts so
- * fixtures stay contract-accurate. Every generated file is re-validated against
- * the frozen Zod schemas before it is written. Deterministic except for
- * timestamps/stocking dates, which are relative to "now" so the demo shows
- * realistic freshness ("Live · 32 min ago").
+ * Scores are computed with the REAL scoreConditions()/scoreFishability() from
+ * @trout/contracts so fixtures stay contract-accurate. Every generated file is
+ * re-validated against the frozen Zod schemas before it is written.
  *
- * Run: node scripts/generate-fixtures.mjs   (from apps/web)
+ * Clock discipline (F10): every emitted timestamp derives from ONE explicit
+ * clock. Default is the run time (global-setup regenerates before every e2e
+ * build, so freshness chips never drift); pin it with FIXTURE_NOW=<iso|ms> for
+ * a reproducible tree.
+ *
+ * Isolation (F10): e2e runs pass --out <dir> so the served tree is generated
+ * fresh into a dedicated, gitignored directory instead of overlaying whatever
+ * stale snapshots the working checkout happens to carry.
+ *
+ * Run: node scripts/generate-fixtures.mjs [--out <dir>]   (from apps/web)
  */
 import { mkdirSync, writeFileSync, rmSync, existsSync, readFileSync } from 'node:fs';
-import { join, dirname } from 'node:path';
+import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { scoreConditions } from '@trout/contracts';
+import { scoreConditions, scoreFishability, spawnStateFor, spawnStateLabel, spawnStateValue } from '@trout/contracts';
 import {
   StreamSchema,
   ConditionSnapshotSchema,
@@ -25,12 +31,37 @@ import {
   BugTaxonSchema,
   FlyPatternSchema,
   FishingInformationSchema,
+  FishabilitySnapshotSchema,
+  ActivityOutlookSchema,
+  SpeciesKeySchema,
 } from '@trout/contracts';
 
 const appRoot = join(dirname(fileURLToPath(import.meta.url)), '..');
-const out = (rel) => join(appRoot, 'fixtures', 'data', rel);
 
-const NOW = Date.now();
+// --- argument + clock parsing -------------------------------------------------
+
+function parseArgs(argv) {
+  const args = { out: join(appRoot, 'fixtures', 'data'), outProvided: false };
+  for (let i = 0; i < argv.length; i++) {
+    if (argv[i] === '--out') {
+      const value = argv[i + 1];
+      if (!value) throw new Error('--out requires a directory argument');
+      args.out = resolve(appRoot, value);
+      args.outProvided = true;
+      i += 1;
+    }
+  }
+  return args;
+}
+
+const args = parseArgs(process.argv.slice(2));
+const out = (rel) => join(args.out, rel);
+
+const parsedClock = process.env.FIXTURE_NOW !== undefined ? Date.parse(process.env.FIXTURE_NOW) : NaN;
+if (process.env.FIXTURE_NOW !== undefined && Number.isNaN(parsedClock)) {
+  throw new Error(`FIXTURE_NOW="${process.env.FIXTURE_NOW}" is not a parseable date`);
+}
+const NOW = Number.isNaN(parsedClock) ? Date.now() : parsedClock;
 const minutesAgo = (m) => new Date(NOW - m * 60_000).toISOString().replace(/\.\d{3}Z$/, 'Z');
 const daysAgoIso = (d) => new Date(NOW - d * 24 * 3600_000).toISOString().slice(0, 10);
 
@@ -265,6 +296,10 @@ let speciesFromPack = 0;
 for (const s of streams) {
   const pack = packById.get(s.id);
   if (!pack) continue;
+  // Reviewed identity: production serves the pack's name (renames like
+  // 'Caney Fork River (Center Hill tailwater)' live only here — the atlas
+  // geometry properties lag) and its search aliases (overlaid below).
+  if (pack.name) s.name = pack.name;
   if (pack.species) { s.species = pack.species; speciesFromPack += 1; }
   else delete s.species;
   if (pack.notes) s.notes = pack.notes;
@@ -298,6 +333,24 @@ for (const s of streams) {
   else delete s.targetSpecies;
   if (pack.speciesEvidence) s.speciesEvidence = pack.speciesEvidence;
   else delete s.speciesEvidence;
+  // Adjudication fields (ADR 0010 + owner rulings): the decision model reads
+  // yearRound / fishery / opportunity straight off the served catalog. A
+  // fixture catalog without them regresses every year-round water to
+  // window-driven seasonal states (the September "Out of season" class of
+  // presentation bugs) — mirror the production rowsToStreams projection.
+  if (pack.aliases?.length) s.aliases = pack.aliases;
+  else delete s.aliases;
+  if (pack.fishery) s.fishery = pack.fishery;
+  else delete s.fishery;
+  if (typeof pack.yearRound === 'boolean') s.yearRound = pack.yearRound;
+  else delete s.yearRound;
+  if (pack.opportunity) s.opportunity = pack.opportunity;
+  else delete s.opportunity;
+  // Reviewed provenance: the pack's officialSources are the catalog's
+  // authoritative verify-officially links (the generator's hand-rolled
+  // usgs()/twraLink placeholders predate the provenance pass and name
+  // superseded gauge ids).
+  if (Array.isArray(pack.officialSources) && pack.officialSources.length > 0) s.officialSources = pack.officialSources;
 }
 console.log('[fixtures] pack overlay: species on ' + speciesFromPack + '/' + streams.length + ' streams (unset stays unset)');
 
@@ -337,12 +390,23 @@ function demoPlan(stream) {
 const REGION_EAST_IDS = ['tn-east-holston', 'tn-northeast-watauga', 'tn-east-clinch', 'tn-east-smokies', 'tn-east-pigeon-frenchbroad'];
 const REGION_HIWASSEE_ID = 'tn-se-hiwassee';
 const REGION_MIDDLE_IDS = ['tn-cumberland-plateau', 'tn-upper-cumberland', 'tn-middle-caney-fork', 'tn-middle-duck-elk', 'tn-middle-nashville'];
+// E2E-404 fix: F40 made the map request hatch charts for every registry region
+// (REGIONS in apps/web/src/data/regions.ts), and the production content pack
+// ships /v1/hatch/tn-west/<1-12>.json behind a hard 12x12 self-check. The
+// fixture pack predates tn-west and never generated its charts, so after F28
+// (an honest 404 for missing static assets) every map load logged two
+// "Failed to load resource" console errors for tn-west — the atlas-verify
+// no-failed-loads assertion caught it. Stillwater months mirror the editorial
+// shape of packages/content/hatch/tn/tn-west.yaml: midges year-round, scuds and
+// sowbugs in the cold put-and-take season.
+const REGION_WEST_ID = 'tn-west';
 
-function regionMonths(east, hiwassee, middle) {
+function regionMonths(east, hiwassee, middle, west) {
   const out = {};
   for (const r of REGION_EAST_IDS) out[r] = east;
   out[REGION_HIWASSEE_ID] = hiwassee;
   for (const r of REGION_MIDDLE_IDS) out[r] = middle;
+  if (west) out[REGION_WEST_ID] = west;
   return out;
 }
 
@@ -407,7 +471,7 @@ const taxa = [
     order: 'Diptera', family: 'Chironomidae', sizeRange: [18, 26],
     keyAttributes: { tails: 2, gills: 'none', bodyShape: 'slender', bodyColor: ['red', 'cream', 'black', 'olive'], mouthparts: 'collector-gatherer' },
     habitat: ['slow pools', 'weedy backwaters', 'tailout silt'],
-    monthsActiveByRegion: regionMonths([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+    monthsActiveByRegion: regionMonths([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
     notes: 'Year-round trout food in every tailwater. Blood-red "bloodworms" live in the silt of slow pools.',
     sources: ['Merritt, Cummins & Berg — An Introduction to the Aquatic Insects of North America', 'BugGuide.net Chironomidae (verify officially)'],
   }),
@@ -416,7 +480,7 @@ const taxa = [
     order: 'Amphipoda', family: 'Gammaridae', sizeRange: [12, 20],
     keyAttributes: { tails: 3, gills: 'lamellae', bodyShape: 'robust', bodyColor: ['olive', 'gray', 'translucent', 'pink'], mouthparts: 'scavenger' },
     habitat: ['weedy runs', 'spring-fed margins', 'slow pools'],
-    monthsActiveByRegion: regionMonths([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], [3, 4, 5, 6, 7, 8, 9, 10], [1, 2, 3, 10, 11, 12]),
+    monthsActiveByRegion: regionMonths([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], [3, 4, 5, 6, 7, 8, 9, 10], [1, 2, 3, 10, 11, 12], [1, 2, 3, 11, 12]),
     notes: 'Freshwater shrimp that scull sideways. Orange or pink tint often means the scud is dead — trout still eat them.',
     sources: ['Pennak — Freshwater Invertebrates of the United States', 'Troutnut.com Amphipoda (verify officially)'],
   }),
@@ -425,7 +489,7 @@ const taxa = [
     order: 'Isopoda', family: 'Asellidae', sizeRange: [12, 20],
     keyAttributes: { tails: 2, gills: 'lamellae', bodyShape: 'robust', bodyColor: ['tan', 'gray', 'cream'], mouthparts: 'scavenger' },
     habitat: ['weedy pools', 'slow margins', 'detritus banks'],
-    monthsActiveByRegion: regionMonths([1, 2, 3, 4, 10, 11, 12], [4, 5, 6, 7, 8, 9], [1, 2, 3, 4, 5, 10, 11, 12]),
+    monthsActiveByRegion: regionMonths([1, 2, 3, 4, 10, 11, 12], [4, 5, 6, 7, 8, 9], [1, 2, 3, 4, 5, 10, 11, 12], [1, 2, 3, 11, 12]),
     notes: 'Flat, hump-backed crustacean common in fertile tailwaters; fish them deep and slow.',
     sources: ['Pennak — Freshwater Invertebrates of the United States'],
   }),
@@ -520,30 +584,33 @@ const conditionsPlans = {
   //   past the 3 h READING_STALE_MINUTES window): the score stays a score and
   //   the freshness chip must read "Stale · observed …".
   'collins-river': [[64, 1.8, 14.8, 600], [66, 1.9, 14.6, 705]],
+  //   harpeth-river — the warmwater focus water of the fishability specs. A
+  //   warm (27.5 °C) reading sits above the smallmouth optimum (20–26.7 °C),
+  //   so scoreFishability yields the outside-optimal 40/"Fair" comfort and an
+  //   activity outlook built from the same observation (spawn state N_A at
+  //   27.5 °C — above the cited window's post-spawn shoulder).
+  'harpeth-river': [[310, 3.4, 27.5, 38], [295, 3.3, 27.2, 98]],
 };
 
-const conditions = streams
-  .map((stream) => {
-    // F6: typed-species (warmwater) waters carry demo conditions too — the real
-    // builder emits all catalog waters, and the all-fish list needs a row for
-    // the fishability metric to attach to. Only truly untyped waters skip.
-    const hasTypedSpecies = Array.isArray(stream.targetSpecies) && stream.targetSpecies.length > 0;
-    const plan = conditionsPlans[stream.id] ?? ((stream.species === 'trout' || hasTypedSpecies) && stream.idealFlow.length > 0 ? demoPlan(stream) : null);
-    // Waters without any plan stay out of the feed entirely — the UI renders
-    // them as unassessed rather than a fake score.
-    if (!plan) return null;
-    const gaugeId = stream.gaugeIds[0] ?? 'demo';
-    const readings = readingsFor(stream.id, gaugeId, plan);
-    const score = scoreConditions(stream, readings);
-    return {
-      streamId: stream.id,
-      readings,
-      score,
-      fetchedAt: minutesAgo(32),
-      nextExpectedUpdate: minutesAgo(-28),
-    };
-  })
-  .filter(Boolean);
+const conditions = streams.map((stream) => {
+  // Production parity (buildSnapshots): EVERY catalog water gets a snapshot
+  // row; waters without gauges or an ideal range carry empty readings and the
+  // scorer's honest assessed:false. Only truly untyped waters skip the demo
+  // plan (typed-species warmwater waters carry demo conditions too — the
+  // all-fish list needs a row for the fishability metric to attach to).
+  const hasTypedSpecies = Array.isArray(stream.targetSpecies) && stream.targetSpecies.length > 0;
+  const plan = conditionsPlans[stream.id] ?? ((stream.species === 'trout' || hasTypedSpecies) && stream.idealFlow.length > 0 ? demoPlan(stream) : []);
+  const gaugeId = stream.gaugeIds[0] ?? 'demo';
+  const readings = readingsFor(stream.id, gaugeId, plan);
+  const score = scoreConditions(stream, readings);
+  return {
+    streamId: stream.id,
+    readings,
+    score,
+    fetchedAt: minutesAgo(32),
+    nextExpectedUpdate: minutesAgo(-28),
+  };
+});
 
 // ----------------------------------------------------------------- stocking -
 
@@ -576,6 +643,207 @@ const stocking = stockingEvents.map(([id, streamName, county, species, count, da
   sourceUrl: 'https://www.tn.gov/twra/fishing/stocking.html',
   fetchedAt: minutesAgo(120),
 }));
+
+// The contract's rolling file (additive contracts-v1.1.1): a 3-month window,
+// recency-first. /stocking reads THIS file by default (T2-26), so the fixture
+// build must serve it — its absence renders the page empty.
+const stockingRecent = [...stocking]
+  .filter((e) => NOW - Date.parse(`${e.date}T12:00:00Z`) <= 92 * 24 * 3600_000)
+  .sort((a, b) => b.date.localeCompare(a.date) || a.streamName.localeCompare(b.streamName));
+
+// ----------------------------------------------------------------- stocking -
+
+// ------------------------------------------------------- fishability (F10) ---
+
+/**
+ * Per-water fishability snapshots (contract v2, ADR 0007) at
+ * /v1/fishability/<id>.json — the bridge functions and weight rules below
+ * mirror apps/api/src/snapshots/fishability.ts (the production F5 emitter) so
+ * the fixture tree exercises the same scoring path as production. Bands and
+ * spawn thresholds come from the reviewed content pack's species.json (F2
+ * cited values); a species without cited warm-side bands scores honestly as
+ * cannot-assess, never a guess.
+ */
+
+/** F2 authored species reference (packages/content build output). */
+const speciesPackPath = join(appRoot, '..', '..', 'packages', 'content', 'dist', 'pack', 'species.json');
+if (!existsSync(speciesPackPath)) {
+  throw new Error('species reference missing at packages/content/dist/pack/species.json — run: pnpm --filter @trout/content build');
+}
+const speciesReference = JSON.parse(readFileSync(speciesPackPath, 'utf8')).species ?? [];
+
+/** Bridge F2's authored reference onto the contract's SpeciesComfortBands (high-side cited ceilings only). */
+function bandsFromReference(speciesId, ref) {
+  const optimal = ref?.comfort?.optimalC;
+  const avoidance = ref?.comfort?.avoidanceC?.value;
+  const lethal = ref?.comfort?.lethalC?.value;
+  if (
+    !optimal ||
+    typeof optimal.min !== 'number' ||
+    typeof optimal.max !== 'number' ||
+    typeof avoidance !== 'number' ||
+    typeof lethal !== 'number'
+  ) {
+    return null;
+  }
+  const bands = {
+    species: speciesId,
+    unit: 'degC',
+    optimalLow: optimal.min,
+    optimalHigh: optimal.max,
+    avoidanceHigh: avoidance,
+    lethalHigh: lethal,
+  };
+  return bands.optimalLow <= bands.optimalHigh &&
+    bands.optimalHigh < bands.avoidanceHigh &&
+    bands.avoidanceHigh < bands.lethalHigh
+    ? bands
+    : null;
+}
+
+/** F2's cited spawn window → scoring thresholds plus the citation URL. Null when unsourced. */
+function spawnThresholdsFromReference(ref) {
+  const onset = ref?.spawn?.onsetC?.value;
+  const end = ref?.spawn?.endC?.value;
+  if (typeof onset !== 'number' || typeof end !== 'number' || onset > end) return null;
+  const evidenceUrl = ref?.spawn?.onsetC?.sources?.[0] ?? ref?.spawn?.endC?.sources?.[0];
+  if (!evidenceUrl) return null;
+  return { thresholds: { onsetC: onset, endC: end }, evidenceUrl };
+}
+
+/** Public source page for the gauge that supplied a temperature. */
+function temperatureEvidenceUrl(gaugeId) {
+  if (/^\d+$/.test(gaugeId)) return `https://waterdata.usgs.gov/monitoring-location/${gaugeId}`;
+  if (gaugeId.startsWith('tva:')) return 'https://www.tva.com/environment/lake-levels';
+  if (gaugeId.startsWith('usace:')) return 'https://water.usace.army.mil/';
+  return null;
+}
+
+function flowTrendFor(readings) {
+  const byGauge = new Map();
+  for (const reading of readings) {
+    if (typeof reading.cfs !== 'number' || !Number.isFinite(reading.cfs)) continue;
+    byGauge.set(reading.gaugeId, [...(byGauge.get(reading.gaugeId) ?? []), reading]);
+  }
+  const pair = [...byGauge.values()]
+    .map((rows) => [...rows].sort((a, b) => Date.parse(b.timestamp) - Date.parse(a.timestamp)))
+    .find((rows) => rows.length >= 2);
+  if (!pair) return undefined;
+  const latest = pair[0];
+  const previous = pair[1];
+  const delta = latest.cfs - previous.cfs;
+  const relative = Math.abs(delta) / Math.max(Math.abs(previous.cfs), 1);
+  const direction = relative <= 0.05 ? 'stable' : delta > 0 ? 'rising' : 'falling';
+  const evidenceUrl = temperatureEvidenceUrl(latest.gaugeId) ?? `https://waterdata.usgs.gov/monitoring-location/${latest.gaugeId}`;
+  return {
+    direction,
+    magnitude: Math.round(Math.abs(delta) * 10) / 10,
+    confidence: 'derived',
+    evidenceUrl,
+    observedAt: latest.timestamp,
+    label: `Flow trend: ${direction} (${Math.round(Math.abs(delta) * 10) / 10} cfs change; context only)`,
+  };
+}
+
+function activityComponent(parts) {
+  return {
+    factor: parts.factor,
+    value: parts.value,
+    weight: parts.weight,
+    contribution: Math.round(parts.weight * (parts.value - 50) * 10) / 10,
+    evidenceUrl: parts.evidenceUrl,
+    confidence: parts.confidence ?? 'derived',
+    label: parts.label,
+  };
+}
+
+/**
+ * Activity assembly — the production weights: water-temperature alone is 1.0;
+ * with a cited spawn window 0.7/0.3. All components derive from the SAME fresh
+ * temperature observation the comfort row cites. Flow movement is context.
+ */
+function activityFor(readings, comfort, species, spawn) {
+  if (!comfort.assessed || !comfort.freshness) return { total: 0, components: [] };
+  const byAge = [...readings].sort((a, b) => Date.parse(b.timestamp) - Date.parse(a.timestamp));
+  const tempReading = byAge.find((r) => typeof r.tempC === 'number');
+  const tempC = tempReading?.tempC;
+  if (tempReading === undefined || typeof tempC !== 'number') return { total: 0, components: [] };
+  if (tempReading.timestamp !== comfort.freshness.observedAt) return { total: 0, components: [] };
+  const evidenceUrl = temperatureEvidenceUrl(tempReading.gaugeId);
+  if (!evidenceUrl) return { total: 0, components: [] };
+
+  const speciesName = species.replaceAll('-', ' ');
+  const components = [activityComponent({
+    factor: 'water-temperature',
+    value: comfort.value,
+    weight: spawn ? 0.7 : 1,
+    evidenceUrl,
+    confidence: 'measured',
+    label: 'Water temperature',
+  })];
+  let spawnState;
+  if (spawn) {
+    spawnState = spawnStateFor(tempC, spawn.thresholds);
+    components.push(activityComponent({
+      factor: 'spawn-state',
+      value: spawnStateValue(spawnState),
+      weight: 0.3,
+      evidenceUrl: spawn.evidenceUrl,
+      confidence: 'heuristic',
+      label: `${spawnStateLabel(spawnState, speciesName)} (heuristic estimate)`,
+    }));
+  }
+  const total = Math.min(100, Math.max(0, Math.round(50 + components.reduce((s, c) => s + c.contribution, 0))));
+  const flowTrend = flowTrendFor(readings);
+  return ActivityOutlookSchema.parse({
+    total,
+    components,
+    ...(spawnState !== undefined ? { spawnState } : {}),
+    ...(flowTrend ? { flowTrend } : {}),
+  });
+}
+
+const bandsBySpecies = new Map();
+const spawnBySpecies = new Map();
+for (const entry of speciesReference) {
+  const parsed = SpeciesKeySchema.safeParse(entry.id);
+  if (!parsed.success) continue;
+  const bands = bandsFromReference(parsed.data, entry);
+  if (bands) bandsBySpecies.set(parsed.data, bands);
+  const spawn = spawnThresholdsFromReference(entry);
+  if (spawn) spawnBySpecies.set(parsed.data, spawn);
+}
+
+const readingsByStream = new Map(conditions.map((c) => [c.streamId, c.readings]));
+const fishability = [];
+for (const stream of streams) {
+  if (!Array.isArray(stream.targetSpecies) || stream.targetSpecies.length === 0) continue;
+  const readings = readingsByStream.get(stream.id) ?? [];
+  const bySpecies = {};
+  for (const species of stream.targetSpecies) {
+    const bands = bandsBySpecies.get(species);
+    if (!bands) {
+      bySpecies[species] = {
+        comfort: {
+          species,
+          value: 0,
+          reasons: ['No cited temperature comfort bands for this species yet — not guessed.'],
+          assessed: false,
+          freshness: null,
+        },
+        activity: { total: 0, components: [] },
+      };
+      continue;
+    }
+    const comfort = scoreFishability(readings, species, bands, NOW);
+    bySpecies[species] = { comfort, activity: activityFor(readings, comfort, species, spawnBySpecies.get(species) ?? null) };
+  }
+  fishability.push({
+    streamId: stream.id,
+    fetchedAt: minutesAgo(32),
+    bySpecies,
+  });
+}
 
 // ------------------------------------------------------------------- shops --
 
@@ -763,10 +1031,12 @@ validate('streams', StreamSchema.array(), streams);
 streams.forEach((s, i) => validate(`streams[${i}]`, StreamSchema, s));
 validate('conditions', ConditionSnapshotSchema.array(), conditions);
 validate('stocking', StockingEventSchema.array(), stocking);
+validate('stockingRecent', StockingEventSchema.array(), stockingRecent);
 validate('shops', ShopSchema.array(), shops);
 validate('reports', ShopReportSchema.array(), reports);
 validate('taxa', BugTaxonSchema.array(), taxa);
 validate('patterns', FlyPatternSchema.array(), patterns);
+fishability.forEach((f, i) => validate(`fishability[${i}]`, FishabilitySnapshotSchema, f));
 for (const chart of chartsByRegionMonth.values()) {
   validate(`hatch/${chart.regionId}/${chart.month}`, HatchChartSchema, chart);
 }
@@ -774,10 +1044,18 @@ for (const chart of chartsByRegionMonth.values()) {
 if (existsSync(out('.'))) {
   rmSync(out('.'), { recursive: true, force: true });
 }
+// Self-isolation (F10): an explicitly-placed tree (the e2e generator run) carries
+// its own ignore rule so it never shows up as source noise. The default
+// committed tree at fixtures/data stays tracked, so no rule is written there.
+if (args.outProvided) {
+  mkdirSync(out('.'), { recursive: true });
+  writeFileSync(join(out('.'), '.gitignore'), '*\n');
+}
 
 writeJson('v1/streams', streams);
 writeJson('v1/conditions/latest.json', conditions);
 writeJson('v1/stocking/TN.json', stocking);
+writeJson('v1/stocking/TN-recent.json', stockingRecent);
 writeJson('v1/shops/TN.json', shops);
 writeJson('v1/reports/recent.json', reports);
 writeJson('content/taxa.json', taxa);
@@ -794,8 +1072,11 @@ writeJson('content/fishing.json', JSON.parse(readFileSync(packFishingPath, 'utf8
 for (const chart of chartsByRegionMonth.values()) {
   writeJson(`v1/hatch/${chart.regionId}/${chart.month}.json`, chart);
 }
-written = chartsByRegionMonth.size + 7;
+for (const f of fishability) {
+  writeJson(`v1/fishability/${f.streamId}.json`, f);
+}
+written = chartsByRegionMonth.size + 8 + fishability.length;
 
-console.log(`fixtures: wrote ${written} files → apps/web/fixtures/data`);
-console.log(`fixtures: ${streams.length} streams · ${taxa.length} taxa · ${patterns.length} patterns · ${chartsByRegionMonth.size} hatch charts · ${stocking.length} stocking events · ${conditions.length} condition snapshots`);
+console.log(`fixtures: wrote ${written} files → ${args.out}`);
+console.log(`fixtures: ${streams.length} streams · ${taxa.length} taxa · ${patterns.length} patterns · ${chartsByRegionMonth.size} hatch charts · ${stocking.length} stocking events · ${conditions.length} condition snapshots · ${fishability.length} fishability snapshots`);
 console.log('fixtures: all files validated against @trout/contracts schemas ✓');

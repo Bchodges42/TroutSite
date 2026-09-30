@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { rmSync } from 'node:fs';
+import { join } from 'node:path';
 import {
   NWS_PRESSURE_STATIONS,
   PRESSURE_STALE_MINUTES,
@@ -11,7 +12,8 @@ import {
   runPressureJob,
   type NwsPressurePoint,
 } from '../src/evidence/nws-provider.js';
-import { makeEnv, readFixture, type TestEnv } from './helpers.js';
+import { runJob, type PipelineConfig } from '../src/pipeline.js';
+import { fixturesDir, makeEnv, readFixture, type TestEnv } from './helpers.js';
 
 const NOW = new Date('2026-09-12T17:05:00Z');
 const NOW_MS = NOW.getTime();
@@ -36,15 +38,30 @@ describe('parseNwsPressure', () => {
     expect(parseNwsPressure(undefined)).toEqual([]);
   });
 
-  it('parses the verified precipitationLast3Hours field as measured millimetres', () => {
+  it('parses the authentic quantitative-value precipitation object (F37): mm kept, documented in converted, null = no-data', () => {
+    // F37 reproduction: the LIVE field is a quantitative-value object — the
+    // official KBNA response shows precipitationLast3Hours=
+    // {unitCode:'wmoUnit:mm', value:null, qualityControl:'Z'} — and the old
+    // scalar-only parser returned [] for a measured 4.2 in exactly that shape.
+    expect(parseNwsPrecipitation(JSON.parse(readFixture('NWS/observations-kbna.json')))).toEqual([
+      // 0.1 in documented in wmoUnit:in → 2.54 mm → 2.5 (rounded to 0.1 mm)
+      { observedAt: '2026-09-12T15:00:00+00:00', precipitationMm: 2.5 },
+      { observedAt: '2026-09-12T16:00:00+00:00', precipitationMm: 4.2 },
+    ]);
+    // The 13:00/17:00 null-value windows stay absent (no-data is never zero-filled).
+  });
+
+  it('skips non-object, negative and undocumented-unit precipitation values (missing stays missing)', () => {
     expect(
       parseNwsPrecipitation({
         features: [
-          { properties: { timestamp: '2026-09-12T16:00:00Z', precipitationLast3Hours: 4.2 } },
-          { properties: { timestamp: '2026-09-12T17:00:00Z', precipitationLast3Hours: null } },
+          { properties: { timestamp: '2026-09-12T14:00:00Z', precipitationLast3Hours: 4.2 } },
+          { properties: { timestamp: '2026-09-12T15:00:00Z', precipitationLast3Hours: { unitCode: 'wmoUnit:mm', value: -1 } } },
+          { properties: { timestamp: '2026-09-12T16:00:00Z', precipitationLast3Hours: { unitCode: 'wmoUnit:degC', value: 20 } } },
+          { properties: { timestamp: '2026-09-12T17:00:00Z', precipitationLast3Hours: { value: 1 } } },
         ],
       }),
-    ).toEqual([{ observedAt: '2026-09-12T16:00:00Z', precipitationMm: 4.2 }]);
+    ).toEqual([]);
   });
 });
 
@@ -146,6 +163,32 @@ describe('runPressureJob', () => {
     expect(row.trend_hpa_3h).toBe(-2.5);
     expect(row.trend_direction).toBe('falling');
     expect(row.station).toBe('KGKT');
+    // ktys fixture carries no precipitation — rain stays absent, never zeroed.
+    expect(result.rainStored).toBe(0);
+  });
+
+  it('stores the newest measured rain window per region and skips null-value windows (F37)', async () => {
+    const stations: Record<string, { status: number; body: string }> = {};
+    for (const { station } of Object.values(NWS_PRESSURE_STATIONS)) {
+      stations[station] = { status: 200, body: readFixture('NWS/observations-kbna.json') };
+    }
+    const f = serving(stations);
+    const result = await runPressureJob(env.db, {
+      userAgent: 'trout-test/1.0 (test@example.com)',
+      fetchImpl: f.fetchImpl,
+      now: NOW,
+    });
+    // 16:00Z (65 min old at NOW) is the newest MEASURED window; the newer
+    // 17:00Z null window must not blank it, and every region gets the row.
+    expect(result.rainStored).toBe(Object.keys(NWS_PRESSURE_STATIONS).length);
+    const row = env.db.prepare('SELECT * FROM region_precipitation WHERE region_id = ?').get('tn-east-smokies') as {
+      observed_at: string;
+      precipitation_mm: number;
+      station: string;
+    };
+    expect(row.observed_at).toBe('2026-09-12T16:00:00+00:00');
+    expect(row.precipitation_mm).toBe(4.2);
+    expect(row.station).toBe('KGKT');
   });
 
   it('soft-fails a station failure into warnings/errors while other regions still store', async () => {
@@ -210,6 +253,93 @@ describe('runPressureJob', () => {
 
   it('builds the documented observations URL', () => {
     expect(nwsObservationsUrl('KTYS', 12)).toBe('https://api.weather.gov/stations/KTYS/observations?limit=12');
+  });
+
+  // F05: the pressure job is reachable through the pipeline dispatcher — the
+  // same runJob the dev pm2 cron and the Windows refresh (`ingest
+  // --job=pressure`) use — instead of living only in this file's direct calls.
+  describe('runJob dispatch: pressure (F05)', () => {
+    let env: TestEnv;
+
+    beforeEach(() => {
+      env = makeEnv();
+    });
+
+    afterEach(() => {
+      env.db.close();
+      rmSync(env.dir, { recursive: true, force: true });
+    });
+
+    function cfg(): PipelineConfig {
+      return {
+        snapshotsDir: env.snapshotsDir,
+        contentPackDir: join(fixturesDir(), 'content-pack-does-not-exist'),
+        rawDir: env.rawDir,
+        userAgent: 'trout-test/1.0 (test@example.com)',
+        usgsProvider: 'waterdata',
+        fixturesDir: fixturesDir(),
+      };
+    }
+
+    function servingAll(body: string, status = 200): { fetchImpl: typeof fetch } {
+      const fetchImpl = (async (input: Parameters<typeof fetch>[0]): Promise<Response> => {
+        const url = typeof input === 'string' ? input : input.toString();
+        const station = /stations\/([^/]+)\//.exec(url)?.[1] ?? '';
+        if (!station) return new Response('unexpected', { status: 404 });
+        return new Response(body, { status });
+      }) as typeof fetch;
+      return { fetchImpl };
+    }
+
+    it('dispatches the pressure job, stores region rows, logs ok, and rebuilds snapshots', async () => {
+      const outcome = await runJob(env.db, cfg(), 'pressure', {
+        now: NOW,
+        fetchImpl: servingAll(readFixture('NWS/observations-kbna.json')).fetchImpl,
+      });
+      expect(outcome.job).toBe('pressure');
+      expect(outcome.ok).toBe(true);
+      expect(outcome.detail.errors).toBe(0);
+      expect(outcome.detail.stored).toBe(Object.keys(NWS_PRESSURE_STATIONS).length);
+      expect(outcome.detail.rainStored).toBe(Object.keys(NWS_PRESSURE_STATIONS).length);
+      expect(outcome.detail.snapshots as number).toBeGreaterThan(0);
+
+      const row = env.db.prepare('SELECT pressure_hpa, station FROM region_pressure WHERE region_id = ?').get(
+        'tn-middle-nashville',
+      ) as { pressure_hpa: number; station: string };
+      expect(row.pressure_hpa).toBe(1015);
+      expect(row.station).toBe('KBNA');
+      const jobRow = env.db.prepare("SELECT status FROM jobs_log WHERE job = 'pressure' ORDER BY id DESC LIMIT 1").get() as {
+        status: string;
+      };
+      expect(jobRow.status).toBe('ok');
+    });
+
+    it('reports a failed dispatch when every station errors and nothing is stored', async () => {
+      const outcome = await runJob(env.db, cfg(), 'pressure', {
+        now: NOW,
+        fetchImpl: servingAll('gone', 503).fetchImpl,
+      });
+      expect(outcome.ok).toBe(false);
+      expect(outcome.detail.errors).toBeGreaterThan(0);
+      expect(outcome.detail.stored).toBe(0);
+    });
+  });
+
+  it('maps every region to an officially verified station (F38, no out-of-state or swapped stations)', () => {
+    // F38: the official metadata probe (2026-09-29) showed KMOR is Morristown
+    // Moore-Murrell TN (-83.3754, 36.1794) — not a "Tullahoma" Caney Fork
+    // station — and KMRN is Morganton-Lenoir, NORTH CAROLINA. The corrected
+    // table must keep them that way.
+    expect(NWS_PRESSURE_STATIONS['tn-east-pigeon-frenchbroad']?.station).toBe('KMOR');
+    expect(NWS_PRESSURE_STATIONS['tn-middle-caney-fork']?.station).toBe('KCSV');
+    // The out-of-state Morganton-Lenoir NC station never serves a TN region.
+    for (const { station } of Object.values(NWS_PRESSURE_STATIONS)) {
+      expect(station).not.toBe('KMRN');
+      expect(station).toMatch(/^K[A-Z]{3}$/);
+    }
+    // 12 regions share 9 distinct verified stations.
+    expect(Object.keys(NWS_PRESSURE_STATIONS).length).toBe(12);
+    expect(new Set(Object.values(NWS_PRESSURE_STATIONS).map((s) => s.station)).size).toBe(9);
   });
 });
 

@@ -37,11 +37,6 @@ function apiBase(): string {
 // recorded in docs/ASSUMPTIONS.md under [ROLE 4]; do not add to @trout/contracts without an ADR.
 export const PORTAL_ME = '/v1/portal/me';
 
-function authHeader(): HeadersInit {
-  const token = localStorage.getItem(TOKEN_STORAGE_KEY) ?? '';
-  return { Authorization: `Bearer ${token}` };
-}
-
 /** Exchange a shop token for the shop identity (GET /v1/portal/me — additive endpoint, see ASSUMPTIONS).
  * Pass `token` to verify-before-store (login flow); omit to use the stored token (boot flow). */
 export async function fetchMe(token?: string): Promise<Shop> {
@@ -54,11 +49,20 @@ export async function fetchMe(token?: string): Promise<Shop> {
   return parsed.data.shop;
 }
 
-export async function publishReport(input: ShopReportInput): Promise<ShopReport> {
+export async function publishReport(input: ShopReportInput, opts?: { idempotencyKey?: string }): Promise<ShopReport> {
   const body = ShopReportInputSchema.parse(input);
+  // F02 wave-1 contract (POST /v1/portal/reports): an Idempotency-Key makes the
+  // server replay the already-accepted report (200 {report, idempotentReplay:true})
+  // instead of inserting a second row when the same publish is retried. 201 and
+  // 200 below are BOTH acceptances.
+  const headers: Record<string, string> = {
+    Authorization: `Bearer ${localStorage.getItem(TOKEN_STORAGE_KEY) ?? ''}`,
+    'Content-Type': 'application/json',
+  };
+  if (opts?.idempotencyKey) headers['Idempotency-Key'] = opts.idempotencyKey;
   const res = await fetch(`${apiBase()}${ENDPOINTS.portalReports}`, {
     method: 'POST',
-    headers: { ...authHeader(), 'Content-Type': 'application/json' },
+    headers,
     body: JSON.stringify(body),
   });
   if (res.status === 401) throw new ApiError(401, 'This token is not valid or has expired.');
@@ -73,6 +77,24 @@ export async function publishReport(input: ShopReportInput): Promise<ShopReport>
   const parsed = ShopReportSchema.safeParse(report);
   if (!parsed.success) throw new ApiError(502, 'Portal responded with an unexpected report shape.');
   return parsed.data;
+}
+
+/**
+ * Stable Idempotency-Key for one publish attempt of a given draft body (F02/F15
+ * handoff): derived from the draft id + a hash of the exact published content, so
+ * a RETRY of the same publish reuses the SAME key (server replays instead of
+ * double-inserting) while a real edit (new content revision) yields a new key.
+ * Content-addressed, so it needs no extra storage and survives reloads.
+ */
+export function idempotencyKeyFor(draftId: string, input: ShopReportInput): string {
+  const json = JSON.stringify(input);
+  // FNV-1a 32-bit — sync, dependency-free, ample for a handful of revisions per draft.
+  let h = 0x811c9dc5;
+  for (let i = 0; i < json.length; i++) {
+    h ^= json.charCodeAt(i);
+    h = Math.imul(h, 0x01000193) >>> 0;
+  }
+  return `${draftId}-${h.toString(16).padStart(8, '0')}`;
 }
 
 /** Public snapshot of recent attributed reports; the portal filters it to this shop (read-only). */

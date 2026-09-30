@@ -54,26 +54,34 @@ function sortEvents(list: StockingEvent[], key: SortKey): StockingEvent[] {
 
 const TODAY = () => new Date().toISOString().slice(0, 10);
 
-/** Data-state copy: schedules are plans; past-dated entries are reports, not field-verified facts. */
+/**
+ * Data-state copy: every row is a PUBLISHED SCHEDULE entry. The StockingEvent
+ * feed carries NO completed-release field (packages/contracts/src/schemas/
+ * stocking.ts), so no entry is ever presented as a TWRA release record: an
+ * exact-day entry whose date has passed stays "Past-scheduled" — passage of
+ * time is not a completed-release report (F08, 2026-09-29 audit). Vocabulary
+ * mirrors the PWA prerender `stockingWhen` and the marketing site's
+ * stockingStatusLabel — change all three together.
+ */
 export function stockingEventState(event: StockingEvent): { label: string; note: string; future: boolean } {
   const future = event.date >= TODAY();
   if (event.datePrecision === 'month')
     return {
-      label: future ? 'Month window · scheduled' : 'Month window · reported',
+      label: future ? 'Month window · scheduled' : 'Month window · past-scheduled',
       note: 'Published as a month window, not an exact day.',
       future,
     };
   if (event.datePrecision === 'week')
     return {
-      label: future ? 'Week of · scheduled' : 'Week of · reported',
+      label: future ? 'Week of · scheduled' : 'Week of · past-scheduled',
       note: `Published as the week of ${shortDate(event.date)}.`,
       future,
     };
   return {
-    label: future ? 'Scheduled' : 'Reported completed',
+    label: future ? 'Scheduled' : 'Past-scheduled',
     note: future
       ? 'Exact published day — a plan that can still change.'
-      : 'Past-dated published entry — not field-verified.',
+      : 'Past-dated published plan — not field-verified; no release report on file.',
     future,
   };
 }
@@ -351,8 +359,9 @@ export function StockingPage() {
           <section className="mt-6" aria-label="Most recent published entries">
             <h2 className="section-title !mt-0">Latest published</h2>
             <p className="muted text-sm">
-              The newest entries in the schedule. Past-dated entries are reported, not
-              field-verified — “scheduled” means the plan, not a confirmed event.
+              The newest entries in the published schedule. No entry is a confirmed release —
+              “past-scheduled” means the published date has passed, not that a stocking was
+              field-verified.
             </p>
             <ul className="mt-3 flex flex-col gap-2">
               {preview.map((e: StockingEvent) => (

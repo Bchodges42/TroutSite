@@ -97,6 +97,29 @@ describe('evidence: TWRA stocking date precision (preserved, never upgraded)', (
     expect(rows[0]?.event.date).toBe('2027-01-01');
   });
 
+  it('month-initial rows pick the NEAREST listed remaining month (F35, evidence side)', () => {
+    // A M–D schedule consulted in late September used to jump to March 2027,
+    // hiding April–December of the current season from evidence.
+    const { rows } = scheduleRowsToEvidenceEvents(
+      [scheduleRow({ 'STOCKING DAY': '', 'STOCKING MONTHS': 'M, A, M, J, J, A, S, O, N, D' }) as never],
+      PAGE_URL,
+      { now: new Date('2026-09-29T12:00:00Z') },
+    );
+    expect(rows[0]?.event.datePrecision).toBe('month');
+    expect(rows[0]?.event.date).toBe('2026-09-01');
+  });
+
+  it('month-initial rows roll to next year only after all listed months passed (F35)', () => {
+    const { rows } = scheduleRowsToEvidenceEvents(
+      [scheduleRow({ 'STOCKING DAY': '', 'STOCKING MONTHS': 'J, F, M, N, D' }) as never],
+      PAGE_URL,
+      { now: new Date('2026-09-29T12:00:00Z') },
+    );
+    // J,F,M passed; N,D of the SAME season are still ahead → November 2026, not January 2027.
+    expect(rows[0]?.event.date).toBe('2026-11-01');
+    expect(rows[0]?.event.datePrecision).toBe('month');
+  });
+
   it('species text stays as published (lowercased), never inferred from water names', () => {
     expect(parseTwraSpeciesList('Rainbow Trout')).toEqual(['rainbow trout']);
     expect(parseTwraSpeciesList('Rainbow, Brown Trout')).toEqual(['rainbow', 'brown trout']);

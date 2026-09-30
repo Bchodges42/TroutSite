@@ -74,6 +74,37 @@ describe('evidence: assembly rules', () => {
     expect(b?.observations).toEqual([]);
     expect(b?.regulations.length).toBeGreaterThan(0); // statewide still applies
   });
+
+  it('orders merged observations by PARSED INSTANT across the DST fall-back hour (F34 residue)', () => {
+    // 2026-11-01 fall-back: the 1 AM wall-clock hour exists twice. One water
+    // merges whole-hour TVA stamps (-05:00/-04:00) with a minute-level USGS
+    // Z stamp — text order ranks "T01:00:00-05:00" AFTER "T05:45:00.000Z"
+    // even though the USGS instant (05:45Z) is 15 min OLDER than the TVA one
+    // (06:00Z). Instant order must win.
+    const assembled = assembleWaterEvidence({
+      waters: [{ waterId: 'a' }],
+      retrievedAt: '2026-11-01T12:00:00Z',
+      observationsByWater: new Map([
+        [
+          'a',
+          [
+            // Mixed source order on purpose: oldest must sort first anyway.
+            { sourceId: 'usgs-nwis-iv', sourceUrl: 'https://example.test/', observedAt: '2026-11-01T05:45:00.000Z', metric: 'discharge-cfs', value: 200 },
+            { sourceId: 'tva-restapi', sourceUrl: 'https://example.test/', observedAt: '2026-11-01T01:00:00-05:00', metric: 'temperature-c', value: 12 }, // 06:00Z — newest
+            { sourceId: 'tva-restapi', sourceUrl: 'https://example.test/', observedAt: '2026-11-01T01:00:00-04:00', metric: 'stage-ft', value: 3 }, // 05:00Z — oldest
+          ],
+        ],
+      ]),
+      scheduledByWater: new Map(),
+      completeByWater: new Map(),
+      statewideRegulations: regulationsFromFishingInfo(fishingDoc).statewide,
+      waterRegulations: new Map(),
+      errorsByWater: new Map(),
+    });
+    expect(assembled.invalid).toEqual([]);
+    const a = assembled.evidence.find((e) => e.waterId === 'a');
+    expect(a?.observations.map((o) => o.metric)).toEqual(['stage-ft', 'discharge-cfs', 'temperature-c']);
+  });
 });
 
 describe('evidence: job end-to-end (injected fetch, temp DB)', () => {
@@ -197,6 +228,79 @@ describe('evidence: job end-to-end (injected fetch, temp DB)', () => {
     const codes = watauga?.errors.map((e) => e.code) ?? [];
     expect(codes).toContain('upstream-http-503'); // USGS
     expect(codes).toContain('upstream-http-500'); // TWRA
+  });
+
+  it('records a complete observation-source failure as a FAILED run and carries last-good observations forward (F33)', async () => {
+    const packDir = jobCfg().contentPackDir;
+    const { mkdirSync, writeFileSync } = await import('node:fs');
+    mkdirSync(packDir, { recursive: true });
+    writeFileSync(join(packDir, 'fishing.json'), JSON.stringify({ fishing: fishingDoc }));
+    try {
+      // Run 1 is healthy: watauga-river gets two fresh USGS observations.
+      const first = await runEvidenceJob(env.db, jobCfg(), {
+        now: new Date('2026-09-04T12:00:00Z'),
+        fetchImpl: hijackedFetch({}),
+        providers: { tva: false },
+      });
+      expect(first.outcome).toBe('ok');
+
+      // Run 2: the only enabled observation source fails. The run must be
+      // recorded as jobs_log 'error' — never a healthy ok — and the newest
+      // public payload must keep run 1's observations with provenance
+      // instead of replacing them with an empty list.
+      const second = await runEvidenceJob(env.db, jobCfg(), {
+        now: new Date('2026-09-04T14:00:00Z'),
+        fetchImpl: hijackedFetch({ failUSGS: true }),
+        providers: { tva: false },
+      });
+      expect(second.outcome).toBe('failed');
+      expect(second.lastGoodWaters).toBe(1);
+      const statusRow = env.db
+        .prepare("SELECT status FROM jobs_log WHERE job = 'evidence' ORDER BY id DESC LIMIT 1")
+        .get() as { status: string };
+      expect(statusRow.status).toBe('error');
+
+      const row = env.db.prepare('SELECT payload FROM evidence_runs ORDER BY id DESC LIMIT 1').get() as { payload: string };
+      const set = JSON.parse(row.payload) as {
+        waterId: string;
+        observations: { observedAt: string; value: number }[];
+        errors: { code: string; message: string }[];
+      }[];
+      const watauga = set.find((e) => e.waterId === 'watauga-river');
+      expect(watauga?.observations).toHaveLength(2); // carried forward, not blanked
+      expect(watauga?.observations[0]?.observedAt).toBe('2026-09-04T07:00:00.000-04:00');
+      const carry = watauga?.errors.find((e) => e.code === 'stale-last-good');
+      expect(carry?.message).toMatch(/carried forward from the 2026-09-04T12:00:00\.000Z run \(~2h old/);
+      expect(carry?.message).toMatch(/refresh error: /);
+      // The other water had no prior observations — none are invented.
+      const other = set.find((e) => e.waterId === 'test-tailrace-b');
+      expect(other?.observations).toEqual([]);
+      expect(other?.errors.some((e) => e.code === 'stale-last-good')).toBe(false);
+    } finally {
+      rmSync(packDir, { recursive: true, force: true });
+    }
+  });
+
+  it('keeps a partial source failure a soft-failed ok run with outcome degraded (F33)', async () => {
+    const packDir = jobCfg().contentPackDir;
+    const { mkdirSync, writeFileSync } = await import('node:fs');
+    mkdirSync(packDir, { recursive: true });
+    writeFileSync(join(packDir, 'fishing.json'), JSON.stringify({ fishing: fishingDoc }));
+    try {
+      const result = await runEvidenceJob(env.db, jobCfg(), {
+        now: new Date('2026-09-04T12:00:00Z'),
+        fetchImpl: hijackedFetch({ failTWRA: true }), // stocking source fails, observations succeed
+        providers: { tva: false },
+      });
+      expect(result.outcome).toBe('degraded');
+      expect(result.observations).toBe(2);
+      const statusRow = env.db
+        .prepare("SELECT status FROM jobs_log WHERE job = 'evidence' ORDER BY id DESC LIMIT 1")
+        .get() as { status: string };
+      expect(statusRow.status).toBe('ok');
+    } finally {
+      rmSync(packDir, { recursive: true, force: true });
+    }
   });
 
   it('records partial-response behavior: a TVA 403 on one monitor only errors that water', async () => {
