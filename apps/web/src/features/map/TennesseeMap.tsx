@@ -343,6 +343,10 @@ export function TennesseeMap(props: Props) {
         if (container.current && appliedStyle.current === renderedStyle)
           container.current.dataset.mapTheme = renderedStyle.split(':')[0] ?? '';
       });
+      // Same static-map deadlock as the style swap below: the arming only
+      // lands on the NEXT rendered frame, and a fully settled cached map
+      // renders none on its own — nudge one so data-map-theme always lands.
+      map.triggerRepaint();
     };
     if (map.isStyleLoaded()) run();
     // Same static-map deadlock as the style swap: a pending `idle` never
