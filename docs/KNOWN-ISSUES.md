@@ -418,6 +418,112 @@ repair audit is `docs/reports/2026-09-22-evidence-branch-repair.md`.
   marketing "our data & sources" page (T2-54 extension); consider a
   ledger-diff review surface for future re-adjudications.
 
+## SENIOR CODE AUDIT 2026-09-29 — REMEDIATION WORKLIST (F01–F48)
+
+Full report: [`reports/2026-09-29-senior-code-audit.md`](reports/2026-09-29-senior-code-audit.md)
+(2 P1, 41 P2, 5 P3 @ canon 14a92bc). Remediation runs in waves on
+`codex/audit-remediation-20260929`; this list is updated as findings land.
+Wave 1 integrated @ 31437a6 (gates: build/content/test 893/infra 12/lint all green).
+
+### Wave 1 — urgent integrity and test foundation (MERGED)
+
+- [x] **F01 P1** — Water Data parser merged every parameter under the newest metric's
+  timestamp, so a working flow sensor kept a stopped temperature sensor fresh
+  (`usgs-waterdata.ts:80`). Fixed: additive `metricTimes` per-metric map
+  (contracts gauge schema), parser preserves per-metric observation times, T1-6
+  freshness gate ported to the default parser, `scoreFishability` freshness keys off
+  `metricTimes.tempC`. Branch w1a `cdb4421`.
+- [x] **F02 P1** — POST /v1/portal/reports ran the whole snapshot builder without the
+  content pack, wiping species assessments catalog-wide; INSERT preceded snapshot I/O
+  so a failed feed write double-inserted on retry. Fixed: route publishes only
+  `v1/reports/recent.json` via `publishReportFeed` (same bytes as scheduled builds);
+  acceptance separated from feed publication (201 + `feed.published` truth);
+  optional `Idempotency-Key` header replays the stored report (migration 018 partial
+  UNIQUE index). Admin client adoption of the header tracked in F15. Branch w1b `d92d119`.
+- [x] **F03 P2** — known-offline branch skipped the Dexie/SW recovery tier (installed
+  SW content unused with empty Dexie). Fixed: offline path shares the recovery tier;
+  Workbox `__WB_REVISION__` keys recovered with `ignoreSearch` fallback. Branch w1d `06b16a5`.
+- [x] **F10 P2** — browser e2e gate red (ignored-data leakage, no fishability fixtures,
+  obsolete 148-water/month-policy expectations). Fixed: deterministic fixture tree
+  (explicit clock, fishability + stocking-recent emission, isolated from gitignored
+  snapshots), specs updated to current policy, touch-polygon failure diagnosed as
+  harness (reference-tier hit-layer mismatch). Suite: 105 passed / 0 failed / 1
+  documented fixme pending F25. Branch w1e `b7ef57e`.
+- [x] **F19 P2** — recursive lint gate red (27 errors/33 warnings). Fixed: script
+  runtime globals configured, real dead symbols removed; `pnpm -r lint` exits 0.
+  Branch w1e `1a1bb89`.
+- [x] **F29 P3** — terrain cache invalidation recorded the new generation before
+  `caches.delete` succeeded. Fixed: delete first, marker advances only on success,
+  retryable. Branch w1d `06b16a5`.
+- [x] **F32 P2** — a failed Dexie cache write discarded the successful fresh fetch and
+  served stale data. Fixed: persistence is best-effort; validated current response
+  always returned (`live:true`) with `persisted` surfaced. Branch w1d `06b16a5`.
+- [x] **F34 P2** — latest-value selection ordered ISO timestamps as text in SQL and
+  evidence providers (DST repeated hour hid newer readings). Fixed:
+  `latestReadings` orders by `julianday(observed_at)`, evidence providers compare
+  parsed instants. TVA-provider instance of the same bug fixed in the F05 wave. Branch w1a `cdb4421`.
+- [x] **F41 P2** — transient cluster fetch failure cached for the whole map session.
+  Fixed: failed/null promises evicted, bounded retry with cooldown, valid-empty kept
+  distinct from error. Branch w1d `06b16a5`.
+- [x] **F46 P2** — failure status writes preceded transition checks, suppressing
+  backup/refresh failure pages. Fixed: `trout_alert_init` owns prior-state capture;
+  dispatch order can no longer erase a transition. Branch w1c `3b8d9a4`.
+- [x] **F47 P2** — watchdog announced recovery on every persistently-degraded check.
+  Fixed: health read once, final state decided, recovery only on true degraded→OK.
+  Branch w1c `3b8d9a4`.
+
+### Wave 2 — data publication and source integrity (IN PROGRESS)
+
+- [ ] **F05 P2** — production WinSW refresh omits stocking/evidence feeds; NWS pressure
+  job has no application caller; missing/never-run expected jobs escape health.
+- [ ] **F06 P2** — portal-origin "My reports" fetches `/v1/reports/recent.json` which
+  the portal proxy does not forward (404).
+- [ ] **F14 P2** — public gauge route: unbounded distinct-key upstream fan-out, no
+  cache eviction/concurrency cap.
+- [ ] **F15 P2** — accepted publication leaves a reusable draft; local-save failure
+  reported as publish failure.
+- [ ] **F16 P2** — unpublished drafts shared across shop identities.
+- [ ] **F21 P2** — failed snapshot build publishes part of the new generation
+  (per-file atomicity, no generation atomicity).
+- [ ] **F22 P2** — catalog seeding retains deleted waters and partly applies failed runs.
+- [ ] **F23 P2** — rollback rebuilds with new dependencies and different publication
+  steps; announces success on partial restoration.
+- [ ] **F24 P2** — archive/restore deletes the good tree before promotion succeeds.
+- [ ] **F33 P2** — complete upstream ingestion failure recorded as a healthy run;
+  last-good evidence observations discarded.
+- [ ] **F35 P2** — month-only stocking schedules ignore remaining months this year.
+- [ ] **F36 P2** — TWRA raw captures collide on one filename (schedule vs completed grid).
+- [ ] **F37 P2** — NWS rainfall parsing rejects the real quantitative-value shape.
+- [ ] **F38 P2** — KMOR/KMRN weather-station mappings point at the wrong localities.
+- [ ] **F48 P2** — fresh snapshots carry expired pressure trend indefinitely.
+
+### Wave 3 — freshness, maps, accessibility, user-facing truth (QUEUED)
+
+- [ ] **F04 P2** — cached species assessments keep current confidence indefinitely.
+- [ ] **F07 P2** — marketing embed reverses assessed semantics; different score bands.
+- [ ] **F08 P2** — stocking plans acquire exact dates and completion labels across
+  React/prerender/Astro.
+- [ ] **F09 P2** — repeated prerender nests homepage body inside other routes.
+- [ ] **F11 P2** — solar equation-of-time missing radians→degrees (9.67 min drift).
+- [ ] **F12 P2** — UTC calendar days become local draft dates / "today's" windows.
+- [ ] **F13 P2** — rapid preference patches overwrite each other.
+- [ ] **F17 P2** — header overflows a 320px viewport (nav off-screen).
+- [ ] **F18 P2** — blocked storage read blanks the map entry page.
+- [ ] **F20 P2** — light-theme legend text near-white-on-white (1.13:1).
+- [ ] **F25 P2** — invisible oversized legend wrapper blocks the desktop zoom button.
+- [ ] **F26 P3** — regional geometry validator dereferences retired lakes.geojson.
+- [ ] **F27 P2** — marketing footer targets below minimum size/spacing (9 templates).
+- [ ] **F28 P2** — terrain readiness probes a missing tile; SPA 200 shell masquerades
+  as a tile.
+- [ ] **F30 P3** — "All fish" accessible name mismatch.
+- [ ] **F31 P2** — non-map routes eagerly load the entire map/route bundle.
+- [ ] **F39 P3** — inert newsletter form reports success on 405/500.
+- [ ] **F40 P2** — map never requests West Tennessee hatch charts.
+- [ ] **F42 P3** — QA crossing overlay computed on the wrong segment parameter.
+- [ ] **F43 P2** — map Trout controls cannot override a saved All-fish preference.
+- [ ] **F44 P2** — fishability/focus/palette changes do not invalidate memoized map colors.
+- [ ] **F45 P2** — touch taps select a river before an overlapping gauge/stocking overlay.
+
 ## REGRESSION TESTS TO ADD ALONGSIDE THE FIXES
 
 Conditional HEAD on every static mount (T0-1) · deploy-failure → rollback path (T0-2) ·
