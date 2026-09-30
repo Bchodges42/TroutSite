@@ -74,6 +74,37 @@ describe('evidence: assembly rules', () => {
     expect(b?.observations).toEqual([]);
     expect(b?.regulations.length).toBeGreaterThan(0); // statewide still applies
   });
+
+  it('orders merged observations by PARSED INSTANT across the DST fall-back hour (F34 residue)', () => {
+    // 2026-11-01 fall-back: the 1 AM wall-clock hour exists twice. One water
+    // merges whole-hour TVA stamps (-05:00/-04:00) with a minute-level USGS
+    // Z stamp — text order ranks "T01:00:00-05:00" AFTER "T05:45:00.000Z"
+    // even though the USGS instant (05:45Z) is 15 min OLDER than the TVA one
+    // (06:00Z). Instant order must win.
+    const assembled = assembleWaterEvidence({
+      waters: [{ waterId: 'a' }],
+      retrievedAt: '2026-11-01T12:00:00Z',
+      observationsByWater: new Map([
+        [
+          'a',
+          [
+            // Mixed source order on purpose: oldest must sort first anyway.
+            { sourceId: 'usgs-nwis-iv', sourceUrl: 'https://example.test/', observedAt: '2026-11-01T05:45:00.000Z', metric: 'discharge-cfs', value: 200 },
+            { sourceId: 'tva-restapi', sourceUrl: 'https://example.test/', observedAt: '2026-11-01T01:00:00-05:00', metric: 'temperature-c', value: 12 }, // 06:00Z — newest
+            { sourceId: 'tva-restapi', sourceUrl: 'https://example.test/', observedAt: '2026-11-01T01:00:00-04:00', metric: 'stage-ft', value: 3 }, // 05:00Z — oldest
+          ],
+        ],
+      ]),
+      scheduledByWater: new Map(),
+      completeByWater: new Map(),
+      statewideRegulations: regulationsFromFishingInfo(fishingDoc).statewide,
+      waterRegulations: new Map(),
+      errorsByWater: new Map(),
+    });
+    expect(assembled.invalid).toEqual([]);
+    const a = assembled.evidence.find((e) => e.waterId === 'a');
+    expect(a?.observations.map((o) => o.metric)).toEqual(['stage-ft', 'discharge-cfs', 'temperature-c']);
+  });
 });
 
 describe('evidence: job end-to-end (injected fetch, temp DB)', () => {
