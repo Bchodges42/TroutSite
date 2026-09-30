@@ -75,12 +75,15 @@ describe('Stocking discovery — progressive disclosure with honest data states'
     ).toBeInTheDocument();
   });
 
-  it('distinguishes reported completions, schedules, and date precision', async () => {
+  it('distinguishes past-scheduled plans, upcoming plans, and date precision', async () => {
     renderPage();
     await screen.findByText('Latest published');
-    expect(screen.getAllByText('Reported completed').length).toBeGreaterThan(0);
-    expect(screen.getAllByText(/Week of · reported/).length).toBeGreaterThan(0);
-    expect(screen.getAllByText(/Month window · reported/).length).toBeGreaterThan(0);
+    // F08 (2026-09-29 audit): a past date is NOT a completed-release report —
+    // the feed has no completion field, so plans stay plans in every state.
+    expect(screen.getAllByText('Past-scheduled').length).toBeGreaterThan(0);
+    expect(screen.queryByText('Reported completed')).not.toBeInTheDocument();
+    expect(screen.getAllByText(/Week of · past-scheduled/).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/Month window · past-scheduled/).length).toBeGreaterThan(0);
     expect(screen.getAllByText(/not field-verified/i).length).toBeGreaterThan(0);
   });
 

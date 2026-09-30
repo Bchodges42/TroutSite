@@ -1,16 +1,23 @@
 ---
 /**
- * Stocking table — ROLE 5. Renders agency-published stocking events with
- * per-row attribution to the official source (attribution culture, §1.5).
+ * Stocking table — ROLE 5. Renders agency-published stocking schedule entries
+ * with per-row attribution to the official source (attribution culture, §1.5).
+ * F08: every row keeps its PUBLISHED date precision (a month window never
+ * renders as an exact day) and its evidence-aware status — the feed carries
+ * no completed-release field, so entries stay Scheduled / Past-scheduled and
+ * are never presented as TWRA release records.
  */
 import type { StockingEvent } from '@trout/contracts';
-import { formatDate } from '../lib/format';
+import { stockingPrecisionDate, stockingStatusLabel, type StockingPrecision } from '../lib/format';
 
 export interface Props {
   events: StockingEvent[];
+  /** ISO date (YYYY-MM-DD) splitting scheduled from past-scheduled rows;
+   *  defaults to the build date. Injectable so tests can pin it. */
+  todayIso?: string;
 }
 
-const { events } = Astro.props;
+const { events, todayIso = new Date().toISOString().slice(0, 10) } = Astro.props;
 const speciesLabel: Record<string, string> = {
   rainbow: 'Rainbow',
   brown: 'Brown',
@@ -23,7 +30,7 @@ const speciesLabel: Record<string, string> = {
 {
   events.length > 0 ? (
     <table class="data-table">
-      <caption>Recent stocking events (sample data)</caption>
+      <caption>Published stocking schedule entries (verify officially)</caption>
       <thead>
         <tr>
           <th scope="col">Date</th>
@@ -31,6 +38,7 @@ const speciesLabel: Record<string, string> = {
           <th scope="col">County</th>
           <th scope="col">Species</th>
           <th class="num" scope="col">Count</th>
+          <th scope="col">Status</th>
           <th scope="col">Source</th>
         </tr>
       </thead>
@@ -40,11 +48,12 @@ const speciesLabel: Record<string, string> = {
           .sort((a, b) => b.date.localeCompare(a.date))
           .map((e) => (
             <tr>
-              <td>{formatDate(e.date)}</td>
+              <td>{stockingPrecisionDate(e.date, e.datePrecision as StockingPrecision | undefined)}</td>
               <td>{e.streamName}</td>
               <td>{e.county ?? '—'}</td>
               <td>{speciesLabel[e.species] ?? e.species}</td>
               <td class="num">{e.count?.toLocaleString('en-US') ?? '—'}</td>
+              <td>{stockingStatusLabel(e.date, e.datePrecision as StockingPrecision | undefined, todayIso)}</td>
               <td>
                 <a href={e.sourceUrl} rel="nofollow">
                   official ↗
@@ -55,6 +64,6 @@ const speciesLabel: Record<string, string> = {
       </tbody>
     </table>
   ) : (
-    <p>No stocking events recorded yet.</p>
+    <p>No stocking entries recorded yet.</p>
   )
 }
