@@ -26,24 +26,41 @@ function stubCaches(deleteImpl: (name: string) => Promise<boolean> = async () =>
   return deleted;
 }
 
-function fetchResponder(responses: Record<string, { ok?: boolean; status?: number; json?: unknown }>) {
+type StubResponse = {
+  ok?: boolean;
+  status?: number;
+  json?: unknown;
+  /** Content-Type the stub server answers with. */
+  contentType?: string;
+};
+
+function fetchResponder(responses: Record<string, StubResponse>) {
   return vi.fn(async (input: RequestInfo | URL) => {
     const url = String(input);
     const hit = Object.entries(responses).find(([key]) => url.includes(key));
     if (!hit) throw new Error('unexpected fetch ' + url);
-    const { ok = true, status = ok ? 200 : 404, json } = hit[1];
+    const { ok = true, status = ok ? 200 : 404, json, contentType } = hit[1];
     return {
       ok,
       status,
+      headers: { get: (k: string) => (k.toLowerCase() === 'content-type' ? (contentType ?? null) : null) },
       json: async () => json,
-    } as Response;
+    } as unknown as Response;
   });
 }
+
+const JSON_TYPE = 'application/json';
+const IMAGE_TYPE = 'image/webp';
 
 const GOOD_TOPO = {
   generated: '2026-09-05T00:00:00Z',
   bands: [{ file: 'contours-band0.geojson' }],
-  hillshade: { pattern: 'hillshade/{z}/{x}/{y}.webp', minZoom: 7, maxZoom: 11 },
+  hillshade: {
+    pattern: 'hillshade/{z}/{x}/{y}.webp',
+    minZoom: 7,
+    maxZoom: 11,
+    probe: 'hillshade/8/66/100.webp',
+  },
 };
 
 describe('manifest shape parsing', () => {
@@ -79,47 +96,98 @@ describe('tileForCoordinate', () => {
 });
 
 describe('probeTerrainAvailability', () => {
-  it('is true when the manifest is good and the referenced tile is servable', async () => {
+  it('is true when the manifest is good and the declared probe tile serves as an image', async () => {
     vi.stubGlobal('fetch', fetchResponder({
-      '/atlas/topo/manifest.json': { json: GOOD_TOPO },
-      '/atlas/topo/hillshade/7/33/': { json: {} },
+      '/atlas/topo/manifest.json': { json: GOOD_TOPO, contentType: JSON_TYPE },
+      '/atlas/topo/hillshade/8/66/100.webp': { json: {}, contentType: IMAGE_TYPE },
     }));
     stubCaches();
     localStorage.setItem('trout:topo-generated', GOOD_TOPO.generated); // no cache churn
-    await expect(probeTerrainAvailability()).resolves.toBe(true);
+    await expect(probeTerrainAvailability('topo-cache', [0])).resolves.toBe(true);
   });
 
-  it('is false when the tile HEAD probe fails (partial deploy)', async () => {
+  it('is false when the declared probe tile 404s (partial deploy)', async () => {
     vi.stubGlobal('fetch', fetchResponder({
-      '/atlas/topo/manifest.json': { json: GOOD_TOPO },
-      '/atlas/topo/hillshade/7/33/': { ok: false },
+      '/atlas/topo/manifest.json': { json: GOOD_TOPO, contentType: JSON_TYPE },
+      '/atlas/topo/hillshade/8/66/100.webp': { ok: false },
     }));
     stubCaches();
     localStorage.setItem('trout:topo-generated', GOOD_TOPO.generated);
-    await expect(probeTerrainAvailability()).resolves.toBe(false);
+    await expect(probeTerrainAvailability('topo-cache', [0])).resolves.toBe(false);
+  });
+
+  // F28 — the SPA fallback used to answer 200 text/html for a missing tile and
+  // the probe counted res.ok as availability, certifying a nonexistent image.
+  it('is false when the probe tile answers 200 text/html (SPA shell)', async () => {
+    vi.stubGlobal('fetch', fetchResponder({
+      '/atlas/topo/manifest.json': { json: GOOD_TOPO, contentType: JSON_TYPE },
+      '/atlas/topo/hillshade/8/66/100.webp': { json: {}, contentType: 'text/html; charset=utf-8' },
+    }));
+    stubCaches();
+    localStorage.setItem('trout:topo-generated', GOOD_TOPO.generated);
+    await expect(probeTerrainAvailability('topo-cache', [0])).resolves.toBe(false);
+  });
+
+  it('is false when the probe tile answers with a non-image content-type', async () => {
+    vi.stubGlobal('fetch', fetchResponder({
+      '/atlas/topo/manifest.json': { json: GOOD_TOPO, contentType: JSON_TYPE },
+      '/atlas/topo/hillshade/8/66/100.webp': { json: {}, contentType: 'application/json' },
+    }));
+    stubCaches();
+    localStorage.setItem('trout:topo-generated', GOOD_TOPO.generated);
+    await expect(probeTerrainAvailability('topo-cache', [0])).resolves.toBe(false);
+  });
+
+  it('is false when the tile response carries no content-type to verify', async () => {
+    vi.stubGlobal('fetch', fetchResponder({
+      '/atlas/topo/manifest.json': { json: GOOD_TOPO, contentType: JSON_TYPE },
+      '/atlas/topo/hillshade/8/66/100.webp': { json: {} },
+    }));
+    stubCaches();
+    localStorage.setItem('trout:topo-generated', GOOD_TOPO.generated);
+    await expect(probeTerrainAvailability('topo-cache', [0])).resolves.toBe(false);
+  });
+
+  it('falls back across the declared zoom range when an older manifest declares no probe tile', async () => {
+    // The shipped set can start above the declared minimum: the z7 computed
+    // tile is absent, the z8 tile over central Tennessee is real.
+    const withoutProbe = {
+      ...GOOD_TOPO,
+      hillshade: { pattern: GOOD_TOPO.hillshade.pattern, minZoom: 7, maxZoom: 11 },
+    };
+    vi.stubGlobal('fetch', fetchResponder({
+      '/atlas/topo/manifest.json': { json: withoutProbe, contentType: JSON_TYPE },
+      '/atlas/topo/hillshade/7/33/50.webp': { ok: false },
+      '/atlas/topo/hillshade/8/66/100.webp': { json: {}, contentType: IMAGE_TYPE },
+    }));
+    stubCaches();
+    localStorage.setItem('trout:topo-generated', withoutProbe.generated);
+    await expect(probeTerrainAvailability('topo-cache', [0])).resolves.toBe(true);
   });
 
   it('is false when the manifest is HTML from the SPA fallback', async () => {
     vi.stubGlobal('fetch', vi.fn(async () => ({
       ok: true,
       status: 200,
+      headers: { get: () => 'text/html; charset=utf-8' },
       json: async () => {
         throw new Error('<html> is not JSON');
       },
     } as unknown as Response)));
     stubCaches();
-    await expect(probeTerrainAvailability()).resolves.toBe(false);
+    await expect(probeTerrainAvailability('topo-cache', [0])).resolves.toBe(false);
   });
 });
 
 describe('probeRoadsAvailability', () => {
-  it('is true only when EVERY referenced road file is servable', async () => {
+  it('is true only when EVERY referenced road file serves as JSON', async () => {
     vi.stubGlobal('fetch', fetchResponder({
       '/atlas/roads-manifest.json': {
         json: { files: [{ file: 'roads-major.geojson' }, { file: 'roads-minor.geojson' }] },
+        contentType: JSON_TYPE,
       },
-      '/atlas/roads-major.geojson': { json: {} },
-      '/atlas/roads-minor.geojson': { json: {} },
+      '/atlas/roads-major.geojson': { json: {}, contentType: 'application/geo+json' },
+      '/atlas/roads-minor.geojson': { json: {}, contentType: 'application/geo+json' },
     }));
     const manifest = await probeRoadsAvailability();
     expect(manifest?.files.map((f) => f.file)).toEqual(['roads-major.geojson', 'roads-minor.geojson']);
@@ -129,11 +197,42 @@ describe('probeRoadsAvailability', () => {
     vi.stubGlobal('fetch', fetchResponder({
       '/atlas/roads-manifest.json': {
         json: { files: [{ file: 'roads-major.geojson' }, { file: 'roads-minor.geojson' }] },
+        contentType: JSON_TYPE,
       },
-      '/atlas/roads-major.geojson': { json: {} },
+      '/atlas/roads-major.geojson': { json: {}, contentType: 'application/geo+json' },
       '/atlas/roads-minor.geojson': { ok: false },
     }));
-    await expect(probeRoadsAvailability()).resolves.toBeNull();
+    await expect(probeRoadsAvailability([0])).resolves.toBeNull();
+  });
+
+  // F28 — same SPA-shell trap as the terrain tile: a 200 text/html road file
+  // is not road data.
+  it('is null when a referenced road file answers 200 text/html (SPA shell)', async () => {
+    vi.stubGlobal('fetch', fetchResponder({
+      '/atlas/roads-manifest.json': {
+        json: { files: [{ file: 'roads-major.geojson' }] },
+        contentType: JSON_TYPE,
+      },
+      '/atlas/roads-major.geojson': { json: {}, contentType: 'text/html; charset=utf-8' },
+    }));
+    await expect(probeRoadsAvailability([0])).resolves.toBeNull();
+  });
+});
+
+describe('shipped topo manifest integrity (F28)', () => {
+  it('declares a probe tile that actually exists among the shipped tiles', async () => {
+    const { existsSync, readFileSync } = await import('node:fs');
+    const { resolve } = await import('node:path');
+    const manifest = JSON.parse(
+      readFileSync(resolve(process.cwd(), 'public/atlas/topo/manifest.json'), 'utf8'),
+    ) as { hillshade: { probe?: string; minZoom: number; maxZoom: number } };
+    // The probe tile is the readiness helper's source of truth — it must be a
+    // real shipped file, never a URL the deployment 404s (or worse, answers
+    // with the SPA shell).
+    expect(manifest.hillshade.probe).toMatch(/^hillshade\/\d+\/\d+\/\d+\.webp$/);
+    expect(
+      existsSync(resolve(process.cwd(), 'public/atlas/topo', manifest.hillshade.probe!)),
+    ).toBe(true);
   });
 });
 

@@ -428,7 +428,13 @@ export function auditRivers(
     const d4 = (dx - cx) * (by - cy) - (dy - cy) * (bx - cx);
     // strict proper (transversal) crossing; collinear or touching → null
     if (!((d1 > 0) !== (d2 > 0) && (d3 > 0) !== (d4 > 0))) return null;
-    const t = d1 / (d1 - d2);
+    // F42: the returned point is on segment A at parameter t, so t must be
+    // A's intersection parameter — where A crosses B's support line. d3/d4
+    // are the signed sides of A's endpoints against B; t = d3/(d3-d4) zeroes
+    // that signed distance along A. (The old d1/(d1-d2) was B's parameter —
+    // where B crosses A's line — applied to A's endpoints, which marked
+    // asymmetric crossings on the wrong reach.)
+    const t = d3 / (d3 - d4);
     return [(ax + t * (bx - ax)) / kx, ay + t * (by - ay)];
   };
   lineFeatures.forEach((f) => {

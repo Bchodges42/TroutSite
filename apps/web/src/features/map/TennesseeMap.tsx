@@ -13,6 +13,7 @@ import {
 } from './mapStyle';
 import { NETWORK_LAYER_PREFIX, initNetworkClusters } from './networkClusters';
 import { TN_BOUNDS, TN_MAX_BOUNDS, statewideCamera } from './mapTokens';
+import type { MapPalette } from '../../theme/themes';
 import { useTheme } from '../../theme/ThemeProvider';
 import { waterIdentity } from '../../lib/presentation';
 import { labelDecision, labelSpeciesNote } from './labelPolicy';
@@ -36,6 +37,62 @@ const stillWaterIds = new Set(
 );
 const catalogPermanentIds = new Set(index.flatMap((water) => water.nhdPermanentIds.map(String)));
 export const isStillWaterId = (id: string) => stillWaterIds.has(id);
+
+/**
+ * Style-swap identity. F44: the RESOLVED map palette is part of the key —
+ * custom map colors (mapWater/mapLake/mapSelection/...) change theme.map
+ * WITHOUT changing theme.id, and a key of theme.id + basemap + roads left
+ * the style swap untriggered and the paint stale.
+ */
+export function mapStyleKey(
+  themeId: string,
+  map: MapPalette,
+  basemap: BasemapVariant | undefined,
+  hasRoads: boolean,
+): string {
+  return themeId + ':' + String(basemap) + ':' + String(hasRoads) + ':' + JSON.stringify(map);
+}
+
+/**
+ * One overlay-first tap routine for BOTH mouse clicks and touch taps (F45):
+ * a gauge/stocking/attractor dot on a river dispatches the overlay popup and
+ * never selects the water beneath it; without an overlay hit the tap selects
+ * the river. Returns what dispatched, so the caller can suppress the
+ * synthetic duplicate click only AFTER the intended action ran — the old
+ * touch path selected the river first and set the suppression timer, so an
+ * overlapping gauge never opened on touchscreens.
+ */
+export type MapTapKind = 'gauge' | 'stocking' | 'attractor' | 'river' | null;
+export interface MapTapSurface<PointT, LngLatT> {
+  /** Overlay-dot hit test (enabled overlays only). */
+  overlayAt(point: PointT): { kind: 'gauge' | 'stocking' | 'attractor' } | null;
+  /** The overlay feature to popup at this point (a tighter query than the hit test). */
+  overlayFeatureAt(kind: 'gauge' | 'stocking' | 'attractor', point: PointT): unknown | undefined;
+  /** The visible river (or still water) to select at this point, if any. */
+  riverAt(point: PointT): string | null;
+  openOverlay(kind: 'gauge' | 'stocking' | 'attractor', feature: unknown, lngLat: LngLatT): void;
+  selectRiver(id: string): void;
+}
+export function dispatchMapTap<PointT extends { x: number; y: number }, LngLatT extends { lng: number; lat: number }>(
+  surface: MapTapSurface<PointT, LngLatT>,
+  point: PointT,
+  lngLat: LngLatT,
+): MapTapKind {
+  const overlay = surface.overlayAt(point);
+  if (overlay) {
+    const feature = surface.overlayFeatureAt(overlay.kind, point);
+    if (feature !== undefined) {
+      surface.openOverlay(overlay.kind, feature, lngLat);
+      return overlay.kind;
+    }
+  }
+  const id = surface.riverAt(point);
+  if (id) {
+    surface.selectRiver(id);
+    return 'river';
+  }
+  return null;
+}
 
 function projectGeometry(
   map: maplibregl.Map,
@@ -109,8 +166,9 @@ interface Camera {
   padding: maplibregl.PaddingOptions;
 }
 // UI-only, in-memory camera continuity, including live design refreshes.
-const cameras: Map<string, Camera> = import.meta.hot?.data.fieldworkCameras ?? new Map();
-if (import.meta.hot) import.meta.hot.data.fieldworkCameras = cameras;
+// (?.data — vitest's vite-node defines import.meta.hot without .data.)
+const cameras: Map<string, Camera> = import.meta.hot?.data?.fieldworkCameras ?? new Map();
+if (import.meta.hot?.data) import.meta.hot.data.fieldworkCameras = cameras;
 type Place = { name: string; lon: number; lat: number; kind: 'city' | 'town' | 'water' };
 interface Props {
   selectedId: string | null;
@@ -177,6 +235,10 @@ export function TennesseeMap(props: Props) {
   latest.current = props;
   const palette = useRef(theme.map);
   palette.current = theme.map;
+  // F44: resolved-palette identity — changes when custom map colors change
+  // inside the same theme, driving both the style swap and the flow-arrow
+  // glyph rebuild below.
+  const paletteSignature = JSON.stringify(theme.map);
   const [attempt, setAttempt] = useState(0);
   const [failed, setFailed] = useState(false);
   const [ready, setReady] = useState(false);
@@ -359,7 +421,7 @@ export function TennesseeMap(props: Props) {
     };
     map.on('styledata', syncStyleInventory);
     map.on('idle', syncStyleInventory);
-    appliedStyle.current = theme.id + ':' + latest.current.basemap;
+    appliedStyle.current = mapStyleKey(theme.id, palette.current, latest.current.basemap, Boolean(latest.current.roads));
     // Custom zoom buttons respect both OS and in-app reduced-motion preferences.
     const zoomGroup = document.createElement('div');
     zoomGroup.className = 'maplibregl-ctrl maplibregl-ctrl-group field-zoom';
@@ -725,45 +787,52 @@ export function TennesseeMap(props: Props) {
     map.on('touchstart', (e) => {
       touchStart = e.originalEvent.touches.length === 1 ? e.point : null;
     });
+    // F45: the tap surface — ONE overlay-first dispatch routine shared by the
+    // touch and click handlers below. Priority: gauges, stocking, attractors.
+    const tapSurface: MapTapSurface<maplibregl.Point, maplibregl.LngLat> = {
+      overlayAt: (point) => overlayAt(point),
+      overlayFeatureAt: (kind, point) => {
+        const group = OVERLAY_GROUPS.find((g) => g.kind === kind)!;
+        try {
+          return map.queryRenderedFeatures(
+            [
+              [point.x - 8, point.y - 8],
+              [point.x + 8, point.y + 8],
+            ],
+            { layers: [group.layer] },
+          )[0];
+        } catch {
+          return undefined; // layer mid-style-swap; fall through to the river
+        }
+      },
+      riverAt: (point) => hit(point),
+      openOverlay: (kind, feature, lngLat) => {
+        if (kind === 'gauge') openGaugePopup(feature as maplibregl.MapGeoJSONFeature, lngLat);
+        else if (kind === 'stocking') openStockingPopup(feature as maplibregl.MapGeoJSONFeature, lngLat);
+        else openAttractorPopup(feature as maplibregl.MapGeoJSONFeature, lngLat);
+      },
+      selectRiver: (id) => latest.current.onSelect(id),
+    };
     map.on('touchend', (e) => {
       const start = touchStart;
       touchStart = null;
       if (!start || Math.hypot(e.point.x - start.x, e.point.y - start.y) > 10) return;
-      const id = hit(e.point);
-      if (id) {
-        lastTouchSelection = Date.now();
-        latest.current.onSelect(id);
-      }
+      // F45: overlay-first dispatch for touch too — the old touch path
+      // selected the river straight from the hit test and armed the
+      // suppression timer, so a gauge/stocking/attractor dot on a river could
+      // never open its popup on a touchscreen. The synthetic click that
+      // follows is suppressed only AFTER the intended action dispatched.
+      const dispatched = dispatchMapTap(tapSurface, e.point, e.lngLat);
+      if (dispatched) lastTouchSelection = Date.now();
     });
     map.on('touchcancel', () => {
       touchStart = null;
     });
     map.on('click', (e) => {
+      // A touch tap already dispatched through the SAME routine above; this
+      // synthetic duplicate is suppressed, never re-dispatched.
       if (Date.now() - lastTouchSelection < 500) return;
-      const overlay = overlayAt(e.point);
-      if (overlay) {
-        let feature: maplibregl.MapGeoJSONFeature | undefined;
-        try {
-          const group = OVERLAY_GROUPS.find((g) => g.kind === overlay.kind)!;
-          feature = map.queryRenderedFeatures(
-            [
-              [e.point.x - 8, e.point.y - 8],
-              [e.point.x + 8, e.point.y + 8],
-            ],
-            { layers: [group.layer] },
-          )[0];
-        } catch {
-          feature = undefined;
-        }
-        if (feature) {
-          if (overlay.kind === 'gauge') openGaugePopup(feature, e.lngLat);
-          else if (overlay.kind === 'stocking') openStockingPopup(feature, e.lngLat);
-          else openAttractorPopup(feature, e.lngLat);
-          return; // an overlay tap is not a water selection
-        }
-      }
-      const id = hit(e.point);
-      if (id) latest.current.onSelect(id);
+      dispatchMapTap(tapSurface, e.point, e.lngLat);
     });
     map.on('mouseout', () => {
       if (hovered) map.setFeatureState({ source: 'rivers', id: hovered }, { hover: false });
@@ -851,7 +920,7 @@ export function TennesseeMap(props: Props) {
   useEffect(() => {
     const map = mapRef.current;
     if (!map || !ready) return;
-    const styleKey = theme.id + ':' + props.basemap + ':' + String(Boolean(props.roads));
+    const styleKey = mapStyleKey(theme.id, theme.map, props.basemap, Boolean(props.roads));
     if (container.current) container.current.dataset.mapStyleKey = styleKey;
     if (appliedStyle.current === styleKey) return;
     // Swap token: rapid toggles (Terrain ⇄ Roads ⇄ theme) must never apply an
@@ -893,7 +962,7 @@ export function TennesseeMap(props: Props) {
     return () => {
       map.off('idle', swap);
     };
-  }, [props.basemap, props.roads, ready, theme.id, attempt]);
+  }, [props.basemap, props.roads, ready, theme.id, paletteSignature, attempt]);
   useEffect(() => {
     applyRef.current();
   }, [
@@ -1164,7 +1233,7 @@ export function TennesseeMap(props: Props) {
     return () => {
       cancelled = true;
     };
-  }, [ready, props.selectedId, theme.id, props.basemap, props.roads, attempt]);
+  }, [ready, props.selectedId, theme.id, paletteSignature, props.basemap, props.roads, attempt]);
   useEffect(() => {
     const map = mapRef.current;
     if (!map || !ready || !props.places) return;

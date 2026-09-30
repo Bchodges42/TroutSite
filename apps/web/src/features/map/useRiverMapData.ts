@@ -16,6 +16,7 @@ import { snapshotUrls } from '../../lib/endpoints';
 import { db } from '../../lib/db';
 import { fetchSnapshot } from '../../lib/snapshots';
 import { matchStocking } from '../../lib/stockingMatch';
+import { REGIONS } from '../../data/regions';
 import { statusForScore, colorForStatus, dominantHatch, hatchHaloForChart } from './riverMapSelectors';
 import { atlas } from './mapTokens';
 
@@ -45,19 +46,14 @@ const ConditionsSchema = z.array(ConditionSnapshotSchema);
 const ReportsSchema = z.array(ShopReportSchema);
 const StockingSchema = z.array(StockingEventSchema);
 
-const TN_REGIONS = [
-  'tn-east-holston',
-  'tn-northeast-watauga',
-  'tn-east-clinch',
-  'tn-east-smokies',
-  'tn-east-pigeon-frenchbroad',
-  'tn-se-hiwassee',
-  'tn-cumberland-plateau',
-  'tn-upper-cumberland',
-  'tn-middle-caney-fork',
-  'tn-middle-duck-elk',
-  'tn-middle-nashville',
-] as const;
+// F40: requested chart regions ARE the registry (data/regions.ts — the same
+// table the hatch calendar pages use, sourced from packages/content). The old
+// separately maintained 11-entry array omitted tn-west, so West-TN waters
+// never received chart entries or hatch halos even though
+// /v1/hatch/tn-west/<month>.json ships. A region added to the registry is now
+// requested automatically; a region whose chart is absent simply stays
+// uncharted (honest "no chart yet").
+const HATCH_REGIONS: readonly string[] = REGIONS.map((r) => r.id);
 
 export interface UseRiverMapDataOptions {
   month?: number;
@@ -239,15 +235,15 @@ export function useRiverMapData(options: UseRiverMapDataOptions = {}) {
 }
 
 function useHatchCache(month: number): Map<string, HatchChart> {
-  // One concurrent, month-keyed query per region (B07): the old effect fetched
-  // 11 regions strictly sequentially and only published after the whole batch,
+  // One concurrent, month-keyed query per registry region (B07): the old effect fetched
+  // regions strictly sequentially and only published after the whole batch,
   // so a month switch kept showing the PREVIOUS month's charts until every
   // request finished. useQueries shares the ['snapshot', url] cache with
   // useSnapshotQuery and lets charts land as each resolves; regions still
   // loading are simply absent from the map (honest "no chart yet"), never
   // substituted with the prior month.
   const queries = useQueries({
-    queries: TN_REGIONS.map((regionId) => {
+    queries: HATCH_REGIONS.map((regionId) => {
       const url = `/v1/hatch/${regionId}/${month}.json`;
       return {
         queryKey: ['snapshot', url],
@@ -262,7 +258,7 @@ function useHatchCache(month: number): Map<string, HatchChart> {
   });
 
   const charts = new Map<string, HatchChart>();
-  TN_REGIONS.forEach((regionId, i) => {
+  HATCH_REGIONS.forEach((regionId, i) => {
     const q = queries[i];
     if (q?.data) charts.set(regionId, q.data.data);
   });
