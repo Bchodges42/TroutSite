@@ -67,7 +67,7 @@ describe('download manifests (ADR 0012)', () => {
     expect(again.label).toBe('Harpeth River');
     const all = await listManifests();
     expect(all).toHaveLength(2);
-    expect(all[0].id).toBe(waterManifestId('harpeth-river'));
+    expect(all.map((m) => m.id).sort()).toEqual([tripManifestId('t1'), waterManifestId('harpeth-river')].sort());
   });
 
   it('readiness is per-section: required gates ready, optional partials stay visible', async () => {
