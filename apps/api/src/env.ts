@@ -32,6 +32,18 @@ export const EnvSchema = z.object({
   USGS_WATERDATA_API_KEY: z.string().min(1).optional(),
   /** HMAC secret for shop portal tokens. Portal routes fail closed (503) without it. */
   PORTAL_SECRET: z.string().min(1).optional(),
+  /**
+   * HMAC pepper for correction receipt codes (ADR 0015 §2). ALL corrections
+   * routes fail closed (503) without it. A distinct secret — never the portal
+   * HMAC, never WATCHDOG_TOKEN, never CORRECTIONS_MODERATOR_TOKEN.
+   */
+  CORRECTIONS_RECEIPT_PEPPER: z.string().min(1).optional(),
+  /**
+   * Shared secret for the corrections moderator review surface
+   * (/v1/corrections/review/*, ADR 0015 §5). Review routes fail closed (503)
+   * without it; never shared with or derivable from any other credential.
+   */
+  CORRECTIONS_MODERATOR_TOKEN: z.string().min(1).optional(),
   /** Shared secret required by /healthz when set; never expose the value in git. */
   WATCHDOG_TOKEN: z.string().min(1).optional(),
   /**

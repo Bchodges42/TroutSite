@@ -10,6 +10,8 @@ import type { Db } from './db.js';
 import { latestJobRuns, jobDegradation } from './jobs/run.js';
 import { conditionsFeedHealth, fishabilityFeedHealth } from './snapshots/health.js';
 import { registerPortalRoutes, type PortalDeps } from './portal/routes.js';
+import { registerCorrectionsRoutes, type CorrectionsDeps } from './corrections/routes.js';
+import { loadEnv } from './env.js';
 import { createGaugeNowCache, GaugeNowBusyError, type GaugeNowCache } from './lib/gauge-now.js';
 
 export interface BuildAppOptions {
@@ -32,6 +34,12 @@ export interface BuildAppOptions {
   portalOrigins?: string[];
   /** Optional shared secret for the private watchdog health probe. */
   watchdogToken?: string;
+  /**
+   * Corrections lane (ADR 0015). Omitted → the secrets and site origin come
+   * from the environment (CORRECTIONS_RECEIPT_PEPPER, CORRECTIONS_MODERATOR_TOKEN,
+   * SITE_URL); with no pepper configured every corrections route fail-closes 503.
+   */
+  corrections?: Omit<CorrectionsDeps, 'db'>;
   /** Live per-gauge readings for the map's gauge layer (injectable in tests). */
   gaugesNow?: GaugeNowCache;
 }
@@ -49,9 +57,32 @@ function constantTimeEqual(expected: string, actual: string): boolean {
 }
 
 /**
+ * Corrections config straight from the environment (ADR 0015): the receipt
+ * pepper, the moderator token, and the site origin allowlist (from SITE_URL).
+ * Unset secrets stay undefined — the routes then fail closed (503) rather than
+ * running without their keying material.
+ */
+function correctionsDepsFromEnv(): Pick<CorrectionsDeps, 'pepper' | 'moderatorToken' | 'siteOrigins'> {
+  const env = loadEnv();
+  let siteOrigin = env.SITE_URL.trim();
+  try {
+    siteOrigin = new URL(env.SITE_URL).origin;
+  } catch {
+    // keep the raw value; the origin check compares parsed origins anyway
+  }
+  return {
+    pepper: env.CORRECTIONS_RECEIPT_PEPPER,
+    moderatorToken: env.CORRECTIONS_MODERATOR_TOKEN,
+    siteOrigins: siteOrigin ? [siteOrigin] : [],
+  };
+}
+
+/**
  * Fastify app factory. Without deps: only GET /healthz → { ok: true } (contract shape).
- * With db: /healthz additionally reports per-job health (additive, §6-consumable), and
- * the shop portal write routes mount. Logs never include authorization headers or IPs.
+ * With db: /healthz additionally reports per-job health (additive, §6-consumable), the
+ * shop portal write routes mount, and the corrections lanes mount (public POST/status
+ * + moderator review; fail-closed 503 until their env secrets are set). Logs never
+ * include authorization headers or IPs.
  *
  * Read path (ADR 0004): GET /v1/streams is answered live from the regenerated
  * v1/streams.json (so `?state=` filtering works); every other /v1/* + /content/*
@@ -212,6 +243,16 @@ export function buildApp(options: BuildAppOptions = {}): FastifyInstance {
   if (options.db) {
     const portal = options.portal ?? { snapshotsDir: '' };
     registerPortalRoutes(app, { db: options.db, ...portal });
+    // Corrections lane (ADR 0015): public POST + status lookup, moderator
+    // review surface. Fail-closed 503 on every route until the env secrets
+    // are set; registration itself is unconditional so the honest 503 (which
+    // the web renders as "opens when the review service ships") is what an
+    // unconfigured deployment answers. Explicit options are authoritative
+    // (tests stay deterministic); otherwise config comes from the environment.
+    registerCorrectionsRoutes(app, {
+      db: options.db,
+      ...(options.corrections ?? correctionsDepsFromEnv()),
+    });
   }
 
   // Portal SPA origins only — the read path is same-origin static files, so CORS

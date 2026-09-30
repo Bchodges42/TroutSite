@@ -69,7 +69,11 @@ describe('migrations', () => {
     //   so retries of an accepted portal report replay instead of double-inserting).
     // + 019_stream_shop_archival (F22: archived_at removal policy — seeded rows
     //   whose YAML disappears are archived, never left active or hard-deleted).
-    expect(applied).toHaveLength(19);
+    // + 020_corrections (ADR 0015: user-suggested corrections moderation queue
+    //   + corrections_audit trail; receipts stored only as keyed HMACs).
+    //   NOTE: two-digit zero-padding is load-bearing — the runner sorts
+    //   filenames lexicographically, so '0020_…' would sort before '002_…'.
+    expect(applied).toHaveLength(20);
     expect(applied[0]!.name).toMatch(/^001_/);
     expect(applied[1]!.name).toMatch(/^002_/);
     expect(applied[2]!.name).toMatch(/^003_/);
@@ -85,6 +89,7 @@ describe('migrations', () => {
     expect(applied[16]!.name).toMatch(/^017_/);
     expect(applied[17]!.name).toMatch(/^018_/);
     expect(applied[18]!.name).toMatch(/^019_/);
+    expect(applied[19]!.name).toMatch(/^020_/);
   });
 
   it('adds archived_at to streams and shops (F22 removal policy: NULL = active)', () => {
