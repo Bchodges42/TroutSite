@@ -1,17 +1,24 @@
-import { describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import {
   bboxesIntersect,
   clusterFileUrl,
   clustersForViewport,
   clustersToRelease,
   dedupeAgainstCatalog,
+  initNetworkClusters,
   LatestOnlyNetworkScheduler,
+  NETWORK_MANIFEST_MAX_FREE_RETRIES,
+  NETWORK_MANIFEST_RETRY_MS,
+  NETWORK_MANIFEST_URL,
   NETWORK_MAX_LOADED_CLUSTERS,
+  NETWORK_SCHEMA,
+  NETWORK_SOURCE_PREFIX,
+  resetNetworkSessionCaches,
   type NetworkFeatureCollection,
+  type NetworkManifestCluster,
   type NetworkSchedulerAdapter,
   paddedBBox,
   parseNetworkManifest,
-  type NetworkManifestCluster,
 } from '../src/features/map/networkClusters';
 
 /**
@@ -312,5 +319,199 @@ describe('latest-only network scheduler', () => {
     expect(removed).not.toContain('nearby');
     scheduler.request(10, [-1, 0, 1, 1]);
     await waitFor(() => expect(scheduler.getCounters().loadedIds.length).toBeLessThanOrEqual(NETWORK_MAX_LOADED_CLUSTERS));
+  });
+
+  // F41 — a transient failure must not be cached for the rest of the session.
+  describe('F41: failed fetches are retried, successful bytes retained', () => {
+    it('refetches a cluster after a transient outage and adds its layer', async () => {
+      const a = cluster('a', [0, 0, 1, 1]);
+      const { adapter, added } = makeAdapter();
+      let calls = 0;
+      const fetchCluster = vi.fn(async () => {
+        calls += 1;
+        if (calls === 1) throw new Error('transient outage');
+        return data();
+      });
+      const scheduler = new LatestOnlyNetworkScheduler({ clusters: [a], adapter, fetchCluster });
+
+      scheduler.request(10, [0, 0, 1, 1]);
+      await waitFor(() => expect(calls).toBe(1));
+      // The failure settled: nothing added, no layer, no valid data.
+      await waitFor(() => expect(scheduler.getCounters().loadedIds).toEqual([]));
+
+      // Connectivity recovers; the next viewport request must try again.
+      scheduler.request(10, [0, 0, 1, 1]);
+      await waitFor(() => expect(added).toEqual(['a']));
+      expect(fetchCluster).toHaveBeenCalledTimes(2);
+    });
+
+    it('retries a cluster whose file answered null (non-200) on a later request', async () => {
+      const a = cluster('a', [0, 0, 1, 1]);
+      const { adapter, added } = makeAdapter();
+      let calls = 0;
+      const fetchCluster = vi.fn(async () => {
+        calls += 1;
+        return calls === 1 ? null : data(); // first request 404s into null
+      });
+      const scheduler = new LatestOnlyNetworkScheduler({ clusters: [a], adapter, fetchCluster });
+
+      scheduler.request(10, [0, 0, 1, 1]);
+      await waitFor(() => expect(calls).toBe(1));
+      scheduler.request(10, [0, 0, 1, 1]);
+      await waitFor(() => expect(added).toEqual(['a']));
+      expect(fetchCluster).toHaveBeenCalledTimes(2);
+    });
+
+    it('keeps successfully fetched bytes — valid empty data included — cached', async () => {
+      const a = cluster('a', [0, 0, 1, 1]);
+      const { adapter } = makeAdapter();
+      const emptyData: NetworkFeatureCollection = { type: 'FeatureCollection', features: [] };
+      const fetchCluster = vi.fn(async () => emptyData);
+      const scheduler = new LatestOnlyNetworkScheduler({ clusters: [a], adapter, fetchCluster });
+
+      scheduler.request(10, [0, 0, 1, 1]);
+      await waitFor(() => expect(fetchCluster).toHaveBeenCalledTimes(1));
+      scheduler.request(10, [0, 0, 1, 1]);
+      await waitFor(() => expect(scheduler.getCounters().loadedIds).toEqual(['a']));
+      expect(fetchCluster).toHaveBeenCalledTimes(1); // success stays cached
+    });
+  });
+});
+
+// F41 at the module level: the manifest cache and initNetworkClusters pipeline.
+describe('F41: manifest failures recover within the session', () => {
+  beforeEach(() => {
+    resetNetworkSessionCaches();
+  });
+  afterEach(() => {
+    vi.useRealTimers();
+    vi.unstubAllGlobals();
+    vi.restoreAllMocks();
+    resetNetworkSessionCaches();
+  });
+
+  interface FakeMap {
+    sources: Map<string, unknown>;
+    layers: Map<string, unknown>;
+    emit(type: string): void;
+  }
+
+  /** Minimal MapLibre stand-in: handler registry + source/layer bookkeeping. */
+  function makeFakeMap(): FakeMap & { map: Parameters<typeof initNetworkClusters>[0] } {
+    const handlers = new Map<string, Array<() => void>>();
+    const sources = new Map<string, unknown>();
+    const layers = new Map<string, unknown>();
+    const viewport = { zoom: 10, west: 0, south: 0, east: 1, north: 1 };
+    const on = (type: string, cb: () => void) => {
+      handlers.set(type, [...(handlers.get(type) ?? []), cb]);
+    };
+    const off = (type: string, cb: () => void) => {
+      handlers.set(type, (handlers.get(type) ?? []).filter((f) => f !== cb));
+    };
+    const map = {
+      on,
+      off,
+      once: on,
+      isStyleLoaded: () => true,
+      getZoom: () => viewport.zoom,
+      getBounds: () => ({
+        getWest: () => viewport.west,
+        getSouth: () => viewport.south,
+        getEast: () => viewport.east,
+        getNorth: () => viewport.north,
+      }),
+      getSource: (id: string) => sources.get(id),
+      addSource: (id: string, source: unknown) => void sources.set(id, source),
+      addLayer: (layer: { id: string }) => void layers.set(layer.id, layer),
+      getLayer: (id: string) => layers.get(id),
+      removeLayer: (id: string) => void layers.delete(id),
+      removeSource: (id: string) => void sources.delete(id),
+      emit: (type: string) => {
+        for (const cb of [...(handlers.get(type) ?? [])]) cb();
+      },
+    };
+    return { map: map as unknown as Parameters<typeof initNetworkClusters>[0], sources, layers, emit: map.emit };
+  }
+
+  /** Per-URL fetch stub; returns the list of fetched URLs. */
+  function stubFetch(handler: (url: string, call: number) => Response | Promise<Response>) {
+    const calls: string[] = [];
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(async (input: RequestInfo | URL) => {
+        const url = typeof input === 'string' ? input : input.toString();
+        calls.push(url);
+        return handler(url, calls.length);
+      }) as unknown as typeof fetch,
+    );
+    return calls;
+  }
+
+  /** Drains the microtask queue — the fetch stubs settle without timers. */
+  async function flush(): Promise<void> {
+    for (let i = 0; i < 40; i++) await Promise.resolve();
+  }
+
+  const manifestJson = {
+    schema: NETWORK_SCHEMA,
+    clusters: [{ id: '0513', file: '0513.geojson', bbox: [0, 0, 1, 1] }],
+  };
+  const clusterJson = {
+    type: 'FeatureCollection',
+    features: [{ type: 'Feature', properties: { pid: 'reach-1' }, geometry: null }],
+  };
+
+  it('retries the manifest after a transient failure and loads the cluster on recovery', async () => {
+    const calls = stubFetch((url, call) => {
+      if (url === NETWORK_MANIFEST_URL) {
+        if (call === 1) throw new TypeError('transient outage');
+        return new Response(JSON.stringify(manifestJson), { status: 200 });
+      }
+      return new Response(JSON.stringify(clusterJson), { status: 200 });
+    });
+    const { map, sources, emit } = makeFakeMap();
+
+    const dispose = initNetworkClusters(map);
+    await flush();
+    // First attempt failed while the browser was effectively offline.
+    expect(calls.filter((u) => u === NETWORK_MANIFEST_URL)).toHaveLength(1);
+    expect(sources.size).toBe(0);
+
+    // Recovery: the next moveend refetches the manifest and installs the cluster.
+    emit('moveend');
+    await flush();
+    expect(calls.filter((u) => u === NETWORK_MANIFEST_URL).length).toBeGreaterThanOrEqual(2);
+    expect(sources.has(NETWORK_SOURCE_PREFIX + '0513')).toBe(true);
+    dispose();
+  });
+
+  it('bounds manifest retries with a cooldown after repeated failures', async () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(0);
+    const calls = stubFetch((url) => {
+      if (url === NETWORK_MANIFEST_URL) throw new TypeError('still offline');
+      return new Response(JSON.stringify(clusterJson), { status: 200 });
+    });
+    const { map, emit } = makeFakeMap();
+
+    const dispose = initNetworkClusters(map);
+    await flush();
+    for (let i = 0; i < 5; i++) {
+      emit('moveend');
+      await flush();
+    }
+    // Free retries are exhausted; inside the cooldown no further fetches run.
+    expect(calls.filter((u) => u === NETWORK_MANIFEST_URL)).toHaveLength(
+      NETWORK_MANIFEST_MAX_FREE_RETRIES,
+    );
+
+    // After the cooldown expires the next viewport request retries.
+    vi.setSystemTime(NETWORK_MANIFEST_RETRY_MS + 1);
+    emit('moveend');
+    await flush();
+    expect(calls.filter((u) => u === NETWORK_MANIFEST_URL).length).toBeGreaterThan(
+      NETWORK_MANIFEST_MAX_FREE_RETRIES,
+    );
+    dispose();
   });
 });

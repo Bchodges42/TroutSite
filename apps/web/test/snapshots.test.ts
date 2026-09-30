@@ -97,6 +97,36 @@ describe('fetchSnapshot (offline-first fetcher)', () => {
     expect(await readCachedSnapshot('/v1/missing', streamSchema)).toBeNull();
   });
 
+  it('returns the fresh network response even when persisting it fails (F32)', async () => {
+    // A valid older copy sits in Dexie, the network fetch succeeds, but the
+    // Dexie write hits a quota error: the current response must win — the
+    // stale copy must NOT masquerade as the answer (live:false).
+    const stale = [{ ...sample[0], id: 'august-copy' }];
+    await db.snapshots.put({ url: '/v1/streams', data: stale, fetchedAt: 1_000, expiresAt: 2_000 });
+    const putSpy = vi
+      .spyOn(db.snapshots, 'put')
+      .mockRejectedValueOnce(new DOMException('quota exceeded', 'QuotaExceededError'));
+    vi.stubGlobal('fetch', vi.fn(async () => jsonOk(sample)));
+
+    const result = await fetchSnapshot('/v1/streams', streamSchema, 60);
+    expect(result.data).toEqual(sample);
+    expect(result.live).toBe(true);
+    expect(result.persisted).toBe(false); // cache loss surfaced independently
+    expect(putSpy).toHaveBeenCalledTimes(1);
+  });
+
+  it('does not fail a healthy fetch when no fallback cache can serve either (F32)', async () => {
+    vi.spyOn(db.snapshots, 'put').mockRejectedValue(
+      new DOMException('quota exceeded', 'QuotaExceededError'),
+    );
+    vi.stubGlobal('fetch', vi.fn(async () => jsonOk(sample)));
+
+    const result = await fetchSnapshot('/v1/streams', streamSchema, 60);
+    expect(result.data).toEqual(sample);
+    expect(result.live).toBe(true);
+    expect(result.persisted).toBe(false);
+  });
+
   it('validates payload shape against the frozen contract', async () => {
     const bad = [{ id: 'x' }]; // missing required fields
     vi.stubGlobal('fetch', vi.fn(async () => jsonOk(bad)));

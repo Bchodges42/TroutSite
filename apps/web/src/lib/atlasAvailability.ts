@@ -140,7 +140,11 @@ const TOPO_GENERATED_KEY = 'trout:topo-generated';
  * Drop the CacheFirst terrain runtime cache when the manifest's `generated`
  * stamp differs from the stored one (or the stored one is missing). Runs once
  * per changed deployment; SW cache access is a progressive enhancement, so
- * every failure path resolves quietly.
+ * every failure path resolves quietly. F29: the marker may only advance once
+ * the deletion actually succeeded — recording it first let a transient
+ * caches.delete failure pin the stale terrain cache until the NEXT generation
+ * change. A failed delete leaves the marker untouched so the very next probe
+ * retries the purge.
  */
 export async function invalidateStaleTopoCache(
   manifest: TopoManifest,
@@ -155,14 +159,14 @@ export async function invalidateStaleTopoCache(
   }
   if (stored === generated) return false;
   try {
-    localStorage.setItem(TOPO_GENERATED_KEY, generated);
-  } catch {
-    /* private mode: proceed with the purge anyway */
-  }
-  try {
     if (typeof caches !== 'undefined' && generated) await caches.delete(cacheName);
-    return true;
   } catch {
     return false;
   }
+  try {
+    localStorage.setItem(TOPO_GENERATED_KEY, generated);
+  } catch {
+    /* private mode: nothing durable to record; the next probe purges again */
+  }
+  return true;
 }

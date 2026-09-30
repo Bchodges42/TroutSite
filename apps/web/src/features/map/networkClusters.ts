@@ -165,22 +165,65 @@ export function clustersToRelease(
 }
 
 // Per-page-session caches. The manifest and every cluster file are fetched at
-// most once per session regardless of viewport churn; removal only drops the
-// MapLibre source, never the cached bytes.
+// most once per session while they SUCCEED; removal only drops the MapLibre
+// source, never the cached bytes. F41: a settled FAILURE (fetch threw, non-200
+// answered, bytes unparseable — always a null result) is never cached for the
+// session; its entry evicts itself so a later viewport request retries. The
+// manifest additionally cools down after repeated consecutive failures so a
+// permanently missing manifest cannot refetch on every pan.
 let manifestCache: Promise<NetworkManifest | null> | null = null;
+/** Consecutive manifest failures; resets on the first valid manifest. */
+let manifestFailures = 0;
+/** Earliest Date.now() at which a new manifest attempt may start. */
+let manifestRetryNotBefore = 0;
+/** Consecutive failures before the bounded manifest retry cooldown engages. */
+export const NETWORK_MANIFEST_MAX_FREE_RETRIES = 3;
+/** Cooldown window for manifest retries once repeated failures exhaust the free ones. */
+export const NETWORK_MANIFEST_RETRY_MS = 30_000;
 /** Shared byte cache: remounting the map cannot refetch a cluster this page already has. */
 const clusterDataCache = new Map<string, Promise<NetworkFeatureCollection | null>>();
 /** Actual cluster URL fetches, in order; exposed only through the DEV seam. */
 const fetchLog: string[] = [];
 
-function loadManifest(): Promise<NetworkManifest | null> {
-  if (!manifestCache) {
-    manifestCache = fetch(NETWORK_MANIFEST_URL)
-      .then((res) => (res.ok ? res.json() : null))
-      .then((json) => parseNetworkManifest(json))
-      .catch(() => null);
+function noteManifestFailure(): void {
+  manifestFailures += 1;
+  if (manifestFailures >= NETWORK_MANIFEST_MAX_FREE_RETRIES) {
+    manifestRetryNotBefore = Date.now() + NETWORK_MANIFEST_RETRY_MS;
   }
-  return manifestCache;
+}
+
+function loadManifest(): Promise<NetworkManifest | null> {
+  if (manifestCache) return manifestCache;
+  if (
+    manifestFailures >= NETWORK_MANIFEST_MAX_FREE_RETRIES &&
+    Date.now() < manifestRetryNotBefore
+  ) {
+    // Bounded retry: inside the cooldown window a request neither fetches nor
+    // queues — the next request after it expires retries (F41).
+    return Promise.resolve(null);
+  }
+  const attempt: Promise<NetworkManifest | null> = fetch(NETWORK_MANIFEST_URL)
+    .then((res) => (res.ok ? res.json() : null))
+    .then((json) => parseNetworkManifest(json))
+    .then((manifest) => {
+      if (manifest) {
+        manifestFailures = 0;
+        manifestRetryNotBefore = 0;
+      } else {
+        noteManifestFailure();
+      }
+      return manifest;
+    })
+    .catch(() => {
+      noteManifestFailure();
+      return null;
+    });
+  manifestCache = attempt;
+  // A settled failure evicts itself: the next viewport request retries (F41).
+  void attempt.then((manifest) => {
+    if (!manifest && manifestCache === attempt) manifestCache = null;
+  });
+  return attempt;
 }
 
 /**
@@ -306,6 +349,16 @@ export class LatestOnlyNetworkScheduler {
         .then(() => this.fetchCluster(cluster))
         .catch(() => null);
       this.bytes.set(cluster.id, promise);
+      // F41: a settled failure (null — the fetch threw, a non-200 answered, or
+      // the bytes failed to parse) must not masquerade as cached data for the
+      // rest of the session. Evict it so the next request retries; a
+      // successfully fetched FeatureCollection — a valid EMPTY one included —
+      // stays cached exactly as before.
+      void promise.then((result) => {
+        if (result === null && this.bytes.get(cluster.id) === promise) {
+          this.bytes.delete(cluster.id);
+        }
+      });
       this.publish();
     }
     return promise;
@@ -545,6 +598,8 @@ export function initNetworkClusters(
 /** Test seam: reset the per-session caches (module state, not map state). */
 export function resetNetworkSessionCaches(): void {
   manifestCache = null;
+  manifestFailures = 0;
+  manifestRetryNotBefore = 0;
   clusterDataCache.clear();
   fetchLog.length = 0;
 }
