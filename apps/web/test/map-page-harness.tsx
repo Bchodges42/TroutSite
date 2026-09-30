@@ -63,74 +63,101 @@ export interface FeedOptions {
   /** Stream catalog rows served from /v1/streams. */
   streams: Array<Record<string, unknown>>;
   /**
-   * Map of `/v1/fishability/<id>.json` → deferred resolver. When a URL has a
-   * deferred, the fetch stalls until the test resolves it with the JSON body;
-   * otherwise the fixture map value is served immediately.
+   * Map of `/v1/fishability/<id>.json` → fixture body, or a deferred()
+   * record whose fetch stalls until the test resolves it with the body.
    */
-  fishability?: Map<string, Array<Record<string, unknown>>>;
+  fishability?: Map<string, Array<Record<string, unknown>> | DeferredBody>;
+}
+
+export interface DeferredBody {
+  readonly pending: Promise<Record<string, unknown>>;
+  resolve: (body: Record<string, unknown>) => void;
+}
+
+/**
+ * A re-resolvable deferred: every fetch either awaits delivery of the
+ * current body or receives the most recently resolved one — so a test can
+ * resolve a NEW assessment while a refetch is in flight (the F44 focus
+ * switch does exactly that).
+ */
+export function deferredBody(): DeferredBody {
+  const state: {
+    body?: Record<string, unknown>;
+    waiters: Array<(body: Record<string, unknown>) => void>;
+  } = { waiters: [] };
+  return {
+    get pending() {
+      if (state.body) return Promise.resolve(state.body);
+      return new Promise<Record<string, unknown>>((r) => state.waiters.push(r));
+    },
+    resolve(body: Record<string, unknown>) {
+      state.body = body;
+      const waiters = state.waiters;
+      state.waiters = [];
+      for (const waiter of waiters) waiter(body);
+    },
+  };
+}
+
+const isDeferred = (entry: unknown): entry is DeferredBody =>
+  typeof entry === 'object' && entry !== null && 'pending' in entry;
+
+function jsonResponse(body: unknown, status = 200) {
+  return new Response(JSON.stringify(body), {
+    status,
+    headers: { 'content-type': 'application/json' },
+  });
 }
 
 export function stubMapFeeds(options: FeedOptions) {
   return vi.fn(async (input: RequestInfo | URL) => {
     const url = String(input);
     if (url.includes('/v1/fishability/')) {
-      const key = '/' + url.split('/').slice(3).join('/');
-      const deferred = options.fishability?.get(key);
-      if (deferred) {
-        return new Promise((resolve) => {
-          (options.fishability as Map<unknown, unknown>).set(key + ':resolve', resolve);
-        }).then(
-          (body) =>
-            new Response(JSON.stringify(body), {
-              status: 200,
-              headers: { 'content-type': 'application/json' },
-            }),
-        );
-      }
-      const body = options.fishability?.get(key) ?? { error: 'absent' };
-      return new Response(JSON.stringify(body), {
-        status: options.fishability?.has(key) ? 200 : 404,
-        headers: { 'content-type': 'application/json' },
-      });
+      // Key from the /v1/ boundary — the fetch URL may carry a fixtures prefix.
+      const key = url.slice(url.indexOf('/v1/'));
+      const entry = options.fishability?.get(key);
+      if (isDeferred(entry)) return entry.pending.then((body) => jsonResponse(body));
+      if (entry) return jsonResponse(entry);
+      return jsonResponse({ error: 'absent' }, 404);
     }
     if (url.includes('/v1/streams')) {
-      return new Response(JSON.stringify(options.streams), {
-        status: 200,
-        headers: { 'content-type': 'application/json' },
-      });
+      return jsonResponse(options.streams);
     }
     if (url.includes('/atlas/places.json')) {
-      return new Response(JSON.stringify({ places: [] }), {
-        status: 200,
-        headers: { 'content-type': 'application/json' },
-      });
+      return jsonResponse({ places: [] });
     }
     if (url.includes('/atlas/topo/manifest.json') || url.includes('/atlas/roads-manifest.json')) {
-      return new Response(JSON.stringify({ error: 'not found' }), { status: 404 });
+      return jsonResponse({ error: 'not found' }, 404);
     }
     if (url.includes('/v1/hatch/')) {
       const parts = url.split('/');
-      return new Response(
-        JSON.stringify({ regionId: parts[3], month: Number(parseInt(parts[4]!, 10)), entries: [] }),
-        { status: 200, headers: { 'content-type': 'application/json' } },
-      );
-    }
-    if (url.includes('/v1/')) {
-      return new Response(JSON.stringify([]), {
-        status: 200,
-        headers: { 'content-type': 'application/json' },
+      return jsonResponse({
+        regionId: parts[3],
+        month: Number(parseInt(parts[4]!, 10)),
+        entries: [],
       });
     }
-    return new Response(JSON.stringify({ error: 'not found' }), { status: 404 });
+    if (url.includes('/v1/')) {
+      return jsonResponse([]);
+    }
+    return jsonResponse({ error: 'not found' }, 404);
   }) as unknown as typeof fetch;
 }
 
-export function resolveFishability(options: FeedOptions, key: string, body: Array<Record<string, unknown>>) {
-  const resolve = (options.fishability as Map<string, unknown>).get(key + ':resolve') as
-    | ((body: Array<Record<string, unknown>>) => void)
-    | undefined;
-  if (!resolve) throw new Error('no deferred fishability fetch for ' + key);
-  resolve(body);
+export async function resolveFishability(
+  options: FeedOptions,
+  key: string,
+  body: Record<string, unknown>,
+): Promise<void> {
+  // The fishability query is enabled once settings load from Dexie, so the
+  // deferred may not exist yet — wait for the fetch to actually start.
+  const map = options.fishability as Map<string, unknown>;
+  for (let i = 0; i < 200 && !isDeferred(map.get(key)); i++) {
+    await new Promise((r) => setTimeout(r, 20));
+  }
+  const entry = map.get(key);
+  if (!isDeferred(entry)) throw new Error('fishability fetch never started for ' + key);
+  entry.resolve(body);
 }
 
 export function renderMapPage(route = '/'): void {

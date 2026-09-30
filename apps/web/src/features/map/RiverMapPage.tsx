@@ -387,6 +387,13 @@ export function RiverMapPage() {
       (data.conditionsFeed.records === 0 ||
         (data.conditionsFeed.assessedCount === 0 && data.conditionsFeed.buildStale))) ||
       data.conditionsUnavailable);
+  // F44: the color memo's dependencies are the ACTUAL decision inputs — the
+  // per-water fishability payload (a late focus-species response must
+  // repaint), the focus species that drives it, and the resolved map palette
+  // (custom colors change theme.map without changing theme.id). The old key
+  // (id + status + species + theme.id) kept amber paint after the decision
+  // helper had already switched to good/green.
+  const paletteSignature = JSON.stringify(theme.map);
   const colors = useMemo(
     () =>
       new Map(
@@ -407,10 +414,21 @@ export function RiverMapPage() {
         }),
       ),
     [
-      data.features.map((f) => f.stream.id + f.status + f.species).join(','),
+      data.features
+        .map(
+          (f) =>
+            f.stream.id +
+            f.status +
+            f.species +
+            (f.fishability
+              ? ':' + f.fishability.species + ':' + f.fishability.comfort.value + ':' + String(f.fishability.comfort.assessed)
+              : ''),
+        )
+        .join(','),
       species,
       month,
-      theme.id,
+      focusSpecies,
+      paletteSignature,
     ],
   );
   // Class outlines (2026-09-10): the map must SHOW the trout/warmwater split,

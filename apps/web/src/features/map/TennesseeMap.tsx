@@ -13,6 +13,7 @@ import {
 } from './mapStyle';
 import { NETWORK_LAYER_PREFIX, initNetworkClusters } from './networkClusters';
 import { TN_BOUNDS, TN_MAX_BOUNDS, statewideCamera } from './mapTokens';
+import type { MapPalette } from '../../theme/themes';
 import { useTheme } from '../../theme/ThemeProvider';
 import { waterIdentity } from '../../lib/presentation';
 import { labelDecision, labelSpeciesNote } from './labelPolicy';
@@ -36,6 +37,21 @@ const stillWaterIds = new Set(
 );
 const catalogPermanentIds = new Set(index.flatMap((water) => water.nhdPermanentIds.map(String)));
 export const isStillWaterId = (id: string) => stillWaterIds.has(id);
+
+/**
+ * Style-swap identity. F44: the RESOLVED map palette is part of the key —
+ * custom map colors (mapWater/mapLake/mapSelection/...) change theme.map
+ * WITHOUT changing theme.id, and a key of theme.id + basemap + roads left
+ * the style swap untriggered and the paint stale.
+ */
+export function mapStyleKey(
+  themeId: string,
+  map: MapPalette,
+  basemap: BasemapVariant | undefined,
+  hasRoads: boolean,
+): string {
+  return themeId + ':' + String(basemap) + ':' + String(hasRoads) + ':' + JSON.stringify(map);
+}
 
 function projectGeometry(
   map: maplibregl.Map,
@@ -109,8 +125,9 @@ interface Camera {
   padding: maplibregl.PaddingOptions;
 }
 // UI-only, in-memory camera continuity, including live design refreshes.
-const cameras: Map<string, Camera> = import.meta.hot?.data.fieldworkCameras ?? new Map();
-if (import.meta.hot) import.meta.hot.data.fieldworkCameras = cameras;
+// (?.data — vitest's vite-node defines import.meta.hot without .data.)
+const cameras: Map<string, Camera> = import.meta.hot?.data?.fieldworkCameras ?? new Map();
+if (import.meta.hot?.data) import.meta.hot.data.fieldworkCameras = cameras;
 type Place = { name: string; lon: number; lat: number; kind: 'city' | 'town' | 'water' };
 interface Props {
   selectedId: string | null;
@@ -177,6 +194,10 @@ export function TennesseeMap(props: Props) {
   latest.current = props;
   const palette = useRef(theme.map);
   palette.current = theme.map;
+  // F44: resolved-palette identity — changes when custom map colors change
+  // inside the same theme, driving both the style swap and the flow-arrow
+  // glyph rebuild below.
+  const paletteSignature = JSON.stringify(theme.map);
   const [attempt, setAttempt] = useState(0);
   const [failed, setFailed] = useState(false);
   const [ready, setReady] = useState(false);
@@ -359,7 +380,7 @@ export function TennesseeMap(props: Props) {
     };
     map.on('styledata', syncStyleInventory);
     map.on('idle', syncStyleInventory);
-    appliedStyle.current = theme.id + ':' + latest.current.basemap;
+    appliedStyle.current = mapStyleKey(theme.id, palette.current, latest.current.basemap, Boolean(latest.current.roads));
     // Custom zoom buttons respect both OS and in-app reduced-motion preferences.
     const zoomGroup = document.createElement('div');
     zoomGroup.className = 'maplibregl-ctrl maplibregl-ctrl-group field-zoom';
@@ -851,7 +872,7 @@ export function TennesseeMap(props: Props) {
   useEffect(() => {
     const map = mapRef.current;
     if (!map || !ready) return;
-    const styleKey = theme.id + ':' + props.basemap + ':' + String(Boolean(props.roads));
+    const styleKey = mapStyleKey(theme.id, theme.map, props.basemap, Boolean(props.roads));
     if (container.current) container.current.dataset.mapStyleKey = styleKey;
     if (appliedStyle.current === styleKey) return;
     // Swap token: rapid toggles (Terrain ⇄ Roads ⇄ theme) must never apply an
@@ -893,7 +914,7 @@ export function TennesseeMap(props: Props) {
     return () => {
       map.off('idle', swap);
     };
-  }, [props.basemap, props.roads, ready, theme.id, attempt]);
+  }, [props.basemap, props.roads, ready, theme.id, paletteSignature, attempt]);
   useEffect(() => {
     applyRef.current();
   }, [
@@ -1164,7 +1185,7 @@ export function TennesseeMap(props: Props) {
     return () => {
       cancelled = true;
     };
-  }, [ready, props.selectedId, theme.id, props.basemap, props.roads, attempt]);
+  }, [ready, props.selectedId, theme.id, paletteSignature, props.basemap, props.roads, attempt]);
   useEffect(() => {
     const map = mapRef.current;
     if (!map || !ready || !props.places) return;
