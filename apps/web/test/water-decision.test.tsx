@@ -405,6 +405,71 @@ describe('F6 TASK 3 — fishability displayMetric from real snapshot data', () =
   });
 });
 
+describe('F04 — cached assessments age honestly (current age, not generation age)', () => {
+  // The audited repro: a snapshot generated when the temperature observation
+  // was 30 minutes old (ageMinutes=30, frozen into the payload) is served from
+  // the device cache a MONTH later. lib/fishability's hooks stamp the comfort
+  // at the data boundary with the observation's CURRENT age; the decision view
+  // must read that stamp — never the frozen generation age — so an old score
+  // presents as a historical assessment with reduced confidence.
+  const warmwaterF = feature({ species: 'warmwater', score: null });
+  const comfort = (freshness: Record<string, unknown>, value = 90) =>
+    ({
+      species: 'largemouth-bass',
+      value,
+      reasons: ['Water temperature 24°C is in the optimal range for largemouth bass.'],
+      assessed: true,
+      freshness,
+    }) as never;
+
+  it('a month-old cached assessed-90 snapshot must not wear current high confidence', () => {
+    const focus = {
+      species: 'largemouth-bass' as const,
+      comfort: comfort({ observedAt: '2026-08-29T10:00:00Z', ageMinutes: 30, currentAgeMinutes: 30 * 24 * 60 }),
+    };
+    const view = toWaterDecisionView(warmwaterF, 'all', 9, focus);
+    expect(view.displayMetric).toBe('fishability');
+    expect(view.assessmentRecency).toBe('historical');
+    expect(view.confidence).not.toBe('high');
+    expect(view.confidence).toBe('low');
+  });
+
+  it('a fresh assessment (small current age) keeps current framing and high confidence', () => {
+    const focus = {
+      species: 'largemouth-bass' as const,
+      comfort: comfort({ observedAt: '2026-09-29T10:00:00Z', ageMinutes: 30, currentAgeMinutes: 45 }),
+    };
+    const view = toWaterDecisionView(warmwaterF, 'all', 9, focus);
+    expect(view.displayMetric).toBe('fishability');
+    expect(view.assessmentRecency).toBe('current');
+    expect(view.confidence).toBe('high');
+  });
+
+  it('the shared reading window is the boundary: 3 h current, past it historical', () => {
+    const at = (stamp: number) =>
+      toWaterDecisionView(warmwaterF, 'all', 9, {
+        species: 'largemouth-bass' as const,
+        comfort: comfort({ observedAt: '2026-09-29T10:00:00Z', ageMinutes: 0, currentAgeMinutes: stamp }),
+      });
+    expect(at(180).assessmentRecency).toBe('current');
+    expect(at(180).confidence).toBe('high');
+    expect(at(181).assessmentRecency).toBe('historical');
+    expect(at(181).confidence).toBe('low');
+  });
+
+  it('without a boundary stamp the generation-time age is the only known age (legacy payloads)', () => {
+    // A payload stamped before this fix carries only ageMinutes; it can still
+    // be judged on its own frozen age — and a frozen age past the window is
+    // historical even though it never grows.
+    const stale = toWaterDecisionView(warmwaterF, 'all', 9, {
+      species: 'largemouth-bass' as const,
+      comfort: comfort({ observedAt: '2026-09-29T10:00:00Z', ageMinutes: 60 * 24 * 30 }),
+    });
+    expect(stale.assessmentRecency).toBe('historical');
+    expect(stale.confidence).toBe('low');
+  });
+});
+
 describe('ADR 0010 — adjudicated opportunity in the decision model', () => {
   function oppFeature(overrides: {
     id?: string;

@@ -1,5 +1,6 @@
 import type { RiverMapFeature } from './riverMapSelectors';
 import type { EvidenceState, FishabilityScore, OpportunityHeadline, SpeciesKey } from '@trout/contracts';
+import { READING_STALE_MINUTES } from '@trout/contracts';
 import { monthWindowLabel } from '../../lib/troutCalendar';
 
 /**
@@ -25,6 +26,44 @@ export type FishabilityFocus = {
   species: SpeciesKey;
   comfort: FishabilityScore;
 } | null;
+
+/**
+ * F04: freshness as the decision view sees it. A snapshot payload freezes
+ * `ageMinutes` at generation time; lib/fishability's hooks stamp the freshness
+ * at the data boundary with the observation's CURRENT age. Structurally
+ * matched here (no import) so this adapter stays a pure leaf. Absent stamp =
+ * generation-time age is the only known age (legacy payloads, direct tests).
+ */
+type ComfortFreshness = {
+  observedAt: string;
+  ageMinutes: number;
+  currentAgeMinutes?: number;
+};
+
+/**
+ * F04: current age in minutes of the observation behind a comfort score — the
+ * boundary stamp when one was served, else the generation-time age frozen in
+ * the payload. `null` when the comfort carries no observation at all. Pure:
+ * the clock was applied upstream, at the data boundary.
+ */
+export function assessmentAgeMinutes(comfort: Pick<FishabilityScore, 'freshness'>): number | null {
+  const f: ComfortFreshness | null = comfort.freshness;
+  if (!f) return null;
+  const age = f.currentAgeMinutes ?? f.ageMinutes;
+  return Number.isFinite(age) ? Math.max(0, age) : null;
+}
+
+/**
+ * F04: true when the observation behind a comfort score is past the shared
+ * reading window NOW — the same gate scoreFishability applies at generation
+ * (READING_STALE_MINUTES, 3 h). The scoring pipeline would refuse that
+ * observation today, so a cached score it produced must present as a clearly
+ * labeled historical assessment with reduced confidence, never as current.
+ */
+export function isHistoricalAssessment(comfort: Pick<FishabilityScore, 'freshness'>): boolean {
+  const age = assessmentAgeMinutes(comfort);
+  return age !== null && age > READING_STALE_MINUTES;
+}
 
 /**
  * WaterDecisionView — the presentation view model the filter/metric UI
@@ -59,6 +98,13 @@ export type WaterDecisionView = {
   displayMetric: 'trout-condition' | 'fishability' | 'unassessed';
   fishability?: 'good' | 'fair' | 'poor' | 'unknown';
   confidence: 'high' | 'medium' | 'low';
+  /** F04: for the fishability metric — 'historical' when the supporting
+   *  observation is past the shared reading window at read time (cache
+   *  provenance: the payload's generation-time age never grows, so the stamp
+   *  from the data boundary is the truth). A historical metric keeps its band
+   *  but must be labeled a historical assessment with reduced confidence,
+   *  never current conditions. Absent for the trout-condition metric. */
+  assessmentRecency?: 'current' | 'historical';
   /** Adjudicated fishery opportunity from the catalog (ADR 0010). Derived
    * ONLY from the authored `opportunity` block — undefined when the water
    * has not been adjudicated, which is an honest "not yet", not a negative. */
@@ -187,6 +233,9 @@ export function toWaterDecisionView(
     mode === 'all' &&
     !!fishability &&
     fishability.comfort.assessed;
+  // F04: a cached assessment ages. Whether the score's supporting observation
+  // is past the reading window NOW decides current vs historical presentation.
+  const historicalAssessment = fishabilityActive && isHistoricalAssessment(fishability!.comfort);
   // Trout-mode visibility. Campaign base (2026-09-07): stocked warmwater stays
   // visible-but-dim, plain warmwater is excluded. Owner refinement (2026-09-10,
   // "not completely gone but MUCH easier to distinguish"): a DOCUMENTED trout
@@ -230,8 +279,17 @@ export function toWaterDecisionView(
     // No generic fishability source exists in the current pipeline. The field
     // stays undefined rather than borrowing the trout score.
     fishability: undefined,
+    ...(fishabilityActive
+      ? { assessmentRecency: historicalAssessment ? ('historical' as const) : ('current' as const) }
+      : {}),
     confidence: fishabilityActive
-      ? (fishability!.comfort.freshness ? 'high' : 'medium')
+      ? historicalAssessment
+        ? // F04: a historical assessment keeps its band but loses current
+          // confidence — below even the un-fresh-but-current 'medium'.
+          ('low' as const)
+        : fishability!.comfort.freshness
+          ? ('high' as const)
+          : ('medium' as const)
       : (troutApplicability === 'confirmed-current' ||
           (troutApplicability === 'seasonal-uncertain' && inSeason === true)) &&
         assessed

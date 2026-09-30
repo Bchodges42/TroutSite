@@ -2,6 +2,8 @@ import { useSearchParams } from 'react-router-dom';
 import { scoreBand } from '../lib/conditions';
 import { SPECIES_LABELS, useFishabilityForWater } from '../lib/fishability';
 import { useSettingsContext } from '../lib/settings';
+import { ageMinutes as ageMinutesLabel } from '../lib/time';
+import { isHistoricalAssessment } from '../features/map/waterDecision';
 import type { ActivityComponent, FlowTrendContext, PressureContext, RainContext, SpeciesKey } from '@trout/contracts';
 
 const BAND_COLOR: Record<string, string> = {
@@ -23,9 +25,22 @@ function rowLabel(component: ActivityComponent): string {
   return component.label;
 }
 
+/**
+ * F48: "2 hours ago" for the pressure observation — keyed off its OWN
+ * timestamp (pure: `nowMs` comes from the rendering component, the clock's
+ * caller). An absent or unreadable observedAt yields no age claim at all;
+ * freshness is never fabricated.
+ */
+export function pressureAgeText(pressure: PressureContext, nowMs: number): string | null {
+  const observedMs = Date.parse(pressure.observedAt);
+  if (!Number.isFinite(observedMs)) return null;
+  return ageMinutesLabel(observedMs, nowMs);
+}
+
 /** Context rows are deliberately separate from the weighted activity factors. */
-function ContextNotes({ pressure, rain }: { pressure?: PressureContext; rain?: RainContext }) {
+function ContextNotes({ pressure, rain, nowMs }: { pressure?: PressureContext; rain?: RainContext; nowMs: number }) {
   if (!pressure && !rain) return null;
+  const pressureAge = pressure ? pressureAgeText(pressure, nowMs) : null;
   return (
     <div className="mt-2 flex flex-col gap-1" role="note" aria-label="Weather context">
       {rain && (
@@ -41,7 +56,9 @@ function ContextNotes({ pressure, rain }: { pressure?: PressureContext; rain?: R
       )}
       {pressure && (
         <p className="text-xs" style={{ color: 'var(--trout-color-text-muted)' }}>
-          {pressure.label} ({pressure.station}) — derived area context only, not part of the score.
+          {pressure.label}
+          {pressureAge ? ` · observed ${pressureAge}` : ''} ({pressure.station}) — derived area
+          context only, not part of the score.
         </p>
       )}
     </div>
@@ -173,6 +190,14 @@ export function FishabilityCard({ streamId, compact = false }: { streamId: strin
   const band = scoreBand(scored.comfort.value);
   const color = BAND_COLOR[band];
   const bandLabel = band === 'good' ? 'Good' : band === 'fair' ? 'Fair' : 'Poor';
+  // F04: a cached assessment must not read as current forever. The data
+  // boundary (the fishability hooks) stamped the freshness with the
+  // observation's CURRENT age; past the shared reading window the score is
+  // kept but presented as a clearly labeled historical assessment.
+  const historical = isHistoricalAssessment(scored.comfort);
+  // The component is the clock's caller for the context rows (F48); the
+  // helpers downstream stay pure.
+  const nowMs = Date.now();
 
   return (
     <div
@@ -220,6 +245,15 @@ export function FishabilityCard({ streamId, compact = false }: { streamId: strin
             No data
           </span>
         )}
+        {historical && (
+          <span
+            className="inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide"
+            style={{ border: '1px solid var(--ui-border)', color: 'var(--ui-muted)' }}
+            aria-label="Historical assessment"
+          >
+            Historical
+          </span>
+        )}
       </div>
       {scored.comfort.assessed ? (
         <ul className="mt-2 list-disc pl-5 text-sm">
@@ -234,10 +268,12 @@ export function FishabilityCard({ streamId, compact = false }: { streamId: strin
       )}
       {scored.comfort.freshness && (
         <p className="muted mt-1 text-xs">
-          Observed {new Date(scored.comfort.freshness.observedAt).toLocaleString()}
+          {historical
+            ? `Historical assessment — observed ${new Date(scored.comfort.freshness.observedAt).toLocaleString()} (not current conditions)`
+            : `Observed ${new Date(scored.comfort.freshness.observedAt).toLocaleString()}`}
         </p>
       )}
-      <ContextNotes pressure={snap.pressureContext} rain={snap.rainContext} />
+      <ContextNotes pressure={snap.pressureContext} rain={snap.rainContext} nowMs={nowMs} />
       <ActivityBreakdown activity={scored.activity} />
     </div>
   );
