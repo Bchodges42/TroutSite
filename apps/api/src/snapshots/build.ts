@@ -268,6 +268,21 @@ const STAGE_PREFIX = '.snap-stage-';
 const PREV_PREFIX = '.snap-prev-';
 const REMOVED_SUFFIX = ' (removed)';
 
+/**
+ * Build-time freshness gate for fishability pressureContext (F48): a
+ * region_pressure row is only published while its observation is inside this
+ * window; an expired row is treated as unavailable (the context is omitted —
+ * a stopped feed must not keep presenting an old 3-hour trend as current).
+ * The window is 6 h = 2× the ingest acceptance window (PRESSURE_STALE_MINUTES,
+ * 3 h): the pressure job only writes rows whose observation was ≤3 h old and
+ * builds run hourly, so healthy rows are ≤~4 h old here — 6 h never drops a
+ * live row while a frozen one is dropped by the next build after the window.
+ * It matches the region_precipitation gate below, so area context has one
+ * freshness rule. The payload keeps observedAt, so clients can display the
+ * observation age; no recent observations = no context.
+ */
+const PRESSURE_CONTEXT_MAX_AGE_MS = 6 * 60 * 60_000;
+
 function remapStagePathToLive(p: string, stageDir: string, liveDir: string): string {
   const removed = p.endsWith(REMOVED_SUFFIX);
   const base = removed ? p.slice(0, -REMOVED_SUFFIX.length) : p;
@@ -841,14 +856,28 @@ function emitFishability(
       trend_direction: 'rising' | 'falling' | 'stable';
       station: string;
     }[];
+    // F48: an observation older than the freshness window is unavailable
+    // context, not current context — omit it (the ingest job leaves the last
+    // accepted row in place when a feed goes quiet, so age must be re-checked
+    // here at every build, not just at ingest time).
+    const expiredPressureRegions: string[] = [];
     for (const r of rows) {
       if (r.trend_hpa_3h === null) continue;
+      if (ctx.now.getTime() - Date.parse(r.observed_at) > PRESSURE_CONTEXT_MAX_AGE_MS) {
+        expiredPressureRegions.push(r.region_id);
+        continue;
+      }
       pressureByRegion.set(r.region_id, {
         deltaHpa: r.trend_hpa_3h,
         station: r.station,
         observedAt: r.observed_at,
         direction: r.trend_direction,
       });
+    }
+    if (expiredPressureRegions.length > 0) {
+      ctx.warnings.push(
+        `region pressure older than ${PRESSURE_CONTEXT_MAX_AGE_MS / 3_600_000}h omitted from fishability context (feed stale?): ${expiredPressureRegions.sort().join(', ')}`,
+      );
     }
   } catch {
     // Table missing (pre-009 DB) — pressure context is honestly absent.

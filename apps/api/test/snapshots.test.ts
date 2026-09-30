@@ -3,6 +3,7 @@ import { dirname, join } from 'node:path';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import {
   ConditionSnapshotSchema,
+  FishabilitySnapshotSchema,
   ShopSchema,
   ShopReportSchema,
   StreamSchema,
@@ -559,6 +560,94 @@ describe('buildSnapshots generation atomicity (F21)', () => {
     expect(after.get(join('v1', 'streams.json'))).toBe(baseline.get(join('v1', 'streams.json')));
     expect([...after.keys()].sort()).toEqual([...baseline.keys()].sort());
     expect(stageOrPrevLeftovers()).toEqual([]);
+  });
+});
+
+/** F48: a fresh fishability snapshot must not present a dead feed's pressure
+ *  trend as current area context. region_pressure rows are only published into
+ *  pressureContext while their observation is fresh at build time (≤6 h — 2×
+ *  the 3 h ingest acceptance window, matching the region_precipitation gate);
+ *  an expired row is omitted (treated as unavailable) and warned about. The
+ *  payload keeps observedAt so the client can always display the age. */
+describe('pressure context freshness (F48)', () => {
+  let env: TestEnv;
+  const NOW_MS = NOW.getTime();
+
+  beforeEach(() => {
+    env = makeEnv();
+  });
+
+  afterEach(() => {
+    env.db.close();
+    rmSync(env.dir, { recursive: true, force: true });
+  });
+
+  function giveWataugaTargetSpecies(): string {
+    env.db
+      .prepare("UPDATE streams SET target_species = ? WHERE id = 'watauga-river'")
+      .run('["smallmouth-bass"]');
+    return (
+      env.db.prepare("SELECT region_id FROM streams WHERE id = 'watauga-river'").get() as {
+        region_id: string;
+      }
+    ).region_id;
+  }
+
+  function insertPressure(regionId: string, observedAgoMin: number): void {
+    env.db
+      .prepare(
+        `INSERT INTO region_pressure (region_id, observed_at, retrieved_at, pressure_hpa, trend_hpa_3h, trend_direction, station)
+         VALUES (?, ?, ?, ?, ?, ?, ?)`,
+      )
+      .run(
+        regionId,
+        new Date(NOW_MS - observedAgoMin * 60_000).toISOString(),
+        NOW.toISOString(),
+        1014.5,
+        -3,
+        'falling',
+        'KTRI',
+      );
+  }
+
+  function readFishability(): FishabilitySnapshotSchema['_output'] {
+    return FishabilitySnapshotSchema.parse(
+      JSON.parse(readFileSync(join(env.snapshotsDir, 'v1', 'fishability', 'watauga-river.json'), 'utf8')),
+    );
+  }
+
+  it('omits an expired pressure record (28 days old — the audit repro) and warns instead of publishing it', () => {
+    const regionId = giveWataugaTargetSpecies();
+    insertPressure(regionId, 28 * 24 * 60);
+    const result = buildSnapshots({ db: env.db, snapshotsDir: env.snapshotsDir, now: NOW });
+    expect(readFishability().pressureContext).toBeUndefined();
+    expect(result.warnings.some((w) => w.includes('pressure') && w.includes(regionId))).toBe(true);
+  });
+
+  it('still publishes a fresh pressure record unchanged (payload contract intact)', () => {
+    const regionId = giveWataugaTargetSpecies();
+    insertPressure(regionId, 30);
+    const result = buildSnapshots({ db: env.db, snapshotsDir: env.snapshotsDir, now: NOW });
+    const ctx = readFishability().pressureContext;
+    expect(ctx).toBeDefined();
+    expect(ctx!.observedAt).toBe(new Date(NOW_MS - 30 * 60_000).toISOString());
+    expect(ctx!.station).toBe('KTRI');
+    expect(ctx!.deltaHpa).toBe(-3);
+    expect(ctx!.direction).toBe('falling');
+    expect(ctx!.label).toBe('Area pressure falling -3 hPa over about 3 hours');
+    expect(result.warnings.some((w) => w.includes('pressure'))).toBe(false);
+  });
+
+  it('applies the 6 h boundary: just inside is published, just outside is omitted', () => {
+    const regionId = giveWataugaTargetSpecies();
+    insertPressure(regionId, 5 * 60 + 59); // 5h59m — inside the window
+    buildSnapshots({ db: env.db, snapshotsDir: env.snapshotsDir, now: NOW });
+    expect(readFishability().pressureContext).toBeDefined();
+
+    env.db.prepare('DELETE FROM region_pressure').run();
+    insertPressure(regionId, 6 * 60 + 1); // 6h01m — outside the window
+    buildSnapshots({ db: env.db, snapshotsDir: env.snapshotsDir, now: NOW });
+    expect(readFishability().pressureContext).toBeUndefined();
   });
 });
 
