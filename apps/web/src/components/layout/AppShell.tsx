@@ -148,8 +148,15 @@ export function AppShell() {
             <ShieldIcon size={15} />
             On your device. Out in the wild.
           </span>
-          <SpeciesModeToggle />
-          <ThemeToggle />
+          {/* F17: the species + theme toggles form one quick-settings cluster.
+             Below 480px it collapses out of the header (CSS) — it alone pushed
+             the menu button past a 320px viewport — and the identical controls
+             render inside the overflow menu (.menu-quick-settings), so every
+             control stays reachable without horizontal panning. */}
+          <div className="header-quick-settings">
+            <SpeciesModeToggle />
+            <ThemeToggle />
+          </div>
           <button
             ref={triggerRef}
             type="button"
@@ -235,6 +242,14 @@ export function AppShell() {
                 </NavLink>
               ))}
             </nav>
+            {/* F17: narrow-viewport home of the quick-settings controls while
+               the header copy is collapsed (hidden above 480px, where the
+               header cluster still fits) — exactly one instance of each
+               control is ever visible or in the accessibility tree. */}
+            <div className="menu-quick-settings">
+              <SpeciesModeToggle />
+              <ThemeToggle />
+            </div>
             <p className="muted text-sm p-3">
               No accounts. No tracking. Your logbook never leaves this device.
             </p>
