@@ -1,38 +1,20 @@
-import { z } from 'zod';
-import { IsoDateTimeSchema } from '@trout/contracts';
+import { GAUGE_HISTORY_METRICS } from '@trout/contracts';
+import type { GaugeHistorySample, GaugeMetric } from '@trout/contracts';
 
 /**
  * Gauge history (ADR 0014) — GET /v1/gauge-history/{gaugeId}.json.
  *
- * The zod schema lives here until the API lane lands the emission, then moves
- * to packages/contracts/src/schemas/gaugeHistory.ts (see the ADR's "Contract
- * home" section). Honesty rules are shared with the API side: the payload holds
- * measurements only — no fabricated pre-launch history, no interpolation, gaps
- * are carried as gaps, 90-day retention is a floor and completeness is never
- * implied.
+ * The zod schema lives in @trout/contracts
+ * (packages/contracts/src/schemas/gaugeHistory.ts, additive contracts-v2.5.0 —
+ * the ADR's "Contract home" move); this module re-exports it beside the pure
+ * presentation model. Honesty rules are shared with the API side: the payload
+ * holds measurements only — no fabricated pre-launch history, no interpolation,
+ * gaps are carried as gaps, 90-day retention is a floor and completeness is
+ * never implied.
  */
 
-export const GAUGE_HISTORY_METRICS = ['cfs', 'tempC', 'heightFt'] as const;
-export type GaugeMetric = (typeof GAUGE_HISTORY_METRICS)[number];
-
-export const GaugeHistorySampleSchema = z.object({
-  timestamp: IsoDateTimeSchema,
-  cfs: z.number().optional(),
-  tempC: z.number().optional(),
-  heightFt: z.number().optional(),
-});
-export type GaugeHistorySample = z.infer<typeof GaugeHistorySampleSchema>;
-
-export const GaugeHistorySchema = z.object({
-  gaugeId: z.string().min(1),
-  /** Which metrics the gauge reports — only metrics present in the samples. */
-  metrics: z.array(z.enum(GAUGE_HISTORY_METRICS)).min(1),
-  samples: z.array(GaugeHistorySampleSchema).min(1),
-  samplingCadenceNote: z.string().min(1).optional(),
-  retrievedAt: IsoDateTimeSchema,
-  sourceUrl: z.string().url(),
-});
-export type GaugeHistory = z.infer<typeof GaugeHistorySchema>;
+export { GAUGE_HISTORY_METRICS, GaugeHistorySchema } from '@trout/contracts';
+export type { GaugeHistory, GaugeHistorySample, GaugeMetric } from '@trout/contracts';
 
 /** The per-gauge history file URL (ADR 0014). Kept beside the local schema so
  *  the contracts move is a single-file re-export. */

@@ -19,6 +19,8 @@ export * from './schemas/waterEvidence.js';
 export * from './schemas/fishingInformation.js';
 export * from './schemas/releaseSchedule.js';
 
+export * from './schemas/gaugeHistory.js';
+
 export * from './schemas/fishability.js';
 
 export * from './endpoints.js';

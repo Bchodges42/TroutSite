@@ -6,6 +6,7 @@ import {
   ConditionSnapshotSchema,
   FishingInformationSchema,
   FlyPatternSchema,
+  GaugeHistorySchema,
   HatchChartSchema,
   ShopReportSchema,
   ShopSchema,
@@ -18,6 +19,7 @@ import {
 } from '@trout/contracts';
 import type {
   ConditionSnapshot,
+  GaugeHistory,
   HatchChart,
   Shop,
   ShopReport,
@@ -185,6 +187,8 @@ export interface SnapshotResult {
   contentPack: boolean;
   evidenceWaters: number | null;
   releaseSchedules: number;
+  /** Per-gauge history files emitted under /v1/gauge-history/ (ADR 0014). */
+  gaugeHistories: number;
   warnings: string[];
 }
 
@@ -283,6 +287,14 @@ const REMOVED_SUFFIX = ' (removed)';
  */
 const PRESSURE_CONTEXT_MAX_AGE_MS = 6 * 60 * 60_000;
 
+/**
+ * Gauge-history window (ADR 0014) — mirrors RAW_RETENTION_DAYS in
+ * ingest/usgs.ts (the gauges job's 90-day raw prune). It is a FLOOR, never a
+ * completeness promise: whatever survived in gauge_readings_raw is what the
+ * file holds, and the file always starts at the oldest retained row.
+ */
+const GAUGE_HISTORY_WINDOW_DAYS = 90;
+
 function remapStagePathToLive(p: string, stageDir: string, liveDir: string): string {
   const removed = p.endsWith(REMOVED_SUFFIX);
   const base = removed ? p.slice(0, -REMOVED_SUFFIX.length) : p;
@@ -335,6 +347,9 @@ function buildGeneration(opts: BuildOptions, outDir: string): SnapshotResult {
   const conditionsPath = join(v1Dir, 'conditions', 'latest.json');
   writeJsonAtomic(conditionsPath, conditions);
   files.push(conditionsPath);
+
+  // ── v1/gauge-history/{gaugeId}.json (GaugeHistory, ADR 0014) ───────────────
+  const gaugeHistories = emitGaugeHistory(db, { v1Dir, now, files });
 
   // ── v1/fishability/{streamId}.json (FishabilitySnapshot, contract v2 / ADR 0007) ──
   // One file per water whose catalog entry names targetSpecies; waters without
@@ -535,6 +550,7 @@ function buildGeneration(opts: BuildOptions, outDir: string): SnapshotResult {
     contentPack,
     evidenceWaters,
     releaseSchedules: releaseRows.length,
+    gaugeHistories,
     warnings,
   };
 }
@@ -803,6 +819,105 @@ function renameWithRetry(src: string, dest: string, attempts = 5): void {
 /** Synchronous backoff (Atomics.wait — no timers, works anywhere in Node). */
 function sleepSync(ms: number): void {
   Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms);
+}
+
+/**
+ * Emit /v1/gauge-history/{gaugeId}.json (ADR 0014, additive contracts-v2.5.0)
+ * from gauge_readings_raw and prune files for gauges that lost all their rows.
+ * Returns the gauges emitted.
+ *
+ * Honesty rules (binding): the file starts at the oldest retained row — no
+ * fabricated pre-launch history; NO interpolation — gaps travel as gaps; one
+ * sample per timestamp with the NEWEST fetched_at row winning per metric
+ * (metrics from different rows at one instant merge into one sample — the same
+ * semantics as the web's defensive dedupe); rows where every history metric is
+ * null are dropped; a gauge with no usable rows emits NO file — the 404 is the
+ * honest "no history" signal. Only numeric USGS ids qualify: tva:/usace:-
+ * prefixed rows belong to the conditions bridge and get no file.
+ */
+function emitGaugeHistory(db: Db, ctx: { v1Dir: string; now: Date; files: string[] }): number {
+  interface GaugeRawRow {
+    gauge_id: string;
+    observed_at: string;
+    cfs: number | null;
+    height_ft: number | null;
+    temp_c: number | null;
+  }
+  let rows: GaugeRawRow[];
+  try {
+    const cutoff = new Date(ctx.now.getTime() - GAUGE_HISTORY_WINDOW_DAYS * 86_400_000).toISOString();
+    // F34: observed_at values may carry mixed UTC offsets — instant comparison
+    // via julianday, never text. fetched_at ascending puts the newest row of
+    // each gauge+timestamp last, so the per-metric overwrites below keep the
+    // newest fetched_at's value.
+    rows = db
+      .prepare(
+        `SELECT gauge_id, observed_at, cfs, height_ft, temp_c
+         FROM gauge_readings_raw
+         WHERE observed_at IS NOT NULL AND julianday(observed_at) >= julianday(?)
+         ORDER BY gauge_id, julianday(observed_at) ASC, julianday(fetched_at) ASC`,
+      )
+      .all(cutoff) as GaugeRawRow[];
+  } catch {
+    // Table/columns missing (pre-002 DB) — history is honestly absent.
+    return 0;
+  }
+
+  interface SampleValues {
+    timestamp: string;
+    cfs?: number;
+    tempC?: number;
+    heightFt?: number;
+  }
+  const byGauge = new Map<string, Map<number, SampleValues>>();
+  for (const r of rows) {
+    if (!/^\d+$/.test(r.gauge_id)) continue; // tva:/usace: — conditions bridge, no file
+    const observedMs = Date.parse(r.observed_at);
+    if (!Number.isFinite(observedMs)) continue;
+    let byInstant = byGauge.get(r.gauge_id);
+    if (!byInstant) {
+      byInstant = new Map<number, SampleValues>();
+      byGauge.set(r.gauge_id, byInstant);
+    }
+    // One sample per INSTANT (not per timestamp text — DST can mix offsets at
+    // one instant). A metric the newer row carries overwrites the older value;
+    // a metric it lacks leaves the older value standing.
+    const sample = byInstant.get(observedMs) ?? { timestamp: r.observed_at };
+    if (r.cfs !== null) sample.cfs = r.cfs;
+    if (r.temp_c !== null) sample.tempC = r.temp_c;
+    if (r.height_ft !== null) sample.heightFt = r.height_ft;
+    byInstant.set(observedMs, sample);
+  }
+
+  const gaugeDir = join(ctx.v1Dir, 'gauge-history');
+  const emitted: string[] = [];
+  for (const [gaugeId, byInstant] of byGauge) {
+    const samples = [...byInstant.entries()]
+      .sort((a, b) => a[0] - b[0])
+      .map(([, s]) => s)
+      .filter((s) => s.cfs !== undefined || s.tempC !== undefined || s.heightFt !== undefined);
+    if (samples.length === 0) continue; // no measurement survived → no file (honest absence)
+    const metrics = (['cfs', 'tempC', 'heightFt'] as const).filter((metric) =>
+      samples.some((s) => s[metric] !== undefined),
+    );
+    const history = GaugeHistorySchema.parse({
+      gaugeId,
+      metrics,
+      samples,
+      retrievedAt: ctx.now.toISOString(),
+      // Same USGS source link the fishability evidence uses.
+      sourceUrl: `https://waterdata.usgs.gov/monitoring-location/${gaugeId}`,
+    }) satisfies GaugeHistory;
+    const p = join(gaugeDir, `${gaugeId}.json`);
+    writeJsonAtomic(p, history);
+    ctx.files.push(p);
+    emitted.push(gaugeId);
+  }
+  // A gauge that lost all rows (or never had usable ones) must lose its file
+  // even when no gauge qualifies anymore — prune FIRST discipline, shared with
+  // emitFishability.
+  pruneJsonFiles(gaugeDir, emitted, ctx.files);
+  return emitted.length;
 }
 
 /**

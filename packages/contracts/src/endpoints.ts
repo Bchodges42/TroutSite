@@ -25,6 +25,10 @@ export interface EndpointMap {
   /** GET — FishabilitySnapshot for one water: species-keyed comfort + activity
    *  (additive contract v2, ADR 0007; emitted by the F5 pipeline). */
   fishabilityForWater: (streamId: string) => string;
+  /** GET — GaugeHistory for one gauge id (additive contracts-v2.5.0, ADR 0014;
+   *  numeric USGS ids only — tva:/usace: ids belong to the conditions bridge
+   *  and get no file, so a 404 is the honest "no history" signal). */
+  gaugeHistory: (gaugeId: string) => string;
   /** POST — create a ShopReport (shop token header). The only live route. */
   portalReports: string;
   /** GET — liveness probe. */
@@ -42,6 +46,7 @@ export const ENDPOINTS: EndpointMap = {
   evidenceWaters: '/v1/evidence/waters.json',
   releaseSchedule: (waterId) => `/v1/release-schedule/${waterId}.json`,
   fishabilityForWater: (streamId) => `/v1/fishability/${streamId}.json`,
+  gaugeHistory: (gaugeId) => `/v1/gauge-history/${gaugeId}.json`,
   portalReports: '/v1/portal/reports',
   healthz: '/healthz',
 };
