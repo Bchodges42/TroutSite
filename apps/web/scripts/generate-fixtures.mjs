@@ -390,12 +390,23 @@ function demoPlan(stream) {
 const REGION_EAST_IDS = ['tn-east-holston', 'tn-northeast-watauga', 'tn-east-clinch', 'tn-east-smokies', 'tn-east-pigeon-frenchbroad'];
 const REGION_HIWASSEE_ID = 'tn-se-hiwassee';
 const REGION_MIDDLE_IDS = ['tn-cumberland-plateau', 'tn-upper-cumberland', 'tn-middle-caney-fork', 'tn-middle-duck-elk', 'tn-middle-nashville'];
+// E2E-404 fix: F40 made the map request hatch charts for every registry region
+// (REGIONS in apps/web/src/data/regions.ts), and the production content pack
+// ships /v1/hatch/tn-west/<1-12>.json behind a hard 12x12 self-check. The
+// fixture pack predates tn-west and never generated its charts, so after F28
+// (an honest 404 for missing static assets) every map load logged two
+// "Failed to load resource" console errors for tn-west — the atlas-verify
+// no-failed-loads assertion caught it. Stillwater months mirror the editorial
+// shape of packages/content/hatch/tn/tn-west.yaml: midges year-round, scuds and
+// sowbugs in the cold put-and-take season.
+const REGION_WEST_ID = 'tn-west';
 
-function regionMonths(east, hiwassee, middle) {
+function regionMonths(east, hiwassee, middle, west) {
   const out = {};
   for (const r of REGION_EAST_IDS) out[r] = east;
   out[REGION_HIWASSEE_ID] = hiwassee;
   for (const r of REGION_MIDDLE_IDS) out[r] = middle;
+  if (west) out[REGION_WEST_ID] = west;
   return out;
 }
 
@@ -460,7 +471,7 @@ const taxa = [
     order: 'Diptera', family: 'Chironomidae', sizeRange: [18, 26],
     keyAttributes: { tails: 2, gills: 'none', bodyShape: 'slender', bodyColor: ['red', 'cream', 'black', 'olive'], mouthparts: 'collector-gatherer' },
     habitat: ['slow pools', 'weedy backwaters', 'tailout silt'],
-    monthsActiveByRegion: regionMonths([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+    monthsActiveByRegion: regionMonths([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
     notes: 'Year-round trout food in every tailwater. Blood-red "bloodworms" live in the silt of slow pools.',
     sources: ['Merritt, Cummins & Berg — An Introduction to the Aquatic Insects of North America', 'BugGuide.net Chironomidae (verify officially)'],
   }),
@@ -469,7 +480,7 @@ const taxa = [
     order: 'Amphipoda', family: 'Gammaridae', sizeRange: [12, 20],
     keyAttributes: { tails: 3, gills: 'lamellae', bodyShape: 'robust', bodyColor: ['olive', 'gray', 'translucent', 'pink'], mouthparts: 'scavenger' },
     habitat: ['weedy runs', 'spring-fed margins', 'slow pools'],
-    monthsActiveByRegion: regionMonths([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], [3, 4, 5, 6, 7, 8, 9, 10], [1, 2, 3, 10, 11, 12]),
+    monthsActiveByRegion: regionMonths([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], [3, 4, 5, 6, 7, 8, 9, 10], [1, 2, 3, 10, 11, 12], [1, 2, 3, 11, 12]),
     notes: 'Freshwater shrimp that scull sideways. Orange or pink tint often means the scud is dead — trout still eat them.',
     sources: ['Pennak — Freshwater Invertebrates of the United States', 'Troutnut.com Amphipoda (verify officially)'],
   }),
@@ -478,7 +489,7 @@ const taxa = [
     order: 'Isopoda', family: 'Asellidae', sizeRange: [12, 20],
     keyAttributes: { tails: 2, gills: 'lamellae', bodyShape: 'robust', bodyColor: ['tan', 'gray', 'cream'], mouthparts: 'scavenger' },
     habitat: ['weedy pools', 'slow margins', 'detritus banks'],
-    monthsActiveByRegion: regionMonths([1, 2, 3, 4, 10, 11, 12], [4, 5, 6, 7, 8, 9], [1, 2, 3, 4, 5, 10, 11, 12]),
+    monthsActiveByRegion: regionMonths([1, 2, 3, 4, 10, 11, 12], [4, 5, 6, 7, 8, 9], [1, 2, 3, 4, 5, 10, 11, 12], [1, 2, 3, 11, 12]),
     notes: 'Flat, hump-backed crustacean common in fertile tailwaters; fish them deep and slow.',
     sources: ['Pennak — Freshwater Invertebrates of the United States'],
   }),
