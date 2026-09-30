@@ -20,8 +20,9 @@ import type { FetchCtx, NormalizeCtx, NormalizeResult, RawArtifact, RawFetch, St
  *  - STOCKING DAY: "1/14/2026" (exact) or "TBD 12/2026" (month precision) or ""
  *  - STOCKING WEEK: Sunday "week of" date, e.g. "6/7/2026" — event occurs within 5 days after
  *  - STOCKING MONTHS: month initials "J, F, M" (no year) — recurring monthly windows
- * Mapping to StockingEvent: date = exact day > week-of > first-of-month (TBD/months,
- * months expand to their next occurrence after ctx.now); one event per species listed.
+ * Mapping to StockingEvent: date = exact day > week-of > first-of-month (TBD, or the
+ * NEAREST listed month of a month-only recurrence — see nearestListedMonthDate);
+ * one event per species listed.
  */
 
 export const TWRA_PAGE_URL = 'https://www.tn.gov/twra/fishing/trout-information-stockings.html';
@@ -116,12 +117,27 @@ function parseTbdMonth(s: string): { year: number; month: number } | null {
   return null;
 }
 
-/** Next occurrence of calendar month `month` strictly at/after `from`'s month. */
-function nextMonthDate(month: number, from: Date): string {
-  const y = from.getUTCFullYear();
-  const m0 = from.getUTCMonth() + 1;
-  const year = month < m0 ? y + 1 : y;
-  return `${year}-${String(month).padStart(2, '0')}-01`;
+/**
+ * Nearest listed month still current or ahead of `now`, as YYYY-MM-01 (UTC).
+ * A month-only row is a RECURRING schedule: while any listed month of the current
+ * year remains (the current month itself counts — its window is still open), the
+ * nearest such month is the next occurrence. The year rolls over ONLY after every
+ * listed month has passed, to the earliest listed month of the following year.
+ *
+ * F35: the old resolver always took the FIRST listed month, so a "M, A, ..., D"
+ * schedule consulted in September resolved to March of NEXT year and hid the eight
+ * remaining live months of the current season.
+ */
+export function nearestListedMonthDate(months: number[], now: Date): string {
+  const unique = [...new Set(months)].sort((a, b) => a - b);
+  if (unique.length === 0 || unique[0] === undefined) {
+    throw new Error('nearestListedMonthDate requires at least one month');
+  }
+  const y = now.getUTCFullYear();
+  const m0 = now.getUTCMonth() + 1;
+  const upcoming = unique.find((m) => m >= m0) ?? unique[0];
+  const year = upcoming >= m0 ? y : y + 1;
+  return `${year}-${String(upcoming).padStart(2, '0')}-01`;
 }
 
 function cleanWhitespace(s: string | undefined): string | undefined {
@@ -167,9 +183,8 @@ export function resolveDate(row: TwraRow, now: Date): {
 
   if (months) {
     const list = parseMonthInitials(months);
-    const first = list[0];
-    if (first !== undefined) {
-      return { date: nextMonthDate(first, now), precision: 'month', warnings: [] };
+    if (list.length > 0) {
+      return { date: nearestListedMonthDate(list, now), precision: 'month', warnings: [] };
     }
   }
   return { date: null, precision: null, warnings: [] };
@@ -204,6 +219,24 @@ export function extractDatatableJsonPaths(pageHtml: string): string[] {
 function toAbsoluteUrl(pathOrUrl: string, pageUrl: string): string {
   if (/^https?:\/\//i.test(pathOrUrl)) return pathOrUrl;
   return new URL(pathOrUrl, pageUrl).toString();
+}
+
+/** Which of the TWRA page's two datatable grids a row set belongs to. */
+export type TwraGridKind = 'schedule' | 'recent' | 'unknown';
+
+/**
+ * Classify a datatable row set by its COLUMN SIGNATURE, not URL or page position:
+ *   "Trout Stocking Schedule" (REGION/LOCATION/…) → 'schedule';
+ *   "Recent Stocking Locations Report" (Destination/Stocking Date) → 'recent'.
+ * Lives here (the TWRA adapter) so both the stocking fetcher and the evidence
+ * fetcher share one definition without an import cycle.
+ */
+export function classifyTwraGrid(rows: Record<string, unknown>[]): TwraGridKind {
+  if (rows.length === 0) return 'unknown';
+  const keys = new Set(Object.keys(rows[0] ?? {}).map((k) => k.toUpperCase()));
+  if (keys.has('REGION') && keys.has('LOCATION')) return 'schedule';
+  if (keys.has('DESTINATION') && keys.has('STOCKING DATE')) return 'recent';
+  return 'unknown';
 }
 
 /** Parse the excel-driven JSON payload (pure). */
@@ -295,7 +328,12 @@ function rowToEvents(row: TwraRow, pageUrl: string, fetchedAt: string, now: Date
 export function normalizeTwra(raw: RawFetch, ctx: NormalizeCtx): NormalizeResult {
   const warnings: string[] = [];
   const page = raw.artifacts.find((a) => a.suffix === 'html');
-  const jsonArtifact = raw.artifacts.find((a) => a.suffix.endsWith('.json'));
+  // The page carries TWO datatable grids (schedule + recent report). Prefer the
+  // capture-kind-tagged schedule grid; fall back to the first JSON for artifacts
+  // captured before captureKind existed.
+  const jsonArtifact =
+    raw.artifacts.find((a) => a.suffix.endsWith('.json') && a.captureKind === 'schedule') ??
+    raw.artifacts.find((a) => a.suffix.endsWith('.json'));
 
   let rows: TwraRow[] = [];
   if (jsonArtifact) {
@@ -367,7 +405,17 @@ export const tnAdapter: StateAdapter = {
       if (!jres.ok) {
         throw new Error(`TWRA datatable fetch failed: HTTP ${jres.status} (${url})`);
       }
-      artifacts.push({ suffix: 'exceldriven.json', content: await jres.text(), url });
+      // F36: tag each grid with its column-signature kind so raw captures and
+      // normalize can tell the schedule grid from the recent-report grid — the
+      // shared 'exceldriven.json' suffix alone collides one onto the other.
+      const content = await jres.text();
+      const kind = classifyTwraGrid(parseDatatableJson(content).rows as Record<string, unknown>[]);
+      artifacts.push({
+        suffix: 'exceldriven.json',
+        content,
+        url,
+        ...(kind === 'schedule' || kind === 'recent' ? { captureKind: kind } : {}),
+      });
     }
     return { artifacts, fetchedAt: ctx.now.toISOString() };
   },
