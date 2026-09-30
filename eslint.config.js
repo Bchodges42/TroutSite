@@ -5,6 +5,59 @@ import prettier from 'eslint-config-prettier';
 import reactHooks from 'eslint-plugin-react-hooks';
 import tseslint from 'typescript-eslint';
 
+// F19: globals for scripts that Node executes directly (no bundler, no
+// tsconfig lib injected). Curated Node 20 runtime globals rather than a
+// blanket `browser: true`, so a genuinely misspelled global still fails.
+const nodeRuntimeGlobals = {
+  console: 'readonly',
+  process: 'readonly',
+  Buffer: 'readonly',
+  URL: 'readonly',
+  URLSearchParams: 'readonly',
+  fetch: 'readonly',
+  AbortController: 'readonly',
+  AbortSignal: 'readonly',
+  FormData: 'readonly',
+  Headers: 'readonly',
+  Request: 'readonly',
+  Response: 'readonly',
+  setTimeout: 'readonly',
+  clearTimeout: 'readonly',
+  setInterval: 'readonly',
+  clearInterval: 'readonly',
+  setImmediate: 'readonly',
+  clearImmediate: 'readonly',
+  queueMicrotask: 'readonly',
+  structuredClone: 'readonly',
+  TextEncoder: 'readonly',
+  TextDecoder: 'readonly',
+  performance: 'readonly',
+};
+
+// e2e .mjs harnesses are Node-hosted but embed browser-context callbacks for
+// page.evaluate()/page.evaluateHandle(), where these are the real runtime.
+const browserEmbedGlobals = {
+  document: 'readonly',
+  window: 'readonly',
+  navigator: 'readonly',
+  location: 'readonly',
+  history: 'readonly',
+  localStorage: 'readonly',
+  sessionStorage: 'readonly',
+  requestAnimationFrame: 'readonly',
+  cancelAnimationFrame: 'readonly',
+  getComputedStyle: 'readonly',
+  matchMedia: 'readonly',
+  HTMLElement: 'readonly',
+  Element: 'readonly',
+  Node: 'readonly',
+  Event: 'readonly',
+  CustomEvent: 'readonly',
+  MutationObserver: 'readonly',
+  ResizeObserver: 'readonly',
+  IntersectionObserver: 'readonly',
+};
+
 export default tseslint.config(
   {
     ignores: [
@@ -35,5 +88,19 @@ export default tseslint.config(
         { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
       ],
     },
+  },
+  {
+    // The two selectable-river atlas scripts are the only Node scripts that run
+    // without the per-file `eslint-disable no-undef` header the other scripts
+    // carry; declare the runtime instead of suppressing the rule.
+    files: [
+      'apps/web/scripts/audit-selectable-rivers.mjs',
+      'apps/web/scripts/build-selectable-river-additions.mjs',
+    ],
+    languageOptions: { globals: nodeRuntimeGlobals },
+  },
+  {
+    files: ['e2e/**/*.mjs'],
+    languageOptions: { globals: { ...nodeRuntimeGlobals, ...browserEmbedGlobals } },
   },
 );

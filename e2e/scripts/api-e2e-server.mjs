@@ -1,4 +1,3 @@
-/* eslint-disable no-undef -- Node script run by Playwright (no bundler types) */
 /**
  * e2e-only API instance (§12 #5) — started by playwright.config.ts.
  *

@@ -8,7 +8,7 @@
  */
 import { readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { REPO_ROOT, loadCatalog, resolveEvent, normCounty } from './lib.mjs';
+import { REPO_ROOT, loadCatalog, resolveEvent } from './lib.mjs';
 
 const locationsPath = process.argv[2] ?? join(REPO_ROOT, 'evidence-work', 'captures', 'twra-stock-locations.json');
 const loc = JSON.parse(readFileSync(locationsPath, 'utf8'));
