@@ -451,6 +451,12 @@ diff at `#/owner`. Its own bearer credential grants GET visibility only. Status
 files are fixed, sanitized inputs from `backups/`; uncollected status stays
 unknown. Backup success does not certify a restore test.
 
+Open the owner link on the portal origin. Its existing static-server
+`--proxy v1/portal=...` configuration also forwards GET/HEAD for the four fixed
+owner reads (dashboard, corrections, research-queue, publication-preview) to the
+same API. The upstream enforces the separate owner bearer and no-store responses;
+the proxy grants no owner mutations or general API forwarding.
+
 In an isolated editorial checkout, build the content pack and use a seeded,
 migrated database (a private copy when proposing catalog edits). Run
 `pnpm --filter @trout/api publication --action=prepare`. Preparation opens that

@@ -48,14 +48,22 @@ the service-worker pinning behavior described below.
    ready. Basic packs omit terrain; an explicit larger-pack option pins a
    bounded set at zooms 10–11. Downloads can be cancelled and refreshed;
    request timeouts cover the response body as well as its headers. Measured
-   section bytes are recorded; a complete pre-download byte estimate remains
-   a tracked plan gap.
+   section bytes are recorded. An opt-in, cancellable pre-download size check
+   uses the same deduplicated plan as pinning: cached response body lengths or
+   bounded HEAD metadata supply bytes, unknown lengths are labelled, and free
+   browser storage is shown when available. Water, saved-water, trip and Settings
+   controls subscribe to online/offline events; network actions disable promptly.
 9. Recording a plan writes its logbook entries and completion stamp in one
    transaction, preserving water/date/species context and avoiding duplicate
    completion. Future plans cannot be recorded as observed visits. Photo
    edits remain drafts until Save; full-backup restore remaps colliding media
    IDs and rolls back entries and photos together on failure. Captured
    conditions retain their real metric times, including unknown age.
+10. Trips reuse the optional `accessPointIds` field for individual published
+    access records. Atomic updates merge against the latest local row and reject
+    records from other waters. Selections recall from the shared offline access
+    snapshot; retired choices stay visible and removable. Source review and field
+    visits have distinct labels. No private access selection enters a shared plan.
 
 ## Consequences
 

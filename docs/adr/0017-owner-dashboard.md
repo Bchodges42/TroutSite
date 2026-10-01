@@ -187,10 +187,16 @@ Every reader degrades its own section instead of failing the endpoint:
   produced by the normal snapshot builder. It shows old/new sources, species,
   opportunity, access, regulations, evidence and stocking plus the shared public
   opportunity wording. It validates generation hashes and reports baseline drift,
-  tampering, unprepared and published states. Bounded previews label omissions.
+  tampering, expiry, unprepared and published states. Bounded previews label
+  omissions.
 - Preparation uses a read-only DB and leaves live snapshots unchanged. Publication
   is an explicit owner/operator CLI step that promotes the reviewed bytes and
   refuses a changed baseline or candidate. The dashboard remains GET-only.
+- The portal's static server forwards only the four fixed owner GET/HEAD paths
+  to its configured API upstream, preserving the bearer and no-store response.
+  API authentication still rejects missing credentials and shop tokens. Tables
+  scroll within named, keyboard-focusable regions on narrow screens; the candidate
+  wording stacks vertically and long values wrap.
 - Build outcomes come from `jobs_log`; auto-update, refresh, watchdog, backup and
   verified deploy status come from fixed status/stamp files. Missing collection
   stays unknown. Logs, env, ntfy topics and database files are never read or echoed.

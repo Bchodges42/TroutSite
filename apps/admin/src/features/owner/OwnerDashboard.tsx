@@ -175,6 +175,7 @@ export function OwnerDashboardView({ onLock }: { onLock: () => void }) {
 
       <section aria-label="Pipeline jobs">
         <h2 className="owner-section-title">Pipeline jobs</h2>
+        <div className="owner-table-scroll" role="region" aria-label="Pipeline job details" tabIndex={0}>
         <table className="owner-table">
           <thead>
             <tr>
@@ -206,6 +207,7 @@ export function OwnerDashboardView({ onLock }: { onLock: () => void }) {
             ))}
           </tbody>
         </table>
+        </div>
         {dashboard.omittedJobNames > 0 ? (
           <p className="portal-muted">
             {dashboard.omittedJobNames} jobs_log entr
@@ -275,6 +277,7 @@ export function OwnerDashboardView({ onLock }: { onLock: () => void }) {
         ) : corrections.length === 0 ? (
           <p className="portal-muted">No corrections recorded.</p>
         ) : (
+          <div className="owner-table-scroll" role="region" aria-label="Correction details" tabIndex={0}>
           <table className="owner-table">
             <thead>
               <tr>
@@ -305,6 +308,7 @@ export function OwnerDashboardView({ onLock }: { onLock: () => void }) {
               ))}
             </tbody>
           </table>
+          </div>
         )}
       </section>
 
@@ -323,6 +327,7 @@ export function OwnerDashboardView({ onLock }: { onLock: () => void }) {
               {research.total} water{research.total === 1 ? '' : 's'} need evidence
               {research.truncated ? ` (showing first ${research.queue.length})` : ''}.
             </p>
+            <div className="owner-table-scroll" role="region" aria-label="Research details" tabIndex={0}>
             <table className="owner-table">
               <thead>
                 <tr>
@@ -351,6 +356,7 @@ export function OwnerDashboardView({ onLock }: { onLock: () => void }) {
                 ))}
               </tbody>
             </table>
+            </div>
           </>
         )}
       </section>

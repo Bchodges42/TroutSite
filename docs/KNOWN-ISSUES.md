@@ -630,7 +630,9 @@ Completed plan details (code/product work):
   are visible; missing collection stays unknown. The portal server forwards the
   four fixed owner reads with the original bearer and API no-store/auth rules.
   Unlisted paths and owner mutations are not forwarded. No dashboard publishing
-  power.
+  power. Mobile claim previews fit 320/390px, and dashboard tables scroll within
+  named keyboard-focusable regions instead of widening the page. Real proxy/API
+  sign-in, no-store, baseline preservation and reload locking checks pass.
 - [x] **POST-33 · T1 — Sourced access pilot / trip selection.** Two official NPS
   parking records cover Little River and West Prong Little Pigeon. Cards label
   official-source review separately from a field visit and state unverified

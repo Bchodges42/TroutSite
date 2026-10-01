@@ -39,11 +39,15 @@ instead.
 | [`TN-DATA-SOURCES.md`](TN-DATA-SOURCES.md) | Tennessee source inventory |
 | [`DATA-SOURCE-COVERAGE.md`](DATA-SOURCE-COVERAGE.md) (+ `data-source-coverage.json`) | Gauge/feed coverage per water |
 | [`FISHING-INFORMATION-SOURCES.md`](FISHING-INFORMATION-SOURCES.md) | Regulations pack provenance & review dates |
+| [`research/access-pilot-2026-10-01.md`](research/access-pilot-2026-10-01.md) | Two official NPS parking records, checked claims and source-review limits |
 | [`STILLWATER-COVERAGE.md`](STILLWATER-COVERAGE.md) | Lake/pond coverage decisions |
 | [`WATERBODY-GEOMETRY-CONTRACT.md`](WATERBODY-GEOMETRY-CONTRACT.md) · [`REFERENCE-WATERBODY-INVENTORY.md`](REFERENCE-WATERBODY-INVENTORY.md) (+ `waterbody-inventory.json`) | Geometry property contract + per-waterbody inventory |
 
 ## Evidence — point-in-time audits (historical; superseded by newer data wins)
 
+- [2026-10-01 remaining improvements completion](reports/2026-10-01-remaining-improvements.md)
+  — POST-29–33 implementation, verification, mobile/offline behavior and the
+  remaining owner rollout and physical-device acceptance steps.
 - [2026-09-30 post-implementation review and repairs](reports/2026-09-30-post-implementation-review.md)
   — finalized 2026-10-01; review of the 48 audit fixes and accepted improvement
   plan, 28 repair groups, validation, and remaining rollout/data/plan gaps.

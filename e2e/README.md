@@ -18,11 +18,13 @@ pnpm --filter @trout/e2e e2e:report
 
 The Playwright config starts every server itself (marketing :4321, web :4173,
 admin :4174, plus an e2e-only API on :8791) from the built dists. `globalSetup`
-rebuilds web as the deterministic fixture flavor and rebuilds admin against the
-e2e API origin; it also seeds the e2e API's temp DB from `apps/api/fixtures/content`
-and mints a real portal token with the api token CLI — so the portal project runs
-the exact §12 #5 flow (token → publish → attributed `reports/recent.json`)
-without touching real data.
+rebuilds web as the deterministic fixture flavor and rebuilds admin for same-origin
+requests. `scripts/api-e2e-server.mjs` seeds a run-unique temp DB from
+`apps/api/fixtures/content` and mints a real portal token with the API token CLI.
+It also sets a distinct synthetic owner token and prepares private candidate/status
+fixtures. The portal serves through the production static-server proxy, exercising
+the exact token → publish → attributed `reports/recent.json` flow and the separate
+owner read-only path. Tests use temporary data and credentials.
 
 ## Coverage map (§12 items each suite gates)
 
@@ -36,6 +38,8 @@ without touching real data.
 | `web/manifest.spec.ts` | §12 #7 groundwork — manifest sanity + SW control (from Role 2) |
 | `api/fixtures.spec.ts` | contract-valid fixtures (Zod, outside the Astro build); §12 #2 `ingest --dry-run` (enabled at integration) |
 | `admin/portal.spec.ts` | §12 #5 — real-API token login (bad token 401 + nothing stored), composer publish, attributed entry in `reports/recent.json` |
+| `admin/owner.spec.ts` | Real portal proxy + API authentication, no-store, unchanged public baseline after candidate preparation, mobile claim preview, keyboard table scrolling and memory-only owner sign-in |
+| `web/remaining-improvements.spec.ts` | Mobile recent-water recall/clear, source-review labels, saved trip access after offline reload, size estimates, live offline controls and zero page overflow at 320/390px |
 
 ## Zero skips
 
