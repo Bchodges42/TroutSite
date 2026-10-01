@@ -11,6 +11,7 @@ import type { FishabilityFocus, SpeciesMode } from '../map/waterDecision';
 import { overviewConditionStatus } from '../waters/overviewStatus';
 import type { SavedWaterRecord, WaterGroupRecord } from '../../lib/db';
 import { ageMinutes } from '../../lib/time';
+import { useOnline } from '../../hooks/useOnline';
 import { formatFlow, formatHeight, formatTemp } from '../../lib/units';
 import { buildWaterOverview } from '../../lib/waterOverview';
 import { setWaterGroupMembership, unsaveWater } from '../../lib/savedWaters';
@@ -63,6 +64,7 @@ export function SavedWaterCard({
 }: SavedWaterCardProps) {
   const [editingGroups, setEditingGroups] = useState(false);
   const manager = usePackManager();
+  const online = useOnline();
   const found = catalogState === 'found' && stream !== undefined;
   const retired = catalogState === 'missing';
 
@@ -223,7 +225,7 @@ export function SavedWaterCard({
             manifest={waterPack}
             busy={manager.busyId === waterManifestId(saved.waterId)}
             progress={manager.progress}
-            offline={typeof navigator !== 'undefined' && navigator.onLine === false}
+            offline={!online}
             onDownload={(terrain) => void manager.downloadWater(stream, terrain)}
             onEstimate={(terrain, signal) => manager.estimateWater(stream, terrain, signal)}
             onRedownload={waterPack ? (terrain) => void manager.downloadWater(stream, terrain) : undefined}

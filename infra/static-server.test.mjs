@@ -120,7 +120,13 @@ async function withUpstream(fn) {
   const hits = [];
   const upstream = http.createServer((req, res) => {
     const pathOnly = (req.url ?? '/').split('?')[0];
-    hits.push({ method: req.method, path: req.url });
+    hits.push({ method: req.method, path: req.url, authorization: req.headers.authorization });
+    if (pathOnly === '/v1/owner/dashboard' || pathOnly === '/v1/owner/publication-preview') {
+      const authorized = req.headers.authorization === 'Bearer owner-test';
+      res.writeHead(authorized ? 200 : 401, { 'content-type': 'application/json', 'cache-control': 'no-store' });
+      res.end(JSON.stringify(authorized ? { state: 'not-prepared', publication: null } : { error: 'unauthorized' }));
+      return;
+    }
     if (req.method === 'GET' && pathOnly === '/v1/reports/recent.json') {
       res.writeHead(200, { 'content-type': 'application/json' });
       res.end(JSON.stringify([{ id: 'rep-upstream-1', body: 'upstream feed' }]));
@@ -172,6 +178,31 @@ test('F06: public reports feed is forwarded to the API upstream', async () => {
       assert.equal(res.status, 200);
       assert.match(res.body, /rep-upstream-1/);
       assert.ok(hits.some((h) => h.method === 'GET' && h.path === '/v1/reports/recent.json'));
+    });
+  });
+});
+
+test('owner reads reach the API with their own bearer and retain its no-store and auth boundary', async () => {
+  await withUpstream(async (upstreamBase, hits) => {
+    await withProxiedServer(new URL(upstreamBase).port, async (base) => {
+      for (const path of ['/v1/owner/dashboard', '/v1/owner/publication-preview']) {
+        assert.equal((await fetch(base + path)).status, 401);
+        assert.equal((await fetch(base + path, { headers: { authorization: 'Bearer shop-test' } })).status, 401);
+        const res = await fetch(base + path, { headers: { authorization: 'Bearer owner-test' } });
+        assert.equal(res.status, 200); assert.equal(res.headers.get('cache-control'), 'no-store');
+        assert.ok(hits.some((hit) => hit.path === path && hit.authorization === 'Bearer owner-test'));
+      }
+    });
+  });
+});
+
+test('owner forwarding permits only fixed reads and never adds owner actions or a general proxy', async () => {
+  await withUpstream(async (upstreamBase, hits) => {
+    await withProxiedServer(new URL(upstreamBase).port, async (base) => {
+      assert.equal((await fetch(base + '/v1/owner/dashboard', { method: 'POST' })).status, 405);
+      assert.equal((await fetch(base + '/v1/owner/publish')).status, 404);
+      assert.equal((await fetch(base + '/v1/owner/publication-preview/extra')).status, 404);
+      assert.equal(hits.length, 0);
     });
   });
 });

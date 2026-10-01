@@ -5,6 +5,7 @@ import { useSettingsContext } from '../lib/settings';
 import { SPECIES_LABELS } from '../lib/fishability';
 import { clearCachedSnapshots } from '../lib/db';
 import { useInstallPrompt } from '../hooks/useInstallPrompt';
+import { useOnline } from '../hooks/useOnline';
 import { useTheme } from '../theme/ThemeProvider';
 import { colorValue, customColorControls, themes, type CustomColorKey } from '../theme/themes';
 import { usePackManager, useStorageEstimate } from '../features/downloads/usePackManager';
@@ -46,7 +47,7 @@ export function SettingsPage() {
   const [cleared, setCleared] = useState(false);
   const packs = usePackManager();
   const estimate = useStorageEstimate();
-  const offline = typeof navigator !== 'undefined' && navigator.onLine === false;
+  const offline = !useOnline();
 
   return (
     <main className="page">

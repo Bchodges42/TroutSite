@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { AccessRecord } from '@trout/contracts';
 import type { TripRecord } from '../../lib/db';
 import { setTripAccessPoint } from '../../lib/trips';
@@ -6,13 +6,18 @@ import { AccessCard, useAllAccessRecords } from '../waters/AccessSection';
 
 export function TripAccessPicker({ trip }: { trip: TripRecord }) {
   const query = useAllAccessRecords(); const [busy, setBusy] = useState(false); const [message, setMessage] = useState('');
+  const [pending, setPending] = useState<{ id: string; checked: boolean } | null>(null);
+  useEffect(() => {
+    if (pending && (trip.accessPointIds ?? []).includes(pending.id) === pending.checked) setPending(null);
+  }, [trip.accessPointIds, pending]);
   const selected = new Set(trip.accessPointIds ?? []);
+  if (pending) { if (pending.checked) selected.add(pending.id); else selected.delete(pending.id); }
   const available = query.data?.filter((record) => trip.waterIds.includes(record.waterId)) ?? [];
   const unavailable = query.data ? [...selected].filter((id) => !available.some((record) => record.id === id)) : [];
   async function choose(record: Pick<AccessRecord, 'id' | 'waterId'>, checked: boolean) {
-    setBusy(true); setMessage('');
+    setBusy(true); setMessage(''); setPending({ id: record.id, checked });
     try { await setTripAccessPoint(trip.id, record, checked); setMessage(checked ? 'Access choice saved on this device.' : 'Access choice removed.'); }
-    catch (error) { setMessage(error instanceof Error ? error.message : 'Access choice could not be saved.'); }
+    catch (error) { setPending(null); setMessage(error instanceof Error ? error.message : 'Access choice could not be saved.'); }
     finally { setBusy(false); }
   }
   return <section aria-label={`Access choices for ${trip.title}`}>

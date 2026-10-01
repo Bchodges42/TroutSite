@@ -12,6 +12,7 @@ import type { ConditionSnapshot, GaugeReading, Stream, StockingEvent } from '@tr
 import { snapshotUrls } from '../lib/endpoints';
 import { useSnapshotQuery } from '../lib/useSnapshotQuery';
 import { useStreamsCatalog } from '../lib/useStreamsCatalog';
+import { useOnline } from '../hooks/useOnline';
 import { useSettingsContext } from '../lib/settings';
 import { matchStocking } from '../lib/stockingMatch';
 import {
@@ -60,6 +61,7 @@ export function StreamDetailPage() {
   const [params] = useSearchParams();
   const { settings } = useSettingsContext();
   const packs = usePackManager();
+  const online = useOnline();
   const waterPack = packs.manifests?.find((manifest) => manifest.id === waterManifestId(streamId));
   const decisionMode = params.get('species') === 'all' || params.get('species') === 'trout'
     ? (params.get('species') as 'all' | 'trout')
@@ -220,7 +222,7 @@ export function StreamDetailPage() {
       <WatchButton waterId={stream.id} waterName={stream.name} className="mt-3" />
       <div className="mt-3" aria-label="Offline water pack">
         <DownloadButton manifest={waterPack} busy={packs.busyId === waterManifestId(stream.id)}
-          progress={packs.progress} offline={typeof navigator !== 'undefined' && !navigator.onLine}
+          progress={packs.progress} offline={!online}
           onDownload={(terrain) => void packs.downloadWater(stream, terrain)}
           onEstimate={(terrain, signal) => packs.estimateWater(stream, terrain, signal)}
           onRedownload={(terrain) => void packs.downloadWater(stream, terrain)}

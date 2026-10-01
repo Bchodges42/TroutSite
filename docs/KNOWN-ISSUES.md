@@ -602,7 +602,7 @@ implemented” handoff is superseded. Stable R IDs live in the report.
   owner instant ordering/counts/Windows schedule estimates, widget public catalog
   transport/species/freshness and accurate optional-service privacy disclosure.
 
-Open plan details (code/product work, not repaired by configuration):
+Completed plan details (code/product work):
 
 - [x] **POST-29 · T2 — Search recall.** Device-local bounded recent choices now
   appear on empty-query focus, filtered to the current scope/active catalog.
@@ -613,7 +613,9 @@ Open plan details (code/product work, not repaired by configuration):
   deduplicated plan. Cached body bytes or bounded HEAD metadata supply sizes;
   first-party uncompressed headers survive edge compression. Missing metadata
   stays explicitly unknown; estimates include available browser storage and
-  terrain zooms. Real quota/cancel/readiness behavior remains authoritative.
+  terrain zooms. All four controls subscribe to connectivity changes, so size,
+  terrain and network download actions disable immediately in airplane mode.
+  Real quota/cancel/readiness behavior remains authoritative.
 - [x] **POST-31 · T2 — Separate outage watches.** Independently selected flow or
   temperature availability rules use metric-specific observation clocks and
   provider history, a silent first baseline, deduplicated loss/recovery and
@@ -625,13 +627,17 @@ Open plan details (code/product work, not repaired by configuration):
   GETs show old/new claims and shared public wording, bounded with omissions
   labelled. The operator CLI promotes the reviewed bytes and rejects tampering,
   baseline drift or expiry. Build outcomes and collected fixed host statuses
-  are visible; missing collection stays unknown. No dashboard publishing power.
+  are visible; missing collection stays unknown. The portal server forwards the
+  four fixed owner reads with the original bearer and API no-store/auth rules.
+  Unlisted paths and owner mutations are not forwarded. No dashboard publishing
+  power.
 - [x] **POST-33 · T1 — Sourced access pilot / trip selection.** Two official NPS
   parking records cover Little River and West Prong Little Pigeon. Cards label
   official-source review separately from a field visit and state unverified
   coordinates, bank routes and current conditions. See the source review under
   `docs/research/`. Trips select individual records privately and recall them
-  offline; retired/foreign choices stay visible and removable. Further water
+  offline without the checkbox reverting during its local save;
+  retired/foreign choices stay visible and removable. Further water
   coverage remains ongoing editorial research, not fabricated completeness.
 
 Rollout and acceptance (owner/data/device work):

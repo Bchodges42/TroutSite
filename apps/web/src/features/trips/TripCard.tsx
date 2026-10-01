@@ -12,6 +12,7 @@ import {
   updateTrip,
 } from '../../lib/trips';
 import { shortDate } from '../../lib/time';
+import { useOnline } from '../../hooks/useOnline';
 import { tripManifestId } from '../../lib/downloadManifests';
 import type { MyWatersSharedData } from '../myWaters/useMyWatersData';
 import { TripWaterLine } from './TripWaterLine';
@@ -57,6 +58,7 @@ export function TripCard({
   const [open, setOpen] = useState(false);
   const [recording, setRecording] = useState(false);
   const manager = usePackManager();
+  const online = useOnline();
   const timing = tripTiming(trip.date);
   const done = trip.checklist.filter((i) => i.done).length;
   const chip = packChip(pack);
@@ -162,7 +164,7 @@ export function TripCard({
                 manifest={manifest}
                 busy={busy}
                 progress={manager.progress}
-                offline={typeof navigator !== 'undefined' && navigator.onLine === false}
+                offline={!online}
                 onDownload={(terrain) => void manager.downloadTrip(trip, tripStreams, terrain)}
                 onEstimate={(terrain, signal) => manager.estimateTrip(trip, tripStreams, terrain, signal)}
                 onRedownload={manifest ? (terrain) => void manager.downloadTrip(trip, tripStreams, terrain) : undefined}

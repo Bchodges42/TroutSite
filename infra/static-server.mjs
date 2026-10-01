@@ -47,6 +47,10 @@ function parseProxy(spec) {
  * static server never becomes a general-purpose open proxy for this origin.
  */
 const PROXIED_PUBLIC_READS = new Set(['/v1/reports/recent.json']);
+// Read-only owner routes are separate from shop authentication. Forward their
+// bearer unchanged; the API still decides authorization and no-store behavior.
+const PROXIED_OWNER_READS = new Set(['/v1/owner/dashboard', '/v1/owner/corrections',
+  '/v1/owner/research-queue', '/v1/owner/publication-preview']);
 
 const MIME = {
   '.html': 'text/html; charset=utf-8',
@@ -197,7 +201,7 @@ const server = http.createServer((req, res) => {
   // (GET/HEAD only — anything else falls through to the static handling below).
   if (
     PROXY &&
-    PROXIED_PUBLIC_READS.has(url.pathname) &&
+    (PROXIED_PUBLIC_READS.has(url.pathname) || PROXIED_OWNER_READS.has(url.pathname)) &&
     (req.method === 'GET' || req.method === 'HEAD')
   ) {
     proxyRequest(req, res, url);
