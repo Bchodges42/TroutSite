@@ -309,7 +309,8 @@ describe('GET /healthz degraded (2026-09-16 skew retro)', () => {
 
   it('stays clean when every scheduled job is fresh and ok (F05 expected set)', async () => {
     insertJob('ok', { job: 'seed', startedMinAgo: 60, finishedMinAgo: 59 });
-    for (const job of ['gauges', 'pressure', 'snapshots', 'stocking', 'evidence']) {
+    // watchlists joined the expected set with the ADR 0016 job.
+    for (const job of ['gauges', 'pressure', 'snapshots', 'stocking', 'evidence', 'watchlists']) {
       insertJob('ok', { job, startedMinAgo: 30, finishedMinAgo: 29 });
     }
     app = buildApp({ logger: false, db: env.db, webPublicDir: env.snapshotsDir });

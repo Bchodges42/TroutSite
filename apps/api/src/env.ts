@@ -44,6 +44,27 @@ export const EnvSchema = z.object({
    * without it; never shared with or derivable from any other credential.
    */
   CORRECTIONS_MODERATOR_TOKEN: z.string().min(1).optional(),
+  /**
+   * Owner dashboard bearer (ADR 0017), optional. Unset means the owner
+   * surface does not exist at all — the registration factory adds no routes.
+   * A distinct credential: never PORTAL_SECRET, never WATCHDOG_TOKEN, never
+   * CORRECTIONS_MODERATOR_TOKEN, never any VAPID key.
+   */
+  OWNER_DASHBOARD_TOKEN: z.string().min(1).optional(),
+  /**
+   * Web-push VAPID keypair + contact (ADR 0016), all three optional. Unset
+   * means the watchlist push parts FAIL CLOSED: POST /v1/watches/subscribe
+   * answers 503 (the server refuses to collect push endpoint tokens it could
+   * never honor), /v1/watches/config honestly reports pushSupported:false, and
+   * the cron's notifier degrades to the stub. Generate with:
+   *   node -e "console.log(require('web-push').generateVAPIDKeys())"
+   * VAPID_SUBJECT must be a mailto: or https: contact URL (push-service
+   * requirement). A distinct credential — never the portal HMAC, never the
+   * corrections pepper, never WATCHDOG_TOKEN.
+   */
+  VAPID_PUBLIC_KEY: z.string().min(1).optional(),
+  VAPID_PRIVATE_KEY: z.string().min(1).optional(),
+  VAPID_SUBJECT: z.string().min(1).optional(),
   /** Shared secret required by /healthz when set; never expose the value in git. */
   WATCHDOG_TOKEN: z.string().min(1).optional(),
   /**
