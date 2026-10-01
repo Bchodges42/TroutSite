@@ -654,10 +654,17 @@ Rollout and acceptance (owner/data/device work):
   and screen-reader journeys; pilot the widget with a willing shop. Chromium
   checks/local encrypted requests do not certify these outcomes.
 
-Review checks: 1,518 unit passes + one web skip; 109 distinct browser cases
+Prior review checks: 1,518 unit passes + one web skip; 109 distinct browser cases
 across full/targeted runs, followed by 23 feature and two final pack/privacy
 reruns; 29/29 infra checks; builds, content/identity and geo validators pass;
 lint has zero errors with existing warnings. See the report for exact limits.
+
+October 1 implementation completion: 1,544 unit passes + the existing conditional
+web skip, followed by 32 affected web and 41 admin reruns; 24 targeted browser
+cases green in the final combined run; 31/31 infra checks; production builds,
+content/identity gates and lint pass (zero lint errors, existing warnings).
+See [the completion report](reports/2026-10-01-remaining-improvements.md) for
+POST-29–33 behavior, verification and remaining rollout/physical-device limits.
 
 ## REGRESSION TESTS TO ADD ALONGSIDE THE FIXES
 
