@@ -1,6 +1,6 @@
 import type { RiverMapFeature } from './riverMapSelectors';
 import type { EvidenceState, FishabilityScore, OpportunityHeadline, SpeciesKey } from '@trout/contracts';
-import { READING_STALE_MINUTES } from '@trout/contracts';
+import { READING_STALE_MINUTES, opportunityHeadlineLabel, opportunityEvidenceLabel } from '@trout/contracts';
 import { monthWindowLabel } from '../../lib/troutCalendar';
 
 /**
@@ -383,18 +383,7 @@ export function metricLabel(view: Pick<WaterDecisionView, 'displayMetric'>): str
 export function opportunityHeadlineText(view: Pick<WaterDecisionView, 'opportunity'>): string | null {
   const o = view.opportunity;
   if (!o) return null;
-  switch (o.trout) {
-    case 'year-round-trout':
-      return 'Year-round trout opportunity';
-    case 'seasonal-stocked-trout':
-      return 'Seasonal stocked trout opportunity';
-    case 'warmwater-focus':
-      return 'Warmwater fishing focus';
-    case 'mixed':
-      return 'Mixed fishery (warmwater + stocked trout)';
-    case 'unresolved':
-      return 'Trout status unresolved';
-  }
+  return opportunityHeadlineLabel(o.trout);
 }
 
 /** Short status label for list rows (browse/conditions) — the adjudicated
@@ -420,17 +409,7 @@ export function opportunityStatusLabel(view: Pick<WaterDecisionView, 'opportunit
 export function opportunityEvidenceText(view: Pick<WaterDecisionView, 'opportunity'>): string | null {
   const o = view.opportunity;
   if (!o) return null;
-  const stateWord =
-    o.evidenceState === 'documented'
-      ? 'Documented'
-      : o.evidenceState === 'limited'
-        ? 'Limited'
-        : o.evidenceState === 'historical'
-          ? 'Historical'
-          : o.evidenceState === 'conflicting'
-            ? 'Conflicting'
-            : 'Unresolved';
-  return o.asOf ? `${stateWord} · ${o.asOf}` : stateWord;
+  return opportunityEvidenceLabel(o.evidenceState, o.asOf);
 }
 
 /**

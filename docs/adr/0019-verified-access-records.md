@@ -1,6 +1,6 @@
-# 0019. Verified access records: a reviewed pipeline that ships empty until the field work is real
+# 0019. Sourced access records and private trip access choices
 
-- **Status:** accepted (pipeline + UI built; record content owned by the editor/owner authoring flow)
+- **Status:** implemented on the review branch, with a two-record official-source pilot
 - **Date:** 2026-09-30
 - **Decider:** ACCESS lane (feat/site-improvement-20260930), per the verified-access plan feature
 
@@ -17,10 +17,10 @@ Two failure modes are unacceptable here, and both are common in fishing apps:
    the water*. Those markers say nothing about where the public may lawfully park, stand, or
    launch — and treating them as access points is a private-property incident waiting to happen.
 
-So this feature ships the **schema, pipeline, gate, and UI for reviewed access records with a
-corpus of ZERO records**. The water-page section renders an honest empty state until field-
-reviewed records are authored through the normal YAML → PR → review pipeline
-(docs/access-AUTHORING.md). Absence of verified access is *stated*, never implied.
+The initial pipeline shipped empty. The October 1 completion adds two source-reviewed
+NPS parking records. Their `verificationMethod: official-source` explicitly distinguishes
+desk review from an on-site visit; coordinates and bank routes are unverified. Further
+records use the normal YAML → PR → review pipeline (docs/access-AUTHORING.md).
 
 ## Decision
 
@@ -34,6 +34,8 @@ One record = one access point at one water (or named reach). Files live in
 | `id` | required, lowercase slug; **`example-` prefix is reserved for test fixtures** (§6) |
 | `waterId` | required; must exist in the `streams/` catalog (loader cross-checks) — every claim carries a water association |
 | `reach` | optional named reach, so big waters carry several distinct entries |
+| `name` | optional official place name, recommended for new records |
+| `verificationMethod` | `official-source` or `field-visit`; new records state it explicitly, legacy rows are shown as source review |
 | `kind` | required enum: `parking \| boat-ramp \| public-entry \| accessible-facility \| walk-in` |
 | `coordinates` | optional `{lat, lng}` inside the TN plausibility box (lat 33–37, lng −91 to −81) |
 | `fee` | optional `{amount, notes?}` — fees are a FIELD, not a record |
@@ -44,7 +46,7 @@ One record = one access point at one water (or named reach). Files live in
 | `uncertainty` | optional free text; **REQUIRED when `coordinates` is absent or `kind` is `walk-in`** |
 | `notes` | required, visitor-facing |
 
-Schema: `packages/content/scripts/access/schema.ts` (zod); loader/cross-checks:
+Schema: `packages/contracts/src/schemas/access.ts` (shared zod contract), re-exported by `packages/content/scripts/access/schema.ts`; loader/cross-checks:
 `packages/content/scripts/access/load.ts`; wired into the CI gate (`scripts/validate.ts`) and
 the pack build (`scripts/build.ts`) so the gate and the build can never disagree.
 
@@ -116,7 +118,7 @@ client-side** — rendered as a plain anchor the visitor clicks, never auto-open
 fee/hours/closure fields, "Verify with \<publisher\>" source link, review date, and prominent
 uncertainty. With zero records for a water it renders, verbatim:
 
-> No verified access records for this water yet — stocking markers are not verified public
+> No sourced access records for this water yet — stocking markers are not verified public
 > access points.
 
 Integration: the coordinator inserts `<AccessSection waterId={id} />` below `ReleasesPanel` on
@@ -126,8 +128,11 @@ StreamDetailPage (that file is owned by another lane this wave; this ADR records
 
 - The gate (validate + build + tests) enforces the record contract mechanically; review policy
   (stocking markers, source quality, field work) is enforced by humans per
-  docs/access-AUTHORING.md, and the corpus ships empty until that work genuinely happens.
+  docs/access-AUTHORING.md. Review method is visible; source review never implies a field visit.
 - Growing the corpus is additive YAML — no contract change, no client change; the pack budget
   absorbs records at ~200 bytes each against a 20 MB ceiling.
+- Trips select stable access IDs for their waters through the same offline access
+  query and atomic Dexie updates. Missing/retired choices remain visible and
+  removable. Public copied plans omit private access choices.
 - Future work (not built): staleness surfacing (aging `reviewDate` as a warning chip), a
   per-reach map, and an "Suggest a correction" deep link from each card into the ADR 0015 flow.

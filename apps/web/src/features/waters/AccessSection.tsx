@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import { useQuery, type UseQueryResult } from '@tanstack/react-query';
-import { z } from 'zod';
+import { AccessPackSchema, type AccessRecord } from '@trout/contracts';
 import { EmptyState, cx } from '@trout/ui';
 import { fetchSnapshot } from '../../lib/snapshots';
 
 /**
- * Verified access records for one water (ADR 0019).
+ * Source-reviewed access records for one water (ADR 0019).
  *
  * Honesty rules baked in:
- * - The pack ships ZERO records until field-reviewed ones are authored
- *   (docs/access-AUTHORING.md). "No records" is a real, stated answer — the
+ * - Official-source review is labelled separately from an on-site visit.
+ *   "No records" is a real, stated answer — the
  *   empty state names it and reminds the visitor that stocking markers are
  *   NOT verified public access points.
  * - Every record cites its official source ("Verify with <publisher>"),
@@ -25,31 +25,7 @@ import { fetchSnapshot } from '../../lib/snapshots';
 export const ACCESS_PACK_URL = '/content/access.json';
 const ACCESS_TTL_MIN = 7 * 24 * 60; // content is static between content-pack builds
 
-/** Mirror of packages/content/scripts/access/schema.ts (the pack is
- *  build-validated there; this re-validates what THIS device loads). */
-const accessRecordSchema = z.object({
-  id: z.string().min(1),
-  waterId: z.string().min(1),
-  reach: z.string().min(1).optional(),
-  kind: z.enum(['parking', 'boat-ramp', 'public-entry', 'accessible-facility', 'walk-in']),
-  coordinates: z.object({ lat: z.number(), lng: z.number() }).optional(),
-  fee: z.object({ amount: z.string().min(1), notes: z.string().min(1).optional() }).optional(),
-  hours: z.string().min(1).optional(),
-  closure: z.object({ window: z.string().min(1), notes: z.string().min(1).optional() }).optional(),
-  officialSource: z.object({
-    url: z.string().url().startsWith('https://'),
-    publisher: z.string().min(1),
-    retrievedAt: z.string().min(1),
-  }),
-  reviewDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
-  uncertainty: z.string().min(1).optional(),
-  notes: z.string().min(1),
-});
-export type AccessRecord = z.infer<typeof accessRecordSchema>;
-
-const accessPackSchema = z.object({
-  records: z.array(z.object({ waterId: z.string(), access: z.array(accessRecordSchema) })),
-});
+export type { AccessRecord } from '@trout/contracts';
 
 const KIND_LABEL: Record<AccessRecord['kind'], string> = {
   parking: 'Parking',
@@ -65,12 +41,12 @@ export function directionsUrl(coordinates: { lat: number; lng: number }): string
 }
 
 /** Offline-first read of the precached access pack, narrowed to one water. */
-export function useAccessRecords(waterId: string): UseQueryResult<AccessRecord[]> {
+export function useAllAccessRecords(): UseQueryResult<AccessRecord[]> {
   return useQuery({
-    queryKey: ['content-access', waterId],
+    queryKey: ['content-access'],
     queryFn: async (): Promise<AccessRecord[]> => {
-      const snap = await fetchSnapshot(ACCESS_PACK_URL, accessPackSchema, ACCESS_TTL_MIN);
-      return snap.data.records.find((group) => group.waterId === waterId)?.access ?? [];
+      const snap = await fetchSnapshot(ACCESS_PACK_URL, AccessPackSchema, ACCESS_TTL_MIN);
+      return snap.data.records.flatMap((group) => group.access);
     },
     staleTime: Number.POSITIVE_INFINITY,
     gcTime: Number.POSITIVE_INFINITY,
@@ -78,6 +54,11 @@ export function useAccessRecords(waterId: string): UseQueryResult<AccessRecord[]
     retry: 1,
     refetchOnWindowFocus: false,
   });
+}
+
+export function useAccessRecords(waterId: string): UseQueryResult<AccessRecord[]> {
+  const query = useAllAccessRecords();
+  return { ...query, data: query.data?.filter((record) => record.waterId === waterId) } as UseQueryResult<AccessRecord[]>;
 }
 
 export interface AccessSectionProps {
@@ -92,10 +73,10 @@ export function AccessSection({ waterId, className }: AccessSectionProps) {
   return (
     <section
       className={cx('detail-section', 'access-section', className)}
-      aria-label="Verified access"
+      aria-label="Sourced access"
       data-testid="access-section"
     >
-      <p className="eyebrow">Verified access</p>
+      <p className="eyebrow">Sourced access</p>
       <h3>Parking, ramps, and public entries</h3>
 
       {query.isPending && <p className="muted">Loading access information…</p>}
@@ -109,7 +90,7 @@ export function AccessSection({ waterId, className }: AccessSectionProps) {
 
       {!query.isPending && !query.isError && records && records.length === 0 && (
         <EmptyState
-          title="No verified access records for this water yet"
+          title="No sourced access records for this water yet"
           description="Stocking markers are not verified public access points."
         />
       )}
@@ -126,15 +107,15 @@ export function AccessSection({ waterId, className }: AccessSectionProps) {
 
       {records && records.length > 0 && (
         <p className="muted text-xs mt-3">
-          Records appear only after field review against an official source — absence here is not
-          information about whether access exists.
+          Each record states its review method. Official-source review does not confirm current
+          on-site conditions. Absence here is not information about whether access exists.
         </p>
       )}
     </section>
   );
 }
 
-function AccessCard({ record }: { record: AccessRecord }) {
+export function AccessCard({ record }: { record: AccessRecord }) {
   const [copied, setCopied] = useState(false);
   const coords = record.coordinates
     ? `${record.coordinates.lat}, ${record.coordinates.lng}`
@@ -154,7 +135,7 @@ function AccessCard({ record }: { record: AccessRecord }) {
   return (
     <article className="access-record mt-2" data-testid="access-record" data-kind={record.kind}>
       <header className="flex items-baseline justify-between gap-2">
-        <strong>{KIND_LABEL[record.kind]}</strong>
+        <strong>{record.name ?? KIND_LABEL[record.kind]}</strong>
         {record.reach && <span className="muted text-xs">{record.reach}</span>}
       </header>
 
@@ -203,7 +184,7 @@ function AccessCard({ record }: { record: AccessRecord }) {
       )}
 
       <footer className="mt-2">
-        <span className="muted text-xs">Reviewed {record.reviewDate} · </span>
+        <span className="muted text-xs">{record.verificationMethod === 'field-visit' ? 'Field visit reviewed' : 'Official source reviewed'} {record.reviewDate} · </span>
         <a
           className="text-action"
           href={record.officialSource.url}

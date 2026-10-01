@@ -13,6 +13,7 @@ export const OWNER_MODE_HASH = '#/owner';
 export const OWNER_DASHBOARD = '/v1/owner/dashboard';
 export const OWNER_CORRECTIONS = '/v1/owner/corrections';
 export const OWNER_RESEARCH_QUEUE = '/v1/owner/research-queue';
+export const OWNER_PUBLICATION_PREVIEW = '/v1/owner/publication-preview';
 
 export class OwnerApiError extends Error {
   constructor(public status: number, message: string) {
@@ -52,6 +53,7 @@ export const OwnerDashboardSchema = z.object({
   jobs: z.array(OwnerJobSchema),
   omittedJobNames: z.number().default(0),
   feeds: z.array(OwnerFeedSchema),
+  operations: z.array(z.object({ area: z.string(), state: z.string(), recordedAt: NullableIso, revision: NullableIso })).default([]),
   snapshotFreshness: z.object({ latestFileTimes: z.record(z.string()) }).default({ latestFileTimes: {} }),
   counts: z.object({
     correctionsByStatus: z.record(z.number()).default({}),
@@ -112,6 +114,16 @@ export const OwnerResearchQueueSchema = z.object({
 });
 export type OwnerResearchQueue = z.infer<typeof OwnerResearchQueueSchema>;
 export type OwnerResearchItem = OwnerResearchQueue['queue'][number];
+
+const PublicationSchema = z.object({
+  id: z.string(), preparedAt: z.string(), publishedAt: NullableIso,
+  baseHash: z.string(), candidateHash: z.string(), fileChanges: z.number(), affectedWaters: z.number(), omittedWaters: z.number(),
+  waters: z.array(z.object({ id: z.string(), name: z.string(), beforeWording: z.array(z.string()), afterWording: z.array(z.string()),
+    changes: z.array(z.object({ field: z.string(), before: NullableIso, after: NullableIso, truncated: z.boolean() })) })),
+});
+const PublicationPreviewSchema = z.object({ state: z.enum(['not-prepared', 'invalid', 'ready', 'base-changed', 'expired', 'published']),
+  publication: PublicationSchema.nullable() });
+export type PublicationPreview = z.infer<typeof PublicationPreviewSchema>;
 
 // ---------------------------------------------------------------------------
 // In-memory token holder — the ONLY owner credential storage
@@ -180,4 +192,8 @@ export function fetchOwnerCorrections(status?: string): Promise<{ corrections: O
 
 export function fetchOwnerResearchQueue(): Promise<OwnerResearchQueue> {
   return ownerFetchJson(OWNER_RESEARCH_QUEUE, OwnerResearchQueueSchema);
+}
+
+export function fetchPublicationPreview(): Promise<PublicationPreview> {
+  return ownerFetchJson(OWNER_PUBLICATION_PREVIEW, PublicationPreviewSchema);
 }

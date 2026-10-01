@@ -15,6 +15,7 @@ import { shortDate } from '../../lib/time';
 import { tripManifestId } from '../../lib/downloadManifests';
 import type { MyWatersSharedData } from '../myWaters/useMyWatersData';
 import { TripWaterLine } from './TripWaterLine';
+import { TripAccessPicker } from './TripAccessPicker';
 import { DownloadButton } from '../downloads/DownloadButton';
 import { PackStatus } from '../downloads/PackStatus';
 import { usePackManager } from '../downloads/usePackManager';
@@ -151,6 +152,8 @@ export function TripCard({
               </p>
             )}
           </section>
+
+          <TripAccessPicker trip={trip} />
 
           <section>
             <h4 className={sectionTitle}>Offline packs</h4>

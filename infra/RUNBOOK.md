@@ -443,3 +443,32 @@ do not rewrite public measurements or publish facts automatically. Keep the
 normal branch/PR/owner-merge path. See the
 [review report](../docs/reports/2026-09-30-post-implementation-review.md) and
 [worklist](../docs/KNOWN-ISSUES.md) for remaining plan details.
+
+### 9.2 Read-only owner publication preview
+
+The owner dashboard shows collected build/deploy/backup status and a candidate
+diff at `#/owner`. Its own bearer credential grants GET visibility only. Status
+files are fixed, sanitized inputs from `backups/`; uncollected status stays
+unknown. Backup success does not certify a restore test.
+
+In an isolated editorial checkout, build the content pack and use a seeded,
+migrated database (a private copy when proposing catalog edits). Run
+`pnpm --filter @trout/api publication --action=prepare`. Preparation opens that
+database read-only and runs the ordinary snapshot builder into the private
+`backups/publication/` directory. It leaves live snapshot files unchanged.
+`TROUT_PUBLICATION_DIR` and `TROUT_OPS_STATUS_DIR` can override those private paths;
+relative overrides anchor at the repository root. Never put them in public/dist.
+
+Review old/new claim areas, source links, shared public opportunity wording and
+the candidate ID in the owner dashboard. The bounded view states any omitted
+waters or abbreviated values; review full candidate files locally when needed.
+The candidate includes current generated measurements and expires after one hour.
+Live generation changes, file tampering or expiry require preparation and review
+again. An accepted correction remains a proposal until the normal content review.
+
+An explicitly authorized operator can publish the reviewed candidate with
+`pnpm --filter @trout/api publication --action=publish --id=<reviewed-id>`.
+It promotes the exact reviewed bytes through the existing backup/rollback
+mechanism and verifies the resulting generation hash. No dashboard button can
+publish. On production, retain the owner merge and ordinary self-deployment
+workflow; do not add a hand-run publication/deploy step without an owner request.

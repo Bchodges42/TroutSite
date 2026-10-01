@@ -8,6 +8,8 @@ import {
   type OwnerRateLimits,
 } from './schema.js';
 import { ownerCorrectionsSummary, ownerDashboard, ownerResearchQueue } from './service.js';
+import { readOperationStatuses } from './operations.js';
+import { readPublicationPreview } from './publication.js';
 
 /**
  * Owner dashboard routes (ADR 0017) — the publication-review surface.
@@ -87,13 +89,18 @@ export function registerOwnerRoutes(app: FastifyInstance, deps: OwnerDeps): void
   // ------------------------------------------------------------------
   app.get('/v1/owner/dashboard', { onRequest: [requireOwner] }, async (_req, reply) => {
     reply.header('cache-control', 'no-store');
-    return ownerDashboard(deps.db, {
+    return { ...ownerDashboard(deps.db, {
       snapshotsDir: deps.snapshotsDir,
       contentDir: deps.contentDir,
       schedulerProfile: deps.schedulerProfile,
       watchlistsEnabled: deps.watchlistsEnabled,
       now: new Date(now()),
-    });
+    }), operations: readOperationStatuses(deps.opsStatusDir) };
+  });
+
+  app.get('/v1/owner/publication-preview', { onRequest: [requireOwner] }, async (_req, reply) => {
+    reply.header('cache-control', 'no-store');
+    return readPublicationPreview(deps.publicationDir, deps.snapshotsDir, now());
   });
 
   // ------------------------------------------------------------------

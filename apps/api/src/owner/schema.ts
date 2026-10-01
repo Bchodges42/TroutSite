@@ -173,6 +173,8 @@ export interface OwnerDeps {
   snapshotsDir?: string;
   /** Directory containing the content pack streams.json (content-pack dir). */
   contentDir?: string;
+  opsStatusDir?: string;
+  publicationDir?: string;
   /**
    * OWNER_DASHBOARD_TOKEN — the owner surface's own shared secret. When unset
    * the factory registers NOTHING (fail-closed by absence, like PORTAL_SECRET

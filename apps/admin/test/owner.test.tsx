@@ -122,6 +122,10 @@ const RESEARCH_PAYLOAD = {
 
 function ownerHandlers() {
   return [
+    http.get('*/v1/owner/publication-preview', ({ request }) => {
+      if (request.headers.get('Authorization') !== `Bearer ${OWNER_TOKEN}`) return HttpResponse.json({ error: 'unauthorized' }, { status: 401 });
+      return HttpResponse.json({ state: 'not-prepared', publication: null });
+    }),
     http.get('*/v1/owner/dashboard', ({ request }) => {
       const auth = request.headers.get('Authorization') ?? '';
       if (auth !== `Bearer ${OWNER_TOKEN}`) {
@@ -233,6 +237,10 @@ describe('owner gate (deep link)', () => {
       }),
       http.get('*/v1/owner/corrections', () => HttpResponse.json(CORRECTIONS_PAYLOAD)),
       http.get('*/v1/owner/research-queue', () => HttpResponse.json(RESEARCH_PAYLOAD)),
+      http.get('*/v1/owner/publication-preview', ({ request }) => {
+        seenAuth.push(request.headers.get('Authorization') ?? '');
+        return HttpResponse.json({ state: 'not-prepared', publication: null });
+      }),
     );
     saveToken(SHOP_TOKEN); // a shop token IS present in localStorage
     render(<App />);

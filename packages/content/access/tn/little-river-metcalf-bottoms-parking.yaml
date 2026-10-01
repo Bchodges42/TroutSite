@@ -1,0 +1,20 @@
+id: little-river-metcalf-bottoms-parking
+waterId: little-river
+name: Metcalf Bottoms Picnic Area
+reach: Little River inside Great Smoky Mountains National Park
+kind: parking
+verificationMethod: official-source
+officialSource:
+  url: https://www.nps.gov/places/metcalf-bottoms-picnic-area.htm
+  publisher: National Park Service
+  retrievedAt: 2026-10-01
+reviewDate: 2026-10-01
+notes: >-
+  NPS lists vehicle parking and picnic sites along Little River, with a Tennessee
+  or North Carolina fishing license required. The Metcalf bridge has a 10-ton
+  weight limit; buses, motorhomes and trailers are not permitted. Dumpsters are
+  removed from late October to late March; pack out trash during that period.
+uncertainty: >-
+  Reviewed against the official NPS page; no on-site visit or entry coordinates
+  were verified. Bank routes, accessible water entry, current closures and
+  parking requirements must be checked with NPS before departure.

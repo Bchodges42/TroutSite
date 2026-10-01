@@ -1,8 +1,9 @@
 import { db, type TripChecklistItem, type TripRecord } from './db';
+import type { AccessRecord } from '@trout/contracts';
 
 /**
  * Trip planner store (ADR 0012): private, on-device trips that tie together
- * saved waters, a checklist, and (later) offline packs and chosen access
+ * saved waters, a checklist, offline packs and chosen access
  * points. A completed trip is one that was recorded into the logbook — the
  * plan itself is never rewritten by that act beyond the completedAt stamp.
  */
@@ -86,6 +87,21 @@ export async function completeTrip(id: string, waterNames: ReadonlyMap<string, s
 
 export async function deleteTrip(id: string): Promise<void> {
   await db.trips.delete(id);
+}
+
+/** Merge against the latest plan so simultaneous access choices do not overwrite each other. */
+export async function setTripAccessPoint(id: string, record: Pick<AccessRecord, 'id' | 'waterId'>, selected: boolean): Promise<void> {
+  await db.transaction('rw', db.trips, async () => {
+    const trip = await db.trips.get(id);
+    if (!trip) throw new Error('This trip no longer exists.');
+    if (selected && (!trip.waterIds.includes(record.waterId) || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(record.id) || record.id.startsWith('example-'))) {
+      throw new Error('Choose an access record for a water in this trip.');
+    }
+    const points = new Set(trip.accessPointIds ?? []);
+    if (selected) points.add(record.id); else points.delete(record.id);
+    if (points.size > 100) throw new Error('This trip has reached its access-selection limit.');
+    await db.trips.put({ ...trip, accessPointIds: [...points], updatedAt: Date.now() });
+  });
 }
 
 export async function addChecklistItem(id: string, label: string): Promise<void> {

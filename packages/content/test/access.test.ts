@@ -155,14 +155,16 @@ describe('verified access records (ADR 0019 gate)', () => {
 
   // ── the real corpus ──────────────────────────────────────────────────────
 
-  it('ships ZERO verified access records today, with the example fixture valid and excluded', () => {
+  it('ships the official-source pilot with the example fixture valid and excluded', () => {
     const { records, examples, issues } = loadAccess(new Set(streams.keys()));
     expect(issues, issues.map((i) => `${i.file}: ${i.message}`).join('\n')).toEqual([]);
-    // HONESTY CONSTRAINT: the pipeline ships with zero records. Access content
-    // only grows through field-reviewed authoring (docs/access-AUTHORING.md) —
-    // never invented.
-    expect(records).toHaveLength(0);
-    expect(toAccessPack(records)).toEqual({ records: [] });
+    expect(records.map((r) => r.id)).toEqual(['little-river-metcalf-bottoms-parking', 'west-prong-little-pigeon-chimneys-parking']);
+    for (const record of records) {
+      expect(record.verificationMethod).toBe('official-source');
+      expect(record.coordinates).toBeUndefined();
+      expect(record.uncertainty).toContain('no on-site visit');
+    }
+    expect(toAccessPack(records).records).toHaveLength(2);
     expect(examples).toHaveLength(1);
     expect(isExampleRecord(examples[0]!.id)).toBe(true);
     expect(examples[0]!.waterId).toBe(EXAMPLE_WATER_ID);

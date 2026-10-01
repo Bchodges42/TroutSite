@@ -16,6 +16,9 @@ export const EnvSchema = z.object({
   TROUT_SNAPSHOTS_DIR: z.string().optional(),
   /** Built PWA (apps/web/dist) served by this process; default ../web/dist. */
   TROUT_WEB_DIST_DIR: z.string().optional(),
+  /** Private, repository-root-relative directories; never put these in public/dist. */
+  TROUT_OPS_STATUS_DIR: z.string().optional(),
+  TROUT_PUBLICATION_DIR: z.string().optional(),
   /** Raw fetch snapshots (scraper audit trail); default data/raw under apps/api. */
   TROUT_RAW_DIR: z.string().optional(),
   /**

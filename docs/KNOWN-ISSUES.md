@@ -620,15 +620,19 @@ Open plan details (code/product work, not repaired by configuration):
   pending retries through failures, cooldowns and selected-zone quiet hours.
   Unsupported metrics stay unknown. Existing rule identities and deletion
   cascades survive migration 023. API, migration and enrollment UI checks pass.
-- [ ] **POST-32 · T2 — Publication candidate preview.** Owner feed/job/research and
-  correction visibility plus accepted handoff exist. Add old/new preview using
-  the exact builder candidate, affected public wording and collected build/deploy/
-  backup status; keep it read-only and credentials distinct.
-- [ ] **POST-33 · T1 — Verified access coverage / trip selection.** The sourced
-  authoring pipeline emits zero records. Author/review a pilot, then complete
-  selecting specific access records in Trips. Do not infer public access from a
-  stocking marker or invent records to make the UI look complete. This extends
-  the existing evidence/access research work, not a competing catalog.
+- [x] **POST-32 · T2 — Publication candidate preview.** A private candidate runs
+  through the ordinary builder without changing live snapshots. Protected owner
+  GETs show old/new claims and shared public wording, bounded with omissions
+  labelled. The operator CLI promotes the reviewed bytes and rejects tampering,
+  baseline drift or expiry. Build outcomes and collected fixed host statuses
+  are visible; missing collection stays unknown. No dashboard publishing power.
+- [x] **POST-33 · T1 — Sourced access pilot / trip selection.** Two official NPS
+  parking records cover Little River and West Prong Little Pigeon. Cards label
+  official-source review separately from a field visit and state unverified
+  coordinates, bank routes and current conditions. See the source review under
+  `docs/research/`. Trips select individual records privately and recall them
+  offline; retired/foreign choices stay visible and removable. Further water
+  coverage remains ongoing editorial research, not fabricated completeness.
 
 Rollout and acceptance (owner/data/device work):
 

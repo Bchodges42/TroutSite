@@ -14,6 +14,7 @@ import { registerCorrectionsRoutes, type CorrectionsDeps } from './corrections/r
 import { registerWatchRoutes, type WatchDeps } from './push/routes.js';
 import { vapidConfigFromEnv } from './push/notifier.js';
 import { registerOwnerRoutes } from './owner/routes.js';
+import { ownerPaths } from './owner/operations.js';
 import { loadEnv } from './env.js';
 import { createGaugeNowCache, GaugeNowBusyError, type GaugeNowCache } from './lib/gauge-now.js';
 
@@ -318,6 +319,7 @@ export function buildApp(options: BuildAppOptions = {}): FastifyInstance {
       snapshotsDir: options.webPublicDir,
       contentDir: options.webPublicDir ? join(options.webPublicDir, 'content-pack') : undefined,
       ownerToken: loadEnv().OWNER_DASHBOARD_TOKEN,
+      ...ownerPaths(loadEnv()),
       schedulerProfile: loadEnv().TROUT_SCHEDULER_PROFILE,
       watchlistsEnabled: watchMaintenanceEnabled,
     });

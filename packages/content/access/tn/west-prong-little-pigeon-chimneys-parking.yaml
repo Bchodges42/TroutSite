@@ -1,0 +1,25 @@
+id: west-prong-little-pigeon-chimneys-parking
+waterId: west-prong-little-pigeon
+name: Chimneys Picnic Area
+reach: West Prong Little Pigeon River along Highway 441 / Newfound Gap Road
+kind: parking
+verificationMethod: official-source
+officialSource:
+  url: https://www.nps.gov/places/chimneys-picnic-area.htm
+  publisher: National Park Service
+  retrievedAt: 2026-10-01
+reviewDate: 2026-10-01
+hours: >-
+  Seasonal opening at sunrise. Closes at 8 PM from late April to early September,
+  and at sunset on other open dates. Verify the current schedule with NPS.
+closure:
+  window: Winter; NPS describes seasonal operation from early April to December 1.
+  notes: Exact opening dates and temporary closures require a current NPS check.
+notes: >-
+  NPS lists vehicle parking and 68 picnic sites next to the West Prong Little
+  Pigeon River. A Tennessee or North Carolina fishing license is required.
+  The nearby 0.8-mile loop trail has a steep ascent and descent.
+uncertainty: >-
+  Reviewed against the official NPS page; no on-site visit or entry coordinates
+  were verified. Parking availability, riverbank routes, accessible water entry
+  and current closures require checking with NPS before departure.

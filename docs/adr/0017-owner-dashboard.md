@@ -183,10 +183,16 @@ Every reader degrades its own section instead of failing the endpoint:
   untouched and stay green.
 - The dashboard is only as honest as `jobs_log` and the snapshot files. The
   schedule maps must track both `src/cron.ts` and `infra/install-schedules.sh`.
-- Future work (explicitly out of scope): per-action owner authorization + audit trail
-  (§3), a candidate snapshot-diff view using the builder's exact candidate data,
-  and build/deploy/backup panels where those records are collected. The moderator
-  surface has a source-cited accepted-proposal export for a normal content PR;
-  this handoff is not a complete publication preview. These are still plan
-  gaps; the original handoff's blanket completion claim is superseded by the
-  [post-implementation review](../reports/2026-09-30-post-implementation-review.md).
+- October 1 completion: `/v1/owner/publication-preview` reads a private candidate
+  produced by the normal snapshot builder. It shows old/new sources, species,
+  opportunity, access, regulations, evidence and stocking plus the shared public
+  opportunity wording. It validates generation hashes and reports baseline drift,
+  tampering, unprepared and published states. Bounded previews label omissions.
+- Preparation uses a read-only DB and leaves live snapshots unchanged. Publication
+  is an explicit owner/operator CLI step that promotes the reviewed bytes and
+  refuses a changed baseline or candidate. The dashboard remains GET-only.
+- Build outcomes come from `jobs_log`; auto-update, refresh, watchdog, backup and
+  verified deploy status come from fixed status/stamp files. Missing collection
+  stays unknown. Logs, env, ntfy topics and database files are never read or echoed.
+  See RUNBOOK §9.2 for the candidate workflow. Per-action dashboard powers remain
+  future work and are not required for read-only publication review.

@@ -1,12 +1,15 @@
 # Authoring verified access records (`packages/content/access/tn/`)
 
-This is the field-by-field guide for adding **verified public access** records — parking,
+This is the field-by-field guide for adding **sourced public access** records — parking,
 boat ramps, public entries, accessible facilities, walk-ins — to a water's page. Read
 [ADR 0019](adr/0019-verified-access-records.md) for the binding rules; this document is the
 how-to.
 
-> **The pipeline ships with ZERO records on purpose.** Everything below describes how a record
-> may *earn* its way in. If the field work has not happened, do not write the file.
+> Every record must state how it was reviewed. `verificationMethod: official-source`
+> means a fresh read of the land manager's page; `field-visit` requires an actual
+> on-site visit. Never describe source review as field verification. The initial
+> [two-record pilot](research/access-pilot-2026-10-01.md) uses official NPS pages
+> and explicitly identifies unverified coordinates, bank routes and current conditions.
 
 ## The one rule everything else serves
 
@@ -32,6 +35,8 @@ you may lawfully park, stand, or launch. Never cite a stocking schedule as a rec
 |---|---|---|
 | `id` | yes | lowercase slug (`a-z`, `0-9`, dashes). Stable forever — it is the record's identity. The `example-` prefix is **reserved** for the test fixture and never ships. |
 | `waterId` | yes | Must be a real id from `packages/content/streams/tn/`. The loader cross-checks; a typo fails the gate. |
+| `name` | recommended | Official place name, used by the card and trip selection. |
+| `verificationMethod` | yes for new records | `official-source` or `field-visit`. Older rows without it are displayed conservatively as source review. |
 | `reach` | no | Named reach for big waters (`Below the dam`, `Mile 7 riffle`) so one water carries several records. |
 | `kind` | yes | Exactly one of: `parking`, `boat-ramp`, `public-entry`, `accessible-facility`, `walk-in`. Fees/hours/closures are **fields**, not kinds. |
 | `coordinates` | no | `{lat, lng}` decimal degrees inside the TN box (lat 33–37, lng −91 to −81). Only if you actually have them from the field or the official source. |
@@ -129,7 +134,7 @@ waterId: caney fork river   # ← spaces/typos fail; must match streams/tn/*.yam
 
 ## Review checklist (PR reviewer + author)
 
-1. `waterId` exists in `packages/content/streams/tn/` and matches the water you actually visited.
+1. `waterId` exists in `packages/content/streams/tn/` and matches the water identified by the official source or actual visit.
 2. `officialSource` is the access-relevant official page — not a stocking schedule, not a forum.
 3. You opened the source URL on `retrievedAt` and it says what the record says.
 4. `reviewDate` reflects real confirmation (field visit or current official page), not hope.
@@ -144,8 +149,14 @@ waterId: caney fork river   # ← spaces/typos fail; must match streams/tn/*.yam
 
 `pnpm --filter @trout/content build` groups shippable records by `waterId` into
 `dist/pack/access.json` (precached with the rest of the content pack). The water page's
-"Verified access" section renders them; a water with no records shows:
-*"No verified access records for this water yet — stocking markers are not verified public
+"Sourced access" section renders them with their review method; a water with no records shows:
+*"No sourced access records for this water yet — stocking markers are not verified public
 access points."* The single fixture, `access/tn/example-boat-ramp-parking.yaml`
 (id prefixed `example-`, `waterId: example-water-id`), is a schema test fixture that the
 validator validates but never ships.
+
+Trips can select individual published IDs for their chosen waters. Selections
+are private Dexie data and use the same offline access pack. If a record is
+retired or no longer belongs to the trip's waters, its saved ID is retained and
+labelled unavailable until the visitor removes it. That label does not establish
+a closure. These IDs are excluded from the minimal copied public trip plan.

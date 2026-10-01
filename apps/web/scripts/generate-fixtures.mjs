@@ -34,6 +34,7 @@ import {
   FishabilitySnapshotSchema,
   ActivityOutlookSchema,
   SpeciesKeySchema,
+  AccessPackSchema,
 } from '@trout/contracts';
 
 const appRoot = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -1060,8 +1061,10 @@ writeJson('v1/shops/TN.json', shops);
 writeJson('v1/reports/recent.json', reports);
 writeJson('content/taxa.json', taxa);
 writeJson('content/patterns.json', patterns);
-// Honest absence until the verified-access pilot has cited records.
-writeJson('content/access.json', { records: [] });
+// Use the source-reviewed pilot, with the same shipped schema as publication.
+const accessPackPath = join(appRoot, '..', '..', 'packages', 'content', 'dist', 'pack', 'access.json');
+const accessPack = AccessPackSchema.parse(JSON.parse(readFileSync(accessPackPath, 'utf8')));
+writeJson('content/access.json', accessPack);
 // The regulations page consumes the real fishing-information document (same
 // file the content pack serves) — copied verbatim so /regulations works in
 // fixture/demo mode exactly as it does against the live snapshot surface.

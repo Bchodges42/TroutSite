@@ -105,7 +105,7 @@ describe('AccessSection', () => {
     // Provenance: named publisher + review date, always visible.
     const verify = screen.getByRole('link', { name: 'Verify with Tennessee Wildlife Resources Agency ↗' });
     expect(verify).toHaveAttribute('href', 'https://www.tn.gov/twra/fishing/fishing-access.html');
-    expect(screen.getByText(/Reviewed 2026-09-28/)).toBeInTheDocument();
+    expect(screen.getByText(/Official source reviewed 2026-09-28/)).toBeInTheDocument();
   });
 
   it('shows uncertainty prominently (note role), not as fine print', async () => {
@@ -167,7 +167,7 @@ describe('AccessSection', () => {
   it('renders only the water own records (grouped-by-waterId lookup)', async () => {
     stubFetch(
       packBody([
-        { waterId: 'another-water', access: [{ ...FULL_RECORD, id: 'other-water-record' }] },
+        { waterId: 'another-water', access: [{ ...FULL_RECORD, waterId: 'another-water', id: 'other-water-record' }] },
         { waterId: WATER, access: [FULL_RECORD] },
       ]),
     );
@@ -183,7 +183,7 @@ describe('AccessSection', () => {
     renderSection();
 
     expect(
-      await screen.findByText('No verified access records for this water yet'),
+      await screen.findByText('No sourced access records for this water yet'),
     ).toBeInTheDocument();
     expect(screen.getByText('Stocking markers are not verified public access points.')).toBeInTheDocument();
     expect(screen.queryByTestId('access-record')).not.toBeInTheDocument();
@@ -197,6 +197,6 @@ describe('AccessSection', () => {
     expect(
       await screen.findByText('Access information could not be loaded', {}, { timeout: 4000 }),
     ).toBeInTheDocument();
-    expect(screen.queryByText('No verified access records for this water yet')).not.toBeInTheDocument();
+    expect(screen.queryByText('No sourced access records for this water yet')).not.toBeInTheDocument();
   });
 });

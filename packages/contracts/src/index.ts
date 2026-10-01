@@ -22,6 +22,7 @@ export * from './schemas/releaseSchedule.js';
 export * from './schemas/gaugeHistory.js';
 
 export * from './schemas/fishability.js';
+export * from './schemas/access.js';
 
 export * from './endpoints.js';
 export * from './scoreConditions.js';
@@ -31,3 +32,4 @@ export * from './matchHatch.js';
 export * from './readingFreshness.js';
 export * from './spawnState.js';
 export * from './stockingMatch.js';
+export * from './opportunityText.js';

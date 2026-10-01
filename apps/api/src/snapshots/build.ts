@@ -1,6 +1,6 @@
 import { createHash } from 'node:crypto';
 import { cpSync, existsSync, mkdirSync, readdirSync, readFileSync, renameSync, rmSync, statSync } from 'node:fs';
-import { dirname, join, relative } from 'node:path';
+import { dirname, join, relative, resolve, isAbsolute } from 'node:path';
 import {
   BugTaxonSchema,
   ConditionSnapshotSchema,
@@ -15,6 +15,7 @@ import {
   StreamSchema,
   StockingEventSchema,
   WaterEvidenceSetSchema,
+  AccessPackSchema,
   scoreConditions,
 } from '@trout/contracts';
 import type {
@@ -277,6 +278,24 @@ export function buildSnapshots(opts: BuildOptions): SnapshotResult {
   }
 }
 
+/** Build a review candidate with the SAME generation function, without touching live files. */
+export function buildSnapshotCandidate(opts: BuildOptions, candidateDir: string): SnapshotResult {
+  const offset = relative(resolve(opts.snapshotsDir), resolve(candidateDir));
+  if (!offset || (!isAbsolute(offset) && !offset.startsWith('..'))) {
+    throw new Error('A publication candidate must be outside the public snapshot tree');
+  }
+  if (existsSync(candidateDir)) throw new Error('Candidate directory already exists');
+  mkdirSync(candidateDir, { recursive: true });
+  try { return buildGeneration(opts, candidateDir); }
+  catch (error) { rmSync(candidateDir, { recursive: true, force: true }); throw error; }
+}
+
+/** Operator CLI only. Promote already reviewed bytes; never regenerate at approval time. */
+export function publishSnapshotCandidate(snapshotsDir: string, candidateDir: string): void {
+  recoverInterruptedPromotion(snapshotsDir);
+  promoteGeneration(snapshotsDir, candidateDir);
+}
+
 /** The publication-managed subtrees of snapshotsDir (everything the builder writes). */
 const MANAGED_TREES = ['v1', 'content'] as const;
 const STAGE_PREFIX = '.snap-stage-';
@@ -508,6 +527,12 @@ function buildGeneration(opts: BuildOptions, outDir: string): SnapshotResult {
   let hatchCharts = 0;
   let contentPack = false;
   const packDir = opts.contentPackDir;
+  // Published access uses the same validated pack that offline clients read.
+  if (packDir && existsSync(join(packDir, 'access.json'))) {
+    const access = AccessPackSchema.parse(JSON.parse(readFileSync(join(packDir, 'access.json'), 'utf8')));
+    const path = join(outDir, 'content', 'access.json');
+    writeJsonAtomic(path, access); files.push(path);
+  }
   if (packDir && existsSync(join(packDir, 'bugs.json'))) {
     contentPack = true;
     const taxa = readPackEntities(join(packDir, 'bugs.json'), 'taxa', BugTaxonSchema);

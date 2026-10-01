@@ -117,3 +117,10 @@
   color: var(--trout-muted, #5a564d);
   font-size: 0.9rem;
 }
+
+.owner-preview-columns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.owner-preview-columns > div { min-width: 0; overflow-wrap: anywhere; }
+.owner-preview-columns pre { white-space: pre-wrap; overflow-wrap: anywhere; font-size: 0.85rem; }
+.owner-candidate-water { margin: 0.75rem 0; }
+.owner-candidate-water summary { min-height: 44px; cursor: pointer; }
+@media (max-width: 600px) { .owner-preview-columns { grid-template-columns: minmax(0, 1fr); } }

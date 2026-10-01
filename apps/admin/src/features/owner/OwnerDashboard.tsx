@@ -9,10 +9,13 @@ import {
   fetchOwnerCorrections,
   fetchOwnerDashboard,
   fetchOwnerResearchQueue,
+  fetchPublicationPreview,
+  type PublicationPreview,
   type OwnerCorrectionSummary,
   type OwnerDashboard as Dashboard,
   type OwnerResearchQueue,
 } from './ownerClient.js';
+import { PublicationPreviewView } from './PublicationPreview.js';
 
 function isoToLabel(value: string | null | undefined): string {
   if (!value) return '—';
@@ -40,6 +43,7 @@ export function OwnerDashboardView({ onLock }: { onLock: () => void }) {
   const [dashboard, setDashboard] = useState<Dashboard | null>(null);
   const [corrections, setCorrections] = useState<OwnerCorrectionSummary[] | null>(null);
   const [research, setResearch] = useState<OwnerResearchQueue | null>(null);
+  const [preview, setPreview] = useState<PublicationPreview | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -52,6 +56,11 @@ export function OwnerDashboardView({ onLock }: { onLock: () => void }) {
       // Best-effort companions: a failure degrades the section, not the page.
       fetchOwnerCorrections().then((r) => setCorrections(r.corrections)).catch(() => setCorrections(null));
       fetchOwnerResearchQueue().then(setResearch).catch(() => setResearch(null));
+      setPreview(null);
+      fetchPublicationPreview().then(setPreview).catch((err: unknown) => {
+        setPreview(null);
+        if (err instanceof OwnerApiError && err.status === 401) onLock();
+      });
     } catch (err) {
       if (err instanceof OwnerApiError && err.status === 401) {
         onLock(); // token died mid-session — back to the gate
@@ -204,6 +213,16 @@ export function OwnerDashboardView({ onLock }: { onLock: () => void }) {
           </p>
         ) : null}
       </section>
+
+      <section aria-label="Build and host status">
+        <h2 className="owner-section-title">Build and host status</h2>
+        <p className="portal-muted">Snapshot builds are recorded in Pipeline jobs. Host statuses below come from collected status files; a missing record does not prove success. A successful backup does not prove that a restore was tested.</p>
+        {dashboard.operations.length === 0 ? <p className="portal-muted">Host status has not been collected.</p> : <ul>
+          {dashboard.operations.map((op) => <li key={op.area}>{op.area}: {op.state} · {isoToLabel(op.recordedAt)}{op.revision ? ` · ${op.revision.slice(0, 9)}` : ''}</li>)}
+        </ul>}
+      </section>
+
+      <PublicationPreviewView preview={preview} />
 
       <section aria-label="Queue counts" className="owner-cards">
         <Card className="owner-feed-card">
