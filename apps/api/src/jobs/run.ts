@@ -119,6 +119,7 @@ export const EXPECTED_JOBS: Record<string, ExpectedJobSpec> = {
   snapshots: { staleAfterHours: HOURLY_PIPELINE_MAX_AGE_HOURS, label: 'hourly pipeline' },
   stocking: { staleAfterHours: 48, label: 'daily feeds' },
   evidence: { staleAfterHours: 48, label: 'daily feeds' },
+  watchlists: { staleAfterHours: 24, label: 'watchlist evaluation' },
 };
 
 /**

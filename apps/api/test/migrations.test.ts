@@ -71,9 +71,11 @@ describe('migrations', () => {
     //   whose YAML disappears are archived, never left active or hard-deleted).
     // + 020_corrections (ADR 0015: user-suggested corrections moderation queue
     //   + corrections_audit trail; receipts stored only as keyed HMACs).
+    // + 021_watchlists (ADR 0016: pseudonymous push subscriptions + watch
+    //   rules — the one deliberate server-side exception to local-first).
     //   NOTE: two-digit zero-padding is load-bearing — the runner sorts
     //   filenames lexicographically, so '0020_…' would sort before '002_…'.
-    expect(applied).toHaveLength(20);
+    expect(applied).toHaveLength(21);
     expect(applied[0]!.name).toMatch(/^001_/);
     expect(applied[1]!.name).toMatch(/^002_/);
     expect(applied[2]!.name).toMatch(/^003_/);
@@ -90,6 +92,7 @@ describe('migrations', () => {
     expect(applied[17]!.name).toMatch(/^018_/);
     expect(applied[18]!.name).toMatch(/^019_/);
     expect(applied[19]!.name).toMatch(/^020_/);
+    expect(applied[20]!.name).toMatch(/^021_/);
   });
 
   it('adds archived_at to streams and shops (F22 removal policy: NULL = active)', () => {

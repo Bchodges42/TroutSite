@@ -10,6 +10,7 @@ import { colorValue, customColorControls, themes, type CustomColorKey } from '..
 import { usePackManager, useStorageEstimate } from '../features/downloads/usePackManager';
 import { PackStatus } from '../features/downloads/PackStatus';
 import { DownloadButton } from '../features/downloads/DownloadButton';
+import { WatchesSettings } from '../features/watches/WatchesSettings';
 
 function CustomColorField({
   theme,
@@ -152,6 +153,12 @@ export function SettingsPage() {
             : 'Every water, and — where the snapshot has it — the fishability of the species you pick on the map.'}
         </p>
       </Card>
+
+      <h2 className="section-title">Watches</h2>
+      {/* ADR 0016: the one server-side feature — pseudonymous watch rules,
+      listed and removable here. No accounts; the subscription id lives in
+      this browser's localStorage. */}
+      <WatchesSettings />
 
       <h2 className="section-title">Units</h2>
       <Card>
