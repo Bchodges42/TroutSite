@@ -1,0 +1,119 @@
+/* OWNER: DASHBOARD lane (ADR 0017) — owner-area styles. Reuses the portal
+   shell classes for the frame; adds only the dashboard's tables/cards. */
+
+.owner-shell {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.owner-exit {
+  margin: 0 0 0.5rem;
+  font-size: 0.9rem;
+}
+
+.owner-exit a {
+  color: var(--trout-muted, #5a564d);
+}
+
+.owner-readonly-note {
+  margin: 0;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid var(--trout-border, #d8d4cc);
+  border-left: 4px solid var(--trout-accent, #2f6f4f);
+  border-radius: 6px;
+  color: var(--trout-muted, #5a564d);
+  background: var(--trout-surface, #faf9f6);
+}
+
+.owner-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.9rem;
+}
+
+.owner-feed-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.owner-card-title {
+  margin: 0;
+  font-size: 1rem;
+  text-transform: capitalize;
+}
+
+.owner-section-title {
+  margin: 0 0 0.5rem;
+  font-size: 1.05rem;
+}
+
+.owner-feed-status {
+  margin: 0;
+}
+
+.owner-feed-reason {
+  margin: 0;
+  color: var(--trout-muted, #5a564d);
+  font-size: 0.9rem;
+}
+
+.owner-kv {
+  margin: 0;
+  display: grid;
+  gap: 0.25rem;
+}
+
+.owner-kv > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.owner-kv dt {
+  color: var(--trout-muted, #5a564d);
+}
+
+.owner-kv dd {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.owner-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+.owner-table th,
+.owner-table td {
+  text-align: left;
+  padding: 0.45rem 0.6rem;
+  border-bottom: 1px solid var(--trout-border, #e4e1d8);
+  vertical-align: top;
+}
+
+.owner-table th {
+  color: var(--trout-muted, #5a564d);
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.owner-clamp {
+  max-width: 26rem;
+  overflow-wrap: anywhere;
+}
+
+.owner-chip-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.9rem;
+  color: var(--trout-muted, #5a564d);
+  font-size: 0.9rem;
+}
