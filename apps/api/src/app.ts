@@ -123,6 +123,9 @@ export function publicLogUrl(rawUrl: string): string {
 
 export function buildApp(options: BuildAppOptions = {}): FastifyInstance {
   const watches = options.db ? (options.watchlists ?? watchlistsDepsFromEnv()) : { vapid: null };
+  const corrections = options.db ? (options.corrections ?? correctionsDepsFromEnv()) : {};
+  // The same dispatcher also enforces correction retention without push configured.
+  const watchMaintenanceEnabled = Boolean(watches.vapid || corrections.pepper);
   const app = Fastify({
     logger:
       options.logger === false
@@ -220,7 +223,7 @@ export function buildApp(options: BuildAppOptions = {}): FastifyInstance {
     // contract-safe surface (ASSUMPTIONS §6-consumable) that lifts job health
     // to the top level without turning a stale-but-serving site into a
     // verify/rollback event. See jobDegradation in jobs/run.ts.
-    const degradedReasons = jobDegradation(jobs, new Date(), Boolean(watches.vapid));
+    const degradedReasons = jobDegradation(jobs, new Date(), watchMaintenanceEnabled);
     return {
       ok: conditions.healthy && fishability.healthy,
       degraded: degradedReasons.length > 0,
@@ -295,7 +298,7 @@ export function buildApp(options: BuildAppOptions = {}): FastifyInstance {
     // (tests stay deterministic); otherwise config comes from the environment.
     registerCorrectionsRoutes(app, {
       db: options.db,
-      ...(options.corrections ?? correctionsDepsFromEnv()),
+      ...corrections,
     });
     // Watchlist lane (ADR 0016): the one deliberate server-side subscription
     // surface. Registration is unconditional (an unconfigured deployment still
@@ -314,7 +317,7 @@ export function buildApp(options: BuildAppOptions = {}): FastifyInstance {
       contentDir: options.webPublicDir ? join(options.webPublicDir, 'content-pack') : undefined,
       ownerToken: loadEnv().OWNER_DASHBOARD_TOKEN,
       schedulerProfile: loadEnv().TROUT_SCHEDULER_PROFILE,
-      watchlistsEnabled: Boolean(watches.vapid),
+      watchlistsEnabled: watchMaintenanceEnabled,
     });
   }
 

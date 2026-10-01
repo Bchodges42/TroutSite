@@ -22,6 +22,11 @@ traceability. `[export]` = verified present in this working tree as well as the 
 
 ## T0 — Release blockers (in fix order)
 
+Current implementation-review status and remaining feature/rollout work:
+[October 1 review worklist](#post-implementation-review--2026-10-01). Completed
+review repairs are on `codex/post-implementation-review-20260930`; a checked
+item records a branch fix, not confirmation that production is updated.
+
 - [x] **T0-1 [REVIEW PASS1-1] · P0 — Conditional HEAD terminates the API.** A cache-
   revalidation `HEAD` with `If-None-Match` on a static asset reproducibly kills the
   process (`ERR_HTTP_HEADERS_SENT`, Fastify 4.29.1 + @fastify/static 7.0.4;
@@ -571,6 +576,69 @@ Final gates: build/content/units 1073/infra 18/lint 0, Playwright 107/107.
   → Fixed (lane B): featureColors memo deps now include per-water fishability payload, focus species, and the resolved palette signature; TennesseeMap style-swap key includes the palette; delayed-response and palette-change tests pin the repaint.
 - [x] **F45 P2** — touch taps select a river before an overlapping gauge/stocking overlay.
   → Fixed (lane B): one exported dispatchMapTap routine serves touch and click — overlay dot first (gauge→stocking→attractor), river fall-through, duplicate event suppressed only after dispatch.
+
+## Post-implementation review — 2026-10-01
+
+Evidence: [review and repairs report](reports/2026-09-30-post-implementation-review.md).
+Reviewed `feat/site-improvement-20260930 @ 73cf827`; repairs are committed/pushed
+on `codex/post-implementation-review-20260930`. The earlier “all plan items
+implemented” handoff is superseded. Stable R IDs live in the report.
+
+- [x] **POST-R01–R09 · T0/T1** — Push adapter/key validation, safe provider targets,
+  subscription authorization, retry/dry-run transitions, metric-specific threshold
+  direction/freshness, worker display/click, Windows evaluator wrapper/task,
+  durable stocking dedup and explicit quiet-hours timezone.
+- [x] **POST-R10–R13/R27 · T0/T1** — Durable pack fallback, private API cache/log
+  boundaries, scheduled correction retention, real-content/version readiness,
+  basic/optional terrain, cancellation, body timeout and safe refresh/removal.
+  Maintenance health is expected with corrections configured even without VAPID.
+- [x] **POST-R14–R20 · T1/T2** — Honest summary/history clocks, selected-species
+  verdicts/reasons, atomic trip recording, media-safe transactional backup,
+  draft photo edits/Cancel, unknown-age captures and concurrent local updates.
+- [x] **POST-R21–R23 · T1/T2** — Custom watch management, truthful loading/expiry/
+  unsubscribe, correction receipt/transient-state/public-note behavior and safe
+  source-cited accepted handoff (accepted does not mean published).
+- [x] **POST-R24–R26/R28 · T1/T2** — Ten broken Node atlas imports, CI/infra linkage,
+  owner instant ordering/counts/Windows schedule estimates, widget public catalog
+  transport/species/freshness and accurate optional-service privacy disclosure.
+
+Open plan details (code/product work, not repaired by configuration):
+
+- [ ] **POST-29 · T2 — Search recall.** Add local empty-query recent selections,
+  preserving explicit scope/selection and blocked-storage behavior. Search
+  matching/disambiguation is present; recalled choices are not.
+- [ ] **POST-30 · T2 — Download size estimate.** Measured section bytes and bounded
+  terrain zooms exist; a complete estimate before download does not. Derive known
+  asset sizes, label uncertainty and preserve quota/cancel behavior.
+- [ ] **POST-31 · T2 — Separate outage watches.** Threshold/report/stocking rules
+  exist; independently selectable source-outage notices do not. Define source
+  health and first/duplicate/recovery behavior before adding a notification kind.
+- [ ] **POST-32 · T2 — Publication candidate preview.** Owner feed/job/research and
+  correction visibility plus accepted handoff exist. Add old/new preview using
+  the exact builder candidate, affected public wording and collected build/deploy/
+  backup status; keep it read-only and credentials distinct.
+- [ ] **POST-33 · T1 — Verified access coverage / trip selection.** The sourced
+  authoring pipeline emits zero records. Author/review a pilot, then complete
+  selecting specific access records in Trips. Do not infer public access from a
+  stocking marker or invent records to make the UI look complete. This extends
+  the existing evidence/access research work, not a competing catalog.
+
+Rollout and acceptance (owner/data/device work):
+
+- [ ] **POST-34 · T3 — Owner merge/configuration/schedules.** Review implementation
+  and repairs, use ordinary self-deployment, configure distinct desired secrets
+  and `TROUT_SCHEDULER_PROFILE=windows`, then install the guarded 15-minute task
+  from the verified checkout. See RUNBOOK §9.1. No production operation or real
+  notification was performed by this review.
+- [ ] **POST-35 · T3 — Device and shop acceptance.** Test supported phones,
+  OS push/click/unsubscribe, quiet hours, mobile keyboard/safe areas, both themes
+  and screen-reader journeys; pilot the widget with a willing shop. Chromium
+  checks/local encrypted requests do not certify these outcomes.
+
+Review checks: 1,518 unit passes + one web skip; 109 distinct browser cases
+across full/targeted runs, followed by 23 feature and two final pack/privacy
+reruns; 29/29 infra checks; builds, content/identity and geo validators pass;
+lint has zero errors with existing warnings. See the report for exact limits.
 
 ## REGRESSION TESTS TO ADD ALONGSIDE THE FIXES
 

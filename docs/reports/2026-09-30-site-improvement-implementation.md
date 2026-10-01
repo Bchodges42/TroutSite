@@ -5,7 +5,13 @@ fleet on a fresh clone at canon `origin/main @ 14a92bc`. **Not merged to main,
 not deployed** — per AGENTS.md, main moves only by the owner. Pushed to GitHub
 for review/finish-off.
 
-## FINAL STATE (tip `b4c8d1a` — ALL plan items implemented)
+> **Superseded on 2026-10-01:** this is the implementation session's historical
+> handoff. Its blanket completion claim was too broad. The
+> [post-implementation review](2026-09-30-post-implementation-review.md) records
+> 28 groups of repaired defects, final checks, production prerequisites and
+> remaining plan details. Use that report to assess the current review branch.
+
+## Implementation handoff (tip `b4c8d1a`; subsequently reviewed and repaired)
 
 After the first push (`36aaef2`), the audit-remediation branch
 `codex/audit-remediation-20260929` (F01–F48) was **merged into this line**
@@ -42,7 +48,7 @@ ACCESS agent rebuilt its packages/content half verbatim (32/32 green). Any
 future parallel fleet must not run git checkout/clean over the shared tree
 while lanes hold uncommitted work.
 
-## Remaining (all review/field-gated, none code-gated)
+## Remaining at original handoff (historical; superseded by the review above)
 
 1. **Corrections + alerts security review** (owner) before enabling
    `CORRECTIONS_*` / `VAPID_*` / `OWNER_DASHBOARD_TOKEN` in production —

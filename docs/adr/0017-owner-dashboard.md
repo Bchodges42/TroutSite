@@ -133,14 +133,17 @@ through:
 - Feed verdicts come from the **existing** `src/snapshots/health.ts`
   (`conditionsFeedHealth` / `fishabilityFeedHealth`) — the same code that gates `/healthz` —
   plus file mtimes for build freshness.
-- `nextExpectedRun` derives from a schedule table in `src/owner/schema.ts` that **mirrors
-  `src/cron.ts`** (gauges hourly :05, pressure hourly :35, stocking daily 06:00, evidence
-  daily 06:20, snapshots nightly 04:30; host-local like node-cron). It is a best-effort
-  editorial estimate, not a contract. Expected jobs with NO `jobs_log` row at all are
-  flagged `neverRun` (the F05 discipline: silence is a finding).
+- `nextExpectedRun` uses the explicit `TROUT_SCHEDULER_PROFILE`: `windows`
+  describes the production schtasks intervals; `cron` mirrors `src/cron.ts`
+  on development hosts. The default `unknown` returns no next-run estimate.
+  These estimates do not certify that a task is installed. Expected jobs with
+  no `jobs_log` row are flagged `neverRun`; the watch/maintenance job is expected
+  when either push or corrections are configured. Attempt/success ordering and
+  24-hour counts compare parsed instants, including mixed UTC offsets.
 - `unresolvedEvidence` reads the content pack `streams.json` (counting a missing
   opportunity block as unresolved, per ADR 0010's own rule) and is **omitted entirely** when
   no content dir is wired — the endpoint never fails on a missing section.
+  Research totals count all matching waters; the detail list is bounded to 200.
 
 **`GET /v1/owner/corrections?status=&limit=`** — queue **summary**. Reuses the corrections
 SERVICE query (`listCorrectionsForReview`) so the SQL exists once; returns id, status,
@@ -178,8 +181,12 @@ Every reader degrades its own section instead of failing the endpoint:
 - The admin SPA gains `src/features/owner/**` and an `owner` boot state reached by the
   `#/owner` deep link (a link is rendered under the shop login view). Shop login tests are
   untouched and stay green.
-- The dashboard is only as honest as `jobs_log` and the snapshot files; the cron schedule
-  table must be updated in lockstep with `src/cron.ts` (comment cross-references both ways).
+- The dashboard is only as honest as `jobs_log` and the snapshot files. The
+  schedule maps must track both `src/cron.ts` and `infra/install-schedules.sh`.
 - Future work (explicitly out of scope): per-action owner authorization + audit trail
-  (§3), a snapshot-diff view for publication review, and wiring the corrections summary
-  into a moderator handoff (the owner sees WHAT needs attention; the moderator decides).
+  (§3), a candidate snapshot-diff view using the builder's exact candidate data,
+  and build/deploy/backup panels where those records are collected. The moderator
+  surface has a source-cited accepted-proposal export for a normal content PR;
+  this handoff is not a complete publication preview. These are still plan
+  gaps; the original handoff's blanket completion claim is superseded by the
+  [post-implementation review](../reports/2026-09-30-post-implementation-review.md).

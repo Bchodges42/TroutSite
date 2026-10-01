@@ -404,3 +404,42 @@ releases, and the read-path archive + auto-rollback are the safety net under all
 of it. `backups/autoupdate.status` / `backups/watchdog.status` are the two files
 to glance at — anything other than `OK` / `UP-TO-DATE` / `DEPLOYED` / `HEALED-*`
 needs a human.
+
+### 9.1 Optional visitor services rollout (post-implementation review, 2026-10-01)
+
+These steps are for the owner after reviewing and merging the feature and repair
+branches. Development verification did not install production tasks, send real
+push notifications, change secrets, or hand-run a deploy. Production remains
+WinSW `TroutSite` plus schtasks; dev pm2/node-cron is a separate host profile.
+
+1. Configure only the desired opt-in services in the production runtime environment:
+   `CORRECTIONS_RECEIPT_PEPPER` and a separate `CORRECTIONS_MODERATOR_TOKEN` for
+   submissions/review; `OWNER_DASHBOARD_TOKEN` for read-only owner visibility;
+   `VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY`, and `VAPID_SUBJECT` for visitor push.
+   Follow `.env.example` and ADRs 0015–0017. These are distinct credentials;
+   neither the shop token, watchdog token nor ntfy topic substitutes for one.
+   Keep receipt/subscription credentials out of URLs in logs and out of Git.
+2. Set `TROUT_SCHEDULER_PROFILE=windows` on production (`cron` on dev). The
+   default `unknown` deliberately reports no next-run estimate. Wait for the
+   ordinary verified self-deployment; do not run an extra manual deploy.
+3. Inspect `bash infra/install-schedules.sh --dry-run`, then install the schedules
+   from the verified production checkout as the owner. In addition to the
+   existing tasks, `trout-evaluate-watches` runs every 15 minutes through
+   `infra/evaluate-watches.sh` and `ingest --job=watchlists`. The wrapper refuses
+   to run code that differs from the verified deploy stamp and uses the canonical
+   production DB/snapshot paths.
+4. Confirm a successful `watchlists` row and fresh attempts in `/healthz` and
+   the protected owner dashboard. This job also purges closed corrections after
+   90 days when push is disabled. Inactive push subscriptions expire after
+   180 days; unsubscribe deletes records immediately. Health expects the job
+   when either corrections or push is configured.
+5. Verify opt-in enrollment, displayed notification/click routing, custom rules,
+   quiet-hours zone, expiry and unsubscribe on supported real phones. No OS-level
+   delivery guarantee follows from passing automated worker tests. Pilot the
+   widget on a willing shop site and author sourced access records separately.
+
+Accepted corrections produce a reviewable source-cited content handoff; they
+do not rewrite public measurements or publish facts automatically. Keep the
+normal branch/PR/owner-merge path. See the
+[review report](../docs/reports/2026-09-30-post-implementation-review.md) and
+[worklist](../docs/KNOWN-ISSUES.md) for remaining plan details.

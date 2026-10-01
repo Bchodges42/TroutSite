@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { mkdirSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { buildApp } from '../src/app.js';
@@ -373,5 +373,34 @@ describe('GET /healthz degraded (2026-09-16 skew retro)', () => {
     } finally {
       await bare.close();
     }
+  });
+
+  it.each(['missing', 'error'] as const)('reports %s correction maintenance when push is disabled', async (state) => {
+    for (const job of ['gauges', 'pressure', 'snapshots', 'stocking', 'evidence']) {
+      insertJob('ok', { job, startedMinAgo: 30, finishedMinAgo: 29 });
+    }
+    if (state === 'error') insertJob('error', { job: 'watchlists', startedMinAgo: 2, finishedMinAgo: 1 });
+    const ownerToken = 'test-owner-maintenance-token-0123456789';
+    vi.stubEnv('OWNER_DASHBOARD_TOKEN', ownerToken);
+    try {
+      app = buildApp({
+        logger: false, db: env.db, webPublicDir: env.snapshotsDir,
+        corrections: { pepper: 'test-corrections-retention-pepper-0123456789' },
+        watchlists: { vapid: null, siteOrigins: [] },
+      });
+    } finally {
+      vi.unstubAllEnvs();
+    }
+    await app.ready();
+    const body = (await app.inject({ method: 'GET', url: '/healthz' })).json();
+    expect(body.ok).toBe(true);
+    expect(body.degraded).toBe(true);
+    expect(body.degradedReasons).toHaveLength(1);
+    expect(body.degradedReasons[0]).toMatch(state === 'missing' ? /watchlists: no run ever recorded/ : /watchlists: last run errored/);
+    const dashboard = await app.inject({ method: 'GET', url: '/v1/owner/dashboard', headers: { authorization: `Bearer ${ownerToken}` } });
+    expect(dashboard.statusCode).toBe(200);
+    expect(dashboard.json().jobs.find((job: { name: string }) => job.name === 'watchlists')).toMatchObject({
+      expected: true, neverRun: state === 'missing', lastOutcome: state === 'missing' ? 'unknown' : 'error',
+    });
   });
 });

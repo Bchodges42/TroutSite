@@ -44,12 +44,20 @@ instead.
 
 ## Evidence — point-in-time audits (historical; superseded by newer data wins)
 
+- [2026-09-30 post-implementation review and repairs](reports/2026-09-30-post-implementation-review.md)
+  — finalized 2026-10-01; review of the 48 audit fixes and accepted improvement
+  plan, 28 repair groups, validation, and remaining rollout/data/plan gaps.
+- [2026-09-29 senior source audit](reports/2026-09-29-senior-code-audit.md)
+  — original findings and file-review ledger; remediation and implementation
+  handoffs are historical evidence, not approval of production deployment.
+
 `GEO-AUDIT.md`, `CONTINUITY-AUDIT.md`, `GEO-CONTINUITY-AUDIT-lane.md`,
 `SPECIES-REVIEW.md`, `WATERBODY-IMPLEMENTATION-CHECKLIST.md`, `audits/*`
 (hydrography, connectivity, duplicates, self-intersection, UI-conditions),
 `lane-results/*`, and `reports/*` — role handoffs plus
-[`reports/review-2026-09-11.md`](reports/review-2026-09-11.md), the latest full-spectrum
-review (its confirmed defects are summarized in [`KNOWN-ISSUES.md`](KNOWN-ISSUES.md)).
+[`reports/review-2026-09-11.md`](reports/review-2026-09-11.md), the September 11
+full-spectrum review (confirmed defects are summarized in
+[`KNOWN-ISSUES.md`](KNOWN-ISSUES.md)).
 
 ## App docs
 
