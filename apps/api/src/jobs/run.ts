@@ -134,9 +134,10 @@ export const EXPECTED_JOBS: Record<string, ExpectedJobSpec> = {
  * with NO run at all — without flipping ok (a stale-but-serving site is not
  * down, so verify-site/deploy/watchdog keep acting on ok alone).
  */
-export function jobDegradation(jobs: Record<string, JobRunSummary>, now = new Date()): string[] {
+export function jobDegradation(jobs: Record<string, JobRunSummary>, now = new Date(), watchlistsEnabled = false): string[] {
   const reasons: string[] = [];
   for (const job of Object.values(jobs)) {
+    if (job.job === 'watchlists' && !watchlistsEnabled) continue;
     if (job.status === 'error') {
       const err = job.detail && typeof job.detail.error === 'string' ? `: ${job.detail.error}` : '';
       reasons.push(`${job.job}: last run errored${err}`);
@@ -166,6 +167,7 @@ export function jobDegradation(jobs: Record<string, JobRunSummary>, now = new Da
   const anyPipelineRun = Object.values(jobs).some((j) => EXPECTED_JOBS[j.job] !== undefined);
   if (anyPipelineRun) {
     for (const [name, spec] of Object.entries(EXPECTED_JOBS)) {
+      if (name === 'watchlists' && !watchlistsEnabled) continue;
       if (!jobs[name]) {
         reasons.push(`${name}: no run ever recorded (expected ${spec.label})`);
       }

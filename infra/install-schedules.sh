@@ -45,6 +45,7 @@ jobs=(
   "trout-watchdog|*/15 or MINUTE/MO 15|bash infra/watchdog.sh"
   "trout-refresh-data|hourly|bash infra/refresh-data.sh"
   "trout-refresh-feeds|daily 06:00|TROUT_REFRESH_FEEDS=1 bash infra/refresh-data.sh"
+  "trout-evaluate-watches|every 15 min|bash infra/evaluate-watches.sh"
   "trout-autoupdate|hourly|bash infra/autoupdate.sh"
   "trout-db-backup|daily 03:30|bash infra/backup.sh"
 )
@@ -68,6 +69,7 @@ run_job() { # name command
   if [ "$IS_WIN" = "1" ]; then
     case "$name" in
       trout-watchdog)      schtasks /Create /F /SC MINUTE /MO 15 /RU SYSTEM /TN "$name" /TR "\"$bash_exe\" -lc 'cd \"$POSIX_PATH\" && $SCHEDULE_ENV $cmd >> \"$LOGREL\" 2>&1'" ;;
+      trout-evaluate-watches) schtasks /Create /F /SC MINUTE /MO 15 /RU SYSTEM /TN "$name" /TR "\"$bash_exe\" -lc 'cd \"$POSIX_PATH\" && $SCHEDULE_ENV $cmd >> \"$LOGREL\" 2>&1'" ;;
       trout-refresh-data)  schtasks /Create /F /SC HOURLY /RU SYSTEM /TN "$name" /TR "\"$bash_exe\" -lc 'cd \"$POSIX_PATH\" && $SCHEDULE_ENV $cmd >> \"$LOGREL\" 2>&1'" ;;
       trout-refresh-feeds) schtasks /Create /F /SC DAILY /ST 06:00 /RU SYSTEM /TN "$name" /TR "\"$bash_exe\" -lc 'cd \"$POSIX_PATH\" && $SCHEDULE_ENV $cmd >> \"$LOGREL\" 2>&1'" ;;
       trout-autoupdate)    schtasks /Create /F /SC HOURLY /RU SYSTEM /TN "$name" /TR "\"$WINDOWS_POWERSHELL\" -NoProfile -ExecutionPolicy Bypass -File \"$WINDOWS_UPDATE_SCRIPT\"" ;;
@@ -76,6 +78,7 @@ run_job() { # name command
   else
     local spec="0 * * * *"
     [ "$name" = "trout-watchdog" ] && spec="*/15 * * * *"
+    [ "$name" = "trout-evaluate-watches" ] && spec="*/15 * * * *"
     [ "$name" = "trout-refresh-feeds" ] && spec="0 6 * * *"
     [ "$name" = "trout-db-backup" ] && spec="30 3 * * *"
     (crontab -l 2>/dev/null | grep -v "$name"; echo "$spec cd $POSIX_PATH && $SCHEDULE_ENV $cmd >> $LOGREL 2>&1") | crontab -

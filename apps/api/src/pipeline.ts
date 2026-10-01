@@ -15,6 +15,9 @@ import { parseTwraEvidence } from './evidence/twra-evidence.js';
 import { TWRA_PAGE_URL } from './ingest/stocking/tn.js';
 import { startJob } from './jobs/run.js';
 import { runPressureJob } from './evidence/nws-provider.js';
+import { runWatchlistsJob } from './push/job.js';
+import { createNotifier, vapidConfigFromEnv, type VapidConfig } from './push/notifier.js';
+import { purgeExpiredCorrections } from './corrections/service.js';
 
 /**
  * Dispatcher job names (F05): 'pressure' is the NWS area pressure/rain job —
@@ -22,7 +25,7 @@ import { runPressureJob } from './evidence/nws-provider.js';
  * through `ingest --job=pressure` / runJob, instead of living only in its
  * declaration and tests.
  */
-export type JobName = 'gauges' | 'stocking' | 'evidence' | 'snapshots' | 'pressure';
+export type JobName = 'gauges' | 'stocking' | 'evidence' | 'snapshots' | 'pressure' | 'watchlists';
 
 export interface PipelineConfig {
   snapshotsDir: string;
@@ -32,6 +35,7 @@ export interface PipelineConfig {
   usgsProvider: 'legacy' | 'waterdata';
   usgsWaterDataApiKey?: string;
   fixturesDir: string;
+  vapid?: VapidConfig | null;
 }
 
 export interface JobOutcome {
@@ -55,6 +59,10 @@ export function pipelineConfig(env: {
   USGS_USER_AGENT?: string;
   USGS_PROVIDER?: 'legacy' | 'waterdata';
   USGS_WATERDATA_API_KEY?: string;
+  VAPID_PUBLIC_KEY?: string;
+  VAPID_PRIVATE_KEY?: string;
+  VAPID_SUBJECT?: string;
+  SITE_URL?: string;
 }, fixturesDir?: string): PipelineConfig {
   const contentDir = resolve(REPO_ROOT, env.TROUT_CONTENT_DIR ?? 'packages/content');
   return {
@@ -65,6 +73,7 @@ export function pipelineConfig(env: {
     usgsProvider: env.USGS_PROVIDER ?? 'waterdata',
     ...(env.USGS_WATERDATA_API_KEY ? { usgsWaterDataApiKey: env.USGS_WATERDATA_API_KEY } : {}),
     fixturesDir: fixturesDir ?? resolve(REPO_ROOT, 'apps/api/fixtures'),
+    vapid: vapidConfigFromEnv(env),
   };
 }
 
@@ -225,6 +234,19 @@ export async function runJob(
   opts: { now?: Date; states?: string[]; fetchImpl?: typeof fetch } = {},
 ): Promise<JobOutcome> {
   const now = opts.now ?? new Date();
+  if (job === 'watchlists') {
+    // Maintenance still runs when visitor push is disabled; no network calls.
+    const retention = purgeExpiredCorrections(db, now);
+    if (!cfg.vapid) return { job, ok: true, detail: { disabled: true, ...retention } };
+    const notifier = await createNotifier(cfg.vapid, (message) => console.warn(message));
+    if (!notifier.canPush) {
+      const handle = startJob(db, 'watchlists');
+      handle.fail(new Error('Push delivery is unavailable.'));
+      return { job, ok: false, detail: { deliveryUnavailable: true, ...retention } };
+    }
+    const detail = await runWatchlistsJob({ db, snapshotsDir: cfg.snapshotsDir, notifier, now, states: opts.states });
+    return { job, ok: Number(detail.failed) === 0, detail: { ...detail, ...retention } };
+  }
   if (job === 'pressure') {
     // F05: NWS area pressure/rain through the dispatcher. The job soft-fails
     // per station; a COMPLETE failure (every station errored, nothing stored)

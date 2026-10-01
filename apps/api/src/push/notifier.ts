@@ -9,6 +9,9 @@
  * degrades to the stub + a warn — push problems must never crash the cron.
  */
 
+import { isAllowedPushEndpoint } from './schema.js';
+import { createECDH } from 'node:crypto';
+
 export interface PushKeys {
   p256dh: string;
   auth: string;
@@ -57,11 +60,12 @@ export class StubNotifier implements Notifier {
 }
 
 /** Minimal structural type for the dynamically imported web-push module. */
-interface WebPushLike {
+export interface WebPushLike {
   setVapidDetails(subject: string, publicKey: string, privateKey: string): void;
   sendNotification(
-    endpoint: string,
-    options: { payload?: string; TTL?: number; urgency?: string },
+    subscription: { endpoint: string; keys: PushKeys },
+    payload: string,
+    options: { TTL?: number; urgency?: string; timeout?: number },
   ): Promise<unknown>;
 }
 
@@ -75,12 +79,14 @@ export class WebPushNotifier implements Notifier {
   }
 
   async send(target: PushTarget, payload: unknown): Promise<SendStatus> {
+    // Covers legacy DB rows as well as newly validated enrollment requests.
+    if (!isAllowedPushEndpoint(target.endpoint)) return 'gone';
     try {
-      await this.webpush.sendNotification(target.endpoint, {
-        payload: JSON.stringify(payload),
-        TTL: 3600,
-        urgency: 'normal',
-      });
+      await this.webpush.sendNotification(
+        { endpoint: target.endpoint, keys: target.keys },
+        JSON.stringify(payload),
+        { TTL: 3600, urgency: 'normal', timeout: 10_000 },
+      );
       return 'sent';
     } catch (err) {
       const statusCode =
@@ -111,10 +117,11 @@ export async function createNotifier(
   if (!vapid) return new StubNotifier();
   try {
     const specifier = 'web-push';
-    const mod = (await import(specifier)) as WebPushLike;
+    const imported = await import(specifier);
+    const mod = (imported.default ?? imported) as WebPushLike;
     return new WebPushNotifier(mod, vapid);
-  } catch (err) {
-    warn(`web-push unavailable — watch notices are recorded, not delivered (${(err as Error).message})`);
+  } catch {
+    warn('web-push unavailable or configuration invalid — delivery disabled.');
     return new StubNotifier();
   }
 }
@@ -132,11 +139,23 @@ export function vapidConfigFromEnv(env: {
   SITE_URL?: string;
 }): VapidConfig | null {
   if (!env.VAPID_PUBLIC_KEY || !env.VAPID_PRIVATE_KEY) return null;
+  try {
+    const pair = createECDH('prime256v1');
+    pair.setPrivateKey(Buffer.from(env.VAPID_PRIVATE_KEY, 'base64url'));
+    if (pair.getPublicKey().toString('base64url') !== env.VAPID_PUBLIC_KEY.replace(/=+$/, '')) return null;
+  } catch { return null; }
   const siteOrigin = (env.SITE_URL ?? '').trim();
-  const host = siteOrigin.replace(/^https?:\/\//, '').replace(/\/$/, '');
+  let host = 'localhost';
+  try { host = new URL(siteOrigin).hostname; } catch { /* local fallback */ }
+  const subject = env.VAPID_SUBJECT ?? `mailto:watchlists@${host}`;
+  try {
+    const url = new URL(subject);
+    if (url.protocol !== 'https:' && (url.protocol !== 'mailto:' || !/^[^\s@]+@[^\s@]+$/.test(url.pathname))) return null;
+    if (url.username || url.password) return null;
+  } catch { return null; }
   return {
     publicKey: env.VAPID_PUBLIC_KEY,
     privateKey: env.VAPID_PRIVATE_KEY,
-    subject: env.VAPID_SUBJECT ?? (host ? `mailto:watchlists@${host}` : 'mailto:watchlists@localhost'),
+    subject,
   };
 }

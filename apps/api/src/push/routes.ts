@@ -9,6 +9,7 @@ import {
 } from './schema.js';
 import {
   WatchRuleError,
+  SubscriptionConflictError,
   deleteSubscription,
   deleteWatchRule,
   getSubscription,
@@ -111,6 +112,7 @@ function toRuleItem(row: WatchRuleRow): Record<string, unknown> {
   if (row.threshold !== null) item.threshold = row.threshold;
   if (row.quiet_hours_start !== null) item.quietHoursStart = row.quiet_hours_start;
   if (row.quiet_hours_end !== null) item.quietHoursEnd = row.quiet_hours_end;
+  if (row.quiet_time_zone) item.quietHoursTimeZone = row.quiet_time_zone;
   if (row.last_notified_at !== null) item.lastNotifiedAt = row.last_notified_at;
   return item;
 }
@@ -195,7 +197,12 @@ export function registerWatchRoutes(app: FastifyInstance, deps: WatchDeps): void
       if (!parsed.success) {
         return deny(reply, 422, { errors: watchFieldErrorsFromZod(parsed.error) });
       }
-      const subscription = upsertSubscription(deps.db, parsed.data, new Date(now()));
+      let subscription;
+      try { subscription = upsertSubscription(deps.db, parsed.data, new Date(now())); }
+      catch (err) {
+        if (err instanceof SubscriptionConflictError) return deny(reply, 409, { error: err.message });
+        throw err;
+      }
       return reply.header('cache-control', 'no-store').code(201).send({
         subscriptionId: subscription.subscription_id,
       });

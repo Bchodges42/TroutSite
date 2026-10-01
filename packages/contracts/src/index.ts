@@ -30,3 +30,4 @@ export * from './scoreActivity.js';
 export * from './matchHatch.js';
 export * from './readingFreshness.js';
 export * from './spawnState.js';
+export * from './stockingMatch.js';

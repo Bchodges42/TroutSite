@@ -1,5 +1,6 @@
 import { mkdirSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { createECDH } from 'node:crypto';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { buildApp } from '../src/app.js';
 import { runWatchlistsJob } from '../src/push/job.js';
@@ -25,9 +26,11 @@ const VAPID = {
 const SITE = 'https://trout.test';
 
 const SUB_ENDPOINT = 'https://fcm.googleapis.com/fcm/send/test-endpoint-1';
+const clientKey = createECDH('prime256v1');
+clientKey.generateKeys();
 const SUB_BODY = {
   endpoint: SUB_ENDPOINT,
-  keys: { p256dh: 'BWithP256dhKey', auth: 'AuthSecretValue' },
+  keys: { p256dh: clientKey.getPublicKey().toString('base64url'), auth: Buffer.alloc(16, 1).toString('base64url') },
   userAgent: 'vitest',
 };
 
@@ -85,7 +88,7 @@ function jobNotifier(statuses?: Array<'sent' | 'gone' | 'failed'>) {
   const stub = new StubNotifier();
   let call = 0;
   return {
-    canPush: false as const,
+    canPush: true as const, // simulated successful delivery, not a production dry run
     recent: () => stub.recent(),
     async send(target: PushTarget, payload: unknown) {
       if (!statuses) return stub.send(target, payload);
@@ -120,7 +123,7 @@ function seedSnapshots(env: TestEnv, tempC: number, observedAtMs: number, stocki
   if (stockingDate) {
     writeFileSync(
       join(v1, 'stocking', 'TN-recent.json'),
-      JSON.stringify([{ streamName: 'Watauga River (Tailwater)', date: stockingDate }]),
+      JSON.stringify([{ id: 'stock-1', stateId: 'TN', species: 'rainbow', sourceUrl: 'https://example.test/schedule', fetchedAt: '2026-09-28T12:00:00Z', streamName: 'Watauga River (Tailwater)', date: stockingDate }]),
     );
   }
   writeFileSync(
@@ -177,7 +180,7 @@ describe('POST /v1/watches/subscribe — pseudonymous upsert lifecycle', () => {
     expect((await postRule(app)).statusCode).toBe(201);
     const second = await subscribe(app, {
       ...SUB_BODY,
-      keys: { p256dh: 'BNewKeyAfterRegrant', auth: 'NewAuth' },
+      userAgent: 'vitest-refresh',
     });
     expect(second.statusCode).toBe(201);
     expect((second.json() as { subscriptionId: string }).subscriptionId).toBe(first);
@@ -189,7 +192,7 @@ describe('POST /v1/watches/subscribe — pseudonymous upsert lifecycle', () => {
     const keys = env.db
       .prepare('SELECT p256dh FROM push_subscriptions WHERE subscription_id = ?')
       .get(first) as { p256dh: string };
-    expect(keys.p256dh).toBe('BNewKeyAfterRegrant');
+    expect(keys.p256dh).toBe(SUB_BODY.keys.p256dh);
   });
 
   it('fails closed WITHOUT VAPID: 503 and no row collected (refuses data it cannot honor)', async () => {

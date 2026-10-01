@@ -97,7 +97,7 @@ describe('condition rules — transition + hysteresis, both directions', () => {
   });
 
   it('fires crossed-below symmetrically (hysteresis satisfied the other way)', () => {
-    const armed = rule({ arm_state: 'above' });
+    const armed = rule({ arm_state: 'above', threshold_op: 'below' });
     const notYet = one(
       evaluateRules([armed], evidence({ value: 19.2, observedAt: FRESH }), { now: NOW }),
     );
@@ -132,7 +132,7 @@ describe('condition rules — transition + hysteresis, both directions', () => {
     };
     expect(step(21.5).reason).toBe('crossed-above');
     expect(step(24).reason).toBe('no-change');
-    expect(step(18.5).reason).toBe('crossed-below');
+    expect(step(18.5).reason).toBe('rearmed');
     expect(step(15).reason).toBe('no-change');
     expect(step(21.5).reason).toBe('crossed-above');
   });

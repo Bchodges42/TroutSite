@@ -1,4 +1,5 @@
 import { createHash, randomBytes } from 'node:crypto';
+import { constantTimeEqual } from '../corrections/receipts.js';
 import type { Db } from '../db.js';
 import { SUBSCRIPTION_ID_RE, WATCH_LIMITS, canonicalizeRuleInput, type SubscribeInput, type WatchRuleInput } from './schema.js';
 
@@ -43,6 +44,8 @@ export interface WatchRuleRow {
   hysteresis: number;
   created_at: string;
   last_notified_at: string | null;
+  last_feed_key?: string | null;
+  quiet_time_zone?: string | null;
 }
 
 export class WatchRuleError extends Error {
@@ -84,6 +87,12 @@ export function upsertSubscription(db: Db, input: SubscribeInput, now: Date = ne
     .prepare('SELECT * FROM push_subscriptions WHERE endpoint_hash = ?')
     .get(hash) as Record<string, unknown> | undefined;
   if (existing) {
+    // The endpoint alone is not proof of possession. Do not reveal the
+    // capability or replace encryption keys without the original auth secret.
+    if (!constantTimeEqual(String(existing.auth), input.keys.auth)
+      || !constantTimeEqual(String(existing.p256dh), input.keys.p256dh)) {
+      throw new SubscriptionConflictError();
+    }
     db.prepare(
       `UPDATE push_subscriptions
        SET endpoint = ?, p256dh = ?, auth = ?, user_agent = ?, last_seen_at = ?
@@ -105,6 +114,10 @@ export function upsertSubscription(db: Db, input: SubscribeInput, now: Date = ne
       unknown
     >,
   );
+}
+
+export class SubscriptionConflictError extends Error {
+  constructor() { super('This subscription cannot be registered with those keys.'); }
 }
 
 export function getSubscription(db: Db, subscriptionId: string): SubscriptionRow | undefined {
@@ -156,7 +169,7 @@ export function insertWatchRule(
       `A watchlist holds at most ${WATCH_LIMITS.maxRulesPerSubscription} waters — remove one first.`,
     );
   }
-  const known = db.prepare('SELECT 1 FROM streams WHERE id = ?').get(input.waterId);
+  const known = db.prepare('SELECT 1 FROM streams WHERE id = ? AND archived_at IS NULL').get(input.waterId);
   if (!known) {
     throw new WatchRuleError('unknown-water', 'That water id is not in the catalog.');
   }
@@ -165,8 +178,8 @@ export function insertWatchRule(
     .prepare(
       `INSERT INTO watch_rules
          (subscription_id, water_id, kind, metric, threshold_op, threshold, arm_state,
-          cooldown_minutes, quiet_hours_start, quiet_hours_end, hysteresis, created_at, last_notified_at)
-       VALUES (?, ?, ?, ?, ?, ?, NULL, ?, ?, ?, ?, ?, NULL)`,
+          cooldown_minutes, quiet_hours_start, quiet_hours_end, hysteresis, created_at, last_notified_at, quiet_time_zone)
+       VALUES (?, ?, ?, ?, ?, ?, NULL, ?, ?, ?, ?, ?, NULL, ?)`,
     )
     .run(
       rule.subscriptionId,
@@ -180,6 +193,7 @@ export function insertWatchRule(
       rule.quietHoursEnd ?? null,
       rule.hysteresis,
       now.toISOString(),
+      rule.quietHoursTimeZone ?? 'America/Chicago',
     );
   return getWatchRule(db, Number(res.lastInsertRowid))!;
 }
@@ -241,10 +255,11 @@ export function deleteWatchRule(db: Db, id: number, subscriptionId: string): boo
 }
 
 /** Persist the evaluation outcome for one fired rule (ADR 0016 §5). */
-export function recordFiredRule(db: Db, ruleId: number, armState: 'above' | 'below', now: Date): void {
-  db.prepare('UPDATE watch_rules SET arm_state = ?, last_notified_at = ? WHERE id = ?').run(
+export function recordFiredRule(db: Db, ruleId: number, armState: 'above' | 'below', now: Date, feedKey?: string): void {
+  db.prepare('UPDATE watch_rules SET arm_state = ?, last_notified_at = ?, last_feed_key = COALESCE(?, last_feed_key) WHERE id = ?').run(
     armState,
     now.toISOString(),
+    feedKey ?? null,
     ruleId,
   );
 }
@@ -252,6 +267,10 @@ export function recordFiredRule(db: Db, ruleId: number, armState: 'above' | 'bel
 /** Persist arm-state movement that did NOT fire (armed on a first decisive reading). */
 export function recordArmState(db: Db, ruleId: number, armState: 'above' | 'below'): void {
   db.prepare('UPDATE watch_rules SET arm_state = ? WHERE id = ?').run(armState, ruleId);
+}
+
+export function recordFeedState(db: Db, ruleId: number, feedKey: string): void {
+  db.prepare('UPDATE watch_rules SET last_feed_key = ? WHERE id = ?').run(feedKey, ruleId);
 }
 
 /**

@@ -1,7 +1,8 @@
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { createHash } from 'node:crypto';
 import type { Db } from '../db.js';
-import { READING_STALE_MINUTES } from '@trout/contracts';
+import { READING_STALE_MINUTES, matchStocking, StockingEventSchema, type StockingEvent } from '@trout/contracts';
 import type { WatchRuleRow } from './service.js';
 import type { WatchKind, WatchMetric } from './schema.js';
 
@@ -46,6 +47,7 @@ export interface FeedItem {
   date: string;
   /** Reports: exact publish instant (ShopReport.publishedAt); stockings omit. */
   publishedAt?: string;
+  key?: string;
 }
 
 /**
@@ -67,6 +69,7 @@ export type DecisionReason =
   | 'armed' // first decisive reading: baseline set, nothing fired
   | 'waiting-dead-band' // reading inside the hysteresis band
   | 'no-change' // decisive reading but on the already-armed side
+  | 'rearmed'
   | 'crossed-above'
   | 'crossed-below'
   // stocking/report rules
@@ -85,12 +88,13 @@ export interface Decision {
   armState?: 'above' | 'below' | null;
   /** For fired feed rules: the day that triggered the notice. */
   feedDate?: string;
+  feedKey?: string;
 }
 
 export interface EvaluateOptions {
   now: number;
   /** Injectable water-local clock "HH:MM" (tests); default America/Chicago. */
-  localHHMM?: (nowMs: number) => string;
+  localHHMM?: (nowMs: number, timeZone?: string) => string;
 }
 
 /** Hysteresis side of a reading, or null inside the dead band. */
@@ -139,7 +143,7 @@ export function evaluateRules(
   evidence: EvidenceView,
   opts: EvaluateOptions,
 ): Decision[] {
-  const localHHMM = opts.localHHMM ?? ((ms: number) => waterLocalHHMM(ms));
+  const localHHMM = opts.localHHMM ?? waterLocalHHMM;
   const now = opts.now;
   const decisions: Decision[] = [];
 
@@ -163,7 +167,8 @@ export function evaluateRules(
         decisions.push({ ...base, reason: 'no-evidence' });
         continue;
       }
-      if (now - obs.observedAt > READING_FRESHNESS_MS) {
+      if (!Number.isFinite(obs.value) || !Number.isFinite(obs.observedAt)
+        || obs.observedAt > now + 60_000 || now - obs.observedAt > READING_FRESHNESS_MS) {
         decisions.push({ ...base, reason: 'stale-evidence' });
         continue;
       }
@@ -172,7 +177,7 @@ export function evaluateRules(
       if (
         rule.quiet_hours_start &&
         rule.quiet_hours_end &&
-        inQuietHours(localHHMM(now), rule.quiet_hours_start, rule.quiet_hours_end)
+        inQuietHours(localHHMM(now, rule.quiet_time_zone ?? WATER_TIME_ZONE), rule.quiet_hours_start, rule.quiet_hours_end)
       ) {
         decisions.push({ ...base, reason: 'quiet-hours' });
         continue;
@@ -207,6 +212,10 @@ export function evaluateRules(
         decisions.push({ ...base, reason: 'no-change', armState: side });
         continue;
       }
+      if (side !== rule.threshold_op) {
+        decisions.push({ ...base, reason: 'rearmed', armState: side });
+        continue;
+      }
       decisions.push({
         ...base,
         fired: true,
@@ -225,7 +234,7 @@ export function evaluateRules(
     if (
       rule.quiet_hours_start &&
       rule.quiet_hours_end &&
-      inQuietHours(localHHMM(now), rule.quiet_hours_start, rule.quiet_hours_end)
+      inQuietHours(localHHMM(now, rule.quiet_time_zone ?? WATER_TIME_ZONE), rule.quiet_hours_start, rule.quiet_hours_end)
     ) {
       decisions.push({ ...base, reason: 'quiet-hours' });
       continue;
@@ -240,12 +249,20 @@ export function evaluateRules(
     // Baseline: the last notice, or the rule's creation — a feed item must be
     // NEWER than both the day the rule started and anything already announced.
     const baselineMs = Date.parse(rule.last_notified_at ?? rule.created_at);
+    if (item.key && rule.last_feed_key) {
+      const seen = new Set(rule.last_feed_key.split(','));
+      if (item.key.split(',').every((key) => seen.has(key))) {
+        decisions.push({ ...base, reason: 'no-new-feed-item', feedKey: item.key });
+        continue;
+      }
+    }
     const itemMs =
-      rule.kind === 'report' && item.publishedAt
+      item.publishedAt
         ? Date.parse(item.publishedAt)
         : Date.parse(`${item.date}T00:00:00Z`);
-    if (!Number.isFinite(itemMs) || itemMs <= baselineMs) {
-      decisions.push({ ...base, reason: 'no-new-feed-item' });
+    if (!Number.isFinite(itemMs) || itemMs > now + 60_000
+      || (!rule.last_feed_key && itemMs <= baselineMs)) {
+      decisions.push({ ...base, reason: 'no-new-feed-item', feedKey: item.key });
       continue;
     }
     decisions.push({
@@ -253,6 +270,7 @@ export function evaluateRules(
       fired: true,
       reason: rule.kind === 'stocking' ? 'new-stocking-event' : 'new-report',
       feedDate: item.date,
+      feedKey: item.key,
     });
   }
 
@@ -326,11 +344,6 @@ interface RawConditionSnapshot {
   }>;
 }
 
-interface RawStockingEvent {
-  streamName: string;
-  date: string;
-}
-
 interface RawShopReport {
   streamId?: string;
   date: string;
@@ -381,21 +394,20 @@ export function readEvidenceFromSnapshots(
   }
 
   // ── stocking: newest normalized-name match from the recent feed ───────────
-  const nameToWater = new Map<string, string>();
+  const waters: Array<{ id: string; name: string; aliases: string[] }> = [];
   try {
     const rows = db
-      .prepare('SELECT id, name, aliases FROM streams')
+      .prepare('SELECT id, name, aliases FROM streams WHERE archived_at IS NULL')
       .all() as Array<{ id: string; name: string; aliases: string }>;
     for (const row of rows) {
-      nameToWater.set(normalizeWaterName(row.name), row.id);
+      let aliases: string[] = [];
       try {
-        const aliases = JSON.parse(row.aliases ?? '[]') as string[];
-        for (const alias of Array.isArray(aliases) ? aliases : []) {
-          nameToWater.set(normalizeWaterName(alias), row.id);
-        }
+        const parsed = JSON.parse(row.aliases ?? '[]') as unknown;
+        if (Array.isArray(parsed)) aliases = parsed.filter((v): v is string => typeof v === 'string');
       } catch {
         // malformed alias list — the canonical name still works
       }
+      waters.push({ id: row.id, name: row.name, aliases });
     }
   } catch {
     // no catalog → no stocking matching
@@ -405,12 +417,17 @@ export function readEvidenceFromSnapshots(
     const p = join(snapshotsDir, 'v1', 'stocking', `${state}-recent.json`);
     if (!existsSync(p)) continue;
     try {
-      const events = JSON.parse(readFileSync(p, 'utf8')) as RawStockingEvent[];
-      for (const ev of Array.isArray(events) ? events : []) {
-        const waterId = nameToWater.get(normalizeWaterName(ev.streamName));
-        if (!waterId) continue;
-        const current = stocking.get(waterId);
-        if (!current || ev.date > current.date) stocking.set(waterId, { date: ev.date });
+      const raw = JSON.parse(readFileSync(p, 'utf8')) as unknown;
+      const events: StockingEvent[] = [];
+      for (const value of Array.isArray(raw) ? raw : []) {
+        const parsed = StockingEventSchema.safeParse(value);
+        if (parsed.success) events.push(parsed.data);
+      }
+      for (const [waterId, list] of matchStocking(waters, events).byStream) {
+        // Exclude fetch time: refreshing an unchanged schedule is not a new event.
+        const keys = list.map(({ fetchedAt: _fetchedAt, ...event }) => createHash('sha256').update(JSON.stringify(event)).digest('hex')).sort();
+        const latest = [...list].sort((a, b) => Date.parse(b.fetchedAt) - Date.parse(a.fetchedAt))[0]!;
+        stocking.set(waterId, { date: latest.date, publishedAt: latest.fetchedAt, key: keys.join(',') });
       }
     } catch {
       // unreadable feed → no stocking evidence
@@ -426,7 +443,7 @@ export function readEvidenceFromSnapshots(
       for (const rep of Array.isArray(items) ? items : []) {
         if (!rep.streamId) continue;
         const current = reports.get(rep.streamId);
-        if (!current || rep.publishedAt > (current.publishedAt ?? '')) {
+        if (!current || Date.parse(rep.publishedAt) > Date.parse(current.publishedAt ?? '')) {
           reports.set(rep.streamId, { date: rep.date, publishedAt: rep.publishedAt });
         }
       }

@@ -115,12 +115,22 @@ function watchlistsDepsFromEnv(): Pick<WatchDeps, 'vapid' | 'siteOrigins'> {
  * URL is the static JSON file the snapshot builder writes, served from
  * apps/web/public; everything else comes from the built PWA in apps/web/dist.
  */
+export function publicLogUrl(rawUrl: string): string {
+  return rawUrl.split('?')[0]!
+    .replace(/^(\/v1\/corrections\/status\/)[^/]+/i, '$1[redacted]')
+    .replace(/^(\/v1\/watches\/subscriptions\/)[^/]+/i, '$1[redacted]');
+}
+
 export function buildApp(options: BuildAppOptions = {}): FastifyInstance {
+  const watches = options.db ? (options.watchlists ?? watchlistsDepsFromEnv()) : { vapid: null };
   const app = Fastify({
     logger:
       options.logger === false
         ? false
         : {
+            serializers: {
+              req: (req) => ({ method: req.method, url: publicLogUrl(req.url), host: req.headers.host }),
+            },
             redact: {
               paths: [
                 'req.headers.authorization',
@@ -159,7 +169,7 @@ export function buildApp(options: BuildAppOptions = {}): FastifyInstance {
     reply.send = ((payload?: unknown) => {
       if (sent) {
         req.log.warn(
-          { url: req.url },
+          { url: publicLogUrl(req.url) },
           'suppressed duplicate reply.send on HEAD (fastify-static conditional-304 double-send)',
         );
         return reply;
@@ -210,7 +220,7 @@ export function buildApp(options: BuildAppOptions = {}): FastifyInstance {
     // contract-safe surface (ASSUMPTIONS §6-consumable) that lifts job health
     // to the top level without turning a stale-but-serving site into a
     // verify/rollback event. See jobDegradation in jobs/run.ts.
-    const degradedReasons = jobDegradation(jobs);
+    const degradedReasons = jobDegradation(jobs, new Date(), Boolean(watches.vapid));
     return {
       ok: conditions.healthy && fishability.healthy,
       degraded: degradedReasons.length > 0,
@@ -293,7 +303,7 @@ export function buildApp(options: BuildAppOptions = {}): FastifyInstance {
     // explicit options are authoritative (tests stay deterministic).
     registerWatchRoutes(app, {
       db: options.db,
-      ...(options.watchlists ?? watchlistsDepsFromEnv()),
+      ...watches,
     });
     // Owner dashboard lane (ADR 0017): read-only operator visibility. The
     // factory registers NOTHING when the token is unset — an unconfigured

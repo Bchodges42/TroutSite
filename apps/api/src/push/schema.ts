@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { ECDH } from 'node:crypto';
 
 /**
  * Wire schemas for the watchlist routes (ADR 0016). Deliberately narrow: the
@@ -61,14 +62,28 @@ const endpointSchema = z
   .string({ required_error: 'endpoint is required.' })
   .trim()
   .max(WATCH_LIMITS.endpointMax, 'endpoint is too long.')
-  .refine((v) => {
-    try {
-      const parsed = new URL(v);
-      return parsed.protocol === 'https:' || parsed.protocol === 'http:';
-    } catch {
-      return false;
-    }
-  }, 'endpoint must be a push-service URL.');
+  .refine(isAllowedPushEndpoint, 'endpoint must be an HTTPS browser push-service URL.');
+
+/** Delivery performs a server request: never accept arbitrary user-selected hosts. */
+export function isAllowedPushEndpoint(value: string): boolean {
+  try {
+    const url = new URL(value);
+    if (url.protocol !== 'https:' || url.username || url.password || url.port || url.hash) return false;
+    return ['fcm.googleapis.com', 'android.googleapis.com', 'updates.push.services.mozilla.com', 'web.push.apple.com'].includes(url.hostname)
+      || /^[a-z0-9-]+(?:\.[a-z0-9-]+)*\.notify\.windows\.com$/.test(url.hostname);
+  } catch {
+    return false;
+  }
+}
+
+function validKey(value: string, kind: 'p256dh' | 'auth'): boolean {
+  if (!/^[A-Za-z0-9_-]+={0,2}$/.test(value)) return false;
+  const bytes = Buffer.from(value, 'base64url');
+  if (bytes.toString('base64url') !== value.replace(/=+$/, '')) return false;
+  if (kind === 'auth') return bytes.length === 16;
+  if (bytes.length !== 65 || bytes[0] !== 4) return false;
+  try { ECDH.convertKey(bytes, 'prime256v1'); return true; } catch { return false; }
+}
 
 export const SubscribeSchema = z.object({
   endpoint: endpointSchema,
@@ -77,11 +92,13 @@ export const SubscribeSchema = z.object({
       p256dh: z
         .string({ required_error: 'keys.p256dh is required.' })
         .min(1, 'keys.p256dh is required.')
-        .max(WATCH_LIMITS.keyMax, 'keys.p256dh is too long.'),
+        .max(WATCH_LIMITS.keyMax, 'keys.p256dh is too long.')
+        .refine((v) => validKey(v, 'p256dh'), 'keys.p256dh must be a valid P-256 public key.'),
       auth: z
         .string({ required_error: 'keys.auth is required.' })
         .min(1, 'keys.auth is required.')
-        .max(WATCH_LIMITS.keyMax, 'keys.auth is too long.'),
+        .max(WATCH_LIMITS.keyMax, 'keys.auth is too long.')
+        .refine((v) => validKey(v, 'auth'), 'keys.auth must be a 16-byte authentication secret.'),
     },
     { required_error: 'keys is required.' },
   ),
@@ -121,6 +138,9 @@ export const WatchRuleSchema = z
       .default(240),
     quietHoursStart: quietHoursField.optional(),
     quietHoursEnd: quietHoursField.optional(),
+    quietHoursTimeZone: z.string().max(100).refine((zone) => {
+      try { new Intl.DateTimeFormat('en-US', { timeZone: zone }); return true; } catch { return false; }
+    }, 'Choose a valid IANA time zone.').optional(),
     hysteresis: z
       .number()
       .finite()

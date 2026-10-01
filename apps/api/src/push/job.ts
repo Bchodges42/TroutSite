@@ -13,6 +13,7 @@ import {
   pruneStaleSubscriptions,
   recordArmState,
   recordFiredRule,
+  recordFeedState,
 } from './service.js';
 import type { Notifier } from './notifier.js';
 
@@ -47,13 +48,12 @@ function noticeFor(
     threshold_op: string | null;
     threshold: number | null;
   },
-  feedDate?: string,
 ): { title: string; body: string } {
   const name = waterName ?? rule.water_id;
   if (rule.kind === 'stocking') {
     return {
       title: `Stocking update — ${name}`,
-      body: `A stocking event was published for ${name}${feedDate ? ` (${feedDate})` : ''}.`,
+      body: `Published stocking schedule updated for ${name}. A planned day or week is not confirmation of a completed release. Check the source in Trout.`,
     };
   }
   if (rule.kind === 'report') {
@@ -75,7 +75,8 @@ export async function runWatchlistsJob(deps: WatchlistsJobDeps): Promise<Record<
   const handle = startJob(db, 'watchlists');
   try {
     const detail = await evaluateOnce(db, notifier, deps, now);
-    handle.ok(detail);
+    if (Number(detail.failed) > 0) handle.fail(new Error('Some watch notifications could not be delivered.'), detail);
+    else handle.ok(detail);
     return detail;
   } catch (err) {
     handle.fail(err);
@@ -111,7 +112,7 @@ async function evaluateOnce(
   for (const d of decisions) {
     if (!d.fired) continue;
     const rule = ruleById.get(d.ruleId)!;
-    const copy = noticeFor(waterNames.get(d.waterId), rule, d.feedDate);
+    const copy = noticeFor(waterNames.get(d.waterId), rule);
     notices.push({
       subscriptionId: d.subscriptionId,
       ruleId: d.ruleId,
@@ -127,7 +128,8 @@ async function evaluateOnce(
   let sent = 0;
   let failed = 0;
   let gone = 0;
-  const deliver = async (subscriptionId: string, payload: unknown): Promise<void> => {
+  const deliveredRules = new Set<number>();
+  const deliver = async (subscriptionId: string, payload: unknown, ruleIds: number[]): Promise<void> => {
     const subscription = joined.find((j) => j.rule.subscription_id === subscriptionId)?.subscription;
     if (!subscription) return;
     const status = await notifier.send(
@@ -138,19 +140,20 @@ async function evaluateOnce(
       },
       payload,
     );
-    if (status === 'sent') {
+    if (status === 'sent' && notifier.canPush) {
       sent += 1;
+      for (const id of ruleIds) deliveredRules.add(id);
     } else if (status === 'gone') {
       gone += 1;
       // The browser dropped this subscription — forget it now rather than
       // letting the 180-day retention clock run out on a dead watchlist.
       deleteSubscription(db, subscriptionId);
-    } else {
+    } else if (status === 'failed') {
       failed += 1;
     }
   };
   for (const n of plan.singles) {
-    await deliver(n.subscriptionId, { kind: 'watch', title: n.title, body: n.body, url: n.url });
+    await deliver(n.subscriptionId, { kind: 'watch', title: n.title, body: n.body, url: n.url }, [n.ruleId]);
   }
   for (const digest of plan.digests) {
     await deliver(digest.subscriptionId, {
@@ -158,18 +161,18 @@ async function evaluateOnce(
       title: digestTitle(digest.notices),
       url: '/conditions',
       waters: digest.notices.map((n) => ({ waterId: n.waterId, title: n.title, body: n.body, url: n.url })),
-    });
+    }, digest.notices.map((n) => n.ruleId));
   }
 
-  // Persist the decisions AFTER delivery attempts: a failed send still consumed
-  // the transition — retrying it next run would double-notify worse than one
-  // lost notice. Arm-state movement (armed/no-change) persists without firing.
+  // Only acknowledged deliveries consume a transition. Failed sends retry;
+  // a dry run may record payloads but must never mutate notification memory.
   for (const d of decisions) {
-    if (d.fired) {
-      recordFiredRule(db, d.ruleId, d.armState ?? 'above', now);
-    } else if (d.armState !== undefined && d.armState !== null) {
+    if (d.fired && deliveredRules.has(d.ruleId)) {
+      recordFiredRule(db, d.ruleId, d.armState ?? 'above', now, d.feedKey);
+    } else if (!d.fired && notifier.canPush && d.armState !== undefined && d.armState !== null) {
       recordArmState(db, d.ruleId, d.armState);
     }
+    if (!d.fired && notifier.canPush && d.feedKey) recordFeedState(db, d.ruleId, d.feedKey);
   }
   const pruned = pruneStaleSubscriptions(db, now);
 
@@ -183,5 +186,6 @@ async function evaluateOnce(
     failed,
     gone,
     pruned,
+    dryRun: !notifier.canPush,
   };
 }
