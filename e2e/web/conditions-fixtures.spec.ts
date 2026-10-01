@@ -32,7 +32,7 @@ test('conditions opens search-first; search discloses waters; detail shows reaso
 
   // stream detail: the assessment comes straight from the snapshot
   await wataugaRow.click();
-  await expect(page.getByRole('heading', { name: 'Watauga River' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /Watauga River/, level: 1 })).toBeVisible();
   await expect(page.getByText(/Verify officially/)).toBeVisible();
 
   // official gauge link is present and external

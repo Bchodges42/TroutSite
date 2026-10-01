@@ -73,7 +73,7 @@ test('offline: hatch flow, charts, and last-known conditions stay fully function
   await expect(page.getByText('Tailwaters now')).toBeVisible();
   await page.locator('li', { hasText: 'Boone Tailwater' }).first().click();
   // The detail heading carries the full catalog name.
-  await expect(page.getByRole('heading', { name: /Boone Tailwater/ })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /Boone Tailwater/, level: 1 })).toBeVisible();
   // Boone is a documented year-round fishery (ADR 0010): the cached assessment
   // stays a score offline — the programmatic stocking schedule never demotes it
   // to "out of season", whatever the month.
@@ -82,7 +82,7 @@ test('offline: hatch flow, charts, and last-known conditions stay fully function
 
   // restart resilience: the shell, catalog, and cached data survive a reload
   await page.reload();
-  await expect(page.getByRole('heading', { name: 'Boone Tailwater' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /Boone Tailwater/, level: 1 })).toBeVisible();
   await expect(page.getByText(/Verify officially/)).toBeVisible();
 });
 

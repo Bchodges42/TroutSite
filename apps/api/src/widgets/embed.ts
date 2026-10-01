@@ -105,7 +105,7 @@ function runtimeScriptSource(): string {
     root.replaceChildren(box);
   }
   function fetchJson(url) {
-    return fetch(url).then(function (res) {
+    return fetch(url, { cache: 'no-store', signal: AbortSignal.timeout(8000) }).then(function (res) {
       if (!res.ok) throw new Error('HTTP ' + res.status);
       return res.json();
     });

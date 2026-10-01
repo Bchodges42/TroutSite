@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Button } from '@trout/ui';
+import { WatchRuleForm } from './WatchRuleForm';
 import {
   DEFAULT_WATCH,
   WATCH_PRIVACY_LINE,
@@ -26,7 +27,7 @@ import {
 
 export { WATCH_PRIVACY_LINE };
 
-const LOCAL_ONLY_LINE = 'Reminder saved on this device — it only works while the site is open.';
+const LOCAL_ONLY_LINE = 'Saved to your device watchlist. Open the water to check current readings; automatic notifications are unavailable.';
 
 function BellIcon({ filled }: { filled: boolean }) {
   // Filled = watching. Inline SVG keeps the button dependency-free.
@@ -68,11 +69,11 @@ export function WatchButton({ waterId, waterName, className }: WatchButtonProps)
   const [message, setMessage] = useState<string | null>(null);
 
   const watchingServer = mode === 'server' && watchLabel(serverRules ?? [], waterId);
-  const watchingLocal = mode === 'local' && watchLabel(localRules, waterId);
+  const watchingLocal = watchLabel(localRules, waterId);
   const watching = watchingServer || watchingLocal;
 
   const summary = watchingServer
-    ? `Watching — you'll get a notice when the water temp drops below ${DEFAULT_WATCH.threshold} °C.`
+    ? 'Watching this water. Manage your rules in Settings.'
     : watchingLocal
       ? LOCAL_ONLY_LINE
       : `Watch this water — one notice when the water temp drops below ${DEFAULT_WATCH.threshold} °C.`;
@@ -110,8 +111,8 @@ export function WatchButton({ waterId, waterName, className }: WatchButtonProps)
     setMessage(null);
     try {
       if (watchingServer) {
-        const rule = (serverRules ?? []).find((r) => r.waterId === waterId);
-        if (rule) await deleteServerRule(rule.id);
+        for (const rule of (serverRules ?? []).filter((r) => r.waterId === waterId)) await deleteServerRule(rule.id);
+        removeLocalRule(waterId);
       } else {
         removeLocalRule(waterId);
       }
@@ -137,7 +138,7 @@ export function WatchButton({ waterId, waterName, className }: WatchButtonProps)
             : `Watch ${waterName ?? waterId} for cooler water`
         }
         data-testid="watch-toggle"
-        disabled={mode === 'checking' || busy}
+        disabled={mode === 'checking' || mode === 'unavailable' || busy}
         onClick={() => void (watching ? toggleOff() : toggleOn())}
       >
         <span className="inline-flex items-center gap-2">
@@ -146,11 +147,13 @@ export function WatchButton({ waterId, waterName, className }: WatchButtonProps)
         </span>
       </Button>
       <p className="mt-2 text-xs" style={{ color: 'var(--trout-color-text-muted)' }} data-testid="watch-summary">
-        {message ?? summary}
+        {message ?? (mode === 'unavailable' ? 'The watch service is unavailable. Try again when connected.' : summary)}
       </p>
       <p className="text-xs" style={{ color: 'var(--trout-color-text-muted)' }}>
         {WATCH_PRIVACY_LINE}
       </p>
+      {config?.pushSupported && config.publicKey && pushApiSupported() && mode !== 'unavailable' &&
+        <WatchRuleForm waterId={waterId} publicKey={config.publicKey} onSaved={refresh} />}
     </div>
   );
 }

@@ -31,6 +31,8 @@ export function EntryForm({
   const entryId = initial?.id; // defined ⇒ editing a saved entry
   const [streamId, setStreamId] = useState(initial?.streamId ?? initialStreamId);
   const [saveError, setSaveError] = useState('');
+  const saving = useRef(false);
+  const [saveBusy, setSaveBusy] = useState(false);
   const [customName, setCustomName] = useState(initial && !initial.streamId ? initial.streamName : '');
   const [date, setDate] = useState(initial?.date ?? localToday());
   const [flies, setFlies] = useState((initial?.flies ?? []).join(', '));
@@ -58,10 +60,6 @@ export function EntryForm({
       }
     }
     setPhotoIds(ids);
-    // Editing a saved entry attaches photos immediately, so cancel keeps them.
-    if (entryId !== undefined) {
-      void updateEntry(entryId, currentDraft()).catch(() => setSaveError('Could not save the photo list.'));
-    }
   };
   useEffect(
     () => () => {
@@ -77,7 +75,7 @@ export function EntryForm({
 
   function currentDraft(): EntryDraft {
     const name = streamId
-      ? (streams.find((s) => s.id === streamId)?.name ?? customName.trim()) || 'Unknown water'
+      ? (streams.find((s) => s.id === streamId)?.name ?? (streamId === initial?.streamId ? initial.streamName : customName.trim())) || 'Unknown water'
       : customName.trim() || 'Unknown water';
     return {
       streamId: streamId || undefined,
@@ -99,11 +97,17 @@ export function EntryForm({
 
   const submit = async (e: FormEvent) => {
     e.preventDefault();
-    const draft = currentDraft();
-    const capture = captureFor?.(draft.streamId);
-    if (entryId !== undefined) await updateEntry(entryId, draft, capture);
-    else await addEntry({ ...draft, conditions: capture });
-    onDone();
+    if (saving.current) return;
+    saving.current = true;
+    setSaveBusy(true);
+    setSaveError('');
+    try {
+      const draft = currentDraft();
+      const capture = captureFor?.(draft.streamId);
+      if (entryId !== undefined) await updateEntry(entryId, draft, capture);
+      else await addEntry({ ...draft, conditions: capture });
+      onDone();
+    } finally { saving.current = false; setSaveBusy(false); }
   };
 
   return (
@@ -286,17 +290,17 @@ export function EntryForm({
           </label>
           <div className="text-sm">
             <span className="mb-1 block font-bold">Photos</span>
-            <PhotoPicker photoIds={photoIds} onChange={handlePhotosChange} entryId={entryId} />
+            <PhotoPicker photoIds={photoIds} onChange={handlePhotosChange} />
           </div>
         </div>
       )}
 
       <div className="flex flex-wrap items-center gap-2">
-        <Button type="submit" size="lg" className="focus-ring">
+        <Button type="submit" size="lg" className="focus-ring" disabled={saveBusy}>
           {entryId !== undefined ? 'Save changes' : 'Save entry'}
         </Button>
         {onCancel && (
-          <Button type="button" variant="ghost" className="focus-ring" onClick={onCancel}>
+          <Button type="button" variant="ghost" className="focus-ring" disabled={saveBusy} onClick={onCancel}>
             Cancel
           </Button>
         )}

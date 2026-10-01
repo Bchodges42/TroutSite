@@ -60,6 +60,9 @@ export async function addPhoto(
 export async function attachPhotoToEntry(photoId: string, logEntryId: number): Promise<void> {
   const photo = await db.photos.get(photoId);
   if (!photo) return;
+  if (photo.logEntryId !== undefined && photo.logEntryId !== logEntryId) {
+    throw new Error('This photo already belongs to another entry');
+  }
   await db.photos.put({ ...photo, logEntryId });
 }
 

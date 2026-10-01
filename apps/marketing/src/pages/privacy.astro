@@ -9,13 +9,12 @@ const description =
 <Base title={title} description={description} path="/privacy/">
   <h1>Privacy, in plain English</h1>
   <p class="lead">
-    Most privacy policies are a list of exceptions. This page is short because the architecture
-    removes the exceptions: Trout works offline, so there is almost nothing to collect in the first
-    place.
+    Trout keeps your fishing notes and planning data on your device. Optional notifications and
+    corrections use the server only when you choose those features.
   </p>
 
   <h2>What leaves your device</h2>
-  <p>Almost nothing, and nothing personal:</p>
+  <p>Public browsing and optional submissions have different data needs:</p>
   <ul>
     <li>
       <strong>The app requests public data:</strong> USGS gauge readings and the weekly stocking
@@ -26,6 +25,15 @@ const description =
       <strong>Shop reports you read</strong> load from the same public snapshots, attributed to the
       shop that wrote them.
     </li>
+    <li><strong>Opt-in water watches.</strong> Enabling notifications sends your browser's push endpoint,
+      encryption keys, and chosen water/rules to Trout. Notices travel through your browser's push
+      provider. Settings lets you remove rules or unsubscribe; inactive subscriptions expire after
+      90 days. Permission alone does not guarantee delivery.</li>
+    <li><strong>Water corrections you submit.</strong> Trout stores the proposed change, supporting
+      source and context for moderation. Do not include contact details, private fishing spots, or
+      sensitive information. Your receipt is the credential for checking its status. Closed records
+      are removed after 90 days; submissions awaiting review remain in the queue. Moderator notes
+      shown with your receipt are public to its holder.</li>
   </ul>
 
   <h2>What never leaves your device</h2>
@@ -37,7 +45,8 @@ const description =
     </li>
     <li>
       <strong>Your logbook.</strong> Catch notes live in your browser's local storage (IndexedDB).
-      They are never synced, never uploaded, and there is no server that could receive them.
+      They are never synced or uploaded. Photos, saved waters, groups and trip plans also stay local.
+      An explicit JSON/full-photo backup downloads a file you control; sharing that file is your choice.
     </li>
     <li>
       <strong>Bug identifications.</strong> The match-the-hatch key is pure, offline logic — your
@@ -48,25 +57,26 @@ const description =
   <h2>What we don't do</h2>
   <ul>
     <li>No accounts in v1 — nothing to sign up for, nothing to leak.</li>
-    <li>No third-party analytics, ad scripts, or trackers in the app or on this website.</li>
+    <li>No advertising or behavioral tracking. Cookie-free Cloudflare aggregate analytics can be
+      enabled at build time; builds without that configuration load no analytics beacon.</li>
     <li>No cookies on this site; the app stores your offline data in your browser, locally.</li>
-    <li>We never sell data, because we don't collect any to sell.</li>
+    <li>We do not sell visitor data.</li>
   </ul>
 
   <h2>How you can verify this</h2>
   <p>
     Turn on airplane mode: the hatch key, ID flow, hatch charts, and last-known conditions keep
     working. A privacy-audit test in our public QA suite intercepts every network request the app
-    makes and fails the build if any request goes to a third-party domain or contains location data.
-    Architecture is a stronger guarantee than a promise.
+    makes during ordinary browsing and checks that coordinates are not uploaded. Optional notification
+    enrollment uses your browser's push service; opening external directions or source links is your choice.
   </p>
 
-  <h2>Self-hosted analytics (planned, optional, and aggregate)</h2>
+  <h2>Optional aggregate analytics</h2>
   <p>
-    If we ever need to understand traffic, the documented plan in{' '}
-    <code>apps/marketing/ANALYTICS.md</code> is a <em>self-hosted</em>, cookie-free, aggregate-only
-    counter (Umami) on our own infrastructure — never Google Analytics, never a data broker. No such
-    tooling runs in v1.
+    The app supports a build-time Cloudflare Web Analytics opt-in. It uses no cookies or visitor
+    fingerprinting. The operator can disable it by rebuilding without the analytics configuration.
+    Network access logs may still be retained by hosting/proxy infrastructure; the app logger removes
+    watch capabilities and receipt codes from request URLs and does not log authorization headers.
   </p>
 
   <h2>Contact</h2>

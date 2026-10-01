@@ -1,7 +1,7 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { toast } from '@trout/ui';
-import { ENDPOINTS, StreamSchema } from '@trout/contracts';
+import { ENDPOINTS, StreamSchema, GaugeHistorySchema } from '@trout/contracts';
 import type { Stream } from '@trout/contracts';
 import type { DownloadManifestRecord, TripRecord } from '../../lib/db';
 import {
@@ -64,6 +64,17 @@ async function fetchCatalogRows(): Promise<Stream[]> {
   return StreamSchema.array().parse(await res.json());
 }
 
+async function availableHistory(stream: Stream): Promise<string[]> {
+  const found = await Promise.all((stream.gaugeIds ?? []).filter((id) => /^\d+$/.test(id)).map(async (id) => {
+    const url = ENDPOINTS.gaugeHistory(id);
+    try {
+      const res = await fetch(resolveUrl(url), { headers: { accept: 'application/json' } });
+      return res.ok && GaugeHistorySchema.safeParse(await res.json()).success ? url : null;
+    } catch { return null; }
+  }));
+  return found.filter((url): url is string => url !== null);
+}
+
 /** Hatch month for a pack: the trip's own month when scheduled, else now. */
 function monthFor(date: string | undefined): number {
   const n = date ? Number(date.slice(5, 7)) : Number.NaN;
@@ -120,6 +131,11 @@ export function usePackManager(): PackManagerApi {
   const manifests = useLiveQuery(() => listManifests(), [], undefined);
   const [busyId, setBusyId] = useState<string | null>(null);
   const [progress, setProgress] = useState<PinProgress | null>(null);
+  useEffect(() => {
+    if (!manifests || busyId) return;
+    // Readiness is physical cache presence, not an old remembered success.
+    void (async () => { for (const manifest of manifests) await verify(manifest); })().catch(() => {});
+  }, [manifests, busyId]);
 
   const run = useCallback(async (id: string, work: () => Promise<void>) => {
     setBusyId(id);
@@ -139,19 +155,25 @@ export function usePackManager(): PackManagerApi {
     const topo = await resolveTerrain();
     const anchor = waterAnchor(stream.id);
     const clusterUrls = anchor ? await resolveClusterUrls(anchor) : [];
-    const plan = planWaterPack(stream, { month, includeTerrain: true, topo, clusterUrls });
+    const historyUrls = await availableHistory(stream);
+    const plan = planWaterPack(stream, { month, includeTerrain: true, topo, clusterUrls, historyUrls });
     const result = await pin(plan, setProgress);
     reportPinOutcome(plan, result);
   }, []);
 
   const pinTrip = useCallback(async (trip: TripRecord, streams: Stream[]) => {
+    if (trip.waterIds.some((id) => !streams.some((stream) => stream.id === id))) {
+      toast.error('Some trip waters are missing from the catalog. Update the trip before downloading its complete pack.');
+      return;
+    }
     const month = monthFor(trip.date);
     const topo = await resolveTerrain();
     const plans: PackPlan[] = [];
     for (const stream of streams) {
       const anchor = waterAnchor(stream.id);
       const clusterUrls = anchor ? await resolveClusterUrls(anchor) : [];
-      plans.push(planWaterPack(stream, { month, includeTerrain: true, topo, clusterUrls }));
+      const historyUrls = await availableHistory(stream);
+      plans.push(planWaterPack(stream, { month, includeTerrain: true, topo, clusterUrls, historyUrls }));
     }
     const plan = planTripPack(trip, plans);
     const result = await pin(plan, setProgress);
@@ -264,7 +286,7 @@ function tripIdFrom(manifestId: string): string {
 /** Trivially-available storage estimate for the Settings footer line. */
 export function useStorageEstimate(): { usage: number; quota: number } | null {
   const [estimate, setEstimate] = useState<{ usage: number; quota: number } | null>(null);
-  useMemo(() => {
+  useEffect(() => {
     // No estimate (jsdom, private mode, old browser) → no state update at all.
     void storageEstimate().then((value) => {
       if (value) setEstimate(value);

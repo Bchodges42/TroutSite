@@ -8,7 +8,6 @@ import { SettingsProvider } from '../src/lib/settings';
 import { db } from '../src/lib/db';
 import {
   PACK_CACHE_NAME,
-  TOPO_CACHE_NAME,
   planWaterPack,
   toManifestInput,
 } from '../src/lib/packBuilder';
@@ -109,7 +108,7 @@ function installFetch(): void {
 function jsonResponse(url: string, body = '{}'): Response {
   return new Response(body, {
     status: 200,
-    headers: { 'content-type': 'application/json', 'content-length': String(body.length) },
+    headers: { 'content-type': /\.(webp|png)$/.test(url) ? 'image/webp' : 'application/json', 'content-length': String(body.length) },
   });
 }
 
@@ -223,7 +222,7 @@ describe('pin', () => {
       return manifest!;
     });
     expect(midPin.sections.find((s) => s.key === 'terrain')!.ready).toBe(false);
-    expect(stores.get(TOPO_CACHE_NAME)!.size).toBe(17); // all tiles but the gated one
+    expect([...stores.get(PACK_CACHE_NAME)!.keys()].filter((url) => url.includes('/atlas/topo/'))).toHaveLength(17); // all tiles but the gated one
 
     releaseTerrain();
     const result = await done;
@@ -236,7 +235,7 @@ describe('pin', () => {
 
     // Every URL actually landed in the cache it belongs to.
     for (const url of plan.assetUrls) {
-      const name = url.includes('/atlas/topo/') ? TOPO_CACHE_NAME : PACK_CACHE_NAME;
+      const name = PACK_CACHE_NAME;
       expect(stores.get(name)!.has(url)).toBe(true);
     }
   });
@@ -276,8 +275,7 @@ describe('pin', () => {
     const result = await pin(plan);
     expect(result.offline).toBe(true);
     expect(fetchCalls).toHaveLength(0);
-    const manifest = (await getManifest(plan.id))!;
-    expect(manifest.sections.every((s) => !s.ready)).toBe(true);
+    expect(await getManifest(plan.id)).toBeUndefined();
   });
 
   it('reports a quota failure and never promotes the pack to ready', async () => {
@@ -313,6 +311,8 @@ function catalogUrls(): string[] {
     '/content/taxa.json',
     '/content/patterns.json',
     '/v1/stocking/TN.json',
+    '/content/access.json',
+    '/v1/reports/recent.json',
   ];
 }
 
@@ -323,8 +323,8 @@ describe('verify', () => {
     const plan = standardPlan();
     await pin(plan);
     // Browser storage CAN be evicted: drop a terrain tile and a catalog file.
-    const tile = [...stores.get(TOPO_CACHE_NAME)!.keys()][0]!;
-    stores.get(TOPO_CACHE_NAME)!.delete(tile);
+    const tile = [...stores.get(PACK_CACHE_NAME)!.keys()].find((url) => url.includes('/atlas/topo/'))!;
+    stores.get(PACK_CACHE_NAME)!.delete(tile);
     stores.get(PACK_CACHE_NAME)!.delete('/content/taxa.json');
 
     const result = await verify((await getManifest(plan.id))!);
@@ -394,7 +394,7 @@ describe('remove', () => {
 
     const result = await remove(a.manifest!);
     const packStore = stores.get(PACK_CACHE_NAME)!;
-    const topoStore = stores.get(TOPO_CACHE_NAME)!;
+    const topoStore = stores.get(PACK_CACHE_NAME)!;
 
     // Shared files survive: the other pack still pins them.
     const missing: string[] = [];
@@ -407,7 +407,7 @@ describe('remove', () => {
     expect(packStore.has('/v1/fishability/caney-fork-river.json')).toBe(false);
     expect(packStore.has('/v1/release-schedule/caney-fork-river.json')).toBe(false);
     expect(packStore.has('/v1/hatch/tn-east-clinch/9.json')).toBe(false);
-    expect(topoStore.size).toBe(0);
+    expect([...topoStore.keys()].filter((url) => url.includes('/atlas/topo/'))).toHaveLength(0);
 
     const manifests = await listManifests();
     expect(manifests.map((m) => m.id)).toEqual([b.manifest!.id]);

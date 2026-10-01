@@ -263,9 +263,9 @@ export function buildReadingRows(
     const source = readings as unknown as Record<string, unknown>[];
     for (let j = 0; j < readings.length; j++) {
       const value = source[j]![meta.key];
-      if (typeof value !== 'number') continue;
+      if (typeof value !== 'number' || !Number.isFinite(value)) continue;
       const ms = readingObservedMs(readings[j]!, meta.key);
-      if (ms <= 0) continue; // unreadable timestamp = unusable observation
+      if (ms <= 0 || ms > nowMs + 60_000) continue;
       if (bestValue === null || ms > bestMs) {
         bestValue = value;
         bestMs = ms;
@@ -279,7 +279,7 @@ export function buildReadingRows(
       valueText: formatMetricNumber(bestValue) + meta.unit,
       ageMinutes: ageMinutes,
       ageText: formatAge(ageMinutes),
-      stale: ageMinutes > sem.staleMinutes,
+      stale: nowMs - bestMs > sem.staleMinutes * 60_000,
     });
   }
   return rows;
@@ -317,7 +317,10 @@ export function matchStockingEvents(events: StockingEvent[], stream: Stream): St
   for (let i = 0; i < names.length; i++) lower.push(names[i]!.trim().toLowerCase());
   const matched: StockingEvent[] = [];
   for (let i = 0; i < events.length; i++) {
-    if (lower.indexOf(events[i]!.streamName.trim().toLowerCase()) !== -1) matched.push(events[i]!);
+    const event = events[i]!;
+    const counties = stream.hydroIdentity?.counties;
+    const countyMatches = !counties?.length || !event.county || counties.some((county) => county.trim().toLowerCase().replace(/ county$/, '') === event.county!.trim().toLowerCase().replace(/ county$/, ''));
+    if (countyMatches && lower.indexOf(event.streamName.trim().toLowerCase()) !== -1) matched.push(event);
   }
   matched.sort(
     (a, b) => b.date.localeCompare(a.date) || a.species.localeCompare(b.species),
@@ -335,13 +338,13 @@ export function buildStockingText(events: StockingEvent[]): string | null {
   const event = events[0]!;
   const speciesText = capitalizeWords(event.species) + ' trout';
   if (event.datePrecision === 'week') {
-    return 'Stocked week of ' + event.date + ' (scheduled) — ' + speciesText;
+    return 'Stocking scheduled week of ' + event.date + ' — ' + speciesText;
   }
   if (event.datePrecision === 'month') {
     return 'Stocking scheduled ' + monthYear(event.date) + ' — ' + speciesText;
   }
   if (event.datePrecision === 'day') {
-    return 'Stocked ' + event.date + ' — ' + speciesText;
+    return 'Stocking scheduled ' + event.date + ' — ' + speciesText;
   }
   return 'Stocking reported ' + event.date + ' — ' + speciesText;
 }
@@ -379,7 +382,10 @@ export function buildWaterModel(
 ): WidgetWaterModel {
   const stream = input.stream;
   const score = input.conditions.score;
-  const assessed = score.assessed !== false;
+  const readings = buildReadingRows(input.conditions.readings, nowMs, sem);
+  const freshTemperature = readings.some((row) => row.metric === 'tempC' && !row.stale);
+  // The legacy conditions score is a trout assessment, never a warmwater verdict.
+  const assessed = stream.species === 'trout' && score.assessed !== false && freshTemperature;
   const band = assessed ? scoreBand(score.value, sem.bandGoodMin, sem.bandFairMin) : null;
 
   // Applicable species: the cataloged target species when authored, else the
@@ -403,9 +409,10 @@ export function buildWaterModel(
     const keys = Object.keys(bySpecies);
     for (let i = 0; i < keys.length; i++) {
       const key = keys[i]!;
-      const entry = (bySpecies as Record<string, { comfort: { assessed: boolean; value: number } }>)[key]!;
+      const entry = bySpecies[key as keyof typeof bySpecies]!;
       const comfort = entry.comfort;
-      if (comfort.assessed) {
+      const observedMs = comfort.freshness ? Date.parse(comfort.freshness.observedAt) : NaN;
+      if (comfort.assessed && Number.isFinite(observedMs) && observedMs <= nowMs + 60_000 && nowMs - observedMs <= sem.staleMinutes * 60_000) {
         const speciesBand = scoreBand(comfort.value, sem.bandGoodMin, sem.bandFairMin);
         speciesRows.push({
           species: speciesDisplayName(key),
@@ -433,7 +440,7 @@ export function buildWaterModel(
     band: band,
     statusLabel: bandStatusLabel(band, sem),
     score: assessed ? score.value : null,
-    readings: buildReadingRows(input.conditions.readings, nowMs, sem),
+    readings: readings,
     species: species,
     speciesRows: speciesRows,
     stockingText: stockingText,

@@ -7,6 +7,7 @@ import { registerOwnerRoutes } from '../src/owner/routes.js';
 import { insertCorrection } from '../src/corrections/service.js';
 import type { CorrectionCategory } from '../src/corrections/schema.js';
 import { makeEnv, type TestEnv } from './helpers.js';
+import { nextExpectedRunIso, ownerJobRows, ownerEvidenceSummary } from '../src/owner/service.js';
 
 /**
  * OWNER-DASHBOARD lane (ADR 0017): bearer-gated read-only owner surface with
@@ -169,6 +170,7 @@ function makeOwnerApp(opts: { withToken?: boolean; limits?: { requestsPerHour: n
     contentDir,
     ownerToken: opts.withToken === false ? undefined : OWNER_TOKEN,
     limits: opts.limits,
+    schedulerProfile: 'cron',
     now: () => NOW,
   });
   return { app, env, snapshotsDir, contentDir };
@@ -183,6 +185,24 @@ function get(app: FastifyInstance, url: string, token: string | null = OWNER_TOK
 }
 
 let current: AppHandle | null = null;
+
+it('reports actual Windows cadence, unknown schedules, instant ordering and uncapped evidence totals', () => {
+  current = makeOwnerApp();
+  const { env, contentDir } = current;
+  expect(nextExpectedRunIso('gauges', NOW, 'windows')).toBe(new Date(NOW + 3_600_000).toISOString());
+  expect(nextExpectedRunIso('gauges', NOW, 'unknown')).toBeNull();
+  seedJob(env.db, 'gauges', 'ok', '2026-09-30T12:00:00Z', '2026-09-30T12:01:00Z');
+  seedJob(env.db, 'gauges', 'error', '2026-09-30T13:00:00+02:00', '2026-09-30T13:01:00+02:00');
+  const rows = ownerJobRows(env.db, new Date(NOW), 'windows', false).jobs;
+  expect(rows.find((job) => job.name === 'gauges')).toMatchObject({ lastOutcome: 'ok', lastAttemptAt: '2026-09-30T12:00:00Z', lastSuccessAt: '2026-09-30T12:01:00Z' });
+  expect(rows.some((job) => job.name === 'watchlists')).toBe(false);
+  writeFileSync(join(contentDir, 'streams.json'), JSON.stringify({ streams: Array.from({ length: 210 }, (_, index) => ({
+    id: `water-${index}`, name: `Water ${index}`, regionId: 'tn-west', opportunity: { evidenceState: 'unresolved' },
+  })) }));
+  const evidence = ownerEvidenceSummary(contentDir);
+  expect(evidence?.researchCount).toBe(210);
+  expect(evidence?.waters).toHaveLength(200);
+});
 
 beforeEach(() => {
   current = null;

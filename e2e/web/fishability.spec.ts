@@ -64,7 +64,7 @@ test('detail page shows the comfort-only fishability card', async ({ page }) => 
   await expect(allFish).toHaveAttribute('aria-pressed', 'true');
   await page.waitForTimeout(300); // let the Dexie write land before navigating
   await page.goto('/conditions/harpeth-river?focus=smallmouth-bass');
-  await expect(page.getByRole('heading', { name: /Harpeth/i })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /Harpeth/i, level: 1 })).toBeVisible();
   const card = page.locator('.fishability-card');
   await expect(card.getByRole('heading', { name: 'Smallmouth bass' })).toBeVisible();
   // Comfort value/band is computed deterministically from the fixture

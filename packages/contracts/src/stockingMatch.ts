@@ -160,7 +160,7 @@ export function matchStocking(
         (key) => eventNorm === key || eventNorm.startsWith(`${key} `),
       );
       const byCounty = countyKey ? COUNTY_RESOLVES[countyKey] : undefined;
-      const hit = byCounty?.[event.county.toLowerCase()];
+      const hit = byCounty?.[event.county.trim().toLowerCase().replace(/\s+county$/, '')];
       if (hit) resolved = hit;
     }
 
@@ -199,7 +199,7 @@ export function matchStocking(
       if (contain.length === 1) resolved = contain[0] ?? null;
     }
 
-    if (!resolved) {
+    if (!resolved || !streamNorm.has(resolved)) {
       unmatched += 1;
       continue;
     }

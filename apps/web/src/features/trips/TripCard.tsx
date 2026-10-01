@@ -43,7 +43,7 @@ const sectionTitle = 'text-xs font-bold uppercase tracking-wide muted';
  * One trip in the list. The row stays compact (title, date, counts, pack
  * chip); "Trip details" expands in place — the app's inline-expand pattern —
  * to the waters, checklist, editable plan, and the record/share/delete
- * actions. Recording a trip never rewrites the plan; it only stamps it.
+ * actions. Recording saves the chosen context into the private logbook.
  */
 export function TripCard({
   trip,
@@ -54,6 +54,7 @@ export function TripCard({
   conditionsLoading,
 }: TripCardProps) {
   const [open, setOpen] = useState(false);
+  const [recording, setRecording] = useState(false);
   const manager = usePackManager();
   const timing = tripTiming(trip.date);
   const done = trip.checklist.filter((i) => i.done).length;
@@ -198,13 +199,16 @@ export function TripCard({
                 <Button
                   size="sm"
                   className="focus-ring"
-                  onClick={() =>
-                    void completeTrip(trip.id).then(() =>
-                      toast.success('Trip recorded — the logbook is ready for it.'),
-                    )
-                  }
+                  disabled={recording || timing === 'future' || trip.waterIds.length === 0}
+                  onClick={() => {
+                    setRecording(true);
+                    void completeTrip(trip.id, new Map([...streamsById].map(([id, stream]) => [id, stream.name])))
+                      .then(() => toast.success('Trip saved in the logbook — add catches and photos there.'))
+                      .catch((error: unknown) => toast.error(error instanceof Error ? error.message : 'Could not record the trip.'))
+                      .finally(() => setRecording(false));
+                  }}
                 >
-                  Record trip
+                  {recording ? 'Recording…' : 'Record trip'}
                 </Button>
               )}
               <Button variant="secondary" size="sm" className="focus-ring" onClick={copyPlan}>
@@ -212,6 +216,7 @@ export function TripCard({
               </Button>
               <span className="muted text-sm">Notes and the checklist stay on this device.</span>
             </div>
+            {!trip.completedAt && timing === 'future' && <p className="muted mt-2 text-sm">Record after the trip, with its actual date.</p>}
           </section>
         </div>
       )}

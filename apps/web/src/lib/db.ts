@@ -32,6 +32,8 @@ export interface SnapshotRecord {
 
 export interface LogbookEntry {
   id?: number;
+  /** Originating on-device plan, used to make recording repeat-safe. */
+  tripId?: string;
   streamId?: string;
   streamName: string;
   /** YYYY-MM-DD */

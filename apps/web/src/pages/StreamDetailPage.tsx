@@ -6,6 +6,7 @@ import {
   ConditionSnapshotSchema,
   StockingEventSchema,
   newestReadingAt,
+  metricTimestamp,
 } from '@trout/contracts';
 import type { ConditionSnapshot, GaugeReading, Stream, StockingEvent } from '@trout/contracts';
 import { snapshotUrls } from '../lib/endpoints';
@@ -33,6 +34,9 @@ import { FishabilityCard } from '../components/FishabilityCard';
 import { buildSurfaceOverview } from '../features/waters/buildSurfaceOverview';
 import { WaterOverviewCard } from '../features/waters/WaterOverviewCard';
 import { WatchButton } from '../features/watches/WatchButton';
+import { DownloadButton } from '../features/downloads/DownloadButton';
+import { usePackManager } from '../features/downloads/usePackManager';
+import { waterManifestId } from '../lib/downloadManifests';
 import { ReleasesPanel } from '../features/waters/ReleasesPanel';
 import { AccessSection } from '../features/waters/AccessSection';
 import { GaugeHistorySection } from '../features/waters/GaugeHistoryChart';
@@ -45,9 +49,9 @@ const CONDITIONS_TTL_MIN = 60;
 /** Newest observed discharge for the releases panel's separate observed series. */
 function deriveLatestFlow(snapshot: ConditionSnapshot | null | undefined): { valueCfs: number; observedAt: string } | null {
   const withCfs = (snapshot?.readings ?? []).filter((r) => typeof r.cfs === 'number');
-  const newest = [...withCfs].sort((a, b) => Date.parse(b.timestamp) - Date.parse(a.timestamp))[0];
+  const newest = [...withCfs].sort((a, b) => Date.parse(metricTimestamp(b, 'cfs')) - Date.parse(metricTimestamp(a, 'cfs')))[0];
   if (!newest || typeof newest.cfs !== 'number') return null;
-  return { valueCfs: newest.cfs, observedAt: newest.timestamp };
+  return { valueCfs: newest.cfs, observedAt: metricTimestamp(newest, 'cfs') };
 }
 
 /** Stream detail (scope 4): readings, score + reasons, what changed, official links. */
@@ -55,6 +59,8 @@ export function StreamDetailPage() {
   const { streamId = '' } = useParams();
   const [params] = useSearchParams();
   const { settings } = useSettingsContext();
+  const packs = usePackManager();
+  const waterPack = packs.manifests?.find((manifest) => manifest.id === waterManifestId(streamId));
   const decisionMode = params.get('species') === 'all' || params.get('species') === 'trout'
     ? (params.get('species') as 'all' | 'trout')
     : settings.speciesMode;
@@ -212,6 +218,14 @@ export function StreamDetailPage() {
 
       {/* ADR 0016: the one-tap watch, parked with the overview actions. */}
       <WatchButton waterId={stream.id} waterName={stream.name} className="mt-3" />
+      <div className="mt-3" aria-label="Offline water pack">
+        <DownloadButton manifest={waterPack} busy={packs.busyId === waterManifestId(stream.id)}
+          progress={packs.progress} offline={typeof navigator !== 'undefined' && !navigator.onLine}
+          onDownload={() => void packs.downloadWater(stream)}
+          onRedownload={() => void packs.downloadWater(stream)}
+          onVerify={waterPack ? () => void packs.verifyPack(waterPack) : undefined}
+          onRemove={waterPack ? () => void packs.removePack(waterPack) : undefined} />
+      </div>
 
       {overviewSurface.overview.releases.applicable && (
         <ReleasesPanel

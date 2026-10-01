@@ -8,6 +8,7 @@ import {
   ModeratorAuthError,
   ModeratorUnavailableError,
   clearModeratorToken,
+  downloadCorrectionHandoff,
   fetchCorrectionDetail,
   fetchReviewQueue,
   hasModeratorToken,
@@ -406,9 +407,16 @@ export function CorrectionsReviewPage() {
               )}
             </dl>
 
+            {item.status === 'accepted' && <div className="mt-3">
+              <button type="button" className="trout-btn trout-btn--secondary" onClick={() => downloadCorrectionHandoff(item)}>
+                Export reviewed content handoff
+              </button>
+              <p className="muted mt-1 text-xs">Use the proposal and citation in a reviewed content PR. Resolve after publication, with a public change link in the reviewer note.</p>
+            </div>}
+
             <div className="mt-3 flex flex-col gap-1">
               <label className="text-xs font-bold" htmlFor={`review-note-${item.id}`}>
-                Reviewer note {`(required for reject)`}
+                Public reviewer note {`(required for reject)`} — visible to the receipt holder; omit private information
               </label>
               <textarea
                 id={`review-note-${item.id}`}

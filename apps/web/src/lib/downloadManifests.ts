@@ -42,12 +42,15 @@ export async function deleteManifest(id: string): Promise<void> {
 }
 
 export async function markSectionReady(id: string, sectionKey: string, ready: boolean, bytes?: number): Promise<void> {
+  return db.transaction('rw', db.downloadManifests, async () => {
   const manifest = await db.downloadManifests.get(id);
   if (!manifest) return;
   const sections = manifest.sections.map((s) =>
     s.key === sectionKey ? { ...s, ready, bytes: bytes ?? s.bytes } : s,
   );
+  if (JSON.stringify(sections) === JSON.stringify(manifest.sections)) return;
   await db.downloadManifests.put({ ...manifest, sections, updatedAt: Date.now() });
+  });
 }
 
 export interface PackReadiness {
@@ -67,7 +70,7 @@ export function computePackReadiness(sections: DownloadSectionState[]): PackRead
   const missingOptional = sections.filter((s) => !s.required && !s.ready).map((s) => s.key);
   const anyReady = sections.some((s) => s.ready);
   return {
-    requiredReady: missingRequired.length === 0,
+    requiredReady: sections.length > 0 && missingRequired.length === 0,
     anyReady,
     partialOptional: missingRequired.length === 0 && missingOptional.length > 0,
     missingRequired,

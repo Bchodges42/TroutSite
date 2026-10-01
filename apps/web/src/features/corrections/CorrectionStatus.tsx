@@ -28,11 +28,11 @@ export const STATUS_EXPLANATIONS: Record<CorrectionPublicStatus, string> = {
   'needs-more-evidence':
     'Needs more evidence — a reviewer saw it but needs a source or a specific detail; resubmit with the addition.',
   accepted:
-    'Accepted — the correction was approved and is becoming a cited change to the content.',
+    'Accepted — approved for a cited content change. Acceptance alone does not publish the change.',
   rejected:
     'Rejected — a reviewer checked it against sources and the current content stands (any reason is shown with the status).',
   resolved:
-    'Resolved — this receipt was closed without its own content change, for example as a duplicate of another correction.',
+    'Resolved — review is closed after a published change or resolution such as a duplicate; see the reviewer note for details.',
 };
 
 /** What GET /v1/corrections/status/:code answers with (ADR 0015). */
@@ -58,6 +58,8 @@ export const defaultFetchCorrectionStatus: FetchCorrectionStatus = async (code) 
   try {
     res = await fetch(correctionStatusEndpoint(code), {
       headers: { accept: 'application/json' },
+      cache: 'no-store',
+      signal: AbortSignal.timeout(8_000),
     });
   } catch {
     throw new CorrectionTransportUnavailable();
@@ -138,7 +140,7 @@ export function CorrectionStatus({ fetchCorrectionStatus }: CorrectionStatusProp
     const code = normalizeReceiptCode(codeInput);
     if (!RECEIPT_CODE_RE.test(code)) {
       setState('not-found');
-      setDetail('Receipt codes look like XXXXX-XXXXX-XXXXX — five groups of letters and numbers.');
+      setDetail('Receipt codes look like XXXXX-XXXXX-XXXXX — three groups of five letters and numbers.');
       return;
     }
     setState('checking');
@@ -237,8 +239,7 @@ export function CorrectionStatus({ fetchCorrectionStatus }: CorrectionStatusProp
 
         {state === 'unavailable' && (
           <p className="mt-3 text-sm font-bold" role="status" data-testid="status-unavailable">
-            Status lookup opens when the review service ships — codes issued now cannot be checked
-            until then.
+            Status lookup is unavailable right now. Keep your receipt and try again later.
           </p>
         )}
 

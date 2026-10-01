@@ -53,14 +53,35 @@ export async function listTrips(): Promise<TripRecord[]> {
 }
 
 export async function updateTrip(id: string, patch: Partial<Omit<TripRecord, 'id' | 'createdAt'>>): Promise<void> {
+  return db.transaction('rw', db.trips, async () => {
   const trip = await db.trips.get(id);
   if (!trip) return;
   await db.trips.put({ ...trip, ...patch, id, createdAt: trip.createdAt, updatedAt: Date.now() });
+  });
 }
 
-/** Recording a trip: stamps completion; carried context stays untouched. */
-export async function completeTrip(id: string): Promise<void> {
-  await updateTrip(id, { completedAt: Date.now() });
+/** Save each visited water to the logbook and mark completion in one transaction. */
+export async function completeTrip(id: string, waterNames: ReadonlyMap<string, string> = new Map()): Promise<void> {
+  await db.transaction('rw', db.trips, db.logbook, async () => {
+    const trip = await db.trips.get(id);
+    if (!trip) throw new Error('This trip no longer exists.');
+    if (!trip.waterIds.length) throw new Error('Add a water before recording this trip.');
+    const now = new Date();
+    const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+    const date = trip.date || today;
+    if (date > today) throw new Error('Set the actual trip date before recording a future plan.');
+    const recorded = (await db.logbook.toArray()).some((entry) => entry.tripId === id);
+    if (!recorded) {
+      for (const waterId of new Set(trip.waterIds)) {
+        await db.logbook.add({
+          tripId: id, streamId: waterId, streamName: waterNames.get(waterId) ?? waterId,
+          date, notes: trip.notes ?? '', species: trip.species, flies: [], entryKind: 'trip-log',
+          createdAt: now.getTime(), updatedAt: now.getTime(),
+        });
+      }
+    }
+    await db.trips.put({ ...trip, completedAt: trip.completedAt ?? now.getTime(), updatedAt: now.getTime() });
+  });
 }
 
 export async function deleteTrip(id: string): Promise<void> {
@@ -68,24 +89,30 @@ export async function deleteTrip(id: string): Promise<void> {
 }
 
 export async function addChecklistItem(id: string, label: string): Promise<void> {
+  return db.transaction('rw', db.trips, async () => {
   const trip = await db.trips.get(id);
   if (!trip || !label.trim()) return;
   const item: TripChecklistItem = { id: `c${Date.now()}-${trip.checklist.length}`, label: label.trim(), done: false };
   await updateTrip(id, { checklist: [...trip.checklist, item] });
+  });
 }
 
 export async function toggleChecklistItem(id: string, itemId: string): Promise<void> {
+  return db.transaction('rw', db.trips, async () => {
   const trip = await db.trips.get(id);
   if (!trip) return;
   await updateTrip(id, {
     checklist: trip.checklist.map((item) => (item.id === itemId ? { ...item, done: !item.done } : item)),
   });
+  });
 }
 
 export async function removeChecklistItem(id: string, itemId: string): Promise<void> {
+  return db.transaction('rw', db.trips, async () => {
   const trip = await db.trips.get(id);
   if (!trip) return;
   await updateTrip(id, { checklist: trip.checklist.filter((item) => item.id !== itemId) });
+  });
 }
 
 /** A trip is ready offline when every required pack section is verified present. */

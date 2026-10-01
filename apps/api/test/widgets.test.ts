@@ -59,7 +59,7 @@ function makeStream(overrides: Record<string, unknown> = {}): Stream {
 
 function makeConditions(
   score: { value: number; reasons?: string[]; assessed?: boolean },
-  readings: GaugeReading[] = [],
+  readings: GaugeReading[] = [makeReading({ tempC: 16 })],
   streamId = 'watauga-river',
 ): ConditionSnapshot {
   return ConditionSnapshotSchema.parse({
@@ -267,9 +267,9 @@ describe('widget plan (display model semantics)', () => {
     ];
     const matched = matchStockingEvents(events, stream);
     expect(matched.map((e) => e.id)).toEqual(['b', 'a', 'c']); // newest first; 'd' is not this water
-    expect(buildStockingText(matched)).toBe('Stocked 2026-09-01 — Brown trout');
+    expect(buildStockingText(matched)).toBe('Stocking scheduled 2026-09-01 — Brown trout');
     // B09: a week/month schedule row must never read as a verified stocking day.
-    expect(buildStockingText([matched[1]!])).toBe('Stocked week of 2026-08-20 (scheduled) — Rainbow trout');
+    expect(buildStockingText([matched[1]!])).toBe('Stocking scheduled week of 2026-08-20 — Rainbow trout');
     expect(buildStockingText([makeStockingEvent({ datePrecision: 'month', date: '2026-09-01' })])).toBe(
       'Stocking scheduled September 2026 — Rainbow trout',
     );
@@ -451,8 +451,8 @@ describe('conditions-embed artifact (static HTML)', () => {
     expect(fromArtifact).toEqual(fromPlan);
     // And the shared model itself carries the product semantics we expect:
     expect(fromPlan.waters).toHaveLength(3); // cap 4 → nope dropped, extra-1 fell outside the cap
-    expect(fromPlan.waters[0]!.statusLabel).toBe('Good');
-    expect(fromPlan.waters[0]!.stockingText).toBe('Stocked 2026-09-01 — Brown trout');
+    expect(fromPlan.waters[0]!.statusLabel).toBe('No data'); // fresh flow cannot renew 200-minute temperature
+    expect(fromPlan.waters[0]!.stockingText).toBe('Stocking scheduled 2026-09-01 — Brown trout');
     expect(fromPlan.waters[0]!.openUrl).toBe('https://trout.example.com/conditions/watauga-river');
     expect(fromPlan.waters[2]!.statusLabel).toBe('No data'); // extra-2: unassessed, never zero
   });

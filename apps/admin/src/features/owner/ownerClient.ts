@@ -149,10 +149,14 @@ function ownerHeaders(): Record<string, string> {
 
 async function ownerFetchJson<T extends z.ZodTypeAny>(url: string, schema: T): Promise<z.infer<T>> {
   let res: Response;
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 8_000);
   try {
-    res = await fetch(url, { headers: ownerHeaders() });
+    res = await fetch(url, { headers: ownerHeaders(), cache: 'no-store', signal: controller.signal });
   } catch {
     throw new OwnerApiError(0, 'Could not reach the dashboard API.');
+  } finally {
+    clearTimeout(timeout);
   }
   if (res.status === 401) {
     clearOwnerToken(); // a rejected token is dead — forget it immediately

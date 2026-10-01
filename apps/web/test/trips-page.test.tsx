@@ -137,7 +137,7 @@ describe('Trips page', () => {
   it('lists planned trips before recorded ones, soonest date first, with counts', async () => {
     await createTrip({ title: 'Later float', date: dateOffset(3), waterIds: ['holston-river'] });
     await createTrip({ title: 'Sooner wade', date: dateOffset(1) });
-    const done = await createTrip({ title: 'Finished trip', date: dateOffset(-2) });
+    const done = await createTrip({ title: 'Finished trip', date: dateOffset(-2), waterIds: ['clinch-river'] });
     await completeTrip(done.id);
 
     renderPage();
@@ -218,7 +218,7 @@ describe('Trips page', () => {
       ).resolves.toBe(true),
     );
 
-    const addedRow = screen.getByText('Buy license').closest('li')!;
+    const addedRow = (await screen.findByText('Buy license')).closest('li')!;
     await user.click(within(addedRow).getByRole('button', { name: 'Remove' }));
     await user.click(within(addedRow).getByRole('button', { name: 'Really remove Buy license' }));
     await waitFor(() =>

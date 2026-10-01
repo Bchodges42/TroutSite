@@ -46,6 +46,8 @@ test('select East Fork Stones via search, desktop panel', async ({ page }) => {
   // sidebar — and its own search — stays hidden until a water is open).
   const search = page.locator('.header-search').getByRole('combobox', { name: 'Search rivers' });
   await search.fill('East Fork Stones');
+  // This warm-water river requires the visitor's explicit scope choice.
+  await page.getByRole('button', { name: /search all fish/ }).click();
   await page.getByRole('option', { name: /east fork stones/i }).first().click();
   await expect(page.getByRole('heading', { name: 'East Fork Stones River' }).first()).toBeVisible({ timeout: 15_000 });
   // the inspector shows the water's metrics and every tab
@@ -92,6 +94,6 @@ test('mobile 390x844 sheet', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/?v=atlasqa&river=east-fork-stones-river', { waitUntil: 'domcontentloaded' });
   await waitForMap(page);
-  await expect(page.locator('[role="dialog"]:visible').getByRole('heading', { name: 'East Fork Stones River' })).toBeVisible({ timeout: 15_000 });
+  await expect(page.locator('[role="dialog"]:visible').getByRole('heading', { name: 'East Fork Stones River', level: 2 })).toBeVisible({ timeout: 15_000 });
   await page.screenshot({ path: 'test-results/atlas-selected-mobile.png' });
 });

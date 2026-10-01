@@ -313,6 +313,8 @@ export function buildApp(options: BuildAppOptions = {}): FastifyInstance {
       snapshotsDir: options.webPublicDir,
       contentDir: options.webPublicDir ? join(options.webPublicDir, 'content-pack') : undefined,
       ownerToken: loadEnv().OWNER_DASHBOARD_TOKEN,
+      schedulerProfile: loadEnv().TROUT_SCHEDULER_PROFILE,
+      watchlistsEnabled: Boolean(watches.vapid),
     });
   }
 

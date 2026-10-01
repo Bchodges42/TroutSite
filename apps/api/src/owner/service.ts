@@ -8,6 +8,8 @@ import {
   OWNER_JOB_OUTCOMES,
   OWNER_JOB_NAME_RE,
   OWNER_JOB_SCHEDULE,
+  OWNER_WINDOWS_JOB_SCHEDULE,
+  type SchedulerProfile,
   OWNER_CORRECTION_STATUSES,
   RESEARCH_EVIDENCE_STATES,
   RESEARCH_QUEUE_LIMIT,
@@ -41,11 +43,13 @@ function outcomeOf(status: string): OwnerJobOutcome {
  * mirrors src/cron.ts). Host-local clock on purpose — node-cron schedules in
  * server-local time. Best-effort editorial estimate, not a contract.
  */
-export function nextExpectedRunIso(job: string, fromMs: number | null): string | null {
-  const spec = OWNER_JOB_SCHEDULE[job];
+export function nextExpectedRunIso(job: string, fromMs: number | null, profile: SchedulerProfile = 'cron'): string | null {
+  const spec = profile === 'unknown' ? undefined : (profile === 'windows' ? OWNER_WINDOWS_JOB_SCHEDULE : OWNER_JOB_SCHEDULE)[job];
   if (!spec || fromMs === null || !Number.isFinite(fromMs)) return null;
   const next = new Date(fromMs);
-  if (spec.kind === 'hourly') {
+  if (spec.kind === 'interval') {
+    next.setTime(fromMs + (spec.intervalMinutes ?? 60) * 60_000);
+  } else if (spec.kind === 'hourly') {
     next.setMinutes(spec.minute ?? 0, 0, 0);
     if (next.getTime() <= fromMs) next.setTime(next.getTime() + HOUR_MS);
   } else {
@@ -86,11 +90,12 @@ function newestJsonMtime(dir: string): string | null {
  * names. Detail JSON from jobs_log NEVER leaves the process (it can embed raw
  * upstream error text — ADR 0017 §4).
  */
-export function ownerJobRows(db: Db, now: Date): { jobs: OwnerJobRow[]; omittedJobNames: number } {
+export function ownerJobRows(db: Db, now: Date, profile: SchedulerProfile = 'unknown', watchlistsEnabled = false): { jobs: OwnerJobRow[]; omittedJobNames: number } {
   const latest = latestJobRuns(db); // existing service — same source /healthz uses
 
   interface Aggregate {
     last_attempt: string | null;
+    last_outcome: string | null;
     last_success: string | null;
     runs_24h: number;
   }
@@ -99,9 +104,10 @@ export function ownerJobRows(db: Db, now: Date): { jobs: OwnerJobRow[]; omittedJ
     const row of db
       .prepare(
         `SELECT job,
-                MAX(started_at) AS last_attempt,
-                MAX(CASE WHEN status = 'ok' THEN COALESCE(finished_at, started_at) END) AS last_success,
-                SUM(CASE WHEN started_at >= ? THEN 1 ELSE 0 END) AS runs_24h
+                (SELECT started_at FROM jobs_log attempts WHERE attempts.job = jobs_log.job ORDER BY julianday(started_at) DESC, id DESC LIMIT 1) AS last_attempt,
+                (SELECT status FROM jobs_log attempts WHERE attempts.job = jobs_log.job ORDER BY julianday(started_at) DESC, id DESC LIMIT 1) AS last_outcome,
+                (SELECT COALESCE(finished_at, started_at) FROM jobs_log successes WHERE successes.job = jobs_log.job AND status = 'ok' ORDER BY julianday(COALESCE(finished_at, started_at)) DESC, id DESC LIMIT 1) AS last_success,
+                SUM(CASE WHEN julianday(started_at) >= julianday(?) THEN 1 ELSE 0 END) AS runs_24h
          FROM jobs_log GROUP BY job`,
       )
       .all(new Date(now.getTime() - DAY_MS).toISOString()) as Array<Aggregate & { job: string }>
@@ -112,12 +118,13 @@ export function ownerJobRows(db: Db, now: Date): { jobs: OwnerJobRow[]; omittedJ
   const jobs: OwnerJobRow[] = [];
   let omitted = 0;
   const names = new Set<string>([...Object.keys(OWNER_JOB_SCHEDULE), ...Object.keys(latest)]);
+  if (!watchlistsEnabled && !latest.watchlists) names.delete('watchlists');
   for (const name of names) {
     if (!OWNER_JOB_NAME_RE.test(name)) {
       omitted += 1;
       continue;
     }
-    const expected = OWNER_JOB_SCHEDULE[name] !== undefined;
+    const expected = OWNER_JOB_SCHEDULE[name] !== undefined && (name !== 'watchlists' || watchlistsEnabled);
     const agg = aggregates.get(name);
     const run = latest[name];
     const lastAttemptAt = agg?.last_attempt ?? run?.startedAt ?? null;
@@ -131,9 +138,9 @@ export function ownerJobRows(db: Db, now: Date): { jobs: OwnerJobRow[]; omittedJ
       expected,
       lastAttemptAt,
       lastSuccessAt,
-      lastOutcome: outcomeOf(run?.status ?? ''),
+      lastOutcome: outcomeOf(agg?.last_outcome ?? run?.status ?? ''),
       runsLast24h: agg?.runs_24h ?? 0,
-      nextExpectedRun: expected ? nextExpectedRunIso(name, baseMs) : null,
+      nextExpectedRun: expected ? nextExpectedRunIso(name, baseMs, profile) : null,
       neverRun: expected && run === undefined,
     });
   }
@@ -396,10 +403,12 @@ export function ownerEvidenceSummary(
   if (streams === null) return undefined;
   const byState: Record<string, number> = {};
   const researchWaters: NonNullable<OwnerDashboard['unresolvedEvidence']>['waters'] = [];
+  let researchCount = 0;
   for (const s of streams) {
     const state = s.evidenceState ?? 'unresolved';
     byState[state] = (byState[state] ?? 0) + 1;
     if (RESEARCH_EVIDENCE_STATES.includes(state as (typeof RESEARCH_EVIDENCE_STATES)[number])) {
+      researchCount += 1;
       if (researchWaters.length < RESEARCH_QUEUE_LIMIT) {
         researchWaters.push({
           id: s.id,
@@ -412,7 +421,7 @@ export function ownerEvidenceSummary(
       }
     }
   }
-  return { byState, researchCount: researchWaters.length, waters: researchWaters };
+  return { byState, researchCount, waters: researchWaters };
 }
 
 /** Summary shape for the owner's corrections table (no receipt material at all). */
@@ -451,10 +460,10 @@ export function ownerCorrectionsSummary(
 /** Assemble the full dashboard payload (all sections individually tolerant). */
 export function ownerDashboard(
   db: Db,
-  opts: { snapshotsDir?: string; contentDir?: string; now?: Date } = {},
+  opts: { snapshotsDir?: string; contentDir?: string; now?: Date; schedulerProfile?: SchedulerProfile; watchlistsEnabled?: boolean } = {},
 ): OwnerDashboard {
   const now = opts.now ?? new Date();
-  const { jobs, omittedJobNames } = ownerJobRows(db, now);
+  const { jobs, omittedJobNames } = ownerJobRows(db, now, opts.schedulerProfile, opts.watchlistsEnabled);
   const dashboard: OwnerDashboard = {
     generatedAt: now.toISOString(),
     jobs,

@@ -1,5 +1,5 @@
 import type { ConditionSnapshot, GaugeReading, Stream } from '@trout/contracts';
-import { READING_STALE_MINUTES, readingsAreStale } from '@trout/contracts';
+import { READING_STALE_MINUTES, metricTimestamp } from '@trout/contracts';
 import { opportunityHeadlineText, type WaterDecisionView } from '../features/map/waterDecision';
 import { waterIdentity, waterTypeLabel } from './presentation';
 
@@ -100,14 +100,15 @@ interface MetricSpec {
   key: OverviewMetric['key'];
   label: string;
   unit: string;
+  field: 'cfs' | 'tempC' | 'heightFt' | 'reservoirLevelFt';
   read: (r: GaugeReading) => number | undefined;
 }
 
 const METRIC_SPECS: MetricSpec[] = [
-  { key: 'flow', label: 'Flow', unit: 'cfs', read: (r) => r.cfs },
-  { key: 'temperature', label: 'Water temperature', unit: '°C', read: (r) => r.tempC },
-  { key: 'stage', label: 'Stage', unit: 'ft', read: (r) => r.heightFt },
-  { key: 'reservoir', label: 'Reservoir level', unit: 'ft', read: (r) => r.reservoirLevelFt },
+  { key: 'flow', label: 'Flow', unit: 'cfs', field: 'cfs', read: (r) => r.cfs },
+  { key: 'temperature', label: 'Water temperature', unit: '°C', field: 'tempC', read: (r) => r.tempC },
+  { key: 'stage', label: 'Stage', unit: 'ft', field: 'heightFt', read: (r) => r.heightFt },
+  { key: 'reservoir', label: 'Reservoir level', unit: 'ft', field: 'reservoirLevelFt', read: (r) => r.reservoirLevelFt },
 ];
 
 /**
@@ -121,9 +122,9 @@ function extractMetrics(readings: GaugeReading[], nowMs: number): OverviewMetric
     let newest: { value: number; at: number; gaugeId: string } | null = null;
     for (const r of readings) {
       const value = spec.read(r);
-      if (typeof value !== 'number' || Number.isNaN(value)) continue;
-      const at = Date.parse(r.timestamp);
-      if (!Number.isFinite(at)) continue;
+      if (typeof value !== 'number' || !Number.isFinite(value)) continue;
+      const at = Date.parse(metricTimestamp(r, spec.field));
+      if (!Number.isFinite(at) || at > nowMs + 60_000) continue;
       if (!newest || at > newest.at) newest = { value, at, gaugeId: r.gaugeId };
     }
     if (!newest) continue;
@@ -159,7 +160,7 @@ export function buildWaterOverview(input: WaterOverviewInput): WaterOverview {
   const metrics = extractMetrics(readings, nowMs);
 
   const conditionsState: AvailabilityState =
-    readings.length === 0 ? 'unavailable' : readingsAreStale(readings, nowMs) ? 'stale' : 'live';
+    metrics.length === 0 ? 'unavailable' : metrics.every((metric) => metric.stale) ? 'stale' : 'live';
 
   const notices: OverviewNotice[] = [];
   const stalest = metrics.reduce<number | null>(

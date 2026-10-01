@@ -278,13 +278,13 @@ describe('watch rules CRUD — pseudonymous access', () => {
     const list = await app.inject({ method: 'GET', url: `/v1/watches/rules?subscriptionId=${subId}` });
     expect(list.statusCode).toBe(200);
     expect((list.json() as { rules: unknown[] }).rules).toHaveLength(1);
-    // Another (unknown) subscription id sees an empty list, same 200.
+    // An expired/unknown capability returns no rules and tells the browser to re-enroll.
     const other = await app.inject({
       method: 'GET',
       url: '/v1/watches/rules?subscriptionId=zzzzzzzzzzzzzzzzzzzzzz',
     });
-    expect(other.statusCode).toBe(200);
-    expect((other.json() as { rules: unknown[] }).rules).toHaveLength(0);
+    expect(other.statusCode).toBe(404);
+    expect(other.json()).not.toHaveProperty('rules');
   });
 
   it('strips threshold machinery from stocking/report rules and validates condition completeness', async () => {

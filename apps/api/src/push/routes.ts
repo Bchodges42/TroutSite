@@ -248,10 +248,9 @@ export function registerWatchRoutes(app: FastifyInstance, deps: WatchDeps): void
     if (!subscriptionId) {
       return deny(reply, 422, { error: 'subscriptionId query parameter is required' });
     }
+    if (!getSubscription(deps.db, subscriptionId)) return deny(reply, 404, { error: 'subscription expired' });
     const rows = listWatchRules(deps.db, subscriptionId);
-    // Possession of the id grants access to an EMPTY list just as happily as a
-    // real one — but an unknown id is distinguishable from an empty watchlist
-    // only by content (never by status code timing games we play here: both 200).
+    touchSubscription(deps.db, subscriptionId, new Date(now()));
     return { rules: rows.map(toRuleItem) };
   });
 

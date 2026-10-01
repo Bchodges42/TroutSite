@@ -12,7 +12,7 @@ import { flowTrend } from '../lib/conditions';
 import { buildWaterOverview } from '../lib/waterOverview';
 import { useSettingsContext } from '../lib/settings';
 import { currentMonth } from '../lib/time';
-import { SPECIES_LABELS } from '../lib/fishability';
+import { SPECIES_LABELS, useFishabilityIndex } from '../lib/fishability';
 import { statusForScore, type ConditionStatus } from '../features/map/riverMapSelectors';
 import { toWaterDecisionView } from '../features/map/waterDecision';
 import { RiverSearch } from '../features/map/RiverSearch';
@@ -99,6 +99,11 @@ export function ComparePage() {
   const streams = useMemo(() => (streamsQ.data?.data ?? []) as Stream[], [streamsQ.data]);
   const conditionsQ = useSnapshotQuery(snapshotUrls.conditionsLatest, ConditionsSchema, 60);
   const stockingQ = useSnapshotQuery(snapshotUrls.stocking('TN'), StockingSchema, 60 * 24);
+  const speciesContext = parsed.species ?? (settings.speciesFocus || null);
+  const focus = speciesContext && speciesContext in SPECIES_LABELS ? speciesContext as SpeciesKey : null;
+  const mode = parsed.species === 'trout' ? 'trout' : focus ? 'all' : settings.speciesMode;
+  const selectedStreams = useMemo(() => streams.filter((stream) => parsed.waterIds.includes(stream.id)), [streams, parsed.waterIds]);
+  const fishabilityQ = useFishabilityIndex(selectedStreams, focus, mode === 'all');
 
   const conditionsById = useMemo(() => {
     const m = new Map<string, ConditionSnapshot>();
@@ -132,16 +137,20 @@ export function ComparePage() {
         const snap = conditionsById.get(id) ?? null;
         const score = snap?.score?.value ?? null;
         const status: ConditionStatus = statusForScore(score, !!snap, snap?.score?.assessed);
+        const comfort = focus ? fishabilityQ.data?.[id]?.bySpecies[focus]?.comfort : undefined;
+        const fishability = focus && comfort ? { species: focus, comfort } : null;
         const decision = toWaterDecisionView(
           { stream, status, score, snapshot: snap ?? undefined, species: stream.species },
-          settings.speciesMode,
+          mode,
           month,
+          fishability,
         );
         const lastEvent = stockingByStream.get(id)?.[0];
         const overview = buildWaterOverview({
           stream,
           decision,
           conditions: snap,
+          offlineSaved: snap != null && !conditionsQ.data?.live,
           nowMs,
           lastStockingEvent: lastEvent
             ? { date: lastEvent.date, precision: lastEvent.datePrecision, species: lastEvent.species }
@@ -152,16 +161,16 @@ export function ComparePage() {
           flowTrend: snap ? flowTrend(snap.readings) : 'unknown',
           status,
           species: stream.species,
+          fishability,
         };
         built = buildCompareColumn(id, input, { tempUnit: settings.tempUnit, nowMs });
       }
       return { waterId: id, name: built.cells.identity.text, cells: built.cells };
     });
-  }, [parsed.waterIds, streams, conditionsById, stockingByStream, settings.tempUnit, settings.speciesMode, month, nowMs]);
+  }, [parsed.waterIds, streams, conditionsById, stockingByStream, settings.tempUnit, mode, focus, fishabilityQ.data, conditionsQ.data?.live, month, nowMs]);
 
   // One species context for ALL columns: the shareable ?species= param, else
   // the site's persisted focus (read-only — the page never rewrites settings).
-  const speciesContext = parsed.species ?? (settings.speciesFocus || null);
   const speciesLabel = speciesContext
     ? speciesContext in SPECIES_LABELS
       ? SPECIES_LABELS[speciesContext as SpeciesKey]
@@ -305,7 +314,10 @@ export function ComparePage() {
         </div>
       )}
 
-      {!streamsQ.isLoading && !streamsQ.isError && columns.length > 0 && board}
+      {!streamsQ.isLoading && !streamsQ.isError && columns.length > 0 && <>
+        {board}
+        <Link className="secondary-action focus-ring mt-4 inline-flex" to={`/trips?waters=${parsed.waterIds.map(encodeURIComponent).join(',')}&title=Compared%20waters`}>Prepare a trip with these waters</Link>
+      </>}
 
       {conditionsQ.isLoading && columns.length > 0 && !streamsQ.isError && (
         <p className="page-subtitle mt-4" role="status">

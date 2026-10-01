@@ -1,6 +1,7 @@
-import { db, type LogbookEntry } from './db';
+import Dexie from 'dexie';
+import { db, type LogbookEntry, type PhotoRecord } from './db';
 import { attachPhotoToEntry, deletePhoto, deletePhotosForEntry } from './photos';
-import type { ConditionSnapshot } from '@trout/contracts';
+import { metricTimestamp, type ConditionSnapshot } from '@trout/contracts';
 
 /**
  * Logbook store (scope 7): entries live ONLY in the visitor's IndexedDB.
@@ -48,19 +49,21 @@ export interface EntryDraft {
   conditions?: ConditionsCapture;
 }
 
-/** Newest reading's own timestamp (else the fetch time) — when the site last observed. */
+/** Newest measured clock. Unknown age stays unknown, never replaced by fetch/save time. */
 export function conditionsCaptureFrom(snapshot: ConditionSnapshot): ConditionsCapture {
   let observedAt = Number.NaN;
   for (const r of snapshot.readings ?? []) {
-    const ts = Date.parse(r.timestamp);
-    if (Number.isFinite(ts) && (!Number.isFinite(observedAt) || ts > observedAt)) observedAt = ts;
+    for (const metric of ['cfs', 'tempC', 'heightFt', 'reservoirLevelFt'] as const) {
+      if (typeof r[metric] !== 'number' || !Number.isFinite(r[metric])) continue;
+      const ts = Date.parse(metricTimestamp(r, metric));
+      if (Number.isFinite(ts) && (!Number.isFinite(observedAt) || ts > observedAt)) observedAt = ts;
+    }
   }
-  if (!Number.isFinite(observedAt)) observedAt = Date.parse(snapshot.fetchedAt);
-  if (!Number.isFinite(observedAt)) observedAt = Date.now();
   return { snapshot, observedAt };
 }
 
 export async function addEntry(input: EntryDraft): Promise<number> {
+  return db.transaction('rw', db.logbook, db.photos, async () => {
   const now = Date.now();
   const row = compactSanitized(sanitizeDraft(input));
   const id = await db.logbook.add({
@@ -74,6 +77,7 @@ export async function addEntry(input: EntryDraft): Promise<number> {
   });
   await attachPhotos(id, input.photoIds);
   return id;
+  });
 }
 
 /**
@@ -83,6 +87,7 @@ export async function addEntry(input: EntryDraft): Promise<number> {
  * entry has none; a later refresh never rewrites what the site showed.
  */
 export async function updateEntry(id: number, draft: EntryDraft, capture?: ConditionsCapture): Promise<void> {
+  return db.transaction('rw', db.logbook, db.photos, async () => {
   const existing = await db.logbook.get(id);
   if (!existing) throw new Error(`No logbook entry ${id}`);
   const sanitized = sanitizeDraft(draft);
@@ -102,10 +107,17 @@ export async function updateEntry(id: number, draft: EntryDraft, capture?: Condi
     next.conditionsObservedAt = existing.conditionsObservedAt;
   } else if (capture) {
     next.conditionsSnapshot = capture.snapshot;
-    next.conditionsObservedAt = capture.observedAt;
+    if (Number.isFinite(capture.observedAt)) next.conditionsObservedAt = capture.observedAt;
   }
   await db.logbook.put(next as unknown as LogbookEntry);
   await attachPhotos(id, draft.photoIds);
+  for (const photoId of existing.photoIds ?? []) {
+    if (!draft.photoIds?.includes(photoId)) {
+      const photo = await db.photos.get(photoId);
+      if (photo?.logEntryId === id) await db.photos.delete(photoId);
+    }
+  }
+  });
 }
 
 export function deleteEntry(id: number): Promise<void> {
@@ -114,17 +126,22 @@ export function deleteEntry(id: number): Promise<void> {
 
 /** Removing an entry removes its photo blobs too — nothing orphans in the photos store. */
 export async function deleteEntryAndPhotos(id: number): Promise<void> {
+  return db.transaction('rw', db.logbook, db.photos, async () => {
   await deletePhotosForEntry(id);
   await db.logbook.delete(id);
+  });
 }
 
 /** Delete the photo record and prune the id from the entry's list. */
 export async function removePhotoFromEntry(entryId: number, photoId: string): Promise<void> {
+  return db.transaction('rw', db.logbook, db.photos, async () => {
   const entry = await db.logbook.get(entryId);
   if (entry?.photoIds?.includes(photoId)) {
     await db.logbook.put({ ...entry, photoIds: entry.photoIds.filter((p) => p !== photoId), updatedAt: Date.now() });
   }
-  await deletePhoto(photoId);
+  const photo = await db.photos.get(photoId);
+  if (photo?.logEntryId === entryId) await deletePhoto(photoId);
+  });
 }
 
 /**
@@ -245,6 +262,7 @@ export interface LogbookSummary {
 }
 
 export function summarizeEntries(entries: LogbookEntry[]): LogbookSummary {
+  entries = entries.filter((entry) => entry.entryKind !== 'personal-observation');
   const tally = new Map<string, { species: string; count: number }>();
   let blankTrips = 0;
   let effortEntries = 0;
@@ -333,7 +351,8 @@ export interface LogbookFullBackup {
 
 /** Explicitly labeled full backup — the only export that carries photos. */
 export async function buildFullBackup(): Promise<LogbookFullBackup> {
-  const [entries, photos] = await Promise.all([db.logbook.toArray(), db.photos.toArray()]);
+  const [entries, photos] = await db.transaction('r', db.logbook, db.photos,
+    () => Promise.all([db.logbook.toArray(), db.photos.toArray()]));
   return {
     format: FULL_BACKUP_FORMAT,
     version: 2,
@@ -359,19 +378,19 @@ export async function buildFullBackup(): Promise<LogbookFullBackup> {
  *  and never duplicates a trip that is already in the book (same water/date/notes/createdAt). */
 export async function importFromExport(raw: unknown): Promise<number> {
   const payload = raw as { format?: string; version?: number; entries?: unknown; photos?: unknown };
-  if (payload?.format === FULL_BACKUP_FORMAT) return importFullBackup(payload);
-  if (payload?.format !== EXPORT_FORMAT || !Array.isArray(payload.entries)) {
+  if ((payload?.format !== EXPORT_FORMAT && payload?.format !== FULL_BACKUP_FORMAT) || !Array.isArray(payload.entries)) {
     throw new Error('Not a trout logbook export');
   }
   if (payload.version !== undefined && payload.version !== 1 && payload.version !== 2) {
     throw new Error(`Unsupported logbook export version: ${String(payload.version)}`);
   }
+  if (payload.format === FULL_BACKUP_FORMAT) return importFullBackup(payload);
   const now = Date.now();
   const rows: LogbookEntry[] = [];
   for (const e of payload.entries) {
-    const entry = e as Partial<LogbookEntry>;
+    const entry = (e ?? {}) as Partial<LogbookEntry>;
     if (typeof entry.streamName !== 'string' || entry.streamName.trim() === '') continue;
-    if (typeof entry.date !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(entry.date)) continue;
+    if (!validEntryDate(entry.date)) continue;
     const sanitized = compactSanitized(
       sanitizeDraft({
         streamId: typeof entry.streamId === 'string' ? entry.streamId : undefined,
@@ -386,7 +405,9 @@ export async function importFromExport(raw: unknown): Promise<number> {
         caughtCount: entry.caughtCount,
         releasedCount: entry.releasedCount,
         blankTrip: entry.blankTrip,
-        photoIds: entry.photoIds,
+        // Entries-only backups contain no blobs and cannot authorize linking
+        // to another entry's existing photo ID on the destination device.
+        photoIds: undefined,
         entryKind: entry.entryKind,
         conditions:
           entry.conditionsSnapshot !== undefined && entry.conditionsSnapshot !== null && typeof entry.conditionsObservedAt === 'number'
@@ -400,6 +421,7 @@ export async function importFromExport(raw: unknown): Promise<number> {
       ...sanitized,
       streamName: entry.streamName,
       date: entry.date,
+      tripId: typeof entry.tripId === 'string' ? entry.tripId : undefined,
       createdAt: typeof entry.createdAt === 'number' ? entry.createdAt : now,
       updatedAt: now,
     });
@@ -408,21 +430,22 @@ export async function importFromExport(raw: unknown): Promise<number> {
 }
 
 async function importFullBackup(payload: { photos?: unknown; entries?: unknown }): Promise<number> {
-  const rows: LogbookEntry[] = [];
+  const rows: Array<{ originalId?: number; row: LogbookEntry }> = [];
   for (const e of Array.isArray(payload.entries) ? payload.entries : []) {
-    const entry = e as Partial<LogbookEntry>;
+    const entry = (e ?? {}) as Partial<LogbookEntry>;
     if (typeof entry.streamName !== 'string' || entry.streamName.trim() === '') continue;
-    if (typeof entry.date !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(entry.date)) continue;
-    rows.push({
+    if (!validEntryDate(entry.date)) continue;
+    rows.push({ originalId: entry.id, row: {
+      tripId: typeof entry.tripId === 'string' ? entry.tripId : undefined,
       streamId: typeof entry.streamId === 'string' ? entry.streamId : undefined,
       streamName: entry.streamName,
       date: entry.date,
       notes: typeof entry.notes === 'string' ? entry.notes : '',
       flies: Array.isArray(entry.flies) ? entry.flies.filter((f): f is string => typeof f === 'string') : [],
-      createdAt: typeof entry.createdAt === 'number' ? entry.createdAt : Date.now(),
+      createdAt: typeof entry.createdAt === 'number' && Number.isFinite(entry.createdAt) ? entry.createdAt : Date.now(),
       updatedAt: Date.now(),
       // Full backups may carry v2 fields + their photos; keep the snapshot only with its observedAt.
-      ...(entry.conditionsSnapshot !== undefined && typeof entry.conditionsObservedAt === 'number'
+      ...(entry.conditionsSnapshot !== undefined && typeof entry.conditionsObservedAt === 'number' && Number.isFinite(entry.conditionsObservedAt)
         ? { conditionsSnapshot: entry.conditionsSnapshot, conditionsObservedAt: entry.conditionsObservedAt }
         : {}),
       ...(typeof entry.time === 'string' ? { time: sanitizeTime(entry.time) } : {}),
@@ -433,34 +456,79 @@ async function importFullBackup(payload: { photos?: unknown; entries?: unknown }
       ...(typeof entry.releasedCount === 'number' ? { releasedCount: optInt(entry.releasedCount, 0, 100_000) } : {}),
       ...(typeof entry.blankTrip === 'boolean' ? { blankTrip: entry.blankTrip } : {}),
       ...(Array.isArray(entry.photoIds) ? { photoIds: entry.photoIds.filter((p): p is string => typeof p === 'string') } : {}),
-      ...(entry.entryKind === 'personal-observation' ? { entryKind: 'personal-observation' as const } : {}),
-    });
+      ...(entry.entryKind === 'personal-observation' || entry.entryKind === 'trip-log' ? { entryKind: entry.entryKind } : {}),
+    } });
   }
-  const photos = Array.isArray(payload.photos) ? payload.photos : [];
-  for (const p of photos) {
-    const photo = p as Partial<FullBackupPhoto>;
-    if (typeof photo.id !== 'string' || typeof photo.data !== 'string' || typeof photo.mime !== 'string') continue;
+  const photos = new Map<string, { record: PhotoRecord; data: string }>();
+  for (const p of Array.isArray(payload.photos) ? payload.photos : []) {
+    const photo = (p ?? {}) as Partial<FullBackupPhoto>;
+    if (typeof photo.id !== 'string' || typeof photo.data !== 'string' ||
+      !['image/jpeg', 'image/png', 'image/webp'].includes(photo.mime ?? '')) continue;
     try {
-      const blob = base64ToBlob(photo.data, photo.mime);
-      await db.photos.put({
+      const blob = base64ToBlob(photo.data, photo.mime!);
+      photos.set(photo.id, { data: btoa(atob(photo.data)), record: {
         id: photo.id,
         logEntryId: typeof photo.logEntryId === 'number' ? photo.logEntryId : undefined,
         blob,
-        mime: photo.mime,
+        mime: photo.mime!,
         bytes: blob.size,
         width: typeof photo.width === 'number' ? photo.width : undefined,
         height: typeof photo.height === 'number' ? photo.height : undefined,
         createdAt: typeof photo.createdAt === 'number' ? photo.createdAt : Date.now(),
-      });
+      } });
     } catch {
       // A corrupt photo must not block restoring the entries around it.
     }
   }
-  return bulkAddDeduped(rows);
+  // Restore the relationships using the destination's IDs, atomically. A
+  // backup's photo ID is a hint, never permission to replace another photo.
+  return db.transaction('rw', db.logbook, db.photos, async () => {
+    const existing = new Map((await db.logbook.toArray()).map((row) => [rowKey(row), row]));
+    let added = 0;
+    for (const { originalId, row } of rows) {
+      const key = rowKey(row);
+      let target = existing.get(key);
+      if (!target) {
+        const id = await db.logbook.add({ ...row, photoIds: [] });
+        target = { ...row, id, photoIds: [] };
+        existing.set(key, target);
+        added += 1;
+      }
+      const ids = new Set(target.photoIds ?? []);
+      for (const oldId of row.photoIds ?? []) {
+        const imported = photos.get(oldId);
+        if (!imported || (imported.record.logEntryId !== undefined && imported.record.logEntryId !== originalId)) continue;
+        let candidate = oldId;
+        let suffix = 0;
+        for (;;) {
+          const previous = await db.photos.get(candidate);
+          if (!previous) {
+            await db.photos.add({ ...imported.record, id: candidate, logEntryId: target.id });
+            break;
+          }
+          if (previous.logEntryId === target.id && previous.mime === imported.record.mime &&
+            await Dexie.waitFor(blobToBase64(previous.blob)) === imported.data) break;
+          candidate = `${oldId}:restore:${target.id}:${suffix++}`;
+        }
+        ids.add(candidate);
+      }
+      target = { ...target, photoIds: [...ids] };
+      await db.logbook.put(target);
+      existing.set(key, target);
+    }
+    return added;
+  });
+}
+
+function validEntryDate(value: unknown): value is string {
+  if (typeof value !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
+  const date = new Date(`${value}T12:00:00Z`);
+  return Number.isFinite(date.getTime()) && date.toISOString().slice(0, 10) === value;
 }
 
 /** Same water + date + notes + original createdAt ⇒ the same trip; skip instead of duplicating. */
 async function bulkAddDeduped(rows: LogbookEntry[]): Promise<number> {
+  return db.transaction('rw', db.logbook, async () => {
   const existing = new Set((await db.logbook.toArray()).map(rowKey));
   const fresh = rows.filter((row) => {
     const key = rowKey(row);
@@ -470,10 +538,11 @@ async function bulkAddDeduped(rows: LogbookEntry[]): Promise<number> {
   });
   if (fresh.length > 0) await db.logbook.bulkAdd(fresh);
   return fresh.length;
+  });
 }
 
 function rowKey(row: LogbookEntry): string {
-  return `${row.streamId ?? ''}|${row.streamName}|${row.date}|${row.notes}|${row.createdAt ?? ''}`;
+  return JSON.stringify([row.streamId ?? '', row.streamName, row.date, row.notes, row.createdAt ?? '']);
 }
 
 /** Download helper kept out of components so tests only exercise pure data. */

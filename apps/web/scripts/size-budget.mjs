@@ -51,9 +51,10 @@ export function parsePrecacheManifest(swSource) {
   // object literal (unquoted keys), possibly with a trailing options object. The
   // array is extracted by bracket balance (no `])` terminator to anchor on), and
   // only the url members are pulled out: they are all the budget needs.
-  const arraySrc = extractArrayArg(swSource, 'precacheAndRoute(');
+  const marker = swSource.match(/__TROUT_PRECACHE_MANIFEST\s*=/)?.[0];
+  const arraySrc = extractArrayArg(swSource, marker ?? 'precacheAndRoute(');
   if (arraySrc === null) return [];
-  const urls = [...arraySrc.matchAll(/url\s*:\s*"((?:[^"\\]|\\.)*)"/g)].map((m) => m[1]);
+  const urls = [...arraySrc.matchAll(/(?:"url"|\burl)\s*:\s*"((?:[^"\\]|\\.)*)"/g)].map((m) => JSON.parse(`"${m[1]}"`));
   if (urls.length === 0) {
     throw new Error('could not parse precacheAndRoute manifest from sw.js');
   }

@@ -96,7 +96,8 @@ describe('T2-37/38 — mobile-first water detail and dense browse rows', () => {
     const disclosure = await waitFor(
         () => {
           const el = document.querySelector('details.gauge-disclosure');
-          expect(el?.querySelector('table')).not.toBeNull();
+          expect(el).not.toBeNull();
+          expect(el!.querySelector('table')).not.toBeNull();
           return el!;
         },
         { timeout: 12_000 },

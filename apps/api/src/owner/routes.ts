@@ -90,6 +90,8 @@ export function registerOwnerRoutes(app: FastifyInstance, deps: OwnerDeps): void
     return ownerDashboard(deps.db, {
       snapshotsDir: deps.snapshotsDir,
       contentDir: deps.contentDir,
+      schedulerProfile: deps.schedulerProfile,
+      watchlistsEnabled: deps.watchlistsEnabled,
       now: new Date(now()),
     });
   });

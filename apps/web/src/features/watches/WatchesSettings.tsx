@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Button, Card, Chip } from '@trout/ui';
 import {
   WATCH_PRIVACY_LINE,
@@ -33,23 +34,25 @@ function relativeDay(iso: string): string {
 }
 
 export function WatchesSettings() {
-  const { mode, serverRules, localRules, refresh } = useWatches();
+  const { mode, serverRules, localRules, subscriptionId, refresh } = useWatches();
+  const [error, setError] = useState('');
 
   async function onUnsubscribeAll(): Promise<void> {
     try {
       await unsubscribeAll();
+    } catch {
+      setError('Could not unsubscribe. Your subscription has not been forgotten; reconnect and try again.');
     } finally {
-      // Even on transport failure the local secret is cleared — the honest
-      // next render is "no watches", and a dead subscription id must not linger.
       refresh();
     }
   }
 
   const loading = mode === 'checking';
-  const unavailable = serverRules === undefined && !loading;
+  const unavailable = mode === 'unavailable';
 
   return (
     <Card>
+      {error && <p role="alert">{error}</p>}
       <p className="text-sm">
         A watch pings you when a water&apos;s conditions cross your line — one pseudonymous
         subscription, no account. {WATCH_PRIVACY_LINE}
@@ -82,7 +85,7 @@ export function WatchesSettings() {
               className="flex flex-wrap items-center gap-2 border-t py-2 first:border-0 first:pt-0"
               style={{ borderColor: 'var(--trout-color-border)' }}
             >
-              <strong className="text-sm">{rule.waterId}</strong>
+              <a className="text-sm font-bold focus-ring" href={`/conditions/${encodeURIComponent(rule.waterId)}`}>{rule.waterId}</a>
               <Chip>{ruleSummary(rule)}</Chip>
               <span className="muted text-xs">
                 added {relativeDay(rule.createdAt)}
@@ -94,7 +97,7 @@ export function WatchesSettings() {
                   size="sm"
                   data-testid={`watch-delete-${rule.id}`}
                   aria-label={`Stop watching ${rule.waterId}`}
-                  onClick={() => void deleteServerRule(rule.id).then(refresh).catch(refresh)}
+                  onClick={() => void deleteServerRule(rule.id).then(refresh).catch(() => setError('Could not remove this rule. Reconnect and try again.'))}
                 >
                   Remove
                 </Button>
@@ -107,7 +110,7 @@ export function WatchesSettings() {
       {!loading && localRules.length > 0 && (
         <>
           <p className="mt-4 text-sm font-bold">On this device only</p>
-          <p className="muted text-xs">Reminders only work while the site is open — this browser has no push.</p>
+          <p className="muted text-xs">Open a water to check current readings. This device watchlist sends no automatic notifications.</p>
           <ul className="mt-2 flex flex-col" aria-label="Device-only watches" data-testid="watches-local-list">
             {localRules.map((rule) => (
               <li
@@ -115,7 +118,7 @@ export function WatchesSettings() {
                 className="flex flex-wrap items-center gap-2 border-t py-2 first:border-0 first:pt-0"
                 style={{ borderColor: 'var(--trout-color-border)' }}
               >
-                <strong className="text-sm">{rule.waterId}</strong>
+                <a className="text-sm font-bold focus-ring" href={`/conditions/${encodeURIComponent(rule.waterId)}`}>{rule.waterId}</a>
                 <span className="muted text-xs">{relativeDay(rule.createdAt)}</span>
                 <span className="ml-auto">
                   <Button
@@ -123,8 +126,8 @@ export function WatchesSettings() {
                     size="sm"
                     aria-label={`Remove the device-only watch for ${rule.waterId}`}
                     onClick={() => {
-                      removeLocalRule(rule.waterId);
-                      refresh();
+                      try { removeLocalRule(rule.waterId); refresh(); }
+                      catch { setError('Device storage is unavailable. This watch could not be removed.'); }
                     }}
                   >
                     Remove
@@ -136,7 +139,7 @@ export function WatchesSettings() {
         </>
       )}
 
-      {!loading && (serverRules ?? []).length > 0 && (
+      {!loading && subscriptionId && (
         <div className="mt-4">
           <Button variant="secondary" data-testid="watches-unsubscribe" onClick={() => void onUnsubscribeAll()}>
             Unsubscribe from all watches

@@ -137,6 +137,8 @@ async function reviewFetch(url: string, init: RequestInit = {}): Promise<Respons
   let res: Response;
   try {
     res = await fetch(url, {
+      cache: 'no-store',
+      signal: AbortSignal.timeout(8_000),
       ...init,
       headers: {
         accept: 'application/json',
@@ -179,6 +181,33 @@ function parseItem(raw: Record<string, unknown>): ModeratorReviewItem {
     ...(typeof raw.reviewerNote === 'string' ? { reviewerNote: raw.reviewerNote } : {}),
     ...(typeof raw.terminalAt === 'string' ? { terminalAt: raw.terminalAt } : {}),
   };
+}
+
+/** Editorial handoff, explicitly separate from publishing visitor claims. */
+export function buildCorrectionHandoff(item: ModeratorReviewItem): string {
+  if (item.status !== 'accepted') throw new Error('Accept after checking the evidence before exporting a handoff.');
+  return JSON.stringify({
+    format: 'trout-correction-review-handoff', version: 1,
+    correction: {
+      id: item.id, waterId: item.waterId, waterName: item.waterName, category: item.category,
+      field: item.field, currentValue: item.currentValue, proposedCorrection: item.proposedCorrection,
+      sourceUrl: item.sourceUrl, sourcePubDate: item.sourcePubDate, riskFlags: item.riskFlags,
+      reviewerNote: item.reviewerNote,
+    },
+    steps: [
+      'Verify the cited source and archive the evidence; visitor text remains a proposal.',
+      'Author the cited change in the applicable water/access/regulation YAML; preserve uncertainty and source dates.',
+      'Run pnpm validate:content and the applicable geography/contracts tests; include the correction ID and citation in a reviewed content PR.',
+      'After the owner merges and publication is verified, resolve the receipt with a public note linking the PR/change and corrected water page.',
+    ],
+  }, null, 2);
+}
+
+export function downloadCorrectionHandoff(item: ModeratorReviewItem): void {
+  const url = URL.createObjectURL(new Blob([buildCorrectionHandoff(item)], { type: 'application/json' }));
+  const anchor = document.createElement('a');
+  anchor.href = url; anchor.download = `trout-correction-${item.id}-review-handoff.json`; anchor.click();
+  setTimeout(() => URL.revokeObjectURL(url), 0);
 }
 
 /** GET /v1/corrections/review?status=&category=&waterId=&risk= — bounded, newest first. */

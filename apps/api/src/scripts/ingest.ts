@@ -1,5 +1,5 @@
 // ingest CLI (Role 3):
-//   pnpm --filter api ingest --job=gauges|stocking|evidence|pressure|snapshots|all [--states=TN,OK] [--dry-run]
+//   pnpm --filter api ingest --job=gauges|stocking|evidence|pressure|snapshots|watchlists|all [--states=TN,OK] [--dry-run]
 // --dry-run parses every recorded fixture, validates against the frozen contracts, and
 // performs NO writes and NO network. Live runs are soft-fail: adapter failures land in
 // jobs_log and the process exits 0; only crashes/fixture failures exit non-zero.
@@ -24,7 +24,7 @@ const { values } = parseArgs({
 
 const jobRaw = values.job;
 if (!['gauges', 'stocking', 'evidence', 'pressure', 'snapshots', 'watchlists', 'all'].includes(jobRaw)) {
-  console.error(`[ingest] unknown --job=${jobRaw} (use gauges|stocking|evidence|pressure|snapshots|all)`);
+  console.error(`[ingest] unknown --job=${jobRaw} (use gauges|stocking|evidence|pressure|snapshots|watchlists|all)`);
   process.exit(2);
 }
 const states = values.states ? values.states.split(',').map((s) => s.trim().toUpperCase()) : [];

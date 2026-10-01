@@ -24,7 +24,8 @@ import type { Db } from '../db.js';
 export interface OwnerJobScheduleSpec {
   /** The cron expression in src/cron.ts (documentation, not re-parsed). */
   cron: string;
-  kind: 'hourly' | 'daily';
+  kind: 'hourly' | 'daily' | 'interval';
+  intervalMinutes?: number;
   /** hourly: the minute of the hour the job fires at. */
   minute?: number;
   /** daily: local hour + minute the job fires at. */
@@ -37,7 +38,19 @@ export const OWNER_JOB_SCHEDULE: Record<string, OwnerJobScheduleSpec> = {
   stocking: { cron: '0 6 * * *', kind: 'daily', hour: 6, minute: 0 },
   evidence: { cron: '20 6 * * *', kind: 'daily', hour: 6, minute: 20 },
   snapshots: { cron: '30 4 * * *', kind: 'daily', hour: 4, minute: 30 },
+  watchlists: { cron: '*/15 * * * *', kind: 'interval', intervalMinutes: 15 },
 };
+
+/** Windows hourly tasks anchor at installation time, not at cron's :05/:35. */
+export const OWNER_WINDOWS_JOB_SCHEDULE: Record<string, OwnerJobScheduleSpec> = {
+  gauges: { cron: 'schtasks hourly', kind: 'interval', intervalMinutes: 60 },
+  pressure: { cron: 'schtasks hourly', kind: 'interval', intervalMinutes: 60 },
+  snapshots: { cron: 'schtasks hourly', kind: 'interval', intervalMinutes: 60 },
+  stocking: { cron: 'schtasks daily 06:00', kind: 'daily', hour: 6 },
+  evidence: { cron: 'schtasks daily 06:00', kind: 'daily', hour: 6 },
+  watchlists: { cron: 'schtasks every 15 min', kind: 'interval', intervalMinutes: 15 },
+};
+export type SchedulerProfile = 'windows' | 'cron' | 'unknown';
 
 /**
  * Enumerated job outcomes (sanitization floor, ADR 0017 §4): jobs_log.status
@@ -166,6 +179,8 @@ export interface OwnerDeps {
    * for the portal write routes). Must never equal any other credential.
    */
   ownerToken?: string;
+  schedulerProfile?: SchedulerProfile;
+  watchlistsEnabled?: boolean;
   /** Test seam for the rate limiter. */
   limits?: Partial<OwnerRateLimits>;
   /** Test seam: injectable clock for the rate limiter + derived timestamps. */

@@ -58,6 +58,11 @@ function snapshot(overrides: Partial<ConditionSnapshot> = {}): ConditionSnapshot
 }
 
 describe('logbook v2 — full editing', () => {
+  it('keeps personal observations out of trip and effort totals', () => {
+    const entry = { streamName: 'A', date: '2026-09-29', notes: '', flies: [], createdAt: 1, updatedAt: 1 };
+    expect(summarizeEntries([{ ...entry, entryKind: 'personal-observation', caughtCount: 4, durationMinutes: 60 }, entry]))
+      .toMatchObject({ totalTrips: 1, caughtTotal: 0, effortHours: 0 });
+  });
   it('round-trips an edit: fields change, createdAt survives, updatedAt moves', async () => {
     const id = await addEntry({ streamName: 'South Holston River', date: '2026-09-01', notes: 'First pass.' });
     const [before] = await listEntries();
@@ -239,7 +244,7 @@ describe('logbook v2 — export/import (ADR 0012 decision 6)', () => {
     expect(entry.blankTrip).toBe(true);
     expect(entry.species).toEqual(['Rainbow trout']);
     expect(entry.entryKind).toBe('personal-observation');
-    expect(entry.photoIds).toEqual(['p1']);
+    expect(entry.photoIds).toBeUndefined(); // entries-only import carries no photo blobs
     expect(entry.conditionsSnapshot).toEqual({ whatever: 'the site showed' });
     expect(entry.conditionsObservedAt).toBe(1_700_000_000);
     // 'Shady' kept its identity but every malformed v2 field was dropped.
@@ -255,7 +260,7 @@ describe('logbook v2 — export/import (ADR 0012 decision 6)', () => {
 
   it('carries photo blobs only in a full backup and restores them', async () => {
     const photoId = await addPhoto(new Blob([new Uint8Array(512)], { type: 'image/jpeg' }), { compress: fakeCompress });
-    const entryId = await addEntry({ streamName: 'Elk River', date: '2026-09-15', photoIds: [photoId] });
+    const originalId = await addEntry({ streamName: 'Elk River', date: '2026-09-15', photoIds: [photoId] });
 
     const entriesExport = await buildExport();
     expect(entriesExport).not.toHaveProperty('photos');
@@ -273,7 +278,43 @@ describe('logbook v2 — export/import (ADR 0012 decision 6)', () => {
     expect(entry.photoIds).toEqual([photoId]);
     const photo = await getPhoto(photoId);
     expect(photo?.bytes).toBe(512);
-    expect(await listPhotosForEntry(entryId)).toHaveLength(1);
+    expect(entry.id).not.toBe(originalId);
+    expect(await listPhotosForEntry(entry.id!)).toHaveLength(1);
+    expect(await listPhotosForEntry(originalId)).toHaveLength(0);
+    expect(await importFromExport(backup)).toBe(0);
+    expect(await db.photos.count()).toBe(1);
+  });
+
+  it('preserves an existing photo when a backup has the same photo ID', async () => {
+    const id = await addPhoto(new Blob(['original'], { type: 'image/jpeg' }), { compress: fakeCompress });
+    const original = await addEntry({ streamName: 'Original', date: '2026-09-01', photoIds: [id] });
+    const backup = { format: 'trout-logbook-full-backup', version: 2,
+      entries: [{ id: 999, streamName: 'Restored', date: '2026-09-02', createdAt: 123, photoIds: [id] }],
+      photos: [{ id, logEntryId: 999, mime: 'image/jpeg', data: btoa('restored'), createdAt: 123 }] };
+    expect(await importFromExport(backup)).toBe(1);
+    const restored = (await listEntries()).find((entry) => entry.streamName === 'Restored')!;
+    expect(restored.photoIds).not.toContain(id);
+    expect((await getPhoto(id))?.logEntryId).toBe(original);
+    expect((await getPhoto(id))?.bytes).toBe(8);
+    expect(await listPhotosForEntry(restored.id!)).toHaveLength(1);
+    expect(await importFromExport(backup)).toBe(0);
+    expect(await db.photos.count()).toBe(2);
+  });
+
+  it('rejects future full-backup versions and invalid calendar dates', async () => {
+    await expect(importFromExport({ format: 'trout-logbook-full-backup', version: 99, entries: [] })).rejects.toThrow('Unsupported');
+    expect(await importFromExport({ format: 'trout-logbook', version: 2, entries: [null, { streamName: 'Invalid', date: '2026-02-30' }] })).toBe(0);
+  });
+
+  it('rolls back entries and photos together on a storage failure', async () => {
+    const backup = { format: 'trout-logbook-full-backup', version: 2,
+      entries: [{ id: 1, streamName: 'Restored', date: '2026-09-02', photoIds: ['p'] }],
+      photos: [{ id: 'p', logEntryId: 1, mime: 'image/jpeg', data: btoa('restored') }] };
+    const failure = vi.spyOn(db.photos, 'add').mockRejectedValueOnce(new Error('QuotaExceededError'));
+    await expect(importFromExport(backup)).rejects.toThrow('Quota');
+    failure.mockRestore();
+    expect(await db.logbook.count()).toBe(0);
+    expect(await db.photos.count()).toBe(0);
   });
 });
 

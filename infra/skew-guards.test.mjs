@@ -30,7 +30,7 @@ import {
   rmSync,
 } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { join, resolve } from 'node:path';
+import { delimiter, join, resolve } from 'node:path';
 import { execFileSync, spawnSync } from 'node:child_process';
 
 const INFRA = resolve(import.meta.dirname);
@@ -129,7 +129,7 @@ test('refresh-data: refuses with SKEW when checkout ≠ verified deploy (pnpm ne
     const foreign = '1'.repeat(40);
     writeFileSync(join(root, 'backups', 'last-good-rev'), `${foreign} 2026-09-16T00:00:00Z\n`);
 
-    const r = run(root, 'refresh-data.sh', [], { PATH: `${stubDir}:${process.env.PATH}` });
+    const r = run(root, 'refresh-data.sh', [], { PATH: `${stubDir}${delimiter}${process.env.PATH}` });
     assert.equal(r.status, 24, `expected 24, got ${r.status}; stdout: ${r.stdout} stderr: ${r.stderr}`);
     assert.match(r.stdout, /REFUSED — code\/data skew/);
     assert.match(read(root, join('backups', 'refresh-data.status')), /^REFUSED-SKEW /);

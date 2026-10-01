@@ -27,6 +27,7 @@ function insertReading(
     cfs?: number | null;
     heightFt?: number | null;
     tempC?: number | null;
+    metricTimes?: Record<string, string>;
   },
 ): void {
   db.prepare(
@@ -36,7 +37,7 @@ function insertReading(
   ).run(
     r.gaugeId,
     r.fetchedAt,
-    JSON.stringify({ gaugeId: r.gaugeId, timestamp: r.observedAt }),
+    JSON.stringify({ gaugeId: r.gaugeId, timestamp: r.observedAt, metricTimes: r.metricTimes }),
     r.cfs ?? null,
     r.heightFt ?? null,
     r.tempC ?? null,
@@ -54,6 +55,17 @@ describe('gauge history snapshot emission (ADR 0014)', () => {
   afterEach(() => {
     env.db.close();
     rmSync(env.dir, { recursive: true, force: true });
+  });
+
+  it('preserves each metric’s own clock and deduplicates repeated stale readings', () => {
+    insertReading(env.db, { gaugeId: GAUGE, fetchedAt: '2026-09-30T11:05:00Z', observedAt: '2026-09-30T11:00:00Z',
+      cfs: 200, tempC: 18, metricTimes: { tempC: '2026-09-30T08:00:00Z' } });
+    insertReading(env.db, { gaugeId: GAUGE, fetchedAt: '2026-09-30T12:00:00Z', observedAt: '2026-09-30T11:45:00Z',
+      cfs: 250, tempC: 18, metricTimes: { tempC: '2026-09-30T08:00:00Z' } });
+    buildSnapshots({ db: env.db, snapshotsDir: env.snapshotsDir, now: NOW });
+    const history = GaugeHistorySchema.parse(JSON.parse(readFileSync(join(env.snapshotsDir, 'v1/gauge-history', `${GAUGE}.json`), 'utf8')));
+    expect(history.samples.filter((sample) => sample.tempC !== undefined)).toEqual([{ timestamp: '2026-09-30T08:00:00.000Z', tempC: 18 }]);
+    expect(history.samples.filter((sample) => sample.cfs !== undefined)).toHaveLength(2);
   });
 
   it('emits the deduplicated, merged history at the frozen URL — numeric USGS ids only', () => {
@@ -81,9 +93,9 @@ describe('gauge history snapshot emission (ADR 0014)', () => {
     expect(history.gaugeId).toBe(GAUGE);
     expect(history.metrics).toEqual(['cfs', 'tempC']);
     expect(history.samples).toEqual([
-      { timestamp: '2026-09-30T10:00:00Z', tempC: 16 },
-      { timestamp: '2026-09-30T11:00:00Z', cfs: 110, tempC: 16.5 },
-      { timestamp: '2026-09-30T12:00:00Z', cfs: 120 },
+      { timestamp: '2026-09-30T10:00:00.000Z', tempC: 16 },
+      { timestamp: '2026-09-30T11:00:00.000Z', cfs: 110, tempC: 16.5 },
+      { timestamp: '2026-09-30T12:00:00.000Z', cfs: 120 },
     ]);
     expect(history.retrievedAt).toBe(NOW.toISOString());
     expect(history.sourceUrl).toBe(`https://waterdata.usgs.gov/monitoring-location/${GAUGE}`);
@@ -109,8 +121,8 @@ describe('gauge history snapshot emission (ADR 0014)', () => {
     );
     // The file begins at the oldest RETAINED row — no fabricated pre-launch history.
     expect(history.samples.map((s) => s.timestamp)).toEqual([
-      '2026-08-31T12:00:00Z',
-      '2026-09-30T11:00:00Z',
+      '2026-08-31T12:00:00.000Z',
+      '2026-09-30T11:00:00.000Z',
     ]);
   });
 

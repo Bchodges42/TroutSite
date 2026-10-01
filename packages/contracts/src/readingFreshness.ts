@@ -10,6 +10,11 @@ import type { GaugeReading } from './schemas/gauge.js';
  */
 export const READING_STALE_MINUTES = 180;
 
+/** A metric's own observation time; legacy readings use their shared clock. */
+export function metricTimestamp(reading: GaugeReading, metric: keyof NonNullable<GaugeReading['metricTimes']>): string {
+  return reading.metricTimes?.[metric] ?? reading.timestamp;
+}
+
 function timestampMs(iso: string): number {
   const ms = Date.parse(iso);
   return Number.isNaN(ms) ? 0 : ms;

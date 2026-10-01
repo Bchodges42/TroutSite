@@ -3,7 +3,7 @@ import { VitePWA } from 'vite-plugin-pwa';
 import type { Connect, Plugin, PluginOption } from 'vite';
 import type { ServerResponse } from 'node:http';
 import { createReadStream, existsSync, statSync } from 'node:fs';
-import { join, dirname, resolve as resolvePath, extname } from 'node:path';
+import { join, dirname, resolve as resolvePath, extname, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 /**
@@ -44,7 +44,6 @@ function precacheGlobPatterns(fixtures: boolean): string[] {
     // and workbox's '!…' negation inside globPatterns proved unreliable in
     // this pipeline — a non-recursive glob can't reach the nested dir at all.
     patterns.push('atlas/*');
-    patterns.push('!atlas/topo/**');
   }
   if (fixtures) {
     patterns.push('v1/**');
@@ -102,7 +101,12 @@ function attachSnapshotRoutes(middlewares: Connect.Server, rootDir: () => string
   middlewares.use((req, res, next) => {
     const pathname = (req.url ?? '').split('?')[0] ?? '';
     if (!/^\/(v1|data|content)\//.test(pathname) || extname(pathname)) return next();
-    const candidate = join(rootDir(), decodeURIComponent(pathname) + '.json');
+    let decoded: string;
+    try { decoded = decodeURIComponent(pathname); } catch { res.statusCode = 400; res.end(); return; }
+    const base = resolvePath(rootDir());
+    let candidate = join(base, decoded + '.json');
+    if (!candidate.startsWith(base + sep)) { res.statusCode = 403; res.end(); return; }
+    if (!existsSync(candidate) && pathname === '/v1/streams') candidate = join(base, 'v1', 'streams');
     if (!existsSync(candidate) || !statSync(candidate).isFile()) return next();
     res.setHeader('content-type', 'application/json');
     res.setHeader('cache-control', 'no-store');
@@ -147,9 +151,12 @@ export function buildPlugins({ fixtures = false }: { fixtures?: boolean } = {}) 
     snapshotRoutesPlugin(),
     analyticsBeaconPlugin(),
     VitePWA({
+      strategies: 'injectManifest',
+      srcDir: 'src',
+      filename: 'sw.ts',
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg'],
-      devOptions: { enabled: true },
+      devOptions: { enabled: true, type: 'module' },
       manifest: {
         id: '/',
         name: 'Trout — Match the Hatch & Stream Conditions',
@@ -169,57 +176,10 @@ export function buildPlugins({ fixtures = false }: { fixtures?: boolean } = {}) 
           { src: '/icons/maskable-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
         ],
       },
-      workbox: {
-        // Last-resort pack fallback (offline downloads lane, 2026-09-30):
-        // generateSW cannot carry a custom fetch handler inline, but
-        // importScripts is a first-class generateSW option, so the handler
-        // lives in public/pack-fallback.js (copied verbatim into dist). The
-        // generated sw.js imports it BEFORE Workbox attaches its router fetch
-        // listener; the file defers its own listener registration by one
-        // microtask so it attaches strictly AFTER the router's and only
-        // answers requests no route claimed — serving pack-pinned assets
-        // (trout-packs-v1) offline to every plain-fetch consumer. Ordering
-        // contract + behavior proven in test/sw-pack-fallback.test.ts.
-        importScripts: ['pack-fallback.js'],
-        navigateFallback: '/index.html',
-        // Precache the app shell, the bundled content pack, and any snapshot
-        // files that exist at build time (fixture builds). Regenerated /v1 and
-        // /data snapshots are served stale-while-revalidate at runtime.
+      injectManifest: {
+        // One Workbox catch handler covers both precache and runtime errors.
         globPatterns: precacheGlobPatterns(fixtures),
         maximumFileSizeToCacheInBytes: 30 * 1024 * 1024,
-        navigateFallbackDenylist: [/^\/v1\//, /^\/data\//, /^\/content\//],
-        runtimeCaching: [
-          {
-            // Snapshots (B10): NetworkFirst with a Dexie-backed fallback in the
-            // app layer. NOTE (same trap as the topo rule below): workbox's
-            // RegExpRoute tests the FULL url href, so this pattern must NOT be
-            // anchored with '^/' — the previous '^/(v1|data)/' regex could
-            // never match and the route silently did nothing.
-            urlPattern: /\/(v1|data)\//,
-            handler: 'NetworkFirst',
-            options: {
-              cacheName: 'snapshot-cache',
-              networkTimeoutSeconds: 4,
-              expiration: { maxEntries: 128, maxAgeSeconds: 14 * 24 * 3600 },
-              cacheableResponse: { statuses: [0, 200] },
-            },
-          },
-          {
-            // Topo hillshade/contours (Task 6e Phase B): heavy but immutable
-            // derivatives, so CacheFirst at runtime — never precached (see
-            // precacheGlobPatterns above). NOTE: workbox RegExpRoute matches
-            // against the FULL url href, so the pattern must not be anchored
-            // with '^/' — an '^/'-anchored regex can never match and the
-            // route silently does nothing.
-            urlPattern: /\/atlas\/topo\//,
-            handler: 'CacheFirst',
-            options: {
-              cacheName: 'topo-cache',
-              expiration: { maxEntries: 512, maxAgeSeconds: 90 * 24 * 3600 },
-              cacheableResponse: { statuses: [0, 200] },
-            },
-          },
-        ],
       },
     }),
   ] satisfies PluginOption[];

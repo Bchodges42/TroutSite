@@ -434,7 +434,7 @@ test.describe('condition presentation', () => {
     page,
   }) => {
     await page.goto('/conditions/stale-water');
-    await expect(page.getByRole('heading', { name: 'Stale Water' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Stale Water', level: 1 })).toBeVisible();
     await expect(page.getByText(/Gauge stale · observed/)).toBeVisible();
     // The stale assessment is still a score on this page — staleness is a
     // freshness label, never a retraction of the assessment.

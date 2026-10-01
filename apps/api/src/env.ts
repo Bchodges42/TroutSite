@@ -51,6 +51,8 @@ export const EnvSchema = z.object({
    * CORRECTIONS_MODERATOR_TOKEN, never any VAPID key.
    */
   OWNER_DASHBOARD_TOKEN: z.string().min(1).optional(),
+  /** Explicit scheduler profile for owner estimates; absence means no schedule is claimed. */
+  TROUT_SCHEDULER_PROFILE: z.enum(['windows', 'cron', 'unknown']).default('unknown'),
   /**
    * Web-push VAPID keypair + contact (ADR 0016), all three optional. Unset
    * means the watchlist push parts FAIL CLOSED: POST /v1/watches/subscribe

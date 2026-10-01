@@ -48,9 +48,8 @@ function headerSearch(page: Page) {
   return page.locator('.header-search').getByRole('combobox', { name: 'Search rivers' });
 }
 async function select(page: Page, name: string) {
-  // Enter selects the best match without racing the results listbox (at
-  // mobile widths an option click can lose the hit-test to the map canvas).
-  // Use a query unique to the water you want.
+  // Explicitly select a result: the improved search requires a deliberate
+  // choice for partial/fuzzy aliases. Use a query unique to the wanted water.
   const input = headerSearch(page);
   await input.fill(name);
   // COLD FIRST VISIT: the header catalog fetch may still be in flight when
@@ -64,6 +63,7 @@ async function select(page: Page, name: string) {
       .getByRole('option', { name: new RegExp(name, 'i') })
       .first(),
   ).toBeVisible({ timeout: 20_000 });
+  await input.press('ArrowUp'); // explicitly confirm the first highlighted result
   await input.press('Enter');
   await expect(page.locator('#river-inspector')).toBeVisible({ timeout: 15_000 });
 }
@@ -823,7 +823,7 @@ test('still waters are labeled, tappable, and honestly presented', async ({ page
   // "Not assessed" — never a fabricated band.
   await select(page, 'Cameron Brown');
   await expect(page).toHaveURL(/river=cameron-brown-lake/);
-  await expect(page.getByRole('heading', { name: 'Cameron Brown Lake', exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Cameron Brown Lake', exact: true, level: 2 })).toBeVisible();
   // M2: the catalog's waterbody type is presented verbatim — no invented size
   // classification, so even a small lake never reads "small". (The demo feed
   // assesses this water; the honest-unassessed copy is covered above.)
@@ -845,7 +845,7 @@ test.describe('mocked-polygon selection', () => {
   // is scanned at runtime — the 146-pack's line density defeats fixed points.
   await clickPolygonInterior(page, /river=beech-lake/);
   await expect(page).toHaveURL(/river=beech-lake/);
-  await expect(page.getByRole('heading', { name: 'Beech Lake', exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Beech Lake', exact: true, level: 2 })).toBeVisible();
   // The demo feed assesses beech-lake; the inspector path itself is the point.
     await expect(page.locator('#river-inspector .assessment')).toBeVisible();
   });
@@ -942,7 +942,7 @@ test.describe('touch polygon selection', () => {
     await page.touchscreen.tap(canvas!.x + tap.x, canvas!.y + tap.y);
     await expect(page).toHaveURL(/river=beech-lake/);
     await expect(page.locator('.river-sheet')).toBeVisible();
-    await expect(page.getByRole('heading', { name: 'Beech Lake', exact: true })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Beech Lake', exact: true, level: 2 })).toBeVisible();
   });
 });
 

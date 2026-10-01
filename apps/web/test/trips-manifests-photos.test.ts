@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import {
   addChecklistItem,
   completeTrip,
@@ -24,19 +24,50 @@ import { addPhoto, attachPhotoToEntry, deletePhotosForEntry, estimatePhotosBytes
 import { db } from '../src/lib/db';
 
 beforeEach(async () => {
-  await Promise.all([db.trips.clear(), db.downloadManifests.clear(), db.photos.clear()]);
+  await Promise.all([db.trips.clear(), db.logbook.clear(), db.downloadManifests.clear(), db.photos.clear()]);
 });
 
 describe('trip store (ADR 0012)', () => {
   it('creates a trip with the starter checklist and lists planned-before-completed', async () => {
     const a = await createTrip({ title: 'Duck River weekend', date: '2026-10-10', waterIds: ['duck-river'] });
-    const b = await createTrip({ title: 'Clinch float', date: '2026-10-04' });
+    const b = await createTrip({ title: 'Clinch float', date: '2026-09-04', waterIds: ['clinch'] });
     expect(a.checklist.map((c) => c.label)).toEqual(['Check regulations for each water', 'Verify latest conditions before leaving', 'Pack tackle and flies']);
 
     await completeTrip(b.id);
     const trips = await listTrips();
     expect(trips.map((t) => t.title)).toEqual(['Duck River weekend', 'Clinch float']);
     expect(trips[1].completedAt).toBeGreaterThan(0);
+  });
+
+  it('records all chosen context once and refuses a future plan', async () => {
+    const trip = await createTrip({ title: 'Weekend', date: '2026-09-29', waterIds: ['a', 'b'], species: ['Trout'], notes: 'Private plan' });
+    await Promise.all([completeTrip(trip.id, new Map([['a', 'Water A']])), completeTrip(trip.id)]);
+    const rows = await db.logbook.toArray();
+    expect(rows).toHaveLength(2);
+    expect(rows[0]).toMatchObject({ tripId: trip.id, streamName: 'Water A', date: '2026-09-29', notes: 'Private plan', species: ['Trout'] });
+    expect(rows[0].conditionsSnapshot).toBeUndefined();
+    const future = await createTrip({ title: 'Future', date: '2099-01-01', waterIds: ['a'] });
+    await expect(completeTrip(future.id)).rejects.toThrow('actual trip date');
+    expect((await db.trips.get(future.id))?.completedAt).toBeUndefined();
+  });
+
+  it('does not mark a trip completed when logbook storage fails', async () => {
+    const trip = await createTrip({ title: 'Storage failure', waterIds: ['a'] });
+    const fail = vi.spyOn(db.logbook, 'add').mockRejectedValueOnce(new Error('Quota exceeded'));
+    try {
+      await expect(completeTrip(trip.id)).rejects.toThrow('Quota');
+      expect((await db.trips.get(trip.id))?.completedAt).toBeUndefined();
+      expect(await db.logbook.count()).toBe(0);
+    } finally { fail.mockRestore(); }
+  });
+
+  it('preserves concurrent checklist toggles and additions', async () => {
+    const trip = await createTrip({ title: 'Quick taps' });
+    await Promise.all([toggleChecklistItem(trip.id, trip.checklist[0]!.id), toggleChecklistItem(trip.id, trip.checklist[1]!.id),
+      addChecklistItem(trip.id, 'License'), addChecklistItem(trip.id, 'Waders')]);
+    const saved = await db.trips.get(trip.id);
+    expect(saved?.checklist.filter((item) => item.done)).toHaveLength(2);
+    expect(saved?.checklist.map((item) => item.label)).toEqual(expect.arrayContaining(['License', 'Waders']));
   });
 
   it('updates, toggles, adds, and removes checklist items', async () => {

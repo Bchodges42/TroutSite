@@ -246,7 +246,7 @@ export function listCorrectionsForReview(db: Db, filters: ReviewFilters = {}): C
     params.push(`%,${filters.risk},%`);
   }
   const where = clauses.length > 0 ? `WHERE ${clauses.join(' AND ')}` : '';
-  const limit = Math.max(1, Math.min(filters.limit ?? 100, 200));
+  const limit = Number.isFinite(filters.limit) ? Math.max(1, Math.min(Math.floor(filters.limit!), 200)) : 100;
   const rows = db
     .prepare(`SELECT * FROM corrections ${where} ORDER BY id DESC LIMIT ${limit}`)
     .all(...params);

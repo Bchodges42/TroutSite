@@ -463,7 +463,7 @@ describe('CorrectionStatus — receipt lookup and the status vocabulary', () => 
     await user.type(await screen.findByLabelText('Receipt code', {}, FIND), 'ABCDE-FGHJK-MNPQR');
     await user.click(screen.getByTestId('status-check'));
     expect(await screen.findByTestId('status-unavailable', {}, FIND)).toHaveTextContent(
-      /Status lookup opens when the review service ships/,
+      /Status lookup is unavailable right now/,
     );
     expect(fetchCorrectionStatus).toHaveBeenCalledTimes(1);
   }, 20000);

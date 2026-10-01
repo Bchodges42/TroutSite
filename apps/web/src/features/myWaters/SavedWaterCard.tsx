@@ -7,18 +7,20 @@ import { ScorePill } from '../../components/ScorePill';
 import { FreshnessChip } from '../../components/FreshnessChip';
 import { statusForScore } from '../map/riverMapSelectors';
 import { toWaterDecisionView } from '../map/waterDecision';
-import type { SpeciesMode } from '../map/waterDecision';
+import type { FishabilityFocus, SpeciesMode } from '../map/waterDecision';
+import { overviewConditionStatus } from '../waters/overviewStatus';
 import type { SavedWaterRecord, WaterGroupRecord } from '../../lib/db';
 import { ageMinutes } from '../../lib/time';
 import { formatFlow, formatHeight, formatTemp } from '../../lib/units';
 import { buildWaterOverview } from '../../lib/waterOverview';
-import { setWaterGroups, unsaveWater } from '../../lib/savedWaters';
+import { setWaterGroupMembership, unsaveWater } from '../../lib/savedWaters';
 import { waterManifestId } from '../../lib/downloadManifests';
 import { DownloadButton } from '../downloads/DownloadButton';
 import { usePackManager } from '../downloads/usePackManager';
 import type { MyWatersSharedData } from './useMyWatersData';
 
 export interface SavedWaterCardProps {
+  fishability?: FishabilityFocus;
   saved: SavedWaterRecord;
   stream: Stream | undefined;
   snapshot: ConditionSnapshot | undefined;
@@ -57,6 +59,7 @@ export function SavedWaterCard({
   groups,
   tempUnit,
   speciesMode,
+  fishability,
 }: SavedWaterCardProps) {
   const [editingGroups, setEditingGroups] = useState(false);
   const manager = usePackManager();
@@ -86,9 +89,10 @@ export function SavedWaterCard({
             },
             speciesMode,
             new Date().getMonth() + 1,
+            fishability,
           ),
           conditions: snapshot ?? null,
-          offlineSaved: !conditionsLive,
+          offlineSaved: snapshot != null && !conditionsLive,
           nowMs: Date.now(),
           sourcesCount: stream.officialSources?.length ?? 0,
         };
@@ -106,12 +110,7 @@ export function SavedWaterCard({
     : undefined;
 
   const toggleGroup = (groupId: string, member: boolean) => {
-    void setWaterGroups(
-      saved.waterId,
-      member
-        ? [...saved.groupIds, groupId]
-        : saved.groupIds.filter((id) => id !== groupId),
-    );
+    void setWaterGroupMembership(saved.waterId, groupId, member);
   };
 
   return (
@@ -139,6 +138,8 @@ export function SavedWaterCard({
           overview.assessment.displayMetric === 'trout-condition' &&
           snapshot && <ScorePill score={snapshot.score.value} className="ml-auto" />}
       </div>
+
+      {overview?.assessment && overview.assessment.displayMetric !== 'trout-condition' && <p className="mt-2 text-sm">{overviewConditionStatus(overview.assessment, { species: stream?.species, status: 'no-data', fishability })}</p>}
 
       {retired && (
         <p className="muted mt-2 text-sm">

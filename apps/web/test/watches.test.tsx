@@ -3,6 +3,7 @@ import { cleanup, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { WatchButton, WATCH_PRIVACY_LINE } from '../src/features/watches/WatchButton';
 import { WatchesSettings } from '../src/features/watches/WatchesSettings';
+import { WatchRuleForm } from '../src/features/watches/WatchRuleForm';
 import {
   addLocalRule,
   readLocalRules,
@@ -139,6 +140,27 @@ afterEach(() => {
   delete navigator.serviceWorker;
 });
 
+it('saves a chosen metric/direction/threshold without default-rule substitution', async () => {
+  localStorage.setItem('trout.watch.subscriptionId', SUBSCRIPTION_ID);
+  const user = userEvent.setup();
+  render(<WatchRuleForm waterId="harpeth-river" publicKey={PUBLIC_KEY} onSaved={() => {}} />);
+  await user.click(screen.getByText('Add a custom watch'));
+  await user.selectOptions(screen.getByLabelText('Measurement'), 'cfs');
+  await user.selectOptions(screen.getByLabelText('Direction'), 'above');
+  await user.clear(screen.getByLabelText('Threshold (cfs)'));
+  await user.type(screen.getByLabelText('Threshold (cfs)'), '450');
+  await user.click(screen.getByRole('button', { name: 'Save custom watch' }));
+  await waitFor(() => expect(calls.find((c) => c.url === '/v1/watches/rules' && c.method === 'POST')?.body)
+    .toMatchObject({ waterId: 'harpeth-river', metric: 'cfs', thresholdOp: 'above', threshold: 450, hysteresis: 20 }));
+});
+
+it('allows server unenrollment even after the last rule has been removed', async () => {
+  localStorage.setItem('trout.watch.subscriptionId', SUBSCRIPTION_ID);
+  render(<WatchesSettings />);
+  await userEvent.click(await screen.findByTestId('watches-unsubscribe'));
+  await waitFor(() => expect(storedSubscriptionId()).toBeNull());
+});
+
 // Silence an intentional marker import so the test stays honest about unused copy.
 
 describe('WatchButton — push happy path', () => {
@@ -213,7 +235,7 @@ describe('WatchButton — honest no-push fallback', () => {
 
     await waitFor(() =>
       expect(screen.getByTestId('watch-summary').textContent).toContain(
-        'only works while the site is open',
+        'automatic notifications are unavailable',
       ),
     );
     expect(readLocalRules()).toHaveLength(1);
@@ -268,6 +290,22 @@ describe('WatchButton — honest no-push fallback', () => {
 });
 
 describe('WatchesSettings — list, delete, unsubscribe', () => {
+  it('finishes loading with an unavailable state when the service is offline', async () => {
+    vi.stubGlobal('fetch', vi.fn().mockRejectedValue(new Error('offline')));
+    render(<WatchesSettings />);
+    await waitFor(() => expect(screen.getByTestId('watches-unavailable')).toBeInTheDocument());
+    expect(screen.queryByTestId('watches-loading')).not.toBeInTheDocument();
+  });
+
+  it('keeps the subscription capability and shows an error when unsubscribe fails', async () => {
+    serverRules = [{ id: 1, waterId: 'watauga-river', kind: 'stocking', createdAt: '2026-09-30T12:00:00Z' }];
+    localStorage.setItem('trout.watch.subscriptionId', SUBSCRIPTION_ID);
+    vi.stubGlobal('fetch', vi.fn(((url: string, init?: RequestInit) => init?.method === 'DELETE' ? new Response(null, { status: 503 }) : fetchMockImpl(url, init)) as typeof fetch));
+    render(<WatchesSettings />);
+    await userEvent.click(await screen.findByTestId('watches-unsubscribe'));
+    expect(await screen.findByRole('alert')).toHaveTextContent('Could not unsubscribe');
+    expect(storedSubscriptionId()).toBe(SUBSCRIPTION_ID);
+  });
   it('renders the honest empty state first', async () => {
     render(<WatchesSettings />);
     await waitFor(() => expect(screen.getByTestId('watches-empty')).toBeInTheDocument());
@@ -327,7 +365,7 @@ describe('WatchesSettings — list, delete, unsubscribe', () => {
     render(<WatchesSettings />);
     await waitFor(() => expect(screen.getByTestId('watches-local-list')).toBeInTheDocument());
     expect(screen.getByText('On this device only')).toBeInTheDocument();
-    expect(screen.getByText(/only work while the site is open/i)).toBeInTheDocument();
+    expect(screen.getByText(/sends no automatic notifications/i)).toBeInTheDocument();
     expect(screen.getByText('harpeth-river')).toBeInTheDocument();
   });
 });

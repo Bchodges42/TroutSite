@@ -59,6 +59,17 @@ export async function setWaterGroups(waterId: string, groupIds: string[]): Promi
   await db.savedWaters.put({ ...record, groupIds });
 }
 
+/** Toggle one membership against the stored row, preserving simultaneous changes. */
+export async function setWaterGroupMembership(waterId: string, groupId: string, member: boolean): Promise<void> {
+  return db.transaction('rw', db.savedWaters, async () => {
+    const record = await db.savedWaters.get(waterId);
+    if (!record) return;
+    const ids = new Set(record.groupIds);
+    if (member) ids.add(groupId); else ids.delete(groupId);
+    await db.savedWaters.put({ ...record, groupIds: [...ids] });
+  });
+}
+
 export async function createGroup(name: string): Promise<string> {
   const trimmed = name.trim();
   if (!trimmed) throw new Error('Group name is required');
@@ -81,11 +92,13 @@ export async function renameGroup(id: string, name: string): Promise<void> {
 
 /** Deleting a group never deletes the waters — membership is pulled, saves remain. */
 export async function deleteGroup(id: string): Promise<void> {
+  return db.transaction('rw', db.waterGroups, db.savedWaters, async () => {
   await db.waterGroups.delete(id);
   const members = await db.savedWaters.where('groupIds').equals(id).toArray();
   await Promise.all(
     members.map((m) => db.savedWaters.put({ ...m, groupIds: m.groupIds.filter((g) => g !== id) })),
   );
+  });
 }
 
 export async function listGroups(): Promise<WaterGroupRecord[]> {

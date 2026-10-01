@@ -13,7 +13,6 @@ import {
   toPlanIndexEntry,
   waterAnchor,
   PACK_CACHE_NAME,
-  TOPO_CACHE_NAME,
   type TopoTileInfo,
 } from '../src/lib/packBuilder';
 import { tripManifestId } from '../src/lib/downloadManifests';
@@ -69,6 +68,8 @@ describe('planWaterPack — the required section set', () => {
       '/content/taxa.json',
       '/content/patterns.json',
       '/v1/stocking/TN.json',
+      '/content/access.json',
+      '/v1/reports/recent.json',
     ]);
   });
 
@@ -103,6 +104,11 @@ describe('planWaterPack — the required section set', () => {
       '/atlas/network/manifest.json',
       '/atlas/network/0601.geojson',
     ]);
+  });
+
+  it('resolves the actual atlas-relative network filenames without repeating network/', () => {
+    expect(networkClusterUrlsForPoint([{ id: '0505', file: 'network/0505.geojson', bounds: [-91, 34, -80, 37] }], { lon: -86, lat: 36 }))
+      .toEqual(['/atlas/network/manifest.json', '/atlas/network/0505.geojson']);
   });
 
   it('assetUrls dedupes across sections', () => {
@@ -259,7 +265,7 @@ describe('plan → manifest input', () => {
 
 describe('cache ownership per URL', () => {
   it('terrain tiles ride the existing CacheFirst topo-cache; everything else is pack cache', () => {
-    expect(cacheNameForUrl('/atlas/topo/hillshade/11/66/100.webp')).toBe(TOPO_CACHE_NAME);
+    expect(cacheNameForUrl('/atlas/topo/hillshade/11/66/100.webp')).toBe(PACK_CACHE_NAME);
     expect(cacheNameForUrl('/v1/conditions/latest.json')).toBe(PACK_CACHE_NAME);
     expect(cacheNameForUrl('/atlas/rivers.geojson')).toBe(PACK_CACHE_NAME);
     expect(cacheNameForUrl('/content/taxa.json')).toBe(PACK_CACHE_NAME);

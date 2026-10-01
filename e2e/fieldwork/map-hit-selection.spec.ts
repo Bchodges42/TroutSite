@@ -211,7 +211,7 @@ test('clicking the rendered Caney Fork centerline selects it — URL gains river
   // first says "River details" — the name matcher waits for the water).
   const dialog = page.getByRole('dialog', { name: /Caney Fork River/ });
   await expect(dialog).toBeVisible();
-  await expect(dialog.getByRole('heading', { name: 'Caney Fork River' })).toBeVisible();
+  await expect(dialog.getByRole('heading', { name: 'Caney Fork River', level: 2 })).toBeVisible();
   // The presentation pass mirrors the selection onto the container…
   await expect(page.getByTestId('river-map')).toHaveAttribute(
     'data-map-selected',

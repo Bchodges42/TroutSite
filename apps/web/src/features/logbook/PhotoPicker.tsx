@@ -8,17 +8,15 @@ import type { PhotoRecord } from '../../lib/db';
  * Photo attachments (ADR 0012): files enter storage only through photos.ts's
  * addPhoto — compression + EXIF/GPS stripping happen at that seam. Blobs live
  * in IndexedDB only and never leave the device except via an explicit full
- * backup. With no `entryId` (new-entry form) photos are staged unattached and
+ * backup. Photos are staged unattached, including while editing, and
  * linked to the entry at save; the form sweeps abandoned stagings.
  */
 export function PhotoPicker({
   photoIds,
   onChange,
-  entryId,
 }: {
   photoIds: string[];
   onChange: (ids: string[]) => void;
-  entryId?: number;
 }) {
   const fileRef = useRef<HTMLInputElement>(null);
   const [busy, setBusy] = useState(false);
@@ -37,13 +35,14 @@ export function PhotoPicker({
     if (!files || files.length === 0) return;
     setBusy(true);
     setError('');
+    const ids: string[] = [];
     try {
-      const ids: string[] = [];
       for (const file of Array.from(files)) {
-        ids.push(await addPhoto(file, { logEntryId: entryId }));
+        ids.push(await addPhoto(file));
       }
       onChange([...photoIds, ...ids]);
     } catch {
+      await Promise.all(ids.map(deletePhoto));
       setError('Could not add that photo. Try a smaller image.');
     } finally {
       setBusy(false);
@@ -51,7 +50,9 @@ export function PhotoPicker({
   };
 
   const remove = async (photoId: string) => {
-    await deletePhoto(photoId);
+    const photo = await getPhoto(photoId);
+    // Saved photos are removed only when the whole entry is saved.
+    if (photo?.logEntryId === undefined) await deletePhoto(photoId);
     onChange(photoIds.filter((p) => p !== photoId));
   };
 

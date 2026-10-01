@@ -34,6 +34,7 @@ export interface WatchRule {
   cooldownMinutes: number;
   quietHoursStart?: string;
   quietHoursEnd?: string;
+  quietHoursTimeZone?: string;
   hysteresis: number;
   createdAt: string;
   lastNotifiedAt?: string;
@@ -64,7 +65,9 @@ export class WatchTransportUnavailable extends Error {
 
 /** The one honest sentence every watch surface carries (ADR 0016 §6). */
 export const WATCH_PRIVACY_LINE =
-  'Watches are pseudonymous — no name, no location, no logbook data is ever collected.';
+  'Watches are pseudonymous — no name, no location, no logbook data is collected. Enabling notifications stores this browser’s push endpoint, encryption keys, and water rules on our server and sends notices through your browser’s push provider. Unsubscribe deletes them; inactive subscriptions expire after 90 days.';
+
+export type WatchRuleDraft = Omit<WatchRule, 'id' | 'waterId' | 'createdAt' | 'lastNotifiedAt'>;
 
 function isUnavailableStatus(status: number): boolean {
   return status === 404 || status === 405 || status === 501 || status === 503;
@@ -73,7 +76,7 @@ function isUnavailableStatus(status: number): boolean {
 async function requestJson(url: string, init?: RequestInit): Promise<Response> {
   let res: Response;
   try {
-    res = await fetch(url, init);
+    res = await fetch(url, { ...init, signal: init?.signal ?? AbortSignal.timeout(8_000), cache: 'no-store' });
   } catch {
     throw new WatchTransportUnavailable();
   }
@@ -178,7 +181,7 @@ function storeSubscriptionId(id: string | null): void {
     if (id === null) localStorage.removeItem(SUBSCRIPTION_ID_KEY);
     else localStorage.setItem(SUBSCRIPTION_ID_KEY, id);
   } catch {
-    // private-mode localStorage failures degrade to in-session watching only
+    throw new WatchTransportUnavailable('Browser storage is unavailable. The watch could not be remembered.');
   }
 }
 
@@ -191,6 +194,7 @@ export function rememberSubscriptionId(id: string): void {
 
 export async function listServerRules(subscriptionId: string): Promise<WatchRule[]> {
   const res = await requestJson(`${WATCHES_RULES_URL}?subscriptionId=${encodeURIComponent(subscriptionId)}`);
+  if (res.status === 404) { storeSubscriptionId(null); return []; }
   if (!res.ok) throw new WatchTransportUnavailable();
   const body = (await res.json()) as { rules?: WatchRule[] };
   return Array.isArray(body.rules) ? body.rules : [];
@@ -214,7 +218,7 @@ export const DEFAULT_WATCH = {
 export async function createServerRule(
   subscriptionId: string,
   waterId: string,
-  rule: Partial<typeof DEFAULT_WATCH> = {},
+  rule: Partial<WatchRuleDraft> = {},
 ): Promise<WatchRule> {
   const res = await requestJson(WATCHES_RULES_URL, {
     method: 'POST',
@@ -251,6 +255,12 @@ export async function unsubscribeAll(): Promise<void> {
     if (!res.ok && res.status !== 404) throw new WatchTransportUnavailable(`unsubscribe failed (HTTP ${res.status})`);
   }
   storeSubscriptionId(null);
+  if (typeof navigator !== 'undefined' && 'serviceWorker' in navigator) {
+    const registration = await navigator.serviceWorker.getRegistration?.();
+    const push = await registration?.pushManager.getSubscription();
+    if (push) await push.unsubscribe();
+  }
+  window.dispatchEvent(new Event('trout-watches-changed'));
 }
 
 // ── local-only rules (no-push fallback) ───────────────────────────────────────
@@ -259,7 +269,10 @@ export function readLocalRules(): LocalWatchRule[] {
   try {
     const raw = localStorage.getItem(LOCAL_RULES_KEY);
     const parsed = raw ? (JSON.parse(raw) as unknown) : [];
-    return Array.isArray(parsed) ? (parsed as LocalWatchRule[]) : [];
+    return Array.isArray(parsed) ? parsed.filter((rule): rule is LocalWatchRule =>
+      rule !== null && typeof rule === 'object' && typeof rule.id === 'string' &&
+      typeof rule.waterId === 'string' && typeof rule.createdAt === 'string' &&
+      ['condition', 'stocking', 'report'].includes(rule.kind)) : [];
   } catch {
     return [];
   }
@@ -269,8 +282,9 @@ function writeLocalRules(rules: LocalWatchRule[]): void {
   try {
     localStorage.setItem(LOCAL_RULES_KEY, JSON.stringify(rules));
   } catch {
-    // same private-mode story as the subscription id
+    throw new WatchTransportUnavailable('Device storage is unavailable; this watch was not saved.');
   }
+  window.dispatchEvent(new Event('trout-watches-changed'));
 }
 
 function randomLocalId(): string {
@@ -298,9 +312,10 @@ export function removeLocalRule(waterId: string): void {
 
 // ── the hook the components consume ───────────────────────────────────────────
 
-export type WatchMode = 'checking' | 'server' | 'local' | 'off';
+export type WatchMode = 'checking' | 'server' | 'local' | 'off' | 'unavailable';
 
 export interface WatchesState {
+  subscriptionId: string | null;
   mode: WatchMode;
   /** Server rules for this subscription (empty when mode !== 'server'). */
   serverRules: WatchRule[] | undefined;
@@ -316,6 +331,7 @@ export interface WatchesState {
  */
 export function useWatches(): WatchesState {
   const [nonce, setNonce] = useState(0);
+  const [loaded, setLoaded] = useState(false);
   const [config, setConfig] = useState<WatchConfig | undefined>(undefined);
   const [subscriptionId, setSubscriptionId] = useState<string | null>(() => storedSubscriptionId());
   const [serverRules, setServerRules] = useState<WatchRule[] | undefined>(undefined);
@@ -327,12 +343,14 @@ export function useWatches(): WatchesState {
       const nextConfig = await fetchWatchConfig().catch(() => undefined);
       if (!alive) return;
       setConfig(nextConfig);
+      setLoaded(true);
       const id = storedSubscriptionId();
       setSubscriptionId(id);
       if (id) {
         const rules = await listServerRules(id).catch(() => undefined);
         if (!alive) return;
         setServerRules(rules);
+        setSubscriptionId(storedSubscriptionId());
       } else {
         setServerRules([]);
       }
@@ -342,20 +360,30 @@ export function useWatches(): WatchesState {
     };
   }, [nonce]);
 
+  useEffect(() => {
+    const changed = () => { setLocalRules(readLocalRules()); setNonce((n) => n + 1); };
+    window.addEventListener('trout-watches-changed', changed);
+    window.addEventListener('storage', changed);
+    return () => { window.removeEventListener('trout-watches-changed', changed); window.removeEventListener('storage', changed); };
+  }, []);
+
   const refresh = useCallback(() => {
     setLocalRules(readLocalRules());
     setSubscriptionId(storedSubscriptionId());
     setNonce((n) => n + 1);
+    window.dispatchEvent(new Event('trout-watches-changed'));
   }, []);
 
   const mode: WatchMode =
-    config === undefined
+    !loaded
       ? 'checking'
-      : subscriptionId && serverRules !== undefined
+      : config === undefined || (subscriptionId && serverRules === undefined)
+        ? 'unavailable'
+        : subscriptionId && serverRules !== undefined
         ? 'server'
         : config.pushSupported && pushApiSupported()
           ? 'off'
           : 'local';
 
-  return { mode, serverRules, localRules, config, refresh };
+  return { mode, serverRules, localRules, config, subscriptionId, refresh };
 }

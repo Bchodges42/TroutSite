@@ -1,4 +1,4 @@
-import { decisionStatusText } from '../map/waterDecision';
+import { decisionStatusText, type FishabilityFocus } from '../map/waterDecision';
 import type { ConditionStatus } from '../map/riverMapSelectors';
 import type { WaterOverview } from '../../lib/waterOverview';
 import { TREND_LABEL, type FlowTrend } from '../../lib/conditions';
@@ -66,6 +66,7 @@ export interface CompareCell {
 }
 
 export interface CompareColumnInput {
+  fishability?: FishabilityFocus;
   overview: WaterOverview;
   /** This water's own gauge trend (lib/conditions flowTrend over ITS readings). */
   flowTrend: FlowTrend;
@@ -237,9 +238,11 @@ export function buildCompareColumn(
       tone: 'neutral',
     };
   } else {
-    const text = decisionStatusText(overview.assessment, { species, status });
+    const text = decisionStatusText(overview.assessment, { species, status }, input.fishability);
     const tone: CompareCellTone =
-      status === 'good' || status === 'fair' || status === 'poor' ? status : 'neutral';
+      overview.assessment.assessmentRecency === 'historical' ? 'stale' : overview.assessment.displayMetric === 'fishability'
+        ? overview.assessment.fishability === 'good' || overview.assessment.fishability === 'fair' || overview.assessment.fishability === 'poor' ? overview.assessment.fishability : 'neutral'
+        : overview.assessment.displayMetric === 'trout-condition' && (status === 'good' || status === 'fair' || status === 'poor') ? status : 'neutral';
     const reason = overview.assessment.reasons[0] ?? null;
     assessment = { key: 'assessment', text, detail: reason, tone };
   }

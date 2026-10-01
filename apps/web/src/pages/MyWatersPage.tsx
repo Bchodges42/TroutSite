@@ -5,6 +5,8 @@ import type { SavedWaterRecord, WaterGroupRecord } from '../lib/db';
 import { createGroup, deleteGroup, renameGroup } from '../lib/savedWaters';
 import { useSettingsContext } from '../lib/settings';
 import { SavedWaterCard } from '../features/myWaters/SavedWaterCard';
+import { SPECIES_LABELS, useFishabilityIndex } from '../lib/fishability';
+import type { SpeciesKey } from '@trout/contracts';
 import {
   useMyWatersSharedData,
   useSavedWaters,
@@ -22,6 +24,11 @@ export function MyWatersPage() {
   const saved = useSavedWaters();
   const groups = useWaterGroups() ?? [];
   const shared = useMyWatersSharedData();
+  const focus = settings.speciesFocus in SPECIES_LABELS ? settings.speciesFocus as SpeciesKey : null;
+  const savedStreams = (saved ?? []).flatMap((water) => {
+    const stream = shared.streamsById.get(water.waterId); return stream ? [stream] : [];
+  });
+  const fishabilityQ = useFishabilityIndex(savedStreams, focus, settings.speciesMode === 'all');
 
   const [filter, setFilter] = useState<'all' | string>('all');
   const [manageOpen, setManageOpen] = useState(false);
@@ -132,6 +139,8 @@ export function MyWatersPage() {
                     groups={groups}
                     tempUnit={settings.tempUnit}
                     speciesMode={settings.speciesMode}
+                    fishability={focus && fishabilityQ.data?.[w.waterId]?.bySpecies[focus]?.comfort
+                      ? { species: focus, comfort: fishabilityQ.data[w.waterId]!.bySpecies[focus]!.comfort } : null}
                   />
                 </li>
               ))}

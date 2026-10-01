@@ -40,6 +40,15 @@ function overview(overrides: Partial<WaterOverviewInput> = {}) {
 }
 
 describe('buildWaterOverview', () => {
+  it('uses metricTimes inside a combined reading and selects the freshest metric across gauges', () => {
+    const old = new Date(NOW - 360 * MIN).toISOString();
+    const o = overview({ conditions: makeSnapshot([
+      reading({ cfs: 128, tempC: 19, metricTimes: { tempC: old } }),
+      reading({ timestamp: new Date(NOW - 300 * MIN).toISOString(), tempC: 18 }),
+    ]) });
+    expect(o.metrics.find((metric) => metric.key === 'temperature')).toMatchObject({ value: 18, stale: true, ageMinutes: 300 });
+    expect(o.metrics.find((metric) => metric.key === 'flow')?.stale).toBe(false);
+  });
   it('keeps each metric’s own observation age — fresh flow never refreshes old temperature', () => {
     const o = overview({
       conditions: makeSnapshot([

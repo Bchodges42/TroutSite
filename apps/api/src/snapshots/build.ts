@@ -862,6 +862,7 @@ function emitGaugeHistory(db: Db, ctx: { v1Dir: string; now: Date; files: string
     cfs: number | null;
     height_ft: number | null;
     temp_c: number | null;
+    payload: string;
   }
   let rows: GaugeRawRow[];
   try {
@@ -872,10 +873,10 @@ function emitGaugeHistory(db: Db, ctx: { v1Dir: string; now: Date; files: string
     // newest fetched_at's value.
     rows = db
       .prepare(
-        `SELECT gauge_id, observed_at, cfs, height_ft, temp_c
+        `SELECT gauge_id, observed_at, cfs, height_ft, temp_c, payload
          FROM gauge_readings_raw
          WHERE observed_at IS NOT NULL AND julianday(observed_at) >= julianday(?)
-         ORDER BY gauge_id, julianday(observed_at) ASC, julianday(fetched_at) ASC`,
+         ORDER BY gauge_id, julianday(fetched_at) ASC`,
       )
       .all(cutoff) as GaugeRawRow[];
   } catch {
@@ -899,14 +900,20 @@ function emitGaugeHistory(db: Db, ctx: { v1Dir: string; now: Date; files: string
       byInstant = new Map<number, SampleValues>();
       byGauge.set(r.gauge_id, byInstant);
     }
-    // One sample per INSTANT (not per timestamp text — DST can mix offsets at
-    // one instant). A metric the newer row carries overwrites the older value;
-    // a metric it lacks leaves the older value standing.
-    const sample = byInstant.get(observedMs) ?? { timestamp: r.observed_at };
-    if (r.cfs !== null) sample.cfs = r.cfs;
-    if (r.temp_c !== null) sample.tempC = r.temp_c;
-    if (r.height_ft !== null) sample.heightFt = r.height_ft;
-    byInstant.set(observedMs, sample);
+    let metricTimes: Record<string, unknown> = {};
+    try {
+      const raw = JSON.parse(r.payload) as { metricTimes?: Record<string, unknown> };
+      if (raw?.metricTimes && typeof raw.metricTimes === 'object') metricTimes = raw.metricTimes;
+    } catch { /* Legacy rows use observed_at. */ }
+    for (const [metric, value] of [['cfs', r.cfs], ['tempC', r.temp_c], ['heightFt', r.height_ft]] as const) {
+      if (typeof value !== 'number' || !Number.isFinite(value)) continue;
+      const own = metricTimes[metric];
+      const time = own === undefined ? observedMs : typeof own === 'string' ? Date.parse(own) : Number.NaN;
+      if (!Number.isFinite(time) || time < ctx.now.getTime() - GAUGE_HISTORY_WINDOW_DAYS * 86_400_000 || time > ctx.now.getTime() + 60_000) continue;
+      const sample = byInstant.get(time) ?? { timestamp: new Date(time).toISOString() };
+      sample[metric] = value;
+      byInstant.set(time, sample);
+    }
   }
 
   const gaugeDir = join(ctx.v1Dir, 'gauge-history');

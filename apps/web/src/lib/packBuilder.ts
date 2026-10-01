@@ -31,16 +31,14 @@ import anchors from '../data/streams-geo.json';
 export const PACK_CACHE_NAME = 'trout-packs-v1';
 
 /**
- * Terrain tiles are pinned into the EXISTING `topo-cache` instead: the service
- * worker already routes /atlas/topo/ through a CacheFirst runtime handler
- * (vite.shared.ts), so tiles stored there are served offline today — no SW
- * change needed. Everything else lands in PACK_CACHE_NAME.
+ * Workbox's runtime terrain cache is disposable. Pinned terrain belongs in
+ * PACK_CACHE_NAME, where runtime expiration cannot evict an explicit download.
  */
 export const TOPO_CACHE_NAME = 'topo-cache';
 
 /** Which Cache-Storage cache owns a pinned URL (mirrors the comment above). */
-export function cacheNameForUrl(url: string): string {
-  return url.includes('/atlas/topo/') ? TOPO_CACHE_NAME : PACK_CACHE_NAME;
+export function cacheNameForUrl(_url: string): string {
+  return PACK_CACHE_NAME;
 }
 
 // ── Frozen pack inputs (same URLs the app's own surfaces read) ──────────────
@@ -159,7 +157,7 @@ export function networkClusterUrlsForPoint(
       const [w, s, e, n] = c.bounds;
       return point.lon >= w && point.lon <= e && point.lat >= s && point.lat <= n;
     })
-    .map((c) => `/atlas/network/${c.file}`);
+    .map((c) => c.file.startsWith('network/') ? `/atlas/${c.file}` : `/atlas/network/${c.file}`);
   return covering.length > 0 ? [NETWORK_MANIFEST_URL, ...covering] : [];
 }
 
@@ -199,6 +197,8 @@ export interface WaterPackOptions {
   topo?: TopoTileInfo | null;
   /** Cluster files covering the water (resolved from the network manifest). */
   clusterUrls?: string[];
+  /** Only history snapshots confirmed available at download time. */
+  historyUrls?: string[];
 }
 
 /**
@@ -228,6 +228,8 @@ export function planWaterPack(stream: Stream, opts: WaterPackOptions = {}): Pack
         CONTENT_URLS.taxa,
         CONTENT_URLS.patterns,
         ENDPOINTS.stocking(stream.stateId),
+        '/content/access.json',
+        ENDPOINTS.reportsRecent,
       ],
     },
     {
@@ -262,6 +264,10 @@ export function planWaterPack(stream: Stream, opts: WaterPackOptions = {}): Pack
       urls: [RIVERS_GEO_URL, ...(opts.clusterUrls ?? [])],
     },
   ];
+
+  if (opts.historyUrls?.length) {
+    sections.push({ key: 'history', label: 'Available gauge history', required: true, urls: opts.historyUrls });
+  }
 
   const anchor = waterAnchor(stream.id);
   const topo = opts.includeTerrain ? (opts.topo ?? null) : null;

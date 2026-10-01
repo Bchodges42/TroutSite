@@ -31,6 +31,7 @@ export function OwnerGate({ onUnlocked }: { onUnlocked: () => void }) {
       setBusy(false);
       onUnlocked();
     } catch (err) {
+      clearOwnerToken();
       setError(
         err instanceof OwnerApiError
           ? err.message

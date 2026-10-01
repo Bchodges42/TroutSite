@@ -61,7 +61,7 @@ export function buildSurfaceOverview(input: SurfaceOverviewInput): SurfaceOvervi
     stream: input.stream,
     decision,
     conditions: input.snapshot ?? null,
-    offlineSaved: !input.live,
+    offlineSaved: input.snapshot != null && !input.live,
     nowMs: input.nowMs,
     lastStockingEvent: input.lastStockingEvent,
     sourcesCount: input.stream.officialSources?.length ?? 0,

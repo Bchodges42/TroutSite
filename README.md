@@ -60,14 +60,19 @@ pnpm e2e
 
 ## Architecture invariants
 
-- **Read path is static files.** `/v1/*` and `/content/*` are JSON snapshots regenerated
-  hourly by the data job; the one dynamic GET is `/v1/streams?state=`; the one write
-  surface is `POST /v1/portal/reports` (HMAC shop token). ADRs 0004–0006 record why.
+- **Public browsing reads static snapshots.** Conditions and content JSON regenerate
+  hourly. Public report history and filtered streams have live reads; shop reports,
+  opt-in watches, water corrections and protected owner tools use live API routes.
+  ADRs 0004–0006 and 0015–0018 record these boundaries.
 - **Offline layer** = Workbox service worker + Dexie in the browser. Snapshot routes are
   served `no-store` so HTTP caching can never masquerade as live data.
-- **Privacy by architecture.** No accounts, no cookies, no analytics unless compiled in
-  at build time (`VITE_CF_ANALYTICS_TOKEN`), no third-party requests, no location leaves
-  the device. `e2e/web/privacy.spec.ts` enforces this on every shipped route.
+- **Privacy by architecture.** No accounts or cookies; location stays on the device.
+  Ordinary public browsing makes no third-party requests unless analytics is compiled
+  in at build time (`VITE_CF_ANALYTICS_TOKEN`). Opt-in push enrollment contacts the
+  browser's notification provider. `e2e/web/privacy.spec.ts` checks public browsing.
+  Fishing logs/photos, saved waters and trip plans stay local. Opt-in push watches
+  store browser delivery credentials and rules on the server; submitted water corrections
+  enter the protected moderation queue. See the public privacy page and ADRs 0015–0016.
 
 ## Contracts (`packages/contracts`)
 
