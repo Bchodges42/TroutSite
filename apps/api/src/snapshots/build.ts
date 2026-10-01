@@ -34,6 +34,7 @@ import type { Db } from '../db.js';
 import { latestReadings } from '../ingest/usgs.js';
 import { jobHealthy } from '../jobs/run.js';
 import { writeJsonAtomic } from '../lib/jsonFile.js';
+import { emitWidgetArtifacts } from '../widgets/embed.js';
 import { bandsFromReference, buildFishabilitySnapshot, spawnThresholdsFromReference, type PressureInfo, type RainInfo, type SpeciesReferenceLike, type SpawnInfo } from './fishability.js';
 
 export interface BuildOptions {
@@ -53,6 +54,14 @@ export interface BuildOptions {
   now: Date;
   /** Hourly gauge cadence (§5 schedule) — the fresh-until horizon for conditions. */
   conditionsTtlMs?: number;
+  /**
+   * Public site origin (SITE_URL) baked into the shop widget's "Open in Trout"
+   * links (ADR 0018). Unset → relative /conditions/<id> links, which are correct
+   * wherever the artifact is served (the embed iframe's document origin IS the
+   * site). Wiring env.SITE_URL through the scheduled pass is a later step; the
+   * artifact never needs it to function.
+   */
+  siteUrl?: string;
 }
 
 interface StreamRow {
@@ -189,6 +198,8 @@ export interface SnapshotResult {
   releaseSchedules: number;
   /** Per-gauge history files emitted under /v1/gauge-history/ (ADR 0014). */
   gaugeHistories: number;
+  /** Static widget artifacts emitted under /v1/widgets/ (ADR 0018). */
+  widgetArtifacts: number;
   warnings: string[];
 }
 
@@ -445,6 +456,14 @@ function buildGeneration(opts: BuildOptions, outDir: string): SnapshotResult {
   const reportFeed = publishReportFeed({ db, snapshotsDir: outDir, now });
   files.push(reportFeed.path);
 
+  // ── v1/widgets/conditions-embed.html (shop embed widget, ADR 0018) ─────────
+  // ONE static, self-contained HTML artifact per generation: shop selection
+  // rides the ?waters= query at runtime (the inline script fetches the same
+  // public /v1/*.json snapshots), so there are no per-shop files. Emitted and
+  // pruned in this pass exactly like every other managed file, and listed in
+  // the generation manifest below.
+  const widgetArtifacts = emitWidgetArtifacts({ v1Dir, files, siteUrl: opts.siteUrl });
+
   // ── v1/evidence/waters.json (WaterEvidence[], data-sources lane) ───────────
   // Re-emits the newest evidence_runs payload (written by the evidence job). No
   // evidence job has run yet → skipped with a warning; never synthesized.
@@ -551,6 +570,7 @@ function buildGeneration(opts: BuildOptions, outDir: string): SnapshotResult {
     evidenceWaters,
     releaseSchedules: releaseRows.length,
     gaugeHistories,
+    widgetArtifacts,
     warnings,
   };
 }

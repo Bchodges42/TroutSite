@@ -11,6 +11,9 @@ import { latestJobRuns, jobDegradation } from './jobs/run.js';
 import { conditionsFeedHealth, fishabilityFeedHealth } from './snapshots/health.js';
 import { registerPortalRoutes, type PortalDeps } from './portal/routes.js';
 import { registerCorrectionsRoutes, type CorrectionsDeps } from './corrections/routes.js';
+import { registerWatchRoutes, type WatchDeps } from './push/routes.js';
+import { vapidConfigFromEnv } from './push/notifier.js';
+import { registerOwnerRoutes } from './owner/routes.js';
 import { loadEnv } from './env.js';
 import { createGaugeNowCache, GaugeNowBusyError, type GaugeNowCache } from './lib/gauge-now.js';
 
@@ -40,6 +43,13 @@ export interface BuildAppOptions {
    * SITE_URL); with no pepper configured every corrections route fail-closes 503.
    */
   corrections?: Omit<CorrectionsDeps, 'db'>;
+  /**
+   * Watchlist lane (ADR 0016). Omitted → the VAPID keys and site origin come
+   * from the environment (VAPID_*, SITE_URL); with no VAPID configured the
+   * push parts fail closed (subscribe 503, config pushSupported:false) while
+   * config and rule CRUD stay available for already-registered ids.
+   */
+  watchlists?: Omit<WatchDeps, 'db'>;
   /** Live per-gauge readings for the map's gauge layer (injectable in tests). */
   gaugesNow?: GaugeNowCache;
 }
@@ -75,6 +85,22 @@ function correctionsDepsFromEnv(): Pick<CorrectionsDeps, 'pepper' | 'moderatorTo
     moderatorToken: env.CORRECTIONS_MODERATOR_TOKEN,
     siteOrigins: siteOrigin ? [siteOrigin] : [],
   };
+}
+
+/**
+ * Watchlist config straight from the environment (ADR 0016): the VAPID keys
+ * (via the shared vapidConfigFromEnv — app + cron can never disagree) and the
+ * site origin allowlist.
+ */
+function watchlistsDepsFromEnv(): Pick<WatchDeps, 'vapid' | 'siteOrigins'> {
+  const env = loadEnv();
+  let siteOrigin = env.SITE_URL.trim();
+  try {
+    siteOrigin = new URL(env.SITE_URL).origin;
+  } catch {
+    // keep the raw value; the origin check compares parsed origins anyway
+  }
+  return { vapid: vapidConfigFromEnv(env), siteOrigins: siteOrigin ? [siteOrigin] : [] };
 }
 
 /**
@@ -146,7 +172,15 @@ export function buildApp(options: BuildAppOptions = {}): FastifyInstance {
   app.addHook('onSend', async (_req, reply, payload) => {
     reply.header('Strict-Transport-Security', 'max-age=63072000');
     reply.header('X-Content-Type-Options', 'nosniff');
-    reply.header('X-Frame-Options', 'DENY');
+    const path = (_req.raw.url ?? '').split('?')[0] ?? '';
+    if (path === '/v1/widgets/conditions-embed.html') {
+      // ADR 0018: the shop conditions widget is MEANT to be framed cross-origin.
+      // XFO cannot be overridden by CSP — it must be absent on this one path.
+      reply.removeHeader('X-Frame-Options');
+      reply.header('Content-Security-Policy', 'frame-ancestors *');
+    } else {
+      reply.header('X-Frame-Options', 'DENY');
+    }
     reply.header('Referrer-Policy', 'strict-origin-when-cross-origin');
     reply.header('Permissions-Policy', 'geolocation=(self), camera=(), microphone=()');
     return payload;
@@ -252,6 +286,23 @@ export function buildApp(options: BuildAppOptions = {}): FastifyInstance {
     registerCorrectionsRoutes(app, {
       db: options.db,
       ...(options.corrections ?? correctionsDepsFromEnv()),
+    });
+    // Watchlist lane (ADR 0016): the one deliberate server-side subscription
+    // surface. Registration is unconditional (an unconfigured deployment still
+    // answers the honest 503 / pushSupported:false, which the web renders);
+    // explicit options are authoritative (tests stay deterministic).
+    registerWatchRoutes(app, {
+      db: options.db,
+      ...(options.watchlists ?? watchlistsDepsFromEnv()),
+    });
+    // Owner dashboard lane (ADR 0017): read-only operator visibility. The
+    // factory registers NOTHING when the token is unset — an unconfigured
+    // deployment simply has no owner surface (fail-closed by absence).
+    registerOwnerRoutes(app, {
+      db: options.db,
+      snapshotsDir: options.webPublicDir,
+      contentDir: options.webPublicDir ? join(options.webPublicDir, 'content-pack') : undefined,
+      ownerToken: loadEnv().OWNER_DASHBOARD_TOKEN,
     });
   }
 
