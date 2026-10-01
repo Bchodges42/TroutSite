@@ -30,7 +30,14 @@ jobs:
         run: pnpm validate:content
 
       - name: Test (contracts with >=90% coverage gate + api)
-        run: pnpm -r test
+        run: |
+          $env:PATH = "C:\Program Files\Git\bin;" + $env:PATH
+          pnpm -r --workspace-concurrency=1 run test --maxWorkers=4 --minWorkers=1 --testTimeout=30000
+
+      - name: Infrastructure and atlas helper regression gates
+        run: |
+          $env:PATH = "C:\Program Files\Git\bin;" + $env:PATH
+          pnpm test:infra
 
       - name: Build (all packages)
         run: pnpm -r build

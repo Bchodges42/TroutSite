@@ -410,8 +410,8 @@ export async function importFromExport(raw: unknown): Promise<number> {
         photoIds: undefined,
         entryKind: entry.entryKind,
         conditions:
-          entry.conditionsSnapshot !== undefined && entry.conditionsSnapshot !== null && typeof entry.conditionsObservedAt === 'number'
-            ? { snapshot: entry.conditionsSnapshot, observedAt: entry.conditionsObservedAt }
+          entry.conditionsSnapshot !== undefined && entry.conditionsSnapshot !== null
+            ? { snapshot: entry.conditionsSnapshot, observedAt: typeof entry.conditionsObservedAt === 'number' && Number.isFinite(entry.conditionsObservedAt) ? entry.conditionsObservedAt : Number.NaN }
             : undefined,
       }),
     );
@@ -444,9 +444,9 @@ async function importFullBackup(payload: { photos?: unknown; entries?: unknown }
       flies: Array.isArray(entry.flies) ? entry.flies.filter((f): f is string => typeof f === 'string') : [],
       createdAt: typeof entry.createdAt === 'number' && Number.isFinite(entry.createdAt) ? entry.createdAt : Date.now(),
       updatedAt: Date.now(),
-      // Full backups may carry v2 fields + their photos; keep the snapshot only with its observedAt.
-      ...(entry.conditionsSnapshot !== undefined && typeof entry.conditionsObservedAt === 'number' && Number.isFinite(entry.conditionsObservedAt)
-        ? { conditionsSnapshot: entry.conditionsSnapshot, conditionsObservedAt: entry.conditionsObservedAt }
+      // Keep a captured snapshot even when its observation age was unknown.
+      ...(entry.conditionsSnapshot !== undefined && entry.conditionsSnapshot !== null
+        ? { conditionsSnapshot: entry.conditionsSnapshot, ...(typeof entry.conditionsObservedAt === 'number' && Number.isFinite(entry.conditionsObservedAt) ? { conditionsObservedAt: entry.conditionsObservedAt } : {}) }
         : {}),
       ...(typeof entry.time === 'string' ? { time: sanitizeTime(entry.time) } : {}),
       ...(typeof entry.durationMinutes === 'number' ? { durationMinutes: optInt(entry.durationMinutes, 1, 10_080) } : {}),
@@ -542,7 +542,9 @@ async function bulkAddDeduped(rows: LogbookEntry[]): Promise<number> {
 }
 
 function rowKey(row: LogbookEntry): string {
-  return JSON.stringify([row.streamId ?? '', row.streamName, row.date, row.notes, row.createdAt ?? '']);
+  return JSON.stringify([row.streamId ?? '', row.streamName, row.date, row.notes, row.createdAt ?? '',
+    row.tripId ?? '', row.time ?? '', row.flies ?? [], row.species ?? [], row.durationMinutes ?? null,
+    row.technique ?? '', row.caughtCount ?? null, row.releasedCount ?? null, row.blankTrip ?? null, row.entryKind ?? '']);
 }
 
 /** Download helper kept out of components so tests only exercise pure data. */

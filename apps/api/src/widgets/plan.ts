@@ -5,7 +5,7 @@ import type {
   StockingEvent,
   Stream,
 } from '@trout/contracts';
-import { READING_STALE_MINUTES } from '@trout/contracts';
+import { ENDPOINTS, READING_STALE_MINUTES } from '@trout/contracts';
 
 /**
  * Shop conditions widget — pure presentation model (ADR 0018).
@@ -77,7 +77,7 @@ export const WIDGET_SEMANTICS: WidgetSemantics = {
   bandGoodMin: 70,
   bandFairMin: 40,
   maxWaters: 4,
-  streamsUrl: '/v1/streams.json',
+  streamsUrl: ENDPOINTS.streams,
   conditionsUrl: '/v1/conditions/latest.json',
   fishabilityUrlTemplate: '/v1/fishability/{id}.json',
   stockingUrlTemplate: '/v1/stocking/{state}-recent.json',
@@ -136,6 +136,7 @@ export interface WidgetModel {
 /** One resolved water: catalog row + its conditions (+ optional contexts). */
 export interface WidgetWaterInput {
   stream: Stream;
+  catalog?: Stream[];
   conditions: ConditionSnapshot;
   fishability: FishabilitySnapshot | null;
   stocking: StockingEvent[] | null;
@@ -307,20 +308,17 @@ export function capitalizeWords(raw: string): string {
  * streamName against the catalog name or any alias (stocking feeds carry
  * names, not ids). Newest first by date, then species for stable order.
  */
-export function matchStockingEvents(events: StockingEvent[], stream: Stream): StockingEvent[] {
-  const names: string[] = [stream.name];
-  const aliases = stream.aliases;
-  if (aliases) {
-    for (let i = 0; i < aliases.length; i++) names.push(aliases[i]!);
-  }
-  const lower: string[] = [];
-  for (let i = 0; i < names.length; i++) lower.push(names[i]!.trim().toLowerCase());
+export function matchStockingEvents(events: StockingEvent[], stream: Stream, catalog?: Stream[]): StockingEvent[] {
   const matched: StockingEvent[] = [];
   for (let i = 0; i < events.length; i++) {
     const event = events[i]!;
-    const counties = stream.hydroIdentity?.counties;
-    const countyMatches = !counties?.length || !event.county || counties.some((county) => county.trim().toLowerCase().replace(/ county$/, '') === event.county!.trim().toLowerCase().replace(/ county$/, ''));
-    if (countyMatches && lower.indexOf(event.streamName.trim().toLowerCase()) !== -1) matched.push(event);
+    const candidates = (catalog || [stream]).filter((candidate) => {
+      const counties = candidate.hydroIdentity?.counties;
+      const countyMatches = !counties?.length || !event.county || counties.some((county) => county.trim().toLowerCase().replace(/ county$/, '') === event.county!.trim().toLowerCase().replace(/ county$/, ''));
+      return countyMatches && [candidate.name, ...(candidate.aliases || [])].some((name) => name.trim().toLowerCase() === event.streamName.trim().toLowerCase());
+    });
+    // An exact alias shared by two reaches is still ambiguous. Never guess.
+    if (candidates.length === 1 && candidates[0]!.id === stream.id) matched.push(event);
   }
   matched.sort(
     (a, b) => b.date.localeCompare(a.date) || a.species.localeCompare(b.species),
@@ -431,7 +429,7 @@ export function buildWaterModel(
     }
   }
 
-  const stockingText = input.stocking ? buildStockingText(matchStockingEvents(input.stocking, stream)) : null;
+  const stockingText = input.stocking ? buildStockingText(matchStockingEvents(input.stocking, stream, input.catalog)) : null;
 
   return {
     id: stream.id,
@@ -471,7 +469,7 @@ export function assembleWaterRows(
     const stream = streamById[id];
     const snapshot = conditionsById[id];
     if (!stream || !snapshot) continue;
-    out.push({ stream: stream, conditions: snapshot, fishability: null, stocking: null, siteUrl: '' });
+    out.push({ stream: stream, catalog: streams, conditions: snapshot, fishability: null, stocking: null, siteUrl: '' });
   }
   return out;
 }

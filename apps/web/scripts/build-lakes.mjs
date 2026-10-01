@@ -6,7 +6,7 @@
 // matched by name fragment and labeled with its common display name.
 //
 // Run: node scripts/build-lakes.mjs
-import { _readFileSync, writeFileSync, readdirSync } from 'node:fs';
+import { writeFileSync, readdirSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { open as openShapefile } from 'shapefile';

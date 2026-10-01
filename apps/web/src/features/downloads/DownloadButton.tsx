@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Button, ConfirmButton } from '@trout/ui';
 import type { DownloadManifestRecord } from '../../lib/db';
 import { computePackReadiness } from '../../lib/downloadManifests';
@@ -12,12 +13,13 @@ export interface DownloadButtonProps {
   progress?: PinProgress | null | undefined;
   /** Honest connectivity: pinning needs the network, verifying does not. */
   offline: boolean;
-  onDownload: () => void;
+  onDownload: (includeTerrain: boolean) => void;
+  onCancel?: () => void;
   onVerify?: () => void;
   onRemove?: () => void;
   /** Offered when a manifest exists but is NOT required-ready (evicted or
    *  failed sections): re-pins the pack from the network. */
-  onRedownload?: () => void;
+  onRedownload?: (includeTerrain: boolean) => void;
   /** Removes the ConfirmButton in tight rows (cards use their own actions). */
   confirmRemove?: boolean;
   className?: string;
@@ -36,6 +38,7 @@ export function DownloadButton({
   progress,
   offline,
   onDownload,
+  onCancel,
   onVerify,
   onRemove,
   onRedownload,
@@ -43,9 +46,17 @@ export function DownloadButton({
   className,
 }: DownloadButtonProps) {
   const readiness = manifest ? computePackReadiness(manifest.sections) : null;
+  const [includeTerrain, setIncludeTerrain] = useState(() => manifest?.sections.some((section) => section.key === 'terrain') ?? false);
 
   return (
     <span className={'inline-flex flex-wrap items-center gap-2 ' + (className ?? '')}>
+      {!busy && (!manifest || onRedownload) && (
+        <label className="inline-flex min-h-11 items-center gap-2 text-sm">
+          <input type="checkbox" checked={includeTerrain} disabled={offline}
+            onChange={(event) => setIncludeTerrain(event.target.checked)} />
+          Include terrain (larger download)
+        </label>
+      )}
       {!manifest && !busy && (
         <Button
           size="sm"
@@ -53,7 +64,7 @@ export function DownloadButton({
           className="focus-ring"
           disabled={offline}
           title={offline ? 'Pinning needs a network connection — you are offline right now.' : undefined}
-          onClick={onDownload}
+          onClick={() => onDownload(includeTerrain)}
         >
           Download
         </Button>
@@ -65,6 +76,9 @@ export function DownloadButton({
             ? `Downloading — ${progress.label} (${progress.done}/${progress.total})`
             : 'Working…'}
         </span>
+      )}
+      {busy && onCancel && (
+        <Button variant="secondary" size="sm" onClick={onCancel}>Cancel download</Button>
       )}
 
       {manifest && !busy && readiness && (
@@ -88,16 +102,16 @@ export function DownloadButton({
                   : 'Ready offline'
                 : 'Partial'}
           </span>
-          {!readiness.requiredReady && onRedownload && (
+          {onRedownload && (
             <Button
               size="sm"
               data-testid="pack-redownload"
               className="focus-ring"
               disabled={offline}
               title={offline ? 'Pinning needs a network connection — you are offline right now.' : undefined}
-              onClick={onRedownload}
+              onClick={() => onRedownload(includeTerrain)}
             >
-              Download again
+              {readiness.requiredReady ? 'Refresh download' : 'Download again'}
             </Button>
           )}
           {onVerify && (

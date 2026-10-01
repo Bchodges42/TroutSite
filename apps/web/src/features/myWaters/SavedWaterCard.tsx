@@ -224,8 +224,9 @@ export function SavedWaterCard({
             busy={manager.busyId === waterManifestId(saved.waterId)}
             progress={manager.progress}
             offline={typeof navigator !== 'undefined' && navigator.onLine === false}
-            onDownload={() => void manager.downloadWater(stream)}
-            onRedownload={waterPack ? () => void manager.downloadWater(stream) : undefined}
+            onDownload={(terrain) => void manager.downloadWater(stream, terrain)}
+            onRedownload={waterPack ? (terrain) => void manager.downloadWater(stream, terrain) : undefined}
+            onCancel={manager.cancelDownload}
             onVerify={waterPack ? () => void manager.verifyPack(waterPack) : undefined}
             onRemove={waterPack ? () => void manager.removePack(waterPack) : undefined}
           />

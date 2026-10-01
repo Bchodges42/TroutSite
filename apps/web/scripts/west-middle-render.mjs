@@ -14,7 +14,7 @@
  *
  * Run: node scripts/west-middle-render.mjs
  */
-import { readFileSync, _writeFileSync, mkdirSync, existsSync } from 'node:fs';
+import { readFileSync, mkdirSync, existsSync } from 'node:fs';
 import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 

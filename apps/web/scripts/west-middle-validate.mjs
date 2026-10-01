@@ -21,7 +21,7 @@
  *
  * Run: node scripts/west-middle-validate.mjs
  */
-import { readFileSync, _readdirSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync } from 'node:fs';
 import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 

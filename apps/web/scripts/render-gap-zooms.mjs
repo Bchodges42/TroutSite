@@ -6,7 +6,7 @@
  * endpoints marked, plus the delivered lakes and imagery context.
  * QA artifact only. Run: node scripts/render-gap-zooms.mjs [id …]
  */
-import { readFileSync, mkdirSync, _existsSync, readdirSync } from 'node:fs';
+import { readFileSync, mkdirSync, readdirSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';

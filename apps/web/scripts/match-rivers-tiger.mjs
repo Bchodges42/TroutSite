@@ -3,7 +3,7 @@
 // REAL DATA ONLY: U.S. Census Bureau TIGER/Line 2024 LINEARWATER, Tennessee
 // (public domain). No synthetic coordinates anywhere in this pipeline.
 // Run: node scripts/match-rivers-tiger.mjs
-import { readFileSync, writeFileSync, _existsSync, mkdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { open as openShapefile } from 'shapefile';

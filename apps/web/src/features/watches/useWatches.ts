@@ -65,7 +65,7 @@ export class WatchTransportUnavailable extends Error {
 
 /** The one honest sentence every watch surface carries (ADR 0016 §6). */
 export const WATCH_PRIVACY_LINE =
-  'Watches are pseudonymous — no name, no location, no logbook data is collected. Enabling notifications stores this browser’s push endpoint, encryption keys, and water rules on our server and sends notices through your browser’s push provider. Unsubscribe deletes them; inactive subscriptions expire after 90 days.';
+  'Watches are pseudonymous — no name, no location, no logbook data is collected. Enabling notifications stores this browser’s push endpoint, encryption keys, and water rules on our server and sends notices through your browser’s push provider. Unsubscribe deletes them; inactive subscriptions expire after 180 days.';
 
 export type WatchRuleDraft = Omit<WatchRule, 'id' | 'waterId' | 'createdAt' | 'lastNotifiedAt'>;
 

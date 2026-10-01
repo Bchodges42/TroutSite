@@ -3,7 +3,7 @@
 #
 #   bash infra/install-schedules.sh            # install for this host
 #   bash infra/install-schedules.sh --dry-run  # print what would be registered
-#   bash infra/install-schedules.sh --remove   # unregister all three
+#   bash infra/install-schedules.sh --remove   # unregister the listed Trout tasks
 #
 #   trout-watchdog      every 15 min  verify + heal the read path
 #   trout-refresh-data  hourly        gauges + NWS pressure ingest + snapshot

@@ -184,6 +184,28 @@ describe('logbook v2 — export/import (ADR 0012 decision 6)', () => {
     expect(entry.conditionsSnapshot).toBeUndefined();
   });
 
+  it.each(['entries', 'full'] as const)('preserves captured conditions with unknown observation age in a %s backup', async (format) => {
+    const capture = conditionsCaptureFrom(snapshot({ readings: [] }));
+    await addEntry({ streamName: 'Unknown observation', date: '2026-09-30', conditions: capture });
+    const backup = format === 'entries' ? await buildExport() : await buildFullBackup();
+    await db.logbook.clear();
+    expect(await importFromExport(JSON.parse(JSON.stringify(backup)))).toBe(1);
+    const [entry] = await listEntries();
+    expect(entry.conditionsSnapshot).toEqual(capture.snapshot);
+    expect(entry.conditionsObservedAt).toBeUndefined();
+  });
+
+  it.each([
+    [{ tripId: 'plan-a' }, { tripId: 'plan-b' }],
+    [{ flies: ['Adams'] }, { flies: ['Midge'] }],
+  ])('keeps distinct visits with the same water/date/notes and creation clock', async (first, second) => {
+    const shared = { streamName: 'Caney Fork River', date: '2026-09-30', notes: '', createdAt: 1234 };
+    const backup = { format: 'trout-logbook', version: 2, entries: [{ ...shared, ...first }, { ...shared, ...second }] };
+    expect(await importFromExport(backup)).toBe(2);
+    expect(await db.logbook.count()).toBe(2);
+    expect(await importFromExport(backup)).toBe(0);
+  });
+
   it('imports a v2 export and re-imports without duplicating trips', async () => {
     await addEntry({ streamName: 'Duck River', date: '2026-09-20', durationMinutes: 120, caughtCount: 2 });
     const exported = await buildExport();

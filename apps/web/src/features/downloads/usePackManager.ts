@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { toast } from '@trout/ui';
 import { ENDPOINTS, StreamSchema, GaugeHistorySchema } from '@trout/contracts';
@@ -15,7 +15,7 @@ import {
   waterAnchor,
 } from '../../lib/packBuilder';
 import type { PackPlan, TopoTileInfo } from '../../lib/packBuilder';
-import { pin, remove, storageEstimate, verify, type PinProgress, type PinResult } from '../../lib/packCache';
+import { fetchPackResource, pin, remove, storageEstimate, verify, type PinProgress, type PinResult } from '../../lib/packCache';
 import { listManifests, tripManifestId, waterManifestId } from '../../lib/downloadManifests';
 import { db } from '../../lib/db';
 import { resolveUrl } from '../../lib/endpoints';
@@ -27,7 +27,7 @@ import { currentMonth } from '../../lib/time';
  * network-cluster manifest for map context — both fail open: no section is
  * planned from a manifest that cannot be confirmed), runs pin/verify/remove,
  * and reports honest completion. Everything it mutates lives in
- * 'trout-packs-v1'/'topo-cache' + the manifest store; personal records
+ * 'trout-packs-v1' + the manifest store; personal records
  * (logbook, saved waters, trips, photos) are never touched.
  */
 
@@ -36,9 +36,9 @@ const OFFLINE_MESSAGE = 'Downloading needs a network connection — you are offl
 /** Both atlas manifests are tiny and immutable between deploys — fetch them
  *  lazily at download time (never on render) and fail open: no terrain
  *  section is offered when coverage cannot be confirmed. */
-async function resolveTerrain(): Promise<TopoTileInfo | null> {
+async function resolveTerrain(signal: AbortSignal): Promise<TopoTileInfo | null> {
   try {
-    const res = await fetch(resolveUrl(TOPO_MANIFEST_URL), { headers: { accept: 'application/json' } });
+    const res = await fetchPackResource(resolveUrl(TOPO_MANIFEST_URL), signal);
     if (!res.ok) return null;
     return parseTopoTileInfo(await res.json());
   } catch {
@@ -46,9 +46,9 @@ async function resolveTerrain(): Promise<TopoTileInfo | null> {
   }
 }
 
-async function resolveClusterUrls(anchor: { lat: number; lon: number }): Promise<string[]> {
+async function resolveClusterUrls(anchor: { lat: number; lon: number }, signal: AbortSignal): Promise<string[]> {
   try {
-    const res = await fetch(resolveUrl(NETWORK_MANIFEST_URL), { headers: { accept: 'application/json' } });
+    const res = await fetchPackResource(resolveUrl(NETWORK_MANIFEST_URL), signal);
     if (!res.ok) return [];
     return networkClusterUrlsForPoint(parseNetworkClusters(await res.json()), anchor);
   } catch {
@@ -58,17 +58,17 @@ async function resolveClusterUrls(anchor: { lat: number; lon: number }): Promise
 
 /** Catalog rows for re-downloading a pack from Settings (no catalog hook
  *  lives there). Schema-validated like every surface. */
-async function fetchCatalogRows(): Promise<Stream[]> {
-  const res = await fetch(resolveUrl(ENDPOINTS.streams), { headers: { accept: 'application/json' } });
+async function fetchCatalogRows(signal: AbortSignal): Promise<Stream[]> {
+  const res = await fetchPackResource(resolveUrl(ENDPOINTS.streams), signal);
   if (!res.ok) throw new Error(`HTTP ${res.status} for ${ENDPOINTS.streams}`);
   return StreamSchema.array().parse(await res.json());
 }
 
-async function availableHistory(stream: Stream): Promise<string[]> {
+async function availableHistory(stream: Stream, signal: AbortSignal): Promise<string[]> {
   const found = await Promise.all((stream.gaugeIds ?? []).filter((id) => /^\d+$/.test(id)).map(async (id) => {
     const url = ENDPOINTS.gaugeHistory(id);
     try {
-      const res = await fetch(resolveUrl(url), { headers: { accept: 'application/json' } });
+      const res = await fetchPackResource(resolveUrl(url), signal);
       return res.ok && GaugeHistorySchema.safeParse(await res.json()).success ? url : null;
     } catch { return null; }
   }));
@@ -83,6 +83,10 @@ function monthFor(date: string | undefined): number {
 
 /** One honest completion message per pin outcome. */
 function reportPinOutcome(plan: PackPlan, result: PinResult): void {
+  if (result.cancelled) {
+    toast.success('Download canceled. Finished sections remain on this device; verify before relying on the pack.');
+    return;
+  }
   if (result.offline) {
     toast.error(OFFLINE_MESSAGE);
     return;
@@ -108,7 +112,7 @@ function reportPinOutcome(plan: PackPlan, result: PinResult): void {
     return;
   }
   if (!plan.sections.some((s) => s.key === 'terrain')) {
-    toast.success('Downloaded — this water has no terrain coverage here, so no hillshade was pinned.');
+    toast.success('Basic information downloaded. Terrain is not included in this pack.');
     return;
   }
   toast.success('Downloaded — this pack now opens offline.');
@@ -119,10 +123,11 @@ export interface PackManagerApi {
   manifests: DownloadManifestRecord[] | undefined;
   busyId: string | null;
   progress: PinProgress | null;
-  downloadWater: (stream: Stream) => Promise<void>;
-  downloadTrip: (trip: TripRecord, streams: Stream[]) => Promise<void>;
+  downloadWater: (stream: Stream, includeTerrain?: boolean) => Promise<void>;
+  downloadTrip: (trip: TripRecord, streams: Stream[], includeTerrain?: boolean) => Promise<void>;
   /** Re-download a pack from Settings (catalog rows are resolved on demand). */
-  redownload: (manifest: DownloadManifestRecord) => Promise<void>;
+  redownload: (manifest: DownloadManifestRecord, includeTerrain?: boolean) => Promise<void>;
+  cancelDownload: () => void;
   verifyPack: (manifest: DownloadManifestRecord) => Promise<void>;
   removePack: (manifest: DownloadManifestRecord) => Promise<void>;
 }
@@ -131,52 +136,59 @@ export function usePackManager(): PackManagerApi {
   const manifests = useLiveQuery(() => listManifests(), [], undefined);
   const [busyId, setBusyId] = useState<string | null>(null);
   const [progress, setProgress] = useState<PinProgress | null>(null);
+  const active = useRef<AbortController | null>(null);
+  const cancelDownload = useCallback(() => active.current?.abort(), []);
+  useEffect(() => () => active.current?.abort(), []);
   useEffect(() => {
     if (!manifests || busyId) return;
     // Readiness is physical cache presence, not an old remembered success.
     void (async () => { for (const manifest of manifests) await verify(manifest); })().catch(() => {});
   }, [manifests, busyId]);
 
-  const run = useCallback(async (id: string, work: () => Promise<void>) => {
+  const run = useCallback(async (id: string, work: (signal: AbortSignal) => Promise<void>) => {
+    if (active.current) return;
+    const controller = new AbortController();
+    active.current = controller;
     setBusyId(id);
     setProgress(null);
     try {
-      await work();
+      await work(controller.signal);
     } catch {
-      toast.error('That pack action failed — check your connection and try again.');
+      toast.error(controller.signal.aborted ? 'Download canceled.' : 'That pack action failed — check your connection and try again.');
     } finally {
       setBusyId((current) => (current === id ? null : current));
       setProgress(null);
+      active.current = null;
     }
   }, []);
 
   /** Pin one water's plan (connectivity already checked by the caller). */
-  const pinWater = useCallback(async (stream: Stream, month: number) => {
-    const topo = await resolveTerrain();
+  const pinWater = useCallback(async (stream: Stream, month: number, includeTerrain: boolean, signal: AbortSignal) => {
+    const topo = includeTerrain ? await resolveTerrain(signal) : null;
     const anchor = waterAnchor(stream.id);
-    const clusterUrls = anchor ? await resolveClusterUrls(anchor) : [];
-    const historyUrls = await availableHistory(stream);
-    const plan = planWaterPack(stream, { month, includeTerrain: true, topo, clusterUrls, historyUrls });
-    const result = await pin(plan, setProgress);
+    const clusterUrls = anchor ? await resolveClusterUrls(anchor, signal) : [];
+    const historyUrls = await availableHistory(stream, signal);
+    const plan = planWaterPack(stream, { month, includeTerrain, topo, clusterUrls, historyUrls });
+    const result = await pin(plan, setProgress, signal);
     reportPinOutcome(plan, result);
   }, []);
 
-  const pinTrip = useCallback(async (trip: TripRecord, streams: Stream[]) => {
+  const pinTrip = useCallback(async (trip: TripRecord, streams: Stream[], includeTerrain: boolean, signal: AbortSignal) => {
     if (trip.waterIds.some((id) => !streams.some((stream) => stream.id === id))) {
       toast.error('Some trip waters are missing from the catalog. Update the trip before downloading its complete pack.');
       return;
     }
     const month = monthFor(trip.date);
-    const topo = await resolveTerrain();
+    const topo = includeTerrain ? await resolveTerrain(signal) : null;
     const plans: PackPlan[] = [];
     for (const stream of streams) {
       const anchor = waterAnchor(stream.id);
-      const clusterUrls = anchor ? await resolveClusterUrls(anchor) : [];
-      const historyUrls = await availableHistory(stream);
-      plans.push(planWaterPack(stream, { month, includeTerrain: true, topo, clusterUrls, historyUrls }));
+      const clusterUrls = anchor ? await resolveClusterUrls(anchor, signal) : [];
+      const historyUrls = await availableHistory(stream, signal);
+      plans.push(planWaterPack(stream, { month, includeTerrain, topo, clusterUrls, historyUrls }));
     }
     const plan = planTripPack(trip, plans);
-    const result = await pin(plan, setProgress);
+    const result = await pin(plan, setProgress, signal);
     reportPinOutcome(plan, result);
   }, []);
 
@@ -189,39 +201,39 @@ export function usePackManager(): PackManagerApi {
   }, []);
 
   const downloadWater = useCallback(
-    (stream: Stream) =>
-      run(waterManifestId(stream.id), async () => {
+    (stream: Stream, includeTerrain = false) =>
+      run(waterManifestId(stream.id), async (signal) => {
         if (!(await guardOnline())) return;
-        await pinWater(stream, monthFor(undefined));
+        await pinWater(stream, monthFor(undefined), includeTerrain, signal);
       }),
     [run, pinWater, guardOnline],
   );
 
   const downloadTrip = useCallback(
-    (trip: TripRecord, streams: Stream[]) =>
-      run(tripManifestId(trip.id), async () => {
+    (trip: TripRecord, streams: Stream[], includeTerrain = false) =>
+      run(tripManifestId(trip.id), async (signal) => {
         if (streams.length === 0) {
           toast.error('None of this trip’s waters are in the catalog yet — try again once it loads.');
           return;
         }
         if (!(await guardOnline())) return;
-        await pinTrip(trip, streams);
+        await pinTrip(trip, streams, includeTerrain, signal);
       }),
     [run, pinTrip, guardOnline],
   );
 
   const redownload = useCallback(
-    (manifest: DownloadManifestRecord) =>
-      run(manifest.id, async () => {
+    (manifest: DownloadManifestRecord, includeTerrain = manifest.sections.some((section) => section.key === 'terrain')) =>
+      run(manifest.id, async (signal) => {
         if (!(await guardOnline())) return;
-        const rows = await fetchCatalogRows();
+        const rows = await fetchCatalogRows(signal);
         if (manifest.kind === 'water') {
           const stream = rows.find((s) => s.id === manifest.id.slice('water:'.length));
           if (!stream) {
             toast.error('This water is no longer in the catalog — remove the pack instead.');
             return;
           }
-          await pinWater(stream, monthFor(undefined));
+          await pinWater(stream, monthFor(undefined), includeTerrain, signal);
           return;
         }
         const trip = await db.trips.get(tripIdFrom(manifest.id));
@@ -232,7 +244,7 @@ export function usePackManager(): PackManagerApi {
         const tripStreams = trip.waterIds
           .map((id) => rows.find((s) => s.id === id))
           .filter((s): s is Stream => s !== undefined);
-        await pinTrip(trip, tripStreams);
+        await pinTrip(trip, tripStreams, includeTerrain, signal);
       }),
     [run, pinWater, pinTrip, guardOnline],
   );
@@ -272,8 +284,8 @@ export function usePackManager(): PackManagerApi {
   );
 
   return useMemo(
-    () => ({ manifests, busyId, progress, downloadWater, downloadTrip, redownload, verifyPack, removePack }),
-    [manifests, busyId, progress, downloadWater, downloadTrip, redownload, verifyPack, removePack],
+    () => ({ manifests, busyId, progress, downloadWater, downloadTrip, redownload, verifyPack, removePack, cancelDownload }),
+    [manifests, busyId, progress, downloadWater, downloadTrip, redownload, verifyPack, removePack, cancelDownload],
   );
 }
 

@@ -307,8 +307,9 @@ export function SettingsPage() {
                       busy={packs.busyId === manifest.id}
                       progress={packs.progress}
                       offline={offline}
-                      onDownload={() => void packs.redownload(manifest)}
-                      onRedownload={() => void packs.redownload(manifest)}
+                      onDownload={(terrain) => void packs.redownload(manifest, terrain)}
+                      onRedownload={(terrain) => void packs.redownload(manifest, terrain)}
+                      onCancel={packs.cancelDownload}
                       onVerify={() => void packs.verifyPack(manifest)}
                       onRemove={() => void packs.removePack(manifest)}
                     />

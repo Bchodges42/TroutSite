@@ -276,7 +276,7 @@ export function planWaterPack(stream: Stream, opts: WaterPackOptions = {}): Pack
     if (tiles.length > 0) {
       sections.push({
         key: 'terrain',
-        label: 'Terrain (optional hillshade)',
+        label: `Terrain (optional hillshade, zooms ${Math.max(topo.minZoom, Math.min(topo.maxZoom, 11) - 1)}–${Math.min(topo.maxZoom, 11)})`,
         required: false,
         urls: tiles,
       });

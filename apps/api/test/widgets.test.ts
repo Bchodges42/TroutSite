@@ -14,6 +14,7 @@ import {
   type Stream,
 } from '@trout/contracts';
 import { buildSnapshots } from '../src/snapshots/build.js';
+import { buildApp } from '../src/app.js';
 import { CONDITIONS_EMBED_ARTIFACT, renderConditionsEmbedHtml } from '../src/widgets/embed.js';
 import {
   WIDGET_SEMANTICS,
@@ -282,6 +283,15 @@ describe('widget plan (display model semantics)', () => {
     expect(model.stockingText).toBeNull();
   });
 
+  it('rejects an ambiguous alias across the catalog and uses county only when it resolves one reach', () => {
+    const first = makeStream({ id: 'creek-a', aliases: ['Shared Creek'], hydroIdentity: { gnisIds: ['00000001'], huc8s: ['06010101'], counties: ['Carter'] } });
+    const second = makeStream({ id: 'creek-b', aliases: ['Shared Creek'], hydroIdentity: { gnisIds: ['00000002'], huc8s: ['06010102'], counties: ['Wilson'] } });
+    const event = makeStockingEvent({ streamName: 'Shared Creek', county: undefined });
+    expect(matchStockingEvents([event], first, [first, second])).toEqual([]);
+    expect(matchStockingEvents([{ ...event, county: 'Carter County' }], first, [first, second])).toHaveLength(1);
+    expect(matchStockingEvents([{ ...event, county: 'Wilson' }], first, [first, second])).toEqual([]);
+  });
+
   it('carries per-species comfort rows in the same band vocabulary; absent fishability = no rows', () => {
     const fishability = makeFishability([
       { species: 'smallmouth-bass', value: 90, assessed: true },
@@ -519,19 +529,31 @@ describe('buildSnapshots widget emission (ADR 0018)', () => {
     expect(existsSync(join(env.snapshotsDir, 'v1', 'widgets', CONDITIONS_EMBED_ARTIFACT))).toBe(true);
   });
 
-  it('serves the widget end-to-end: shipped model over the emitted v1 snapshots', () => {
+  it('serves the widget end-to-end: shipped model over its actual public API routes', async () => {
     // 350 cfs sits inside Watauga's 100–500 ideal range; 16.5°C is ideal → 90 (Good).
     insertReading({ gaugeId: '03486000', cfs: 350, tempC: 16.5, timestamp: '2026-09-02T16:30:00.000Z' });
     buildSnapshots({ db: env.db, snapshotsDir: env.snapshotsDir, now: NOW });
 
-    const streams = JSON.parse(
-      readFileSync(join(env.snapshotsDir, 'v1', 'streams.json'), 'utf8'),
-    ) as unknown as Stream[];
-    const conditions = JSON.parse(
-      readFileSync(join(env.snapshotsDir, 'v1', 'conditions', 'latest.json'), 'utf8'),
-    ) as unknown as ConditionSnapshot[];
-
-    const api = artifactModelApi(renderConditionsEmbedHtml());
+    const app = await buildApp({ db: env.db, webPublicDir: env.snapshotsDir });
+    let streams: Stream[];
+    let conditions: ConditionSnapshot[];
+    let artifact: string;
+    try {
+      const widget = await app.inject({ method: 'GET', url: '/v1/widgets/conditions-embed.html' });
+      expect(widget.statusCode).toBe(200);
+      artifact = widget.body;
+      const sem = artifactModelApi(artifact).SEM;
+      const catalog = await app.inject({ method: 'GET', url: sem.streamsUrl });
+      expect(catalog.statusCode).toBe(200);
+      streams = StreamSchema.array().parse(catalog.json());
+      const snapshots = await app.inject({ method: 'GET', url: sem.conditionsUrl });
+      expect(snapshots.statusCode).toBe(200);
+      conditions = ConditionSnapshotSchema.array().parse(snapshots.json());
+      expect((await app.inject({ method: 'GET', url: '/v1/streams.json' })).statusCode).toBe(404);
+    } finally {
+      await app.close();
+    }
+    const api = artifactModelApi(artifact!);
     const model = api.buildConditionsWidgetModel(
       { watersParam: 'watauga-river,nope', streams, conditions, nowMs: NOW.getTime(), siteUrl: '' },
       api.SEM,

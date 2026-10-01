@@ -5,6 +5,7 @@ import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ComparePage } from '../src/pages/ComparePage';
 import { SettingsProvider } from '../src/lib/settings';
+import * as fishabilityHooks from '../src/lib/fishability';
 import {
   buildCompareColumn,
   COMPARE_ROW_KEYS,
@@ -327,6 +328,7 @@ describe('ComparePage (render)', () => {
   afterEach(() => {
     cleanup();
     vi.unstubAllGlobals();
+    vi.restoreAllMocks();
   });
 
   it('renders three aligned columns from shared URL params', async () => {
@@ -350,10 +352,23 @@ describe('ComparePage (render)', () => {
     expect(screen.getAllByText(/No species focus selected/i).length).toBeGreaterThan(0);
   });
 
-  it('shows the ?species= focus as the single shared context', async () => {
+  it('uses the selected species assessment rather than the legacy trout score', async () => {
+    const observedAt = new Date(Date.now() - 10 * MIN).toISOString();
+    const index = vi.spyOn(fishabilityHooks, 'useFishabilityIndex').mockReturnValue({ data: {
+      'caney-fork-river': { streamId: 'caney-fork-river', fetchedAt: observedAt, bySpecies: {
+        'smallmouth-bass': { comfort: { species: 'smallmouth-bass', value: 25, assessed: true,
+          reasons: ['Cold for bass.'], freshness: { observedAt, ageMinutes: 10, currentAgeMinutes: 10 } },
+          activity: { total: 0, components: [] } },
+      } },
+    } } as ReturnType<typeof fishabilityHooks.useFishabilityIndex>);
     renderPage('/compare?waters=caney-fork-river&species=smallmouth-bass');
-    await screen.findByTestId('compare-board-desktop');
+    const board = await screen.findByTestId('compare-board-desktop');
+    await within(board).findByText('Poor');
+    expect(within(board).getByText('Cold for bass.')).toBeInTheDocument();
+    expect(within(board).queryByText('Good')).not.toBeInTheDocument();
     expect(screen.getAllByText('Smallmouth bass').length).toBeGreaterThan(0);
+    expect(index.mock.lastCall?.[0]?.map((stream) => stream.id)).toEqual(['caney-fork-river']);
+    expect(index.mock.lastCall?.slice(1)).toEqual(['smallmouth-bass', true]);
   });
 
   it('removes a column from the URL and the board', async () => {

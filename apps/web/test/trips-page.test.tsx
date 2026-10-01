@@ -105,6 +105,7 @@ async function openDetails(title: string): Promise<HTMLElement> {
 }
 
 beforeEach(async () => {
+  localStorage.clear();
   await Promise.all([db.trips.clear(), db.downloadManifests.clear(), db.snapshots.clear()]);
   streams = [
     makeStream({ yearRound: true }),
@@ -251,6 +252,20 @@ describe('Trips page', () => {
     await createTrip({ title: 'Bare trip' });
     const partial = await createTrip({ title: 'Partial trip' });
     const ready = await createTrip({ title: 'Ready trip' });
+    // Readiness now verifies physical cache presence when the page opens.
+    // Model a real partial download rather than remembered ready flags alone.
+    const cached = new Set(['/atlas/rivers.geojson', '/content/fishing.json']);
+    vi.stubGlobal('caches', { open: async () => ({
+      match: async (url: string) => cached.has(url) ? new Response('{}', { status: 200 }) : undefined,
+    }) });
+    localStorage.setItem('trout:pack-plans:v1', JSON.stringify({
+      [tripManifestId(partial.id)]: { id: tripManifestId(partial.id), sections: [
+        { key: 'catalog', urls: ['/v1/missing.json'] }, { key: 'map', urls: ['/atlas/rivers.geojson'] },
+      ] },
+      [tripManifestId(ready.id)]: { id: tripManifestId(ready.id), sections: [
+        { key: 'catalog', urls: ['/content/fishing.json'] },
+      ] },
+    }));
 
     // Partial: one optional section verified, a required one still missing.
     await putManifest({
@@ -262,7 +277,7 @@ describe('Trips page', () => {
         { key: 'catalog', label: 'Water + regs', required: true, ready: false },
         { key: 'map', label: 'Offline map', required: false, ready: true },
       ],
-      assetUrls: [],
+      assetUrls: ['/v1/missing.json', '/atlas/rivers.geojson'],
     });
     await putManifest({
       id: tripManifestId(ready.id),
@@ -270,7 +285,7 @@ describe('Trips page', () => {
       label: 'Ready pack',
       manifestVersion: 1,
       sections: [{ key: 'catalog', label: 'Water + regs', required: true, ready: true }],
-      assetUrls: [],
+      assetUrls: ['/content/fishing.json'],
     });
 
     renderPage();

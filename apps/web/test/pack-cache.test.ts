@@ -200,6 +200,32 @@ afterEach(() => {
 // ── Pin ─────────────────────────────────────────────────────────────────────
 
 describe('pin', () => {
+  it('cancels a stalled fetch without retrying it or fetching later sections', async () => {
+    const controller = new AbortController();
+    const fetcher = vi.fn((_url: string, init?: RequestInit) => new Promise<Response>((_resolve, reject) => {
+      init?.signal?.addEventListener('abort', () => reject(new DOMException('Canceled', 'AbortError')), { once: true });
+    }));
+    vi.stubGlobal('fetch', fetcher);
+    const pending = pin(standardPlan(), undefined, controller.signal);
+    await waitFor(() => expect(fetcher).toHaveBeenCalled());
+    controller.abort();
+    const result = await pending;
+    expect(result.cancelled).toBe(true);
+    expect(result.ok).toBe(false);
+    expect(result.manifest?.sections.some((section) => section.ready)).toBe(false);
+    expect(fetcher.mock.calls.length).toBeLessThanOrEqual(4);
+  });
+
+  it('keeps an existing pack intact when canceled before starting', async () => {
+    const plan = standardPlan();
+    const first = await pin(plan);
+    const controller = new AbortController();
+    controller.abort();
+    const result = await pin(plan, undefined, controller.signal);
+    expect(result.cancelled).toBe(true);
+    expect(result.manifest).toEqual(first.manifest);
+  });
+
   it('marks a section ready only after its URLs are stored, and records real byte sizes', async () => {
     const plan = standardPlan();
     // Gate the LAST section's first tile so earlier sections finish first.
@@ -319,6 +345,15 @@ function catalogUrls(): string[] {
 // ── Verify ──────────────────────────────────────────────────────────────────
 
 describe('verify', () => {
+  it('refuses readiness for an incompatible manifest version even if all files exist', async () => {
+    const result = await pin(standardPlan());
+    const future = { ...result.manifest!, manifestVersion: 99 };
+    await db.downloadManifests.put(future);
+    const checked = await verify(future);
+    expect(checked.readiness.requiredReady).toBe(false);
+    expect(checked.attributionLost).toBe(true);
+  });
+
   it('downgrades a section whose files were evicted from storage', async () => {
     const plan = standardPlan();
     await pin(plan);
@@ -450,6 +485,21 @@ describe('remove', () => {
 // ── Render: DownloadButton states ───────────────────────────────────────────
 
 describe('DownloadButton', () => {
+  it('offers a basic pack, explicitly chosen terrain, and cancellation', async () => {
+    const download = vi.fn();
+    const cancel = vi.fn();
+    const user = userEvent.setup();
+    const view = render(createElement(DownloadButton, { offline: false, onDownload: download }));
+    await user.click(screen.getByRole('button', { name: 'Download', exact: true }));
+    expect(download).toHaveBeenLastCalledWith(false);
+    await user.click(screen.getByRole('checkbox', { name: 'Include terrain (larger download)' }));
+    await user.click(screen.getByRole('button', { name: 'Download', exact: true }));
+    expect(download).toHaveBeenLastCalledWith(true);
+    view.rerender(createElement(DownloadButton, { offline: false, busy: true, onDownload: download, onCancel: cancel }));
+    await user.click(screen.getByRole('button', { name: 'Cancel download' }));
+    expect(cancel).toHaveBeenCalledOnce();
+  });
+
   const noop = (): void => undefined;
 
   it('offers Download, disabled with an honest reason while offline', () => {

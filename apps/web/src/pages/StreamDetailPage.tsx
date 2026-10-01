@@ -221,8 +221,9 @@ export function StreamDetailPage() {
       <div className="mt-3" aria-label="Offline water pack">
         <DownloadButton manifest={waterPack} busy={packs.busyId === waterManifestId(stream.id)}
           progress={packs.progress} offline={typeof navigator !== 'undefined' && !navigator.onLine}
-          onDownload={() => void packs.downloadWater(stream)}
-          onRedownload={() => void packs.downloadWater(stream)}
+          onDownload={(terrain) => void packs.downloadWater(stream, terrain)}
+          onRedownload={(terrain) => void packs.downloadWater(stream, terrain)}
+          onCancel={packs.cancelDownload}
           onVerify={waterPack ? () => void packs.verifyPack(waterPack) : undefined}
           onRemove={waterPack ? () => void packs.removePack(waterPack) : undefined} />
       </div>

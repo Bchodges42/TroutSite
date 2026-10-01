@@ -26,7 +26,7 @@
  * Run: node scripts/east-fetch-nhd.mjs [key ...]      (default: all)
  *      node scripts/east-fetch-nhd.mjs --force [key …]  (refetch)
  */
-import { _readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
+import { writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 

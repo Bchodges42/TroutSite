@@ -532,7 +532,7 @@ test('search, inspector tabs, Escape hierarchy, and focus restoration', async ({
   await select(page, 'Center Hill tailwater');
   await ready(page);
   await expect(page.locator('#river-inspector')).toBeFocused();
-  await expect(page.getByRole('heading', { name: 'Caney Fork River', exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Caney Fork River', exact: true, level: 2 })).toBeVisible();
   await page.getByRole('tab', { name: 'Conditions', exact: true }).focus();
   await page.keyboard.press('ArrowRight');
   await expect(page.getByRole('tab', { name: 'Hatches', exact: true })).toBeFocused();

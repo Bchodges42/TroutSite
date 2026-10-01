@@ -12,7 +12,7 @@
 //
 // Run: node scripts/fetch-atlas-sources.mjs [--check]
 //   --check only lists what is missing (no downloads).
-import { _createWriteStream, existsSync, mkdirSync, readdirSync, statSync } from 'node:fs';
+import { existsSync, mkdirSync, readdirSync, statSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execSync } from 'node:child_process';

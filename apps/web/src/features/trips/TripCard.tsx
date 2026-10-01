@@ -160,8 +160,9 @@ export function TripCard({
                 busy={busy}
                 progress={manager.progress}
                 offline={typeof navigator !== 'undefined' && navigator.onLine === false}
-                onDownload={() => void manager.downloadTrip(trip, tripStreams)}
-                onRedownload={manifest ? () => void manager.downloadTrip(trip, tripStreams) : undefined}
+                onDownload={(terrain) => void manager.downloadTrip(trip, tripStreams, terrain)}
+                onRedownload={manifest ? (terrain) => void manager.downloadTrip(trip, tripStreams, terrain) : undefined}
+                onCancel={manager.cancelDownload}
                 onVerify={manifest ? () => void manager.verifyPack(manifest) : undefined}
                 onRemove={manifest ? () => void manager.removePack(manifest) : undefined}
               />

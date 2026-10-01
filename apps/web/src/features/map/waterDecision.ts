@@ -257,6 +257,7 @@ export function toWaterDecisionView(
           ? 'deemphasize'
           : 'include'
       : 'include';
+  const assessmentReasons = fishabilityActive ? fishability!.comfort.reasons : reasons;
   return {
     waterId: feature.stream.id,
     visibility,
@@ -276,9 +277,10 @@ export function toWaterDecisionView(
         assessed
         ? ('trout-condition' as const)
         : ('unassessed' as const),
-    // No generic fishability source exists in the current pipeline. The field
-    // stays undefined rather than borrowing the trout score.
-    fishability: undefined,
+    // A focus-species band comes from that species' comfort score only.
+    fishability: fishabilityActive
+      ? fishability!.comfort.value >= 70 ? 'good' : fishability!.comfort.value >= 40 ? 'fair' : 'poor'
+      : undefined,
     ...(fishabilityActive
       ? { assessmentRecency: historicalAssessment ? ('historical' as const) : ('current' as const) }
       : {}),
@@ -295,8 +297,8 @@ export function toWaterDecisionView(
         assessed
         ? (feature.snapshot?.readings.length ? 'high' : 'medium')
         : 'low',
-    reasons,
-    cautions: reasons.filter((r) => /dangerously|avoid stressing|heat|flushing|do not fish|stress begins/i.test(r)),
+    reasons: assessmentReasons,
+    cautions: assessmentReasons.filter((r) => /dangerously|avoid stressing|heat|flushing|do not fish|stress begins/i.test(r)),
   };
 }
 

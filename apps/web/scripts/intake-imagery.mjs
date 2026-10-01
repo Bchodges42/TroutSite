@@ -7,7 +7,7 @@
  * keyed by the order/family the TaxonDetailPage looks up. Run from apps/web:
  *   node scripts/intake-imagery.mjs
  */
-import { existsSync, mkdirSync, _copyFileSync, readFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';

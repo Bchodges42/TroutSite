@@ -111,11 +111,29 @@ const PIN_CONCURRENCY = 4;
 
 /** One network attempt, then a single retry — a flaky radio must not fail a
  *  section that a second try would finish (mirrors the app's retry: 1). */
-async function fetchForPin(url: string): Promise<Response> {
+export async function fetchPackResource(url: string, signal?: AbortSignal): Promise<Response> {
+  const controller = new AbortController();
+  const cancel = () => controller.abort();
+  const timeout = setTimeout(cancel, 15_000);
+  signal?.addEventListener('abort', cancel, { once: true });
+  if (signal?.aborted) cancel();
   try {
-    return await assertOk(await fetch(url, { headers: { accept: '*/*' }, cache: 'no-store', signal: AbortSignal.timeout(15_000) }), url);
+    const res = await fetch(url, { headers: { accept: '*/*' }, cache: 'no-store', signal: controller.signal });
+    // Include the body in the timeout/cancellation window, not just headers.
+    const body = res.body ? await res.arrayBuffer() : null;
+    return new Response(body, { status: res.status, statusText: res.statusText, headers: res.headers });
+  } finally {
+    clearTimeout(timeout);
+    signal?.removeEventListener('abort', cancel);
+  }
+}
+
+async function fetchForPin(url: string, signal?: AbortSignal): Promise<Response> {
+  try {
+    return await assertOk(await fetchPackResource(url, signal), url);
   } catch (first) {
-    return assertOk(await fetch(url, { headers: { accept: '*/*' }, cache: 'no-store', signal: AbortSignal.timeout(15_000) }), url, first);
+    if (signal?.aborted) throw first;
+    return assertOk(await fetchPackResource(url, signal), url, first);
   }
 }
 
@@ -171,6 +189,7 @@ export interface PinResult {
   offline?: boolean;
   /** Storage ran out mid-pin; remaining sections were left not-ready. */
   quota?: boolean;
+  cancelled?: boolean;
   /** URLs that could not be pinned after the retry (per failing section). */
   failures: Array<{ sectionKey: string; url: string; error: string }>;
 }
@@ -183,15 +202,17 @@ export interface PinResult {
 export async function pin(
   plan: PackPlan,
   onProgress?: (progress: PinProgress) => void,
+  signal?: AbortSignal,
 ): Promise<PinResult> {
   const failures: PinResult['failures'] = [];
   let quota = false;
 
-  if (typeof navigator !== 'undefined' && navigator.onLine === false) {
+  if (signal?.aborted || (typeof navigator !== 'undefined' && navigator.onLine === false)) {
     return {
       manifest: await getManifest(plan.id),
       ok: false,
-      offline: true,
+      offline: !signal?.aborted,
+      cancelled: signal?.aborted,
       failures,
     };
   }
@@ -207,6 +228,7 @@ export async function pin(
     }
 
     for (const section of plan.sections) {
+      if (signal?.aborted) break;
       let done = 0;
       const total = section.urls.length;
       const report = () =>
@@ -216,7 +238,9 @@ export async function pin(
       let sectionBytes = 0;
       let allBytesKnown = total > 0;
       const results = await mapPool(section.urls, PIN_CONCURRENCY, async (url) => {
-        const res = await fetchForPin(url);
+        if (signal?.aborted) throw new DOMException('Download canceled', 'AbortError');
+        const res = await fetchForPin(url, signal);
+        if (signal?.aborted) throw new DOMException('Download canceled', 'AbortError');
         const lengthHeader = res.headers.get('content-length');
         if (lengthHeader === null || Number.isNaN(Number(lengthHeader))) allBytesKnown = false;
         else sectionBytes += Number(lengthHeader);
@@ -243,7 +267,7 @@ export async function pin(
       // Readiness follows storage, not intent: only a fully-stored section
       // flips ready. A quota failure aborts the remaining sections — they
       // stay not-ready and the caller gets the honest quota flag.
-      await markSectionReady(plan.id, section.key, failed.length === 0, allBytesKnown ? sectionBytes : undefined);
+      await markSectionReady(plan.id, section.key, total > 0 && failed.length === 0, allBytesKnown ? sectionBytes : undefined);
       if (quota) break;
     }
   } catch (error) {
@@ -256,8 +280,9 @@ export async function pin(
   const manifest = await getManifest(plan.id);
   return {
     manifest,
-    ok: manifest ? computePackReadiness(manifest.sections).requiredReady : false,
+    ok: !signal?.aborted && (manifest ? computePackReadiness(manifest.sections).requiredReady : false),
     quota,
+    cancelled: signal?.aborted,
     failures,
   };
 }
@@ -281,7 +306,7 @@ export async function verify(manifest: DownloadManifestRecord): Promise<VerifyRe
   const entry = index[manifest.id];
   const readyByKey = new Map<string, boolean>();
 
-  if (!entry) {
+  if (!entry || manifest.manifestVersion !== 1) {
     // No attribution (e.g. localStorage cleared while caches survived):
     // refuse to guess — every section reads not-ready until a re-pin.
     for (const section of manifest.sections) readyByKey.set(section.key, false);
@@ -296,7 +321,7 @@ export async function verify(manifest: DownloadManifestRecord): Promise<VerifyRe
 
   for (const section of entry.sections) {
     const results = await Promise.all(section.urls.map((url) => urlPresent(url)));
-    readyByKey.set(section.key, results.every(Boolean));
+    readyByKey.set(section.key, results.length > 0 && results.every(Boolean));
   }
   // Sections the index doesn't know (schema drift) are honestly unverified.
   for (const section of manifest.sections) {
