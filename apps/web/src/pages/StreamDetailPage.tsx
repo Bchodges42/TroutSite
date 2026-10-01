@@ -24,6 +24,7 @@ import { formatFlow, formatHeight, formatNum, formatTemp } from '../lib/units';
 import { ageMinutes } from '../lib/time';
 import { FreshnessChip } from '../components/FreshnessChip';
 import { ScorePill } from '../components/ScorePill';
+import { EmptyStateNote } from '../components/EmptyStateNote';
 import { conditionReason, waterTypeLabel } from '../lib/presentation';
 import { statusForScore } from '../features/map/riverMapSelectors';
 import { toWaterDecisionView, seasonalChipText } from '../features/map/waterDecision';
@@ -31,7 +32,9 @@ import { OpportunityCard } from '../features/map/OpportunityCard';
 import { FishabilityCard } from '../components/FishabilityCard';
 import { buildSurfaceOverview } from '../features/waters/buildSurfaceOverview';
 import { WaterOverviewCard } from '../features/waters/WaterOverviewCard';
+import { WatchButton } from '../features/watches/WatchButton';
 import { ReleasesPanel } from '../features/waters/ReleasesPanel';
+import { AccessSection } from '../features/waters/AccessSection';
 import { GaugeHistorySection } from '../features/waters/GaugeHistoryChart';
 import { SolarWindowsCard } from '../components/SolarWindowsCard';
 import { stockingEventState, stockingPrecisionDate } from './StockingPage';
@@ -207,6 +210,9 @@ export function StreamDetailPage() {
         className="mt-4"
       />
 
+      {/* ADR 0016: the one-tap watch, parked with the overview actions. */}
+      <WatchButton waterId={stream.id} waterName={stream.name} className="mt-3" />
+
       {overviewSurface.overview.releases.applicable && (
         <ReleasesPanel
           streamId={stream.id}
@@ -214,6 +220,9 @@ export function StreamDetailPage() {
           className="mt-4"
         />
       )}
+
+      {/* ADR 0019: verified access records — honest empty until authored. */}
+      <AccessSection waterId={stream.id} className="mt-4" />
 
       <OpportunityCard stream={stream} species={stream.species} mode={decisionMode} month={month} />
 
@@ -377,6 +386,16 @@ export function StreamDetailPage() {
             {newestHeight != null && (
               <DataBadge label="Stage" value={formatHeight(newestHeight)} status="unknown" />
             )}
+            {/* Polish 5a — a non-lake water whose gauge reports a reservoir
+            level was silently dropped from this row; say it honestly instead. */}
+            {newestReservoirLevel != null && !lakeLike ? (
+              <EmptyStateNote
+                variant="unsupported-metric"
+                metric="reservoir level"
+                officialUrl={stream.officialSources[0]?.url}
+                className="w-full"
+              />
+            ) : null}
             <DataBadge
               label="Ideal flow"
               value={

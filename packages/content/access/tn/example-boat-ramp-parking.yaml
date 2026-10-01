@@ -1,0 +1,35 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# TEST FIXTURE — NOT REAL DATA. NEVER ship this record. (ADR 0019 §6)
+#
+# The `example-` id prefix is the isolation mechanism: the loader treats this
+# record as a fixture, validates its shape like any record, and EXCLUDES it
+# from dist/pack/access.json. Its waterId is the reserved `example-water-id`,
+# which is deliberately NOT a real catalog water.
+#
+# Do NOT copy this file to author a real record — read docs/access-AUTHORING.md
+# and start from the GOOD example there. The corpus ships ZERO verified access
+# records until field-reviewed ones are authored through the normal
+# YAML → PR → review pipeline.
+# ─────────────────────────────────────────────────────────────────────────────
+id: example-boat-ramp-parking
+waterId: example-water-id
+reach: Example Reach (below the example dam)
+kind: boat-ramp
+coordinates:
+  lat: 36.16
+  lng: -86.78
+fee:
+  amount: $5 per vehicle
+  notes: Example day-use fee, collected at the honor box.
+hours: Daylight hours only
+closure:
+  window: Dec 1 – last day of Feb
+  notes: Example seasonal gate closure; the walk-in gate stays open.
+officialSource:
+  url: https://www.tn.gov/twra/fishing.html
+  publisher: Tennessee Wildlife Resources Agency
+  retrievedAt: 2026-09-30
+reviewDate: 2026-09-30
+uncertainty: Fixture text — a real record states exactly what could NOT be confirmed
+  in the field (gate schedule, ramp condition at low water, …).
+notes: Fixture record exercising every field of the ADR 0019 schema in one place.

@@ -2,10 +2,18 @@
 // @trout/contracts schemas + orphan references + gauge-ID lint (offline via the USGS-verified
 // fixture) + SVG well-formedness + Definition-of-Done floors. Exit 1 on any issue.
 import { loadContent, loadSpeciesReference, FLOORS } from './lib.js';
+import { loadAccess } from './access/load.js';
 
 const { bugs, patterns, streams, shops, hatch, issues, warnings } = loadContent();
 const { species, issues: speciesIssues } = loadSpeciesReference();
 issues.push(...speciesIssues);
+
+// Verified access records (ADR 0019): same loader the pack build uses, so the
+// CI gate and the build can never disagree. The corpus ships ZERO records
+// until field-reviewed ones are authored — an empty corpus is VALID and the
+// build still emits an honest `{ records: [] }` pack.
+const access = loadAccess(new Set(streams.keys()));
+issues.push(...access.issues);
 
 for (const [id, stream] of streams) {
   for (const source of stream.officialSources) {
@@ -64,7 +72,8 @@ if (floorFails.length > 0) {
 console.log(
   `[content] OK — ${bugs.size} taxa (+${[...bugs.values()].filter((b) => b.illustration).length} SVGs), ` +
     `${patterns.size} patterns, ${hatch.size} regions × 12 months, ${streams.size} streams, ${shops.size} shops, ` +
-    `${species.size} species references. Warnings: ${warnings.length}.`,
+    `${species.size} species references, ${access.records.length} verified access records ` +
+    `(+${access.examples.length} example fixture(s), never shipped). Warnings: ${warnings.length}.`,
 );
 
 // Session-1 fishery/yearRound catalog coverage line (advisory; unset = evidence has not reached).

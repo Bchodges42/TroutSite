@@ -8,12 +8,19 @@ import { accessSync, mkdirSync, readFileSync, rmSync, writeFileSync, constants }
 import { join, resolve } from 'node:path';
 import { FishingInformationSchema } from '@trout/contracts';
 import { loadContent, loadSpeciesReference, FLOORS } from './lib.js';
+import { loadAccess, toAccessPack } from './access/load.js';
 import { REGIONS } from './regions.js';
 
 const OUT = resolve(import.meta.dirname, '..', 'dist', 'pack');
 const { bugs, patterns, streams, shops, hatch, illustrations, issues } = loadContent();
 const { species, issues: speciesIssues } = loadSpeciesReference();
 issues.push(...speciesIssues);
+
+// Verified access records (ADR 0019): same gate validate.ts runs. An empty
+// corpus is VALID — access.json still ships as `{ records: [] }` (honest
+// empty, stable shape); example- fixtures never reach the pack.
+const access = loadAccess(new Set(streams.keys()));
+issues.push(...access.issues);
 
 if (issues.length > 0) {
   for (const i of issues) console.error(`[content] FAIL ${i.file}: ${i.message}`);
@@ -47,6 +54,11 @@ const files: Record<string, string> = {
   // F2 species reference (comfort + activity bands, every value cited) — the
   // fishability scorer's data source once contracts v2 lands (Session A).
   'species.json': JSON.stringify({ species: [...species.entries()].map(([id, ref]) => ({ id, ...ref })) }),
+  // Verified access records (ADR 0019), grouped by waterId. Stable shape at
+  // zero records: `{ records: [] }` — absence of verified access is stated,
+  // never implied by a missing file. The web reads it through the same
+  // precached /content/*.json path as taxa/patterns.
+  'access.json': JSON.stringify(toAccessPack(access.records)),
 };
 
 for (const [rid, charts] of hatch) {
@@ -93,7 +105,7 @@ for (const [name, body] of Object.entries(files)) {
 
 const meta = {
   generatedAt: new Date().toISOString(),
-  counts: { bugs: bugs.size, patterns: patterns.size, streams: streams.size, shops: shops.size, regions: hatch.size, species: species.size },
+  counts: { bugs: bugs.size, patterns: patterns.size, streams: streams.size, shops: shops.size, regions: hatch.size, species: species.size, access: access.records.length },
   packBytes: total,
   packMaxBytes: FLOORS.packMaxMb * 1024 * 1024,
 };
