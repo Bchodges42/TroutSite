@@ -48,8 +48,16 @@ function noticeFor(
     threshold_op: string | null;
     threshold: number | null;
   },
+  reason: string,
 ): { title: string; body: string } {
   const name = waterName ?? rule.water_id;
+  if (rule.kind === 'source-outage') {
+    const metric = rule.metric === 'cfs' ? 'flow' : 'temperature';
+    const recovered = reason === 'source-recovered';
+    return { title: `${name} ${metric} source ${recovered ? 'resumed' : 'unavailable'}`,
+      body: recovered ? `Fresh ${metric} measurements are available again. Check their observation time in Trout.`
+        : `Fresh ${metric} measurements are unavailable. This describes source availability, not fishing conditions or safety.` };
+  }
   if (rule.kind === 'stocking') {
     return {
       title: `Stocking update — ${name}`,
@@ -112,7 +120,7 @@ async function evaluateOnce(
   for (const d of decisions) {
     if (!d.fired) continue;
     const rule = ruleById.get(d.ruleId)!;
-    const copy = noticeFor(waterNames.get(d.waterId), rule);
+    const copy = noticeFor(waterNames.get(d.waterId), rule, d.reason);
     notices.push({
       subscriptionId: d.subscriptionId,
       ruleId: d.ruleId,

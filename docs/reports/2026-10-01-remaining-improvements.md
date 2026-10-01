@@ -13,13 +13,19 @@ Completed so far:
   provide full-pack estimates; unknown sizes are labelled. Public API/static
   headers preserve uncompressed size through edge compression. No private API
   metadata or personal data is probed.
+- POST-31: separately selected flow/temperature outage and recovery watches,
+  silent baseline, supported-metric evidence, deduplication, timezone/quiet-hour
+  handling and retry-safe delivery memory. Upgrade preserves existing rules and
+  IDs; custom enrollment no longer attaches a default condition threshold.
 
 Initial verification: 30 search/estimate checks and five metadata/conditional
 HEAD checks pass. An estimate regression caught a concurrent accumulator bug;
 the fix waits for each body length before adding it to the shared total.
 
-Next: separately selectable source-outage/recovery watches, exact candidate
-publication preview/operations visibility, sourced access records and private
+Outage verification: 61 API/evaluation/migration checks and 13 watch UI checks
+pass; API compilation and web typechecking pass.
+
+Next: exact candidate publication preview/operations visibility, sourced access records and private
 trip access selection. Full integration and mobile/offline verification follow.
 
 Production merge/configuration and physical-phone push delivery remain separate

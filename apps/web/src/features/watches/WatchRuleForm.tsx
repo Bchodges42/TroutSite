@@ -31,6 +31,7 @@ export function WatchRuleForm({ waterId, publicKey, onSaved }: {
       if (!subscription) { subscription = await subscribeToPush(publicKey); rememberSubscriptionId(subscription); }
       const rule: WatchRuleDraft = { kind, cooldownMinutes: Number(cooldown), hysteresis: kind === 'condition' ? Number(margin) : 0,
         ...(kind === 'condition' ? { metric, thresholdOp: op, threshold: Number(threshold) } : {}),
+        ...(kind === 'source-outage' ? { metric } : {}),
         ...(start && end ? { quietHoursStart: start, quietHoursEnd: end, quietHoursTimeZone: zone } : {}) };
       await createServerRule(subscription, waterId, rule);
       setMessage('Watch saved. You can remove individual rules in Settings.'); onSaved();
@@ -46,14 +47,18 @@ export function WatchRuleForm({ waterId, publicKey, onSaved }: {
           <option value="condition">Measured conditions crossing a threshold</option>
           <option value="stocking">New published stocking information</option>
           <option value="report">New attributed shop reports</option>
+          <option value="source-outage">Measurement source unavailable or restored</option>
         </select>
       </label>
-      {kind === 'condition' && <>
+      {(kind === 'condition' || kind === 'source-outage') && <>
         <label className={label}>Measurement
           <select value={metric} onChange={(event) => { setMetric(event.target.value as WatchMetric); setThreshold(event.target.value === 'cfs' ? '300' : '21'); setMargin(event.target.value === 'cfs' ? '20' : '1'); }}>
             <option value="tempC">Water temperature (°C)</option><option value="cfs">Flow (cfs)</option>
           </select>
         </label>
+      </>}
+      {kind === 'source-outage' && <p className="muted text-xs">Separate from condition alerts. The first known state sets a quiet baseline; later loss or return of fresh readings can notify. Unsupported measurements stay unknown. An unavailable source says nothing about whether fishing is good or safe.</p>}
+      {kind === 'condition' && <>
         <label className={label}>Direction<select value={op} onChange={(event) => setOp(event.target.value as 'above' | 'below')}>
           <option value="below">Drops below</option><option value="above">Rises above</option>
         </select></label>

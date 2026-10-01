@@ -614,9 +614,12 @@ Open plan details (code/product work, not repaired by configuration):
   first-party uncompressed headers survive edge compression. Missing metadata
   stays explicitly unknown; estimates include available browser storage and
   terrain zooms. Real quota/cancel/readiness behavior remains authoritative.
-- [ ] **POST-31 · T2 — Separate outage watches.** Threshold/report/stocking rules
-  exist; independently selectable source-outage notices do not. Define source
-  health and first/duplicate/recovery behavior before adding a notification kind.
+- [x] **POST-31 · T2 — Separate outage watches.** Independently selected flow or
+  temperature availability rules use metric-specific observation clocks and
+  provider history, a silent first baseline, deduplicated loss/recovery and
+  pending retries through failures, cooldowns and selected-zone quiet hours.
+  Unsupported metrics stay unknown. Existing rule identities and deletion
+  cascades survive migration 023. API, migration and enrollment UI checks pass.
 - [ ] **POST-32 · T2 — Publication candidate preview.** Owner feed/job/research and
   correction visibility plus accepted handoff exist. Add old/new preview using
   the exact builder candidate, affected public wording and collected build/deploy/

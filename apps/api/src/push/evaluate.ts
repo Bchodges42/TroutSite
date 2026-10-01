@@ -17,14 +17,14 @@ import type { WatchKind, WatchMetric } from './schema.js';
  * A rule fires only when ALL of these hold:
  *   1. evidence exists for its kind (a condition rule with no reading, or a
  *      stale one, NEVER fires — a source outage must not invent a fishing
- *      condition; outage notices are deliberately NOT in v1);
- *   2. the water is outside quiet hours (the WATER's local time — all v1
- *      waters are Tennessee, so the zone is America/Chicago statewide);
+ *      condition; source-outage rules evaluate availability separately);
+ *   2. the rule is outside quiet hours in its selected IANA time zone;
  *   3. the rule's cooldown has elapsed;
  *   4. a MEANINGFUL transition happened: for condition rules, the reading
  *      crossed the threshold through the full hysteresis dead band, in the
  *      direction opposite to the last armed side; for stocking/report rules, a
- *      feed row newer than the rule's last notice (or its creation).
+ *      feed row newer than the rule's last notice (or its creation). Outage
+ *      rules require a known availability transition after a silent baseline.
  */
 
 /** Fresh-evidence window for condition rules — the contracts stale horizon. */
@@ -58,6 +58,8 @@ export interface EvidenceView {
   condition: (waterId: string, metric: WatchMetric) => ConditionObservation | null;
   stocking: (waterId: string) => FeedItem | null;
   report: (waterId: string) => FeedItem | null;
+  /** Unknown means no evidence that this metric/provider is supported here. */
+  source?: (waterId: string, metric: WatchMetric, now: number) => 'healthy' | 'outage' | 'unknown';
 }
 
 export type DecisionReason =
@@ -76,6 +78,8 @@ export type DecisionReason =
   | 'no-new-feed-item'
   | 'new-stocking-event'
   | 'new-report';
+// Source availability is independent of measured-condition threshold crossings.
+export type SourceDecisionReason = 'source-unavailable' | 'source-recovered';
 
 export interface Decision {
   ruleId: number;
@@ -83,7 +87,7 @@ export interface Decision {
   waterId: string;
   kind: WatchKind;
   fired: boolean;
-  reason: DecisionReason;
+  reason: DecisionReason | SourceDecisionReason;
   /** The arm_state the caller should persist (condition rules only). */
   armState?: 'above' | 'below' | null;
   /** For fired feed rules: the day that triggered the notice. */
@@ -156,6 +160,26 @@ export function evaluateRules(
       fired: false,
       reason: 'no-evidence',
     };
+
+    if (rule.kind === 'source-outage') {
+      const status = rule.metric ? evidence.source?.(rule.water_id, rule.metric, now) ?? 'unknown' : 'unknown';
+      if (status === 'unknown') { decisions.push(base); continue; }
+      const key = `source:${status}`;
+      if (!rule.last_feed_key) {
+        decisions.push({ ...base, reason: 'armed', feedKey: key });
+        continue;
+      }
+      if (rule.last_feed_key === key) { decisions.push({ ...base, reason: 'no-change' }); continue; }
+      if (rule.quiet_hours_start && rule.quiet_hours_end
+        && inQuietHours(localHHMM(now, rule.quiet_time_zone ?? WATER_TIME_ZONE), rule.quiet_hours_start, rule.quiet_hours_end)) {
+        decisions.push({ ...base, reason: 'quiet-hours' }); continue;
+      }
+      if (rule.last_notified_at && now - Date.parse(rule.last_notified_at) < rule.cooldown_minutes * 60_000) {
+        decisions.push({ ...base, reason: 'cooldown' }); continue;
+      }
+      decisions.push({ ...base, fired: true, reason: status === 'outage' ? 'source-unavailable' : 'source-recovered', feedKey: key });
+      continue;
+    }
 
     // ── 1. evidence gate (kind-specific) ──────────────────────────────────
     if (rule.kind === 'condition') {
@@ -330,8 +354,8 @@ export function digestTitle(notices: Notice[]): string {
 // ─────────────────────────────────────────────────────────────────────────────
 // Evidence building (the ONE impure corner): reads the same static snapshot
 // files the web fetches — never upstream providers. Missing files yield an
-// empty view (rules then decide 'no-evidence' and stay silent — the honest
-// outage posture).
+// empty condition view. Only separately enrolled outage rules can notify when
+// historical provider evidence establishes that the missing metric is supported.
 // ─────────────────────────────────────────────────────────────────────────────
 
 interface RawConditionSnapshot {
@@ -368,6 +392,26 @@ export function readEvidenceFromSnapshots(
 ): EvidenceView {
   // ── conditions: newest per-metric observation per stream ──────────────────
   const conditions = new Map<string, Map<WatchMetric, ConditionObservation>>();
+  // Previously measured metrics on the configured provider are expected even
+  // when the current file is missing. Unmeasured/unsupported metrics are unknown.
+  const expected = new Set<string>();
+  try {
+    const supports = new Map<string, Set<WatchMetric>>();
+    for (const metric of ['cfs', 'tempC'] as const) {
+      const column = metric === 'cfs' ? 'cfs' : 'temp_c';
+      const rows = db.prepare(`SELECT DISTINCT gauge_id FROM gauge_readings_raw WHERE ${column} IS NOT NULL`).all() as Array<{ gauge_id: string }>;
+      for (const row of rows) {
+        const set = supports.get(row.gauge_id) ?? new Set<WatchMetric>();
+        set.add(metric); supports.set(row.gauge_id, set);
+      }
+    }
+    const waters = db.prepare('SELECT id, gauge_ids FROM streams WHERE archived_at IS NULL').all() as Array<{ id: string; gauge_ids: string }>;
+    for (const water of waters) {
+      const gauges: unknown = JSON.parse(water.gauge_ids);
+      if (!Array.isArray(gauges)) continue;
+      for (const gauge of gauges) for (const metric of supports.get(String(gauge)) ?? []) expected.add(`${water.id}:${metric}`);
+    }
+  } catch { /* old/missing provider history remains unknown */ }
   const conditionsPath = join(snapshotsDir, 'v1', 'conditions', 'latest.json');
   if (existsSync(conditionsPath)) {
     try {
@@ -389,7 +433,7 @@ export function readEvidenceFromSnapshots(
         if (perMetric.size > 0) conditions.set(snap.streamId, perMetric);
       }
     } catch {
-      // unreadable snapshot → no condition evidence; rules stay silent
+      // Unreadable snapshot supplies no conditions; outage rules use support history.
     }
   }
 
@@ -454,6 +498,13 @@ export function readEvidenceFromSnapshots(
 
   return {
     condition: (waterId, metric) => conditions.get(waterId)?.get(metric) ?? null,
+    source: (waterId, metric, now) => {
+      const observation = conditions.get(waterId)?.get(metric);
+      if (!observation) return expected.has(`${waterId}:${metric}`) ? 'outage' : 'unknown';
+      return Number.isFinite(observation.value) && (metric !== 'cfs' || observation.value >= 0)
+        && observation.observedAt <= now + 60_000 && now - observation.observedAt <= READING_FRESHNESS_MS
+        ? 'healthy' : 'outage';
+    },
     stocking: (waterId) => stocking.get(waterId) ?? null,
     report: (waterId) => reports.get(waterId) ?? null,
   };

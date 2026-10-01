@@ -161,6 +161,23 @@ it('allows server unenrollment even after the last rule has been removed', async
   await waitFor(() => expect(storedSubscriptionId()).toBeNull());
 });
 
+it('saves an independently selected source outage watch without a condition threshold', async () => {
+  localStorage.setItem('trout.watch.subscriptionId', SUBSCRIPTION_ID);
+  const user = userEvent.setup();
+  render(<WatchRuleForm waterId="harpeth-river" publicKey={PUBLIC_KEY} onSaved={() => {}} />);
+  await user.click(screen.getByText('Add a custom watch'));
+  await user.selectOptions(screen.getByLabelText('Notify me about'), 'source-outage');
+  await user.selectOptions(screen.getByLabelText('Measurement'), 'cfs');
+  expect(screen.queryByLabelText('Threshold (cfs)')).not.toBeInTheDocument();
+  await user.click(screen.getByRole('button', { name: 'Save custom watch' }));
+  await waitFor(() => expect(calls.find((c) => c.url === '/v1/watches/rules' && c.method === 'POST')?.body)
+    .toMatchObject({ waterId: 'harpeth-river', kind: 'source-outage', metric: 'cfs', hysteresis: 0 }));
+  expect(calls.find((c) => c.url === '/v1/watches/rules' && c.method === 'POST')?.body).not.toHaveProperty('threshold');
+  cleanup();
+  render(<WatchesSettings />);
+  expect(await screen.findByText('Flow source unavailable / restored')).toBeInTheDocument();
+});
+
 // Silence an intentional marker import so the test stays honest about unused copy.
 
 describe('WatchButton — push happy path', () => {

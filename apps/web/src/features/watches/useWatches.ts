@@ -20,7 +20,7 @@ export const WATCHES_SUBSCRIPTIONS_URL = '/v1/watches/subscriptions';
 const SUBSCRIPTION_ID_KEY = 'trout.watch.subscriptionId';
 const LOCAL_RULES_KEY = 'trout.watch.localRules';
 
-export type WatchKind = 'condition' | 'stocking' | 'report';
+export type WatchKind = 'condition' | 'stocking' | 'report' | 'source-outage';
 export type WatchMetric = 'tempC' | 'cfs';
 
 /** Wire shape of a watch rule (mirrors the server's toRuleItem). */
@@ -220,13 +220,16 @@ export async function createServerRule(
   waterId: string,
   rule: Partial<WatchRuleDraft> = {},
 ): Promise<WatchRule> {
+  const kind = rule.kind ?? 'condition';
+  const defaults = kind === 'condition' ? DEFAULT_WATCH
+    : { kind, cooldownMinutes: DEFAULT_WATCH.cooldownMinutes, hysteresis: 0 };
   const res = await requestJson(WATCHES_RULES_URL, {
     method: 'POST',
     headers: { 'content-type': 'application/json' },
     body: JSON.stringify({
       subscriptionId,
       waterId,
-      ...DEFAULT_WATCH,
+      ...defaults,
       ...rule,
     }),
   });
@@ -272,7 +275,7 @@ export function readLocalRules(): LocalWatchRule[] {
     return Array.isArray(parsed) ? parsed.filter((rule): rule is LocalWatchRule =>
       rule !== null && typeof rule === 'object' && typeof rule.id === 'string' &&
       typeof rule.waterId === 'string' && typeof rule.createdAt === 'string' &&
-      ['condition', 'stocking', 'report'].includes(rule.kind)) : [];
+      ['condition', 'stocking', 'report', 'source-outage'].includes(rule.kind)) : [];
   } catch {
     return [];
   }
@@ -298,7 +301,8 @@ export function addLocalRule(waterId: string, kind: WatchKind = 'condition'): Lo
     id: randomLocalId(),
     waterId,
     kind,
-    ...(kind === 'condition' ? { metric: DEFAULT_WATCH.metric, thresholdOp: DEFAULT_WATCH.thresholdOp, threshold: DEFAULT_WATCH.threshold } : {}),
+    ...(kind === 'condition' ? { metric: DEFAULT_WATCH.metric, thresholdOp: DEFAULT_WATCH.thresholdOp, threshold: DEFAULT_WATCH.threshold }
+      : kind === 'source-outage' ? { metric: DEFAULT_WATCH.metric } : {}),
     createdAt: new Date().toISOString(),
   };
   rules.push(rule);

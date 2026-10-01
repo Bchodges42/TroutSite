@@ -12,7 +12,7 @@ import { ECDH } from 'node:crypto';
  * so errors render the same either way; the server re-validates everything.
  */
 
-export const WATCH_KINDS = ['condition', 'stocking', 'report'] as const;
+export const WATCH_KINDS = ['condition', 'stocking', 'report', 'source-outage'] as const;
 export type WatchKind = (typeof WATCH_KINDS)[number];
 
 export const WATCH_METRICS = ['tempC', 'cfs'] as const;
@@ -149,6 +149,9 @@ export const WatchRuleSchema = z
       .default(0),
   })
   .superRefine((rule, ctx) => {
+    if (rule.kind === 'source-outage' && !rule.metric) {
+      ctx.addIssue({ code: z.ZodIssueCode.custom, path: ['metric'], message: 'Choose the source measurement to watch (tempC/cfs).' });
+    }
     if (rule.kind === 'condition') {
       if (!rule.metric || !rule.thresholdOp || rule.threshold === undefined) {
         ctx.addIssue({
@@ -174,6 +177,9 @@ export type WatchRuleInput = z.infer<typeof WatchRuleSchema>;
  * Called after schema validation, before insert.
  */
 export function canonicalizeRuleInput(rule: WatchRuleInput): WatchRuleInput {
+  if (rule.kind === 'source-outage') {
+    return { ...rule, thresholdOp: undefined, threshold: undefined, hysteresis: 0 };
+  }
   if (rule.kind !== 'condition') {
     return { ...rule, metric: undefined, thresholdOp: undefined, threshold: undefined };
   }

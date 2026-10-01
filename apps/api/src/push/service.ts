@@ -33,7 +33,7 @@ export interface WatchRuleRow {
   id: number;
   subscription_id: string;
   water_id: string;
-  kind: 'condition' | 'stocking' | 'report';
+  kind: 'condition' | 'stocking' | 'report' | 'source-outage';
   metric: 'tempC' | 'cfs' | null;
   threshold_op: 'above' | 'below' | null;
   threshold: number | null;

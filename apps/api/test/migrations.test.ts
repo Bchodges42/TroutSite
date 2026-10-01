@@ -75,7 +75,7 @@ describe('migrations', () => {
     //   rules — the one deliberate server-side exception to local-first).
     //   NOTE: two-digit zero-padding is load-bearing — the runner sorts
     //   filenames lexicographically, so '0020_…' would sort before '002_…'.
-    expect(applied).toHaveLength(22);
+    expect(applied).toHaveLength(23);
     expect(applied[0]!.name).toMatch(/^001_/);
     expect(applied[1]!.name).toMatch(/^002_/);
     expect(applied[2]!.name).toMatch(/^003_/);
@@ -94,6 +94,7 @@ describe('migrations', () => {
     expect(applied[19]!.name).toMatch(/^020_/);
     expect(applied[20]!.name).toMatch(/^021_/);
     expect(applied[21]!.name).toMatch(/^022_/);
+    expect(applied[22]!.name).toMatch(/^023_/);
   });
 
   it('adds archived_at to streams and shops (F22 removal policy: NULL = active)', () => {

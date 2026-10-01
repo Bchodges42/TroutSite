@@ -20,6 +20,7 @@ import {
 function ruleSummary(rule: WatchRule): string {
   if (rule.kind === 'stocking') return 'New stocking events';
   if (rule.kind === 'report') return 'New shop reports';
+  if (rule.kind === 'source-outage') return `${rule.metric === 'cfs' ? 'Flow' : 'Water temperature'} source unavailable / restored`;
   const metric = rule.metric === 'cfs' ? 'flow' : 'water temp';
   const op = rule.thresholdOp === 'above' ? 'rises above' : 'drops below';
   const unit = rule.metric === 'cfs' ? ' cfs' : ' °C';
