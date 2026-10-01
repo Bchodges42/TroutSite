@@ -161,6 +161,7 @@ export function TripCard({
                 progress={manager.progress}
                 offline={typeof navigator !== 'undefined' && navigator.onLine === false}
                 onDownload={(terrain) => void manager.downloadTrip(trip, tripStreams, terrain)}
+                onEstimate={(terrain, signal) => manager.estimateTrip(trip, tripStreams, terrain, signal)}
                 onRedownload={manifest ? (terrain) => void manager.downloadTrip(trip, tripStreams, terrain) : undefined}
                 onCancel={manager.cancelDownload}
                 onVerify={manifest ? () => void manager.verifyPack(manifest) : undefined}

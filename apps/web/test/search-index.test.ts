@@ -13,8 +13,10 @@ import {
 import { regionName } from '../src/data/regions';
 import pack from '../public/content-pack/streams.json';
 import { RiverSearch } from '../src/features/map/RiverSearch';
+import { clearRecentSelections } from '../src/features/search/recentSelections';
 
 beforeEach(() => {
+  clearRecentSelections();
   Element.prototype.scrollIntoView = vi.fn();
 });
 afterEach(() => {

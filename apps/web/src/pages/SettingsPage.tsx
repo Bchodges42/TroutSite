@@ -308,6 +308,7 @@ export function SettingsPage() {
                       progress={packs.progress}
                       offline={offline}
                       onDownload={(terrain) => void packs.redownload(manifest, terrain)}
+                      onEstimate={(terrain, signal) => packs.estimateManifest(manifest, terrain, signal)}
                       onRedownload={(terrain) => void packs.redownload(manifest, terrain)}
                       onCancel={packs.cancelDownload}
                       onVerify={() => void packs.verifyPack(manifest)}

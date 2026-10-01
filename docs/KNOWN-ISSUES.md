@@ -604,12 +604,16 @@ implemented” handoff is superseded. Stable R IDs live in the report.
 
 Open plan details (code/product work, not repaired by configuration):
 
-- [ ] **POST-29 · T2 — Search recall.** Add local empty-query recent selections,
-  preserving explicit scope/selection and blocked-storage behavior. Search
-  matching/disambiguation is present; recalled choices are not.
-- [ ] **POST-30 · T2 — Download size estimate.** Measured section bytes and bounded
-  terrain zooms exist; a complete estimate before download does not. Derive known
-  asset sizes, label uncertainty and preserve quota/cancel behavior.
+- [x] **POST-29 · T2 — Search recall.** Device-local bounded recent choices now
+  appear on empty-query focus, filtered to the current scope/active catalog.
+  No implicit Enter selection; clear history, malformed/blocked storage and
+  remount behavior tested. No coordinates, notes or account data are stored.
+- [x] **POST-30 · T2 — Download size estimate.** Water, saved-water, trip and
+  Settings controls offer a cancellable pre-download size check over the exact
+  deduplicated plan. Cached body bytes or bounded HEAD metadata supply sizes;
+  first-party uncompressed headers survive edge compression. Missing metadata
+  stays explicitly unknown; estimates include available browser storage and
+  terrain zooms. Real quota/cancel/readiness behavior remains authoritative.
 - [ ] **POST-31 · T2 — Separate outage watches.** Threshold/report/stocking rules
   exist; independently selectable source-outage notices do not. Define source
   health and first/duplicate/recovery behavior before adding a notification kind.

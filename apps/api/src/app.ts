@@ -252,7 +252,9 @@ export function buildApp(options: BuildAppOptions = {}): FastifyInstance {
     }
     const state = (req.query as { state?: string }).state?.trim().toUpperCase();
     const filtered = state ? streams.filter((s) => s.stateId === state) : streams;
-    return reply.header('cache-control', 'no-store').send(filtered);
+    return reply.header('cache-control', 'no-store')
+      .header('x-trout-asset-bytes', String(Buffer.byteLength(JSON.stringify(filtered))))
+      .send(filtered);
   });
 
   // Map gauge layer: one live reading per tapped gauge. The gauge catalog is a
@@ -341,7 +343,12 @@ export function buildApp(options: BuildAppOptions = {}): FastifyInstance {
   const noStore = (
     res: { setHeader?: (k: string, v: string) => void; header?: (k: string, v: string) => void },
     path: string,
+    stat?: { size: number },
   ): void => {
+    if (stat && Number.isSafeInteger(stat.size)) {
+      if (typeof res.setHeader === 'function') res.setHeader('x-trout-asset-bytes', String(stat.size));
+      else res.header?.('x-trout-asset-bytes', String(stat.size));
+    }
     // The service worker + Dexie are the offline layer; HTTP caching would
     // masquerade as live data (apps/web/vite.shared.ts note).
     if (/[/\\](v1|content)[/\\]/.test(path)) {
@@ -388,11 +395,13 @@ export function buildApp(options: BuildAppOptions = {}): FastifyInstance {
           header?: (k: string, v: string) => void;
         },
         path,
+        stat,
       ) => {
         const set = (k: string, v: string) => {
           if (typeof res.setHeader === 'function') res.setHeader(k, v);
           else res.header?.(k, v);
         };
+        set('x-trout-asset-bytes', String(stat.size));
         if (/[/\\]assets[/\\]/.test(path)) {
           set('Cache-Control', 'public, max-age=31536000, immutable');
         } else if (path.endsWith('.html')) {

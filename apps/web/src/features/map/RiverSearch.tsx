@@ -1,7 +1,8 @@
 import { useMemo, useState, useRef, useEffect, useId } from 'react';
 import { regionName } from '../../data/regions';
 import { waterTypeLabel } from '../../lib/presentation';
-import { buildEntries, match } from '../search/searchIndex';
+import { buildEntries, match, type SearchMatch } from '../search/searchIndex';
+import { clearRecentSelections, rememberSelection, useRecentSelections } from '../search/recentSelections';
 /** True when the element is actually rendered (walks hidden ancestors). */
 function isRendered(el: HTMLElement): boolean {
   let node: HTMLElement | null = el;
@@ -57,6 +58,7 @@ export function RiverSearch({
   showShortcut?: boolean;
 }) {
   const [query, setQuery] = useState('');
+  const recent = useRecentSelections();
   /** T2-36: shared across instances — the first VISIBLE instance to handle a
    *  shortcut keystroke claims it (others skip). */
   const lastShortcutHandledAt = useRef(0);
@@ -89,8 +91,15 @@ export function RiverSearch({
   );
   const matches = useMemo(() => {
     const scope = allFish ? entries : entries.filter((e) => !e.allFishOnly);
+    if (!query.trim()) {
+      const byId = new Map(scope.map((entry) => [entry.id, entry]));
+      return recent.flatMap((id): SearchMatch[] => {
+        const entry = byId.get(id);
+        return entry ? [{ entry, tier: 1, reason: 'exact-name', field: 'name' }] : [];
+      });
+    }
     return match(query, scope);
-  }, [entries, query, allFish]);
+  }, [entries, query, allFish, recent]);
   const visible = useMemo(() => matches.slice(0, 30), [matches]);
   // Widening candidates exist ONLY when the current scope found nothing —
   // this is the explicit "Search all fish" escape hatch, never an auto-switch.
@@ -139,6 +148,7 @@ export function RiverSearch({
       document.getElementById(id + '-option-' + active)?.scrollIntoView({ block: 'nearest' });
   }, [active, open, id]);
   const choose = (river: string) => {
+    rememberSelection(river);
     setOpen(false);
     setQuery('');
     navigated.current = false;
@@ -180,10 +190,7 @@ export function RiverSearch({
           placeholder={placeholder}
           value={query}
           onFocus={() => {
-            // An empty query opens nothing: the auto-focused atlas search must
-            // not drop a result sheet over the filters below it. Typing or
-            // ArrowDown still opens the list immediately.
-            if (query) setOpen(true);
+            if (query.trim() || visible.length) setOpen(true);
           }}
           onChange={(e) => {
             setQuery(e.target.value);
@@ -208,7 +215,7 @@ export function RiverSearch({
               // commits only an exact/prefix top result, or a highlight the
               // visitor moved themselves; fuzzy/word-prefix-only sets require
               // an explicit click or ↓+Enter.
-              const topExact = visible[0] !== undefined && visible[0].tier <= 2;
+              const topExact = Boolean(query.trim()) && visible[0] !== undefined && visible[0].tier <= 2;
               if (topExact || navigated.current) choose(visible[active]!.entry.id);
             }
             if (e.key === 'Escape') {
@@ -226,6 +233,9 @@ export function RiverSearch({
       </div>
       {open && (
         <div id={id} role="listbox" aria-label="River results" className="search-results">
+          {!query.trim() && visible.length > 0 && (
+            <p className="search-note">Recently selected on this device</p>
+          )}
           {visible.length === 0 && widerMatches.length > 0 && (
             <button
               type="button"
@@ -241,7 +251,9 @@ export function RiverSearch({
           )}
           {visible.length === 0 && widerMatches.length === 0 && (
             <p className="search-note">
-              {streams.length
+              {!query.trim() && streams.length
+                ? 'No recent waters in this scope. Type a name to search.'
+                : streams.length
                 ? 'No waters match. Try another name or region.'
                 : 'River catalog is loading or unavailable. Browse the list for details.'}
             </p>
@@ -291,6 +303,11 @@ export function RiverSearch({
           <div className="search-note">
             {streams.length} waters · ↑ ↓ to explore · Enter to select
           </div>
+          {!query.trim() && recent.length > 0 && (
+            <button type="button" className="search-note text-action" onClick={clearRecentSelections}>
+              Clear recent selections
+            </button>
+          )}
         </div>
       )}
     </div>

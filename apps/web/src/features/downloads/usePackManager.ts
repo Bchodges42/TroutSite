@@ -20,6 +20,7 @@ import { listManifests, tripManifestId, waterManifestId } from '../../lib/downlo
 import { db } from '../../lib/db';
 import { resolveUrl } from '../../lib/endpoints';
 import { currentMonth } from '../../lib/time';
+import { estimatePackSize, type PackSizeEstimate } from '../../lib/packSize';
 
 /**
  * The UI boundary over pack pinning (ADR 0012). Resolves the two
@@ -128,6 +129,9 @@ export interface PackManagerApi {
   /** Re-download a pack from Settings (catalog rows are resolved on demand). */
   redownload: (manifest: DownloadManifestRecord, includeTerrain?: boolean) => Promise<void>;
   cancelDownload: () => void;
+  estimateWater: (stream: Stream, terrain: boolean, signal?: AbortSignal) => Promise<PackSizeEstimate>;
+  estimateTrip: (trip: TripRecord, streams: Stream[], terrain: boolean, signal?: AbortSignal) => Promise<PackSizeEstimate>;
+  estimateManifest: (manifest: DownloadManifestRecord, terrain: boolean, signal?: AbortSignal) => Promise<PackSizeEstimate>;
   verifyPack: (manifest: DownloadManifestRecord) => Promise<void>;
   removePack: (manifest: DownloadManifestRecord) => Promise<void>;
 }
@@ -163,20 +167,23 @@ export function usePackManager(): PackManagerApi {
   }, []);
 
   /** Pin one water's plan (connectivity already checked by the caller). */
-  const pinWater = useCallback(async (stream: Stream, month: number, includeTerrain: boolean, signal: AbortSignal) => {
+  const prepareWater = useCallback(async (stream: Stream, month: number, includeTerrain: boolean, signal: AbortSignal) => {
     const topo = includeTerrain ? await resolveTerrain(signal) : null;
     const anchor = waterAnchor(stream.id);
     const clusterUrls = anchor ? await resolveClusterUrls(anchor, signal) : [];
     const historyUrls = await availableHistory(stream, signal);
-    const plan = planWaterPack(stream, { month, includeTerrain, topo, clusterUrls, historyUrls });
-    const result = await pin(plan, setProgress, signal);
-    reportPinOutcome(plan, result);
+    return planWaterPack(stream, { month, includeTerrain, topo, clusterUrls, historyUrls });
   }, []);
 
-  const pinTrip = useCallback(async (trip: TripRecord, streams: Stream[], includeTerrain: boolean, signal: AbortSignal) => {
-    if (trip.waterIds.some((id) => !streams.some((stream) => stream.id === id))) {
-      toast.error('Some trip waters are missing from the catalog. Update the trip before downloading its complete pack.');
-      return;
+  const pinWater = useCallback(async (stream: Stream, month: number, includeTerrain: boolean, signal: AbortSignal) => {
+    const plan = await prepareWater(stream, month, includeTerrain, signal);
+    const result = await pin(plan, setProgress, signal);
+    reportPinOutcome(plan, result);
+  }, [prepareWater]);
+
+  const prepareTrip = useCallback(async (trip: TripRecord, streams: Stream[], includeTerrain: boolean, signal: AbortSignal) => {
+    if (!trip.waterIds.length || trip.waterIds.some((id) => !streams.some((stream) => stream.id === id))) {
+      throw new Error('Some trip waters are missing from the catalog. Update the trip before downloading its complete pack.');
     }
     const month = monthFor(trip.date);
     const topo = includeTerrain ? await resolveTerrain(signal) : null;
@@ -187,10 +194,30 @@ export function usePackManager(): PackManagerApi {
       const historyUrls = await availableHistory(stream, signal);
       plans.push(planWaterPack(stream, { month, includeTerrain, topo, clusterUrls, historyUrls }));
     }
-    const plan = planTripPack(trip, plans);
+    return planTripPack(trip, plans);
+  }, []);
+
+  const pinTrip = useCallback(async (trip: TripRecord, streams: Stream[], includeTerrain: boolean, signal: AbortSignal) => {
+    const plan = await prepareTrip(trip, streams, includeTerrain, signal);
     const result = await pin(plan, setProgress, signal);
     reportPinOutcome(plan, result);
-  }, []);
+  }, [prepareTrip]);
+
+  const estimateWater = useCallback(async (stream: Stream, terrain: boolean, signal = new AbortController().signal) =>
+    estimatePackSize(await prepareWater(stream, monthFor(undefined), terrain, signal), signal), [prepareWater]);
+  const estimateTrip = useCallback(async (trip: TripRecord, streams: Stream[], terrain: boolean, signal = new AbortController().signal) =>
+    estimatePackSize(await prepareTrip(trip, streams, terrain, signal), signal), [prepareTrip]);
+  const estimateManifest = useCallback(async (manifest: DownloadManifestRecord, terrain: boolean, signal = new AbortController().signal) => {
+    const rows = await fetchCatalogRows(signal);
+    if (manifest.kind === 'water') {
+      const stream = rows.find((row) => row.id === manifest.id.slice('water:'.length));
+      if (!stream) throw new Error('This water is no longer in the catalog.');
+      return estimateWater(stream, terrain, signal);
+    }
+    const trip = await db.trips.get(tripIdFrom(manifest.id));
+    if (!trip) throw new Error('This trip no longer exists.');
+    return estimateTrip(trip, rows.filter((row) => trip.waterIds.includes(row.id)), terrain, signal);
+  }, [estimateWater, estimateTrip]);
 
   const guardOnline = useCallback(async () => {
     if (typeof navigator !== 'undefined' && navigator.onLine === false) {
@@ -284,8 +311,8 @@ export function usePackManager(): PackManagerApi {
   );
 
   return useMemo(
-    () => ({ manifests, busyId, progress, downloadWater, downloadTrip, redownload, verifyPack, removePack, cancelDownload }),
-    [manifests, busyId, progress, downloadWater, downloadTrip, redownload, verifyPack, removePack, cancelDownload],
+    () => ({ manifests, busyId, progress, downloadWater, downloadTrip, redownload, verifyPack, removePack, cancelDownload, estimateWater, estimateTrip, estimateManifest }),
+    [manifests, busyId, progress, downloadWater, downloadTrip, redownload, verifyPack, removePack, cancelDownload, estimateWater, estimateTrip, estimateManifest],
   );
 }
 

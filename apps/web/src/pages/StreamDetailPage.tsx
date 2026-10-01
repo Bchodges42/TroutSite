@@ -222,6 +222,7 @@ export function StreamDetailPage() {
         <DownloadButton manifest={waterPack} busy={packs.busyId === waterManifestId(stream.id)}
           progress={packs.progress} offline={typeof navigator !== 'undefined' && !navigator.onLine}
           onDownload={(terrain) => void packs.downloadWater(stream, terrain)}
+          onEstimate={(terrain, signal) => packs.estimateWater(stream, terrain, signal)}
           onRedownload={(terrain) => void packs.downloadWater(stream, terrain)}
           onCancel={packs.cancelDownload}
           onVerify={waterPack ? () => void packs.verifyPack(waterPack) : undefined}

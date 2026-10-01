@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Button, ConfirmButton } from '@trout/ui';
 import type { DownloadManifestRecord } from '../../lib/db';
 import { computePackReadiness } from '../../lib/downloadManifests';
 import type { PinProgress } from '../../lib/packCache';
+import { sizeEstimateText, type PackSizeEstimate } from '../../lib/packSize';
 
 export interface DownloadButtonProps {
   /** Present once the pack has a manifest (downloaded or partially so). */
@@ -15,6 +16,7 @@ export interface DownloadButtonProps {
   offline: boolean;
   onDownload: (includeTerrain: boolean) => void;
   onCancel?: () => void;
+  onEstimate?: (includeTerrain: boolean, signal: AbortSignal) => Promise<PackSizeEstimate>;
   onVerify?: () => void;
   onRemove?: () => void;
   /** Offered when a manifest exists but is NOT required-ready (evicted or
@@ -39,6 +41,7 @@ export function DownloadButton({
   offline,
   onDownload,
   onCancel,
+  onEstimate,
   onVerify,
   onRemove,
   onRedownload,
@@ -47,22 +50,57 @@ export function DownloadButton({
 }: DownloadButtonProps) {
   const readiness = manifest ? computePackReadiness(manifest.sections) : null;
   const [includeTerrain, setIncludeTerrain] = useState(() => manifest?.sections.some((section) => section.key === 'terrain') ?? false);
+  const [estimate, setEstimate] = useState<PackSizeEstimate | null>(null);
+  const [estimateError, setEstimateError] = useState<string | null>(null);
+  const [estimating, setEstimating] = useState(false);
+  const estimateController = useRef<AbortController | null>(null);
+  useEffect(() => () => estimateController.current?.abort(), []);
+  const checkSize = async () => {
+    if (!onEstimate || estimateController.current) return;
+    const controller = new AbortController();
+    estimateController.current = controller;
+    setEstimating(true); setEstimateError(null); setEstimate(null);
+    try {
+      const value = await onEstimate(includeTerrain, controller.signal);
+      if (!controller.signal.aborted) setEstimate(value);
+    } catch {
+      if (!controller.signal.aborted) setEstimateError('Size could not be checked. Try again when connected.');
+    } finally {
+      if (estimateController.current === controller) { estimateController.current = null; setEstimating(false); }
+    }
+  };
 
   return (
     <span className={'inline-flex flex-wrap items-center gap-2 ' + (className ?? '')}>
       {!busy && (!manifest || onRedownload) && (
         <label className="inline-flex min-h-11 items-center gap-2 text-sm">
-          <input type="checkbox" checked={includeTerrain} disabled={offline}
-            onChange={(event) => setIncludeTerrain(event.target.checked)} />
+          <input type="checkbox" checked={includeTerrain} disabled={offline || estimating}
+            onChange={(event) => { setIncludeTerrain(event.target.checked); setEstimate(null); setEstimateError(null); }} />
           Include terrain (larger download)
         </label>
+      )}
+      {!busy && onEstimate && (
+        <>
+          <Button size="sm" variant="secondary" disabled={offline || estimating} onClick={() => void checkSize()}>
+            {estimating ? 'Checking size…' : 'Check download size'}
+          </Button>
+          {estimating && <Button size="sm" variant="secondary" onClick={() => estimateController.current?.abort()}>Cancel size check</Button>}
+          <span role="status" className="basis-full text-sm">
+            {estimate && <>{sizeEstimateText(estimate)}. {estimate.cachedAssets} files already saved.
+              {estimate.freeBytes !== null && <> About {(estimate.freeBytes / 1_000_000).toFixed(1)} MB browser storage free.</>}
+              {estimate.freeBytes !== null && estimate.bytes > estimate.freeBytes && <> Space may be tight; shared files can reduce additional storage.</>}
+              {includeTerrain && <> Terrain uses zooms 10–11 where available.</>}
+            </>}
+            {estimateError}
+          </span>
+        </>
       )}
       {!manifest && !busy && (
         <Button
           size="sm"
           data-testid="pack-download"
           className="focus-ring"
-          disabled={offline}
+          disabled={offline || estimating}
           title={offline ? 'Pinning needs a network connection — you are offline right now.' : undefined}
           onClick={() => onDownload(includeTerrain)}
         >
@@ -107,7 +145,7 @@ export function DownloadButton({
               size="sm"
               data-testid="pack-redownload"
               className="focus-ring"
-              disabled={offline}
+              disabled={offline || estimating}
               title={offline ? 'Pinning needs a network connection — you are offline right now.' : undefined}
               onClick={() => onRedownload(includeTerrain)}
             >

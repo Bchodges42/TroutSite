@@ -225,6 +225,7 @@ export function SavedWaterCard({
             progress={manager.progress}
             offline={typeof navigator !== 'undefined' && navigator.onLine === false}
             onDownload={(terrain) => void manager.downloadWater(stream, terrain)}
+            onEstimate={(terrain, signal) => manager.estimateWater(stream, terrain, signal)}
             onRedownload={waterPack ? (terrain) => void manager.downloadWater(stream, terrain) : undefined}
             onCancel={manager.cancelDownload}
             onVerify={waterPack ? () => void manager.verifyPack(waterPack) : undefined}
