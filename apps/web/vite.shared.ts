@@ -170,6 +170,17 @@ export function buildPlugins({ fixtures = false }: { fixtures?: boolean } = {}) 
         ],
       },
       workbox: {
+        // Last-resort pack fallback (offline downloads lane, 2026-09-30):
+        // generateSW cannot carry a custom fetch handler inline, but
+        // importScripts is a first-class generateSW option, so the handler
+        // lives in public/pack-fallback.js (copied verbatim into dist). The
+        // generated sw.js imports it BEFORE Workbox attaches its router fetch
+        // listener; the file defers its own listener registration by one
+        // microtask so it attaches strictly AFTER the router's and only
+        // answers requests no route claimed — serving pack-pinned assets
+        // (trout-packs-v1) offline to every plain-fetch consumer. Ordering
+        // contract + behavior proven in test/sw-pack-fallback.test.ts.
+        importScripts: ['pack-fallback.js'],
         navigateFallback: '/index.html',
         // Precache the app shell, the bundled content pack, and any snapshot
         // files that exist at build time (fixture builds). Regenerated /v1 and
