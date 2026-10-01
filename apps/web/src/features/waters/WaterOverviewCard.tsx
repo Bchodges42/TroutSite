@@ -139,7 +139,9 @@ export function WaterOverviewCard({
         <p className="mt-1.5 text-sm font-bold">{opportunity.headline}</p>
       )}
 
-      <div className="mt-2 flex flex-wrap items-center gap-2">
+      {/* Reserve (visual-hierarchy lane): the assessment line keeps its slot
+          while notices/status settle, so nothing below shifts under a tap. */}
+      <div className="reserve-assessment mt-2 flex flex-wrap items-center gap-2">
         <Chip tone={conditionStatusTone(statusLabel)} title="Focused-species condition status from the current assessment — never a score.">
           {statusLabel}
         </Chip>
@@ -160,14 +162,19 @@ export function WaterOverviewCard({
         </p>
       ))}
 
-      <div className="mt-3 flex flex-wrap items-end gap-x-5 gap-y-2" data-testid="overview-metrics">
+      {/* Reserve: the metric row holds its height until snapshot data lands,
+          so the action row beneath never jumps mid-tap. */}
+      <div
+        className="reserve-metrics mt-3 flex flex-wrap items-end gap-x-5 gap-y-2"
+        data-testid="overview-metrics"
+      >
         {metrics.length === 0 && (
           <p className="muted text-sm">No gauge readings reported for this water.</p>
         )}
         {metrics.map((m) => (
           <div key={m.key} className="min-w-[7rem]">
             <p className="muted text-xs">{m.label}</p>
-            <p className="text-base font-extrabold">{metricValueText(m, settings.tempUnit)}</p>
+            <p className="data-value text-base">{metricValueText(m, settings.tempUnit)}</p>
             {m.observedAt != null &&
               (m.stale ? (
                 <Chip
@@ -175,11 +182,15 @@ export function WaterOverviewCard({
                   className="mt-0.5"
                   title="This reading carries its own age — a fresher flow never refreshes an older temperature."
                 >
+                  {/* No .data-unit here: the chip's fair (amber) TEXT is the
+                      status reinforcement, and .data-unit's dimmed gray would
+                      neutralize it (and wash out on the fixed light amber
+                      fill in dark themes). The chip owns its color. */}
                   observed {ageMinutes(m.observedAt)}
                 </Chip>
               ) : (
                 <span
-                  className="muted text-xs"
+                  className="data-unit"
                   title="This reading carries its own age — each metric is timed independently."
                 >
                   observed {ageMinutes(m.observedAt)}

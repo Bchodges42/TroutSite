@@ -39,7 +39,7 @@ export function LastUpdatedChip({ updatedAt, staleAfterMinutes = 90, className }
   const stale = minutes > staleAfterMinutes;
   return (
     <Chip
-      tone={stale ? 'poor' : 'good'}
+      tone={stale ? 'fair' : 'good'}
       className={cx('trout-last-updated', className)}
       title={stale ? 'Data is older than expected — it may be out of date.' : 'Data is fresh.'}
     >

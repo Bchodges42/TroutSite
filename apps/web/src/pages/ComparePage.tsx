@@ -53,9 +53,13 @@ const BAND_COLOR: Record<string, string> = {
   poor: 'var(--trout-status-poor)',
 };
 
+// Status semantics (see the STATUS COLOR SEMANTICS block in index.css): a
+// stale reading is still usable — amber, not gray (gray is reserved for
+// "no data") and never red. Band tones carry their band word as text; color
+// only reinforces.
 function toneColor(tone: CompareCellTone): string | undefined {
   if (tone === 'good' || tone === 'fair' || tone === 'poor') return BAND_COLOR[tone];
-  if (tone === 'stale') return 'var(--trout-color-text-muted)';
+  if (tone === 'stale') return 'var(--trout-status-fair)';
   return undefined;
 }
 
@@ -69,8 +73,10 @@ interface CompareColumnView {
 function CellValue({ cell, strong = true }: { cell: CompareCell; strong?: boolean }) {
   const color = toneColor(cell.tone);
   return (
-    <span className="flex flex-col gap-0.5">
-      <span className={strong ? 'font-semibold' : ''} style={color ? { color } : undefined}>
+    // Reserve: rows gain their detail line when the late snapshot lands — the
+    // reserved min-height keeps rows below from shifting mid-tap.
+    <span className="reserve-metrics flex flex-col gap-0.5">
+      <span className={strong ? 'data-value' : ''} style={color ? { color } : undefined}>
         {cell.text}
       </span>
       {cell.detail && <span className="muted text-xs">{cell.detail}</span>}
@@ -214,8 +220,9 @@ export function ComparePage() {
         {columns.map((col) => (
           <section
             key={col.waterId}
-            className="detail-section rounded-xl p-3"
-            style={{ border: '1px solid var(--ui-border)' }}
+            /* panel-line: the card's ONE token edge — no nested bordered
+               boxes inside; rows separate by spacing alone. */
+            className="detail-section panel-line rounded-xl p-3"
             aria-label={col.cells.identity.text}
           >
             <div className="flex items-start justify-between gap-2">
@@ -234,7 +241,9 @@ export function ComparePage() {
             </div>
             <dl className="mt-3 flex flex-col gap-3">
               {COMPARE_ROW_KEYS.slice(1).map((key) => (
-                <div key={key}>
+                /* Reserve: keeps each row's slot steady while the snapshot
+                   fills in values + detail lines. */
+                <div key={key} className="reserve-metrics">
                   <dt className="text-xs font-bold uppercase tracking-wide">{COMPARE_ROW_LABELS[key]}</dt>
                   <dd className="mt-0.5 text-sm">
                     <CellValue cell={col.cells[key]} />

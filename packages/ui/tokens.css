@@ -43,7 +43,16 @@
   --trout-color-accent: var(--trout-amber-500);
   --trout-color-danger: #dc2626;
 
-  /* Condition/status colors (fishability, data freshness) */
+  /* Condition/status colors (fishability, data freshness).
+   *
+   * STATUS COLOR SEMANTICS (visual-hierarchy lane) — one meaning per color,
+   * always reinforced with text or shape:
+   *   good  (green) = usable now
+   *   fair  (amber) = usable with caveats — stale, last-known, warnings,
+   *                   overdue, partial/incomplete, retired saves
+   *   poor  (red)   = unsafe or failed ONLY — never staleness or absence
+   *   unknown(gray) = no data / not assessed / informational
+   */
   --trout-status-good: var(--trout-green-600);
   --trout-status-fair: var(--trout-amber-500);
   --trout-status-poor: var(--trout-color-danger);
@@ -187,6 +196,7 @@
 .trout-badge__value {
   color: var(--trout-color-text);
   font-weight: 700;
+  font-variant-numeric: tabular-nums;
 }
 .trout-badge--good {
   border-left-color: var(--trout-status-good);
@@ -410,5 +420,10 @@
   .trout-dialog,
   .trout-confirm__commit {
     animation: none !important;
+  }
+  .trout-btn,
+  .trout-confirm__arm,
+  .trout-confirm__commit {
+    transition: none !important;
   }
 }

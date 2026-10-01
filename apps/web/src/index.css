@@ -647,6 +647,28 @@ a {
   color: var(--ui-faint);
   margin-top: 3px;
 }
+/* ============================================================
+   STATUS COLOR SEMANTICS (visual-hierarchy lane) — one meaning
+   per status tone, everywhere. Every status color MUST be
+   reinforced with text or shape (a label, dot, band word, or
+   edge) — never color alone.
+
+   good   (green)  = usable now — live, healthy, in-range conditions.
+   fair   (amber)  = usable with caveats — stale/aged data, "last
+                    known" snapshots, warnings, overdue updates,
+                    no-longer-listed saves.
+   poor   (red)    = unsafe or failed — failed lookups, destructive
+                    confirm states, honest error surfaces. Never for
+                    mere staleness or absence.
+   unknown/neutral (gray) = no data, not assessed, unclassified, or
+                    plain informational — an honest absence, never a
+                    verdict.
+
+   The map's decision tokens (--map-good/-fair/-poor/-noData and
+   the [data-status] mapping below) mirror exactly these meanings
+   for corridors and markers; trout vs warmwater classification
+   rides the trout/warmwater tokens, not these.
+   ============================================================ */
 [data-status='good'] {
   --status-color: var(--ui-good);
 }
@@ -2863,4 +2885,46 @@ html.reduce-motion *::after {
   .map-canvas-area.has-sheet .map-topbar {
     visibility: hidden;
   }
+}
+
+/* ============================================================
+   Visual-hierarchy utilities (visual-hierarchy lane) — small,
+   token-only helpers shared by the data surfaces (WaterOverviewCard,
+   ComparePage, SavedWaterCard). The global
+   `@media (prefers-reduced-motion: reduce)` guard above already
+   neutralizes transitions/animations for these classes; they add
+   none of their own.
+   ============================================================ */
+
+/* Data readouts: metric numbers align in columns and scan as one
+   family; units/annotations read as secondary. Pair .data-value
+   (the measured number) with .data-unit (its unit or observation
+   age) wherever the markup separates them. */
+.data-value {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.data-unit {
+  font-size: 0.8125em;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--ui-muted);
+}
+
+/* Placeholder reserves: hold the vertical space a late-arriving
+   snapshot will fill (metric row, assessment line) so controls
+   below never shift under a tapping finger. */
+.reserve-metrics {
+  min-height: 2.75rem;
+}
+.reserve-assessment {
+  min-height: 1.75rem;
+}
+
+/* Single-surface panel edge: the ONE border a compact card gets.
+   Prefer this over stacking a second bordered box inside a Card —
+   a single surface + spacing does the job. */
+.panel-line {
+  border: 1px solid var(--ui-border);
 }

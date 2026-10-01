@@ -75,7 +75,9 @@ export function DownloadButton({
             style={{
               color: readiness.requiredReady
                 ? 'var(--trout-color-primary)'
-                : 'var(--trout-color-danger)',
+                : !readiness.anyReady
+                  ? 'var(--trout-color-text-muted)'
+                  : 'var(--trout-status-fair)',
             }}
           >
             {!readiness.anyReady

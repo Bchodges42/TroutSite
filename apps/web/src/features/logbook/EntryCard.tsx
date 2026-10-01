@@ -43,7 +43,7 @@ export function EntryCard({
             Personal observation
           </Chip>
         )}
-        {entry.blankTrip && <Chip tone="poor">Blank — effort, no catch</Chip>}
+        {entry.blankTrip && <Chip tone="fair">Blank — effort, no catch</Chip>}
         <div className="ml-auto flex items-center gap-2">
           <Button variant="secondary" className="focus-ring" onClick={onEdit}>
             Edit

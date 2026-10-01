@@ -129,9 +129,7 @@ export function SavedWaterCard({
         )}
         {overview && <Chip>{overview.identity.typeLabel}</Chip>}
         {overview?.identity.reach && (
-          <span className="text-sm" style={{ color: 'var(--trout-color-text-muted)' }}>
-            {overview.identity.reach}
-          </span>
+          <span className="muted text-sm">{overview.identity.reach}</span>
         )}
         {retired && <Chip tone="fair">No longer in the catalog</Chip>}
         {overview?.opportunity.headline && (
@@ -143,13 +141,13 @@ export function SavedWaterCard({
       </div>
 
       {retired && (
-        <p className="mt-2 text-sm" style={{ color: 'var(--trout-color-text-muted)' }}>
+        <p className="muted mt-2 text-sm">
           The current catalog no longer lists this id. Showing the name saved on this device —
           your save stays until you remove it, but no live data can be checked for it.
         </p>
       )}
       {catalogState === 'unavailable' && (
-        <p className="mt-2 text-sm" style={{ color: 'var(--trout-color-text-muted)' }}>
+        <p className="muted mt-2 text-sm">
           The catalog could not be loaded right now — showing the name saved on this device.
           Availability stays unknown until it loads.
         </p>
@@ -157,26 +155,32 @@ export function SavedWaterCard({
 
       {memberOf.length > 0 && (
         <div className="mt-2 flex flex-wrap items-center gap-1.5">
-          <span className="text-xs font-bold uppercase tracking-wide" style={{ color: 'var(--trout-color-text-muted)' }}>
-            Groups
-          </span>
+          <span className="muted text-xs font-bold uppercase tracking-wide">Groups</span>
           {memberOf.map((g) => (
             <Chip key={g.id}>{g.name}</Chip>
           ))}
         </div>
       )}
 
+      {/* Reserve: while the catalog row resolves (or before the snapshot
+          lands) this holds the metric row's slot so the Remove control
+          beneath never shifts under a tapping finger. */}
+      {found && !overview && <div className="reserve-metrics" aria-hidden="true" />}
       {overview && (
-        <div className="mt-3 flex flex-wrap items-center gap-2">
+        <div className="reserve-metrics mt-3 flex flex-wrap items-center gap-2">
           <FreshnessChip
             fetchedAt={snapshot ? Date.parse(snapshot.fetchedAt) : null}
             live={conditionsLive}
             observedAt={newestReadingAt(snapshot?.readings ?? [])}
           />
           {overview.metrics.map((m) => (
-            <span key={m.key} className="text-sm" style={{ color: 'var(--trout-color-text-muted)' }}>
-              {m.label} {metricValue(m.key, m.value, tempUnit)}
-              {m.observedAt !== null ? ` · observed ${ageMinutes(m.observedAt)}` : ''}
+            <span key={m.key} className="text-sm">
+              {/* Label + value stay one contiguous readout (tabular-nums via
+                  .data-value); the observation age reads as secondary. */}
+              <span className="data-value">{m.label} {metricValue(m.key, m.value, tempUnit)}</span>
+              {m.observedAt !== null && (
+                <span className="data-unit"> · observed {ageMinutes(m.observedAt)}</span>
+              )}
             </span>
           ))}
         </div>
@@ -186,19 +190,20 @@ export function SavedWaterCard({
           <p
             key={i}
             role={n.severity === 'warning' ? 'status' : undefined}
-            className="mt-2 text-sm"
-            style={{
-              color:
-                n.severity === 'warning'
-                  ? 'var(--trout-color-danger)'
-                  : 'var(--trout-color-text-muted)',
-            }}
+            className="muted mt-2 text-sm"
+            style={
+              n.severity === 'warning'
+                ? // Status semantics: a warning is "usable with caveats" —
+                  // amber, not red. Red is for unsafe/failed states only.
+                  { color: 'var(--trout-status-fair)' }
+                : undefined
+            }
           >
             {n.text}
           </p>
         ))}
       {checkingConditions && (
-        <p className="mt-2 text-sm" style={{ color: 'var(--trout-color-text-muted)' }} role="status">
+        <p className="muted mt-2 text-sm" role="status">
           Checking for gauge readings…
         </p>
       )}

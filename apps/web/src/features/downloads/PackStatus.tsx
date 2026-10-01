@@ -18,7 +18,9 @@ export function PackStatus({ manifest }: { manifest: DownloadManifestRecord }) {
         style={{
           color: readiness.requiredReady
             ? 'var(--trout-color-primary)'
-            : 'var(--trout-color-danger)',
+            : !readiness.anyReady
+              ? 'var(--trout-color-text-muted)'
+              : 'var(--trout-status-fair)',
         }}
       >
         {!readiness.anyReady
@@ -45,7 +47,7 @@ export function PackStatus({ manifest }: { manifest: DownloadManifestRecord }) {
                 color: section.ready
                   ? 'var(--trout-color-primary)'
                   : section.required
-                    ? 'var(--trout-color-danger)'
+                    ? 'var(--trout-status-fair)'
                     : 'var(--trout-color-text-muted)',
               }}
             >
