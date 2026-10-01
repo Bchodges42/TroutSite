@@ -30,6 +30,15 @@ import { MapLegend } from './MapLegend';
 import { fisheryTypeCounts } from './fisheryType';
 import { SPECIES_LABELS } from '../../lib/fishability';
 import type { RiverMapFeature } from './riverMapSelectors';
+import {
+  SHEET_SNAP_POINTS,
+  getWaterVisit,
+  recordWaterVisit,
+  snapToState,
+  snapValueFor,
+  useKeyboardInset,
+  type SheetSnapState,
+} from './riverDrawerTabs';
 import { CloseIcon, WavesIcon, BugIcon } from '../../components/icons';
 const tabs = ['Water', 'Hatch', 'Stocking', 'Reports', 'Your Log'] as const;
 type Place = { name: string; lon: number; lat: number; kind: 'city' | 'town' | 'water' };
@@ -68,7 +77,11 @@ export function RiverMapPage() {
   const data = useRiverMapData({ month, focusSpecies: species === 'all' ? focusSpecies : null });
   const selected = data.features.find((f) => f.stream.id === selectedId) ?? null;
   const indexOpen = !selectedId && params.get('atlas') === '1';
-  const [expanded, setExpanded] = useState(false);
+  // Mobile sheet position grew a third, compact "peek" snap (riverDrawerTabs).
+  // The derived `expanded` boolean keeps every existing desktop behavior
+  // (.is-expanded class, toggle label, map camera) byte-for-byte.
+  const [sheetState, setSheetState] = useState<SheetSnapState>('half');
+  const expanded = sheetState === 'expanded';
   const [layers, setLayers] = useState(false);
   const [topoAvailable, setTopoAvailable] = useState(false);
   const [roadsManifest, setRoadsManifest] = useState<RoadsSpec | null>(null);
@@ -113,7 +126,17 @@ export function RiverMapPage() {
       { replace },
     );
   const setRiver = (id: string | null) => {
-    setExpanded(false);
+    if (id && !desktop) {
+      // Mobile visit memory: reselecting a water from this session resumes
+      // its last tab + snap (in-memory only — the URL still leads so the
+      // view stays shareable). A first-ever selection keeps the long-standing
+      // defaults (Water tab, half snap).
+      const visit = getWaterVisit(id);
+      setSheetState(visit?.snap ?? 'half');
+      update({ river: id, tab: visit?.tab ?? 'Water', atlas: null }, false);
+      return;
+    }
+    setSheetState('half');
     update({ river: id, tab: id ? 'Water' : null, atlas: null }, false);
   };
   const focusExploreControl = () =>
@@ -127,7 +150,7 @@ export function RiverMapPage() {
   // desktop, the always-visible field's list on mobile). No second chrome
   // entry opens it.
   const openIndex = () => {
-    setExpanded(false);
+    setSheetState('half');
     update({ river: null, tab: null, atlas: '1' });
   };
   const closeIndex = () => {
@@ -156,6 +179,51 @@ export function RiverMapPage() {
     media.addEventListener('change', change);
     return () => media.removeEventListener('change', change);
   }, []);
+  // Session visit memory (mobile sheet only): whatever tab + snap a water was
+  // left at is what reopening it restores. In-memory, never persisted.
+  useEffect(() => {
+    if (!mobileInspector || !selectedId) return;
+    recordWaterVisit(selectedId, { tab, snap: sheetState });
+  }, [mobileInspector, selectedId, tab, sheetState]);
+  // Soft keyboard (visualViewport): report how much of the layout viewport the
+  // keyboard covers so sheet content and search results stay reachable.
+  const keyboardInset = useKeyboardInset();
+  // When the keyboard is up, cap the water-search results dropdown to the
+  // space between the focused field and the keyboard's top edge. The results
+  // box is rendered inside RiverSearch (not owned here), so the fix is the one
+  // targeted override this surface allows: a measured CSS cap scoped to the
+  // field-map (the header search outside it is unaffected). jsdom has no
+  // layout — measurement simply reports null there and nothing is applied.
+  const [resultsCap, setResultsCap] = useState<number | null>(null);
+  useEffect(() => {
+    if (keyboardInset <= 0) {
+      setResultsCap(null);
+      return;
+    }
+    const measure = () => {
+      const active = document.activeElement;
+      const input =
+        active instanceof HTMLElement && active.classList.contains('search-input')
+          ? (active as HTMLInputElement)
+          : [...document.querySelectorAll<HTMLInputElement>('.search-input')].find(
+              (el) => el.getClientRects().length > 0,
+            );
+      if (!input || typeof input.getBoundingClientRect !== 'function') {
+        setResultsCap(null);
+        return;
+      }
+      const keyboardTop = window.innerHeight - keyboardInset;
+      const available = keyboardTop - input.getBoundingClientRect().bottom - 12;
+      setResultsCap(Math.max(96, Math.round(available)));
+    };
+    measure();
+    window.addEventListener('resize', measure);
+    document.addEventListener('scroll', measure, true);
+    return () => {
+      window.removeEventListener('resize', measure);
+      document.removeEventListener('scroll', measure, true);
+    };
+  }, [keyboardInset]);
   // The mobile sheet is NON-modal by design: the map and the header above it
   // stay visible and operable. vaul mounts on Radix Dialog, whose modal
   // side-effect sets aria-hidden on everything outside the sheet — hiding
@@ -636,7 +704,7 @@ export function RiverMapPage() {
             <button
               className="sheet-toggle"
               aria-expanded={expanded}
-              onClick={() => setExpanded(!expanded)}
+              onClick={() => setSheetState(expanded ? 'half' : 'expanded')}
             >
               {expanded ? 'Show map' : 'Expand details'}
             </button>
@@ -645,7 +713,7 @@ export function RiverMapPage() {
               tab={tab}
               onTab={(t) => {
                 update({ tab: t });
-                if (!desktop) setExpanded(true);
+                if (!desktop) setSheetState('expanded');
               }}
               onClose={close}
               onBack={openIndex}
@@ -777,19 +845,26 @@ export function RiverMapPage() {
       {!desktop && (
         // Non-modal bottom sheet: the map above stays pannable/zoomable,
         // matching the old CSS panel; vaul adds drag-to-dismiss, velocity,
-        // and the 49% / 82% snap points.
+        // and the 28% / 49% / 82% snap points (0.28 is the new compact peek
+        // showing the Water Overview summary).
         <Drawer.Root
           open={mobileInspector}
           modal={false}
-          snapPoints={[0.49, 0.82]}
-          activeSnapPoint={expanded ? 0.82 : 0.49}
-          setActiveSnapPoint={(snapPoint) => setExpanded(snapPoint === 0.82)}
+          snapPoints={[...SHEET_SNAP_POINTS]}
+          activeSnapPoint={snapValueFor(sheetState)}
+          setActiveSnapPoint={(snapPoint) => setSheetState(snapToState(snapPoint))}
           onOpenChange={(open) => {
             if (!open) close();
           }}
         >
           <Drawer.Portal>
-            <Drawer.Content className="river-sheet" aria-label="River inspector">
+            <Drawer.Content
+              className="river-sheet"
+              aria-label="River inspector"
+              // Home-indicator / notch devices: keep the sheet's tail content
+              // above the bottom safe area (index.css is another lane's file).
+              style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
+            >
               {/* The sheet's accessible name. NOT an h2: the drawer body has the
               visible water heading, and a second heading inside the same
               dialog made locator("[role=dialog]").getByRole("heading")
@@ -803,16 +878,29 @@ export function RiverMapPage() {
               <button
                 className="sheet-toggle"
                 aria-expanded={expanded}
-                onClick={() => setExpanded(!expanded)}
+                onClick={() => setSheetState(expanded ? 'half' : 'expanded')}
               >
                 {expanded ? 'Show map' : 'Expand details'}
               </button>
+              {mobileInspector && sheetState === 'peek' && (
+                // Peek positions the sheet at 28dvh, but the map control's
+                // parked spot is hard-coded to the 49% snap in the stylesheet
+                // (another lane's file this wave) — a targeted override keeps
+                // the zoom/attribution controls just above the peeking sheet.
+                <style>{`.map-canvas-area.has-sheet .maplibregl-ctrl-bottom-right{bottom:calc(28.2dvh + 12px) !important;}`}</style>
+              )}
+              {resultsCap != null && (
+                // Keyboard up: keep the water-search results above it (see the
+                // resultsCap effect). Scoped to the field-map; the app-header
+                // search is outside this tree and untouched.
+                <style>{`.field-map .search-results{max-height:${resultsCap}px !important;}`}</style>
+              )}
               <RiverDrawer
                 feature={selected ?? lastFeature.current}
                 tab={tab}
                 onTab={(t) => {
                   update({ tab: t });
-                  setExpanded(true);
+                  setSheetState('expanded');
                 }}
                 onClose={close}
                 onBack={openIndex}
@@ -823,6 +911,7 @@ export function RiverMapPage() {
                 // dialog; a second role="dialog" here duplicated the surface.
                 layout="sheet"
                 loading={data.isLoading}
+                peek={sheetState === 'peek'}
               />
             </Drawer.Content>
           </Drawer.Portal>

@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useLayoutEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { regionName, monthName } from '../../data/regions';
@@ -14,6 +14,7 @@ import { toWaterDecisionView, seasonalChipText, seasonalVerdict } from './waterD
 import { OpportunityCard } from './OpportunityCard';
 import { FishabilityCard } from '../../components/FishabilityCard';
 import type { RiverMapFeature } from './riverMapSelectors';
+import { getTabScroll, setTabScroll, useKeyboardInset } from './riverDrawerTabs';
 import { FreshnessChip } from '../../components/FreshnessChip';
 import { buildSurfaceOverview } from '../waters/buildSurfaceOverview';
 import { WaterOverviewCard } from '../waters/WaterOverviewCard';
@@ -39,6 +40,10 @@ interface Props {
   layout?: 'sheet' | 'panel';
   loading?: boolean;
   feedErrors?: { reports: boolean; stocking: boolean };
+  /** Sheet is parked at the compact peek snap: collapse the header chrome and
+   *  clip the body to the Water Overview card's summary with a bottom fade.
+   *  Only meaningful with layout="sheet". */
+  peek?: boolean;
 }
 export function RiverDrawer({
   feature,
@@ -51,9 +56,32 @@ export function RiverDrawer({
   loading,
   feedErrors,
   layout = 'panel',
+  peek = false,
 }: Props) {
   const body = useRef<HTMLDivElement>(null);
   const { settings } = useSettingsContext();
+  // Soft keyboard (visualViewport): only the sheet layout gets the scroll
+  // spacer — the desktop panel never sits under a keyboard.
+  const keyboardInset = useKeyboardInset();
+  const sheetKeyboardInset = layout === 'sheet' ? keyboardInset : 0;
+  // Per-tab scroll memory (riverDrawerTabs): the tab panel's scroll offset is
+  // saved before a tab switch and restored when the tab is shown again, so
+  // switching Water → Hatch → Water lands where the visitor left each one.
+  const lastView = useRef<{ water: string | null; tab: string }>({ water: null, tab });
+  useLayoutEffect(() => {
+    const el = body.current;
+    if (!el || !feature) return;
+    const water = feature.stream.id;
+    const previous = lastView.current;
+    lastView.current = { water, tab };
+    if (previous.water === null) return; // fresh mount — already at the top
+    if (previous.water !== water) {
+      el.scrollTop = 0; // a different water is a fresh read
+      return;
+    }
+    if (previous.tab !== tab) el.scrollTop = getTabScroll(water, tab);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [feature?.stream.id, tab]);
   const dialogAttrs = layout === 'sheet' ? {} : { role: 'dialog' as const, 'aria-modal': false };
   if (!feature)
     return (
@@ -81,10 +109,41 @@ export function RiverDrawer({
       </section>
     );
   const choose = (next: Tab) => {
+    // Remember where this tab was scrolled to before leaving it; the layout
+    // effect restores the incoming tab's saved offset after it renders.
+    if (feature && next !== tab && body.current) {
+      setTabScroll(feature.stream.id, tab, body.current.scrollTop);
+    }
     onTab(next);
-    body.current?.scrollTo({ top: 0 });
   };
   const identity = waterIdentity(feature.stream.name);
+  const bodyNode = (
+    <div
+      ref={body}
+      className="inspector-body"
+      id="river-tabpanel"
+      role="tabpanel"
+      aria-labelledby={'river-tab-' + TABS.indexOf(tab)}
+    >
+      {tab === 'Water' && <WaterTab feature={feature} month={modeMonth} live={live} />}
+      {tab === 'Hatch' && <HatchTab feature={feature} month={modeMonth} />}
+      {tab === 'Stocking' && (
+        <StockingTab feature={feature} month={modeMonth} error={feedErrors?.stocking} />
+      )}
+      {tab === 'Reports' && <ReportsTab feature={feature} error={feedErrors?.reports} />}
+      {tab === 'Your Log' && <LogTab feature={feature} month={modeMonth} />}
+      {sheetKeyboardInset > 0 && (
+        // Keyboard spacer (visualViewport): scrollable room so the tab's tail
+        // content — the quick-log form actions included — can be brought
+        // above the soft keyboard instead of hiding behind it.
+        <div
+          aria-hidden="true"
+          data-testid="keyboard-spacer"
+          style={{ height: sheetKeyboardInset }}
+        />
+      )}
+    </div>
+  );
   return (
     <section
       className="inspector"
@@ -99,16 +158,18 @@ export function RiverDrawer({
         </button>
         <div className="inspector-title-row">
           <div>
-            <p className="eyebrow">{regionName(feature.stream.regionId)}</p>
+            {!peek && <p className="eyebrow">{regionName(feature.stream.regionId)}</p>}
             <h2>{identity.name}</h2>
             <SeasonChip month={modeMonth} feature={feature} mode={settings.speciesMode} />
-            <p className="inspector-subtitle">
-              {identity.reach ?? waterTypeLabel(feature.stream.waterbodyType)}{' '}
-              ·{' '}
-              {feature.stream.stockingProgram
-                ? 'Stocking program listed'
-                : 'No stocking program listed'}
-            </p>
+            {!peek && (
+              <p className="inspector-subtitle">
+                {identity.reach ?? waterTypeLabel(feature.stream.waterbodyType)}{' '}
+                ·{' '}
+                {feature.stream.stockingProgram
+                  ? 'Stocking program listed'
+                  : 'No stocking program listed'}
+              </p>
+            )}
           </div>
           <button
             type="button"
@@ -119,54 +180,70 @@ export function RiverDrawer({
             <CloseIcon size={19} />
           </button>
         </div>
-        <div className="inspector-tabs" role="tablist" aria-label="River details">
-          {TABS.map((t, i) => (
-            <button
-              key={t}
-              id={'river-tab-' + i}
-              role="tab"
-              tabIndex={tab === t ? 0 : -1}
-              aria-selected={tab === t}
-              aria-controls="river-tabpanel"
-              onClick={() => choose(t)}
-              onKeyDown={(e) => {
-                let n = i;
-                if (e.key === 'ArrowRight') n = (i + 1) % TABS.length;
-                else if (e.key === 'ArrowLeft') n = (i + TABS.length - 1) % TABS.length;
-                else if (e.key === 'Home') n = 0;
-                else if (e.key === 'End') n = TABS.length - 1;
-                else return;
-                e.preventDefault();
-                choose(TABS[n]!);
-                document.getElementById('river-tab-' + n)?.focus();
-              }}
-            >
-              {t === 'Water'
-                ? 'Conditions'
-                : t === 'Hatch'
-                  ? 'Hatches'
-                  : t === 'Your Log'
-                    ? 'Log'
-                    : t}
-            </button>
-          ))}
+        {!peek && (
+          <div className="inspector-tabs" role="tablist" aria-label="River details">
+            {TABS.map((t, i) => (
+              <button
+                key={t}
+                id={'river-tab-' + i}
+                role="tab"
+                tabIndex={tab === t ? 0 : -1}
+                aria-selected={tab === t}
+                aria-controls="river-tabpanel"
+                onClick={() => choose(t)}
+                onKeyDown={(e) => {
+                  let n = i;
+                  if (e.key === 'ArrowRight') n = (i + 1) % TABS.length;
+                  else if (e.key === 'ArrowLeft') n = (i + TABS.length - 1) % TABS.length;
+                  else if (e.key === 'Home') n = 0;
+                  else if (e.key === 'End') n = TABS.length - 1;
+                  else return;
+                  e.preventDefault();
+                  choose(TABS[n]!);
+                  document.getElementById('river-tab-' + n)?.focus();
+                }}
+              >
+                {t === 'Water'
+                  ? 'Conditions'
+                  : t === 'Hatch'
+                    ? 'Hatches'
+                    : t === 'Your Log'
+                      ? 'Log'
+                      : t}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+      {peek ? (
+        // Peek snap: clip the body to the Water Overview summary with a
+        // bottom fade, so the peek reads as "more below" instead of cut off.
+        <div
+          style={{
+            position: 'relative',
+            flex: 1,
+            minHeight: 0,
+            maxHeight: '9rem',
+            overflow: 'hidden',
+          }}
+        >
+          {bodyNode}
+          <div
+            aria-hidden="true"
+            style={{
+              position: 'absolute',
+              left: 0,
+              right: 0,
+              bottom: 0,
+              height: 48,
+              pointerEvents: 'none',
+              background: 'linear-gradient(to bottom, transparent, var(--ui-surface))',
+            }}
+          />
         </div>
-      </div>
-      <div
-        ref={body}
-        className="inspector-body"
-        id="river-tabpanel"
-        role="tabpanel"
-        aria-labelledby={'river-tab-' + TABS.indexOf(tab)}
-      >
-        {tab === 'Water' && <WaterTab feature={feature} month={modeMonth} live={live} />}
-        {tab === 'Hatch' && <HatchTab feature={feature} month={modeMonth} />}
-        {tab === 'Stocking' && (
-          <StockingTab feature={feature} month={modeMonth} error={feedErrors?.stocking} />
- )}
-        {tab === 'Reports' && <ReportsTab feature={feature} error={feedErrors?.reports} />}
-        {tab === 'Your Log' && <LogTab feature={feature} month={modeMonth} />}
-      </div>
+      ) : (
+        bodyNode
+      )}
     </section>
   );
 }
