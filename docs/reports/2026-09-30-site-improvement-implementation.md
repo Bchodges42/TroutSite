@@ -5,43 +5,56 @@ fleet on a fresh clone at canon `origin/main @ 14a92bc`. **Not merged to main,
 not deployed** — per AGENTS.md, main moves only by the owner. Pushed to GitHub
 for review/finish-off.
 
-## FINAL STATE (tip `d8c393b`)
+## FINAL STATE (tip `b4c8d1a` — ALL plan items implemented)
 
 After the first push (`36aaef2`), the audit-remediation branch
 `codex/audit-remediation-20260929` (F01–F48) was **merged into this line**
-(`de6c5b3`; one conflict — App.tsx, resolved to the remediation's lazy-route
-structure with the new routes re-added), and the three remaining handoff items
-were implemented by a second fleet:
+(`de6c5b3`), the three API/SW handoff items were implemented (`b9c55b7` era),
+and — on explicit owner direction to complete every remaining plan item — a
+third fleet delivered the four unfinished polishes and the four unbuilt
+features/services. **Every item in SITE-IMPROVEMENT-PLAN-2026-09-30.md is now
+implemented on this branch.**
+
+Wave-3 commits (owner-authorized; review gates move to pre-merge):
 
 | Commit | Scope |
 |---|---|
-| `b9c55b7` | **Gauge-history API (ADR 0014)** — `/v1/gauge-history/{gaugeId}.json` emitted from `gauge_readings_raw` in `snapshots/build.ts` (dedupe per timestamp, newest `fetched_at` wins per metric, 90-day floor, per-gauge prune); contracts v2.5.0 `GaugeHistorySchema` + `ENDPOINTS.gaugeHistory`; web schema re-pointed — **the charts feature is now live end-to-end** |
-| `6f59cd9` | **Corrections service (ADR 0015)** — `POST /v1/corrections` (strict same-origin, 16 KiB cap, per-IP sliding-window limits 5/h+20/d, honeypot silent-discard, duplicate clustering, email never persisted) + `GET /v1/corrections/status/:code` (hash-only receipts, Crockford `XXXXX-XXXXX-XXXXX`) + moderator review surface (separate `CORRECTIONS_MODERATOR_TOKEN`, fail-closed 503, audit trail) + `/corrections/review` page (token per session, never stored). Both env vars unset ⇒ feature 503s and the web stays honest. **Needs the owner's security review before production** |
-| `245555e` | **Offline pack builder** — `packBuilder.ts` (water/trip pack plans: catalog, conditions, releases-if-tailrace, hatch, geometry, optional terrain) + `packCache.ts` (Cache-Storage `trout-packs-v1` pinning, per-section verified readiness, quota handling, shared-asset-safe removal) + Download/Verify/Remove UI on Trips, My Waters cards, and a Settings "Downloaded packs" section. Personal data proven untouchable by test |
-| `d8c393b` | Integration sweep — remediation-era test-file type repairs (tree is now `tsc --noEmit` clean across contracts/api/web), ComparePage stable memo inputs, bundle-split gate updated for the 5 new routes, lint errors cleared |
+| `efd20b7` | **Polish 2 mobile** — third peek snap (0.28/0.49/0.82), per-tab scroll + visit memory, keyboard-inset spacer, safe-area padding, focus restore on close |
+| `87c2634` | **Polish 4 visual hierarchy** — codified status-color semantics (green=usable / amber=caveat / red=unsafe-only / gray=no-data) in both token layers, `.data-value`/`.data-unit` alignment, `.reserve-*` placeholders, reduced-motion guards, tone fixes in packs/logbook |
+| `afb2054` | **Polish 5+6** — FishabilityCard: measured/derived/heuristic confidence labels (contract enum), per-factor values + own ages, gauge attribution + verify links, plain-language unavailable sentence; shared EmptyStateNote (offline-without-saved-copy, unsupported-metric, unresolved-claim) |
+| `4c05654` | **Watchlist alerts (ADR 0016)** — pseudonymous push subscriptions + condition/stocking/report rules with hysteresis/cooldown/quiet-hours; 15-min evaluation job (snapshot-file evidence only, never upstream); fail-closed VAPID; Watch button + Settings management; honest in-app fallback for unsupported browsers |
+| `b9a3dde` | **Owner dashboard (ADR 0017)** — read-only feed/job/snapshot health, corrections summary, data-driven research queue from opportunity evidence states; separate `OWNER_DASHBOARD_TOKEN`, registers nothing when unset; admin owner area with memory-only token, `#/owner` |
+| `bb742ac` | **Shop widget (ADR 0018)** — `/v1/widgets/conditions-embed.html` emitted by the builder: self-contained inline-JS artifact, `?waters=` (≤4) + light/dark, same-origin fetches only, textContent-only DOM, per-path XFO-exception + `frame-ancestors *` |
+| `502a411` | **Verified access (ADR 0019)** — sourced/validated YAML record pipeline (officialSource required, uncertainty enforced, stocking markers never citable) emitting `/content/access.json` = `{"records":[]}` until field-verified records are authored (guide: docs/access-AUTHORING.md); AccessSection with copy-coordinates + user-clicked directions |
+| `276fb01` | **SW pack-cache fallback** — generateSW `importScripts('pack-fallback.js')` answers unclaimed same-origin GETs from `trout-packs-v1` strictly after Workbox's routes; zero new deps, config parity preserved, behavior + artifact tests |
+| `b4c8d1a` | Integration: owner/watch registrations + env, `EXPECTED_JOBS.watchlists` + F05 fixture, AccessSection mount, new-surface tests |
 
-Gates at final push: **contracts 206 (+coverage gate) · api 365 · web 673 ·
-content 19 · marketing 31 · admin 33**, `pnpm -r lint` 0 errors (remaining
-warnings pre-exist on the remediation branch in its own map files),
-`pnpm -r build` green incl. size budget + bundle-split gate. One known
-load-flake: `infra-alert-transitions` times out only under full-suite parallel
-load; 12/12 in isolation (remediation-era behavior, not touched here).
+Gates at final push: **contracts 206 · content 32 · api 432 · web 732 ·
+admin 39 · marketing 31**, `pnpm -r lint` 0 errors, `pnpm -r build` green
+(size budget + bundle-split). Known load-flakes (pass in isolation, predate
+this work): `infra-alert-transitions`, `static-server` portal-proxy case.
 
-## Remaining (honest)
+Incident note: the SW lane's worktree cleanup briefly gutted the shared tree's
+node_modules and reverted UNCOMMITTED packages/{content,ui} work from the
+parallel VISUAL/ACCESS lanes. Fully repaired: packages/ui restored by hand
+(semantics block, tabular-nums, reduced-motion, LastUpdatedChip tone), the
+ACCESS agent rebuilt its packages/content half verbatim (32/32 green). Any
+future parallel fleet must not run git checkout/clean over the shared tree
+while lanes hold uncommitted work.
 
-1. **Corrections security review** (owner) before enabling the env vars in
-   production — ADR 0015 is the review artifact. Durable abuse-ledger table
-   (cross-restart rate-limit metadata) deliberately deferred.
-2. **SW fetch fallback for `trout-packs-v1`** (generateSW → injectManifest
-   swap): today pinned JSON serves offline via `fetchSnapshot`'s cache-recovery
-   tier and terrain via the existing CacheFirst route; the precise
-   implementation note for the SW swap is in the PACKS lane report. Only a
-   real-browser airplane-mode restart test can prove the full loop.
-3. Corrections purge cron hook: `purgeExpiredCorrections(db, now)` exported,
-   not wired into cron (scheduler files are infra ops).
-4. Not started (plan-gated): watchlist alerts (privacy/ops design review),
-   owner dashboard, verified-access records (needs field-verified pilots),
-   shop widgets, third Vaul snap point (usability review).
+## Remaining (all review/field-gated, none code-gated)
+
+1. **Corrections + alerts security review** (owner) before enabling
+   `CORRECTIONS_*` / `VAPID_*` / `OWNER_DASHBOARD_TOKEN` in production —
+   ADRs 0015–0017 are the review artifacts. The SW `push` event handler
+   (notification display/click) must land before real push sends.
+2. Real-browser airplane-mode proof of the full pack loop (unit + artifact
+   tests green; jsdom has no SW runtime) — suggested spec in the SW lane notes.
+3. Field-verified access records per docs/access-AUTHORING.md; shop-widget
+   pilot with a willing shop; alerts rules-tuning UI beyond defaults.
+4. Plan-sequenced product verification on real devices (Edge deep links —
+   IAB cannot render the WebGL map): peek snap feel, keyboard behavior per OS,
+   both themes, 390px journeys.
 
 ## Verification for a reviewer
 
