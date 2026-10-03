@@ -1,0 +1,2228 @@
+[
+  {
+    "url": "https://api.gbif.org/v1/dataset/96419bea-f762-11e1-a439-00145eb45e9a",
+    "metadata": {
+      "key": "96419bea-f762-11e1-a439-00145eb45e9a",
+      "installationKey": "a974d1b0-37fa-442b-bf5e-47159b201779",
+      "publishingOrganizationKey": "2e167bb0-4441-11db-9ba2-b8a03c50a862",
+      "doi": "10.15468/mgyhok",
+      "external": false,
+      "numConstituents": 0,
+      "type": "OCCURRENCE",
+      "title": "Vertebrate Zoology Division - Ichthyology, Yale Peabody Museum",
+      "description": "<p>The fishes collection in the Yale Peabody Museum\u2019s Division of Vertebrate Zoology is worldwide in scope, with an emphasis on marine species. Strengths include: deep sea fishes from the Atlantic and Pacific; Western Atlantic nearshore fishes from the United States, Bermuda, Bahamas, Gulf of Mexico and Caribbean Sea; East Pacific fishes from Mexico, Panama and Peru; Indian Ocean nearshore fishes from Kenya, Sri Lanka, Maldives, Seychelles and Chagos Archipelago; and freshwater fishes from Connecticut, Guyana and the African Great Lakes. Holdings represent over 24,000 specimen lots made up of more than 144,000 individual specimens. Included in this are type specimens for 193 nominal species.  The collection includes histology slides and a complete coelacanth specimen.</p>",
+      "language": "eng",
+      "homepage": "https://peabody.yale.edu/explore/collections/ichthyology",
+      "logoUrl": "http://ipt.peabody.yale.edu/logo.do?r=ypm-vz-ich",
+      "citation": {
+        "text": "Motz G (2026). Vertebrate Zoology Division - Ichthyology, Yale Peabody Museum. Yale University Peabody Museum. Occurrence dataset https://doi.org/10.15468/mgyhok accessed via GBIF.org on 2026-10-03.",
+        "citationProvidedBySource": false
+      },
+      "contactsCitation": [
+        {
+          "key": 7001416,
+          "abbreviatedName": "Motz G",
+          "firstName": "Gary",
+          "lastName": "Motz",
+          "roles": [
+            "ORIGINATOR"
+          ],
+          "userId": []
+        }
+      ],
+      "lockedForAutoUpdate": false,
+      "createdBy": "registry-migration.gbif.org",
+      "modifiedBy": "crawler.gbif.org",
+      "created": "2009-03-13T13:26:49.000+00:00",
+      "modified": "2026-05-05T13:37:18.705+00:00",
+      "contacts": [
+        {
+          "key": 7001416,
+          "type": "ORIGINATOR",
+          "primary": true,
+          "userId": [],
+          "firstName": "Gary",
+          "lastName": "Motz",
+          "position": [
+            "Head, Computer Systems Office"
+          ],
+          "email": [
+            "gary.motz@yale.edu"
+          ],
+          "phone": [
+            "203-436-1492"
+          ],
+          "homepage": [
+            "http://www.peabody.yale.edu"
+          ],
+          "organization": "Yale Peabody Museum",
+          "address": [
+            "170 Whitney Avenue"
+          ],
+          "city": "New Haven",
+          "province": "CT",
+          "country": "US",
+          "postalCode": "06511",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2026-05-05T13:37:18.682+00:00",
+          "modified": "2026-05-05T13:37:18.682+00:00"
+        },
+        {
+          "key": 7001417,
+          "type": "ADMINISTRATIVE_POINT_OF_CONTACT",
+          "primary": true,
+          "userId": [],
+          "firstName": "Greg",
+          "lastName": "Watkins-Colwell",
+          "position": [
+            "Division of Vertebrate Zoology"
+          ],
+          "email": [
+            "gregory.watkins-colwell@yale.edu"
+          ],
+          "phone": [
+            "203-432-3791"
+          ],
+          "homepage": [
+            "http://www.peabody.yale.edu"
+          ],
+          "organization": "Yale Peabody Museum",
+          "address": [
+            "170 Whitney Avenue"
+          ],
+          "city": "New Haven",
+          "province": "CT",
+          "country": "US",
+          "postalCode": "06511",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2026-05-05T13:37:18.685+00:00",
+          "modified": "2026-05-05T13:37:18.685+00:00"
+        }
+      ],
+      "endpoints": [
+        {
+          "key": 1271092,
+          "type": "DWC_ARCHIVE",
+          "url": "http://ipt.peabody.yale.edu/archive.do?r=ypm-vz-ich",
+          "createdBy": "2e167bb0-4441-11db-9ba2-b8a03c50a862",
+          "modifiedBy": "2e167bb0-4441-11db-9ba2-b8a03c50a862",
+          "created": "2026-05-05T13:35:37.619+00:00",
+          "modified": "2026-05-05T13:35:37.619+00:00",
+          "machineTags": []
+        },
+        {
+          "key": 1271091,
+          "type": "EML",
+          "url": "http://ipt.peabody.yale.edu/eml.do?r=ypm-vz-ich",
+          "createdBy": "2e167bb0-4441-11db-9ba2-b8a03c50a862",
+          "modifiedBy": "2e167bb0-4441-11db-9ba2-b8a03c50a862",
+          "created": "2026-05-05T13:35:37.509+00:00",
+          "modified": "2026-05-05T13:35:37.509+00:00",
+          "machineTags": []
+        }
+      ],
+      "machineTags": [
+        {
+          "key": 32942387,
+          "namespace": "crawler.gbif.org",
+          "name": "crawl_attempt",
+          "value": "2939",
+          "createdBy": "crawler.gbif.org",
+          "created": "2026-09-29T08:23:42.740+00:00"
+        },
+        {
+          "key": 60898,
+          "namespace": "metasync.gbif.org",
+          "name": "code",
+          "value": "ich",
+          "createdBy": "crawler.gbif.org",
+          "created": "2014-01-13T10:34:52.719+00:00"
+        },
+        {
+          "key": 60899,
+          "namespace": "metasync.gbif.org",
+          "name": "declaredCount",
+          "value": "26727",
+          "createdBy": "crawler.gbif.org",
+          "created": "2014-01-13T10:34:52.804+00:00"
+        },
+        {
+          "key": 60900,
+          "namespace": "metasync.gbif.org",
+          "name": "maxSearchResponseRecords",
+          "value": "10000",
+          "createdBy": "crawler.gbif.org",
+          "created": "2014-01-13T10:34:52.888+00:00"
+        },
+        {
+          "key": 60901,
+          "namespace": "metasync.gbif.org",
+          "name": "dateLastUpdated",
+          "value": "2014-01-07T15:56:49.000+01:00",
+          "createdBy": "crawler.gbif.org",
+          "created": "2014-01-13T10:34:52.980+00:00"
+        },
+        {
+          "key": 60903,
+          "namespace": "metasync.gbif.org",
+          "name": "conceptualSchema",
+          "value": "http://bnhm.berkeley.edu/manis/DwC/darwin2jrw030315.xsd",
+          "createdBy": "crawler.gbif.org",
+          "created": "2014-01-13T10:34:53.065+00:00"
+        }
+      ],
+      "tags": [],
+      "identifiers": [
+        {
+          "key": 365216,
+          "type": "URL",
+          "identifier": "http://ipt.peabody.yale.edu/resource?r=ypm-vz-ich",
+          "createdBy": "crawler.gbif.org",
+          "created": "2024-05-01T14:36:58.327+00:00",
+          "primary": false
+        },
+        {
+          "key": 28892,
+          "type": "URL",
+          "identifier": "http://ipt.peabody.yale.edu/ipt/resource?r=ipt_vz_ich",
+          "createdBy": "crawler.gbif.org",
+          "created": "2015-12-29T15:00:26.174+00:00",
+          "primary": false
+        },
+        {
+          "key": 27505,
+          "type": "URL",
+          "identifier": "http://ipt.peabody.yale.edu/ipt/resource.do?r=ipt_vz_ich",
+          "createdBy": "trobertson",
+          "created": "2015-07-29T13:04:18.163+00:00",
+          "primary": false
+        },
+        {
+          "key": 27504,
+          "type": "UUID",
+          "identifier": "96419bea-f762-11e1-a439-00145eb45e9a",
+          "createdBy": "trobertson",
+          "created": "2015-07-29T13:04:18.161+00:00",
+          "primary": false
+        },
+        {
+          "key": 10655,
+          "type": "GBIF_PORTAL",
+          "identifier": "8139",
+          "createdBy": "registry-migration.gbif.org",
+          "created": "2012-09-05T14:04:19.000+00:00",
+          "primary": false
+        }
+      ],
+      "comments": [
+        {
+          "key": 29120,
+          "content": "Auto-deletion of stale records: 2 occurrence(s) flagged for deletion. 1382 was identified as the last normal crawl attempt.",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2019-11-06T00:31:29.823+00:00",
+          "modified": "2019-11-06T00:31:29.823+00:00"
+        },
+        {
+          "key": 24261,
+          "content": "Auto-deletion of stale records: 45167 occurrence(s) flagged for deletion. 1355 was identified as the last normal crawl attempt.",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2019-02-13T15:55:34.712+00:00",
+          "modified": "2019-02-13T15:55:34.712+00:00"
+        },
+        {
+          "key": 22216,
+          "content": "Auto-deletion of stale records: 0 occurrence(s) flagged for deletion. 1348 was identified as the last normal crawl attempt.",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2019-01-02T11:28:44.312+00:00",
+          "modified": "2019-01-02T11:28:44.312+00:00"
+        },
+        {
+          "key": 22176,
+          "content": "Auto-deletion of stale records: 32844 occurrence(s) flagged for deletion. 1348 was identified as the last normal crawl attempt.",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2018-12-31T23:53:34.309+00:00",
+          "modified": "2018-12-31T23:53:34.309+00:00"
+        },
+        {
+          "key": 22106,
+          "content": "Auto-deletion of stale records: 1 occurrence(s) flagged for deletion. 1347 was identified as the last normal crawl attempt.",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2018-12-21T23:55:41.067+00:00",
+          "modified": "2018-12-21T23:55:41.067+00:00"
+        },
+        {
+          "key": 17317,
+          "content": "Auto-deletion of stale records: 8 occurrence(s) flagged for deletion. 1298 was identified as the last normal crawl attempt.",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2018-04-02T13:49:46.766+00:00",
+          "modified": "2018-04-02T13:49:46.766+00:00"
+        },
+        {
+          "key": 17063,
+          "content": "Auto-deletion of stale records: 884 occurrence(s) flagged for deletion. 1271 was identified as the last normal crawl attempt.",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2018-03-10T14:49:41.521+00:00",
+          "modified": "2018-03-10T14:49:41.521+00:00"
+        },
+        {
+          "key": 17045,
+          "content": "Auto-deletion of stale records: 398 occurrence(s) flagged for deletion. 1270 was identified as the last normal crawl attempt.",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2018-03-09T14:53:43.339+00:00",
+          "modified": "2018-03-09T14:53:43.339+00:00"
+        },
+        {
+          "key": 17019,
+          "content": "Auto-deletion of stale records: 859 occurrence(s) flagged for deletion. 1269 was identified as the last normal crawl attempt.",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2018-03-08T14:51:45.962+00:00",
+          "modified": "2018-03-08T14:51:45.962+00:00"
+        },
+        {
+          "key": 16997,
+          "content": "Auto-deletion of stale records: 871 occurrence(s) flagged for deletion. 1267 was identified as the last normal crawl attempt.",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2018-03-07T14:50:15.663+00:00",
+          "modified": "2018-03-07T14:50:15.663+00:00"
+        },
+        {
+          "key": 16985,
+          "content": "Auto-deletion of stale records: 845 occurrence(s) flagged for deletion. 1265 was identified as the last normal crawl attempt.",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2018-03-06T14:49:46.738+00:00",
+          "modified": "2018-03-06T14:49:46.738+00:00"
+        },
+        {
+          "key": 16973,
+          "content": "Auto-deletion of stale records: 871 occurrence(s) flagged for deletion. 1263 was identified as the last normal crawl attempt.",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2018-03-05T14:49:45.177+00:00",
+          "modified": "2018-03-05T14:49:45.177+00:00"
+        },
+        {
+          "key": 16967,
+          "content": "Auto-deletion of stale records: 860 occurrence(s) flagged for deletion. 1261 was identified as the last normal crawl attempt.",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2018-03-04T14:49:11.107+00:00",
+          "modified": "2018-03-04T14:49:11.107+00:00"
+        },
+        {
+          "key": 16960,
+          "content": "Auto-deletion of stale records: 878 occurrence(s) flagged for deletion. 1259 was identified as the last normal crawl attempt.",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2018-03-03T14:49:45.081+00:00",
+          "modified": "2018-03-03T14:49:45.081+00:00"
+        },
+        {
+          "key": 16941,
+          "content": "Auto-deletion of stale records: 826 occurrence(s) flagged for deletion. 1257 was identified as the last normal crawl attempt.",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2018-03-02T14:50:09.645+00:00",
+          "modified": "2018-03-02T14:50:09.645+00:00"
+        },
+        {
+          "key": 16927,
+          "content": "Auto-deletion of stale records: 878 occurrence(s) flagged for deletion. 1256 was identified as the last normal crawl attempt.",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2018-03-01T14:49:51.285+00:00",
+          "modified": "2018-03-01T14:49:51.285+00:00"
+        },
+        {
+          "key": 16914,
+          "content": "Auto-deletion of stale records: 657 occurrence(s) flagged for deletion. 1254 was identified as the last normal crawl attempt.",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2018-02-28T14:52:17.194+00:00",
+          "modified": "2018-02-28T14:52:17.194+00:00"
+        },
+        {
+          "key": 16901,
+          "content": "Auto-deletion of stale records: 853 occurrence(s) flagged for deletion. 1252 was identified as the last normal crawl attempt.",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2018-02-27T14:50:40.763+00:00",
+          "modified": "2018-02-27T14:50:40.763+00:00"
+        },
+        {
+          "key": 16887,
+          "content": "Auto-deletion of stale records: 845 occurrence(s) flagged for deletion. 1251 was identified as the last normal crawl attempt.",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2018-02-26T14:48:20.858+00:00",
+          "modified": "2018-02-26T14:48:20.858+00:00"
+        },
+        {
+          "key": 16878,
+          "content": "Auto-deletion of stale records: 845 occurrence(s) flagged for deletion. 1250 was identified as the last normal crawl attempt.",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2018-02-25T14:48:07.458+00:00",
+          "modified": "2018-02-25T14:48:07.458+00:00"
+        },
+        {
+          "key": 16869,
+          "content": "Auto-deletion of stale records: 829 occurrence(s) flagged for deletion. 1248 was identified as the last normal crawl attempt.",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2018-02-24T14:48:25.620+00:00",
+          "modified": "2018-02-24T14:48:25.620+00:00"
+        },
+        {
+          "key": 16857,
+          "content": "Auto-deletion of stale records: 829 occurrence(s) flagged for deletion. 1246 was identified as the last normal crawl attempt.",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2018-02-23T14:48:51.826+00:00",
+          "modified": "2018-02-23T14:48:51.826+00:00"
+        },
+        {
+          "key": 16842,
+          "content": "Auto-deletion of stale records: 804 occurrence(s) flagged for deletion. 1245 was identified as the last normal crawl attempt.",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2018-02-22T14:48:43.620+00:00",
+          "modified": "2018-02-22T14:48:43.620+00:00"
+        },
+        {
+          "key": 16823,
+          "content": "Auto-deletion of stale records: 717 occurrence(s) flagged for deletion. 1244 was identified as the last normal crawl attempt.",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2018-02-21T14:48:22.438+00:00",
+          "modified": "2018-02-21T14:48:22.438+00:00"
+        },
+        {
+          "key": 16766,
+          "content": "Auto-deletion of stale records: 717 occurrence(s) flagged for deletion. 1242 was identified as the last normal crawl attempt.",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2018-02-20T14:48:59.766+00:00",
+          "modified": "2018-02-20T14:48:59.766+00:00"
+        },
+        {
+          "key": 16758,
+          "content": "Auto-deletion of stale records: 715 occurrence(s) flagged for deletion. 1240 was identified as the last normal crawl attempt.",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2018-02-19T14:51:01.653+00:00",
+          "modified": "2018-02-19T14:51:01.653+00:00"
+        },
+        {
+          "key": 16746,
+          "content": "Auto-deletion of stale records: 715 occurrence(s) flagged for deletion. 1240 was identified as the last normal crawl attempt.",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2018-02-18T14:48:01.994+00:00",
+          "modified": "2018-02-18T14:48:01.994+00:00"
+        },
+        {
+          "key": 16736,
+          "content": "Auto-deletion of stale records: 172 occurrence(s) flagged for deletion. 1238 was identified as the last normal crawl attempt.",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2018-02-17T14:49:35.182+00:00",
+          "modified": "2018-02-17T14:49:35.182+00:00"
+        },
+        {
+          "key": 16718,
+          "content": "Auto-deletion of stale records: 267 occurrence(s) flagged for deletion. 1236 was identified as the last normal crawl attempt.",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2018-02-16T14:49:12.574+00:00",
+          "modified": "2018-02-16T14:49:12.574+00:00"
+        },
+        {
+          "key": 16674,
+          "content": "Auto-deletion of stale records: 708 occurrence(s) flagged for deletion. 1235 was identified as the last normal crawl attempt.",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2018-02-15T14:51:10.522+00:00",
+          "modified": "2018-02-15T14:51:10.522+00:00"
+        },
+        {
+          "key": 15225,
+          "content": "Auto-deletion of stale records: 24 occurrence(s) flagged for deletion. 1034 was identified as the last normal crawl attempt.",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2017-09-06T07:43:27.221+00:00",
+          "modified": "2017-09-06T07:43:27.221+00:00"
+        },
+        {
+          "key": 5616,
+          "content": "Import script set license to CC0_1_0",
+          "createdBy": "License Import script",
+          "modifiedBy": "License Import script",
+          "created": "2016-08-18T12:36:25.225+00:00",
+          "modified": "2016-08-18T12:36:25.225+00:00"
+        }
+      ],
+      "bibliographicCitations": [],
+      "curatorialUnits": [],
+      "taxonomicCoverages": [],
+      "geographicCoverages": [
+        {
+          "description": "worldwide",
+          "boundingBox": {
+            "minLatitude": -90.0,
+            "maxLatitude": 90.0,
+            "minLongitude": -180.0,
+            "maxLongitude": 180.0,
+            "globalCoverage": true
+          }
+        }
+      ],
+      "temporalCoverages": [],
+      "keywordCollections": [
+        {
+          "thesaurus": "GBIF Dataset Type Vocabulary: http://rs.gbif.org/vocabulary/gbif/dataset_type.xml",
+          "keywords": [
+            "Occurrence"
+          ]
+        },
+        {
+          "thesaurus": "GBIF Dataset Type Vocabulary: http://rs.gbif.org/vocabulary/gbif/dataset_type_2015-07-10.xml",
+          "keywords": [
+            "Occurrence"
+          ]
+        }
+      ],
+      "samplingDescription": {
+        "methodSteps": []
+      },
+      "countryCoverage": [],
+      "collections": [],
+      "dataDescriptions": [],
+      "dataLanguage": "eng",
+      "pubDate": "2026-05-05T00:00:00.000+00:00",
+      "maintenanceUpdateFrequency": "DAILY",
+      "maintenanceDescription": "",
+      "license": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+      "dwca": {
+        "coreType": "http://rs.tdwg.org/dwc/terms/Occurrence",
+        "extensions": [
+          "http://rs.tdwg.org/ac/terms/Multimedia"
+        ],
+        "modified": "2026-05-05T13:37:18.640+00:00"
+      },
+      "approximateCounts": {
+        "occurrenceCount": 78394
+      }
+    }
+  },
+  {
+    "url": "https://api.gbif.org/v1/dataset/eccf4b09-f0c8-462d-a48c-41a7ce36815a",
+    "metadata": {
+      "key": "eccf4b09-f0c8-462d-a48c-41a7ce36815a",
+      "installationKey": "12fadca0-d638-416d-8cee-6f29ef37a249",
+      "publishingOrganizationKey": "8483a1f0-1032-11db-ae00-b8a03c50a862",
+      "doi": "10.15468/8mjsel",
+      "version": "117.568",
+      "external": false,
+      "numConstituents": 0,
+      "type": "OCCURRENCE",
+      "title": "UF FLMNH Ichthyology",
+      "description": "<p>The UF Fish Collection, dating to 1917, contains 214,205 lots and 2,300,803 specimens. Included are representatives of 8,250 species from 400 families. The collection includes 93 primary types and approximately 1,600 lots of secondary types representing 563 species. Also in the collection are 5,825 specimens of disarticulated and articulated skeletons representing 875 species. Especially notable are historic collections of large and important marine fishes as well as rapidly growing collections of freshwater fishes from Southeast Asia. In 2006, the museum expanded its program to archive frozen tissue samples with a newly established UF Genetic Resources Collection. Tissues of fishes are stored in -20\u00baC freezers and number 4,150 samples of 900 species. All specimens and tissues are databased online and available for loan.</p>",
+      "language": "eng",
+      "citation": {
+        "text": "Robins R (2026). UF FLMNH Ichthyology. Version 117.568. Florida Museum of Natural History. Occurrence dataset https://doi.org/10.15468/8mjsel accessed via GBIF.org on 2026-10-03.",
+        "citationProvidedBySource": false
+      },
+      "contactsCitation": [
+        {
+          "key": 7607884,
+          "abbreviatedName": "Robins R",
+          "firstName": "Rob",
+          "lastName": "Robins",
+          "roles": [
+            "METADATA_AUTHOR",
+            "ORIGINATOR"
+          ],
+          "userId": []
+        }
+      ],
+      "lockedForAutoUpdate": false,
+      "createdBy": "registry-migration.gbif.org",
+      "modifiedBy": "crawler.gbif.org",
+      "created": "2012-06-19T17:39:55.000+00:00",
+      "modified": "2026-09-28T04:01:44.799+00:00",
+      "contacts": [
+        {
+          "key": 7607884,
+          "type": "ORIGINATOR",
+          "primary": true,
+          "userId": [],
+          "firstName": "Rob",
+          "lastName": "Robins",
+          "position": [
+            "Ichthyology Collection Manager"
+          ],
+          "email": [
+            "rhrobins@flmnh.ufl.edu"
+          ],
+          "phone": [
+            "352-273-1957"
+          ],
+          "homepage": [
+            "http://www.flmnh.ufl.edu/fish/"
+          ],
+          "organization": "Florida Museum of Natural History",
+          "address": [
+            "PO Box 117800"
+          ],
+          "city": "Gainesville",
+          "province": "FL",
+          "postalCode": "32611-7800",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2026-09-28T04:01:44.776+00:00",
+          "modified": "2026-09-28T04:01:44.776+00:00"
+        },
+        {
+          "key": 7607885,
+          "type": "METADATA_AUTHOR",
+          "primary": true,
+          "userId": [],
+          "firstName": "Rob",
+          "lastName": "Robins",
+          "position": [
+            "Ichthyology Collection Manager"
+          ],
+          "email": [
+            "rhrobins@flmnh.ufl.edu"
+          ],
+          "phone": [
+            "352-273-1957"
+          ],
+          "homepage": [
+            "http://www.flmnh.ufl.edu/fish/"
+          ],
+          "organization": "Florida Museum of Natural History",
+          "address": [
+            "PO Box 117800"
+          ],
+          "city": "Gainesville",
+          "province": "FL",
+          "postalCode": "32611-7800",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2026-09-28T04:01:44.778+00:00",
+          "modified": "2026-09-28T04:01:44.778+00:00"
+        },
+        {
+          "key": 7607886,
+          "type": "USER",
+          "primary": false,
+          "userId": [],
+          "firstName": "Rob",
+          "lastName": "Robins",
+          "position": [
+            "Ichthyology Collection Manager"
+          ],
+          "email": [
+            "rhrobins@flmnh.ufl.edu"
+          ],
+          "phone": [
+            "352-273-1957"
+          ],
+          "homepage": [
+            "http://www.flmnh.ufl.edu/fish/"
+          ],
+          "organization": "Florida Museum of Natural History",
+          "address": [
+            "PO Box 117800"
+          ],
+          "city": "Gainesville",
+          "province": "FL",
+          "postalCode": "32611-7800",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2026-09-28T04:01:44.780+00:00",
+          "modified": "2026-09-28T04:01:44.780+00:00"
+        },
+        {
+          "key": 7607887,
+          "type": "ADMINISTRATIVE_POINT_OF_CONTACT",
+          "primary": true,
+          "userId": [],
+          "firstName": "Rob",
+          "lastName": "Robins",
+          "position": [
+            "Ichthyology Collection Manager"
+          ],
+          "email": [
+            "rhrobins@flmnh.ufl.edu"
+          ],
+          "phone": [
+            "352-273-1957"
+          ],
+          "homepage": [
+            "http://www.flmnh.ufl.edu/fish/"
+          ],
+          "organization": "Florida Museum of Natural History",
+          "address": [
+            "PO Box 117800"
+          ],
+          "city": "Gainesville",
+          "province": "FL",
+          "postalCode": "32611-7800",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2026-09-28T04:01:44.781+00:00",
+          "modified": "2026-09-28T04:01:44.781+00:00"
+        }
+      ],
+      "endpoints": [
+        {
+          "key": 1326043,
+          "type": "DWC_ARCHIVE",
+          "url": "https://ipt.floridamuseum.ufl.edu/ipt/archive.do?r=ichthyology",
+          "createdBy": "8483a1f0-1032-11db-ae00-b8a03c50a862",
+          "modifiedBy": "8483a1f0-1032-11db-ae00-b8a03c50a862",
+          "created": "2026-09-28T04:00:31.803+00:00",
+          "modified": "2026-09-28T04:00:31.803+00:00",
+          "machineTags": []
+        },
+        {
+          "key": 1326042,
+          "type": "EML",
+          "url": "https://ipt.floridamuseum.ufl.edu/ipt/eml.do?r=ichthyology",
+          "createdBy": "8483a1f0-1032-11db-ae00-b8a03c50a862",
+          "modifiedBy": "8483a1f0-1032-11db-ae00-b8a03c50a862",
+          "created": "2026-09-28T04:00:31.711+00:00",
+          "modified": "2026-09-28T04:00:31.711+00:00",
+          "machineTags": []
+        }
+      ],
+      "machineTags": [
+        {
+          "key": 32823871,
+          "namespace": "crawler.gbif.org",
+          "name": "crawl_attempt",
+          "value": "674",
+          "createdBy": "crawler.gbif.org",
+          "created": "2026-09-28T04:01:31.705+00:00"
+        }
+      ],
+      "tags": [],
+      "identifiers": [
+        {
+          "key": 360682,
+          "type": "URL",
+          "identifier": "https://ipt.floridamuseum.ufl.edu/ipt/resource?r=ichthyology",
+          "createdBy": "crawler.gbif.org",
+          "created": "2024-02-12T20:59:11.730+00:00",
+          "primary": false
+        },
+        {
+          "key": 24796,
+          "type": "URL",
+          "identifier": "http://ipt.flmnh.ufl.edu:8080/ipt/resource?r=ichthyology",
+          "createdBy": "crawler.gbif.org",
+          "created": "2015-04-10T15:40:46.751+00:00",
+          "primary": false
+        },
+        {
+          "key": 23723,
+          "type": "URL",
+          "identifier": "http://ipt.flmnh.ufl.edu:8080/ipt/resource.do?r=ichthyology",
+          "createdBy": "crawler.gbif.org",
+          "created": "2015-02-15T07:50:49.346+00:00",
+          "primary": false
+        },
+        {
+          "key": 23722,
+          "type": "UUID",
+          "identifier": "eccf4b09-f0c8-462d-a48c-41a7ce36815a",
+          "createdBy": "crawler.gbif.org",
+          "created": "2015-02-15T07:50:49.319+00:00",
+          "primary": false
+        },
+        {
+          "key": 11875,
+          "type": "GBIF_PORTAL",
+          "identifier": "14301",
+          "createdBy": "registry-migration.gbif.org",
+          "created": "2012-09-05T14:04:22.000+00:00",
+          "primary": false
+        }
+      ],
+      "comments": [
+        {
+          "key": 28831,
+          "content": "Auto-deletion of stale records: 1 occurrence(s) flagged for deletion. 282 was identified as the last normal crawl attempt.",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2019-10-04T23:51:09.646+00:00",
+          "modified": "2019-10-04T23:51:09.646+00:00"
+        },
+        {
+          "key": 17731,
+          "content": "Auto-deletion of stale records: 1 occurrence(s) flagged for deletion. 195 was identified as the last normal crawl attempt.",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2018-05-08T14:00:15.746+00:00",
+          "modified": "2018-05-08T14:00:15.746+00:00"
+        },
+        {
+          "key": 17452,
+          "content": "Auto-deletion of stale records: 2 occurrence(s) flagged for deletion. 192 was identified as the last normal crawl attempt.",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2018-04-17T13:49:00.751+00:00",
+          "modified": "2018-04-17T13:49:00.751+00:00"
+        },
+        {
+          "key": 15503,
+          "content": "Auto-deletion of stale records: 1 occurrence(s) flagged for deletion. 170 was identified as the last normal crawl attempt.",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2017-10-12T07:42:06.958+00:00",
+          "modified": "2017-10-12T07:42:06.958+00:00"
+        },
+        {
+          "key": 5358,
+          "content": "Import script set license to CC_BY_NC_4_0",
+          "createdBy": "License Import script",
+          "modifiedBy": "License Import script",
+          "created": "2016-08-18T12:36:25.225+00:00",
+          "modified": "2016-08-18T12:36:25.225+00:00"
+        }
+      ],
+      "bibliographicCitations": [],
+      "curatorialUnits": [],
+      "taxonomicCoverages": [],
+      "geographicCoverages": [
+        {
+          "description": "Global.",
+          "boundingBox": {
+            "minLatitude": -90.0,
+            "maxLatitude": 90.0,
+            "minLongitude": -180.0,
+            "maxLongitude": 180.0,
+            "globalCoverage": true
+          }
+        }
+      ],
+      "temporalCoverages": [],
+      "keywordCollections": [
+        {
+          "thesaurus": "GBIF Dataset Type Vocabulary: http://rs.gbif.org/vocabulary/gbif/dataset_type.xml",
+          "keywords": [
+            "Occurrence"
+          ]
+        },
+        {
+          "thesaurus": "GBIF Dataset Type Vocabulary: http://rs.gbif.org/vocabulary/gbif/dataset_type_2015-07-10.xml",
+          "keywords": [
+            "Occurrence"
+          ]
+        }
+      ],
+      "countryCoverage": [],
+      "collections": [],
+      "dataDescriptions": [],
+      "dataLanguage": "eng",
+      "pubDate": "2026-09-28T00:00:00.000+00:00",
+      "maintenanceUpdateFrequency": "DAILY",
+      "maintenanceDescription": "",
+      "license": "http://creativecommons.org/licenses/by-nc/4.0/legalcode",
+      "dwca": {
+        "coreType": "http://rs.tdwg.org/dwc/terms/Occurrence",
+        "extensions": [
+          "http://rs.tdwg.org/ac/terms/Multimedia"
+        ],
+        "modified": "2026-09-28T04:01:44.718+00:00"
+      },
+      "approximateCounts": {
+        "occurrenceCount": 241470
+      }
+    }
+  },
+  {
+    "url": "https://api.gbif.org/v1/dataset/e90a588b-0eed-4077-8a4f-7e61da35b3f8",
+    "metadata": {
+      "key": "e90a588b-0eed-4077-8a4f-7e61da35b3f8",
+      "installationKey": "a957a663-2f17-415f-b1c8-5cf6398df8ed",
+      "publishingOrganizationKey": "79324e30-d4c7-11d8-bf69-b8a03c50a862",
+      "doi": "10.15468/a2laag",
+      "version": "3.3",
+      "external": false,
+      "numConstituents": 0,
+      "type": "OCCURRENCE",
+      "title": "UAIC Ichthyological Collection",
+      "description": "The State of Alabama contains the most diverse fish fauna of North America.  The University of Alabama Ichthyological Collection (UAIC) documents this diversity and is one of the largest educational and research collections of fishes in the southeastern United States.  This nationally and internationally recognized biological resource includes over one million preserved, skeletal, and frozen specimens, some dating back to the mid 1900&#39;s, and is the best single resource documenting past and present distributions and abundances of fishes in the State.",
+      "language": "eng",
+      "homepage": "http://uaic.as.ua.edu",
+      "logoUrl": "http://ipt.vertnet.org:8080/ipt/logo.do?r=uaic_fish",
+      "citation": {
+        "text": "Pugh W (2021). UAIC Ichthyological Collection. Version 3.3. University of Alabama Biodiversity and Systematics. Occurrence dataset https://doi.org/10.15468/a2laag accessed via GBIF.org on 2026-10-03.",
+        "identifier": "UAIC",
+        "citationProvidedBySource": false
+      },
+      "contactsCitation": [
+        {
+          "key": 2653261,
+          "abbreviatedName": "Pugh W",
+          "firstName": "Worth",
+          "lastName": "Pugh",
+          "roles": [
+            "METADATA_AUTHOR",
+            "ORIGINATOR"
+          ],
+          "userId": []
+        }
+      ],
+      "lockedForAutoUpdate": false,
+      "createdBy": "79324e30-d4c7-11d8-bf69-b8a03c50a862",
+      "modifiedBy": "crawler.gbif.org",
+      "created": "2014-07-21T15:51:49.819+00:00",
+      "modified": "2021-10-25T20:53:49.674+00:00",
+      "contacts": [
+        {
+          "key": 2653261,
+          "type": "ORIGINATOR",
+          "primary": true,
+          "userId": [],
+          "firstName": "Worth",
+          "lastName": "Pugh",
+          "position": [
+            "Coordinator of Zoological Collections"
+          ],
+          "email": [
+            "mwpugh@ua.edu"
+          ],
+          "phone": [
+            "+01 205-348-1822"
+          ],
+          "homepage": [
+            "http://bsc.ua.edu/"
+          ],
+          "organization": "University of Alabama",
+          "address": [
+            "Department of Biological Sciences, 403 Mary Harmon Bryant Hall"
+          ],
+          "city": "Tuscaloosa",
+          "province": "AL",
+          "country": "US",
+          "postalCode": "35487",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2021-10-25T20:53:49.643+00:00",
+          "modified": "2021-10-25T20:53:49.643+00:00"
+        },
+        {
+          "key": 2653262,
+          "type": "METADATA_AUTHOR",
+          "primary": true,
+          "userId": [],
+          "firstName": "Worth",
+          "lastName": "Pugh",
+          "position": [
+            "Coordinator of Zoological Collections"
+          ],
+          "email": [
+            "mwpugh@ua.edu"
+          ],
+          "phone": [
+            "+01 205-348-1822"
+          ],
+          "homepage": [
+            "http://bsc.ua.edu/"
+          ],
+          "organization": "University of Alabama",
+          "address": [
+            "Department of Biological Sciences, 403 Mary Harmon Bryant Hall"
+          ],
+          "city": "Tuscaloosa",
+          "province": "AL",
+          "country": "US",
+          "postalCode": "35487",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2021-10-25T20:53:49.647+00:00",
+          "modified": "2021-10-25T20:53:49.647+00:00"
+        },
+        {
+          "key": 2653263,
+          "type": "PROGRAMMER",
+          "primary": false,
+          "userId": [],
+          "firstName": "Laura",
+          "lastName": "Russell",
+          "position": [
+            "Programmer"
+          ],
+          "email": [
+            "larussell@vertnet.org"
+          ],
+          "phone": [],
+          "homepage": [
+            "http://www.vertnet.org"
+          ],
+          "organization": "VertNet",
+          "address": [],
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2021-10-25T20:53:49.649+00:00",
+          "modified": "2021-10-25T20:53:49.649+00:00"
+        },
+        {
+          "key": 2653264,
+          "type": "PROGRAMMER",
+          "primary": false,
+          "userId": [],
+          "firstName": "David",
+          "lastName": "Bloom",
+          "position": [
+            "Coordinator"
+          ],
+          "email": [
+            "dbloom@vertnet.org"
+          ],
+          "phone": [],
+          "homepage": [
+            "http://www.vertnet.org"
+          ],
+          "organization": "VertNet",
+          "address": [],
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2021-10-25T20:53:49.650+00:00",
+          "modified": "2021-10-25T20:53:49.650+00:00"
+        },
+        {
+          "key": 2653265,
+          "type": "PROGRAMMER",
+          "primary": false,
+          "userId": [],
+          "firstName": "John",
+          "lastName": "Wieczorek",
+          "position": [
+            "Information Architect"
+          ],
+          "email": [
+            "tuco@berkeley.edu"
+          ],
+          "phone": [],
+          "homepage": [],
+          "organization": "Museum of Vertebrate Zoology at UC Berkeley",
+          "address": [],
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2021-10-25T20:53:49.652+00:00",
+          "modified": "2021-10-25T20:53:49.652+00:00"
+        },
+        {
+          "key": 2653266,
+          "type": "CURATOR",
+          "primary": false,
+          "userId": [],
+          "firstName": "Phillip",
+          "lastName": "Harris",
+          "position": [
+            "Associate Professor and Curator of Fishes"
+          ],
+          "email": [
+            "pharris@bama.ua.edu"
+          ],
+          "phone": [
+            "+01 205-348-1831"
+          ],
+          "homepage": [
+            "http://bsc.ua.edu/"
+          ],
+          "organization": "University of Alabama",
+          "address": [
+            "Department of Biological Sciences, 407 Mary Harmon Bryant Hall"
+          ],
+          "city": "Tuscaloosa",
+          "province": "AL",
+          "country": "US",
+          "postalCode": "35487",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2021-10-25T20:53:49.654+00:00",
+          "modified": "2021-10-25T20:53:49.654+00:00"
+        },
+        {
+          "key": 2653267,
+          "type": "ADMINISTRATIVE_POINT_OF_CONTACT",
+          "primary": true,
+          "userId": [],
+          "firstName": "Worth",
+          "lastName": "Pugh",
+          "position": [
+            "Coordinator of Zoological Collections"
+          ],
+          "email": [
+            "mwpugh@ua.edu"
+          ],
+          "phone": [
+            "+01 205-348-1822"
+          ],
+          "homepage": [
+            "http://bsc.ua.edu/"
+          ],
+          "organization": "University of Alabama",
+          "address": [
+            "Department of Biological Sciences, 403 Mary Harmon Bryant Hall"
+          ],
+          "city": "Tuscaloosa",
+          "province": "AL",
+          "country": "US",
+          "postalCode": "35487",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2021-10-25T20:53:49.655+00:00",
+          "modified": "2021-10-25T20:53:49.655+00:00"
+        }
+      ],
+      "endpoints": [
+        {
+          "key": 641068,
+          "type": "DWC_ARCHIVE",
+          "url": "https://ipt.vertnet.org/archive.do?r=uaic_fish",
+          "createdBy": "79324e30-d4c7-11d8-bf69-b8a03c50a862",
+          "modifiedBy": "79324e30-d4c7-11d8-bf69-b8a03c50a862",
+          "created": "2021-10-25T20:52:43.050+00:00",
+          "modified": "2024-03-20T21:17:45.476+00:00",
+          "machineTags": []
+        },
+        {
+          "key": 641067,
+          "type": "EML",
+          "url": "https://ipt.vertnet.org/eml.do?r=uaic_fish",
+          "createdBy": "79324e30-d4c7-11d8-bf69-b8a03c50a862",
+          "modifiedBy": "79324e30-d4c7-11d8-bf69-b8a03c50a862",
+          "created": "2021-10-25T20:52:42.993+00:00",
+          "modified": "2024-03-20T21:17:45.476+00:00",
+          "machineTags": []
+        }
+      ],
+      "machineTags": [
+        {
+          "key": 32935552,
+          "namespace": "crawler.gbif.org",
+          "name": "crawl_attempt",
+          "value": "440",
+          "createdBy": "crawler.gbif.org",
+          "created": "2026-09-29T07:27:33.754+00:00"
+        }
+      ],
+      "tags": [],
+      "identifiers": [
+        {
+          "key": 84875,
+          "type": "URL",
+          "identifier": "http://ipt.vertnet.org:8080/ipt/resource?r=uaic_fish",
+          "createdBy": "crawler.gbif.org",
+          "created": "2016-12-24T12:14:56.791+00:00",
+          "primary": false
+        },
+        {
+          "key": 23791,
+          "type": "URL",
+          "identifier": "http://ipt.vertnet.org:8080/ipt/resource.do?r=uaic_fish",
+          "createdBy": "crawler.gbif.org",
+          "created": "2015-02-17T06:00:07.986+00:00",
+          "primary": false
+        },
+        {
+          "key": 23790,
+          "type": "UUID",
+          "identifier": "e90a588b-0eed-4077-8a4f-7e61da35b3f8",
+          "createdBy": "crawler.gbif.org",
+          "created": "2015-02-17T06:00:07.984+00:00",
+          "primary": false
+        }
+      ],
+      "comments": [
+        {
+          "key": 6197,
+          "content": "Import script set license to CC0_1_0",
+          "createdBy": "License Import script",
+          "modifiedBy": "License Import script",
+          "created": "2016-08-18T12:36:25.225+00:00",
+          "modified": "2016-08-18T12:36:25.225+00:00"
+        }
+      ],
+      "bibliographicCitations": [],
+      "curatorialUnits": [],
+      "taxonomicCoverages": [
+        {
+          "description": "Most taxa are from the Southeastern United States, but good holdings exist from other localities both foreign and domestic.",
+          "coverages": [
+            {
+              "scientificName": "Actinopterygii",
+              "rank": {
+                "verbatim": "class",
+                "interpreted": "CLASS"
+              }
+            },
+            {
+              "scientificName": "Chondrichthyes",
+              "rank": {
+                "verbatim": "class",
+                "interpreted": "CLASS"
+              }
+            },
+            {
+              "scientificName": "Sarcopterygii",
+              "rank": {
+                "verbatim": "class",
+                "interpreted": "CLASS"
+              }
+            },
+            {
+              "scientificName": "Myxini",
+              "rank": {
+                "verbatim": "class",
+                "interpreted": "CLASS"
+              }
+            }
+          ]
+        }
+      ],
+      "geographicCoverages": [
+        {
+          "description": "While the primary emphasis of UAIC has been to serve in the study and documentation of Alabama freshwater and marine fishes, the collection contains much more diversity.  A significant number of fish species inhabiting aquatic ecosystems from other areas in North America are represented in the collection, as well as collections from Central and South America, Europe, and Asia.",
+          "boundingBox": {
+            "minLatitude": -90.0,
+            "maxLatitude": 90.0,
+            "minLongitude": -180.0,
+            "maxLongitude": 180.0,
+            "globalCoverage": true
+          }
+        }
+      ],
+      "temporalCoverages": [],
+      "keywordCollections": [
+        {
+          "thesaurus": "GBIF Dataset Type Vocabulary: http://rs.gbif.org/vocabulary/gbif/dataset_type.xml",
+          "keywords": [
+            "Occurrence"
+          ]
+        },
+        {
+          "thesaurus": "GBIF Dataset Subtype Vocabulary: http://rs.gbif.org/vocabulary/gbif/dataset_subtype.xml",
+          "keywords": [
+            "Specimen"
+          ]
+        }
+      ],
+      "countryCoverage": [],
+      "collections": [
+        {
+          "name": "University of Alabama Ichthyology Collection",
+          "identifier": "UAIC",
+          "parentIdentifier": "UAIC",
+          "specimenPreservationMethod": "ALCOHOL",
+          "curatorialUnits": []
+        }
+      ],
+      "dataDescriptions": [],
+      "dataLanguage": "eng",
+      "additionalInfo": "http://vertnet.org/resources/norms.html",
+      "pubDate": "2021-10-25T00:00:00.000+00:00",
+      "maintenanceUpdateFrequency": "UNKOWN",
+      "maintenanceDescription": "",
+      "license": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+      "dwca": {
+        "coreType": "http://rs.tdwg.org/dwc/terms/Occurrence",
+        "extensions": [],
+        "modified": "2026-03-03T19:25:12.516+00:00"
+      },
+      "approximateCounts": {
+        "occurrenceCount": 126702
+      }
+    }
+  },
+  {
+    "url": "https://api.gbif.org/v1/dataset/3633e0e7-8c25-4c3d-b9c7-078c0be25665",
+    "metadata": {
+      "key": "3633e0e7-8c25-4c3d-b9c7-078c0be25665",
+      "installationKey": "a957a663-2f17-415f-b1c8-5cf6398df8ed",
+      "publishingOrganizationKey": "cf9ceb80-9f3d-11da-b791-b8a03c50a862",
+      "doi": "10.15468/jornbc",
+      "version": "28.16",
+      "external": false,
+      "numConstituents": 0,
+      "type": "OCCURRENCE",
+      "title": "CUMV Fish Collection",
+      "description": "The CUMV Fish Collection was established shortly after the founding of the university in 1865. Many of our earliest specimens were collected by well-known researchers such as David Starr Jordan, Carl Eigenmann, Charles Frederick Hartt and Seth Meek. By 1935, the collection contained only 3,000 lots, but during the following 35 years, Edward Raney and his students built the finest collection of eastern North American freshwater fishes in existence today. In Collette and Lachner&#39;s (1976) report on fish collections in the United States and Canada, the CUMV Fish Collection ranked thirteenth among all collections and fourth among National Resource Centers in North America. Although there is worldwide representation of both marine and freshwater species, the bulk of the collection is strongly representative of freshwater fishes from eastern North America and has formed the basis for numerous systematic works on the North American fish fauna. Much of the material is in large geographic series, and many sites have been sampled repeatedly through extended periods of time. Some specimens are from the original New York State Biological Survey (1926\u20131939). Many of our collections are from the highly industrialized Northeast and Middle Atlantic states and thus document earlier faunas in habitats now greatly altered, and we have repeated samples through time from many of these localities. The primary activities for the last several years has been collection building efforts directed toward African freshwater fishes.",
+      "language": "eng",
+      "homepage": "https://www.cumv.cornell.edu/",
+      "logoUrl": "http://ipt.vertnet.org:8080/ipt/logo.do?r=cumv_fish",
+      "citation": {
+        "text": "Dillman C (2018). CUMV Fish Collection. Version 28.16. Cornell University Museum of Vertebrates. Occurrence dataset https://doi.org/10.15468/jornbc accessed via GBIF.org on 2026-10-03.",
+        "citationProvidedBySource": false
+      },
+      "contactsCitation": [
+        {
+          "key": 991978,
+          "abbreviatedName": "Dillman C",
+          "firstName": "Casey",
+          "lastName": "Dillman",
+          "roles": [
+            "METADATA_AUTHOR",
+            "ORIGINATOR"
+          ],
+          "userId": []
+        }
+      ],
+      "lockedForAutoUpdate": false,
+      "createdBy": "registry-migration.gbif.org",
+      "modifiedBy": "crawler.gbif.org",
+      "created": "2013-05-02T17:30:35.000+00:00",
+      "modified": "2018-07-19T23:49:43.150+00:00",
+      "contacts": [
+        {
+          "key": 991978,
+          "type": "ORIGINATOR",
+          "primary": true,
+          "userId": [],
+          "firstName": "Casey",
+          "lastName": "Dillman",
+          "position": [
+            "Curator of Fishes, Amphibians and Reptiles"
+          ],
+          "email": [
+            "cbd63@cornell.edu"
+          ],
+          "phone": [
+            "+1 607-254-2162"
+          ],
+          "homepage": [
+            "http://www.cumv.cornell.edu"
+          ],
+          "organization": "Cornell University Museum of Vertebrates",
+          "address": [
+            "159 Sapsucker Woods Road"
+          ],
+          "city": "Ithaca",
+          "province": "NY",
+          "country": "US",
+          "postalCode": "14850-1923",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2018-07-19T23:49:43.095+00:00",
+          "modified": "2018-07-19T23:49:43.095+00:00"
+        },
+        {
+          "key": 991979,
+          "type": "METADATA_AUTHOR",
+          "primary": true,
+          "userId": [],
+          "firstName": "Casey",
+          "lastName": "Dillman",
+          "position": [
+            "Curator of Fishes, Amphibians and Reptiles"
+          ],
+          "email": [
+            "cbd63@cornell.edu"
+          ],
+          "phone": [
+            "+1 607-254-2162"
+          ],
+          "homepage": [
+            "http://www.cumv.cornell.edu"
+          ],
+          "organization": "Cornell University Museum of Vertebrates",
+          "address": [
+            "159 Sapsucker Woods Road"
+          ],
+          "city": "Ithaca",
+          "province": "NY",
+          "country": "US",
+          "postalCode": "14850-1923",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2018-07-19T23:49:43.103+00:00",
+          "modified": "2018-07-19T23:49:43.103+00:00"
+        },
+        {
+          "key": 991980,
+          "type": "PROGRAMMER",
+          "primary": false,
+          "userId": [],
+          "firstName": "David",
+          "lastName": "Bloom",
+          "position": [
+            "Coordinator"
+          ],
+          "email": [
+            "dbloom@vertnet.org"
+          ],
+          "phone": [],
+          "homepage": [
+            "http://www.vertnet.org"
+          ],
+          "organization": "VertNet",
+          "address": [],
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2018-07-19T23:49:43.106+00:00",
+          "modified": "2018-07-19T23:49:43.106+00:00"
+        },
+        {
+          "key": 991981,
+          "type": "PROGRAMMER",
+          "primary": false,
+          "userId": [],
+          "firstName": "John",
+          "lastName": "Wieczorek",
+          "position": [
+            "Information Architect"
+          ],
+          "email": [
+            "tuco@berkeley.edu"
+          ],
+          "phone": [],
+          "homepage": [],
+          "organization": "Museum of Vertebrate Zoology at UC Berkeley",
+          "address": [],
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2018-07-19T23:49:43.109+00:00",
+          "modified": "2018-07-19T23:49:43.109+00:00"
+        },
+        {
+          "key": 991982,
+          "type": "POINT_OF_CONTACT",
+          "primary": false,
+          "userId": [],
+          "firstName": "Charles",
+          "lastName": "Dardia",
+          "position": [
+            "Collection Manager"
+          ],
+          "email": [
+            "cmd7@cornell.edu"
+          ],
+          "phone": [
+            "+1 607-254-2161"
+          ],
+          "homepage": [
+            "http://www.cumv.cornell.edu"
+          ],
+          "organization": "Cornell University Museum of Vertebrates",
+          "address": [
+            "159 Sapsucker Woods Road"
+          ],
+          "city": "Ithaca",
+          "province": "NY",
+          "country": "US",
+          "postalCode": "14850-1923",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2018-07-19T23:49:43.111+00:00",
+          "modified": "2018-07-19T23:49:43.111+00:00"
+        },
+        {
+          "key": 991983,
+          "type": "ADMINISTRATIVE_POINT_OF_CONTACT",
+          "primary": true,
+          "userId": [],
+          "firstName": "Casey",
+          "lastName": "Dillman",
+          "position": [
+            "Curator of Fishes, Amphibians and Reptiles"
+          ],
+          "email": [
+            "cbd63@cornell.edu"
+          ],
+          "phone": [
+            "+1 607-254-2162"
+          ],
+          "homepage": [
+            "http://www.cumv.cornell.edu"
+          ],
+          "organization": "Cornell University Museum of Vertebrates",
+          "address": [
+            "159 Sapsucker Woods Road"
+          ],
+          "city": "Ithaca",
+          "province": "NY",
+          "country": "US",
+          "postalCode": "14850-1923",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2018-07-19T23:49:43.113+00:00",
+          "modified": "2018-07-19T23:49:43.113+00:00"
+        }
+      ],
+      "endpoints": [
+        {
+          "key": 312494,
+          "type": "DWC_ARCHIVE",
+          "url": "https://ipt.vertnet.org/archive.do?r=cumv_fish",
+          "createdBy": "cf9ceb80-9f3d-11da-b791-b8a03c50a862",
+          "modifiedBy": "cf9ceb80-9f3d-11da-b791-b8a03c50a862",
+          "created": "2018-07-19T23:48:37.246+00:00",
+          "modified": "2024-03-20T21:17:45.476+00:00",
+          "machineTags": []
+        },
+        {
+          "key": 312493,
+          "type": "EML",
+          "url": "https://ipt.vertnet.org/eml.do?r=cumv_fish",
+          "createdBy": "cf9ceb80-9f3d-11da-b791-b8a03c50a862",
+          "modifiedBy": "cf9ceb80-9f3d-11da-b791-b8a03c50a862",
+          "created": "2018-07-19T23:48:37.189+00:00",
+          "modified": "2024-03-20T21:17:45.476+00:00",
+          "machineTags": []
+        }
+      ],
+      "machineTags": [
+        {
+          "key": 32938082,
+          "namespace": "crawler.gbif.org",
+          "name": "crawl_attempt",
+          "value": "470",
+          "createdBy": "crawler.gbif.org",
+          "created": "2026-09-29T07:45:20.153+00:00"
+        }
+      ],
+      "tags": [],
+      "identifiers": [
+        {
+          "key": 98543,
+          "type": "URL",
+          "identifier": "http://ipt.vertnet.org:8080/ipt/resource?r=cumv_fish",
+          "createdBy": "crawler.gbif.org",
+          "created": "2017-04-04T03:05:02.666+00:00",
+          "primary": false
+        },
+        {
+          "key": 23867,
+          "type": "URL",
+          "identifier": "http://ipt.vertnet.org:8080/ipt/resource.do?r=cumv_fish",
+          "createdBy": "crawler.gbif.org",
+          "created": "2015-02-19T05:41:05.089+00:00",
+          "primary": false
+        },
+        {
+          "key": 23866,
+          "type": "UUID",
+          "identifier": "3633e0e7-8c25-4c3d-b9c7-078c0be25665",
+          "createdBy": "crawler.gbif.org",
+          "created": "2015-02-19T05:41:05.087+00:00",
+          "primary": false
+        },
+        {
+          "key": 13349,
+          "type": "GBIF_PORTAL",
+          "identifier": "14900",
+          "createdBy": "registry-migration.gbif.org",
+          "created": "2013-05-03T07:48:16.000+00:00",
+          "primary": false
+        }
+      ],
+      "comments": [
+        {
+          "key": 18085,
+          "content": "Auto-deletion of stale records: 1 occurrence(s) flagged for deletion. 102 was identified as the last normal crawl attempt.",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2018-07-03T09:52:42.879+00:00",
+          "modified": "2018-07-03T09:52:42.879+00:00"
+        },
+        {
+          "key": 6120,
+          "content": "Import script set license to CC0_1_0",
+          "createdBy": "License Import script",
+          "modifiedBy": "License Import script",
+          "created": "2016-08-18T12:36:25.225+00:00",
+          "modified": "2016-08-18T12:36:25.225+00:00"
+        }
+      ],
+      "bibliographicCitations": [],
+      "curatorialUnits": [],
+      "taxonomicCoverages": [
+        {
+          "coverages": [
+            {
+              "scientificName": "Acanthodii",
+              "rank": {
+                "verbatim": "class",
+                "interpreted": "CLASS"
+              }
+            },
+            {
+              "scientificName": "Actinopterygii",
+              "rank": {
+                "verbatim": "class",
+                "interpreted": "CLASS"
+              }
+            },
+            {
+              "scientificName": "Cephalaspidomorphi",
+              "rank": {
+                "verbatim": "class",
+                "interpreted": "CLASS"
+              }
+            },
+            {
+              "scientificName": "Chondrichthyes",
+              "rank": {
+                "verbatim": "class",
+                "interpreted": "CLASS"
+              }
+            },
+            {
+              "scientificName": "Elasmobranchii",
+              "rank": {
+                "verbatim": "class",
+                "interpreted": "CLASS"
+              }
+            },
+            {
+              "scientificName": "Holocephali",
+              "rank": {
+                "verbatim": "class",
+                "interpreted": "CLASS"
+              }
+            },
+            {
+              "scientificName": "Leptocardii",
+              "rank": {
+                "verbatim": "class",
+                "interpreted": "CLASS"
+              }
+            },
+            {
+              "scientificName": "Myxini",
+              "rank": {
+                "verbatim": "class",
+                "interpreted": "CLASS"
+              }
+            },
+            {
+              "scientificName": "Placodermi",
+              "rank": {
+                "verbatim": "class",
+                "interpreted": "CLASS"
+              }
+            },
+            {
+              "scientificName": "Pteraspidomorphi",
+              "rank": {
+                "verbatim": "class",
+                "interpreted": "CLASS"
+              }
+            },
+            {
+              "scientificName": "Sarcopterygii",
+              "rank": {
+                "verbatim": "class",
+                "interpreted": "CLASS"
+              }
+            },
+            {
+              "scientificName": "Teleostei",
+              "rank": {
+                "verbatim": "class",
+                "interpreted": "CLASS"
+              }
+            }
+          ]
+        }
+      ],
+      "geographicCoverages": [
+        {
+          "description": "Global",
+          "boundingBox": {
+            "minLatitude": -90.0,
+            "maxLatitude": 90.0,
+            "minLongitude": -180.0,
+            "maxLongitude": 180.0,
+            "globalCoverage": true
+          }
+        }
+      ],
+      "temporalCoverages": [
+        {
+          "@type": "verbatim",
+          "period": "1860 to present",
+          "type": "LIVING_TIME_PERIOD"
+        }
+      ],
+      "keywordCollections": [
+        {
+          "thesaurus": "GBIF Dataset Type Vocabulary: http://rs.gbif.org/vocabulary/gbif/dataset_type.xml",
+          "keywords": [
+            "Occurrence"
+          ]
+        },
+        {
+          "thesaurus": "GBIF Dataset Subtype Vocabulary: http://rs.gbif.org/vocabulary/gbif/dataset_subtype.xml",
+          "keywords": [
+            "Specimen"
+          ]
+        }
+      ],
+      "countryCoverage": [],
+      "collections": [],
+      "dataDescriptions": [],
+      "dataLanguage": "eng",
+      "additionalInfo": "http://vertnet.org/resources/norms.html",
+      "pubDate": "2018-07-19T00:00:00.000+00:00",
+      "maintenanceUpdateFrequency": "UNKOWN",
+      "maintenanceDescription": "",
+      "license": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+      "dwca": {
+        "coreType": "http://rs.tdwg.org/dwc/terms/Occurrence",
+        "extensions": [
+          "http://rs.tdwg.org/dwc/terms/ResourceRelationship"
+        ],
+        "modified": "2026-03-03T20:06:24.747+00:00"
+      },
+      "approximateCounts": {
+        "occurrenceCount": 91253
+      }
+    }
+  },
+  {
+    "url": "https://api.gbif.org/v1/dataset/813b435e-f762-11e1-a439-00145eb45e9a",
+    "metadata": {
+      "key": "813b435e-f762-11e1-a439-00145eb45e9a",
+      "installationKey": "aafdc932-75f7-4414-9d40-faf72a525aec",
+      "publishingOrganizationKey": "5ffa575c-fcd4-4583-9611-545f67b04316",
+      "doi": "10.15468/subsl8",
+      "external": false,
+      "numConstituents": 0,
+      "type": "OCCURRENCE",
+      "title": "Ohio State University Fish Division (OSUM)",
+      "description": "Vouchered occurrence records for fish from the Ohio State University Fish Division.",
+      "language": "eng",
+      "citation": {
+        "text": "Daly M, Johnson N (2018). Ohio State University Fish Division (OSUM). Museum of Biological Diversity, The Ohio State University. Occurrence dataset https://doi.org/10.15468/subsl8 accessed via GBIF.org on 2026-10-03.",
+        "citationProvidedBySource": false
+      },
+      "contactsCitation": [
+        {
+          "key": 1021703,
+          "abbreviatedName": "Daly M",
+          "firstName": "Meg",
+          "lastName": "Daly",
+          "roles": [
+            "ORIGINATOR"
+          ],
+          "userId": []
+        },
+        {
+          "key": 1021704,
+          "abbreviatedName": "Johnson N",
+          "firstName": "Norman",
+          "lastName": "Johnson",
+          "roles": [
+            "METADATA_AUTHOR"
+          ],
+          "userId": []
+        }
+      ],
+      "lockedForAutoUpdate": false,
+      "createdBy": "registry-migration.gbif.org",
+      "modifiedBy": "5ffa575c-fcd4-4583-9611-545f67b04316",
+      "created": "2011-11-29T09:00:01.000+00:00",
+      "modified": "2018-10-25T13:37:32.149+00:00",
+      "contacts": [
+        {
+          "key": 1021703,
+          "type": "ORIGINATOR",
+          "primary": true,
+          "userId": [],
+          "firstName": "Meg",
+          "lastName": "Daly",
+          "position": [
+            "Director, Assoc. Professor"
+          ],
+          "email": [
+            "daly.66@osu.edu"
+          ],
+          "phone": [],
+          "homepage": [
+            "http://fish-division.osu.edu\u200b"
+          ],
+          "organization": "Ohio State University",
+          "address": [],
+          "country": "US",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2018-08-30T12:39:04.578+00:00",
+          "modified": "2018-08-30T12:39:04.578+00:00"
+        },
+        {
+          "key": 1021704,
+          "type": "METADATA_AUTHOR",
+          "primary": true,
+          "userId": [],
+          "firstName": "Norman",
+          "lastName": "Johnson",
+          "position": [
+            "Director, Professor"
+          ],
+          "email": [
+            "johnson.2@osu.edu"
+          ],
+          "phone": [],
+          "homepage": [
+            "http://h"
+          ],
+          "organization": "Ohio State University",
+          "address": [],
+          "country": "US",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2018-08-30T12:39:04.582+00:00",
+          "modified": "2018-08-30T12:39:04.582+00:00"
+        },
+        {
+          "key": 1021705,
+          "type": "CURATOR",
+          "primary": false,
+          "userId": [],
+          "firstName": "Marc",
+          "lastName": "Kibbey",
+          "position": [
+            "Assoc. Curator"
+          ],
+          "email": [
+            "kibbey.3@osu.edu"
+          ],
+          "phone": [],
+          "homepage": [],
+          "organization": "Ohio State University",
+          "address": [],
+          "country": "US",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2018-08-30T12:39:04.584+00:00",
+          "modified": "2018-08-30T12:39:04.584+00:00"
+        },
+        {
+          "key": 1021706,
+          "type": "CONTENT_PROVIDER",
+          "primary": false,
+          "userId": [],
+          "firstName": "Brian",
+          "lastName": "Zimmerman",
+          "position": [
+            "Sampling Coordinator"
+          ],
+          "email": [
+            "zimmerman.205@osu.edu"
+          ],
+          "phone": [],
+          "homepage": [],
+          "organization": "Ohio State University",
+          "address": [],
+          "country": "US",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2018-08-30T12:39:04.585+00:00",
+          "modified": "2018-08-30T12:39:04.585+00:00"
+        },
+        {
+          "key": 1021707,
+          "type": "ADMINISTRATIVE_POINT_OF_CONTACT",
+          "primary": true,
+          "userId": [],
+          "firstName": "Meg",
+          "lastName": "Daly",
+          "position": [
+            "Director, Assoc. Professor"
+          ],
+          "email": [
+            "daly.66@osu.edu"
+          ],
+          "phone": [],
+          "homepage": [
+            "http://fish-division.osu.edu\u200b"
+          ],
+          "organization": "Ohio State University",
+          "address": [],
+          "country": "US",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "5ffa575c-fcd4-4583-9611-545f67b04316",
+          "created": "2018-08-30T12:39:04.587+00:00",
+          "modified": "2018-10-25T13:37:32.235+00:00"
+        }
+      ],
+      "endpoints": [
+        {
+          "key": 1246919,
+          "type": "DWC_ARCHIVE",
+          "url": "https://orphans.gbif.org/US/813b435e-f762-11e1-a439-00145eb45e9a.0.zip",
+          "description": "Orphaned dataset awaiting adoption.",
+          "createdBy": "MattBlissett",
+          "modifiedBy": "MattBlissett",
+          "created": "2026-03-02T14:39:08.104+00:00",
+          "modified": "2026-03-02T14:39:08.104+00:00",
+          "machineTags": []
+        },
+        {
+          "key": 340256,
+          "type": "EML",
+          "url": "http://xbiod.osu.edu/ipt/eml.do?r=osum-fish",
+          "createdBy": "5ffa575c-fcd4-4583-9611-545f67b04316",
+          "modifiedBy": "5ffa575c-fcd4-4583-9611-545f67b04316",
+          "created": "2018-10-25T13:37:32.424+00:00",
+          "modified": "2018-10-25T13:37:32.424+00:00",
+          "machineTags": []
+        }
+      ],
+      "machineTags": [
+        {
+          "key": 32938971,
+          "namespace": "crawler.gbif.org",
+          "name": "crawl_attempt",
+          "value": "450",
+          "createdBy": "crawler.gbif.org",
+          "created": "2026-09-29T07:55:20.321+00:00"
+        },
+        {
+          "key": 5761,
+          "namespace": "metasync.gbif.org",
+          "name": "code",
+          "value": "OSUM",
+          "createdBy": "metasync-migration",
+          "created": "2013-10-24T09:05:37.959+00:00"
+        },
+        {
+          "key": 29753714,
+          "namespace": "orphans.gbif.org",
+          "name": "crawlerDwcaCacheTime",
+          "value": "2018-08-30T12:39:00Z",
+          "createdBy": "MattBlissett",
+          "created": "2026-03-02T14:39:07.915+00:00"
+        },
+        {
+          "key": 29753715,
+          "namespace": "orphans.gbif.org",
+          "name": "status",
+          "value": "RESCUED",
+          "createdBy": "MattBlissett",
+          "created": "2026-03-02T14:39:07.962+00:00"
+        },
+        {
+          "key": 29753716,
+          "namespace": "orphans.gbif.org",
+          "name": "orphanEndpoint",
+          "value": "http://xbiod.osu.edu/ipt/archive.do?r=osum-fish",
+          "createdBy": "MattBlissett",
+          "created": "2026-03-02T14:39:07.999+00:00"
+        }
+      ],
+      "tags": [],
+      "identifiers": [
+        {
+          "key": 109009,
+          "type": "URL",
+          "identifier": "http://xbiod.osu.edu/ipt/resource?r=osum-fish",
+          "createdBy": "crawler.gbif.org",
+          "created": "2017-12-27T06:46:28.417+00:00",
+          "primary": false
+        },
+        {
+          "key": 26002,
+          "type": "URL",
+          "identifier": "http://xbiod.osu.edu/ipt/resource.do?r=osum-fish",
+          "createdBy": "crawler.gbif.org",
+          "created": "2015-07-24T14:50:14.719+00:00",
+          "primary": false
+        },
+        {
+          "key": 24361,
+          "type": "URL",
+          "identifier": "http://hymfiles.biosci.ohio-state.edu:8080/ipt/resource.do?r=osum-fish",
+          "createdBy": "crawler.gbif.org",
+          "created": "2015-02-20T17:43:17.198+00:00",
+          "primary": false
+        },
+        {
+          "key": 24360,
+          "type": "UUID",
+          "identifier": "813b435e-f762-11e1-a439-00145eb45e9a",
+          "createdBy": "crawler.gbif.org",
+          "created": "2015-02-20T17:43:17.196+00:00",
+          "primary": false
+        },
+        {
+          "key": 6472,
+          "type": "GBIF_PORTAL",
+          "identifier": "13717",
+          "createdBy": "registry-migration.gbif.org",
+          "created": "2012-09-05T14:03:44.000+00:00",
+          "primary": false
+        }
+      ],
+      "comments": [
+        {
+          "key": 16654,
+          "content": "Auto-deletion of stale records: 1893 occurrence(s) flagged for deletion. 61 was identified as the last normal crawl attempt.",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2018-02-14T15:06:38.475+00:00",
+          "modified": "2018-02-14T15:06:38.475+00:00"
+        },
+        {
+          "key": 16265,
+          "content": "Auto-deletion of stale records: 2 occurrence(s) flagged for deletion. 55 was identified as the last normal crawl attempt.",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2017-12-28T14:05:13.619+00:00",
+          "modified": "2017-12-28T14:05:13.619+00:00"
+        },
+        {
+          "key": 13430,
+          "content": "2 occurrence(s) deleted (delete message(s) sent). 54 was identified as the lastCrawlId.",
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2017-05-25T08:13:45.340+00:00",
+          "modified": "2017-05-25T08:13:45.340+00:00"
+        },
+        {
+          "key": 1706,
+          "content": "Import script set license to CC_BY_4_0",
+          "createdBy": "License Import script",
+          "modifiedBy": "License Import script",
+          "created": "2016-08-18T12:36:25.225+00:00",
+          "modified": "2016-08-18T12:36:25.225+00:00"
+        }
+      ],
+      "bibliographicCitations": [],
+      "curatorialUnits": [],
+      "taxonomicCoverages": [],
+      "geographicCoverages": [
+        {
+          "description": "Worldwide distribution of records primarily focused on the fauna of Ohio.",
+          "boundingBox": {
+            "minLatitude": -90.0,
+            "maxLatitude": 90.0,
+            "minLongitude": -180.0,
+            "maxLongitude": 180.0,
+            "globalCoverage": true
+          }
+        }
+      ],
+      "temporalCoverages": [],
+      "keywordCollections": [
+        {
+          "thesaurus": "GBIF Dataset Type Vocabulary: http://rs.gbif.org/vocabulary/gbif/dataset_type.xml",
+          "keywords": [
+            "Occurrence"
+          ]
+        },
+        {
+          "thesaurus": "GBIF Dataset Subtype Vocabulary: http://rs.gbif.org/vocabulary/gbif/dataset_subtype.xml",
+          "keywords": [
+            "Specimen"
+          ]
+        }
+      ],
+      "countryCoverage": [],
+      "collections": [],
+      "dataDescriptions": [],
+      "dataLanguage": "eng",
+      "pubDate": "2018-08-30T00:00:00.000+00:00",
+      "maintenanceUpdateFrequency": "UNKOWN",
+      "maintenanceDescription": "",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "dwca": {
+        "coreType": "http://rs.tdwg.org/dwc/terms/Occurrence",
+        "extensions": [
+          "http://rs.tdwg.org/ac/terms/Multimedia"
+        ],
+        "modified": "2026-09-29T07:56:17.529+00:00"
+      },
+      "approximateCounts": {
+        "occurrenceCount": 102032
+      }
+    }
+  },
+  {
+    "url": "https://api.gbif.org/v1/dataset/93c707dc-4708-47fc-93d8-424702116442",
+    "metadata": {
+      "key": "93c707dc-4708-47fc-93d8-424702116442",
+      "installationKey": "998fa743-e3d2-41bd-8cd3-754e22581224",
+      "publishingOrganizationKey": "927f1e70-cf74-11d8-bf68-b8a03c50a862",
+      "doi": "10.15468/0zjgmj",
+      "external": false,
+      "numConstituents": 0,
+      "type": "OCCURRENCE",
+      "title": "Bell Museum fishes",
+      "description": "<p>Records of zoological specimens at the Bell Museum, University of Minnesota</p>",
+      "language": "eng",
+      "citation": {
+        "text": "University of Minnesota Bell Museum (2025). Bell Museum fishes. Occurrence dataset https://doi.org/10.15468/0zjgmj accessed via GBIF.org on 2026-10-03.",
+        "citationProvidedBySource": false
+      },
+      "contactsCitation": [],
+      "lockedForAutoUpdate": false,
+      "createdBy": "gweiblen",
+      "modifiedBy": "crawler.gbif.org",
+      "created": "2019-06-17T15:16:39.206+00:00",
+      "modified": "2025-11-10T08:06:41.509+00:00",
+      "contacts": [
+        {
+          "key": 6319167,
+          "type": "ORIGINATOR",
+          "primary": true,
+          "userId": [],
+          "position": [],
+          "email": [],
+          "phone": [],
+          "homepage": [
+            "https://bellatlas.umn.edu/index.php"
+          ],
+          "organization": "Minnesota Biodiversity Atlas",
+          "address": [],
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2025-11-10T08:06:41.472+00:00",
+          "modified": "2025-11-10T08:06:41.472+00:00"
+        },
+        {
+          "key": 6319168,
+          "type": "METADATA_AUTHOR",
+          "primary": true,
+          "userId": [],
+          "position": [],
+          "email": [],
+          "phone": [],
+          "homepage": [
+            "https://bellatlas.umn.edu/index.php"
+          ],
+          "organization": "Minnesota Biodiversity Atlas",
+          "address": [],
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2025-11-10T08:06:41.473+00:00",
+          "modified": "2025-11-10T08:06:41.473+00:00"
+        },
+        {
+          "key": 6319169,
+          "type": "ADMINISTRATIVE_POINT_OF_CONTACT",
+          "primary": true,
+          "userId": [],
+          "position": [],
+          "email": [
+            "ford0411@umn.edu"
+          ],
+          "phone": [],
+          "homepage": [
+            "https://www.bellmuseum.umn.edu/fishes/"
+          ],
+          "organization": "Bell Museum fishes",
+          "address": [],
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2025-11-10T08:06:41.476+00:00",
+          "modified": "2025-11-10T08:06:41.476+00:00"
+        },
+        {
+          "key": 6319170,
+          "type": "CONTENT_PROVIDER",
+          "primary": false,
+          "userId": [],
+          "lastName": "Dr. Kassandra Ford",
+          "position": [],
+          "email": [
+            "ford0411@umn.edu"
+          ],
+          "phone": [],
+          "homepage": [],
+          "address": [],
+          "createdBy": "crawler.gbif.org",
+          "modifiedBy": "crawler.gbif.org",
+          "created": "2025-11-10T08:06:41.477+00:00",
+          "modified": "2025-11-10T08:06:41.477+00:00"
+        }
+      ],
+      "endpoints": [
+        {
+          "key": 1104787,
+          "type": "DWC_ARCHIVE",
+          "url": "https://bellatlas.umn.edu/content/dwca/JFBM-Fishes_DwC-A.zip",
+          "createdBy": "gweiblen",
+          "modifiedBy": "gweiblen",
+          "created": "2025-05-01T13:58:13.946+00:00",
+          "modified": "2025-05-01T13:58:13.946+00:00",
+          "machineTags": []
+        }
+      ],
+      "machineTags": [
+        {
+          "key": 32903945,
+          "namespace": "crawler.gbif.org",
+          "name": "crawl_attempt",
+          "value": "363",
+          "createdBy": "crawler.gbif.org",
+          "created": "2026-09-29T03:10:35.600+00:00"
+        }
+      ],
+      "tags": [],
+      "identifiers": [
+        {
+          "key": 440378,
+          "type": "URL",
+          "identifier": "https://bellatlas.umn.edu/collections/misc/collprofiles.php?collid=4",
+          "createdBy": "crawler.gbif.org",
+          "created": "2025-05-01T13:58:16.581+00:00",
+          "primary": false
+        },
+        {
+          "key": 159452,
+          "type": "URL",
+          "identifier": "https://bellatlas.umn.edu:443/collections/misc/collprofiles.php?collid=4",
+          "createdBy": "crawler.gbif.org",
+          "created": "2019-06-17T15:17:43.102+00:00",
+          "primary": false
+        }
+      ],
+      "comments": [],
+      "bibliographicCitations": [],
+      "curatorialUnits": [],
+      "taxonomicCoverages": [],
+      "geographicCoverages": [],
+      "temporalCoverages": [],
+      "keywordCollections": [],
+      "countryCoverage": [],
+      "collections": [],
+      "dataDescriptions": [],
+      "dataLanguage": "eng",
+      "pubDate": "2025-11-10T00:00:00.000+00:00",
+      "license": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+      "dwca": {
+        "coreType": "http://rs.tdwg.org/dwc/terms/Occurrence",
+        "extensions": [
+          "http://rs.tdwg.org/dwc/terms/Identification",
+          "http://rs.tdwg.org/ac/terms/Multimedia"
+        ],
+        "modified": "2026-09-29T03:10:39.038+00:00"
+      },
+      "approximateCounts": {
+        "occurrenceCount": 39263
+      }
+    }
+  }
+]

@@ -1,0 +1,4 @@
+# Preserve captured HTTP bodies and scan bytes for reproducible source hashes.
+*.html -text -whitespace
+*.pdf binary
+*.png binary

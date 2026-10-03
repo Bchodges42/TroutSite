@@ -1,0 +1,162 @@
+[
+  {
+    "path": "captures/.gitattributes",
+    "bytes": 130,
+    "capturedFileSha256": "83e03da411806b8c1aee74b56bb914ba614da13ef35d45f3f55bc2cfbfacf68a"
+  },
+  {
+    "path": "captures/dataset-metadata.json",
+    "bytes": 79799,
+    "capturedFileSha256": "337a042a970c7fbfbb7d50a288143927306984997bc85c211bdaf2e0025f691e"
+  },
+  {
+    "path": "captures/epa-crab-orchard-restoration-2014.pdf",
+    "bytes": 277338,
+    "capturedFileSha256": "0fac918cf9f06d28ca72571ea9bd9c5286e48ac4e20a69ac1a2d317cdd5b1da6"
+  },
+  {
+    "path": "captures/epa-crab-orchard-restoration-2014.source.json",
+    "bytes": 235,
+    "capturedFileSha256": "6f1f038451e3f30126ccc0e6db2892abf2de88e25d27f2860666b1d48fe92dc7"
+  },
+  {
+    "path": "captures/epa-crab-orchard-restoration-2014.txt",
+    "bytes": 7212,
+    "capturedFileSha256": "031fa035416fbaa120804d7a7cb66f43a5f964c95a6c89968cf48246ab2f449c"
+  },
+  {
+    "path": "captures/gbif-search-controls.json",
+    "bytes": 1806,
+    "capturedFileSha256": "c2befbc6d8b70ba61a10dc959358db3ab7cbbbbc7d265f407c611f6cd6c2ae78"
+  },
+  {
+    "path": "captures/museum-bradley.json",
+    "bytes": 1482922,
+    "capturedFileSha256": "6e29090bac5d8dd38417f5b0961920a0d4a51bb823419aaaec3f9730616d73f1"
+  },
+  {
+    "path": "captures/museum-chuckey.json",
+    "bytes": 22518,
+    "capturedFileSha256": "888d2653b88fdd9b07ffe4fca3ced2c01d00700ba355f20a5155f5f2d4a14729"
+  },
+  {
+    "path": "captures/museum-chucky.json",
+    "bytes": 203254,
+    "capturedFileSha256": "15b53838b82d81fa48f47653142bfb3d62cdfcef54ab3675fc7ff0e5771d2912"
+  },
+  {
+    "path": "captures/museum-dumplin.json",
+    "bytes": 23907,
+    "capturedFileSha256": "2a560c4ef1819059deb9121586b20b7a7f4a5da745eeee3bad0713d72b95e092"
+  },
+  {
+    "path": "captures/museum-obey.json",
+    "bytes": 979722,
+    "capturedFileSha256": "34764593f626ba9e1ee6b3a7d7a6b098817cf98d00f4cc2087135e9b7a45195b"
+  },
+  {
+    "path": "captures/museum-orchard.json",
+    "bytes": 432986,
+    "capturedFileSha256": "cd6de0a6d07ccd54944067a3f935bbe2927313f86e64fdb73d9cd50f8c5b1163"
+  },
+  {
+    "path": "captures/museum-reedy.json",
+    "bytes": 75550,
+    "capturedFileSha256": "a96abdd393ca855379cd78065209f820961eb70243bdeb97e7dcab04ea010e26"
+  },
+  {
+    "path": "captures/museum-roaring.json",
+    "bytes": 653480,
+    "capturedFileSha256": "c8a1855fafaac17ada1d4d0d6935845890ae3a5985520debf36930363cd10d77"
+  },
+  {
+    "path": "captures/tva-emory-1968-PP10.png",
+    "bytes": 114873,
+    "capturedFileSha256": "5eeb7eda6a94adfe83b56cf4484ba950154cec8c70ce7c86d97c7f01708cdd9f"
+  },
+  {
+    "path": "captures/tva-emory-1968-PP11.png",
+    "bytes": 108660,
+    "capturedFileSha256": "cb557f6da2cf36aa00b9b9adfe3b0ee754cb7aa01f69f6e3f043275e2f90c66c"
+  },
+  {
+    "path": "captures/tva-emory-1968-PP12.png",
+    "bytes": 52675,
+    "capturedFileSha256": "11e99f50ff73ed5c1c32ae42bdda78ca482484ed9256192ad3740d85e793baaf"
+  },
+  {
+    "path": "captures/tva-emory-1968-PP13.png",
+    "bytes": 100663,
+    "capturedFileSha256": "d3b169a3ade1610ec71bff5af8d77c49ee2e6f73b3ac561f316b02a5187a798e"
+  },
+  {
+    "path": "captures/tva-emory-1968-PP14.png",
+    "bytes": 78666,
+    "capturedFileSha256": "74802c080c54f0448385a607caf4adf578b37e7bcecbe430b1069d5c1a43498d"
+  },
+  {
+    "path": "captures/tva-emory-1968-PP15.png",
+    "bytes": 140777,
+    "capturedFileSha256": "affdba825492fba4e5497415440af982f3866d65d910a00e826d8b00777daff4"
+  },
+  {
+    "path": "captures/tva-emory-1968-PP16.png",
+    "bytes": 148587,
+    "capturedFileSha256": "7fca1610a376f6c95e6a32a4246467e213a2e056c64439853ffb92c6017d83eb"
+  },
+  {
+    "path": "captures/tva-emory-1968-PP17.png",
+    "bytes": 79180,
+    "capturedFileSha256": "b5c28bee461c0afdf1c632af01b762c680fb70c4e9459ffa6624654ee19ddafe"
+  },
+  {
+    "path": "captures/tva-emory-1968-PP18.png",
+    "bytes": 145142,
+    "capturedFileSha256": "5a11be6566ba16664cfbeb1a5fafad2aade83cb0253ac4e8377b9c42a7b06b8e"
+  },
+  {
+    "path": "captures/tva-emory-1968-PP19.png",
+    "bytes": 136491,
+    "capturedFileSha256": "924a9af1e60e338730ea19ab0ae790323421576b3c66c2f9126063f4069e10f8"
+  },
+  {
+    "path": "captures/tva-emory-1968-PP20.png",
+    "bytes": 143684,
+    "capturedFileSha256": "b7c05f5dbc311f1ff56aaa525cfab8e5f7d08f3758b162c471b9dc354523afa5"
+  },
+  {
+    "path": "captures/tva-emory-1968-PP21.png",
+    "bytes": 98506,
+    "capturedFileSha256": "06fc4d3669990aaba54d4c02f24d67da29e171e98c2b3cb34de7037c3d3f1ca4"
+  },
+  {
+    "path": "captures/tva-emory-1968-PP8.png",
+    "bytes": 127273,
+    "capturedFileSha256": "d5552965e2d532dae3cddf77b8d586d4dcddc80af439868fe70a9efc1927fe12"
+  },
+  {
+    "path": "captures/tva-emory-1968-PP9.png",
+    "bytes": 112788,
+    "capturedFileSha256": "b41f83c7b78f69aefccceba8049cd7c4183a0db0ae93e30b717d129aa1b7a321"
+  },
+  {
+    "path": "captures/tva-emory-1968.source.json",
+    "bytes": 2216,
+    "capturedFileSha256": "bec2f843e04a2282cbe94da6f178d2e4a1f59461881e584fc7360e72491af0f5"
+  },
+  {
+    "path": "captures/usfws-erwin-trophy-trout-2025.html",
+    "bytes": 103895,
+    "capturedFileSha256": "4cb410bff2979371da672fa1f5ab6fedf7603c13f8388072e1f2c95640a597f3"
+  },
+  {
+    "path": "captures/usfws-erwin-trophy-trout-2025.source.json",
+    "bytes": 242,
+    "capturedFileSha256": "134ccf4785e5ba68db795017cf31d218560e2f6fcb742f7f0131dd519eff0f17"
+  },
+  {
+    "path": "captures/usfws-erwin-trophy-trout-2025.txt",
+    "bytes": 5931,
+    "capturedFileSha256": "3d756016959e0d67edd28d5f188aeba56749e892c64ecb9a1d8ebf06a7f8dffc"
+  }
+]

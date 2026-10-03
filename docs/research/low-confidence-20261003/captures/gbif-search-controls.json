@@ -1,0 +1,65 @@
+[
+  {
+    "control": "fish-class",
+    "url": "https://api.gbif.org/v1/occurrence/search?country=US&stateProvince=Tennessee&taxonKey=204&limit=0",
+    "retrievedAt": "2026-10-03T23:45:25.061278+00:00",
+    "response": {
+      "offset": 0,
+      "limit": 0,
+      "endOfRecords": true,
+      "count": 0,
+      "results": [],
+      "facets": []
+    }
+  },
+  {
+    "control": "fish-family",
+    "url": "https://api.gbif.org/v1/occurrence/search?country=US&stateProvince=Tennessee&taxonKey=8513&limit=0",
+    "retrievedAt": "2026-10-03T23:45:25.062839+00:00",
+    "response": {
+      "offset": 0,
+      "limit": 0,
+      "endOfRecords": false,
+      "count": 13039,
+      "results": [],
+      "facets": []
+    }
+  },
+  {
+    "control": "known-fish-collection",
+    "url": "https://api.gbif.org/v1/occurrence/search?country=US&stateProvince=Tennessee&datasetKey=e90a588b-0eed-4077-8a4f-7e61da35b3f8&limit=0",
+    "retrievedAt": "2026-10-03T23:45:25.062839+00:00",
+    "response": {
+      "offset": 0,
+      "limit": 0,
+      "endOfRecords": false,
+      "count": 8910,
+      "results": [],
+      "facets": []
+    }
+  },
+  {
+    "control": "unmatched-word",
+    "url": "https://api.gbif.org/v1/occurrence/search?country=US&stateProvince=Tennessee&q=xqznotawater987654321&limit=0",
+    "retrievedAt": "2026-10-03T23:45:25.573236+00:00",
+    "response": {
+      "offset": 0,
+      "limit": 0,
+      "endOfRecords": true,
+      "count": 0,
+      "results": [],
+      "facets": []
+    }
+  },
+  {
+    "control": "class-name",
+    "url": "https://api.gbif.org/v1/species/match?name=Actinopterygii",
+    "retrievedAt": "2026-10-03T23:45:25.573236+00:00",
+    "response": {
+      "confidence": 100,
+      "note": "No match because of too little confidence",
+      "matchType": "NONE",
+      "synonym": false
+    }
+  }
+]
