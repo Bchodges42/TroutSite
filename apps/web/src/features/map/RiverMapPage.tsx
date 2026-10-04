@@ -21,6 +21,7 @@ import {
   toWaterDecisionView,
 } from './waterDecision';
 import { Segmented } from '../../components/ui/Segmented';
+import { SpeciesModeToggle } from '../../components/SpeciesModeToggle';
 import { probeRoadsAvailability, probeTerrainAvailability } from '../../lib/atlasAvailability';
 import { useSettingsContext } from '../../lib/settings';
 import { catalogFocusSpecies } from '../../lib/fishability';
@@ -54,6 +55,14 @@ export function RiverMapPage() {
   const focusSpecies =
     (params.get('focus') as SpeciesKey | null) ??
     ((settings.speciesFocus || null) as SpeciesKey | null);
+  // A shared ?species= link sets the mode for the whole app (drawer, list,
+  // detail pages read the setting) — otherwise the map and the drawer could
+  // disagree about which mode is on (design audit 2026-10-04, bug 3).
+  useEffect(() => {
+    if ((urlSpecies === 'all' || urlSpecies === 'trout') && urlSpecies !== settings.speciesMode) {
+      updateSettings({ speciesMode: urlSpecies });
+    }
+  }, [urlSpecies, settings.speciesMode]);
   const assessedOnly = params.get('assessed') === '1';
   const roadsOn = params.get('roads') === '1';
   // Persisted gauge overlay (feat/tn-gauge-layer) — a setting, not URL state:
@@ -455,20 +464,9 @@ export function RiverMapPage() {
       {/* T2-23: species and assessed are INDEPENDENT dimensions — each chip
       toggles only its own URL param, so "assessed-only warmwater" is
       expressible and no chip silently resets the other. */}
-      <button
-        className="filter-chip"
-        aria-pressed={species === 'trout'}
-        onClick={() => update({ species: null })}
-      >
-        Trout
-      </button>
-      <button
-        className="filter-chip"
-        aria-pressed={species === 'all'}
-        onClick={() => update({ species: 'all' })}
-      >
-        All fish
-      </button>
+      {/* One species control per screen (P0-4): on desktop the map row owns
+      it; on phones the list covers the map row, so the list shows it. */}
+      {!desktop && <SpeciesModeToggle />}
       <button
         className="filter-chip"
         aria-pressed={assessedOnly}
@@ -852,36 +850,17 @@ export function RiverMapPage() {
         {(desktop || mobileView === 'map') && (
           <div className={desktop ? 'desktop-explore' : 'mobile-explore'}>
             <div className={desktop ? 'desktop-map-tools' : 'mobile-map-tools'}>
-              <button
-                className="map-tool"
-                aria-pressed={mode === 'conditions'}
-                onClick={() => update({ mode: 'conditions' })}
-              >
-                <WavesIcon size={16} />
-                Conditions
-              </button>
-              <button
-                className="map-tool"
-                aria-pressed={mode === 'hatches'}
-                onClick={() => update({ mode: 'hatches' })}
-              >
-                <BugIcon size={16} />
-                Hatches
-              </button>
-              <button
-                className="map-tool"
-                aria-pressed={species === 'trout'}
-                onClick={() => update({ species: null })}
-              >
-                Trout
-              </button>
-              <button
-                className="map-tool"
-                aria-pressed={species === 'all'}
-                onClick={() => update({ species: 'all' })}
-              >
-                All fish
-              </button>
+              <Segmented
+                ariaLabel="Map mode"
+                floating
+                value={mode}
+                onChange={(m) => update({ mode: m })}
+                options={[
+                  { value: 'conditions', label: 'Conditions', icon: <WavesIcon size={16} /> },
+                  { value: 'hatches', label: 'Hatches', icon: <BugIcon size={16} /> },
+                ]}
+              />
+              <SpeciesModeToggle floating />
             </div>
           </div>
         )}
@@ -902,18 +881,6 @@ export function RiverMapPage() {
               >
                 QA
               </button>
-            )}
-            {desktop && (
-              <Segmented
-                ariaLabel="Species"
-                size="sm"
-                value={species}
-                onChange={(s) => update({ species: s === 'all' ? 'all' : null })}
-                options={[
-                  { value: 'trout', label: 'Trout' },
-                  { value: 'all', label: 'All fish' },
-                ]}
-              />
             )}
             <MapControlGroup
               onRecenter={recenterTennessee}

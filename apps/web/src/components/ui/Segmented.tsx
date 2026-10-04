@@ -1,49 +1,58 @@
-import { useId } from 'react';
+import { useId, type ReactNode } from 'react';
 import { motion } from 'motion/react';
 import { SPRING } from '../motion/atlas-motion';
 
 /**
- * Segmented — SmoothUI-style animated segmented control. The active pill
- * slides between options via a shared layoutId spring; keyboard users get
- * the same tablist semantics the old controls had.
+ * Segmented — the ONE segmented control (design audit 2026-10-04, P0-4/P1-14).
+ * A row of mutually exclusive toggle buttons (aria-pressed, inside a labelled
+ * group — not a tablist, there are no tab panels). The active thumb slides via
+ * a shared layoutId spring. Every color comes from theme tokens (.seg* in
+ * index.css); `floating` lifts the track onto the map with e2 elevation.
  */
 export function Segmented<T extends string>({
   options,
   value,
   onChange,
   ariaLabel,
-  size = 'md',
+  floating = false,
+  className,
 }: {
-  options: ReadonlyArray<{ value: T; label: string }>;
+  options: ReadonlyArray<{ value: T; label: string; icon?: ReactNode }>;
   value: T;
   onChange: (v: T) => void;
   ariaLabel: string;
-  size?: 'sm' | 'md';
+  floating?: boolean;
+  className?: string;
 }) {
   const layoutId = useId();
-  const pad = size === 'sm' ? 'px-3 py-1.5 text-xs' : 'px-4 py-2 text-sm';
   return (
-    <div role="tablist" aria-label={ariaLabel} className="atlas-glass inline-flex rounded-full p-1">
+    <div
+      role="group"
+      aria-label={ariaLabel}
+      className={'seg' + (floating ? ' seg--floating' : '') + (className ? ' ' + className : '')}
+    >
       {options.map((o) => {
         const active = value === o.value;
         return (
           <button
             key={o.value}
             type="button"
-            role="tab"
-            aria-selected={active}
+            className="seg__btn"
+            aria-pressed={active}
             onClick={() => onChange(o.value)}
-            className={`focus-ring relative min-h-[36px] rounded-full ${pad} font-bold transition-colors ${active ? 'text-[#0A100E]' : 'text-[#9FB5AA] hover:text-[#EAF2ED]'}`}
           >
             {active && (
               <motion.span
                 layoutId={layoutId}
                 transition={SPRING.snappy}
-                className="absolute inset-0 rounded-full bg-[#E8B04B]"
+                className="seg__thumb"
                 aria-hidden
               />
             )}
-            <span className="relative z-10">{o.label}</span>
+            <span className="seg__label">
+              {o.icon}
+              {o.label}
+            </span>
           </button>
         );
       })}

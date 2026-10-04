@@ -25,7 +25,6 @@ import {
   WavesIcon,
 } from '../icons';
 import { ThemeToggle } from '../../theme/ThemeProvider';
-import { SpeciesModeToggle } from '../SpeciesModeToggle';
 import { rememberedMapUrl, rememberMapUrl, contextUrl } from '../../lib/riverContext';
 import { RiverSearch } from '../../features/map/RiverSearch';
 import { useStreamsCatalog } from '../../lib/useStreamsCatalog';
@@ -148,7 +147,6 @@ export function AppShell() {
             <ShieldIcon size={15} />
             On your device. Out in the wild.
           </span>
-          <SpeciesModeToggle />
           <ThemeToggle />
           <button
             ref={triggerRef}

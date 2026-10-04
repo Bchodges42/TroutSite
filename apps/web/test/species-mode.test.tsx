@@ -9,8 +9,8 @@ import { db } from '../src/lib/db';
 
 /**
  * F6 TASK 1 — the site-wide species mode: persisted in Dexie (default
- * Trout), surfaced in the header, and readable by every surface. The map's
- * ?species= URL override wins while present; toggling in the header clears it.
+ * Trout), surfaced on the map (one control per screen), and readable by every surface. The map's
+ * ?species= URL override wins while present; toggling the control clears it.
  */
 
 function Probe({ onSettings }: { onSettings: (s: { speciesMode: string }) => void }) {
@@ -53,13 +53,13 @@ describe('SpeciesModeToggle — persisted site-wide species mode', () => {
   it('defaults to Trout and persists All-fish into Dexie settings', async () => {
     const user = userEvent.setup();
     renderToggle();
-    expect(screen.getByRole('button', { name: 'Trout mode' })).toHaveAttribute(
+    expect(screen.getByRole('button', { name: 'Trout' })).toHaveAttribute(
       'aria-pressed',
       'true',
     );
-    await user.click(screen.getByRole('button', { name: 'All-fish mode' }));
+    await user.click(screen.getByRole('button', { name: 'All fish' }));
     await vi.waitFor(() => {
-      expect(screen.getByRole('button', { name: 'All-fish mode' })).toHaveAttribute(
+      expect(screen.getByRole('button', { name: 'All fish' })).toHaveAttribute(
         'aria-pressed',
         'true',
       );
@@ -101,7 +101,7 @@ describe('SpeciesModeToggle — persisted site-wide species mode', () => {
       </QueryClientProvider>,
     );
     expect(pushed).toContain('species=all');
-    await user.click(screen.getByRole('button', { name: 'Trout mode' }));
+    await user.click(screen.getByRole('button', { name: 'Trout' }));
     expect(pushed).not.toContain('species=');
     expect(pushed).toContain('river=caney-fork-river');
   });

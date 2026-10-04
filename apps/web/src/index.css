@@ -296,28 +296,6 @@ a {
   font-size: 13px;
   color: var(--ui-muted);
 }
-/* F6 species-mode header toggle — same restrained vocabulary as the filter chips. */
-.species-mode-toggle {
-  display: flex;
-  align-items: center;
-  min-height: 44px;
-  border: 1px solid var(--ui-border);
-  border-radius: 999px;
-  overflow: hidden;
-}
-.species-mode-toggle button {
-  min-height: 42px;
-  padding: 0 12px;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--ui-muted);
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.species-mode-toggle button[aria-pressed='true'] {
-  background: var(--ui-subtle);
-  color: var(--ui-text);
-}
 .theme-toggle > span:first-child {
   font-size: 23px;
 }
@@ -530,33 +508,42 @@ a {
 }
 .filter-row {
   display: flex;
-  gap: 6px;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
   margin-top: 12px;
 }
+/* Filter chips share the Segmented geometry (8px radius, 36px, label 14/20)
+ * so a filter row reads as one family. Pressed = ink fill, never accent. */
 .filter-chip {
   min-height: 36px;
-  padding: 6px 12px;
+  padding: 0 12px;
   border: 1px solid var(--ui-border);
-  border-radius: 99px;
+  border-radius: 8px;
   white-space: nowrap;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--ui-muted);
-}
-.filter-select {
-  min-height: 36px;
-  padding: 4px 10px;
-  border: 1px solid var(--ui-border);
-  border-radius: 99px;
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
   color: var(--ui-muted);
   background: var(--ui-surface);
 }
-.filter-select[aria-pressed='true'] {
+.filter-select {
+  min-height: 36px;
+  padding: 0 10px;
+  border: 1px solid var(--ui-border);
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ui-text);
+  background: var(--ui-surface);
+}
+/* Was `.filter-select[aria-pressed]`, which never matched — pressed chips
+ * looked identical to unpressed ones (design audit 2026-10-04). */
+.filter-chip[aria-pressed='true'] {
   background: var(--ui-text);
   border-color: var(--ui-text);
   color: var(--ui-surface);
+  font-weight: 600;
 }
 .index-heading {
   padding: 17px 24px 11px;
@@ -688,25 +675,65 @@ a {
 .map-topbar > * {
   pointer-events: auto;
 }
-.map-tool {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  min-height: 44px;
-  padding: 8px 13px;
+/* Segmented (design audit P0-4/P1-14): the one segmented control. Neutral
+ * track, raised thumb, ink text — the accent is reserved for primary actions
+ * and the current map selection, never for a pressed filter. */
+.seg {
+  display: inline-flex;
+  gap: 2px;
+  padding: 2px;
   border-radius: 8px;
+  background: var(--ui-subtle);
   border: 1px solid var(--ui-border);
+}
+.seg--floating {
   background: var(--ui-surface);
   box-shadow: var(--ui-shadow);
+}
+.seg__btn {
+  position: relative;
+  min-height: 36px;
+  padding: 0 12px;
+  border-radius: 6px;
   font-size: 14px;
-  font-weight: 600;
+  line-height: 20px;
+  font-weight: 500;
+  color: var(--ui-muted);
   white-space: nowrap;
 }
-.map-tool[aria-pressed='true'],
-.map-tool[aria-expanded='true'] {
-  color: var(--ui-accent);
-  border-color: var(--ui-accent);
+.seg__btn[aria-pressed='true'] {
+  color: var(--ui-text);
+  font-weight: 600;
+}
+.seg__btn:hover:not([aria-pressed='true']) {
+  color: var(--ui-text);
+}
+.seg__thumb {
+  position: absolute;
+  inset: 0;
+  border-radius: 6px;
+  background: var(--ui-surface);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.12);
+}
+:root[data-theme='nightfall'] .seg__thumb,
+:root[data-theme='campfire'] .seg__thumb {
+  background: var(--ui-raised);
+}
+.seg--floating .seg__thumb {
+  background: var(--ui-subtle);
+  box-shadow: inset 0 0 0 1px var(--ui-border);
+}
+.seg__label {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+@media (pointer: coarse) {
+  .seg__btn {
+    min-height: 44px;
+  }
 }
 /* Desktop surfaces the same mode tools the narrow layout has (they were
  * previously reachable only below 901px). Sits under the map view label,
@@ -721,11 +748,6 @@ a {
 .desktop-map-tools {
   display: flex;
   gap: 8px;
-}
-.desktop-map-tools .map-tool {
-  min-height: 38px;
-  font-size: 13px;
-  padding: 7px 12px;
 }
 .map-view-label {
   font-size: 12px;
@@ -1931,11 +1953,6 @@ continuous corridor under a dashed quiet line — not a bare thin dash. */
     gap: 7px;
     margin-top: 10px;
   }
-  .mobile-map-tools .map-tool {
-    min-height: 40px;
-    font-size: 13px;
-    padding: 8px 11px;
-  }
   .map-topbar {
     top: 122px;
     left: auto;
@@ -2071,10 +2088,6 @@ continuous corridor under a dashed quiet line — not a bare thin dash. */
   }
   .header-search .search-icon {
     left: 10px;
-  }
-  .mobile-map-tools .map-tool {
-    font-size: 12px;
-    padding: 8px 9px;
   }
   .map-legend {
     gap: 8px;
