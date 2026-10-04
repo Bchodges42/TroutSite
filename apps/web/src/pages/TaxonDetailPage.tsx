@@ -148,7 +148,12 @@ export function TaxonDetailPage() {
   );
 }
 
-/** Approved field photo for this insect's group, with its license credit. */
+/**
+ * Approved field photo for this insect's GROUP (keyed by order/family), with
+ * its license credit. It is a representative of the group, often a different
+ * species, so the caption and alt text say so (design audit 2026-10-04, bug 7:
+ * Little Sulphur showed a Hexagenia photo captioned as if it were the taxon).
+ */
 function TaxonPhotoCard({ taxon }: { taxon: BugTaxon }) {
   const photo = taxonPhoto(taxon);
   if (!photo) return null;
@@ -156,12 +161,13 @@ function TaxonPhotoCard({ taxon }: { taxon: BugTaxon }) {
     <figure className="taxon-photo mt-4">
       <img
         src={photo.src}
-        alt={`Field photograph of a ${taxon.commonName.toLowerCase()}`}
+        alt={`Representative photograph of the ${groupName(taxon)} group, not necessarily a ${taxon.commonName.toLowerCase()}`}
         loading="lazy"
         className="w-full rounded-xl"
         style={{ border: '1px solid var(--trout-color-border)', maxHeight: '360px', objectFit: 'cover' }}
       />
       <figcaption className="mt-1 text-xs" style={{ color: 'var(--trout-color-text-muted)' }}>
+        <strong className="font-semibold">Representative {groupName(taxon)} photo.</strong>{' '}
         {photo.credit} · {photo.license} ·{' '}
         <a
           className="focus-ring underline"
@@ -210,4 +216,9 @@ function PatternRow({ pattern }: { pattern: FlyPattern }) {
       </Link>
     </li>
   );
+}
+
+/** The photo registry keys Diptera by family, everything else by order. */
+function groupName(taxon: BugTaxon): string {
+  return taxon.order === 'Diptera' && taxon.family ? taxon.family : taxon.order;
 }

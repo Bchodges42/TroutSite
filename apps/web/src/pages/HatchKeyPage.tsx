@@ -13,6 +13,11 @@ import { TaxonArt } from '../components/art/TaxonArt';
 import { TailsArt, GillsArt, ShapeArt } from '../components/art/DiscriminatorArt';
 import { RiverContextBar, useRiverContext, contextUrl } from '../lib/riverContext';
 
+
+/** Fish orders in the content pack (baitfish for streamer guidance) — not insects. */
+const FISH_ORDERS = new Set(['Cypriniformes', 'Clupeiformes', 'Scorpaeniformes']);
+/** The result list shows the strongest few; the rest sit behind one button. */
+const TOP_MATCHES = 8;
 /**
  * Match-the-hatch (hero feature, scope 2): guided attribute key → ranked taxa
  * via the frozen, deterministic matchHatch() — all client-side, all offline.
@@ -151,8 +156,15 @@ export function HatchKeyPage() {
   const ranked: RankedTaxon[] = useMemo(() => {
     if (!observation || !pack.data) return [];
     const charts = chartQuery.data ? [chartQuery.data.data] : [];
-    return matchHatch(observation, charts, pack.data.taxa);
+    // The content pack carries baitfish (keyed for streamer guidance); this
+    // is the insect key, so fish never rank as a "bug you found" match
+    // (design audit 2026-10-04, bug 1: Central Stoneroller ranked first).
+    return matchHatch(observation, charts, pack.data.taxa).filter(
+      (r) => !FISH_ORDERS.has(r.taxon.order),
+    );
   }, [observation, pack.data, chartQuery.data]);
+  const [showAll, setShowAll] = useState(false);
+  const shown = showAll ? ranked : ranked.slice(0, TOP_MATCHES);
 
   const stepIndex = STEP_ORDER.indexOf(step);
   const complete = observation !== null;
@@ -172,6 +184,7 @@ export function HatchKeyPage() {
   const startOver = () => {
     setDraft({ month: context.month, regionId: context.stream?.regionId ?? REGIONS[0]?.id });
     setFinished(false);
+    setShowAll(false);
     setStep('size');
   };
 
@@ -225,8 +238,12 @@ export function HatchKeyPage() {
               />
             ))}
           </div>
-          <p className="mb-1 text-sm font-bold" role="status">
-            Step {stepIndex + 1} of {STEP_ORDER.length} — {STEP_TITLE[step]}
+          {/* The step's question is the card's H2; the status line carries only
+          progress so the title is not printed twice (design audit P2-12). The
+          screen-reader announcement keeps the question. */}
+          <p className="mb-1 text-xs font-semibold" role="status" style={{ color: 'var(--ui-muted)' }}>
+            Step {stepIndex + 1} of {STEP_ORDER.length}
+            <span className="trout-sr-only"> — {STEP_TITLE[step]}</span>
           </p>
 
           <Card className="mt-4">
@@ -246,7 +263,7 @@ export function HatchKeyPage() {
                         onClick={() => pick('sizeHook', size)}
                       >
                         <span className="text-lg font-bold">#{size}</span>
-                        <span className="text-center text-[11px] leading-tight" style={{ color: 'var(--trout-color-text-muted)' }}>
+                        <span className="text-center text-[13px] leading-tight" style={{ color: 'var(--trout-color-text-muted)' }}>
                           {SIZE_HINT[size]}
                         </span>
                       </button>
@@ -456,7 +473,7 @@ export function HatchKeyPage() {
             </div>
           ) : (
             <ol className="mt-4 flex flex-col gap-3">
-              {ranked.map((r, i) => (
+              {shown.map((r, i) => (
                 <li
                   key={r.taxon.id}
                   className="stagger-in"
@@ -466,6 +483,11 @@ export function HatchKeyPage() {
                 </li>
               ))}
             </ol>
+          )}
+          {ranked.length > TOP_MATCHES && (
+            <Button variant="secondary" className="mt-3" onClick={() => setShowAll((v) => !v)}>
+              {showAll ? 'Show top matches only' : `Show ${ranked.length - TOP_MATCHES} more`}
+            </Button>
           )}
         </section>
       )}
