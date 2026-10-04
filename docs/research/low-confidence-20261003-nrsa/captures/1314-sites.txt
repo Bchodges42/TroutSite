@@ -1,0 +1,83 @@
+VARIABLE	DESCRIPTION	SAMPLE_TYPE	UNITS	RANGE_LOW	RANGE_HIGH	LEGAL_VALUES
+AG_ECO3	"NARS 3-level reporting region (2015), based on aggregating AGGR_ECO9_2015 reporting regions"	DESIGN				EHIGH|PLNLOW|WMTNS
+AG_ECO3_NM	NARS 3-level reporting region Name	DESIGN				Text names
+AG_ECO9	"NARS 9-level reporting region (2015), based on aggregated Omernik Level III ecoregions"	DESIGN				CPL|NAP|NPL|SAP|SPL|TPL|UMW|WMT|XER
+AG_ECO9_NM	NARS 9-level reporting region Name	DESIGN				Text names
+BOAT_WADE	NRSA 2008-9 site was boatable or wadeable when sampled	DESIGN				Boatable|Wadeable
+BORD_RIV	Reach occurs on state or country boundaries	DESIGN				Text of two postal codes: MM:NN where MM is one state and NN is other state the river is on the border. Blank if not a border river
+CH0813_WGT	Site weight for 2008-9 and 2013-14 change analysis	DESIGN				Numeric: >0 or 0 if site is not to be used for population estimation
+CHNG_SF	"Identifies if site included/excluded from 2008-9, 2013-14, 2018-19 sample frame.  Will expand in future to include 2023-24 etc."	DESIGN				Form: Include18_Include13_Include08
+CNTYNAME	County name (source ESRI counties based on census 2010)	DESIGN				Text Names
+COMID	NHD common identifier for NRSA sampling frame and subsequent designs.	DESIGN				Numeric
+DATE_COL	Date of data collection in field					
+DESC_CODE	Land ownership description code derived from USGS PADUS (http://gapanalysis.usgs.gov/padus/data/) - pulled May 2016 version of database	DESIGN				Numeric of 37 land ownership description codes from PADUS; may legitimately be NA if not covered by PADUS owership
+ELEVATION	"Elevation at Stream site  (LAT_DD83, LON_DD83) from USGS elevation point query service (30 m elevation) http://ned.usgs.gov/epqs/"	DESIGN				Numeric; may legitimately be negative
+EPA_REG	EPA Region	DESIGN				Region_1 |  Region_2 | Region_3 | Region_4 | Region_5 | Region_6 | Region_7 | Region_8 | Region_9 | Region_10
+EVALSTAT	"Status assigned based on site evaluation guidelines and responses to verification form, if sampled."	EVAL				TargetSampleable|TargetNotSampled|TargetOther|AccessDenied|Inaccessible-Barrier/Safety|Inaccessible-Effort|Nontarget-CoastalSaline|Nontarget-Ephemeral|Nontarget-MapError|Nontarget-NoRecAquatUse|Nontarget-NotLake|Nontarget-Other|Nontarget-TooSmall|Nontarget-TooShallow|NonTarget-Vegetated|NotNeeded
+EVALUATED	Was site evaluated for sampling?	EVAL				YES|NO
+FEOW_ID	Freshwater Ecoregions of the World (2015) code	DESIGN				Numeric
+FRAME14	"Identifies whether site is part of NRSA_ST, NRSA_only, or state only"	DESIGN				
+FRAME18_ID	2018-19 Sampling Frame ID code	DESIGN				
+FS_EW	Eastern or western US Forest Service land	DESIGN				East | West | blank if not US Forest Service land
+GNIS_ID	Goegraphic Names Information System ID (from NHD)	DESIGN				Numeric
+GNIS_NAME	USGS Geographic Names Information System name	DESIGN				Text name
+HUC2	USGS Level 2 Hydrologic Unit Code where stream reach is located (based on NHDPlusV2 use of HUCs)	DESIGN				Alphanumeric: H01 to H20 with H03N :H 03S : H03W | H10L : H10U  where region coded preceded by letter H
+HUC2_REG	USGS Level 2 Hydrologic Unit Region Name where stream reach is located (based on NHDPlusV2 use of HUCs)	DESIGN				Text name of Region
+HUC8	USGS Level 8 Hydrologic Unit Code where stream reach is located (based on NHDPlusV2 use of HUCs)	DESIGN				Alphanumeric code; 8-digit preceded by letter H
+HUC8_NM	USGS Level 8 Hydrologic  Cataloging Unit Name where stream reach is located	DESIGN				Text
+LAT_DD83	Latitude (based on NAD83 datum) for stream site  from NHD-based sample frame.	DESIGN				Numeric
+LON_DD83	Longitude (based on NAD83 datum) for stream site  from NHD-based sample frame.	DESIGN				Numeric
+MAJ_BAS_NM	Major USGS Hydrologic Basins derived from NHDPlus Names	DESIGN				Text of 16 basin names
+MAJ_BASIN	Major USGS Hydrologic Basins derived from NHDPlus Codes	DESIGN				16 Major Basin Codes from 01 to 18 with 05_06 and 12_13 combined preceeded by letter H
+MISS_BASIN	"The hydrologic basin name for streams in the Mississippi Basin, or NA for streams not in the Mississippi Basin"	DESIGN				Text of 7 basin names or NA
+MISS_BASIN_NM	Mississippi basin name	DESIGN				Ohio Region|Tennessee Region|Upper Mississippi Region|Lower Mississippi Region|Lower Missouri Region|Upper Missouri Region|Arkansas-White-Red Region
+NA_L1CODE	CEC North American Level I ecoregion code	DESIGN				Numeric 5 to 15 excluding 14 and 0 designating HI
+NA_L1NAME	CEC North American Level I ecoregion name	DESIGN				Text
+NA_L2CODE	CEC North American Level II ecoregion code	DESIGN				Alphanumeric: n.n where leading position is Level I code and following position is Level 2 designation
+NA_L2NAME	CEC North American Level II ecoregion name	DESIGN				Text
+NA_L3CODE	CEC North American Level III ecoregion code	DESIGN				Alphanumeric: n.n.n where leading two positons are Level II code and following position is level 3 designation
+NA_L3NAME	CEC North American Level III ecoregion name	DESIGN				Text
+NARS_NAME	Name of lake from field evaluation or GNIS NAME if the same	DESIGN				Text
+NARS_OWN	Land ownership category used by NARS	DESIGN				Text of 13 land ownership category names
+NFWAWGTCAT	Categories used to create weights for the analysis of NRSA 2008-9 survey 	DESIGN				
+NRS13_EVAL	NRSA 2013/14 site evaluation result.	DESIGN				Text
+NRS13_MDC	Multi-density categories used in NRSA 2013/14 survey design within a stratum	DESIGN				Text
+NRS13_PNL	NRSA 2013/14 Panel Assignment	DESIGN				"Text that has form NRSnn_mmXXXn_YYYY, where nn is current cycle year (07, 12, 17, etc), mm is cycle year stream site was first selected for sampling, XXXn denotes revisit status, and YYYY denotes base or over sample status.  XXXN equals either RVT2 (if site should be visited twice in current cycle year) or RVT (if site should be visited once in current cycle and was previously visited in a prior cycle year) and is blank otherwise.  YYYY  is either blank (if the stream site is a base site) or equals OverSamp (if the stream site is an over sample site).  Note: For state specific designs, state two letter code is added."
+NRS13_SF	Lake included/excluded from NRSA 2013/14 survey design	DESIGN				Exclude|Include | Not Present   Blank values are not allowed or NA for missing
+NRS13_STRA	Strata used in NRSA 2013/14 survey design	DESIGN				Text
+NRS13_TNT	NRS 2013/14 target status assigned based on stream site evaluation for use in national assessments. 	DESIGN				Target | Target_Presumed |Uncertain | Non_Target | Not_Needed | blank 
+NRS13_URBN	Stream site identified as an urban or non-urban stream. Source: https://www.census.gov/geo/maps-data/data/cbf/cbf_ua.html. Used 2015 Urban Areas cartographic boundaries shapefile	DESIGN				NonUrban|Urban
+NRS13_VST	Number of times NRSA 2013/14 site was actually sampled in 2013/14	DESIGN				Zero | One | Two    Blank is site not evaluated
+NRS13_WGTD	NRSA 2013/14 Initial site weight assigned during site selection. DO NOT USE FOR POPULATION ESTIMATION!	DESIGN				Numeric: >0 or 0 if site is not to be used for population estimation
+NRSA_USE	Include site in NRSA analyses?	DESIGN				YES|NO
+OWN_CODE	Land ownership code derived from USGS PADUS (http://gapanalysis.usgs.gov/padus/data/) - pulled May 2016 version of database	DESIGN				Numeric of 45 detailed PADUS ownership codes; may legitimately by NA if not covered by PADUS owership
+OWN_DESC	Land ownership protective category derived from USGS PADUS (http://gapanalysis.usgs.gov/padus/data/) - pulled May 2016 version of database	DESIGN				Text of 37 protective category names from PADUS; may legitimately by NA if not covered by PADUS owership
+OWN_TYPE	Basic land ownership category derived from USGS PADUS (http://gapanalysis.usgs.gov/padus/data/) - pulled May 2016 version of database	DESIGN				Text of 9 basic ownership category names from PADUS; may legitimately by NA if not covered by PADUS owership
+OWNSHP	Detailed land ownership category derived from USGS PADUS (http://gapanalysis.usgs.gov/padus/data/) - pulled May 2016 version of database	DESIGN				Text of 45 detailed ownership category names from PADUS; may legitimately by NA if not covered by PADUS owership
+PSTL_CODE	State two-letter postal code	DESIGN				
+PUBLICATION_DATE	Date of data file publication					
+REACHCODE	NHD Reach code assigned	DESIGN				Numeric
+RT_NRSA	"NRSA Reference Class Assignment: R=reference, In=intermediate, Im=impacted, ?=Cannot be evaluated due to missing info"	EVAL				R|S|T|?
+SITE_ID	Site ID					
+SITETYPE	Site type (Probability-based or hand-picked)	DESIGN				PROB | HAND
+SO	NHD-Plus new Strahler order	DESIGN				
+SORT13_ID	Design sort ID of site for NRSA 2013-14 survey	DESIGN				
+SORT18_ID	Design sort ID of site for NRSA 2018-19 survey	DESIGN				
+SOURCE	Sample frame source	DESIGN				NHDPlusv2| State frame names
+STATE	State of site					
+STATECTY	FIPS state and county code	DESIGN				Text - numeric with leading zero
+STATEID	State Site ID	DESIGN				
+STRAH_CAL	Strahler calculator from NHDPlusv2.  Used to identify braided reaches.	DESIGN				Numeric: 0 to 10.
+STRAH_CAT	Strahler category used to classify reaches.  RiversMajor (5th and higher)  RiversOther (5th and higher) LargeStreams (3rd and 4th)  SmallStreams (1st and 2nd)	DESIGN				RiversMajor | RiversOther | LargeStreams | SmallStreams
+STRAH_ORD	Strahler order from NHDPlusv2	DESIGN				Numeric: 0 to 10.
+STUDY	Study to which site belongs	DESIGN				ALASKA|HAWAII|MSQA|BLM|CALAPOOIA|NRSA|WISCONSIN
+UID	Unique site visit ID					
+US_L3CODE	Omernik Level III ecoregion code	DESIGN				Numeric 1 to 85
+US_L3NAME	Omernik Level III ecoregion name	DESIGN				Text name
+US_L4CODE	Omernik Level IV ecoregion code	DESIGN				Level three codes plus aphabetic ending identifying level 4 subregion
+US_L4NAME	Omernik Level IV ecoregion name	DESIGN				Text name
+VISIT_NO	Number identifying which visit this is					
+XCOORD	x-coordinate from US Contiguous Albers Equal Area Conic projection EXCEPT Hawaii sites which are calculated from Hawaii Albers Equal Area Conic projection	DESIGN				Numeric
+YCOORD	y-coordinate from US Contiguous Albers Equal Area Conic projection EXCEPT Hawaii sites which are calculated from Hawaii Albers Equal Area Conic projection	DESIGN				Numeric
+SITESAMP	Site sampled (Y/N)	VERIF				
+WGT_EXT_SP	Length of sampled streams represented by site in km	DESIGN				

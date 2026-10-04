@@ -1,0 +1,146 @@
+{
+  "indexUrl": "https://www.epa.gov/national-aquatic-resource-surveys/data-national-aquatic-resource-surveys",
+  "linksObservedOn": "2026-10-03",
+  "captures": [
+    {
+      "file": "captures/0809-fish.csv.gz",
+      "url": "https://www.epa.gov/sites/default/files/2015-09/fishcts.csv",
+      "finalUrl": "https://www.epa.gov/sites/default/files/2015-09/fishcts.csv",
+      "retrievedAt": "2026-10-03T23:57:49.473252+00:00",
+      "contentType": "text/csv",
+      "responseBytes": 3625278,
+      "responseSha256": "96e11a34650ed215b3ff224d4c97bc1480c460807e170ab56781295e7dce9b89",
+      "savedSha256": "d1cc096c635f5bf2de38ce12e3e132448e7fe5c41656a1eaa0fda4c7cf17babc"
+    },
+    {
+      "file": "captures/0809-fish.txt",
+      "url": "https://www.epa.gov/sites/default/files/2015-09/fishcts.txt",
+      "finalUrl": "https://www.epa.gov/sites/default/files/2015-09/fishcts.txt",
+      "retrievedAt": "2026-10-03T23:57:49.198756+00:00",
+      "contentType": "text/plain",
+      "responseBytes": 2216,
+      "responseSha256": "5a16b7f13b239c29a458247dd06d809872117f30e71efc7e87ae153a6ab69dd1",
+      "savedSha256": "5a16b7f13b239c29a458247dd06d809872117f30e71efc7e87ae153a6ab69dd1"
+    },
+    {
+      "file": "captures/0809-sites.csv.gz",
+      "url": "https://www.epa.gov/sites/default/files/2015-09/siteinfo_0.csv",
+      "finalUrl": "https://www.epa.gov/sites/default/files/2015-09/siteinfo_0.csv",
+      "retrievedAt": "2026-10-03T23:57:49.349465+00:00",
+      "contentType": "text/csv",
+      "responseBytes": 543372,
+      "responseSha256": "8808162a1c79727e0ca98e691e23451a001c5621e3de07c05662936b4d724629",
+      "savedSha256": "cb6472e4e7c9552fc0a93067a307b27ee4dcf37c9172893e9295180ecbd61411"
+    },
+    {
+      "file": "captures/0809-sites.txt",
+      "url": "https://www.epa.gov/sites/default/files/2015-09/siteinfo_0.txt",
+      "finalUrl": "https://www.epa.gov/sites/default/files/2015-09/siteinfo_0.txt",
+      "retrievedAt": "2026-10-03T23:57:49.170909+00:00",
+      "contentType": "text/plain",
+      "responseBytes": 2286,
+      "responseSha256": "ce924b405d3a1f08b71866e62cb8ba1546aeb3b67d55f264ea53babf56afccc5",
+      "savedSha256": "ce924b405d3a1f08b71866e62cb8ba1546aeb3b67d55f264ea53babf56afccc5"
+    },
+    {
+      "file": "captures/1314-fish.csv.gz",
+      "url": "https://www.epa.gov/sites/default/files/2019-04/nrsa1314_fishcts_04232019.csv",
+      "finalUrl": "https://www.epa.gov/sites/default/files/2019-04/nrsa1314_fishcts_04232019.csv",
+      "retrievedAt": "2026-10-03T23:57:49.712342+00:00",
+      "contentType": "text/csv",
+      "responseBytes": 2894991,
+      "responseSha256": "d8ddcc09159a048ded74d7775f08a6586e8ac5eab2a33c5dfa15551ae9772e52",
+      "savedSha256": "f2e218fe541ffda5d1897d5e7d5cde8940167f607f5f473ade41745e86c59414"
+    },
+    {
+      "file": "captures/1314-fish.txt",
+      "url": "https://www.epa.gov/sites/default/files/2019-04/nrsa1314_fishcts_meta_04292019_0.txt",
+      "finalUrl": "https://www.epa.gov/sites/default/files/2019-04/nrsa1314_fishcts_meta_04292019_0.txt",
+      "retrievedAt": "2026-10-03T23:57:49.372451+00:00",
+      "contentType": "text/plain",
+      "responseBytes": 1034,
+      "responseSha256": "1a3b75362f8e501215f3721b343d477f998a5bba011f99912b2b0c20d9e168f6",
+      "savedSha256": "1a3b75362f8e501215f3721b343d477f998a5bba011f99912b2b0c20d9e168f6"
+    },
+    {
+      "file": "captures/1314-sites.csv.gz",
+      "url": "https://www.epa.gov/sites/default/files/2019-04/nrsa1314_siteinformation_wide_04292019.csv",
+      "finalUrl": "https://www.epa.gov/sites/default/files/2019-04/nrsa1314_siteinformation_wide_04292019.csv",
+      "retrievedAt": "2026-10-03T23:57:49.668777+00:00",
+      "contentType": "text/csv",
+      "responseBytes": 1453901,
+      "responseSha256": "a23588496c6e9af6f80125f27fe44a210c54cb507be2b9786d52218a35d7284f",
+      "savedSha256": "c73c74e813a9a51c4a9c1ed8a3d42df77abf8da676eb84117ba633acd8a4374f"
+    },
+    {
+      "file": "captures/1314-sites.txt",
+      "url": "https://www.epa.gov/sites/default/files/2019-04/nrsa1314_sitesuids_wide_meta_04292019.txt",
+      "finalUrl": "https://www.epa.gov/sites/default/files/2019-04/nrsa1314_sitesuids_wide_meta_04292019.txt",
+      "retrievedAt": "2026-10-03T23:57:49.560309+00:00",
+      "contentType": "text/plain",
+      "responseBytes": 10382,
+      "responseSha256": "a8f144d3f7611892dddd030714fcf54706c94f45887ef6d99746edddb09aea90",
+      "savedSha256": "a8f144d3f7611892dddd030714fcf54706c94f45887ef6d99746edddb09aea90"
+    },
+    {
+      "file": "captures/1819-fish.csv.gz",
+      "url": "https://www.epa.gov/system/files/other-files/2022-03/nrsa-1819-fish-count-data.csv",
+      "finalUrl": "https://www.epa.gov/system/files/other-files/2022-03/nrsa-1819-fish-count-data.csv",
+      "retrievedAt": "2026-10-03T23:57:50.042340+00:00",
+      "contentType": "text/csv; charset=UTF-8",
+      "responseBytes": 1981262,
+      "responseSha256": "1cee6cceb4382308d6e2e639a29f6d4bac2cea2edaeff03c175a5845066c927c",
+      "savedSha256": "03c5b0954d4368bf27b94b1313e9e4a32232440a9b8a76b5312d4b939219c2fd"
+    },
+    {
+      "file": "captures/1819-fish.txt",
+      "url": "https://www.epa.gov/system/files/other-files/2022-03/nrsa-1819-fish-count-metadata.txt",
+      "finalUrl": "https://www.epa.gov/system/files/other-files/2022-03/nrsa-1819-fish-count-metadata.txt",
+      "retrievedAt": "2026-10-03T23:57:49.905607+00:00",
+      "contentType": "text/plain; charset=UTF-8",
+      "responseBytes": 1151,
+      "responseSha256": "a258d455607c42b3a208a4d6b9e320eb949e35b366f279d0c54717333e15151b",
+      "savedSha256": "a258d455607c42b3a208a4d6b9e320eb949e35b366f279d0c54717333e15151b"
+    },
+    {
+      "file": "captures/1819-sites.csv.gz",
+      "url": "https://www.epa.gov/system/files/other-files/2023-01/NRSA_1819_SiteInfo.csv",
+      "finalUrl": "https://www.epa.gov/system/files/other-files/2023-01/NRSA_1819_SiteInfo.csv",
+      "retrievedAt": "2026-10-03T23:57:50.277404+00:00",
+      "contentType": "text/csv; charset=UTF-8",
+      "responseBytes": 1881191,
+      "responseSha256": "1b5b2119c881290191edeb47f1d80a7711f10440e9851574cfa86fd57be770e3",
+      "savedSha256": "135f7a2d6e188018934cd40863f92f233ff16c50feee66784bf5e6a3791b4027"
+    },
+    {
+      "file": "captures/1819-sites.txt",
+      "url": "https://www.epa.gov/system/files/other-files/2023-01/NRSA18_19_Site_Information_Metadata.txt",
+      "finalUrl": "https://www.epa.gov/system/files/other-files/2023-01/NRSA18_19_Site_Information_Metadata.txt",
+      "retrievedAt": "2026-10-03T23:57:50.211857+00:00",
+      "contentType": "text/plain; charset=UTF-8",
+      "responseBytes": 24391,
+      "responseSha256": "f9ad8f8b9ee2fbbbd42c1657a123f8d79b7682d599d8806742e0df3298795dd4",
+      "savedSha256": "f9ad8f8b9ee2fbbbd42c1657a123f8d79b7682d599d8806742e0df3298795dd4"
+    },
+    {
+      "file": "captures/1819-sampling.csv.gz",
+      "url": "https://www.epa.gov/system/files/other-files/2022-03/nrsa-1819-fish-sampling-information-data.csv",
+      "finalUrl": "https://www.epa.gov/system/files/other-files/2022-03/nrsa-1819-fish-sampling-information-data.csv",
+      "retrievedAt": "2026-10-03T23:57:50.349023+00:00",
+      "contentType": "text/csv; charset=UTF-8",
+      "responseBytes": 699522,
+      "responseSha256": "14dc68b1f3cf497311e31da45671354f128187e0e68b96aaa384eb23d3488267",
+      "savedSha256": "4fd10342c2a14e2297e0748d7d7a64c88fea7f54b0c17d1f654c207e58fe09c8"
+    },
+    {
+      "file": "captures/1819-sampling.txt",
+      "url": "https://www.epa.gov/system/files/other-files/2022-03/nrsa-1819-fish-sampling-information-metadata.txt",
+      "finalUrl": "https://www.epa.gov/system/files/other-files/2022-03/nrsa-1819-fish-sampling-information-metadata.txt",
+      "retrievedAt": "2026-10-03T23:57:50.463406+00:00",
+      "contentType": "text/plain; charset=UTF-8",
+      "responseBytes": 8104,
+      "responseSha256": "07785ad3846146c2d4c336b14a93f2594064ba8991613ac6dfb4fb9055e35eb7",
+      "savedSha256": "07785ad3846146c2d4c336b14a93f2594064ba8991613ac6dfb4fb9055e35eb7"
+    }
+  ]
+}

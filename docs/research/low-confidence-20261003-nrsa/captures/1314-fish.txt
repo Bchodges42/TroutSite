@@ -1,0 +1,27 @@
+SAMPLE_TYPE	PARAMETER	LABEL	LEGAL_VALUES	RANGE_LOW	RANGE_HIGH
+DESIGN	AG_ECO9_NM				
+FISH	ANOM_CT			0	
+VERIF	DATE_COL				
+TAXA: Invertebrates	FINAL_NAME				
+TAXA: Vertebrate	FINAL_NAME				
+VERIF	INDEX_VISIT				
+FISH	IS_DISTINCT		0|1		
+DESIGN	LAT_DD83				
+DESIGN	LON_DD83				
+FISH	NON_NATIVE		N|Y		
+FISH	NON_NATIVE				
+DESIGN	PSTL_CODE				
+	PUBLICATION_DATE	Date of data file publication			
+	PUBLICATION_DATE	Date of data file publication			
+	PUBLICATION_DATE	Date of data file publication			
+DESIGN	SITE_ID				
+VERIF	SITE_ID				
+	SITETYPE	"Site type (Probability-based or hand-picked).  PROB for sites from probability survey.  Usually HAND for hand-picked sites.  In EMAP West and WSA, STARHAND is used to identify hand-picked sites that do not have all CORE indicators available."			
+	TAXA_ID	Taxonomic ID number			
+	TAXA_ID	Taxonomic ID number			
+	TAXA_ID	Taxonomic ID number			
+FISH	TOTAL			0	
+	UID	Unique site visit ID			
+	UID	Unique site visit ID			
+	UID	Unique site visit ID			
+VERIF	VISIT_NO		|1|2		

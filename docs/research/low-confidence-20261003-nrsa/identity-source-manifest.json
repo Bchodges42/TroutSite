@@ -1,0 +1,30 @@
+[
+  {
+    "file": "captures/nonconnah-candidate-flowline.json",
+    "url": "https://api.water.usgs.gov/nldi/linked-data/comid/14199409",
+    "retrievedAt": "2026-10-04T00:04:39.783519+00:00",
+    "bytes": 940,
+    "sha256": "a748af4675a07e501cb0c5c3c30218d06b9d04d1e3f89a9127b051a34131fbb9"
+  },
+  {
+    "file": "captures/nonconnah-upstream-main-3km.geojson",
+    "url": "https://api.water.usgs.gov/nldi/linked-data/comid/14199409/navigation/UM/flowlines?distance=3",
+    "retrievedAt": "2026-10-04T00:04:40.105861+00:00",
+    "bytes": 2589,
+    "sha256": "421f7bba922271d62a0b565f07fb6507783bb94bbd3dbcbaa142ab468f20e031"
+  },
+  {
+    "file": "captures/nonconnah-upstream-stations-5km.geojson",
+    "url": "https://api.water.usgs.gov/nldi/linked-data/comid/14199409/navigation/UM/wqp?distance=5",
+    "retrievedAt": "2026-10-04T00:04:40.427489+00:00",
+    "bytes": 3043,
+    "sha256": "e04290500f633081305dd2343fb59cf92bf54edf7df119ef11a76b438f2a02d4"
+  },
+  {
+    "file": "captures/nonconnah-upstream-epa-sites-5km.geojson",
+    "url": "https://api.water.usgs.gov/nldi/linked-data/comid/14199409/navigation/UM/epa_nrsa?distance=5",
+    "retrievedAt": "2026-10-04T00:04:40.777552+00:00",
+    "bytes": 956,
+    "sha256": "44f6d18b6eb4b6858f299a2f48f091191df5a416bbe7d3292a9b9652875f43e8"
+  }
+]
