@@ -840,7 +840,9 @@ export function RiverMapPage() {
           fitPadding={
             desktop
               ? { top: 100, bottom: 100, left: 80, right: 100 }
-              : { top: 185, bottom: Math.round(window.innerHeight * 0.49), left: 35, right: 55 }
+              : // right 76 = the 44px control column + its 16px inset + 16px air,
+                // so the selected label never lands under the zoom stack (P1-11).
+                { top: 185, bottom: Math.round(window.innerHeight * 0.49), left: 35, right: 76 }
           }
         />
         {/* The mode row belongs to the map state only. In atlas/inspector states
