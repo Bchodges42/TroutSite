@@ -1,0 +1,85 @@
+{
+  "term": "Candies",
+  "note": "Chordata search, including non-fish and unrelated waters; locality and taxonomy must be checked individually.",
+  "pages": [
+    {
+      "url": "https://api.gbif.org/v1/occurrence/search?country=US&stateProvince=Tennessee&basisOfRecord=PRESERVED_SPECIMEN&taxonKey=44&q=Candies&limit=300&offset=0",
+      "retrievedAt": "2026-10-04T00:09:21.561633+00:00",
+      "responseSha256": "de32dcad8409febe4c2d33b39ac3aad39eb2297a900385b9d248090f02546aa9",
+      "count": 2,
+      "returned": 2,
+      "endOfRecords": true
+    }
+  ],
+  "records": [
+    {
+      "key": 5103660854,
+      "datasetKey": "410461b6-368c-4970-8cb5-c043c28c08dd",
+      "institutionCode": "APSU",
+      "collectionCode": "Herpetology",
+      "catalogNumber": "APSU:Herp:19784",
+      "occurrenceID": "https://arctos.database.museum/guid/APSU:Herp:19784",
+      "scientificName": "Regina septemvittata (Say, 1825)",
+      "family": "Colubridae",
+      "genus": "Regina",
+      "species": "Regina septemvittata",
+      "taxonKey": 5222701,
+      "basisOfRecord": "PRESERVED_SPECIMEN",
+      "eventDate": "2016-04-15",
+      "year": 2016,
+      "month": 4,
+      "day": 15,
+      "country": "United States of America",
+      "stateProvince": "Tennessee",
+      "county": "Bradley County",
+      "locality": "Charleston, Tennessee, Hwy. 308 (=Lower River Rd. NW) at Candies Creek bridge",
+      "verbatimLocality": "North America, United States, Tennessee, Bradley County, Charleston, TN highway 308 (Lower River Road) at Candies Creek bridge",
+      "decimalLatitude": 35.30972,
+      "decimalLongitude": -84.84778,
+      "coordinateUncertaintyInMeters": 10.0,
+      "issues": [
+        "CONTINENT_DERIVED_FROM_COORDINATES",
+        "INSTITUTION_MATCH_FUZZY",
+        "INSTITUTION_COLLECTION_MISMATCH"
+      ],
+      "license": "http://creativecommons.org/licenses/by-nc/4.0/legalcode",
+      "recordedBy": "Collector(s): Tyler J. Walker",
+      "identifiedBy": "Tyler J. Walker",
+      "occurrenceRemarks": "Alive on Road"
+    },
+    {
+      "key": 4521289664,
+      "datasetKey": "de22e531-395a-468b-8830-bd1a8ad04673",
+      "institutionCode": "ANSP",
+      "collectionCode": "ANSP-FISH",
+      "catalogNumber": "54480",
+      "occurrenceID": "28D45619-852F-4FB2-B924-88702A07ADA7",
+      "scientificName": "Catostomidae",
+      "order": "Cypriniformes",
+      "family": "Catostomidae",
+      "taxonKey": 3384,
+      "basisOfRecord": "PRESERVED_SPECIMEN",
+      "individualCount": 3,
+      "eventDate": "1930-10-20",
+      "year": 1930,
+      "month": 10,
+      "day": 20,
+      "country": "United States of America",
+      "stateProvince": "Tennessee",
+      "locality": "Candes Creek, tributary of Hiwasse River near Cleveland.",
+      "decimalLatitude": 35.173479,
+      "decimalLongitude": -84.90508,
+      "coordinateUncertaintyInMeters": 19401.0,
+      "georeferenceRemarks": "Assumed at Candies Creek",
+      "issues": [
+        "COUNTRY_DERIVED_FROM_COORDINATES",
+        "TAXON_MATCH_HIGHERRANK",
+        "OCCURRENCE_STATUS_INFERRED_FROM_INDIVIDUAL_COUNT",
+        "INSTITUTION_MATCH_FUZZY",
+        "COLLECTION_MATCH_FUZZY"
+      ],
+      "license": "http://creativecommons.org/licenses/by-nc/4.0/legalcode",
+      "recordedBy": "H.W. Fowler"
+    }
+  ]
+}

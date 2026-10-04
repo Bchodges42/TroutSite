@@ -1,0 +1,38 @@
+[
+  {
+    "key": 4521289664,
+    "datasetKey": "de22e531-395a-468b-8830-bd1a8ad04673",
+    "institutionCode": "ANSP",
+    "collectionCode": "ANSP-FISH",
+    "catalogNumber": "54480",
+    "occurrenceID": "28D45619-852F-4FB2-B924-88702A07ADA7",
+    "scientificName": "Catostomidae",
+    "order": "Cypriniformes",
+    "family": "Catostomidae",
+    "taxonKey": 3384,
+    "basisOfRecord": "PRESERVED_SPECIMEN",
+    "individualCount": 3,
+    "eventDate": "1930-10-20",
+    "year": 1930,
+    "month": 10,
+    "day": 20,
+    "country": "United States of America",
+    "stateProvince": "Tennessee",
+    "locality": "Candes Creek, tributary of Hiwasse River near Cleveland.",
+    "decimalLatitude": 35.173479,
+    "decimalLongitude": -84.90508,
+    "coordinateUncertaintyInMeters": 19401.0,
+    "georeferenceRemarks": "Assumed at Candies Creek",
+    "issues": [
+      "COUNTRY_DERIVED_FROM_COORDINATES",
+      "TAXON_MATCH_HIGHERRANK",
+      "OCCURRENCE_STATUS_INFERRED_FROM_INDIVIDUAL_COUNT",
+      "INSTITUTION_MATCH_FUZZY",
+      "COLLECTION_MATCH_FUZZY"
+    ],
+    "license": "http://creativecommons.org/licenses/by-nc/4.0/legalcode",
+    "recordedBy": "H.W. Fowler",
+    "catalogTraceDistanceM": 5,
+    "status": "QUALIFIED HISTORICAL LEAD: locality Candes Creek near Cleveland is compatible with Candies, but georeference explicitly assumed, uncertainty 19,401 m, identification only Catostomidae; encoded 5 m map distance is not reach precision."
+  }
+]

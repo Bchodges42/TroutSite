@@ -1,0 +1,92 @@
+[
+  {
+    "path": "captures/.gitattributes",
+    "bytes": 25,
+    "sha256": "bb3c3a4751df0dc4460e370569ff389e93ab545025e3698ed5445661d62677b1"
+  },
+  {
+    "path": "captures/candies-ansp-full.json",
+    "bytes": 5380,
+    "sha256": "1e5481087a6cc860d54c5248ff75945df24b469e1fe2519588ec04ed619375af"
+  },
+  {
+    "path": "captures/dataset-ansp.json",
+    "bytes": 10621,
+    "sha256": "50c4d84ef23a6de8ef72db08c9c9cffd5295776c646b615133cd48f6b019c2c7"
+  },
+  {
+    "path": "captures/dataset-ummz.json",
+    "bytes": 7035,
+    "sha256": "de8fe278728a9f65ce09e3947a2578225814d59b0be86467be83630eb2dd1a43"
+  },
+  {
+    "path": "captures/dataset-yale.json",
+    "bytes": 16104,
+    "sha256": "439a727c1451ba7fad9fad9cb8068c0ebf35372cc7c2cdcf32163fb5d2e02ee1"
+  },
+  {
+    "path": "captures/museum-candies.json",
+    "bytes": 3265,
+    "sha256": "f438e742168e401ac4c7c79f40de37c9fe7f8e7161b9ce55b902888270120ab4"
+  },
+  {
+    "path": "captures/museum-chestua.json",
+    "bytes": 576,
+    "sha256": "113789cb19cc2d3d5390f90c5f7b67cc39a7c23f6270c43a034d9d107e67b4e6"
+  },
+  {
+    "path": "captures/museum-chestuee.json",
+    "bytes": 20020,
+    "sha256": "5664846a5307ed5bcd897fab48971e9a675d5fd75c442e25291079d1e3e9da80"
+  },
+  {
+    "path": "captures/museum-mouse.json",
+    "bytes": 2441457,
+    "sha256": "f83942d7748a39504703e16ae650c232d14b3af1cf19197ec6d87f9fa44ec56f"
+  },
+  {
+    "path": "captures/museum-oostanaula.json",
+    "bytes": 9763,
+    "sha256": "81842c52af7142757f96bd2262e82fcf7329a221882ab56c33fb273133da2ce8"
+  },
+  {
+    "path": "captures/north-mouse-spotted-bass-full.json",
+    "bytes": 6280,
+    "sha256": "9f0036555ecfd8a5f8606f9da903173de3beba59e98fc05f66900f337fded4ea"
+  },
+  {
+    "path": "captures/south-mouse-parent.json",
+    "bytes": 6677,
+    "sha256": "0a7ceb036d3dc07388c856fe84cb5d068c491850ef468281b7551a7556bfa56d"
+  },
+  {
+    "path": "captures/south-mouse-unit2.json",
+    "bytes": 6679,
+    "sha256": "92a703458d092c3e9ed50e61f5f8c986e217a4cc73c00ee37edeff92b8b243a9"
+  },
+  {
+    "path": "captures/south-mouse-unit3.json",
+    "bytes": 6679,
+    "sha256": "6d983a1f168aa73a5d1615525cebf6739af6efa299c742202aa1f838944131ad"
+  },
+  {
+    "path": "captures/south-mouse-unit4.json",
+    "bytes": 6679,
+    "sha256": "0a72ecd96e11af993da1265ae25f01034e29c8685e74ab84d9d500f7a71d16a4"
+  },
+  {
+    "path": "captures/south-mouse-unit5.json",
+    "bytes": 6679,
+    "sha256": "16c42dae19beb363eabc6d39f6882cff61628d22f22b6c958518037ec72f8f7e"
+  },
+  {
+    "path": "captures/south-mouse-unit6.json",
+    "bytes": 6679,
+    "sha256": "069e9bf53fdf5483b9a923afdf597f9aeee21b309e8b4d12af55ec16264922b8"
+  },
+  {
+    "path": "captures/south-mouse-unit7.json",
+    "bytes": 6679,
+    "sha256": "f682d67cfa896f5cdda1388a58dee46b33bdc37283d9c0ec9ab8b4b7f30307ab"
+  }
+]

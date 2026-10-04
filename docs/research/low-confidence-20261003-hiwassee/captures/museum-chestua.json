@@ -1,0 +1,15 @@
+{
+  "term": "Chestua",
+  "note": "Chordata search, including non-fish and unrelated waters; locality and taxonomy must be checked individually.",
+  "pages": [
+    {
+      "url": "https://api.gbif.org/v1/occurrence/search?country=US&stateProvince=Tennessee&basisOfRecord=PRESERVED_SPECIMEN&taxonKey=44&q=Chestua&limit=300&offset=0",
+      "retrievedAt": "2026-10-04T00:09:21.480634+00:00",
+      "responseSha256": "895e98c4fc942ab7d7a88a36b939ef457d89aa6b53c9aed51a7fd67ff354269a",
+      "count": 0,
+      "returned": 0,
+      "endOfRecords": true
+    }
+  ],
+  "records": []
+}
