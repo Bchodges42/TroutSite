@@ -517,3 +517,31 @@ Static mockups: `mockups/map-home.html` (phone and desktop) and `mockups/river-s
 
 **Batch 4: "One system" (ongoing, 2–3 weeks, can run in parallel with Batch 3).** P1-12 (single token source, CSS breakpoint consolidation, no-hex lint) · P1-14 (component consolidation) · P1-2 (content split `notes`/`editorNotes` plus content lint) · P1-9 (detail page with mini-map) · P2-3, P2-5–P2-8, P2-11, P2-12, P2-14 · bugs 4–6, 8–9.
 *Stops the drift from coming back.*
+
+---
+
+## 9. Implementation status
+
+### Batch 1 shipped on `claude/design-audit-20261004` (2026-10-04)
+
+| Finding | What changed | Commit |
+|---|---|---|
+| P0-4, bug 3 | One Trout/All fish control per screen. `Segmented` is the single token-driven segmented control (aria-pressed buttons in a group, not a tablist). The header toggle and the amber top-right copy are gone, and the list shows the control only on phones. A shared `?species=` link syncs into the setting. Also fixed: pressed filter chips had no style (`.filter-select[aria-pressed]` typo). Deleted dead `MapControls.tsx`. | `6fc7230` |
+| P1-1, P1-6, bug 2 | The legend uses theme tokens and the active theme's swatches. The hatch-mode chip shows the sulphur swatch. The on-map help paragraph is folded into the legend (closed-season row, focus-species note, "Sources & how scores work" link). | `fcfa392` |
+| P1-5, P2-1, P2-2 (map) | 56px header: Map · Match the hatch · Hatch calendar · Logbook, 40px search, icon-only theme toggle. The caption, privacy tagline and map eyebrow label are removed. | `f1df725` |
+| P1-11 | Phone river fit right padding 55→76px so the selected label clears the control column. | `db42b18` |
+| P1-13, P2-9 | The accent is limited to the primary action, the selection and the 2px focus ring. Links, tabs, pressed options and hovers use ink. The "/" hint is hidden on touch. | `6731ce9` |
+| P1-17 | Three themes (Daybreak, Nightfall, High contrast). Riverstone→Daybreak and Campfire→Nightfall migrate. Custom colors are kept as an accessibility aid behind a collapsed disclosure. | `71d94f0` |
+| Bug 1, bug 7, P2-12 | The hatch key filters fish orders out of results (page-level; the `matchHatch` contract is untouched) and shows the top 8 with "Show N more". Taxon photos are captioned as group representatives. The step title is no longer duplicated, and size hints are 13px. | `051f2c1` |
+| P1-3 (first pass), P2-13 | "Official sources" replaces "Verify officially / never authoritative" (detail) and "Check before you cast" (drawer). The Conditions intro is reworded. The detail subtitle is sentence case. | `cd5fc33` |
+| Found while implementing | `useSettings().update()` spread the rendered settings, which are defaults until IndexedDB loads, so an early write could wipe saved preferences. It now merges against the stored row in a Dexie transaction. Regression test added. | `cc8c871` |
+
+**Verification:** `tsc` clean. Unit tests 379/380 pass; the one failure is pre-existing (T2-59). `vite build` and the size budget pass. Every one of the 16 failing `web` + `fieldwork` e2e specs also fails on `origin/main`; that run failed 40, and nothing fails only on this branch. Logged as **T2-59** in `docs/KNOWN-ISSUES.md`. The changes were also screenshot-checked at 390/768/1440px in Daybreak and Nightfall.
+
+### Deliberately not done — needs an owner call
+
+- **P1-10 (flow arrows).** The 56px glyph with the red tip came from an explicit owner pass on 2026-09-10 (`flowArrows.ts`, `themes.ts` comments). The audit's quieter chevron would reverse that decision, so it waits for the owner.
+- **P1-19 (hide the Reports tab).** `docs/DESIGN.md` lists Reports as one of the five inspector sections in the canon. Hiding it while `reports: 0` is a canon change.
+- **P1-3 remainder.** The per-row "Verify at TWRA" links on Stocking are pinned by tests as intended behavior, and the Regulations page wording is protected by DESIGN.md judgment call 5. Both are left as they are. Catalog source labels with "(verify …)" wait for the content pass (P1-2).
+
+Batches 2–4 are not started.
