@@ -865,10 +865,6 @@ export function RiverMapPage() {
           </div>
         )}
         <div className="map-topbar">
-          <span className="map-view-label">
-            Tennessee waters <span aria-hidden="true"> / </span>{' '}
-            {mode === 'hatches' ? monthName(month) + ' hatches' : 'Conditions atlas'}
-          </span>
           <div className="map-topbar-right">
             {/* Dev-only affordance: reachable only while ?qa=1 is in the URL. */}
             {qaOn && (

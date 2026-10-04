@@ -15,6 +15,7 @@ import { SPRING } from '../motion/atlas-motion';
 import {
   BookIcon,
   BugIcon,
+  CalendarIcon,
   CloseIcon,
   FishIcon,
   GearIcon,
@@ -112,21 +113,24 @@ export function AppShell() {
       <header className="app-header">
         <Link to={mapUrl} className="brand" aria-label="Trout — explore waters">
           <span className="brand-mark">
-            <FishIcon size={30} />
+            <FishIcon size={22} />
           </span>
           <span className="brand-word">
             Trout<span className="brand-dot">.</span>
           </span>
-          <span className="brand-caption">THE FIELD ATLAS</span>
         </Link>
         <nav className="primary-nav" aria-label="Primary">
           <NavLink to={mapUrl} end className={isMap ? 'is-current' : ''}>
             <WavesIcon size={18} />
-            Explore waters
+            Map
           </NavLink>
           <NavLink to={contextual('/hatch-key')}>
             <BugIcon size={18} />
             Match the hatch
+          </NavLink>
+          <NavLink to={contextual('/charts')}>
+            <CalendarIcon size={18} />
+            Hatch calendar
           </NavLink>
           <NavLink to={contextual('/logbook')}>
             <BookIcon size={18} />
@@ -143,10 +147,6 @@ export function AppShell() {
           />
         </div>
         <div className="header-actions">
-          <span className="privacy-note">
-            <ShieldIcon size={15} />
-            On your device. Out in the wild.
-          </span>
           <ThemeToggle />
           <button
             ref={triggerRef}

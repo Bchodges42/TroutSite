@@ -172,15 +172,18 @@ a {
   font-weight: 600;
 }
 .page-main {
-  min-height: calc(100dvh - 76px);
+  min-height: calc(100dvh - 56px);
 }
+/* Header (design audit P1-5): 56px, one row — brand, four destinations,
+ * search, theme, menu. The caption, privacy tagline and species toggle that
+ * crowded it are gone (privacy lives on About; species lives on the map). */
 .app-header {
-  height: 76px;
+  height: 56px;
   flex-shrink: 0;
   display: flex;
   align-items: center;
   gap: 24px;
-  padding: 0 28px;
+  padding: 0 24px;
   border-bottom: 1px solid var(--ui-border);
   background: var(--ui-surface);
   position: relative;
@@ -189,13 +192,13 @@ a {
 .brand {
   display: flex;
   align-items: center;
-  gap: 11px;
+  gap: 8px;
   white-space: nowrap;
   text-decoration: none;
 }
 .brand-mark {
-  width: 43px;
-  height: 43px;
+  width: 32px;
+  height: 32px;
   display: grid;
   place-items: center;
   background: var(--ui-accent);
@@ -204,50 +207,42 @@ a {
 }
 .brand-word {
   font-family: var(--trout-font-display);
-  font-size: 32px;
+  font-size: 24px;
   font-weight: 650;
-  letter-spacing: -1.5px;
+  letter-spacing: -0.8px;
   line-height: 1;
 }
 .brand-dot {
   color: var(--ui-accent);
 }
-.brand-caption {
-  font-size: 10px;
-  letter-spacing: 0.18em;
-  max-width: 45px;
-  white-space: normal;
-  line-height: 1.6;
-  margin-left: 6px;
-  color: var(--ui-muted);
-}
 .primary-nav {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-left: 32px;
+  gap: 4px;
+  margin-left: 8px;
   height: 100%;
 }
 .primary-nav a {
   display: flex;
   align-items: center;
-  gap: 9px;
-  min-height: 44px;
-  padding: 0 15px;
+  gap: 8px;
+  min-height: 40px;
+  padding: 0 12px;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 500;
   text-decoration: none;
   white-space: nowrap;
   color: var(--ui-muted);
-  border-radius: 7px;
+  border-radius: 8px;
 }
 .primary-nav a:hover {
   background: var(--ui-subtle);
 }
 .primary-nav a.is-current,
 .primary-nav a[aria-current='page'] {
-  color: var(--ui-accent);
-  background: var(--ui-accentSoft);
+  color: var(--ui-text);
+  background: var(--ui-subtle);
+  font-weight: 600;
 }
 .header-search {
   display: flex;
@@ -256,10 +251,10 @@ a {
   justify-content: center;
 }
 .header-search .search-wrap {
-  width: min(100%, 480px);
+  width: min(100%, 360px);
 }
 .header-search .search-input {
-  height: 50px;
+  height: 40px;
   background: var(--ui-subtle);
   border-color: var(--ui-border);
   box-shadow: none;
@@ -274,18 +269,11 @@ a {
 .header-actions {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 8px;
   margin-left: auto;
   /* The actions cluster never shrinks — a squeezed fish-mode toggle clipped
      its labels to fragments ("Trout" → "t"). The search field absorbs. */
   flex-shrink: 0;
-}
-.privacy-note {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  font-size: 12px;
-  color: var(--ui-muted);
 }
 .theme-toggle {
   display: flex;
@@ -297,7 +285,11 @@ a {
   color: var(--ui-muted);
 }
 .theme-toggle > span:first-child {
-  font-size: 23px;
+  font-size: 20px;
+}
+/* Icon-only: the theme name is in the button's title and accessible name. */
+.theme-toggle .theme-name {
+  display: none;
 }
 .icon-button {
   width: 44px;
@@ -662,11 +654,11 @@ a {
 }
 .map-topbar {
   position: absolute;
-  top: 22px;
+  top: 24px;
   left: 24px;
   right: 24px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: flex-start;
   gap: 12px;
   z-index: 10;
@@ -741,22 +733,13 @@ a {
 .desktop-explore {
   display: block;
   position: absolute;
-  top: 54px;
-  left: 14px;
+  top: 24px;
+  left: 24px;
   z-index: 30;
 }
 .desktop-map-tools {
   display: flex;
   gap: 8px;
-}
-.map-view-label {
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  font-weight: 600;
-  color: var(--map-placeText);
-  text-transform: uppercase;
-  padding: 12px 0;
-  text-shadow: 0 1px var(--map-paper);
 }
 .layer-picker {
   position: absolute;
@@ -1837,20 +1820,7 @@ a {
     padding-top: 34px;
   }
 }
-.privacy-note {
-  white-space: nowrap;
-}
-@media (max-width: 1439px) {
-  /* Squeezed here, the privacy tagline left-clipped mid-word ("…ur device.")
-     at common laptop widths — it stays a wide-screen affordance only. */
-  .privacy-note {
-    display: none;
-  }
-}
 @media (max-width: 1240px) {
-  .brand-caption {
-    display: none;
-  }
   .primary-nav {
     margin-left: 0;
   }
@@ -1869,12 +1839,6 @@ a {
   }
   .water-sidebar.is-inspecting {
     width: 360px;
-  }
-  .map-view-label {
-    display: none;
-  }
-  .map-topbar {
-    justify-content: flex-end;
   }
 }
 @media (max-width: 900px) {
@@ -1969,9 +1933,6 @@ a {
     top: 122px;
     left: auto;
     right: 14px;
-  }
-  .map-view-label {
-    display: none;
   }
   .map-bottom {
     left: 14px;
