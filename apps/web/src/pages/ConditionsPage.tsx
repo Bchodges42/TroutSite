@@ -210,8 +210,8 @@ export function ConditionsPage() {
         />
       </div>
       <p className="page-subtitle mt-1">
-        Gauge readings with honest status for every water we track. Search a water, or start from
-        the waters below — the full catalog never opens on its own.
+        Live gauge readings and today&apos;s condition for every water we track. Search a water, or
+        start from the waters below.
       </p>
 
       <div className="discovery-search mt-4">

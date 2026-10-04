@@ -81,7 +81,7 @@ test('offline: hatch flow, charts, and last-known conditions stay fully function
   // restart resilience: the shell, catalog, and cached data survive a reload
   await page.reload();
   await expect(page.getByRole('heading', { name: 'Boone Tailwater' })).toBeVisible();
-  await expect(page.getByText(/Verify officially/)).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Official sources' })).toBeVisible();
 });
 
 test('wizard offers a clean start-over after an unremarkable bug', async ({ page }) => {

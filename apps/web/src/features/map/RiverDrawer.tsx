@@ -420,11 +420,8 @@ function WaterTab({
         </div>
       )}
       <div className="detail-section">
-        <h3>Check before you cast</h3>
-        <p>
-          Conditions can change quickly. Confirm releases, access, and regulations with the official
-          source.
-        </p>
+        {/* One provenance block, no repeated caution prose (design audit P1-3). */}
+        <h3>Official sources</h3>
         {feature.stream.officialSources.map((s) => (
           <a key={s.url} href={s.url} target="_blank" rel="noreferrer" className="text-action mr-3">
             {s.label} ↗

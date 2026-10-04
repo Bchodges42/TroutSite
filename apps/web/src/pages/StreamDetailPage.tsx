@@ -148,9 +148,10 @@ export function StreamDetailPage() {
       <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
         <div>
           <h1 className="page-title">{stream.name}</h1>
-          <p className="page-subtitle capitalize">
+          {/* Sentence case, matching the map drawer (design audit P2-13). */}
+          <p className="page-subtitle">
             {waterTypeLabel(stream.waterbodyType)} ·{' '}
-            {stream.stockingProgram ? 'stocking program listed' : 'no stocking program listed'}
+            {stream.stockingProgram ? 'Stocking program listed' : 'No stocking program listed'}
           </p>
           {snapshot != null && (
             <DetailSeasonChip
@@ -471,11 +472,11 @@ export function StreamDetailPage() {
         </>
       )}
 
-      <h2 className="section-title">Verify officially</h2>
+      {/* Design audit P1-3: one plain provenance line instead of a disclaimer. */}
+      <h2 className="section-title">Official sources</h2>
       <Card>
         <p className="mb-2 text-sm" style={{ color: 'var(--trout-color-text-muted)' }}>
-          This app is never authoritative on flows, regulations, or fees. Confirm at the official
-          sources:
+          Releases, regulations and fees are set by these agencies.
         </p>
         <ul className="list-disc pl-5 text-sm">
           {stream.officialSources.map((src) => (
