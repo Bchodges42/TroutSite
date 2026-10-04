@@ -62,7 +62,7 @@ export function RiverMapPage() {
     if ((urlSpecies === 'all' || urlSpecies === 'trout') && urlSpecies !== settings.speciesMode) {
       updateSettings({ speciesMode: urlSpecies });
     }
-  }, [urlSpecies, settings.speciesMode]);
+  }, [urlSpecies, settings.speciesMode, updateSettings]);
   const assessedOnly = params.get('assessed') === '1';
   const roadsOn = params.get('roads') === '1';
   // Persisted gauge overlay (feat/tn-gauge-layer) — a setting, not URL state:

@@ -26,9 +26,15 @@ export function useSettings(): [SettingsRecord, (patch: Partial<SettingsRecord>)
   }, []);
 
   const settings: SettingsRecord = { ...DEFAULT_SETTINGS, ...(stored ?? {}) };
+  // Merge against the STORED row, not the rendered value: until IndexedDB
+  // loads, `settings` is the defaults, and spreading those would overwrite
+  // every saved preference (e.g. a shared ?species= link synced on mount).
   const update = (patch: Partial<SettingsRecord>) => {
-    const next = { ...settings, ...patch };
-    void db.settings.put({ key: SETTINGS_KEY, value: next });
+    void db.transaction('rw', db.settings, async () => {
+      const row = await db.settings.get(SETTINGS_KEY);
+      const saved = (row?.value ?? {}) as Partial<SettingsRecord>;
+      await db.settings.put({ key: SETTINGS_KEY, value: { ...DEFAULT_SETTINGS, ...saved, ...patch } });
+    });
   };
 
   return [settings, update];
