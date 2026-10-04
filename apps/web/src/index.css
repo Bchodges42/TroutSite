@@ -818,54 +818,19 @@ a {
 .map-bottom > * {
   pointer-events: auto;
 }
-.map-legend {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 15px;
-  padding: 12px 16px;
+/* Feed-outage status: the one map-help line that survived (P1-6) — it
+ * changes the meaning of every color, so it stays visible. */
+.map-status-note {
+  margin-top: 8px;
+  max-width: 340px;
+  padding: 8px 12px;
+  border-radius: 8px;
   background: var(--ui-surface);
   border: 1px solid var(--ui-border);
-  border-radius: 8px;
   box-shadow: var(--ui-shadow);
-  font-size: 12px;
-}
-.legend-title {
-  font-weight: 600;
-}
-.legend-line {
-  display: inline-block;
-  width: 17px;
-  height: 3px;
-  border-radius: 4px;
-  vertical-align: middle;
-  margin-right: 5px;
-  background: var(--status-color);
-}
-/* M1: the unassessed sample shows what the map actually renders — the pale
-continuous corridor under a dashed quiet line — not a bare thin dash. */
-.legend-line.unknown {
-  height: 6px;
-  border-radius: 4px;
-  background:
-    repeating-linear-gradient(90deg, var(--ui-unknown) 0 5px, transparent 5px 9px) center / 100% 2px
-      no-repeat,
-    color-mix(in srgb, var(--map-water) 55%, var(--ui-surface));
-}
-/* M1: amber halo sample matches the rendered hatch glow. */
-.legend-line.halo {
-  height: 6px;
-  background: var(--map-sulphur);
-  box-shadow: 0 0 5px 2px color-mix(in srgb, var(--map-sulphur) 55%, transparent);
-}
-.map-help {
-  color: var(--map-placeText);
-  font-size: 12px;
-  margin: 8px 0 0;
-  text-shadow: 0 0 3px var(--map-paper);
-}
-.map-help a {
-  text-decoration: underline;
+  font-size: 13px;
+  line-height: 18px;
+  color: var(--ui-text);
 }
 .map-location-note {
   position: absolute;
@@ -1793,6 +1758,53 @@ continuous corridor under a dashed quiet line — not a bare thin dash. */
   border-radius: 8px;
   font-weight: 600;
 }
+/* Map legend (design audit P1-1): every color from theme tokens. The panel
+ * used hard-coded dark-glass text (#EAF2ED / #9FB5AA) that measured 1.14:1
+ * on the Daybreak surface. */
+.legend-panel {
+  width: 248px;
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-size: 12px;
+  line-height: 16px;
+}
+.legend-title {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+  color: var(--ui-text);
+}
+.legend-label {
+  color: var(--ui-text);
+}
+.legend-note {
+  color: var(--ui-muted);
+}
+.legend-divider {
+  border-top: 1px solid var(--ui-border);
+}
+.legend-footer a {
+  color: var(--ui-text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.legend-chip {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ui-text);
+}
+.legend-collapse {
+  width: 32px;
+  min-height: 32px;
+  border-radius: 8px;
+  color: var(--ui-muted);
+}
+@media (pointer: coarse) {
+  .legend-collapse {
+    width: 44px;
+    min-height: 44px;
+  }
+}
 .atlas-chip--primary {
   background: var(--ui-accent);
   color: var(--ui-onAccent);
@@ -1966,19 +1978,6 @@ continuous corridor under a dashed quiet line — not a bare thin dash. */
     right: 64px;
     bottom: 27px;
   }
-  .map-legend {
-    gap: 11px;
-    padding: 10px 12px;
-    font-size: 12px;
-    width: fit-content;
-  }
-  .map-legend .legend-title {
-    display: none;
-  }
-  .map-help {
-    max-width: 270px;
-    font-size: 11px;
-  }
   .field-map:has(.is-inspecting) .map-bottom {
     display: none;
   }
@@ -2088,9 +2087,6 @@ continuous corridor under a dashed quiet line — not a bare thin dash. */
   }
   .header-search .search-icon {
     left: 10px;
-  }
-  .map-legend {
-    gap: 8px;
   }
   .inspector-title-row h2 {
     font-size: 24px;
@@ -2279,9 +2275,6 @@ html.reduce-motion *::after {
   font-style: normal;
   font-weight: 500;
   color: var(--ui-faint);
-}
-.legend-line.warmwater {
-  background: var(--ui-warmwater);
 }
 
 /* Conditions discovery — search first, small relevant strips, capped results */

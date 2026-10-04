@@ -469,9 +469,9 @@ test('legend speaks trout conditions in trout mode and stays honest in all-fish 
   const guideLegend = page.locator('[aria-label="Water guide legend"]');
   await expect(guideLegend).toContainText('Water guide');
   await expect(guideLegend).toContainText('Warmwater — bass & panfish');
-  await expect(page.locator('.map-help')).toContainText(
-    'Good, Fair, and Poor describe trout waters only',
-  );
+  // The on-map help paragraph is gone (design audit 2026-10-04, P1-6); the
+  // legend carries the explanation and the sources link.
+  await expect(guideLegend.getByRole('link', { name: /Sources & how scores work/ })).toBeVisible();
 });
 
 test('named map waters are independently selectable', async ({ page }) => {

@@ -924,19 +924,18 @@ export function RiverMapPage() {
             species={species}
             hasAssessedConditions={assessedIds.size > 0}
             fisheryCounts={fisheryTypeCounts(data.streams ?? [])}
+            focusLabel={species === 'all' && focusSpecies ? SPECIES_LABELS[focusSpecies] : null}
+            footer={<Link to="/about">Sources &amp; how scores work</Link>}
           />
-          <p className="map-help">
-            {mode === 'hatches'
-              ? 'Amber halos mark waters with regional hatch guidance for the selected month — something hatches year-round; open a water for what is expected and how strong.'
-              : species === 'all' && focusSpecies
-                ? `Colors show ${SPECIES_LABELS[focusSpecies]} fishability from the latest snapshots — pick the species in the filter row.`
-                : coverageUnavailable
-                  ? 'The conditions feed has no observations right now — every water reads Unassessed until the gauge feed recovers.'
-                  : species === 'all'
-                    ? 'Blue outlines mark trout opportunities, amber marks warmwater focus; dimmed dashed waters have a closed documented regulatory window.'
-                    : 'Bright lines mark trout opportunities, not confirmed fish presence today. Dimmed dashed lines have a closed documented regulatory window. Unclassified waters say so instead of guessing.'}{' '}
-            <Link to="/about">Sources & privacy ↗</Link>
-          </p>
+          {/* The help paragraph that sat on the map (11px on phones, running
+          under river lines and the zoom stack on desktop) is gone — its
+          content lives in the legend (design audit P1-6). The feed-outage
+          case keeps a visible status line because it changes every color. */}
+          {coverageUnavailable && mode === 'conditions' && (
+            <p className="map-status-note" role="status">
+              Gauge feed has no observations right now — waters read Unassessed until it recovers.
+            </p>
+          )}
         </div>
       </div>
     </div>

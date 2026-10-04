@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, type ReactNode } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
-import { atlas } from './mapTokens';
+import { useTheme } from '../../theme/ThemeProvider';
 import { SPRING } from '../../components/motion/atlas-motion';
 import { FISHERY_TYPE_LABELS, type FisheryType, type FisheryTypeCounts } from './fisheryType';
 
@@ -61,6 +61,8 @@ export function MapLegend({
   species,
   hasAssessedConditions,
   fisheryCounts,
+  focusLabel,
+  footer,
 }: {
   mode: 'conditions' | 'hatches';
   species: 'trout' | 'all';
@@ -68,7 +70,14 @@ export function MapLegend({
   hasAssessedConditions: boolean;
   /** Water-class counts across the loaded catalog (fisheryTypeCounts). */
   fisheryCounts?: FisheryTypeCounts;
+  /** All-fish mode with a focus species: names whose fishability the colors show. */
+  focusLabel?: string | null;
+  /** Sources link row (router-aware link supplied by the map page). */
+  footer?: ReactNode;
 }) {
+  // Swatches read the ACTIVE theme's map palette — the legend used to show
+  // Nightfall swatches on the Daybreak map (design audit 2026-10-04, P1-1).
+  const atlas = useTheme().theme.map;
   const [open, setOpen] = useState<boolean>(() => localStorage.getItem(OPEN_KEY) === '1');
   const toggle = () =>
     setOpen((v) => {
@@ -108,26 +117,26 @@ export function MapLegend({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 6, scale: 0.96 }}
             transition={SPRING.snappy}
-            className="atlas-glass w-[236px] rounded-2xl px-3.5 py-3 text-xs"
+            className="atlas-glass legend-panel"
             aria-label={panelLabel}
           >
             <div className="flex items-center gap-2">
-              <p className="font-bold text-[#EAF2ED]">{panelTitle}</p>
+              <p className="legend-title">{panelTitle}</p>
               <button
                 type="button"
                 onClick={toggle}
                 aria-expanded={open}
                 aria-label="Hide legend"
-                className="atlas-chip ml-auto h-7 w-7 rounded-full text-[#9FB5AA]"
+                className="atlas-chip legend-collapse ml-auto"
               >
                 <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" aria-hidden focusable="false"><path d="m6 9 6 6 6-6" /></svg>
               </button>
             </div>
             {mode === 'hatches' ? (
               <>
-                {/* T2-29: the halo marks ANY charted regional guidance (the
-                map help says the same) — no "dominant hatch" claim. */}
-                <p className="mt-1 text-[#9FB5AA]">
+                {/* T2-29: the halo marks ANY charted regional guidance — no
+                "dominant hatch" claim. */}
+                <p className="legend-note mt-1">
                   Amber halo = the water's region has hatch guidance for the selected month
                 </p>
                 <div className="mt-1.5 flex gap-2">
@@ -137,7 +146,7 @@ export function MapLegend({
               </>
             ) : grouping ? (
               <>
-                <p className="mt-1 text-[#9FB5AA]">
+                <p className="legend-note mt-1">
                   Every mapped water, by fishery class. Blue halo = trout-class water, amber = warmwater.
                 </p>
                 <ul className="mt-1.5 space-y-1" aria-label="Water classes">
@@ -148,39 +157,45 @@ export function MapLegend({
                       ) : (
                         <CorridorGlyph color={atlas.troutOutline} />
                       )}
-                      <span className="text-[#EAF2ED]">{FISHERY_TYPE_LABELS[t]}</span>
+                      <span className="legend-label">{FISHERY_TYPE_LABELS[t]}</span>
                       {fisheryCounts && (
-                        <span className="ml-auto text-[#9FB5AA]">{fisheryCounts[t]}</span>
+                        <span className="legend-note ml-auto">{fisheryCounts[t]}</span>
                       )}
                     </li>
                   ))}
                 </ul>
-                <p className="mt-2 text-[#9FB5AA]">
+                <p className="legend-note mt-2">
                   Zoom in — regional waters appear around z7½, local creeks alongside the fine
                   stream network near z9½. Only headline waters show statewide.
                 </p>
                 {species === 'all' && (
-                  <p className="mt-2 border-t pt-2 text-[#9FB5AA]" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
+                  <p className="legend-note legend-divider mt-2 pt-2">
                     Bass &amp; panfish waters sit under Other fish waters.
                   </p>
                 )}
               </>
             ) : (
               <>
-                <p className="mt-1 text-[#9FB5AA]">Flow + temp → 0–100 · Good ≥70 · Fair ≥40</p>
+                <p className="legend-note mt-1">
+                  {focusLabel
+                    ? `${focusLabel} fishability, 0–100 · Good ≥70 · Fair ≥40`
+                    : 'Flow + temp → 0–100 · Good ≥70 · Fair ≥40'}
+                </p>
                 <div className="mt-1.5 flex flex-wrap gap-x-2 gap-y-1">
                   <LegendSwatch color={atlas.good} label="Good" />
                   <LegendSwatch color={atlas.fair} label="Fair" />
                   <LegendSwatch color={atlas.poor} label="Poor" />
                   <LegendSwatch color={atlas.noData} label="No data" />
                 </div>
+                <p className="legend-note mt-1.5">Dimmed dashed line = closed season</p>
               </>
             )}
             {mode === 'conditions' && hasAssessedConditions && species === 'all' && (
-              <div className="mt-2 border-t pt-2" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
+              <div className="legend-divider mt-2 pt-2">
                 <LegendSwatch color={atlas.warmwater} label="Warmwater — bass & panfish" />
               </div>
             )}
+            {footer && <div className="legend-divider legend-footer mt-2 pt-2">{footer}</div>}
           </motion.div>
         ) : (
           <motion.button
@@ -196,10 +211,12 @@ export function MapLegend({
             transition={SPRING.snappy}
             whileHover={{ y: -1 }}
             whileTap={{ scale: 0.97 }}
-            className="atlas-glass atlas-chip h-10 gap-2 px-3 text-xs font-bold text-[#EAF2ED]"
+            className="atlas-glass atlas-chip legend-chip h-10 gap-2 px-3"
           >
             <span className="flex gap-1" aria-hidden>
-              {grouping ? (
+              {mode === 'hatches' ? (
+                <span className="h-2.5 w-2.5 rounded-full" style={{ background: atlas.sulphur }} />
+              ) : grouping ? (
                 <span
                   className="inline-block h-2.5 w-2.5 rounded-full border-2"
                   style={{ borderColor: atlas.noData }}
