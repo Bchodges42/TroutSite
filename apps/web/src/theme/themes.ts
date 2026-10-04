@@ -35,7 +35,7 @@ export interface MapPalette {
   reliefBrightness: number;
 }
 export interface ThemeDefinition {
-  id: 'daybreak' | 'nightfall' | 'riverstone' | 'high-contrast' | 'campfire';
+  id: 'daybreak' | 'nightfall' | 'high-contrast';
   name: string;
   scheme: 'light' | 'dark';
   colors: Record<
@@ -238,64 +238,6 @@ export const themes: Record<ThemeId, ThemeDefinition> = {
       reliefBrightness: 1,
     },
   },
-  riverstone: {
-    id: 'riverstone',
-    name: 'Riverstone',
-    scheme: 'light',
-    colors: {
-      bg: '#edf2f4',
-      surface: '#f8fbfc',
-      subtle: '#e7eef0',
-      raised: '#d6e2e5',
-      text: '#19323a',
-      muted: '#4b6870',
-      faint: '#607b83',
-      border: '#c9d8dc',
-      borderStrong: '#718e96',
-      accent: '#2e6f7e',
-      accentHover: '#245765',
-      accentSoft: '#dfedf0',
-      onAccent: '#ffffff',
-      good: '#1f7a62',
-      fair: '#9a6b0b',
-      poor: '#b54845',
-      unknown: '#5f7780',
-      warmwater: '#7d6042',
-      shadow: '0 6px 30px rgb(25 50 58 / 0.1)',
-    },
-    map: {
-      paper: '#d9e5e8',
-      paperRaised: '#eef5f6',
-      paperWarm: '#e5edef',
-      ink: '#eef5f6',
-      softInk: '#5d7b83',
-      inkFaint: '#81969c',
-      water: '#337e91',
-      good: '#21836c',
-      fair: '#95690c',
-      poor: '#b94a45',
-      noData: '#5e7880',
-      warmwater: '#8b6c49',
-      troutOutline: '#1b7fa8',
-      warmOutline: '#b06f14',
-      flowArrow: '#22343c',
-      flowArrowHalo: '#ffffff',
-      flowArrowTip: '#c2342c',
-      sulphur: '#b9792d',
-      selection: '#2e6f7e',
-      hover: '#21444d',
-      contour: '#aec4c7',
-      hairline: '#91aaaf',
-      lakeFill: '#b5dce3',
-      lakeShore: '#6da8b4',
-      shadow: 'rgb(25 50 58 / 0.14)',
-      placeText: '#41616a',
-      placeHalo: '#eef5f6',
-      road: '#c6d5d7',
-      reliefOpacity: 0.28,
-      reliefBrightness: 1,
-    },
-  },
   'high-contrast': {
     id: 'high-contrast',
     name: 'High contrast',
@@ -354,64 +296,6 @@ export const themes: Record<ThemeId, ThemeDefinition> = {
       reliefBrightness: 1,
     },
   },
-  campfire: {
-    id: 'campfire',
-    name: 'Campfire',
-    scheme: 'dark',
-    colors: {
-      bg: '#1e1715',
-      surface: '#2a1e1b',
-      subtle: '#362722',
-      raised: '#4a332b',
-      text: '#f9eee7',
-      muted: '#d2b9ad',
-      faint: '#b79b8f',
-      border: '#594037',
-      borderStrong: '#8b6252',
-      accent: '#f1a15e',
-      accentHover: '#ffbe7e',
-      accentSoft: '#513126',
-      onAccent: '#291a12',
-      good: '#8fd0a7',
-      fair: '#e6bf74',
-      poor: '#f4998c',
-      unknown: '#b79b8f',
-      warmwater: '#d8b48a',
-      shadow: '0 8px 34px rgb(0 0 0 / 0.36)',
-    },
-    map: {
-      paper: '#261c1a',
-      paperRaised: '#3b2925',
-      paperWarm: '#4b3026',
-      ink: '#1d1615',
-      softInk: '#c5a99b',
-      inkFaint: '#97786d',
-      water: '#5fb1c0',
-      good: '#7bd0a6',
-      fair: '#e6bc6e',
-      poor: '#e98b81',
-      noData: '#a78b7d',
-      warmwater: '#d2ac7f',
-      troutOutline: '#6fd0e8',
-      warmOutline: '#f2a94f',
-      flowArrow: '#f2f7f4',
-      flowArrowHalo: '#0d181c',
-      flowArrowTip: '#ff6b5e',
-      sulphur: '#ebbd6e',
-      selection: '#f1a15e',
-      hover: '#f8eee6',
-      contour: '#624940',
-      hairline: '#806054',
-      lakeFill: '#20515d',
-      lakeShore: '#3e7f8c',
-      shadow: 'rgb(0 0 0 / 0.34)',
-      placeText: '#d6c1b6',
-      placeHalo: '#332622',
-      road: '#55433c',
-      reliefOpacity: 0.4,
-      reliefBrightness: 1,
-    },
-  },
 };
 export const foundations = {
   'font-body': "'IBM Plex Sans', system-ui, sans-serif",
@@ -433,13 +317,22 @@ export const foundations = {
 export const THEME_KEY = 'trout:theme';
 export const isThemeId = (id: unknown): id is ThemeId =>
   typeof id === 'string' && Object.prototype.hasOwnProperty.call(themes, id);
+/**
+ * Retired presets (design audit 2026-10-04, P1-17: three curated themes, not
+ * five) resolve to their nearest survivor so a saved choice never breaks.
+ */
+const RETIRED_THEMES: Record<string, ThemeId> = { riverstone: 'daybreak', campfire: 'nightfall' };
+export function migrateThemeId(id: unknown): ThemeId | null {
+  if (isThemeId(id)) return id;
+  return typeof id === 'string' ? (RETIRED_THEMES[id] ?? null) : null;
+}
 export function initialTheme(): ThemeId {
   try {
     const requested = new URLSearchParams(window.location.search).get('basemap');
     if (requested === 'paper') return 'daybreak';
     if (requested === 'ink') return 'nightfall';
-    const saved = localStorage.getItem(THEME_KEY);
-    if (isThemeId(saved)) return saved;
+    const saved = migrateThemeId(localStorage.getItem(THEME_KEY));
+    if (saved) return saved;
     return localStorage.getItem('trout:basemap') === 'ink' ? 'nightfall' : 'daybreak';
   } catch {
     return 'daybreak';

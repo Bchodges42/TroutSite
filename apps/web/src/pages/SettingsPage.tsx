@@ -68,37 +68,40 @@ export function SettingsPage() {
             </button>
           ))}
         </div>
-        <p className="page-subtitle mt-4">
-          Start with a preset, then tune the colors below. Your choices stay on this device and do
-          not change the shared site.
-        </p>
       </Card>
 
-      <h2 className="section-title">Custom colors</h2>
-      <Card>
-        <div className="custom-color-grid">
-          {customColorControls.map((control) => (
-            <CustomColorField
-              key={control.key}
-              theme={theme}
-              control={control}
-              onChange={setCustomColor}
-            />
-          ))}
-        </div>
-        <div className="custom-color-actions">
-          <Button
-            variant="secondary"
-            onClick={resetCustomColors}
-            disabled={!Object.keys(customColors).length}
-          >
-            Reset {theme.name} colors
-          </Button>
-          <span className="page-subtitle">
-            High contrast is a good starting point for low vision or color-vision differences.
-          </span>
-        </div>
-      </Card>
+      {/* Custom colors stay available as an accessibility aid, but collapsed:
+      three curated themes are the product look (design audit P1-17). */}
+      <details className="settings-disclosure mt-4">
+        <summary>Accessibility · custom colors</summary>
+        <Card className="mt-3">
+          <p className="page-subtitle mb-3">
+            Adjust colors for low vision or color-vision differences. Changes stay on this device.
+          </p>
+          <div className="custom-color-grid">
+            {customColorControls.map((control) => (
+              <CustomColorField
+                key={control.key}
+                theme={theme}
+                control={control}
+                onChange={setCustomColor}
+              />
+            ))}
+          </div>
+          <div className="custom-color-actions">
+            <Button
+              variant="secondary"
+              onClick={resetCustomColors}
+              disabled={!Object.keys(customColors).length}
+            >
+              Reset {theme.name} colors
+            </Button>
+            <span className="page-subtitle">
+              High contrast is a good starting point for low vision or color-vision differences.
+            </span>
+          </div>
+        </Card>
+      </details>
       <h2 className="section-title">Waters</h2>
       <Card>
         <p className="font-bold">Species mode</p>
@@ -134,8 +137,7 @@ export function SettingsPage() {
               ))}
             </select>
             <span className="page-subtitle mt-1 block">
-              Used on waters whose snapshots carry this species; waters without it stay
-              unassessed.
+              Used on waters whose snapshots carry this species; waters without it stay unassessed.
             </span>
           </label>
         )}
