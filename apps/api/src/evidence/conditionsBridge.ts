@@ -33,7 +33,7 @@ import { TVA_MONITORS, TVA_SCHEDULE_MONITORS } from './monitors.js';
  * warning + errors count — the run only hard-fails on a crash.
  */
 
-const TVA_BROWSER_UA =
+export const TVA_BROWSER_UA =
   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36';
 
 /**

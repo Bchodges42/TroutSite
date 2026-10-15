@@ -117,6 +117,18 @@ fi
 if bash infra/verify-site.sh --url "$URL" >> "$LOG" 2>&1; then
   log "verify ok — refreshing the last-good archive"
   bash infra/archive-snapshots.sh >> "$LOG" 2>&1 || log "WARN — archive refresh failed"
+  # Daily truth check: published data vs USGS/TVA/TWRA (pages on its own status).
+  TRUTH_STAMP="$BACKUPS/truth-check.epoch"
+  last_truth="$(cat "$TRUTH_STAMP" 2>/dev/null || echo 0)"
+  case "$last_truth" in ''|*[!0-9]*) last_truth=0 ;; esac
+  if [ -f "$ROOT/infra/truth-check.sh" ] && [ $((now_epoch - last_truth)) -gt $((20 * 3600)) ]; then
+    echo "$now_epoch" > "$TRUTH_STAMP"
+    if bash infra/truth-check.sh >> "$LOG" 2>&1; then
+      log "truth check ok — published data agrees with USGS/TVA/TWRA"
+    else
+      log "WARN — truth check reported findings or an unreachable source (see backups/truth-check.log)"
+    fi
+  fi
   trout_set_status "OK"
   exit 0
 fi
