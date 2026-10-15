@@ -4,7 +4,7 @@ import { useLiveQuery } from 'dexie-react-hooks';
 import { regionName, monthName } from '../../data/regions';
 import { formatFlow, formatTemp, formatHeight } from '../../lib/units';
 import { flowTrend, TREND_LABEL } from '../../lib/conditions';
-import { orderedReadings, conditionReason, waterIdentity, waterTypeLabel } from '../../lib/presentation';
+import { orderedReadings, conditionReason, gaugeSourceLabel, waterIdentity, waterTypeLabel } from '../../lib/presentation';
 import { useSettingsContext } from '../../lib/settings';
 import { useContentPack } from '../../lib/content';
 import { riverWorkflowUrl } from '../../lib/riverContext';
@@ -267,7 +267,7 @@ function WaterTab({
           </strong>
           <small>
             {flow
-              ? 'USGS ' + flow.gaugeId
+              ? gaugeSourceLabel(flow.gaugeId)
               : stage?.heightFt != null
                 ? 'Stage ' + formatHeight(stage.heightFt)
                 : 'No flow observation'}
@@ -285,7 +285,7 @@ function WaterTab({
           <small>
             {['lake', 'pond'].includes(feature.stream.waterbodyType)
               ? reservoirLevel ? 'Measured reservoir level context' : 'Check current reservoir level'
-              : temp ? 'USGS ' + temp.gaugeId : 'Check water before fishing'}
+              : temp ? gaugeSourceLabel(temp.gaugeId) : 'Check water before fishing'}
           </small>
         </div>
       </div>
@@ -388,7 +388,7 @@ function WaterTab({
         ) : (
           readings.map((r, i) => (
             <div className="reading-row" key={r.gaugeId + r.timestamp + i}>
-              <strong>USGS {r.gaugeId}</strong>
+              <strong>{gaugeSourceLabel(r.gaugeId)}</strong>
               <span>
                 {[
                   r.cfs != null ? formatFlow(r.cfs) : null,

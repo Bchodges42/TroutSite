@@ -40,3 +40,14 @@ export function waterTypeLabel(waterbodyType: string): string {
       return 'River';
   }
 }
+
+/**
+ * Human source label for a gauge id. Ids are namespaced by the API: bare digits
+ * are USGS sites, "tva:" TVA dam observations (hour-ending average release),
+ * "usace:" Corps of Engineers tailwater series. Never print "USGS tva:HADT1".
+ */
+export function gaugeSourceLabel(gaugeId: string): string {
+  if (gaugeId.startsWith('tva:')) return `TVA dam release ${gaugeId.slice(4)}`;
+  if (gaugeId.startsWith('usace:')) return `USACE tailwater ${gaugeId.slice(6)}`;
+  return `USGS ${gaugeId}`;
+}
