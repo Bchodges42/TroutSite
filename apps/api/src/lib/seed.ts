@@ -17,6 +17,7 @@ interface StreamRow {
   hydro_identity: string | null;
   display: string | null;
   gauge_ids: string;
+  gauge_policy: string | null;
   stocking_program: number;
   ideal_flow: string;
   ideal_flow_source: string | null;
@@ -50,17 +51,17 @@ export function seedContent(db: Db, contentDir: string): SeedResult {
   const insertStream = db.prepare(`
     INSERT INTO streams (id, name, aliases, state_id, waterbody_type, region_id, display, gauge_ids,
                          hydro_identity, stocking_program, ideal_flow, ideal_flow_source, season_months, season_kind,
-                         species_evidence, notes, official_sources, species, target_species, fishery, year_round, opportunity)
+                         species_evidence, notes, official_sources, species, target_species, fishery, year_round, opportunity, gauge_policy)
     VALUES (@id, @name, @aliases, @state_id, @waterbody_type, @region_id, @display, @gauge_ids,
             @hydro_identity, @stocking_program, @ideal_flow, @ideal_flow_source, @season_months, @season_kind,
-            @species_evidence, @notes, @official_sources, @species, @target_species, @fishery, @year_round, @opportunity)
+            @species_evidence, @notes, @official_sources, @species, @target_species, @fishery, @year_round, @opportunity, @gauge_policy)
     ON CONFLICT(id) DO UPDATE SET
       name=@name, aliases=@aliases, state_id=@state_id, waterbody_type=@waterbody_type, region_id=@region_id,
       display=@display, gauge_ids=@gauge_ids, hydro_identity=@hydro_identity, stocking_program=@stocking_program, ideal_flow=@ideal_flow,
       ideal_flow_source=@ideal_flow_source, season_months=@season_months, season_kind=@season_kind,
       species_evidence=@species_evidence,
       notes=@notes, official_sources=@official_sources, species=@species, target_species=@target_species,
-      fishery=@fishery, year_round=@year_round, opportunity=@opportunity
+      fishery=@fishery, year_round=@year_round, opportunity=@opportunity, gauge_policy=@gauge_policy
   `);
   const insertShop = db.prepare(`
     INSERT INTO shops (id, name, state_id, town, website_url, reports_enabled)
@@ -89,6 +90,7 @@ export function seedContent(db: Db, contentDir: string): SeedResult {
       hydro_identity: s.hydroIdentity ? JSON.stringify(s.hydroIdentity) : null,
       display: s.display ?? null,
       gauge_ids: JSON.stringify(s.gaugeIds),
+      gauge_policy: s.gaugePolicy ? JSON.stringify(s.gaugePolicy) : null,
       stocking_program: s.stockingProgram ? 1 : 0,
       ideal_flow: JSON.stringify(s.idealFlow),
       ideal_flow_source: s.idealFlowSource ?? null,

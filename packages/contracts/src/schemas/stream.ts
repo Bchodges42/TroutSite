@@ -154,6 +154,17 @@ export const HydroIdentitySchema = z
   });
 export type HydroIdentity = z.infer<typeof HydroIdentitySchema>;
 
+export const GaugePolicySchema = z.object({
+  primary: z.object({
+    cfs: z.string().optional(), tempC: z.string().optional(), heightFt: z.string().optional(),
+    dissolvedOxygenMgL: z.string().optional(), reservoirLevelFt: z.string().optional(),
+    precipitationMm: z.string().optional(),
+  }),
+  references: z.array(z.object({ gaugeId: z.string(), note: z.string().min(1) })),
+  note: z.string().min(1),
+});
+export type GaugePolicy = z.infer<typeof GaugePolicySchema>;
+
 export const StreamSchema = z.object({
   id: z.string().min(1),
   name: z.string().min(1),
@@ -165,6 +176,7 @@ export const StreamSchema = z.object({
   hydroIdentity: HydroIdentitySchema.optional(),
   display: DisplayTierSchema.optional(),
   gaugeIds: z.array(z.string().min(1)),
+  gaugePolicy: GaugePolicySchema.optional(),
   stockingProgram: z.boolean(),
   idealFlow: z.array(IdealFlowSchema),
   idealFlowSource: z.enum(['editorial', 'official', 'measured', 'derived']).optional(),
@@ -199,6 +211,18 @@ export const StreamSchema = z.object({
   notes: z.string().optional(),
   officialSources: z.array(OfficialSourceSchema),
 }).superRefine((stream, ctx) => {
+  if (stream.gaugePolicy) {
+    const references = new Set(stream.gaugePolicy.references.map((r) => r.gaugeId));
+    for (const [metric, gaugeId] of Object.entries(stream.gaugePolicy.primary)) {
+      if (!stream.gaugeIds.includes(gaugeId) || references.has(gaugeId)) {
+        ctx.addIssue({ code: z.ZodIssueCode.custom, path: ['gaugePolicy', 'primary', metric],
+          message: 'primary gauge must be configured and must not be reference-only' });
+      }
+    }
+    for (const gaugeId of references) if (!stream.gaugeIds.includes(gaugeId)) {
+      ctx.addIssue({ code: z.ZodIssueCode.custom, path: ['gaugePolicy', 'references'], message: 'reference gauge must be configured' });
+    }
+  }
   if (['river', 'creek', 'tailrace', 'spring'].includes(stream.waterbodyType) && stream.hydroIdentity === undefined) {
     ctx.addIssue({ code: z.ZodIssueCode.custom, path: ['hydroIdentity'], message: 'hydroIdentity is required for selectable line waters' });
   }

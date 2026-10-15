@@ -7,7 +7,7 @@ sizeRange:
   - 20
   - 24
 keyAttributes:
-  tails: 2
+  tails: 0
   gills: none
   bodyShape: slender
   bodyColor:
@@ -56,4 +56,5 @@ stages:
 notes: Purse-case micro-caddis that appear as drifting gray specks — tailwater "aquatic dust"
   that occasionally clusters into significant riser events.
 sources:
+  - https://www.epa.gov/system/files/documents/2024-06/macroinvertebrate-id-tipsheet.pdf
   - https://bugguide.net

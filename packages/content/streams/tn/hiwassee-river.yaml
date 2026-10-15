@@ -106,3 +106,14 @@ opportunity:
       to Labor Day (node n-SfEsRH).
     - "Species note: the forecast lists Brook, Brown, Cutthroat and Rainbow as species caught; brood
       brook trout (2-3 lb) were stocked in winter per the 2026 biologist report."
+
+gaugePolicy:
+  primary:
+    cfs: tva:HADT1
+    tempC: "03556590"
+  references:
+    - gaugeId: "03566000"
+      note: Charleston is downstream of the fished Reliance reach; its discharge
+        series ended in 2018.
+  note: Appalachia release flow and the in-reach temperature sensor measure
+    different locations; source labels remain separate.

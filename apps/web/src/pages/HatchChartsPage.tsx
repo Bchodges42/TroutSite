@@ -28,7 +28,7 @@ export function HatchChartsPage() {
       <p className="eyebrow mb-3">A season on the water</p>
       <h1 className="page-title">Hatch calendar.</h1>
       <p className="page-subtitle">
-        What comes off the water, month by month. Cached for offline use.
+        Regional hatch guidance, month by month. Cached for offline use.
       </p>
 
       <div className="mt-4 flex flex-wrap gap-2" role="group" aria-label="Region">
@@ -65,9 +65,9 @@ export function HatchChartsPage() {
 
       <Card className="mt-6">
         <p className="text-sm">
-          Charts summarize regional hatch timing from the content pack — expected activity, not a
-          guarantee. Something hatches year-round in Tennessee: every month lists what is moving,
-          from light to peak. Always verify conditions on the water.
+          Timing and abundance ratings are editorial guidance. Published specimen records, where
+          linked, establish presence at their stated sites and dates; they do not validate the
+          whole calendar. Check the water for current insects.
         </p>
       </Card>
       <p className="page-subtitle mt-3">Viewing the {monthName(now)} chart is one tap away.</p>

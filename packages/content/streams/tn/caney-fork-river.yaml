@@ -92,3 +92,14 @@ opportunity:
       water within the ~15-mile trout reach."
     - Generation swings below Center Hill Dam are dramatic; check the TVA Center Hill schedule (node
       n-694pXX) before wading.
+
+gaugePolicy:
+  primary:
+    cfs: usace:CETT1
+    tempC: usace:CETT1
+  references:
+    - gaugeId: "03424860"
+      note: Stonewall is downstream of the principal tailwater and includes
+        intervening tributary flow.
+  note: Center Hill dam instruments represent the dam tailwater; Stonewall is
+    downstream context.

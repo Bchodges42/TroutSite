@@ -445,6 +445,7 @@ function ConditionRow({
                 ? `Observed ${ageMinutes(observedAt)} · ${latestFlowLabel(snapshot)} · ${latestTempLabel(snapshot, tempUnit)}`
                 : `${latestFlowLabel(snapshot)} · ${latestTempLabel(snapshot, tempUnit)}`
               : 'No cached readings yet'}
+            {stream.idealFlowSource === 'editorial' && ' · editorial flow guidance'}
           </span>
         </span>
         {decision.displayMetric === 'trout-condition' && snapshot ? (

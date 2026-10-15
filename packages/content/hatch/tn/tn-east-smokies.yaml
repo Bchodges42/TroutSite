@@ -1,4 +1,6 @@
 regionId: tn-east-smokies
+evidenceBasis: editorial
+evidenceNote: "Month, time-of-day and relative abundance ratings are editorial guidance. Linked specimen studies support only their stated taxa, sites and collection periods."
 months:
   - month: 1
     entries:
@@ -853,6 +855,15 @@ months:
           - caddis-pupa-olive
       - taxonId: little-sister-sedge
         stage: adult
+        regionalRecords:
+          - label: "DeWalt & Heinold (2005), Abrams Creek specimen survey"
+            url: "https://www.ephemeroptera-galactica.com/pubs/pub_d/pubdewalte2005p34.pdf"
+            locality: "Abrams Creek drainage, Great Smoky Mountains National Park"
+            observationPeriod: "25 May–22 July 2001 (combined collection window; not a species-specific emergence calendar)"
+            lifeStage: "adult specimens collected primarily with UV traps"
+            supportedClaim: "regional-presence"
+            taxonScope: "Cheumatopsyche species"
+            pinpoint: "Table 2, p. 41; collection methods p. 37"
         timeOfDay: evening
         abundance: 3
         patterns:
@@ -1058,6 +1069,15 @@ months:
           - gold-ribbed-hares-ear
       - taxonId: spotted-sedge
         stage: adult
+        regionalRecords:
+          - label: "DeWalt & Heinold (2005), Abrams Creek specimen survey"
+            url: "https://www.ephemeroptera-galactica.com/pubs/pub_d/pubdewalte2005p34.pdf"
+            locality: "Abrams Creek drainage, Great Smoky Mountains National Park"
+            observationPeriod: "25 May–22 July 2001 (combined collection window; not a species-specific emergence calendar)"
+            lifeStage: "adult specimens collected primarily with UV traps"
+            supportedClaim: "regional-presence"
+            taxonScope: "Hydropsyche species"
+            pinpoint: "Table 2, p. 41; collection methods p. 37"
         timeOfDay: evening
         abundance: 4
         patterns:
@@ -1440,6 +1460,15 @@ months:
           - caddis-pupa-olive
       - taxonId: little-sister-sedge
         stage: adult
+        regionalRecords:
+          - label: "DeWalt & Heinold (2005), Abrams Creek specimen survey"
+            url: "https://www.ephemeroptera-galactica.com/pubs/pub_d/pubdewalte2005p34.pdf"
+            locality: "Abrams Creek drainage, Great Smoky Mountains National Park"
+            observationPeriod: "25 May–22 July 2001 (combined collection window; not a species-specific emergence calendar)"
+            lifeStage: "adult specimens collected primarily with UV traps"
+            supportedClaim: "regional-presence"
+            taxonScope: "Cheumatopsyche species"
+            pinpoint: "Table 2, p. 41; collection methods p. 37"
         timeOfDay: evening
         abundance: 3
         patterns:
@@ -1626,6 +1655,15 @@ months:
           - gold-ribbed-hares-ear
       - taxonId: spotted-sedge
         stage: adult
+        regionalRecords:
+          - label: "DeWalt & Heinold (2005), Abrams Creek specimen survey"
+            url: "https://www.ephemeroptera-galactica.com/pubs/pub_d/pubdewalte2005p34.pdf"
+            locality: "Abrams Creek drainage, Great Smoky Mountains National Park"
+            observationPeriod: "25 May–22 July 2001 (combined collection window; not a species-specific emergence calendar)"
+            lifeStage: "adult specimens collected primarily with UV traps"
+            supportedClaim: "regional-presence"
+            taxonScope: "Hydropsyche species"
+            pinpoint: "Table 2, p. 41; collection methods p. 37"
         timeOfDay: evening
         abundance: 4
         patterns:
@@ -1978,6 +2016,15 @@ months:
           - caddis-pupa-olive
       - taxonId: little-sister-sedge
         stage: adult
+        regionalRecords:
+          - label: "DeWalt & Heinold (2005), Abrams Creek specimen survey"
+            url: "https://www.ephemeroptera-galactica.com/pubs/pub_d/pubdewalte2005p34.pdf"
+            locality: "Abrams Creek drainage, Great Smoky Mountains National Park"
+            observationPeriod: "25 May–22 July 2001 (combined collection window; not a species-specific emergence calendar)"
+            lifeStage: "adult specimens collected primarily with UV traps"
+            supportedClaim: "regional-presence"
+            taxonScope: "Cheumatopsyche species"
+            pinpoint: "Table 2, p. 41; collection methods p. 37"
         timeOfDay: evening
         abundance: 3
         patterns:
@@ -2124,6 +2171,15 @@ months:
           - gold-ribbed-hares-ear
       - taxonId: spotted-sedge
         stage: adult
+        regionalRecords:
+          - label: "DeWalt & Heinold (2005), Abrams Creek specimen survey"
+            url: "https://www.ephemeroptera-galactica.com/pubs/pub_d/pubdewalte2005p34.pdf"
+            locality: "Abrams Creek drainage, Great Smoky Mountains National Park"
+            observationPeriod: "25 May–22 July 2001 (combined collection window; not a species-specific emergence calendar)"
+            lifeStage: "adult specimens collected primarily with UV traps"
+            supportedClaim: "regional-presence"
+            taxonScope: "Hydropsyche species"
+            pinpoint: "Table 2, p. 41; collection methods p. 37"
         timeOfDay: evening
         abundance: 4
         patterns:

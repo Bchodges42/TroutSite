@@ -103,3 +103,27 @@ opportunity:
       research lead only.
     - Winter programs in the same counties (Big Rock Greenway, Marshall Co.; McCutcheon Creek, Maury
       Co.) are separate tributary/greenway waters.
+
+gaugePolicy:
+  primary: {}
+  references:
+    - gaugeId: "03597860"
+      note: A station on this broad river corridor; it does not represent the whole
+        catalog segment.
+    - gaugeId: "03598000"
+      note: A station on this broad river corridor; it does not represent the whole
+        catalog segment.
+    - gaugeId: "03599500"
+      note: A station on this broad river corridor; it does not represent the whole
+        catalog segment.
+    - gaugeId: "03598185"
+      note: A station on this broad river corridor; it does not represent the whole
+        catalog segment.
+    - gaugeId: "03599240"
+      note: A station on this broad river corridor; it does not represent the whole
+        catalog segment.
+    - gaugeId: "03599419"
+      note: A station on this broad river corridor; it does not represent the whole
+        catalog segment.
+  note: This broad corridor spans several gauges. Individual readings are
+    reference context until a reach-specific primary is established.

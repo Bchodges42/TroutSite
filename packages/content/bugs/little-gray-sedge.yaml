@@ -7,7 +7,7 @@ sizeRange:
   - 16
   - 20
 keyAttributes:
-  tails: 2
+  tails: 0
   gills: filaments
   bodyShape: slender
   bodyColor:
@@ -44,4 +44,5 @@ stages:
 notes: 'Larvae tow sand-tube cases with two side "towers" of pebbles. Gray #18 pupa patterns
   drift well through Smokies pocket water.'
 sources:
+  - https://www.epa.gov/system/files/documents/2024-06/macroinvertebrate-id-tipsheet.pdf
   - https://bugguide.net

@@ -7,7 +7,7 @@ sizeRange:
   - 14
   - 18
 keyAttributes:
-  tails: 2
+  tails: 0
   gills: filaments
   bodyShape: slender
   bodyColor:
@@ -49,4 +49,5 @@ stages:
 notes: Jet-black adults with iridescent blue-purple wings that bob and dance over tailwater
   flats in summer dusk. Skitter a small black dry and watch boils follow.
 sources:
+  - https://www.epa.gov/system/files/documents/2024-06/macroinvertebrate-id-tipsheet.pdf
   - https://bugguide.net

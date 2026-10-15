@@ -7,7 +7,7 @@ sizeRange:
   - 14
   - 18
 keyAttributes:
-  tails: 2
+  tails: 0
   gills: filaments
   bodyShape: slender
   bodyColor:
@@ -51,4 +51,5 @@ notes: "Bright white caddis whose evening clouds are easily confused with the Wh
   hatch — check the wings: tent-shaped means caddis. White-bodied dries skated on the Hiwassee
   after dark are deadly."
 sources:
+  - https://www.epa.gov/system/files/documents/2024-06/macroinvertebrate-id-tipsheet.pdf
   - https://bugguide.net

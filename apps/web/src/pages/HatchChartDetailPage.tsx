@@ -108,10 +108,15 @@ export function HatchChartDetailPage() {
       ) : (
         <>
           {chart && (
+            <p className="mt-3 text-sm" role="note">
+              {chart.evidenceNote ?? 'Month, time-of-day and relative abundance are editorial guidance, not measured emergence forecasts.'}
+            </p>
+          )}
+          {chart && (
             <p className="page-subtitle mt-2" data-testid="activity-summary">
               {topTaxon && topEntry ? (
                 <>
-                  Expected activity is <strong>{activityLabel(topEntry.abundance)}</strong>
+                  Editorial activity rating is <strong>{activityLabel(topEntry.abundance)}</strong>
                   {topEntry.abundance >= 4 ? '' : ' or better'} — led by{' '}
                   <Link
                     to={contextual(`/taxa/${topTaxon.id}`)}
@@ -282,6 +287,13 @@ function ActivityRow({
             );
           })}
         </div>
+        {entry.regionalRecords?.map((record) => (
+          <p key={record.url + record.taxonScope} className="mt-2 text-xs">
+            <a href={record.url} className="text-action" target="_blank" rel="noopener noreferrer">{record.label}</a>
+            {': '}{record.taxonScope}, {record.lifeStage}; {record.locality}; {record.observationPeriod}; {record.pinpoint}.
+            {' '}Supports regional presence; this month’s timing and abundance remain editorial.
+          </p>
+        ))}
         {taxon && yearActivity && (
           <div className="mt-2 flex items-center gap-2">
             <TaxonActivityStrip activity={yearActivity} month={month} />

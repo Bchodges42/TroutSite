@@ -7,7 +7,7 @@ sizeRange:
   - 4
   - 10
 keyAttributes:
-  tails: 2
+  tails: 0
   gills: none
   bodyShape: robust
   bodyColor:

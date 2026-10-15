@@ -7,7 +7,7 @@ sizeRange:
   - 12
   - 16
 keyAttributes:
-  tails: 2
+  tails: 0
   gills: filaments
   bodyShape: slender
   bodyColor:
@@ -54,4 +54,5 @@ stages:
 notes: Slender, pale-greenish caddis with very long antennae that skate in lazy loops over slow
   water at dusk. A golden-olive dry skated in glides draws explosive takes.
 sources:
+  - https://www.epa.gov/system/files/documents/2024-06/macroinvertebrate-id-tipsheet.pdf
   - https://bugguide.net

@@ -30,6 +30,7 @@ import { toWaterDecisionView, seasonalChipText } from '../features/map/waterDeci
 import { OpportunityCard } from '../features/map/OpportunityCard';
 import { FishabilityCard } from '../components/FishabilityCard';
 import { SolarWindowsCard } from '../components/SolarWindowsCard';
+import { WaterSourceContext } from '../components/WaterSourceContext';
 import { stockingEventState, stockingPrecisionDate, stockingSourceFetchedAt } from './StockingPage';
 import { itemsForWater, useFishingInfo } from '../lib/fishingInfo';
 
@@ -333,7 +334,7 @@ export function StreamDetailPage() {
               <DataBadge label="Stage" value={formatHeight(newestHeight)} status="unknown" />
             )}
             <DataBadge
-              label="Ideal flow"
+              label={stream.idealFlowSource === 'editorial' ? 'Editorial flow band' : 'Flow guidance'}
               value={
                 stream.idealFlow.length
                   ? stream.idealFlow
@@ -344,6 +345,8 @@ export function StreamDetailPage() {
               status="unknown"
             />
           </div>
+
+          <WaterSourceContext stream={stream} snapshot={snapshot} />
 
           {changes && changes.length > 0 && (
             <Card className="mt-4">

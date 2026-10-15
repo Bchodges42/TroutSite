@@ -107,3 +107,18 @@ opportunity:
       reflects the upstream Normandy tailwater and is a research lead only.
     - Seasonal rainbow programs in the same counties (Cane Creek, Mill Creek — Hickman; Hurricane
       Creek — Humphreys) are separate small creeks.
+
+gaugePolicy:
+  primary: {}
+  references:
+    - gaugeId: "03601600"
+      note: A station on this broad river corridor; it does not represent the whole
+        catalog segment.
+    - gaugeId: "03601990"
+      note: A station on this broad river corridor; it does not represent the whole
+        catalog segment.
+    - gaugeId: "03603000"
+      note: A station on this broad river corridor; it does not represent the whole
+        catalog segment.
+  note: This broad corridor spans several gauges. Individual readings are
+    reference context until a reach-specific primary is established.

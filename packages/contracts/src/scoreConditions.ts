@@ -1,5 +1,6 @@
 import type { ConditionScore } from './schemas/conditions.js';
 import type { GaugeReading } from './schemas/gauge.js';
+import { selectGaugeReadings } from './selectGaugeReadings.js';
 import type { IdealFlow } from './schemas/stream.js';
 import type { Stream } from './schemas/stream.js';
 
@@ -83,7 +84,7 @@ export function scoreConditions(stream: Stream, readings: GaugeReading[]): Condi
   }
 
   // Only trust readings from gauges configured for this stream.
-  const relevant =
+  const relevant = stream.gaugePolicy ? selectGaugeReadings(stream, readings).readings :
     stream.gaugeIds.length > 0
       ? readings.filter((r) => stream.gaugeIds.includes(r.gaugeId))
       : readings;
@@ -104,6 +105,7 @@ export function scoreConditions(stream: Stream, readings: GaugeReading[]): Condi
   let value: number;
   let assessed = true;
   const reasons: string[] = [];
+  const rangeLabel = stream.idealFlowSource === 'editorial' ? 'editorial guidance band' : 'ideal range';
 
   if (cfsReading && typeof cfsReading.cfs === 'number') {
     const cfs = cfsReading.cfs;
@@ -111,10 +113,11 @@ export function scoreConditions(stream: Stream, readings: GaugeReading[]): Condi
     if (inside) {
       value = FLOW_BASE_WITHIN;
       reasons.push(
-        `Flow ${fmt(cfs)} cfs is within the ideal range (${fmt(inside.min)}–${fmt(inside.max)} cfs).`,
+        `Flow ${fmt(cfs)} cfs is within the ${rangeLabel} (${fmt(inside.min)}–${fmt(inside.max)} cfs).`,
       );
     } else if (stream.idealFlow.length === 0) {
       value = HEIGHT_ONLY_BASE;
+      assessed = false;
       reasons.push(
         `Flow ${fmt(cfs)} cfs was measured, but no ideal flow range is configured for this stream.`,
       );
@@ -126,7 +129,7 @@ export function scoreConditions(stream: Stream, readings: GaugeReading[]): Condi
         const deficit = nearest.min > 0 ? (nearest.min - cfs) / nearest.min : 1;
         value = Math.max(FLOW_SCORE_FLOOR, FLOW_BASE_WITHIN - Math.round(deficit * FLOW_PENALTY_MAX));
         reasons.push(
-          `Flow ${fmt(cfs)} cfs is below the ideal range (${fmt(nearest.min)}–${fmt(
+        `Flow ${fmt(cfs)} cfs is below the ${rangeLabel} (${fmt(nearest.min)}–${fmt(
             nearest.max,
           )} cfs) — water is low.`,
         );
@@ -134,7 +137,7 @@ export function scoreConditions(stream: Stream, readings: GaugeReading[]): Condi
         const surplus = (cfs - nearest.max) / Math.max(nearest.max, 1);
         value = Math.max(FLOW_SCORE_FLOOR, FLOW_BASE_WITHIN - Math.round(surplus * FLOW_PENALTY_MAX));
         reasons.push(
-          `Flow ${fmt(cfs)} cfs is above the ideal range (${fmt(nearest.min)}–${fmt(
+        `Flow ${fmt(cfs)} cfs is above the ${rangeLabel} (${fmt(nearest.min)}–${fmt(
             nearest.max,
           )} cfs) — water is high and may be unsafe.`,
         );
@@ -208,5 +211,8 @@ export function scoreConditions(stream: Stream, readings: GaugeReading[]): Condi
     reasons.push(`Scored from ${relevant.length} gauge readings (newest used).`);
   }
 
-  return { value: Math.min(100, Math.max(0, Math.round(value))), reasons, assessed };
+  const outOfRange = cfsReading?.cfs !== undefined && stream.idealFlow.length > 0 &&
+    !stream.idealFlow.some((r) => cfsReading.cfs! >= r.min && cfsReading.cfs! <= r.max);
+  if (stream.idealFlowSource === 'editorial') reasons.push('Flow guidance is editorial; it is not a validated fishing or safe-wading range.');
+  return { value: Math.min(outOfRange ? 69 : 100, Math.max(0, Math.round(value))), reasons, assessed };
 }

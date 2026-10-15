@@ -7,7 +7,7 @@ sizeRange:
   - 14
   - 18
 keyAttributes:
-  tails: 2
+  tails: 0
   gills: none
   bodyShape: robust
   bodyColor:
@@ -89,5 +89,6 @@ stages:
 notes: Larvae anchor in silk on riffle rocks, fanning the current — abundant on tailwater weirs.
   Dislodged larvae and pupae are a real (if overlooked) drifting food item.
 sources:
+  - https://www.epa.gov/system/files/documents/2024-06/macroinvertebrate-id-tipsheet.pdf
   - https://en.wikipedia.org/wiki/Black_fly
   - https://bugguide.net

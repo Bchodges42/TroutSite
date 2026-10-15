@@ -7,7 +7,7 @@ sizeRange:
   - 6
   - 10
 keyAttributes:
-  tails: 2
+  tails: 0
   gills: filaments
   bodyShape: robust
   bodyColor:
@@ -52,5 +52,6 @@ notes: "Big, lumbering October caddis of Appalachian streams, larvae hauling sti
   cases. A size #8 orange-bodied sedge dry fished against dark banks in fall is pure
   foliage-adjacent fun."
 sources:
+  - https://www.epa.gov/system/files/documents/2024-06/macroinvertebrate-id-tipsheet.pdf
   - https://bugguide.net
   - Voshell, A Guide to Common Freshwater Invertebrates of North America

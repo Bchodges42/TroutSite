@@ -57,3 +57,13 @@ opportunity:
     Copperhill/Ocoee No. 3 reach? No reach-specific survey, stocking record, or dated observation
     was found; next source: Cherokee National Forest (USFS) fisheries survey of the Ocoee above Dam
     No. 1, or TWRA Coldwater Summit materials."
+
+gaugePolicy:
+  primary:
+    cfs: tva:OCBT1
+  references:
+    - gaugeId: "03559500"
+      note: Copperhill is upstream of the dam-controlled Ocoee fishing reach; it is an
+        upstream reference.
+  note: Use the mapped TVA dam release for this reach; Copperhill is upstream
+    context, not a tailwater measurement.

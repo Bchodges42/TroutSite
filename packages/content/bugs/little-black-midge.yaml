@@ -7,7 +7,7 @@ sizeRange:
   - 20
   - 26
 keyAttributes:
-  tails: 2
+  tails: 0
   gills: none
   bodyShape: slender
   bodyColor:
@@ -87,4 +87,5 @@ stages:
 notes: "Cold-water micro-midges that dominate winter hatches. If trout are sipping in January,
   it’s usually this bug — a #22-26 Griffith’s Gnat or black midge dry solves it."
 sources:
+  - https://www.epa.gov/system/files/documents/2024-06/macroinvertebrate-id-tipsheet.pdf
   - https://bugguide.net

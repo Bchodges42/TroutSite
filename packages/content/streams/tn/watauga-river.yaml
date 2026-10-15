@@ -92,3 +92,15 @@ opportunity:
       put-and-take/put-grow-take on March-September stocking.
     - Flow is TVA-driven from Wilbur Dam; wade windows open when releases stop — check the TVA
       Wilbur Dam schedule.
+
+gaugePolicy:
+  primary:
+    cfs: "03486000"
+    heightFt: "03486000"
+    tempC: "03486000"
+  references:
+    - gaugeId: tva:WL
+      note: Wilbur release data describe the dam output, rather than the Elizabethton
+        stream measurement.
+  note: Use the Elizabethton USGS station for stream conditions; keep dam release
+    context separate.

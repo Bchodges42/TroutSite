@@ -789,7 +789,7 @@ test('guided hatch choices move focus and carry context into results', async ({ 
   await page.getByRole('button', { name: 'olive', exact: true }).click();
   // The tails and shape cards carry descriptive sub-lines, so their accessible
   // names extend past the headline — match the headline prefix.
-  await page.getByRole('button', { name: /^2 tails/ }).click();
+  await page.getByRole('button', { name: /^2 tail filaments/ }).click();
   await page
     .getByRole('button', { name: 'Flat plates (lamellae) along the sides', exact: true })
     .click();

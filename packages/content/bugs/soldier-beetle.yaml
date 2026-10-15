@@ -7,7 +7,7 @@ sizeRange:
   - 12
   - 16
 keyAttributes:
-  tails: 2
+  tails: unknown
   gills: none
   bodyShape: slender
   bodyColor:

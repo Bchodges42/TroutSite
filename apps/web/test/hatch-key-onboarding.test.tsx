@@ -32,6 +32,17 @@ function renderKey() {
 }
 
 describe('T2-39 — hatch key onboarding', () => {
+  it('offers absent, one, unknown and not-applicable filaments and can skip an uncertain count', async () => {
+    const user = userEvent.setup();
+    renderKey();
+    await user.click(screen.getByRole('button', { name: /Not sure — start me with a #16/i }));
+    await user.click(screen.getByRole('button', { name: 'olive' }));
+    expect(screen.getByRole('button', { name: /^No tail filaments/ })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /^1 tail filament/ })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /^Not applicable/ })).toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: /^Not sure/ }));
+    expect(screen.getByRole('button', { name: 'No visible gills' })).toBeInTheDocument();
+  });
   it('shows a visible step counter and plain-language size hints', () => {
     renderKey();
     expect(screen.getByText(/^Step 1 of 6/)).toBeInTheDocument();
@@ -46,7 +57,7 @@ describe('T2-39 — hatch key onboarding', () => {
     // Lands on the color step without requiring a size pick.
     expect(screen.getAllByText(/body color/i).length).toBeGreaterThan(0);
     await user.click(screen.getByRole('button', { name: 'olive' }));
-    await user.click(screen.getByRole('button', { name: /^2 tails/ }));
+    await user.click(screen.getByRole('button', { name: /^2 tail filaments/ }));
     await user.click(
       screen.getByRole('button', { name: 'Flat plates (lamellae) along the sides' }),
     );
@@ -70,7 +81,7 @@ describe('T2-39 — hatch key onboarding', () => {
     expect(size18).toBeTruthy();
     await user.click(size18!);
     await user.click(screen.getByRole('button', { name: 'olive' }));
-    await user.click(screen.getByRole('button', { name: /^2 tails/ }));
+    await user.click(screen.getByRole('button', { name: /^2 tail filaments/ }));
     await user.click(
       screen.getByRole('button', { name: 'Flat plates (lamellae) along the sides' }),
     );
@@ -91,7 +102,7 @@ describe('T2-43 — chartless hatch key notice', () => {
     // drive to the results via "Not sure" and the standard picks.
     await user.click(screen.getByRole('button', { name: /Not sure/i }));
     await user.click(screen.getByRole('button', { name: 'olive' }));
-    await user.click(screen.getByRole('button', { name: /^2 tails/ }));
+    await user.click(screen.getByRole('button', { name: /^2 tail filaments/ }));
     await user.click(
       screen.getByRole('button', { name: 'Flat plates (lamellae) along the sides' }),
     );

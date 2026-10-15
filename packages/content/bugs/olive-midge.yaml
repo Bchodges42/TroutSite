@@ -7,7 +7,7 @@ sizeRange:
   - 18
   - 24
 keyAttributes:
-  tails: 2
+  tails: 0
   gills: none
   bodyShape: slender
   bodyColor:
@@ -117,5 +117,6 @@ stages:
 notes: Green-tinted tube-building midges that hatch in calm morning windows. The olive
   glass-bead pupa is one of the quiet killers of tailwater flat-water.
 sources:
+  - https://www.epa.gov/system/files/documents/2024-06/macroinvertebrate-id-tipsheet.pdf
   - https://bugguide.net
   - Merritt, Cummins & Berg, An Introduction to the Aquatic Insects of North America (4th ed.)

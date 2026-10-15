@@ -7,7 +7,8 @@ sizeRange:
   - 8
   - 14
 keyAttributes:
-  tails: 2
+  tails: 1
+  tailFilamentNote: "Alderfly larvae have one long terminal filament."
   gills: filaments
   bodyShape: robust
   bodyColor:
@@ -61,5 +62,6 @@ stages:
 notes: "Tailwater silt holds brown alderfly larvae with a single long tail filament. A #12 brown
   sculpin-ish nymph on the swing covers them."
 sources:
+  - https://www.epa.gov/system/files/documents/2024-06/macroinvertebrate-id-tipsheet.pdf
   - https://bugguide.net
   - Voshell, A Guide to Common Freshwater Invertebrates of North America

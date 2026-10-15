@@ -78,3 +78,14 @@ opportunity:
       was 25 C at Donelson. Do not represent this as a year-round trout fishery.
     - This is the Davidson County main stem below Percy Priest Dam - distinct from the West Fork
       (Murfreesboro winter program) and East Fork catalog entries.
+
+gaugePolicy:
+  primary:
+    cfs: usace:JPPT1
+    tempC: usace:JPPT1
+  references:
+    - gaugeId: "03430200"
+      note: The Donelson station is farther downstream; inspect it as reference
+        context.
+  note: J. Percy Priest dam instruments describe the upper tailwater; downstream
+    conditions may differ.

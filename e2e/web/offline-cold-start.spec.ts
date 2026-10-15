@@ -91,7 +91,7 @@ test('wizard offers a clean start-over after an unremarkable bug', async ({ page
 
   await page.getByRole('button', { name: /^#8/ }).click();
   await page.getByRole('button', { name: 'red', exact: true }).click();
-  await page.getByRole('button', { name: /2 tails/ }).click();
+  await page.getByRole('button', { name: /2 tail filaments/ }).click();
   await page.getByRole('button', { name: /No visible gills/ }).click();
   await page.getByRole('button', { name: /robust/ }).click();
   await page.getByRole('button', { name: 'See matches' }).click();

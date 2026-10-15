@@ -16,7 +16,7 @@ import { TWRA_PAGE_URL } from '../src/ingest/stocking/tn.js';
 import { deterministicId } from '../src/lib/ids.js';
 import { makeEnv, mockFetch, readFixture, type TestEnv } from './helpers.js';
 
-const NOW = new Date('2026-09-02T17:00:00Z');
+const NOW = new Date('2026-09-02T20:00:00Z'); // Fixture 14:30-05:00 is 19:30 UTC, not 14:30 UTC.
 
 describe('buildSnapshots', () => {
   let env: TestEnv;
@@ -239,7 +239,7 @@ describe('scoring parity (server snapshot == client recompute)', () => {
         gaugeId: '03486000',
         cfs: 350,
         tempC: 16.5,
-        timestamp: '2026-09-02T16:30:00.000Z',
+        timestamp: '2026-09-02T19:30:00.000Z',
       });
       buildSnapshots({ db: env2.db, snapshotsDir: env2.snapshotsDir, now: NOW });
 
@@ -266,7 +266,7 @@ describe('scoring parity (server snapshot == client recompute)', () => {
       insertReading(env2.db, {
         gaugeId: '03486000',
         cfs: 40,
-        timestamp: '2026-09-02T16:30:00.000Z',
+        timestamp: '2026-09-02T19:30:00.000Z',
       });
       buildSnapshots({ db: env2.db, snapshotsDir: env2.snapshotsDir, now: NOW });
 

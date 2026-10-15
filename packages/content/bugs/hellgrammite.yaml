@@ -7,7 +7,8 @@ sizeRange:
   - 2
   - 8
 keyAttributes:
-  tails: 2
+  tails: unknown
+  tailFilamentNote: "Terminal clawed prolegs are not treated as long tail filaments; skip this attribute for this taxon."
   gills: filaments
   bodyShape: robust
   bodyColor:
@@ -66,5 +67,6 @@ notes: "The nightmare of the rock-flip: a three-inch armored predator with pinch
   Trout eat them — a #6 dark bushy nymph with rubber legs fished slow through boulders is a
   big-fish play."
 sources:
+  - https://www.epa.gov/system/files/documents/2024-06/macroinvertebrate-id-tipsheet.pdf
   - https://en.wikipedia.org/wiki/Corydalus
   - https://bugguide.net

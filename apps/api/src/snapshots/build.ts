@@ -14,6 +14,8 @@ import {
   StockingEventSchema,
   WaterEvidenceSetSchema,
   scoreConditions,
+  selectGaugeReadings,
+  HistoricalFlowSchema,
 } from '@trout/contracts';
 import type {
   ConditionSnapshot,
@@ -65,6 +67,7 @@ interface StreamRow {
   hydro_identity: string | null;
   display: string | null;
   gauge_ids: string;
+  gauge_policy: string | null;
   stocking_program: number;
   ideal_flow: string;
   ideal_flow_source: string | null;
@@ -114,6 +117,7 @@ function rowsToStreams(rows: StreamRow[]): Stream[] {
       ...(r.hydro_identity ? { hydroIdentity: JSON.parse(r.hydro_identity) } : {}),
       ...(r.display ? { display: r.display as 'featured' | 'standard' | 'reference' } : {}),
       gaugeIds: JSON.parse(r.gauge_ids) as string[],
+      ...(r.gauge_policy ? { gaugePolicy: JSON.parse(r.gauge_policy) } : {}),
       stockingProgram: r.stocking_program === 1,
       idealFlow: JSON.parse(r.ideal_flow),
       ...(r.ideal_flow_source ? { idealFlowSource: r.ideal_flow_source as 'editorial' | 'official' | 'measured' | 'derived' } : {}),
@@ -221,11 +225,18 @@ export function buildSnapshots(opts: BuildOptions): SnapshotResult {
   const nextExpectedUpdate = new Date(now.getTime() + (gaugesOk ? conditionsTtl : 0)).toISOString();
   const fetchedAt = now.toISOString();
   const conditions: ConditionSnapshot[] = streams.map((s) => {
-    const streamReadings =
-      s.gaugeIds.length > 0 ? readings.filter((r) => s.gaugeIds.includes(r.gaugeId)) : [];
+    const selected = selectGaugeReadings(s, readings);
+    const streamReadings = selected.readings;
+    const flowGauge = s.gaugePolicy?.primary.cfs ??
+      (!s.gaugePolicy && s.gaugeIds.length === 1 ? s.gaugeIds[0] : undefined);
+    const historicalRow = flowGauge ? db.prepare('SELECT payload FROM flow_normals WHERE gauge_id=? AND month=?')
+      .get(flowGauge, now.getUTCMonth() + 1) as { payload: string } | undefined : undefined;
+    const historical = historicalRow ? HistoricalFlowSchema.safeParse(JSON.parse(historicalRow.payload)) : undefined;
     return ConditionSnapshotSchema.parse({
       streamId: s.id,
       readings: streamReadings,
+      ...(selected.referenceReadings.length ? { referenceReadings: selected.referenceReadings } : {}),
+      ...(historical?.success ? { historicalFlow: historical.data } : {}),
       score: scoreConditions(s, streamReadings),
       fetchedAt,
       nextExpectedUpdate,
@@ -548,8 +559,7 @@ function emitFishability(
 
   let emitted = 0;
   for (const stream of scoring) {
-    const streamReadings =
-      stream.gaugeIds.length > 0 ? ctx.readings.filter((r) => stream.gaugeIds.includes(r.gaugeId)) : [];
+    const streamReadings = selectGaugeReadings(stream, ctx.readings).readings;
     const snapshot = buildFishabilitySnapshot(
       stream,
       streamReadings,

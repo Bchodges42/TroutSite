@@ -6,6 +6,14 @@ export type Gills = z.infer<typeof GillsSchema>;
 export const BodyShapeSchema = z.enum(['slender', 'robust']);
 export type BodyShape = z.infer<typeof BodyShapeSchema>;
 
+/** Long tail filaments, not legs, claws, fins, or tail-like gills. Unknown and
+ * not-applicable are distinct and never earn a match point. */
+export const TailFilamentCountSchema = z.union([
+  z.literal(0), z.literal(1), z.literal(2), z.literal(3),
+  z.literal('unknown'), z.literal('not-applicable'),
+]);
+export type TailFilamentCount = z.infer<typeof TailFilamentCountSchema>;
+
 export const BugTaxonSchema = z.object({
   id: z.string().min(1),
   commonName: z.string().min(1),
@@ -17,7 +25,8 @@ export const BugTaxonSchema = z.object({
     .tuple([z.number(), z.number()])
     .refine(([min, max]) => min <= max, { message: 'sizeRange min must be <= max' }),
   keyAttributes: z.object({
-    tails: z.union([z.literal(2), z.literal(3)]),
+    tails: TailFilamentCountSchema,
+    tailFilamentNote: z.string().optional(),
     gills: GillsSchema,
     bodyShape: BodyShapeSchema,
     bodyColor: z.array(z.string().min(1)).min(1),

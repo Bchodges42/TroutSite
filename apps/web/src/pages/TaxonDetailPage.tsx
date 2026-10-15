@@ -6,6 +6,7 @@ import { patternsForTaxon, useContentPack } from '../lib/content';
 import { taxonPhoto } from '../lib/taxonImages';
 import { TaxonArt } from '../components/art/TaxonArt';
 import { monthShort, REGIONS } from '../data/regions';
+import { tailFilamentLabel } from '../lib/bugAttributes';
 
 /** Taxon detail (scope 2): art, key attributes, season table, sources, patterns. */
 export function TaxonDetailPage() {
@@ -77,7 +78,7 @@ export function TaxonDetailPage() {
       <h2 className="section-title">Key attributes</h2>
       <Card>
         <dl className="grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-2">
-          <Row label="Tails" value={String(taxon.keyAttributes.tails)} />
+          <Row label="Tail filaments" value={tailFilamentLabel(taxon.keyAttributes.tails)} />
           <Row label="Gills" value={taxon.keyAttributes.gills} />
           <Row label="Body shape" value={taxon.keyAttributes.bodyShape} />
           <Row label="Body colors" value={taxon.keyAttributes.bodyColor.join(', ')} />

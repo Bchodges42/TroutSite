@@ -7,7 +7,7 @@ sizeRange:
   - 18
   - 22
 keyAttributes:
-  tails: 2
+  tails: 0
   gills: filaments
   bodyShape: slender
   bodyColor:
@@ -48,4 +48,5 @@ stages:
 notes: "One of the first caddisfly hatches of the Appalachian year, flying in raw early-spring
   afternoons. Black #18-20 dries bring creek trout up when mayflies are still absent."
 sources:
+  - https://www.epa.gov/system/files/documents/2024-06/macroinvertebrate-id-tipsheet.pdf
   - https://bugguide.net

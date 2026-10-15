@@ -92,3 +92,15 @@ opportunity:
       caution (forecast nodes n-s36nvJ, n-AWNsgh).
     - "Excellent public access: dam and Normandy Town Bridge, hatchery trail, Dement Bridge and 3
       Forks Bridge (renovated by TVA); Cortner Mill is private (node n-I7NFwN)."
+
+gaugePolicy:
+  primary:
+    cfs: "03597860"
+    heightFt: "03597860"
+    tempC: "03597860"
+  references:
+    - gaugeId: tva:NRMT1
+      note: Normandy dam discharge is release context; it does not replace the
+        downstream stream measurement.
+  note: Use the USGS stream station for this catalog reach; a missing primary
+    stays missing.

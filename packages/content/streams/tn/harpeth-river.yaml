@@ -83,3 +83,14 @@ opportunity:
   reachScope: Harpeth River at Eastern Flank Battle Park, Franklin (the schedule's stocked reach) only
 targetSpecies:
   - smallmouth-bass
+
+gaugePolicy:
+  primary:
+    cfs: "03432350"
+    heightFt: "03432350"
+    tempC: "03432350"
+  references:
+    - gaugeId: "03433500"
+      note: Bellevue is downstream of the Williamson County fishing focus.
+  note: Use the Franklin station for Williamson reaches; never substitute Bellevue
+    just because its timestamp is newer.

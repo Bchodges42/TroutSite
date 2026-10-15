@@ -74,3 +74,11 @@ opportunity:
     - The river is driven by upstream generation at Waterville; flows change fast - check release
       schedules.
     - NC upstream trout waters are a different jurisdiction; do not transfer.
+
+gaugePolicy:
+  primary: {}
+  references:
+    - gaugeId: "03461500"
+      note: Newport is downstream of the upper gorge fishing reach.
+  note: Newport is downstream reference context; no verified local gauge is used
+    to score the upper reach.

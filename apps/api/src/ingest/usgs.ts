@@ -311,7 +311,7 @@ export function latestReadings(db: Db, nowMs = Date.now()): GaugeReading[] {
        FROM gauge_readings_raw
        WHERE id IN (
          SELECT id FROM (
-           SELECT id, ROW_NUMBER() OVER (PARTITION BY gauge_id ORDER BY observed_at DESC) AS rn
+           SELECT id, ROW_NUMBER() OVER (PARTITION BY gauge_id ORDER BY julianday(observed_at) DESC, id DESC) AS rn
            FROM gauge_readings_raw WHERE observed_at IS NOT NULL
          ) WHERE rn = 1
        )`,
@@ -319,8 +319,8 @@ export function latestReadings(db: Db, nowMs = Date.now()): GaugeReading[] {
     .all() as { gauge_id: string; cfs: number | null; height_ft: number | null; temp_c: number | null; dissolved_oxygen_mg_l: number | null; reservoir_level_ft: number | null; precipitation_mm: number | null; observed_at: string }[];
   return rows.flatMap((r) => {
     const observedMs = Date.parse(r.observed_at);
-    if (!Number.isFinite(observedMs) || nowMs - observedMs > READING_STALE_MINUTES * 60_000) return [];
-    const cfs = r.cfs !== null && r.cfs > 0 ? r.cfs : null;
+    if (!Number.isFinite(observedMs) || observedMs > nowMs || nowMs - observedMs > READING_STALE_MINUTES * 60_000) return [];
+    const cfs = r.cfs !== null && Number.isFinite(r.cfs) && r.cfs >= 0 ? r.cfs : null;
     const heightFt = r.height_ft !== null && Number.isFinite(r.height_ft) ? r.height_ft : null;
     const tempC = r.temp_c !== null && Number.isFinite(r.temp_c) ? r.temp_c : null;
     const dissolvedOxygenMgL = r.dissolved_oxygen_mg_l !== null && r.dissolved_oxygen_mg_l >= 0 ? r.dissolved_oxygen_mg_l : null;

@@ -7,7 +7,7 @@ sizeRange:
   - 16
   - 20
 keyAttributes:
-  tails: 2
+  tails: 0
   gills: filaments
   bodyShape: slender
   bodyColor:
@@ -92,5 +92,6 @@ stages:
 notes: "A half-size cousin of the spotted sedge that hatches in repeated summer broods. When #16
   elkhairs get refused, drop to a #18 of the same profile."
 sources:
+  - https://www.epa.gov/system/files/documents/2024-06/macroinvertebrate-id-tipsheet.pdf
   - https://bugguide.net
   - Merritt, Cummins & Berg, An Introduction to the Aquatic Insects of North America (4th ed.)

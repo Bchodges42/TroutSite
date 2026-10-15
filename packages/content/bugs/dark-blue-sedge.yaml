@@ -7,7 +7,7 @@ sizeRange:
   - 10
   - 14
 keyAttributes:
-  tails: 2
+  tails: 0
   gills: filaments
   bodyShape: robust
   bodyColor:
@@ -44,4 +44,5 @@ stages:
 notes: "Larvae build slightly curved gravel cases; adults are distinctive slate-blue-gray sedges
   of summer riffles. A dark-gray #12 caddis dry earns strikes in mountain rivers."
 sources:
+  - https://www.epa.gov/system/files/documents/2024-06/macroinvertebrate-id-tipsheet.pdf
   - https://bugguide.net

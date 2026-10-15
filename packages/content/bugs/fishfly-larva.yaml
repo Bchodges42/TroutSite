@@ -7,7 +7,8 @@ sizeRange:
   - 4
   - 10
 keyAttributes:
-  tails: 2
+  tails: unknown
+  tailFilamentNote: "Terminal clawed prolegs are not treated as long tail filaments; skip this attribute for this taxon."
   gills: filaments
   bodyShape: robust
   bodyColor:
@@ -55,4 +56,5 @@ stages:
 notes: "A smaller, reddish cousin of the hellgrammite common in Appalachian creeks. Trout cannot
   tell a #10 bushy brown nymph from one — which is convenient."
 sources:
+  - https://www.epa.gov/system/files/documents/2024-06/macroinvertebrate-id-tipsheet.pdf
   - https://bugguide.net

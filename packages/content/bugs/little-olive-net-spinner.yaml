@@ -7,7 +7,7 @@ sizeRange:
   - 18
   - 22
 keyAttributes:
-  tails: 2
+  tails: 0
   gills: filaments
   bodyShape: slender
   bodyColor:
@@ -73,4 +73,5 @@ stages:
 notes: "Silken-tunnel builders of clean riffles; their small pale-olive adults appear in slow
   summer evening flights. A #18 olive caddis pupa is the honest match."
 sources:
+  - https://www.epa.gov/system/files/documents/2024-06/macroinvertebrate-id-tipsheet.pdf
   - https://bugguide.net

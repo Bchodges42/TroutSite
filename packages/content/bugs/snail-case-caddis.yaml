@@ -7,7 +7,7 @@ sizeRange:
   - 16
   - 20
 keyAttributes:
-  tails: 2
+  tails: 0
   gills: filaments
   bodyShape: robust
   bodyColor:
@@ -55,5 +55,6 @@ notes: Larvae glue spiral sand cases that look exactly like tiny snail shells â€
   first "snail" is usually this caddis. Gray-cream pupa patterns on gravel flats work in late
   summer.
 sources:
+  - https://www.epa.gov/system/files/documents/2024-06/macroinvertebrate-id-tipsheet.pdf
   - https://bugguide.net
   - Voshell, A Guide to Common Freshwater Invertebrates of North America

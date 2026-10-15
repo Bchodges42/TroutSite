@@ -7,7 +7,7 @@ sizeRange:
   - 6
   - 12
 keyAttributes:
-  tails: 2
+  tails: unknown
   gills: none
   bodyShape: robust
   bodyColor:
@@ -104,5 +104,6 @@ stages:
 notes: Leathery "daddy longlegs" adults flop drunkenly onto the water in summer; big tan dries
   draw savage takes. Cream fat larvae are also excellent drift food.
 sources:
+  - https://www.epa.gov/system/files/documents/2024-06/macroinvertebrate-id-tipsheet.pdf
   - https://en.wikipedia.org/wiki/Tipulidae
   - https://bugguide.net

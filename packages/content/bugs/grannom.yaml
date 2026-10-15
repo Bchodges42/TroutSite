@@ -7,7 +7,7 @@ sizeRange:
   - 14
   - 18
 keyAttributes:
-  tails: 2
+  tails: 0
   gills: filaments
   bodyShape: slender
   bodyColor:
@@ -42,5 +42,6 @@ notes: Case-building larvae that square-dance to the surface in spring — egg-l
   literally swarm anglers on big tailwaters. The famous "Mother’s Day" caddis of eastern
   tailwaters.
 sources:
+  - https://www.epa.gov/system/files/documents/2024-06/macroinvertebrate-id-tipsheet.pdf
   - https://bugguide.net
   - Merritt, Cummins & Berg, An Introduction to the Aquatic Insects of North America (4th ed.)

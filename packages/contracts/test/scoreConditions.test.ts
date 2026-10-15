@@ -56,7 +56,7 @@ describe('scoreConditions', () => {
 
   it('penalizes high flow proportionally to the surplus', () => {
     const result = scoreConditions(makeStream(), [makeReading({ cfs: 440, tempC: 15 })]);
-    expect(result.value).toBe(83); // 80 - round(0.1 * 70) = 73, +10 temp
+    expect(result.value).toBe(69); // Out-of-range flow cannot become Good after the temperature bonus.
     expect(result.reasons.join(' ')).toMatch(/above the ideal range/);
   });
 

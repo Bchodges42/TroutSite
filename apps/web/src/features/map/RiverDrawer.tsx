@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import { WaterSourceContext } from '../../components/WaterSourceContext';
 import { Link } from 'react-router-dom';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { regionName, monthName } from '../../data/regions';
@@ -256,6 +257,7 @@ function WaterTab({
         </div>
       </div>
       <FishabilityCard streamId={feature.stream.id} compact />
+      <WaterSourceContext stream={feature.stream} snapshot={snap ?? undefined} />
       <div className="metrics">
         <div className="metric">
           <span className="metric-label">

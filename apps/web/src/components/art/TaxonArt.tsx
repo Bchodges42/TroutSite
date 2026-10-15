@@ -39,7 +39,7 @@ function artFor(taxon: BugTaxon) {
   return <GenericBug />;
 }
 
-function MayflyNymph({ tails }: { tails: 2 | 3 }) {
+function MayflyNymph({ tails }: { tails: BugTaxon['keyAttributes']['tails'] }) {
   return (
     <>
       {/* body segments */}
@@ -54,9 +54,9 @@ function MayflyNymph({ tails }: { tails: 2 | 3 }) {
       <path d="M46 39c2 5 4 5 6 0M56 38c2 5 4 5 6 0M66 37c2 5 4 5 6 0" />
       {tails === 3 ? (
         <path d="M30 40 12 32M30 40 10 42M30 40 14 52" />
-      ) : (
+      ) : tails === 2 ? (
         <path d="M30 40 12 33M30 40 12 49" />
-      )}
+      ) : null}
     </>
   );
 }

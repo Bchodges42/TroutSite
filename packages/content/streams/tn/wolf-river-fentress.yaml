@@ -73,3 +73,12 @@ opportunity:
     - "Same-name check: this is the Fentress County headwaters feeding Dale Hollow (HUC 05130105),
       not the Memphis-area Wolf River; the shared Fishbrain page (largemouth/catfish dominated)
       needs segment review."
+
+gaugePolicy:
+  primary: {}
+  references:
+    - gaugeId: "03416000"
+      note: Byrdstown measures the downstream Wolf River, not the Fentress headwater
+        fishing reach.
+  note: No representative live gauge for these headwaters has been verified.
+    Downstream readings are reference only.

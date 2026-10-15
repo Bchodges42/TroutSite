@@ -105,3 +105,14 @@ opportunity:
       by Blount County rows and Blount GIS points."
     - "July 2025 USGS boundary-gauge temperatures (03497300: 18.4-24.6 C) are prior leads, not
       re-verified this session."
+
+gaugePolicy:
+  primary:
+    cfs: "03497300"
+    heightFt: "03497300"
+    tempC: "03497300"
+  references:
+    - gaugeId: "03498500"
+      note: Maryville is downstream of the Townsend/Smokies fishing focus.
+  note: Use the Townsend station for local flow context rather than the newer
+    downstream Maryville reading.

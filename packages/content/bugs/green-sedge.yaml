@@ -7,7 +7,7 @@ sizeRange:
   - 10
   - 14
 keyAttributes:
-  tails: 2
+  tails: 0
   gills: filaments
   bodyShape: slender
   bodyColor:
@@ -56,5 +56,6 @@ stages:
 notes: Free-living, bright-green larvae prowl rubble hunting mayflies — no case, undulating
   swim. A dead-drifted green larva pattern is a Smokies secret weapon.
 sources:
+  - https://www.epa.gov/system/files/documents/2024-06/macroinvertebrate-id-tipsheet.pdf
   - https://en.wikipedia.org/wiki/Rhyacophila
   - https://bugguide.net

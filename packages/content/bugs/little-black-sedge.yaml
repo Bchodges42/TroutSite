@@ -7,7 +7,7 @@ sizeRange:
   - 18
   - 22
 keyAttributes:
-  tails: 2
+  tails: 0
   gills: filaments
   bodyShape: slender
   bodyColor:
@@ -80,4 +80,5 @@ stages:
 notes: Finger-net spinners whose black adults flutter in slow evening clouds all summer. Tiny
   black dries fished high in the film fool steady risers.
 sources:
+  - https://www.epa.gov/system/files/documents/2024-06/macroinvertebrate-id-tipsheet.pdf
   - https://bugguide.net

@@ -73,3 +73,11 @@ opportunity:
     - Prior habitat research found no cold-storage mechanism documented for this release (Parksville
       is a shallow warmwater pool managed for walleye) - summer trout persistence is unevidenced,
       not disproven.
+
+gaugePolicy:
+  primary:
+    cfs: tva:OCAT1
+  references:
+    - gaugeId: "03564500"
+      note: This historical USGS station has no current flow series.
+  note: Use Ocoee No. 1 dam releases for Parksville tailwater context.

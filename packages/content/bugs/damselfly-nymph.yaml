@@ -7,7 +7,8 @@ sizeRange:
   - 8
   - 14
 keyAttributes:
-  tails: 3
+  tails: 0
+  tailFilamentNote: "Tail-like gills (damselflies) and short terminal structures (dragonflies) are not long tail filaments."
   gills: lamellae
   bodyShape: slender
   bodyColor:
@@ -54,5 +55,6 @@ stages:
 notes: Slender paddler nymphs with three leaf-shaped tail gills, common in weedbeds near slack
   water. An olive damsel fished with short strips near grassy margins finds cruising fish.
 sources:
+  - https://www.epa.gov/system/files/documents/2024-06/macroinvertebrate-id-tipsheet.pdf
   - https://bugguide.net
   - Voshell, A Guide to Common Freshwater Invertebrates of North America

@@ -11,6 +11,8 @@
 # Provenance: packages/content/streams/tn/*.yaml (regionId tn-west) notes and
 # https://www.tn.gov/twra/fishing/trout-information-stockings.html
 regionId: tn-west
+evidenceBasis: editorial
+evidenceNote: "Month, time-of-day and relative abundance ratings are editorial guidance. Linked specimen studies support only their stated taxa, sites and collection periods."
 months:
   - month: 1
     entries:

@@ -7,7 +7,8 @@ sizeRange:
   - 6
   - 12
 keyAttributes:
-  tails: 2
+  tails: not-applicable
+  tailFilamentNote: "Tail-filament count is an insect-key feature; do not count fins, crustacean appendages or other non-insect structures."
   gills: none
   bodyShape: slender
   bodyColor:

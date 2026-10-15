@@ -9,6 +9,7 @@ import { getAdapters } from './ingest/stocking/index.js';
 import { buildSnapshots } from './snapshots/build.js';
 import { runEvidenceJob } from './evidence/evidenceJob.js';
 import { runConditionsReadingsJob } from './evidence/conditionsBridge.js';
+import { runFlowHistoryJob } from './evidence/flow-history.js';
 import { parseUsgsObservations } from './evidence/usgs-provider.js';
 import { parseTvaObservations } from './evidence/tva-provider.js';
 import { parseTwraEvidence } from './evidence/twra-evidence.js';
@@ -231,6 +232,9 @@ export async function runJob(
       releaseSchedules: true,
       includeReservoirs: true,
     });
+    // Historical hydrology is cached monthly and never substitutes for current readings.
+    try { await runFlowHistoryJob(db, { userAgent: cfg.userAgent, apiKey: cfg.usgsWaterDataApiKey, now }); }
+    catch (error) { console.warn(`[flow-history] ${(error as Error).message}`); }
     const snap = buildSnapshots({ db, snapshotsDir: cfg.snapshotsDir, contentPackDir: cfg.contentPackDir, now });
     return { job, ok: true, detail: { ...snap, files: snap.files.length } };
   }

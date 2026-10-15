@@ -55,7 +55,7 @@ export function matchHatch(
       score += 1;
       matched.push('size');
     }
-    if (observation.tails === taxon.keyAttributes.tails) {
+    if (typeof observation.tails === 'number' && observation.tails === taxon.keyAttributes.tails) {
       score += 1;
       matched.push('tails');
     }

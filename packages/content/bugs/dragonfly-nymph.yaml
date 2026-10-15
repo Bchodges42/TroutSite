@@ -7,7 +7,8 @@ sizeRange:
   - 4
   - 10
 keyAttributes:
-  tails: 2
+  tails: 0
+  tailFilamentNote: "Tail-like gills (damselflies) and short terminal structures (dragonflies) are not long tail filaments."
   gills: none
   bodyShape: robust
   bodyColor:
@@ -54,4 +55,5 @@ stages:
 notes: Chunky ambush predators of warm tailwater flats — big browns hunt them. A bulky olive
   nymph crawled slowly along the bottom is the right retrieve.
 sources:
+  - https://www.epa.gov/system/files/documents/2024-06/macroinvertebrate-id-tipsheet.pdf
   - https://bugguide.net

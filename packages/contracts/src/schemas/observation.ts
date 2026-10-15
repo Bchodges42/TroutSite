@@ -1,12 +1,12 @@
 import { z } from 'zod';
-import { BodyShapeSchema, GillsSchema } from './taxon.js';
+import { BodyShapeSchema, GillsSchema, TailFilamentCountSchema } from './taxon.js';
 import { RegionIdSchema } from './shared.js';
 
 /** What the angler observed on the water; input to matchHatch(). */
 export const BugObservationSchema = z.object({
   sizeHook: z.number().int().positive(),
   bodyColor: z.string().min(1),
-  tails: z.union([z.literal(2), z.literal(3)]),
+  tails: TailFilamentCountSchema,
   gills: GillsSchema,
   bodyShape: BodyShapeSchema,
   month: z.number().int().min(1).max(12),

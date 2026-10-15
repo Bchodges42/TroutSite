@@ -12,6 +12,7 @@ import { monthName, REGIONS } from '../data/regions';
 import { TaxonArt } from '../components/art/TaxonArt';
 import { TailsArt, GillsArt, ShapeArt } from '../components/art/DiscriminatorArt';
 import { RiverContextBar, useRiverContext, contextUrl } from '../lib/riverContext';
+import { tailFilamentLabel } from '../lib/bugAttributes';
 
 /**
  * Match-the-hatch (hero feature, scope 2): guided attribute key → ranked taxa
@@ -80,7 +81,7 @@ const ATTRIBUTE_LABEL: Record<string, string> = {
   gills: 'gills',
   bodyShape: 'shape',
   bodyColor: 'color',
-  hatchChart: 'hatching now',
+  hatchChart: 'regional guidance',
   seasonRecord: 'in season',
 };
 
@@ -95,7 +96,7 @@ interface Draft {
   /** T2-39: the size was assumed ("not sure"), not measured off the insect. */
   sizeAssumed?: boolean;
   bodyColor?: string;
-  tails?: 2 | 3;
+  tails?: BugObservation['tails'];
   gills?: BugObservation['gills'];
   bodyShape?: BugObservation['bodyShape'];
   month?: number;
@@ -292,7 +293,7 @@ export function HatchKeyPage() {
 
               {step === 'tails' && (
                 <div className="grid grid-cols-2 gap-3">
-                  {([2, 3] as const).map((t) => (
+                  {([0, 1, 2, 3, 'unknown', 'not-applicable'] as const).map((t) => (
                     <button
                       key={t}
                       type="button"
@@ -300,10 +301,12 @@ export function HatchKeyPage() {
                       aria-pressed={draft.tails === t}
                       onClick={() => pick('tails', t)}
                     >
-                      <span aria-hidden="true"><TailsArt tails={t} size={110} /></span>
-                      <span className="font-bold">{t} tails</span>
+                      {(t === 2 || t === 3) && <span aria-hidden="true"><TailsArt tails={t} size={110} /></span>}
+                      <span className="font-bold">{tailFilamentLabel(t)}</span>
                       <span className="text-xs" style={{ color: 'var(--trout-color-text-muted)' }}>
-                        {t === 2 ? 'Count the filaments — a pair' : 'Three separate filaments fanned out'}
+                        {t === 'unknown' || t === 'not-applicable'
+                          ? 'Skip this feature when matching'
+                          : 'Count long filaments only; exclude legs, hooks, fins and tail-like gills'}
                       </span>
                     </button>
                   ))}

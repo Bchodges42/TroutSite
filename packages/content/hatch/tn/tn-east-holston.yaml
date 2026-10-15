@@ -1,4 +1,6 @@
 regionId: tn-east-holston
+evidenceBasis: editorial
+evidenceNote: "Month, time-of-day and relative abundance ratings are editorial guidance. Linked specimen studies support only their stated taxa, sites and collection periods."
 months:
   - month: 1
     entries:

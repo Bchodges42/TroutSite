@@ -361,7 +361,7 @@ export function loadContent(): LoadedContent {
 
   // --- hatch charts: hatch/{stateId}/{regionId}.yaml holds all 12 months of one region ---
   for (const file of collectYamlFiles(join(CONTENT_ROOT, 'hatch'))) {
-    let data: { regionId?: string; months?: { month: number; entries: unknown[] }[] };
+    let data: { regionId?: string; months?: { month: number; entries: unknown[] }[]; evidenceBasis?: string; evidenceNote?: string };
     try {
       data = readYaml(file) as typeof data;
     } catch (err) {
@@ -383,7 +383,8 @@ export function loadContent(): LoadedContent {
     const months: HatchChart[] = [];
     const monthNumbers = new Set<number>();
     for (const entry of data.months) {
-      const chart = HatchChartSchema.safeParse({ regionId: data.regionId, month: entry.month, entries: entry.entries });
+      const chart = HatchChartSchema.safeParse({ regionId: data.regionId, month: entry.month, entries: entry.entries,
+        evidenceBasis: data.evidenceBasis ?? 'editorial', evidenceNote: data.evidenceNote });
       if (!chart.success) {
         issues.push({ file: rel(file), message: `month ${entry.month}: ${chart.error.issues.map((i) => `${i.path.join('.')}: ${i.message}`).join('; ')}` });
         continue;

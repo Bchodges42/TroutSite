@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { HistoricalFlowSchema } from './historicalFlow.js';
 import { GaugeReadingSchema } from './gauge.js';
 import { IsoDateTimeSchema } from './shared.js';
 
@@ -20,6 +21,8 @@ export type ConditionScore = z.infer<typeof ConditionScoreSchema>;
 export const ConditionSnapshotSchema = z.object({
   streamId: z.string().min(1),
   readings: z.array(GaugeReadingSchema),
+  referenceReadings: z.array(GaugeReadingSchema).optional(),
+  historicalFlow: HistoricalFlowSchema.optional(),
   score: ConditionScoreSchema,
   fetchedAt: IsoDateTimeSchema,
   nextExpectedUpdate: IsoDateTimeSchema,

@@ -194,7 +194,9 @@ describe('runConditionsReadingsJob (TVA + USACE → gauge_readings_raw)', () => 
     // The snapshot builder's latestReadings serves the prefixed gauges unchanged.
     const latest = latestReadings(env.db, Date.parse('2026-09-05T02:00:00Z'));
     expect(latest.map((r) => r.gaugeId)).toContain('tva:NRST1');
-    expect(latest.map((r) => r.gaugeId)).toContain('usace:CETT1');
+    // The CETT1 fixture is dated Sept 8, so it cannot be current on Sept 5.
+    expect(latest.map((r) => r.gaugeId)).not.toContain('usace:CETT1');
+    expect(latestReadings(env.db, Date.parse('2026-09-08T07:00:00Z')).map((r) => r.gaugeId)).toContain('usace:CETT1');
   });
 
   it('soft-fails per source: one failing TVA dam becomes a warning, the rest still persist', async () => {

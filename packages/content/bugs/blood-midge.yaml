@@ -7,7 +7,7 @@ sizeRange:
   - 14
   - 20
 keyAttributes:
-  tails: 2
+  tails: 0
   gills: none
   bodyShape: slender
   bodyColor:
@@ -132,5 +132,6 @@ notes: "Haemoglobin-red larvae live in the silt of every Tennessee tailwater and
   months a year — winter fishing is basically midge fishing. Keep a #16-18 red larva and black
   pupa handy."
 sources:
+  - https://www.epa.gov/system/files/documents/2024-06/macroinvertebrate-id-tipsheet.pdf
   - https://en.wikipedia.org/wiki/Chironomidae
   - https://bugguide.net
