@@ -152,6 +152,33 @@ test('refresh-data: refuses with NO-STAMP when nothing has verified on this host
   }
 });
 
+// Regression (pipeline audit 2026-10-14): every refresh-data failure branch
+// wrote its new status BEFORE calling trout_maybe_push, so the push compared
+// FAIL-SEED with FAIL-SEED and stayed silent — no failure ever paged.
+test('refresh-data: a fresh failure after OK pages once; the repeat stays quiet', () => {
+  const root = makeRepoFixture();
+  try {
+    const stubDir = join(root, 'backups', 'stub-path');
+    mkdirSync(stubDir, { recursive: true });
+    writeFileSync(join(stubDir, 'pnpm'), '#!/usr/bin/env bash\necho "seed boom"\nexit 1\n');
+    assert.equal(run(root, 'deploy-stamp.sh', ['write']).status, 0);
+    writeFileSync(join(root, 'backups', 'refresh-data.status'), 'OK 2026-10-14T00:00:00Z\n');
+    const env = { PATH: `${stubDir}:${process.env.PATH}` };
+
+    const first = run(root, 'refresh-data.sh', [], env);
+    assert.equal(first.status, 1, first.stdout + first.stderr);
+    assert.match(read(root, join('backups', 'refresh-data.status')), /^FAIL-SEED /);
+    const alertsAfterFirst = read(root, join('backups', 'refresh-data.log')).match(/\[alert\]/g) ?? [];
+    assert.equal(alertsAfterFirst.length, 1, 'OK → FAIL-SEED must attempt exactly one page');
+
+    run(root, 'refresh-data.sh', [], env);
+    const alertsAfterRepeat = read(root, join('backups', 'refresh-data.log')).match(/\[alert\]/g) ?? [];
+    assert.equal(alertsAfterRepeat.length, 1, 'FAIL-SEED → FAIL-SEED must not page again');
+  } finally {
+    rmSync(root, { recursive: true, force: true, maxRetries: 3 });
+  }
+});
+
 test('alert.sh: pages on first high-priority state and on transitions, not on repeats', () => {
   const root = makeRepoFixture();
   try {

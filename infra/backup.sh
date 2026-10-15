@@ -44,9 +44,9 @@ DB_PATH="$TROUT_DB_PATH"
 if [ ! -f "$DB_PATH" ]; then
   log "FAIL — database not found at $DB_PATH (TROUT_DB_PATH); nothing backed up"
   echo "[backup] The database is NOT backed up. Fix TROUT_DB_PATH (runtime-env.sh)." >&2
-  trout_set_status "FAIL-NODB"
   trout_maybe_push "FAIL-NODB" "Trout DB backup could not find the database" \
     "$(trout_alert_context "The nightly backup refused to guess: no database at the resolved TROUT_DB_PATH ($DB_PATH). Check runtime-env.sh paths on the host.")" "high"
+  trout_set_status "FAIL-NODB"
   exit 1
 fi
 
@@ -55,9 +55,9 @@ DEST="$BACKUP_DIR/trout-$STAMP.db"
 if command -v sqlite3 >/dev/null 2>&1 && [ "${TROUT_BACKUP_NO_SQLITE3:-}" != "1" ]; then
   if ! sqlite3 "$DB_PATH" ".backup '$DEST'"; then
     log "FAIL — sqlite3 CLI online backup failed; the database is NOT backed up"
-    trout_set_status "FAIL-BACKUP"
     trout_maybe_push "FAIL-BACKUP" "Trout DB backup failed" \
       "$(trout_alert_context "The sqlite3 CLI online backup errored — the database is NOT backed up tonight.")" "high"
+    trout_set_status "FAIL-BACKUP"
     exit 1
   fi
 else
@@ -74,9 +74,9 @@ else
   " "$DB_PATH" "$ROOT/$DEST"); then
     log "FAIL — no consistent backup path available (no sqlite3 CLI, node backup failed). The database is NOT backed up."
     echo "[backup] The database is NOT backed up. Install the sqlite3 CLI or fix better-sqlite3." >&2
-    trout_set_status "FAIL-BACKUP"
     trout_maybe_push "FAIL-BACKUP" "Trout DB backup failed" \
       "$(trout_alert_context "Neither sqlite3 CLI nor the better-sqlite3 online backup produced a copy — the database is NOT backed up tonight.")" "high"
+    trout_set_status "FAIL-BACKUP"
     exit 1
   fi
 fi

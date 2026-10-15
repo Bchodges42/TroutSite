@@ -4,7 +4,7 @@
 # the snapshot trees after the cron process went quiet. Run this hourly from a
 # schedule (install-schedules.sh registers it) so the feed stays fresh:
 #   deploy-stamp guard → seed catalog → ingest fresh USGS gauge readings →
-#   regenerate all snapshot JSON.
+#   ingest TWRA stocking (once a day) → regenerate all snapshot JSON.
 # Never touches portal data or the logbook; gauge-ingest failures are logged,
 # not fatal. Skew and snapshot failures page the owner (alert.sh dedup).
 #
@@ -51,15 +51,15 @@ if [ "$stamp_rc" != "0" ]; then
   if [ "$stamp_rc" = "24" ]; then
     skew="$(bash infra/deploy-stamp.sh show || true)"
     log "REFUSED — code/data skew: $skew. Hourly refresh skipped; run deploy.sh to deploy and verify the checkout."
-    trout_set_status "REFUSED-SKEW"
     trout_maybe_push "REFUSED-SKEW" "Trout refresh skipped (code/data skew)" \
       "$(trout_alert_context "$skew — the checkout is ahead of the last verified deploy. Hourly refresh is refused so undeployed code cannot rebuild the served data. Fix: run 'bash infra/deploy.sh' on the host.")" "high"
+    trout_set_status "REFUSED-SKEW"
     exit 24
   fi
   log "REFUSED — no verified deploy stamp ($(bash infra/deploy-stamp.sh show || true)); run deploy.sh once so a revision is verified."
-  trout_set_status "REFUSED-NOSTAMP"
   trout_maybe_push "REFUSED-NOSTAMP" "Trout refresh skipped (no verified deploy)" \
     "$(trout_alert_context "No deploy stamp exists — no deploy has completed verification on this host, so the hourly refresh refuses to guess which code is safe to run. Fix: run 'bash infra/deploy.sh' on the host.")" "high"
+  trout_set_status "REFUSED-NOSTAMP"
   exit 24
 fi
 bash infra/deploy-stamp.sh show >> "$LOG" 2>&1 || true
@@ -73,9 +73,9 @@ if pnpm --filter api seed >> "$LOG" 2>&1; then
   log "seed ok (catalog current with the content pack)"
 else
   log "FAIL — seed errored (details above); snapshots NOT rebuilt from a stale catalog"
-  trout_set_status "FAIL-SEED"
   trout_maybe_push "FAIL-SEED" "Trout hourly refresh failed at seed" \
     "$(trout_alert_context "Seed failed; the snapshot rebuild was skipped so stale catalog data cannot be published. Served data stays at the last-good state until this passes.")" "high"
+  trout_set_status "FAIL-SEED"
   exit 1
 fi
 
@@ -85,13 +85,32 @@ else
   log "WARN — gauge ingestion failed (network/USGS?); regenerating from last-known readings"
 fi
 
+# --- stocking: read TWRA once a day (audit 2026-10-14) -----------------------
+# Stocking used to be ingested ONLY by deploy.sh, so its age was "time since the
+# last deploy" while the app called it current. TWRA updates at most daily, so
+# read it when the last SUCCESSFUL read is > 20 h old; a failure leaves the
+# stamp alone and retries next hour (the job's count guards keep stored rows
+# and record an error that /healthz reports as degraded).
+STOCKING_STAMP="$BACKUPS/stocking-refresh.epoch"
+now_epoch="$(date -u +%s)"
+last_stocking="$(cat "$STOCKING_STAMP" 2>/dev/null || echo 0)"
+case "$last_stocking" in ''|*[!0-9]*) last_stocking=0 ;; esac
+if [ $((now_epoch - last_stocking)) -gt $((20 * 3600)) ]; then
+  if pnpm --filter api ingest --job=stocking >> "$LOG" 2>&1; then
+    echo "$now_epoch" > "$STOCKING_STAMP"
+    log "stocking ingestion ok (TWRA read; next read in ~20 h)"
+  else
+    log "WARN — stocking ingestion failed (TWRA down or count guard tripped); last-known rows kept, retrying next hour"
+  fi
+fi
+
 if pnpm --filter api snapshots >> "$LOG" 2>&1; then
   log "snapshots regenerated"
 else
   log "FAIL — snapshot regeneration errored (details above)"
-  trout_set_status "FAIL-SNAPSHOTS"
   trout_maybe_push "FAIL-SNAPSHOTS" "Trout hourly snapshot rebuild failed" \
     "$(trout_alert_context "The hourly snapshot rebuild errored and was not published; the served data is the last-good state. This is the alert that was missing during the 2026-09-06..16 skew.")" "high"
+  trout_set_status "FAIL-SNAPSHOTS"
   exit 1
 fi
 
@@ -102,7 +121,7 @@ if bash infra/verify-site.sh --url "$URL" >> "$LOG" 2>&1; then
   exit 0
 fi
 log "verify FAILED after refresh — check $LOG; watchdog will attempt deeper heals"
-trout_set_status "FAIL-VERIFY"
 trout_maybe_push "FAIL-VERIFY" "Trout refresh failed read-path verify" \
   "$(trout_alert_context "The hourly refresh published data that fails read-path verification; the watchdog will attempt heals (regen → last-good archive).")" "high"
+trout_set_status "FAIL-VERIFY"
 exit 1
