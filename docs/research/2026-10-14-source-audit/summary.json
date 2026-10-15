@@ -1,0 +1,288 @@
+{
+  "wqp": {
+    "requestId": "tdec-temperature-tn",
+    "records": 3985,
+    "uniqueSites": 1129,
+    "dateMin": "2024-01-02",
+    "dateMax": "2024-12-26",
+    "units": [
+      "deg C"
+    ],
+    "sample": [
+      {
+        "MonitoringLocationIdentifier": "TDECWR_WQX-TNW000003498",
+        "ActivityStartDate": "2024-10-08",
+        "CharacteristicName": "Temperature, water",
+        "ResultMeasureValue": "17.3",
+        "ResultMeasure/MeasureUnitCode": "deg C"
+      },
+      {
+        "MonitoringLocationIdentifier": "TDECWR_WQX-TNW000006730",
+        "ActivityStartDate": "2024-07-15",
+        "CharacteristicName": "Temperature, water",
+        "ResultMeasureValue": "25.48",
+        "ResultMeasure/MeasureUnitCode": "deg C"
+      },
+      {
+        "MonitoringLocationIdentifier": "TDECWR_WQX-TNW000000235",
+        "ActivityStartDate": "2024-08-06",
+        "CharacteristicName": "Temperature, water",
+        "ResultMeasureValue": "26.73",
+        "ResultMeasure/MeasureUnitCode": "deg C"
+      }
+    ]
+  },
+  "counts": {
+    "waters": 190,
+    "nonemptyIdealFlow": 94,
+    "withOpportunitySources": 156,
+    "withoutOpportunitySources": 34,
+    "allHaveOfficialSources": true,
+    "uniqueUsgsIds": 50,
+    "specialRulesBefore": 18,
+    "specialRulesAfter": 21,
+    "nonMayflyStoneflyWithTwoTails": 63
+  },
+  "cwms": [
+    {
+      "id": "cwms-DHTT1-flow",
+      "url": "https://cwms-data.usace.army.mil/cwms-data/timeseries?office=LRN&name=DHTT1-DALE_HOLLOW.Flow.Ave.1Hour.1Hour.man-rev&begin=2026-10-12T00%3A00%3A00Z&end=2026-10-15T00%3A00%3A00Z&unit=cfs",
+      "retrievedAt": "2026-10-15T03:33:47.045Z",
+      "status": 200,
+      "bytes": 3222,
+      "units": "cfs",
+      "total": 73,
+      "usable": 73,
+      "first": [
+        1791763200000,
+        1732.9999998610015,
+        0
+      ],
+      "last": [
+        1792022400000,
+        1736.9999999892643,
+        0
+      ]
+    },
+    {
+      "id": "cwms-DHTT1-temperature",
+      "url": "https://cwms-data.usace.army.mil/cwms-data/timeseries?office=LRN&name=DHTT1-DALE_HOLLOW.Temp-Water-Tail.Inst.30Minutes.0.dcp-rev&begin=2026-10-12T00%3A00%3A00Z&end=2026-10-15T00%3A00%3A00Z&unit=C",
+      "retrievedAt": "2026-10-15T03:33:47.560Z",
+      "status": 200,
+      "bytes": 4001,
+      "units": "C",
+      "total": 145,
+      "usable": 145,
+      "first": [
+        1791763200000,
+        12.18,
+        0
+      ],
+      "last": [
+        1792022400000,
+        12.15,
+        0
+      ]
+    },
+    {
+      "id": "cwms-JPPT1-flow",
+      "url": "https://cwms-data.usace.army.mil/cwms-data/timeseries?office=LRN&name=JPPT1-J_PERCY_PRIEST.Flow.Ave.1Hour.1Hour.man-rev&begin=2026-10-12T00%3A00%3A00Z&end=2026-10-15T00%3A00%3A00Z&unit=cfs",
+      "retrievedAt": "2026-10-15T03:33:47.682Z",
+      "status": 200,
+      "bytes": 3188,
+      "units": "cfs",
+      "total": 72,
+      "usable": 72,
+      "first": [
+        1791763200000,
+        30.000000079104854,
+        0
+      ],
+      "last": [
+        1792018800000,
+        30.000000079104854,
+        0
+      ]
+    },
+    {
+      "id": "cwms-JPPT1-temperature",
+      "url": "https://cwms-data.usace.army.mil/cwms-data/timeseries?office=LRN&name=JPPT1-J_PERCY_PRIEST.Temp-Water-Tail.Inst.30Minutes.0.dcp-rev&begin=2026-10-12T00%3A00%3A00Z&end=2026-10-15T00%3A00%3A00Z&unit=C",
+      "retrievedAt": "2026-10-15T03:33:47.804Z",
+      "status": 200,
+      "bytes": 4002,
+      "units": "C",
+      "total": 145,
+      "usable": 145,
+      "first": [
+        1791763200000,
+        21.61,
+        0
+      ],
+      "last": [
+        1792022400000,
+        23.38,
+        0
+      ]
+    },
+    {
+      "id": "cwms-CORT1-flow",
+      "url": "https://cwms-data.usace.army.mil/cwms-data/timeseries?office=LRN&name=CORT1-CORDELL_HULL.Flow.Ave.1Hour.1Hour.man-rev&begin=2026-10-12T00%3A00%3A00Z&end=2026-10-15T00%3A00%3A00Z&unit=cfs",
+      "retrievedAt": "2026-10-15T03:33:47.922Z",
+      "status": 200,
+      "bytes": 2608,
+      "units": "cfs",
+      "total": 73,
+      "usable": 73,
+      "first": [
+        1791763200000,
+        16959.9999999887,
+        0
+      ],
+      "last": [
+        1792022400000,
+        17380.00000003673,
+        0
+      ]
+    },
+    {
+      "id": "cwms-CORT1-temperature",
+      "url": "https://cwms-data.usace.army.mil/cwms-data/timeseries?office=LRN&name=CORT1-CORDELL_HULL.Temp-Water-Tail.Inst.30Minutes.0.dcp-rev&begin=2026-10-12T00%3A00%3A00Z&end=2026-10-15T00%3A00%3A00Z&unit=C",
+      "retrievedAt": "2026-10-15T03:33:48.052Z",
+      "status": 200,
+      "bytes": 3999,
+      "units": "C",
+      "total": 145,
+      "usable": 145,
+      "first": [
+        1791763200000,
+        19.95,
+        0
+      ],
+      "last": [
+        1792022400000,
+        20.55,
+        0
+      ]
+    },
+    {
+      "id": "cwms-CETT1-temperature",
+      "url": "https://cwms-data.usace.army.mil/cwms-data/timeseries?office=LRN&name=CETT1-CENTER_HILL.Temp-Water-Tail.Inst.30Minutes.0.dcp-rev&begin=2026-10-12T00%3A00%3A00Z&end=2026-10-15T00%3A00%3A00Z&unit=C",
+      "retrievedAt": "2026-10-15T03:33:48.172Z",
+      "status": 200,
+      "bytes": 4003,
+      "units": "C",
+      "total": 145,
+      "usable": 145,
+      "first": [
+        1791763200000,
+        10.63,
+        0
+      ],
+      "last": [
+        1792022400000,
+        14.31,
+        0
+      ]
+    }
+  ],
+  "statistics": [
+    {
+      "id": "usgs-catalog-obed-statistics",
+      "url": "https://api.waterdata.usgs.gov/statistics/v0/observationNormals?monitoring_location_id=USGS-03538830&parameter_code=00060&computation_type=percentile&normal_type=DOY&start_date=10-14&end_date=10-14",
+      "retrievedAt": "2026-10-15T03:33:45.841Z",
+      "status": 200,
+      "bytes": 867,
+      "statistics": [
+        {
+          "id": "USGS-03538830",
+          "data": [
+            {
+              "parameter_code": "00060",
+              "unit_of_measure": "ft^3/s",
+              "parent_time_series_id": "d82a715cecc94ddeb3975fce7545e234",
+              "parent_statistic_id": "00003",
+              "parent_statistic_name": "Mean",
+              "values": [
+                {
+                  "time_of_year": "10-14",
+                  "time_of_year_type": "day_of_year",
+                  "values": [
+                    "nan",
+                    "1.934",
+                    "4.73",
+                    "22.5",
+                    "52.8",
+                    "734.1",
+                    "nan"
+                  ],
+                  "percentiles": [
+                    "5",
+                    "10",
+                    "25",
+                    "50",
+                    "75",
+                    "90",
+                    "95"
+                  ],
+                  "sample_count": 15,
+                  "approval_status": "approved",
+                  "computation_id": "bd861687-fe2c-49ff-968c-4e914326b6e3",
+                  "computation": "percentile"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "usgs-powell-statistics",
+      "url": "https://api.waterdata.usgs.gov/statistics/v0/observationNormals?monitoring_location_id=USGS-03532000&parameter_code=00060&computation_type=percentile&normal_type=DOY&start_date=10-14&end_date=10-14",
+      "retrievedAt": "2026-10-15T03:33:46.695Z",
+      "status": 200,
+      "bytes": 853,
+      "statistics": [
+        {
+          "id": "USGS-03532000",
+          "data": [
+            {
+              "parameter_code": "00060",
+              "unit_of_measure": "ft^3/s",
+              "parent_time_series_id": "2718ef8787054b81809d472f50a689e2",
+              "parent_statistic_id": "00003",
+              "parent_statistic_name": "Mean",
+              "values": [
+                {
+                  "time_of_year": "10-14",
+                  "time_of_year_type": "day_of_year",
+                  "values": [
+                    "84.4",
+                    "96.8",
+                    "117.5",
+                    "161.0",
+                    "269.5",
+                    "406.0",
+                    "603.9"
+                  ],
+                  "percentiles": [
+                    "5",
+                    "10",
+                    "25",
+                    "50",
+                    "75",
+                    "90",
+                    "95"
+                  ],
+                  "sample_count": 93,
+                  "approval_status": "approved",
+                  "computation_id": "f1409d16-603f-41f9-80ca-e61d251b5574",
+                  "computation": "percentile"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

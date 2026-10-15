@@ -1,0 +1,106 @@
+{
+  "objectIdFieldName" : "FID", 
+  "uniqueIdField" : 
+  {
+    "name" : "FID", 
+    "isSystemMaintained" : true
+  }, 
+  "globalIdFieldName" : "", 
+  "geometryType" : "esriGeometryPoint", 
+  "spatialReference" : {
+    "wkid" : 102100, 
+    "latestWkid" : 3857
+  }, 
+  "fields" : [
+    {
+      "name" : "FID", 
+      "type" : "esriFieldTypeOID", 
+      "alias" : "FID", 
+      "sqlType" : "sqlTypeInteger", 
+      "domain" : null, 
+      "defaultValue" : null
+    }, 
+    {
+      "name" : "Stream", 
+      "type" : "esriFieldTypeString", 
+      "alias" : "Stream", 
+      "sqlType" : "sqlTypeNVarchar", 
+      "length" : 4000, 
+      "domain" : null, 
+      "defaultValue" : null
+    }, 
+    {
+      "name" : "Date", 
+      "type" : "esriFieldTypeString", 
+      "alias" : "Date", 
+      "sqlType" : "sqlTypeNVarchar", 
+      "length" : 4000, 
+      "domain" : null, 
+      "defaultValue" : null
+    }, 
+    {
+      "name" : "AveTemp", 
+      "type" : "esriFieldTypeSingle", 
+      "alias" : "AveTemp", 
+      "sqlType" : "sqlTypeReal", 
+      "domain" : null, 
+      "defaultValue" : null
+    }, 
+    {
+      "name" : "MaxTemp", 
+      "type" : "esriFieldTypeSingle", 
+      "alias" : "MaxTemp", 
+      "sqlType" : "sqlTypeReal", 
+      "domain" : null, 
+      "defaultValue" : null
+    }
+  ], 
+  "exceededTransferLimit" : true, 
+  "features" : [
+    {
+      "attributes" : {
+        "FID" : 1, 
+        "Stream" : "Round Knob Branch", 
+        "Date" : "7/19/2022 12:00:00 AM", 
+        "AveTemp" : 19.1813, 
+        "MaxTemp" : 19.52763
+      }
+    }, 
+    {
+      "attributes" : {
+        "FID" : 2, 
+        "Stream" : "Sinking Creek", 
+        "Date" : "6/1/2022 12:00:00 AM", 
+        "AveTemp" : 15.64388, 
+        "MaxTemp" : 16.889
+      }
+    }, 
+    {
+      "attributes" : {
+        "FID" : 3, 
+        "Stream" : "Round Knob Branch", 
+        "Date" : "7/20/2022 12:00:00 AM", 
+        "AveTemp" : 19.36094, 
+        "MaxTemp" : 19.69923
+      }
+    }, 
+    {
+      "attributes" : {
+        "FID" : 4, 
+        "Stream" : "Sinking Creek", 
+        "Date" : "6/2/2022 12:00:00 AM", 
+        "AveTemp" : 15.90167, 
+        "MaxTemp" : 17.05
+      }
+    }, 
+    {
+      "attributes" : {
+        "FID" : 5, 
+        "Stream" : "Round Knob Branch", 
+        "Date" : "7/21/2022 12:00:00 AM", 
+        "AveTemp" : 19.40116, 
+        "MaxTemp" : 19.62416
+      }
+    }
+  ]
+}

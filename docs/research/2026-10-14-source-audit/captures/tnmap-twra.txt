@@ -1,0 +1,171 @@
+{
+ "currentVersion": 11.5,
+ "cimVersion": "3.5.0",
+ "serviceDescription": "Agency: TWRA. Frequency of updates: Irregular. Description: Fish hatcheries, boating &amp; fishing access sites, lakes, and WMA's from the TN Wildlife Resources Agency (TWRA). Projection: TN State Plane NAD83 Feet.",
+ "mapName": "Layers",
+ "description": "<DIV STYLE=\"text-align:Left;font-size:12pt\"><P><SPAN>Agency: TWRA. Frequency of updates: Irregular. Description: Fish hatcheries, boating &amp; fishing access sites, lakes, and WMA's from the TN Wildlife Resources Agency (TWRA). Projection: TN State Plane NAD83 Feet.<\/SPAN><\/P><\/DIV>",
+ "copyrightText": "TWRA",
+ "supportsDynamicLayers": true,
+ "layers": [
+  {
+   "id": 0,
+   "name": "Hatcheries",
+   "parentLayerId": -1,
+   "defaultVisibility": false,
+   "subLayerIds": null,
+   "minScale": 0,
+   "maxScale": 0,
+   "type": "Feature Layer",
+   "geometryType": "esriGeometryPoint",
+   "supportsDynamicLegends": true
+  },
+  {
+   "id": 1,
+   "name": "Boating & Fishing Access Sites",
+   "parentLayerId": -1,
+   "defaultVisibility": false,
+   "subLayerIds": null,
+   "minScale": 0,
+   "maxScale": 0,
+   "type": "Feature Layer",
+   "geometryType": "esriGeometryPoint",
+   "supportsDynamicLegends": true
+  },
+  {
+   "id": 2,
+   "name": "Lakes",
+   "parentLayerId": -1,
+   "defaultVisibility": true,
+   "subLayerIds": null,
+   "minScale": 0,
+   "maxScale": 0,
+   "type": "Feature Layer",
+   "geometryType": "esriGeometryPolygon",
+   "supportsDynamicLegends": true
+  },
+  {
+   "id": 3,
+   "name": "Lands",
+   "parentLayerId": -1,
+   "defaultVisibility": true,
+   "subLayerIds": null,
+   "minScale": 0,
+   "maxScale": 0,
+   "type": "Feature Layer",
+   "geometryType": "esriGeometryPolygon",
+   "supportsDynamicLegends": true
+  }
+ ],
+ "tables": [],
+ "spatialReference": {
+  "wkid": 102736,
+  "latestWkid": 2274,
+  "xyTolerance": 0.003280833333333333,
+  "zTolerance": 0.001,
+  "mTolerance": 0.001,
+  "falseX": -121521300,
+  "falseY": -93934000,
+  "xyUnits": 3048.0060960121914,
+  "falseZ": -100000,
+  "zUnits": 10000,
+  "falseM": -100000,
+  "mUnits": 10000
+ },
+ "singleFusedMapCache": false,
+ "initialExtent": {
+  "xmin": 592914.4281857349,
+  "ymin": -457850.03179920383,
+  "xmax": 3370230.384467911,
+  "ymax": 1556342.3369039064,
+  "spatialReference": {
+   "wkid": 102736,
+   "latestWkid": 2274,
+   "xyTolerance": 0.003280833333333333,
+   "zTolerance": 0.001,
+   "mTolerance": 0.001,
+   "falseX": -121521300,
+   "falseY": -93934000,
+   "xyUnits": 3048.0060960121914,
+   "falseZ": -100000,
+   "zUnits": 10000,
+   "falseM": -100000,
+   "mUnits": 10000
+  }
+ },
+ "fullExtent": {
+  "xmin": 719156.0625621974,
+  "ymin": 238648.53063860536,
+  "xmax": 3243988.7500914484,
+  "ymax": 859843.7744660974,
+  "spatialReference": {
+   "wkid": 102736,
+   "latestWkid": 2274,
+   "xyTolerance": 0.003280833333333333,
+   "zTolerance": 0.001,
+   "mTolerance": 0.001,
+   "falseX": -121521300,
+   "falseY": -93934000,
+   "xyUnits": 3048.0060960121914,
+   "falseZ": -100000,
+   "zUnits": 10000,
+   "falseM": -100000,
+   "mUnits": 10000
+  }
+ },
+ "datesInUnknownTimezone": false,
+ "minScale": 0,
+ "maxScale": 0,
+ "units": "esriFeet",
+ "supportedImageFormatTypes": "PNG32,PNG24,PNG,JPG,DIB,TIFF,EMF,PS,PDF,GIF,SVG,SVGZ,BMP",
+ "documentInfo": {
+  "Title": "Map",
+  "Author": "",
+  "Comments": "<DIV STYLE=\"text-align:Left;font-size:12pt\"><P><SPAN>Agency: TWRA. Frequency of updates: Irregular. Description: Fish hatcheries, boating &amp; fishing access sites, lakes, and WMA's from the TN Wildlife Resources Agency (TWRA). Projection: TN State Plane NAD83 Feet.<\/SPAN><\/P><\/DIV>",
+  "Subject": "Fish hatcheries, boating & fishing access sites, lakes, and WMA's from TWRA.",
+  "Category": "",
+  "Version": "2.9.0",
+  "AntialiasingMode": "Fast",
+  "TextAntialiasingMode": "Force",
+  "Keywords": "fish,hatchery,hatcheries,boating,fishing,WMA"
+ },
+ "supportsQueryDomains": true,
+ "capabilities": "Map,Query,Data",
+ "supportedQueryFormats": "JSON, geoJSON, PBF",
+ "exportTilesAllowed": false,
+ "referenceScale": 0.0,
+ "datumTransformations": [
+  {
+   "geoTransforms": [
+    {
+     "wkid": 108190,
+     "latestWkid": 108190,
+     "transformForward": true,
+     "name": "WGS_1984_(ITRF00)_To_NAD_1983"
+    }
+   ]
+  },
+  {
+   "geoTransforms": [
+    {
+     "wkid": 108190,
+     "latestWkid": 108190,
+     "transformForward": false,
+     "name": "WGS_1984_(ITRF00)_To_NAD_1983"
+    }
+   ]
+  }
+ ],
+ "supportsDatumTransformation": true,
+ "archivingInfo": {"supportsHistoricMoment": false},
+ "supportsClipping": true,
+ "supportsSpatialFilter": true,
+ "supportsTimeRelation": true,
+ "supportsQueryDataElements": true,
+ "mapUnits": {"uwkid": 9003},
+ "maxSelectionCount": 2000,
+ "maxRecordCount": 2000,
+ "maxImageHeight": 4096,
+ "maxImageWidth": 4096,
+ "supportedExtensions": "",
+ "resampling": false
+}

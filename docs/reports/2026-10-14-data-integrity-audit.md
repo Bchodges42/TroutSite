@@ -1,5 +1,10 @@
 # Data-integrity audit — 2026-10-14 (complete)
 
+**Scope:** completed live-feed/pipeline audit. The [source-verification continuation](2026-10-14-source-verification-followup.md)
+covers regulation omissions, editorial flow/hatch limits, insect identification, fishery
+evidence gaps, and better-source research. It preserves this audit's commits through
+`8fb7674` on `codex/data-sources-regulations-20261014`; those changes still require a merge.
+
 Owner brief: "The #1 problem on the site has been data integrity … the live data hasn't been
 accurate." Four read-only audits against the live upstream feeds on 2026-10-14 (TVA/USACE,
 TWRA stocking, USGS gauges, pipeline/ops), then fixes on branch

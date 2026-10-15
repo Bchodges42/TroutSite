@@ -24,8 +24,10 @@ traceability. `[export]` = verified present in this working tree as well as the 
 
 Owner's #1 complaint: the live data has not been accurate. Full findings, evidence
 and fix status: [`reports/2026-10-14-data-integrity-audit.md`](reports/2026-10-14-data-integrity-audit.md).
-Every `[x]` below is fixed on the branch with a regression test built from the
-2026-10-14 upstream captures; it reaches users only when the owner merges to `main`.
+Continuation: [`reports/2026-10-14-source-verification-followup.md`](reports/2026-10-14-source-verification-followup.md).
+Branch `codex/data-sources-regulations-20261014` preserves the original audit commits through
+`8fb7674` and adds the regulation repairs and source research. Fixed items reach users only
+when the owner merges to `main`; the original feed fixes have capture-based regression tests.
 
 **Fixed on the branch**
 - [x] **DI-1 · P0 — TVA "Noon"/"Midnight" release rows silently dropped** (Clinch showed
@@ -80,9 +82,12 @@ Every `[x]` below is fixed on the branch with a regression test built from the
 **Open (not yet fixed)**
 - [ ] **DI-20 · P1 — legacy USGS WaterServices is decommissioned 2027-02-22** (slowdowns
   from Jan 2027); the evidence lane is legacy-only with no OGC path.
-- [ ] **DI-21 · P2 — idealFlow ranges vs reality:** obed-river 100–800 (median 33 cfs);
+- [ ] **DI-21 · P2 — idealFlow ranges vs reality:** all 94 nonempty ranges are editorial;
+  obed-river 100–800 (earlier three-year median 33 cfs);
   powell/stones/red/S. Fork Cumberland above range on 52–62% of days; duck-river-tailwater
-  range never flags. Recalibrate from flow percentiles, season-aware.
+  range never flags. The modern USGS Statistics API returned seasonal percentiles for
+  actual catalog gauges (see follow-up report). Use them as historical flow context;
+  safe wading / productive fishing thresholds require separate reach-specific evidence.
 - [ ] **DI-22 · P2 — gauges without usable flow:** Doe 03485500 / Nolichucky 03465500
   (-999999, rating in development since 2024), Stones 03430200 negative; dry N. Chickamauga
   shows "No data" instead of dry. Waters with no idealFlow score a flat 50 "Fair".
@@ -99,6 +104,31 @@ Every `[x]` below is fixed on the branch with a regression test built from the
 - [ ] **DI-26 · P3** — `tva:CEHT1`/`tva:DLHT1` readings nothing reads; observed "Midnight"
   (00:00 vs 24:00) and the Nov 1 DST fall-back unverified; `latestReadings` orders by text;
   `gauges-tn.geojson` wiring/counties stale.
+- [x] **DI-27 · P1 — Missing Paint Creek / Big Soddy regulations.** Paint Creek now has
+  separate upstream wild-trout and downstream Oct 1-Feb 28 delayed-harvest entries;
+  Big Soddy upstream of Back Valley Road has Nov 1-Feb 28 delayed harvest. Corrected the
+  contradictory Paint Creek statewide-rules caveat and Big Soddy start-date uncertainty.
+  Includes catalog-association / reach / date regression tests. `aa0a8a7`
+- [x] **DI-28 · P1 — Fort Patrick Henry rule on wrong water.** Preserved `8fb7674`:
+  Boone Dam to Louis Milhorn Bridge applies to `boone-tailwater`, with an association test.
+- [ ] **DI-29 · P1 — Insect key invents tails for other organisms.** Both schemas allow
+  only 2/3; 63 taxa outside mayflies/stoneflies carry 2, including caddis, midges and fish.
+  `matchHatch` scores that attribute. Needs a compatible contract/observation/UI migration
+  with unknown/not-applicable semantics and taxon-specific biological review.
+- [ ] **DI-30 · P2 — All 12 regional hatch charts lack chart citations.** Primary Smokies
+  entomology studies found; their sampled dates/locations cannot validate all twelve charts.
+- [ ] **DI-31 · P2 — Fishery evidence gaps.** 156/190 have `opportunity.sources`; all 34
+  without it already say `opportunity.trout: unresolved` (31 unresolved, 2 conflicting,
+  1 limited evidence states). All 190 have general official links. Source presence alone
+  does not verify a fishery claim. Exact inventory is archived with the follow-up report.
+- [ ] **DI-32 · P2 — Regulation/catalog coverage gaps.** Slickrock Creek, Acorn Lake,
+  Dillards Ponds and several named wild-trout streams are absent. Piney's conflict persists
+  between TWRA's changes page and detailed trout page; retain the warning.
+- [ ] **DI-33 · P2 — Better-source integration researched, not implemented.** Documented
+  CWMS returned flow/temperature at all four existing Corps stations; modern USGS Statistics
+  returned approved percentiles; TDEC WQP returned historical temperature samples. TWRA's
+  temperature layer has missing unit/method metadata and its tailwater geometry dates to
+  2017. Validate mapping/freshness/units before replacing any production provider.
 
 ---
 

@@ -1,0 +1,255 @@
+[
+  {
+    "id": "cwms-catalog",
+    "url": "https://cwms-data.usace.army.mil/cwms-data/catalog/TIMESERIES?office=LRN&like=CETT1*&page-size=500",
+    "retrievedAt": "2026-10-15T03:30:32.836Z",
+    "status": 200,
+    "bytes": 6671,
+    "sha256": "1a519b98ad3335da203a9b8b7c810edef4e323401a11be0fffa76a92280bd3d5",
+    "capture": "captures/cwms-catalog.txt"
+  },
+  {
+    "id": "cwms-openapi",
+    "url": "https://cwms-data.usace.army.mil/cwms-data/swagger-docs",
+    "retrievedAt": "2026-10-15T03:30:32.874Z",
+    "status": 200,
+    "bytes": 712785,
+    "sha256": "ecbcf4535ba40bfc5be63105898f83e9f7375b755506d959aee69e9cec41a063"
+  },
+  {
+    "id": "usgs-statistics-openapi",
+    "url": "https://api.waterdata.usgs.gov/statistics/v0/openapi.json",
+    "retrievedAt": "2026-10-15T03:30:32.875Z",
+    "status": 200,
+    "bytes": 49125,
+    "sha256": "be7793ba878f289779d2ba143dd2df3b15456a08b4eff45cf203dee4e6f19279",
+    "capture": "captures/usgs-statistics-openapi.txt"
+  },
+  {
+    "id": "twra-services",
+    "url": "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/ArcGIS/rest/services?f=pjson",
+    "retrievedAt": "2026-10-15T03:30:32.875Z",
+    "status": 200,
+    "bytes": 45400,
+    "sha256": "1b39aae90a5b20ec719695335c3c0a069cdaa77351ac574680d5b6ba267b729b",
+    "capture": "captures/twra-services.txt"
+  },
+  {
+    "id": "tnmap-twra",
+    "url": "https://tnmap.tn.gov/arcgis/rest/services/ENVIRONMENTAL/TWRA/MapServer?f=pjson",
+    "retrievedAt": "2026-10-15T03:30:32.876Z",
+    "status": 200,
+    "bytes": 4791,
+    "sha256": "9280545384fedf3a55227e5e7f6f86854e6e2c7332f8d9508a4cfdd28208dfb2",
+    "capture": "captures/tnmap-twra.txt"
+  },
+  {
+    "id": "tdec-clinch-temperature",
+    "url": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000001273&characteristicName=Temperature%2C%20water&mimeType=csv&zip=no",
+    "retrievedAt": "2026-10-15T03:30:32.877Z",
+    "status": 200,
+    "bytes": 1754,
+    "sha256": "86a29ee0c9323c0dec6b90ee30afffe5c8a0ba4853ff6dc8d350f54430e3450f",
+    "capture": "captures/tdec-clinch-temperature.txt"
+  },
+  {
+    "id": "twra-regulations",
+    "url": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+    "retrievedAt": "2026-10-15T03:30:32.877Z",
+    "error": "TypeError: fetch failed"
+  },
+  {
+    "id": "cwms-centerhill-flow",
+    "url": "https://cwms-data.usace.army.mil/cwms-data/timeseries?office=LRN&name=CETT1-CENTER_HILL.Flow.Ave.1Hour.1Hour.man-rev&begin=2026-10-12T00%3A00%3A00Z&end=2026-10-15T00%3A00%3A00Z&unit=cfs",
+    "retrievedAt": "2026-10-15T03:31:28.071Z",
+    "status": 200,
+    "bytes": 3203,
+    "sha256": "7c6bba0ad395f9e54e506ca468825254e7762c9b73e8593627c9982d7add30d1",
+    "capture": "captures/cwms-centerhill-flow.txt"
+  },
+  {
+    "id": "cwms-centerhill-historical-flow",
+    "url": "https://cwms-data.usace.army.mil/cwms-data/timeseries?office=LRN&name=CETT1-CENTER_HILL.Flow.Ave.1Hour.1Hour.man-rev&begin=2026-09-13T00%3A00%3A00Z&end=2026-09-14T06%3A00%3A00Z&unit=cfs",
+    "retrievedAt": "2026-10-15T03:31:28.108Z",
+    "status": 200,
+    "bytes": 1645,
+    "sha256": "4dc9ebbb84fdeecdb56a04ba59de4433fd507b8b719acd7589237d92a6ceccc7",
+    "capture": "captures/cwms-centerhill-historical-flow.txt"
+  },
+  {
+    "id": "twra-brook-temperature-metadata",
+    "url": "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/ArcGIS/rest/services/Brook_Trout_Temperature_Data/FeatureServer?f=pjson",
+    "retrievedAt": "2026-10-15T03:31:28.109Z",
+    "status": 200,
+    "bytes": 4300,
+    "sha256": "5adf7ce679eeb24bc2370b6d6375da5c2cf3aca8672e3c8e345e2c36c021a84b",
+    "capture": "captures/twra-brook-temperature-metadata.txt"
+  },
+  {
+    "id": "twra-tailwater-metadata",
+    "url": "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/ArcGIS/rest/services/Tailwater_Trout/FeatureServer?f=pjson",
+    "retrievedAt": "2026-10-15T03:31:28.109Z",
+    "status": 200,
+    "bytes": 4424,
+    "sha256": "73e783cde807d6cdf251214ee48a986102ca77341d49d56f60276fc6ed386a23",
+    "capture": "captures/twra-tailwater-metadata.txt"
+  },
+  {
+    "id": "cwms-public-catalog",
+    "url": "https://cwms-public.usace.army.mil/cwms-data/catalog/TIMESERIES?office=LRN&like=CETT1*&page-size=500",
+    "retrievedAt": "2026-10-15T03:31:28.110Z",
+    "error": "TypeError: fetch failed"
+  },
+  {
+    "id": "twra-brook-temperature-layer",
+    "url": "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/ArcGIS/rest/services/Brook_Trout_Temperature_Data/FeatureServer/0?f=pjson",
+    "retrievedAt": "2026-10-15T03:32:07.554Z",
+    "status": 200,
+    "bytes": 13806,
+    "sha256": "6118e554d1b3b1a0c11551fa0a6cfef4f413ccbe687ea45e1b6c8db034d16f69",
+    "capture": "captures/twra-brook-temperature-layer.txt"
+  },
+  {
+    "id": "twra-brook-temperature-item",
+    "url": "https://www.arcgis.com/sharing/rest/content/items/265e1770c9a44b419fbc356627f8b3c0?f=pjson",
+    "retrievedAt": "2026-10-15T03:32:07.591Z",
+    "status": 200,
+    "bytes": 1526,
+    "sha256": "9ab9c21ec084953d297053f51c7f2fb26bfd293521db77b6451fd2ba38388eaa",
+    "capture": "captures/twra-brook-temperature-item.txt"
+  },
+  {
+    "id": "twra-tailwater-layer",
+    "url": "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/ArcGIS/rest/services/Tailwater_Trout/FeatureServer/0?f=pjson",
+    "retrievedAt": "2026-10-15T03:32:07.592Z",
+    "status": 200,
+    "bytes": 11284,
+    "sha256": "d5ae96b693f20a1c48c317b68b14e882676312fb5dee2c91b7c74098a4c6c8bd",
+    "capture": "captures/twra-tailwater-layer.txt"
+  },
+  {
+    "id": "twra-tailwater-count",
+    "url": "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/ArcGIS/rest/services/Tailwater_Trout/FeatureServer/0/query?where=1%3D1&returnCountOnly=true&f=pjson",
+    "retrievedAt": "2026-10-15T03:32:07.592Z",
+    "status": 200,
+    "bytes": 12,
+    "sha256": "a801e3865bd6b93fa0f4735ca65ca39157d0351f446ccecbb37ba7501a2e8faf",
+    "capture": "captures/twra-tailwater-count.txt"
+  },
+  {
+    "id": "usgs-obed-statistics",
+    "url": "https://api.waterdata.usgs.gov/statistics/v0/observationNormals?monitoring_location_id=USGS-03539800&parameter_code=00060&computation_type=percentile&start_date=10-14&end_date=10-14",
+    "retrievedAt": "2026-10-15T03:32:07.593Z",
+    "status": 200,
+    "bytes": 849,
+    "sha256": "7c439e4ba254e8ef98546cac5404f925657b2117030e7d7e9c25d1085b0f5780",
+    "capture": "captures/usgs-obed-statistics.txt"
+  },
+  {
+    "id": "tdec-temperature-tn",
+    "url": "https://www.waterqualitydata.us/data/Result/search?organization=TDECWR_WQX&statecode=US%3A47&characteristicName=Temperature%2C%20water&startDateLo=01-01-2024&startDateHi=12-31-2024&mimeType=csv&zip=no",
+    "retrievedAt": "2026-10-15T03:32:07.594Z",
+    "status": 200,
+    "bytes": 1056619,
+    "sha256": "37378e6f85e93f952edba496c903239bafb765e5bb9552669405da5808d29af1"
+  },
+  {
+    "id": "twra-brook-temperature-count",
+    "url": "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/ArcGIS/rest/services/Brook_Trout_Temperature_Data/FeatureServer/0/query?where=1%3D1&returnCountOnly=true&f=pjson",
+    "retrievedAt": "2026-10-15T03:33:45.224Z",
+    "status": 200,
+    "bytes": 14,
+    "sha256": "ff19e1456e9e97de8aa4c58d09cdd7b0df1c0e29122b81c7c94b5e1745a83dbd",
+    "capture": "captures/twra-brook-temperature-count.txt"
+  },
+  {
+    "id": "twra-brook-temperature-sample",
+    "url": "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/ArcGIS/rest/services/Brook_Trout_Temperature_Data/FeatureServer/0/query?where=1%3D1&outFields=FID%2CStream%2CDate%2CAveTemp%2CMaxTemp&returnGeometry=false&resultRecordCount=5&f=pjson",
+    "retrievedAt": "2026-10-15T03:33:45.722Z",
+    "status": 200,
+    "bytes": 2483,
+    "sha256": "d6e3748ec462a365e4132768a2464a0cd077872c04ad05b94d7e9b361e049833",
+    "capture": "captures/twra-brook-temperature-sample.txt"
+  },
+  {
+    "id": "usgs-catalog-obed-statistics",
+    "url": "https://api.waterdata.usgs.gov/statistics/v0/observationNormals?monitoring_location_id=USGS-03538830&parameter_code=00060&computation_type=percentile&normal_type=DOY&start_date=10-14&end_date=10-14",
+    "retrievedAt": "2026-10-15T03:33:45.841Z",
+    "status": 200,
+    "bytes": 867,
+    "sha256": "5e9f5d0cfd65ce0b21d8e40e23b484fe5ba22ab75729ed2495cf88e863a2727c",
+    "capture": "captures/usgs-catalog-obed-statistics.txt"
+  },
+  {
+    "id": "usgs-powell-statistics",
+    "url": "https://api.waterdata.usgs.gov/statistics/v0/observationNormals?monitoring_location_id=USGS-03532000&parameter_code=00060&computation_type=percentile&normal_type=DOY&start_date=10-14&end_date=10-14",
+    "retrievedAt": "2026-10-15T03:33:46.695Z",
+    "status": 200,
+    "bytes": 853,
+    "sha256": "731364c92a321bbcb6a8208c316257c7f92658d6eef684d0b39f33f930fd441c",
+    "capture": "captures/usgs-powell-statistics.txt"
+  },
+  {
+    "id": "cwms-DHTT1-flow",
+    "url": "https://cwms-data.usace.army.mil/cwms-data/timeseries?office=LRN&name=DHTT1-DALE_HOLLOW.Flow.Ave.1Hour.1Hour.man-rev&begin=2026-10-12T00%3A00%3A00Z&end=2026-10-15T00%3A00%3A00Z&unit=cfs",
+    "retrievedAt": "2026-10-15T03:33:47.045Z",
+    "status": 200,
+    "bytes": 3222,
+    "sha256": "74deeab6d80888fe6238e07b5d02577d72430f92f9e7a53bfe05b3d032629363",
+    "capture": "captures/cwms-DHTT1-flow.txt"
+  },
+  {
+    "id": "cwms-DHTT1-temperature",
+    "url": "https://cwms-data.usace.army.mil/cwms-data/timeseries?office=LRN&name=DHTT1-DALE_HOLLOW.Temp-Water-Tail.Inst.30Minutes.0.dcp-rev&begin=2026-10-12T00%3A00%3A00Z&end=2026-10-15T00%3A00%3A00Z&unit=C",
+    "retrievedAt": "2026-10-15T03:33:47.560Z",
+    "status": 200,
+    "bytes": 4001,
+    "sha256": "b0609139a232bff56dc4c8877b0275463dcb6c704369657fc58719cd000e4ffe",
+    "capture": "captures/cwms-DHTT1-temperature.txt"
+  },
+  {
+    "id": "cwms-JPPT1-flow",
+    "url": "https://cwms-data.usace.army.mil/cwms-data/timeseries?office=LRN&name=JPPT1-J_PERCY_PRIEST.Flow.Ave.1Hour.1Hour.man-rev&begin=2026-10-12T00%3A00%3A00Z&end=2026-10-15T00%3A00%3A00Z&unit=cfs",
+    "retrievedAt": "2026-10-15T03:33:47.682Z",
+    "status": 200,
+    "bytes": 3188,
+    "sha256": "5ec84b3e71b013288c3498ccd4e888ca02bd576b00f19cbcc77378104d7c2916",
+    "capture": "captures/cwms-JPPT1-flow.txt"
+  },
+  {
+    "id": "cwms-JPPT1-temperature",
+    "url": "https://cwms-data.usace.army.mil/cwms-data/timeseries?office=LRN&name=JPPT1-J_PERCY_PRIEST.Temp-Water-Tail.Inst.30Minutes.0.dcp-rev&begin=2026-10-12T00%3A00%3A00Z&end=2026-10-15T00%3A00%3A00Z&unit=C",
+    "retrievedAt": "2026-10-15T03:33:47.804Z",
+    "status": 200,
+    "bytes": 4002,
+    "sha256": "9707b2d094c512b4bcf0b6edc5f4ed211e35277852e09615b9aa4a323e5acc81",
+    "capture": "captures/cwms-JPPT1-temperature.txt"
+  },
+  {
+    "id": "cwms-CORT1-flow",
+    "url": "https://cwms-data.usace.army.mil/cwms-data/timeseries?office=LRN&name=CORT1-CORDELL_HULL.Flow.Ave.1Hour.1Hour.man-rev&begin=2026-10-12T00%3A00%3A00Z&end=2026-10-15T00%3A00%3A00Z&unit=cfs",
+    "retrievedAt": "2026-10-15T03:33:47.922Z",
+    "status": 200,
+    "bytes": 2608,
+    "sha256": "93f4ca9fdd68d0bd282dd86530ce9f43e2d79bb16866251b304feda523752902",
+    "capture": "captures/cwms-CORT1-flow.txt"
+  },
+  {
+    "id": "cwms-CORT1-temperature",
+    "url": "https://cwms-data.usace.army.mil/cwms-data/timeseries?office=LRN&name=CORT1-CORDELL_HULL.Temp-Water-Tail.Inst.30Minutes.0.dcp-rev&begin=2026-10-12T00%3A00%3A00Z&end=2026-10-15T00%3A00%3A00Z&unit=C",
+    "retrievedAt": "2026-10-15T03:33:48.052Z",
+    "status": 200,
+    "bytes": 3999,
+    "sha256": "d61d8b75b3ff90d79b97895ad35612d44ad1b3f1d303794c7e6b89211e9dd32a",
+    "capture": "captures/cwms-CORT1-temperature.txt"
+  },
+  {
+    "id": "cwms-CETT1-temperature",
+    "url": "https://cwms-data.usace.army.mil/cwms-data/timeseries?office=LRN&name=CETT1-CENTER_HILL.Temp-Water-Tail.Inst.30Minutes.0.dcp-rev&begin=2026-10-12T00%3A00%3A00Z&end=2026-10-15T00%3A00%3A00Z&unit=C",
+    "retrievedAt": "2026-10-15T03:33:48.172Z",
+    "status": 200,
+    "bytes": 4003,
+    "sha256": "293c2550c2ffb126ff3aa01ce3134c3ddff98cd360121a152802e0fe2aaeba95",
+    "capture": "captures/cwms-CETT1-temperature.txt"
+  }
+]

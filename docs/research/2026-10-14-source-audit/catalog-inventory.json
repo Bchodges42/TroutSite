@@ -1,0 +1,3390 @@
+{
+  "waters": 190,
+  "withIdealFlow": 94,
+  "withOpportunitySources": 156,
+  "noOpportunitySources": [
+    {
+      "id": "beech-river",
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved"
+    },
+    {
+      "id": "big-bigby-creek",
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved"
+    },
+    {
+      "id": "big-sewee-creek",
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved"
+    },
+    {
+      "id": "big-swan-creek",
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved"
+    },
+    {
+      "id": "bradley-creek",
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved"
+    },
+    {
+      "id": "brimstone-creek",
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved"
+    },
+    {
+      "id": "bullrun-creek",
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved"
+    },
+    {
+      "id": "candies-creek",
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved"
+    },
+    {
+      "id": "chestuee-creek",
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved"
+    },
+    {
+      "id": "clear-fork",
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved"
+    },
+    {
+      "id": "crab-orchard-creek",
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved"
+    },
+    {
+      "id": "dumplin-creek",
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved"
+    },
+    {
+      "id": "elk-river-lower",
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved"
+    },
+    {
+      "id": "little-chuckey-creek",
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved"
+    },
+    {
+      "id": "little-harpeth-river",
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved"
+    },
+    {
+      "id": "new-river",
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved"
+    },
+    {
+      "id": "nonconnah-creek",
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved"
+    },
+    {
+      "id": "north-mouse-creek",
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved"
+    },
+    {
+      "id": "ocoee-number-three-lake",
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved"
+    },
+    {
+      "id": "ocoee-river",
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved"
+    },
+    {
+      "id": "oostanaula-creek",
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved"
+    },
+    {
+      "id": "paris-city-park-lake",
+      "opportunity": "unresolved",
+      "evidenceState": "limited"
+    },
+    {
+      "id": "piney-river-hickman",
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved"
+    },
+    {
+      "id": "reedy-creek",
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved"
+    },
+    {
+      "id": "richland-creek-maury",
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved"
+    },
+    {
+      "id": "sale-creek",
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved"
+    },
+    {
+      "id": "shoal-creek",
+      "opportunity": "unresolved",
+      "evidenceState": "conflicting"
+    },
+    {
+      "id": "south-chickamauga-creek",
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved"
+    },
+    {
+      "id": "south-fork-cumberland",
+      "opportunity": "unresolved",
+      "evidenceState": "conflicting"
+    },
+    {
+      "id": "south-mouse-creek",
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved"
+    },
+    {
+      "id": "watauga-river-wilbur-reach",
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved"
+    },
+    {
+      "id": "west-fork-obey-river",
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved"
+    },
+    {
+      "id": "west-harpeth-river",
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved"
+    },
+    {
+      "id": "yellow-creek-houston",
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved"
+    }
+  ],
+  "allHaveOfficialSources": true,
+  "usgsIds": [
+    "03578500",
+    "03604000",
+    "03419530",
+    "03424860",
+    "03539778",
+    "03409500",
+    "03421000",
+    "03431500",
+    "03539600",
+    "03485500",
+    "03597860",
+    "03598000",
+    "03599500",
+    "03598185",
+    "03599240",
+    "03599419",
+    "03601600",
+    "03601990",
+    "03603000",
+    "03427500",
+    "03582000",
+    "03540500",
+    "03432350",
+    "03433500",
+    "03556590",
+    "03566000",
+    "03470000",
+    "03497300",
+    "03498500",
+    "07032000",
+    "03408500",
+    "03465500",
+    "03566535",
+    "03538830",
+    "03559500",
+    "03564500",
+    "03461500",
+    "03532000",
+    "03436100",
+    "07027000",
+    "03571000",
+    "03588500",
+    "03410210",
+    "03430200",
+    "03518500",
+    "03486000",
+    "03428200",
+    "03469251",
+    "03416000",
+    "07031650"
+  ],
+  "specialRulesBefore": 18,
+  "specialRulesAfter": 21,
+  "bugs": 103,
+  "nonEPTWithTwoTails": [
+    {
+      "id": "alderfly-larva",
+      "order": "Megaloptera",
+      "tails": 2
+    },
+    {
+      "id": "ant",
+      "order": "Hymenoptera",
+      "tails": 2
+    },
+    {
+      "id": "aquatic-moth",
+      "order": "Lepidoptera",
+      "tails": 2
+    },
+    {
+      "id": "aquatic-snail",
+      "order": "Gastropoda",
+      "tails": 2
+    },
+    {
+      "id": "aquatic-worm",
+      "order": "Annelida",
+      "tails": 2
+    },
+    {
+      "id": "autumn-mottled-sedge",
+      "order": "Trichoptera",
+      "tails": 2
+    },
+    {
+      "id": "black-dancer-caddis",
+      "order": "Trichoptera",
+      "tails": 2
+    },
+    {
+      "id": "black-fly",
+      "order": "Diptera",
+      "tails": 2
+    },
+    {
+      "id": "blacknose-dace",
+      "order": "Cypriniformes",
+      "tails": 2
+    },
+    {
+      "id": "blood-midge",
+      "order": "Diptera",
+      "tails": 2
+    },
+    {
+      "id": "bluntnose-minnow",
+      "order": "Cypriniformes",
+      "tails": 2
+    },
+    {
+      "id": "common-shiner",
+      "order": "Cypriniformes",
+      "tails": 2
+    },
+    {
+      "id": "crane-fly",
+      "order": "Diptera",
+      "tails": 2
+    },
+    {
+      "id": "crayfish",
+      "order": "Decapoda",
+      "tails": 2
+    },
+    {
+      "id": "creek-chub",
+      "order": "Cypriniformes",
+      "tails": 2
+    },
+    {
+      "id": "cricket",
+      "order": "Orthoptera",
+      "tails": 2
+    },
+    {
+      "id": "dark-blue-sedge",
+      "order": "Trichoptera",
+      "tails": 2
+    },
+    {
+      "id": "dog-day-cicada",
+      "order": "Hemiptera",
+      "tails": 2
+    },
+    {
+      "id": "dragonfly-nymph",
+      "order": "Odonata",
+      "tails": 2
+    },
+    {
+      "id": "early-black-caddis",
+      "order": "Trichoptera",
+      "tails": 2
+    },
+    {
+      "id": "fishfly-larva",
+      "order": "Megaloptera",
+      "tails": 2
+    },
+    {
+      "id": "fishing-spider",
+      "order": "Araneae",
+      "tails": 2
+    },
+    {
+      "id": "flying-ant",
+      "order": "Hymenoptera",
+      "tails": 2
+    },
+    {
+      "id": "gizzard-shad",
+      "order": "Clupeiformes",
+      "tails": 2
+    },
+    {
+      "id": "grannom",
+      "order": "Trichoptera",
+      "tails": 2
+    },
+    {
+      "id": "grasshopper",
+      "order": "Orthoptera",
+      "tails": 2
+    },
+    {
+      "id": "great-autumn-sedge",
+      "order": "Trichoptera",
+      "tails": 2
+    },
+    {
+      "id": "green-sedge",
+      "order": "Trichoptera",
+      "tails": 2
+    },
+    {
+      "id": "hellgrammite",
+      "order": "Megaloptera",
+      "tails": 2
+    },
+    {
+      "id": "inchworm",
+      "order": "Lepidoptera",
+      "tails": 2
+    },
+    {
+      "id": "japanese-beetle",
+      "order": "Coleoptera",
+      "tails": 2
+    },
+    {
+      "id": "june-beetle",
+      "order": "Coleoptera",
+      "tails": 2
+    },
+    {
+      "id": "leafhopper",
+      "order": "Hemiptera",
+      "tails": 2
+    },
+    {
+      "id": "leech",
+      "order": "Annelida",
+      "tails": 2
+    },
+    {
+      "id": "little-black-midge",
+      "order": "Diptera",
+      "tails": 2
+    },
+    {
+      "id": "little-black-sedge",
+      "order": "Trichoptera",
+      "tails": 2
+    },
+    {
+      "id": "little-brown-sedge",
+      "order": "Trichoptera",
+      "tails": 2
+    },
+    {
+      "id": "little-gray-sedge",
+      "order": "Trichoptera",
+      "tails": 2
+    },
+    {
+      "id": "little-olive-net-spinner",
+      "order": "Trichoptera",
+      "tails": 2
+    },
+    {
+      "id": "little-sister-sedge",
+      "order": "Trichoptera",
+      "tails": 2
+    },
+    {
+      "id": "long-horned-sedge",
+      "order": "Trichoptera",
+      "tails": 2
+    },
+    {
+      "id": "longnose-dace",
+      "order": "Cypriniformes",
+      "tails": 2
+    },
+    {
+      "id": "micro-caddis",
+      "order": "Trichoptera",
+      "tails": 2
+    },
+    {
+      "id": "moth",
+      "order": "Lepidoptera",
+      "tails": 2
+    },
+    {
+      "id": "olive-midge",
+      "order": "Diptera",
+      "tails": 2
+    },
+    {
+      "id": "periodical-cicada",
+      "order": "Hemiptera",
+      "tails": 2
+    },
+    {
+      "id": "riffle-beetle",
+      "order": "Coleoptera",
+      "tails": 2
+    },
+    {
+      "id": "saddle-case-caddis",
+      "order": "Trichoptera",
+      "tails": 2
+    },
+    {
+      "id": "scud",
+      "order": "Amphipoda",
+      "tails": 2
+    },
+    {
+      "id": "sculpin",
+      "order": "Scorpaeniformes",
+      "tails": 2
+    },
+    {
+      "id": "small-scud",
+      "order": "Amphipoda",
+      "tails": 2
+    },
+    {
+      "id": "snail-case-caddis",
+      "order": "Trichoptera",
+      "tails": 2
+    },
+    {
+      "id": "soldier-beetle",
+      "order": "Coleoptera",
+      "tails": 2
+    },
+    {
+      "id": "sowbug",
+      "order": "Isopoda",
+      "tails": 2
+    },
+    {
+      "id": "spotted-sedge",
+      "order": "Trichoptera",
+      "tails": 2
+    },
+    {
+      "id": "stoneroller",
+      "order": "Cypriniformes",
+      "tails": 2
+    },
+    {
+      "id": "sucker",
+      "order": "Cypriniformes",
+      "tails": 2
+    },
+    {
+      "id": "threadfin-shad",
+      "order": "Clupeiformes",
+      "tails": 2
+    },
+    {
+      "id": "wasp-bee",
+      "order": "Hymenoptera",
+      "tails": 2
+    },
+    {
+      "id": "water-boatman",
+      "order": "Hemiptera",
+      "tails": 2
+    },
+    {
+      "id": "water-penny",
+      "order": "Coleoptera",
+      "tails": 2
+    },
+    {
+      "id": "whirligig-beetle",
+      "order": "Coleoptera",
+      "tails": 2
+    },
+    {
+      "id": "white-miller-caddis",
+      "order": "Trichoptera",
+      "tails": 2
+    }
+  ],
+  "rows": [
+    {
+      "id": "barren-fork-river",
+      "name": "Barren Fork River",
+      "gauges": [],
+      "idealFlow": [
+        {
+          "min": 40,
+          "max": 300,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 2,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "beaverdam-creek",
+      "name": "Beaverdam Creek",
+      "gauges": [],
+      "idealFlow": [
+        {
+          "min": 5,
+          "max": 60,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 3,
+      "opportunity": "year-round-trout",
+      "evidenceState": "documented",
+      "ruleTitles": [
+        "Wild trout stream rules (listed reaches)"
+      ]
+    },
+    {
+      "id": "beech-lake",
+      "name": "Beech Lake",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 2,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "beech-river",
+      "name": "Beech River",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 0,
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved",
+      "ruleTitles": []
+    },
+    {
+      "id": "big-bigby-creek",
+      "name": "Big Bigby Creek",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 0,
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved",
+      "ruleTitles": []
+    },
+    {
+      "id": "big-rock-creek",
+      "name": "Big Rock Creek",
+      "gauges": [],
+      "idealFlow": [
+        {
+          "min": 5,
+          "max": 40,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 2,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "big-sandy-river",
+      "name": "Big Sandy River",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 2,
+      "opportunity": "warmwater-focus",
+      "evidenceState": "limited",
+      "ruleTitles": []
+    },
+    {
+      "id": "big-sewee-creek",
+      "name": "Big Sewee Creek",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 0,
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved",
+      "ruleTitles": []
+    },
+    {
+      "id": "big-soddy-creek",
+      "name": "Big Soddy Creek",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 3,
+      "opportunitySourceCount": 2,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": [
+        "Big Soddy Creek delayed harvest"
+      ]
+    },
+    {
+      "id": "big-swan-creek",
+      "name": "Big Swan Creek",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 0,
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved",
+      "ruleTitles": []
+    },
+    {
+      "id": "blackburn-fork",
+      "name": "Blackburn Fork",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 1,
+      "opportunity": "warmwater-focus",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "boiling-fork-creek",
+      "name": "Boiling Fork Creek",
+      "gauges": [],
+      "idealFlow": [
+        {
+          "min": 5,
+          "max": 40,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 2,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "boone-lake",
+      "name": "Boone Lake",
+      "gauges": [
+        "tva:BOOT1"
+      ],
+      "idealFlow": [],
+      "officialSourceCount": 3,
+      "opportunitySourceCount": 1,
+      "opportunity": "warmwater-focus",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "boone-tailwater",
+      "name": "Boone Tailwater (South Fork Holston River)",
+      "gauges": [
+        "tva:BOOT1"
+      ],
+      "idealFlow": [
+        {
+          "min": 150,
+          "max": 1200,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 3,
+      "opportunitySourceCount": 2,
+      "opportunity": "year-round-trout",
+      "evidenceState": "documented",
+      "ruleTitles": [
+        "Fort Patrick Henry special regulation"
+      ]
+    },
+    {
+      "id": "bradley-creek",
+      "name": "Bradley Creek",
+      "gauges": [
+        "03578500"
+      ],
+      "idealFlow": [],
+      "officialSourceCount": 1,
+      "opportunitySourceCount": 0,
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved",
+      "ruleTitles": []
+    },
+    {
+      "id": "brimstone-creek",
+      "name": "Brimstone Creek",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 0,
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved",
+      "ruleTitles": []
+    },
+    {
+      "id": "brush-creek-cocke",
+      "name": "Brush Creek (Cocke County)",
+      "gauges": [],
+      "idealFlow": [
+        {
+          "min": 5,
+          "max": 60,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 2,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "buffalo-creek-grainger",
+      "name": "Buffalo Creek (Grainger County)",
+      "gauges": [],
+      "idealFlow": [
+        {
+          "min": 5,
+          "max": 50,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 3,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": [
+        "Buffalo Creek delayed harvest + gear rules"
+      ]
+    },
+    {
+      "id": "buffalo-river",
+      "name": "Buffalo River",
+      "gauges": [
+        "03604000"
+      ],
+      "idealFlow": [],
+      "officialSourceCount": 3,
+      "opportunitySourceCount": 3,
+      "opportunity": "warmwater-focus",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "bullrun-creek",
+      "name": "Bullrun Creek",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 0,
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved",
+      "ruleTitles": []
+    },
+    {
+      "id": "calderwood-lake",
+      "name": "Calderwood Lake",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 3,
+      "opportunitySourceCount": 3,
+      "opportunity": "year-round-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "calfkiller-river",
+      "name": "Calfkiller River",
+      "gauges": [
+        "03419530"
+      ],
+      "idealFlow": [
+        {
+          "min": 30,
+          "max": 200,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 3,
+      "opportunitySourceCount": 2,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "cameron-brown-lake",
+      "name": "Cameron Brown Lake",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 3,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "candies-creek",
+      "name": "Candies Creek",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 0,
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved",
+      "ruleTitles": []
+    },
+    {
+      "id": "cane-creek-hickman-perry",
+      "name": "Cane Creek (Buffalo River system — Hickman/Perry)",
+      "gauges": [],
+      "idealFlow": [
+        {
+          "min": 20,
+          "max": 180,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 2,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "cane-creek",
+      "name": "Cane Creek (Caney Fork system — Bledsoe/Van Buren)",
+      "gauges": [],
+      "idealFlow": [
+        {
+          "min": 30,
+          "max": 250,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 2,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "caney-fork-river",
+      "name": "Caney Fork River (Center Hill tailwater)",
+      "gauges": [
+        "03424860",
+        "usace:CETT1"
+      ],
+      "idealFlow": [
+        {
+          "min": 200,
+          "max": 2000,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 4,
+      "opportunitySourceCount": 2,
+      "opportunity": "year-round-trout",
+      "evidenceState": "documented",
+      "ruleTitles": [
+        "Caney Fork River special regulation"
+      ]
+    },
+    {
+      "id": "caney-fork-upper",
+      "name": "Caney Fork River (above Center Hill Lake)",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 3,
+      "opportunitySourceCount": 2,
+      "opportunity": "warmwater-focus",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "center-hill-lake",
+      "name": "Center Hill Lake",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 3,
+      "opportunitySourceCount": 2,
+      "opportunity": "warmwater-focus",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "charles-creek",
+      "name": "Charles Creek",
+      "gauges": [],
+      "idealFlow": [
+        {
+          "min": 5,
+          "max": 50,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 2,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "cherokee-lake",
+      "name": "Cherokee Lake",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 5,
+      "opportunitySourceCount": 1,
+      "opportunity": "warmwater-focus",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "chestuee-creek",
+      "name": "Chestuee Creek",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 0,
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved",
+      "ruleTitles": []
+    },
+    {
+      "id": "chickamauga-lake",
+      "name": "Chickamauga Lake",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 4,
+      "opportunitySourceCount": 1,
+      "opportunity": "warmwater-focus",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "chilhowee-lake",
+      "name": "Chilhowee Lake",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 3,
+      "opportunitySourceCount": 3,
+      "opportunity": "year-round-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "citico-creek",
+      "name": "Citico Creek",
+      "gauges": [],
+      "idealFlow": [
+        {
+          "min": 20,
+          "max": 150,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 3,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": [
+        "Citico Creek permit season"
+      ]
+    },
+    {
+      "id": "clear-creek-obed",
+      "name": "Clear Creek (Obed system)",
+      "gauges": [
+        "03539778"
+      ],
+      "idealFlow": [
+        {
+          "min": 20,
+          "max": 150,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 3,
+      "opportunitySourceCount": 3,
+      "opportunity": "warmwater-focus",
+      "evidenceState": "documented",
+      "ruleTitles": [
+        "Clear Creek: no special regulation (same-name Clinch tributary carries one)"
+      ]
+    },
+    {
+      "id": "clear-fork",
+      "name": "Clear Fork",
+      "gauges": [
+        "03409500"
+      ],
+      "idealFlow": [
+        {
+          "min": 30,
+          "max": 250,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 0,
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved",
+      "ruleTitles": []
+    },
+    {
+      "id": "clinch-river",
+      "name": "Clinch River (Norris tailwater)",
+      "gauges": [
+        "tva:NRST1"
+      ],
+      "idealFlow": [
+        {
+          "min": 200,
+          "max": 1500,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 3,
+      "opportunitySourceCount": 2,
+      "opportunity": "year-round-trout",
+      "evidenceState": "documented",
+      "ruleTitles": [
+        "Clinch River (Norris tailwater) special regulation"
+      ]
+    },
+    {
+      "id": "collins-river",
+      "name": "Collins River",
+      "gauges": [
+        "03421000"
+      ],
+      "idealFlow": [
+        {
+          "min": 80,
+          "max": 500,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 3,
+      "opportunitySourceCount": 2,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "conasauga-river",
+      "name": "Conasauga River",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 3,
+      "opportunity": "warmwater-focus",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "cosby-creek",
+      "name": "Cosby Creek",
+      "gauges": [],
+      "idealFlow": [
+        {
+          "min": 10,
+          "max": 80,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 3,
+      "opportunitySourceCount": 3,
+      "opportunity": "year-round-trout",
+      "evidenceState": "documented",
+      "ruleTitles": [
+        "Great Smoky Mountains National Park fishing rules"
+      ]
+    },
+    {
+      "id": "covington-fbc-pond",
+      "name": "Covington First Baptist Church Pond",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 3,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "crab-orchard-creek",
+      "name": "Crab Orchard Creek",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 0,
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved",
+      "ruleTitles": []
+    },
+    {
+      "id": "cumberland-river",
+      "name": "Cumberland River",
+      "gauges": [
+        "03431500"
+      ],
+      "idealFlow": [],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 2,
+      "opportunity": "warmwater-focus",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "daddys-creek",
+      "name": "Daddy’s Creek",
+      "gauges": [
+        "03539600"
+      ],
+      "idealFlow": [
+        {
+          "min": 30,
+          "max": 250,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 3,
+      "opportunitySourceCount": 3,
+      "opportunity": "warmwater-focus",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "dale-hollow-lake",
+      "name": "Dale Hollow Lake",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 3,
+      "opportunitySourceCount": 2,
+      "opportunity": "year-round-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "doe-creek-johnson",
+      "name": "Doe Creek (Johnson County)",
+      "gauges": [],
+      "idealFlow": [
+        {
+          "min": 5,
+          "max": 50,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 3,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "doe-river",
+      "name": "Doe River",
+      "gauges": [
+        "03485500"
+      ],
+      "idealFlow": [
+        {
+          "min": 50,
+          "max": 250,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 3,
+      "opportunitySourceCount": 3,
+      "opportunity": "year-round-trout",
+      "evidenceState": "documented",
+      "ruleTitles": [
+        "Doe River delayed harvest"
+      ]
+    },
+    {
+      "id": "douglas-lake",
+      "name": "Douglas Lake",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 5,
+      "opportunitySourceCount": 1,
+      "opportunity": "warmwater-focus",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "duck-river-lower",
+      "name": "Duck River (Shelbyville to Columbia)",
+      "gauges": [
+        "03597860",
+        "03598000",
+        "03599500",
+        "03598185",
+        "03599240",
+        "03599419"
+      ],
+      "idealFlow": [
+        {
+          "min": 200,
+          "max": 1200,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 6,
+      "opportunitySourceCount": 2,
+      "opportunity": "warmwater-focus",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "duck-river-mouth",
+      "name": "Duck River (Columbia to the mouth)",
+      "gauges": [
+        "03601600",
+        "03601990",
+        "03603000"
+      ],
+      "idealFlow": [
+        {
+          "min": 300,
+          "max": 3000,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 6,
+      "opportunitySourceCount": 3,
+      "opportunity": "warmwater-focus",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "duck-river-tailwater",
+      "name": "Duck River (Normandy tailwater)",
+      "gauges": [
+        "03597860",
+        "tva:NRMT1"
+      ],
+      "idealFlow": [
+        {
+          "min": 100,
+          "max": 800,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 3,
+      "opportunitySourceCount": 3,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "dumplin-creek",
+      "name": "Dumplin Creek",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 0,
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved",
+      "ruleTitles": []
+    },
+    {
+      "id": "east-fork-obey-river",
+      "name": "East Fork Obey River",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 1,
+      "opportunity": "warmwater-focus",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "east-fork-shoal-creek",
+      "name": "East Fork Shoal Creek",
+      "gauges": [],
+      "idealFlow": [
+        {
+          "min": 10,
+          "max": 80,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 2,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "east-fork-stones-river",
+      "name": "East Fork Stones River",
+      "gauges": [
+        "03427500"
+      ],
+      "idealFlow": [
+        {
+          "min": 50,
+          "max": 400,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 3,
+      "opportunitySourceCount": 1,
+      "opportunity": "mixed",
+      "evidenceState": "limited",
+      "ruleTitles": []
+    },
+    {
+      "id": "edmund-orgill-lake",
+      "name": "Edmund-Orgill Park",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 2,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "elk-river-lower",
+      "name": "Elk River (Prospect to state line)",
+      "gauges": [
+        "03582000"
+      ],
+      "idealFlow": [
+        {
+          "min": 150,
+          "max": 1000,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 3,
+      "opportunitySourceCount": 0,
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved",
+      "ruleTitles": []
+    },
+    {
+      "id": "elk-river",
+      "name": "Elk River (Tims Ford tailwater)",
+      "gauges": [
+        "tva:TMFT1"
+      ],
+      "idealFlow": [
+        {
+          "min": 100,
+          "max": 700,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 3,
+      "opportunitySourceCount": 2,
+      "opportunity": "year-round-trout",
+      "evidenceState": "documented",
+      "ruleTitles": [
+        "Elk River below Tims Ford special regulation"
+      ]
+    },
+    {
+      "id": "emory-river",
+      "name": "Emory River",
+      "gauges": [
+        "03540500"
+      ],
+      "idealFlow": [
+        {
+          "min": 100,
+          "max": 600,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 2,
+      "opportunity": "warmwater-focus",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "falling-water-river",
+      "name": "Falling Water River",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 2,
+      "opportunity": "warmwater-focus",
+      "evidenceState": "limited",
+      "ruleTitles": []
+    },
+    {
+      "id": "fletchers-fork",
+      "name": "Fletchers Fork",
+      "gauges": [],
+      "idealFlow": [
+        {
+          "min": 3,
+          "max": 30,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 3,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": [
+        "Fort Campbell stocked streams"
+      ]
+    },
+    {
+      "id": "forge-creek-johnson",
+      "name": "Forge Creek (Johnson County)",
+      "gauges": [],
+      "idealFlow": [
+        {
+          "min": 5,
+          "max": 50,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 2,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "forked-deer-river",
+      "name": "Forked Deer River",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 3,
+      "opportunity": "warmwater-focus",
+      "evidenceState": "limited",
+      "ruleTitles": []
+    },
+    {
+      "id": "fort-loudoun-lake",
+      "name": "Fort Loudoun Lake",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 5,
+      "opportunitySourceCount": 1,
+      "opportunity": "warmwater-focus",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "fort-patrick-henry-lake",
+      "name": "Fort Patrick Henry Lake",
+      "gauges": [
+        "tva:FPHT1"
+      ],
+      "idealFlow": [],
+      "officialSourceCount": 5,
+      "opportunitySourceCount": 3,
+      "opportunity": "year-round-trout",
+      "evidenceState": "limited",
+      "ruleTitles": []
+    },
+    {
+      "id": "french-broad-river",
+      "name": "French Broad River (Douglas tailwater)",
+      "gauges": [],
+      "idealFlow": [
+        {
+          "min": 300,
+          "max": 2000,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 7,
+      "opportunitySourceCount": 2,
+      "opportunity": "warmwater-focus",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "ft-patrick-henry-tailwater",
+      "name": "Fort Patrick Henry Tailwater (South Fork Holston River)",
+      "gauges": [
+        "tva:FPHT1"
+      ],
+      "idealFlow": [
+        {
+          "min": 100,
+          "max": 800,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 3,
+      "opportunitySourceCount": 2,
+      "opportunity": "year-round-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "gap-creek-claiborne",
+      "name": "Gap Creek (Claiborne County)",
+      "gauges": [],
+      "idealFlow": [
+        {
+          "min": 5,
+          "max": 40,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 2,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "goforth-creek",
+      "name": "Goforth Creek",
+      "gauges": [],
+      "idealFlow": [
+        {
+          "min": 5,
+          "max": 50,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 2,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "greasy-creek-polk",
+      "name": "Greasy Creek (Polk County)",
+      "gauges": [],
+      "idealFlow": [
+        {
+          "min": 5,
+          "max": 50,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 2,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "great-falls-lake",
+      "name": "Great Falls Lake",
+      "gauges": [
+        "tva:GGRT1"
+      ],
+      "idealFlow": [],
+      "officialSourceCount": 3,
+      "opportunitySourceCount": 2,
+      "opportunity": "warmwater-focus",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "gulf-fork-big-creek",
+      "name": "Gulf Fork Big Creek",
+      "gauges": [],
+      "idealFlow": [
+        {
+          "min": 3,
+          "max": 30,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 3,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "harpeth-river",
+      "name": "Harpeth River (Williamson County reaches)",
+      "gauges": [
+        "03432350",
+        "03433500"
+      ],
+      "idealFlow": [
+        {
+          "min": 50,
+          "max": 400,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 4,
+      "opportunitySourceCount": 2,
+      "opportunity": "mixed",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "hatchie-river",
+      "name": "Hatchie River",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 3,
+      "opportunitySourceCount": 3,
+      "opportunity": "warmwater-focus",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "hiwassee-river",
+      "name": "Hiwassee River (Appalachia tailwater / Reliance)",
+      "gauges": [
+        "03556590",
+        "03566000",
+        "tva:HADT1"
+      ],
+      "idealFlow": [
+        {
+          "min": 500,
+          "max": 3500,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 5,
+      "opportunitySourceCount": 3,
+      "opportunity": "year-round-trout",
+      "evidenceState": "documented",
+      "ruleTitles": [
+        "Hiwassee River seasonal regulation"
+      ]
+    },
+    {
+      "id": "holston-river",
+      "name": "Holston River",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 3,
+      "opportunitySourceCount": 3,
+      "opportunity": "year-round-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "horse-creek-greene",
+      "name": "Horse Creek (Greene County)",
+      "gauges": [],
+      "idealFlow": [
+        {
+          "min": 5,
+          "max": 60,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 3,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": [
+        "Horse Creek creel window"
+      ]
+    },
+    {
+      "id": "hurricane-creek",
+      "name": "Hurricane Creek",
+      "gauges": [],
+      "idealFlow": [
+        {
+          "min": 5,
+          "max": 60,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 2,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "indian-creek-claiborne",
+      "name": "Indian Creek (Claiborne County)",
+      "gauges": [],
+      "idealFlow": [
+        {
+          "min": 5,
+          "max": 50,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 2,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "j-percy-priest-lake",
+      "name": "J. Percy Priest Lake",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 3,
+      "opportunitySourceCount": 2,
+      "opportunity": "warmwater-focus",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "johnson-park-lake",
+      "name": "Johnson Park Lake",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 2,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "kentucky-lake",
+      "name": "Kentucky Lake",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 3,
+      "opportunitySourceCount": 1,
+      "opportunity": "warmwater-focus",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "lake-barkley",
+      "name": "Lake Barkley",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 3,
+      "opportunitySourceCount": 2,
+      "opportunity": "warmwater-focus",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "lake-graham",
+      "name": "Lake Graham",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 3,
+      "opportunitySourceCount": 3,
+      "opportunity": "mixed",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "laurel-creek-johnson",
+      "name": "Laurel Creek (Johnson County)",
+      "gauges": [],
+      "idealFlow": [
+        {
+          "min": 5,
+          "max": 50,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 2,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "laurel-fork-carter",
+      "name": "Laurel Fork (Carter County)",
+      "gauges": [],
+      "idealFlow": [
+        {
+          "min": 5,
+          "max": 50,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 3,
+      "opportunity": "year-round-trout",
+      "evidenceState": "documented",
+      "ruleTitles": [
+        "Wild trout stream rules (listed reaches)"
+      ]
+    },
+    {
+      "id": "leconte-creek",
+      "name": "LeConte Creek",
+      "gauges": [],
+      "idealFlow": [
+        {
+          "min": 10,
+          "max": 80,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 3,
+      "opportunitySourceCount": 3,
+      "opportunity": "year-round-trout",
+      "evidenceState": "documented",
+      "ruleTitles": [
+        "Great Smoky Mountains National Park fishing rules",
+        "Gatlinburg city waters permit"
+      ]
+    },
+    {
+      "id": "little-buffalo-river",
+      "name": "Little Buffalo River",
+      "gauges": [],
+      "idealFlow": [
+        {
+          "min": 20,
+          "max": 120,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 3,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "little-chuckey-creek",
+      "name": "Little Chuckey Creek",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 0,
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved",
+      "ruleTitles": []
+    },
+    {
+      "id": "little-harpeth-river",
+      "name": "Little Harpeth River",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 0,
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved",
+      "ruleTitles": []
+    },
+    {
+      "id": "little-pigeon-river",
+      "name": "Little Pigeon River (Sevierville reach)",
+      "gauges": [
+        "03470000"
+      ],
+      "idealFlow": [
+        {
+          "min": 100,
+          "max": 500,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 4,
+      "opportunitySourceCount": 2,
+      "opportunity": "year-round-trout",
+      "evidenceState": "limited",
+      "ruleTitles": []
+    },
+    {
+      "id": "little-river",
+      "name": "Little River (Smokies / Blount County)",
+      "gauges": [
+        "03497300",
+        "03498500"
+      ],
+      "idealFlow": [
+        {
+          "min": 50,
+          "max": 350,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 5,
+      "opportunitySourceCount": 3,
+      "opportunity": "year-round-trout",
+      "evidenceState": "documented",
+      "ruleTitles": [
+        "Great Smoky Mountains National Park fishing rules"
+      ]
+    },
+    {
+      "id": "little-sequatchie-river",
+      "name": "Little Sequatchie River",
+      "gauges": [],
+      "idealFlow": [
+        {
+          "min": 30,
+          "max": 200,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 2,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "little-tennessee-river",
+      "name": "Little Tennessee River",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 5,
+      "opportunitySourceCount": 1,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "little-west-fork-creek",
+      "name": "Little West Fork Creek",
+      "gauges": [],
+      "idealFlow": [
+        {
+          "min": 3,
+          "max": 30,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 2,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": [
+        "Fort Campbell stocked streams"
+      ]
+    },
+    {
+      "id": "loosahatchie-river",
+      "name": "Loosahatchie River",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 1,
+      "opportunity": "warmwater-focus",
+      "evidenceState": "limited",
+      "ruleTitles": []
+    },
+    {
+      "id": "martin-city-pond",
+      "name": "Martin City Pond",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 3,
+      "opportunity": "mixed",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "mccutcheon-creek",
+      "name": "McCutcheon Creek",
+      "gauges": [],
+      "idealFlow": [
+        {
+          "min": 5,
+          "max": 40,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 3,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "melton-hill-lake",
+      "name": "Melton Hill Lake",
+      "gauges": [
+        "tva:MHDT1"
+      ],
+      "idealFlow": [],
+      "officialSourceCount": 4,
+      "opportunitySourceCount": 1,
+      "opportunity": "warmwater-focus",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "middle-fork-forked-deer-river",
+      "name": "Middle Fork Forked Deer River",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 3,
+      "opportunity": "warmwater-focus",
+      "evidenceState": "limited",
+      "ruleTitles": []
+    },
+    {
+      "id": "middle-fork-obion-river",
+      "name": "Middle Fork Obion River",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 3,
+      "opportunity": "warmwater-focus",
+      "evidenceState": "limited",
+      "ruleTitles": []
+    },
+    {
+      "id": "middle-prong-little-pigeon",
+      "name": "Middle Prong Little Pigeon River (Tremont)",
+      "gauges": [],
+      "idealFlow": [
+        {
+          "min": 15,
+          "max": 120,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 3,
+      "opportunitySourceCount": 3,
+      "opportunity": "year-round-trout",
+      "evidenceState": "documented",
+      "ruleTitles": [
+        "Great Smoky Mountains National Park fishing rules"
+      ]
+    },
+    {
+      "id": "milan-city-pond",
+      "name": "Milan City Pond",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 3,
+      "opportunity": "mixed",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "mill-creek-overton",
+      "name": "Mill Creek (Overton County)",
+      "gauges": [],
+      "idealFlow": [
+        {
+          "min": 10,
+          "max": 80,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 3,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "mississippi-river",
+      "name": "Mississippi River",
+      "gauges": [
+        "07032000"
+      ],
+      "idealFlow": [],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 1,
+      "opportunity": "warmwater-focus",
+      "evidenceState": "limited",
+      "ruleTitles": []
+    },
+    {
+      "id": "mossy-creek-jefferson",
+      "name": "Mossy Creek (Jefferson County)",
+      "gauges": [],
+      "idealFlow": [
+        {
+          "min": 5,
+          "max": 50,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 3,
+      "opportunity": "mixed",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "new-river",
+      "name": "New River",
+      "gauges": [
+        "03408500"
+      ],
+      "idealFlow": [
+        {
+          "min": 50,
+          "max": 400,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 0,
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved",
+      "ruleTitles": []
+    },
+    {
+      "id": "nickajack-lake",
+      "name": "Nickajack Lake",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 4,
+      "opportunitySourceCount": 3,
+      "opportunity": "warmwater-focus",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "nolichucky-river",
+      "name": "Nolichucky River",
+      "gauges": [
+        "03465500"
+      ],
+      "idealFlow": [
+        {
+          "min": 300,
+          "max": 1500,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 4,
+      "opportunitySourceCount": 2,
+      "opportunity": "warmwater-focus",
+      "evidenceState": "limited",
+      "ruleTitles": []
+    },
+    {
+      "id": "nonconnah-creek",
+      "name": "Nonconnah Creek",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 0,
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved",
+      "ruleTitles": []
+    },
+    {
+      "id": "normandy-lake",
+      "name": "Normandy Lake",
+      "gauges": [
+        "tva:NRMT1"
+      ],
+      "idealFlow": [],
+      "officialSourceCount": 3,
+      "opportunitySourceCount": 1,
+      "opportunity": "warmwater-focus",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "norris-lake",
+      "name": "Norris Lake",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 5,
+      "opportunitySourceCount": 1,
+      "opportunity": "warmwater-focus",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "north-chickamauga-creek",
+      "name": "North Chickamauga Creek",
+      "gauges": [
+        "03566535"
+      ],
+      "idealFlow": [
+        {
+          "min": 40,
+          "max": 250,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 3,
+      "opportunitySourceCount": 3,
+      "opportunity": "mixed",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "north-fork-forked-deer-river",
+      "name": "North Fork Forked Deer River",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 2,
+      "opportunity": "warmwater-focus",
+      "evidenceState": "limited",
+      "ruleTitles": []
+    },
+    {
+      "id": "north-fork-holston-river",
+      "name": "North Fork Holston River",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 3,
+      "opportunitySourceCount": 2,
+      "opportunity": "warmwater-focus",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "north-fork-obion-river",
+      "name": "North Fork Obion River",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 3,
+      "opportunity": "warmwater-focus",
+      "evidenceState": "limited",
+      "ruleTitles": []
+    },
+    {
+      "id": "north-mouse-creek",
+      "name": "North Mouse Creek",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 0,
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved",
+      "ruleTitles": []
+    },
+    {
+      "id": "north-prong-barren-fork",
+      "name": "North Prong Barren Fork River",
+      "gauges": [],
+      "idealFlow": [
+        {
+          "min": 10,
+          "max": 70,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 2,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "limited",
+      "ruleTitles": []
+    },
+    {
+      "id": "obed-river",
+      "name": "Obed River",
+      "gauges": [
+        "03538830"
+      ],
+      "idealFlow": [
+        {
+          "min": 100,
+          "max": 800,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 3,
+      "opportunitySourceCount": 3,
+      "opportunity": "warmwater-focus",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "obey-river",
+      "name": "Obey River (Dale Hollow tailwater)",
+      "gauges": [
+        "usace:DHTT1"
+      ],
+      "idealFlow": [
+        {
+          "min": 150,
+          "max": 1000,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 2,
+      "opportunity": "year-round-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "obion-river",
+      "name": "Obion River",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 3,
+      "opportunitySourceCount": 3,
+      "opportunity": "warmwater-focus",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "ocoee-number-three-lake",
+      "name": "Ocoee Number Three Lake",
+      "gauges": [
+        "tva:OCCT1"
+      ],
+      "idealFlow": [],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 0,
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved",
+      "ruleTitles": []
+    },
+    {
+      "id": "ocoee-river",
+      "name": "Ocoee River (upper, Copperhill reach)",
+      "gauges": [
+        "03559500",
+        "tva:OCBT1"
+      ],
+      "idealFlow": [
+        {
+          "min": 800,
+          "max": 3000,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 4,
+      "opportunitySourceCount": 0,
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved",
+      "ruleTitles": []
+    },
+    {
+      "id": "old-hickory-lake",
+      "name": "Old Hickory Lake",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 3,
+      "opportunitySourceCount": 1,
+      "opportunity": "warmwater-focus",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "oostanaula-creek",
+      "name": "Oostanaula Creek",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 0,
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved",
+      "ruleTitles": []
+    },
+    {
+      "id": "paint-creek-greene",
+      "name": "Paint Creek (Greene County)",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 3,
+      "opportunitySourceCount": 2,
+      "opportunity": "year-round-trout",
+      "evidenceState": "documented",
+      "ruleTitles": [
+        "Paint Creek wild-trout reach",
+        "Paint Creek delayed harvest"
+      ]
+    },
+    {
+      "id": "paris-city-park-lake",
+      "name": "Paris City Park",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 0,
+      "opportunity": "unresolved",
+      "evidenceState": "limited",
+      "ruleTitles": []
+    },
+    {
+      "id": "parksville-lake",
+      "name": "Parksville Lake",
+      "gauges": [
+        "tva:OCAT1"
+      ],
+      "idealFlow": [],
+      "officialSourceCount": 4,
+      "opportunitySourceCount": 2,
+      "opportunity": "year-round-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "parksville-tailwater",
+      "name": "Parksville Lake Tailwater (Ocoee No. 1 reach)",
+      "gauges": [
+        "03564500",
+        "tva:OCAT1"
+      ],
+      "idealFlow": [
+        {
+          "min": 100,
+          "max": 800,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 4,
+      "opportunitySourceCount": 2,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "limited",
+      "ruleTitles": []
+    },
+    {
+      "id": "pickwick-lake",
+      "name": "Pickwick Lake",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 3,
+      "opportunitySourceCount": 3,
+      "opportunity": "warmwater-focus",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "pigeon-river",
+      "name": "Pigeon River (Hartford corridor)",
+      "gauges": [
+        "03461500"
+      ],
+      "idealFlow": [
+        {
+          "min": 300,
+          "max": 1500,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 4,
+      "opportunitySourceCount": 2,
+      "opportunity": "warmwater-focus",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "pine-creek-dekalb",
+      "name": "Pine Creek (DeKalb County)",
+      "gauges": [],
+      "idealFlow": [
+        {
+          "min": 10,
+          "max": 80,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 3,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "piney-river-hickman",
+      "name": "Piney River (Hickman County)",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 0,
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved",
+      "ruleTitles": []
+    },
+    {
+      "id": "piney-river-rhea",
+      "name": "Piney River (Rhea County)",
+      "gauges": [],
+      "idealFlow": [
+        {
+          "min": 30,
+          "max": 200,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 2,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": [
+        "Piney River delayed harvest REMOVED for 2026-27"
+      ]
+    },
+    {
+      "id": "powell-river",
+      "name": "Powell River",
+      "gauges": [
+        "03532000"
+      ],
+      "idealFlow": [
+        {
+          "min": 50,
+          "max": 400,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 3,
+      "opportunitySourceCount": 2,
+      "opportunity": "warmwater-focus",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "puncheon-camp-creek",
+      "name": "Puncheon Camp Creek",
+      "gauges": [],
+      "idealFlow": [
+        {
+          "min": 3,
+          "max": 30,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 1,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "red-river-clarksville",
+      "name": "Red River (Montgomery County)",
+      "gauges": [
+        "03436100"
+      ],
+      "idealFlow": [
+        {
+          "min": 60,
+          "max": 500,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 3,
+      "opportunitySourceCount": 2,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "reedy-creek",
+      "name": "Reedy Creek",
+      "gauges": [],
+      "idealFlow": [
+        {
+          "min": 5,
+          "max": 60,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 3,
+      "opportunitySourceCount": 0,
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved",
+      "ruleTitles": []
+    },
+    {
+      "id": "reelfoot-lake",
+      "name": "Reelfoot Lake",
+      "gauges": [
+        "07027000"
+      ],
+      "idealFlow": [],
+      "officialSourceCount": 1,
+      "opportunitySourceCount": 2,
+      "opportunity": "warmwater-focus",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "richardson-byrd-creek",
+      "name": "Richardson “Byrd” Creek",
+      "gauges": [],
+      "idealFlow": [
+        {
+          "min": 3,
+          "max": 30,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 2,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "richland-creek-maury",
+      "name": "Richland Creek (Maury/Giles Counties)",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 0,
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved",
+      "ruleTitles": []
+    },
+    {
+      "id": "roaring-fork",
+      "name": "Roaring Fork",
+      "gauges": [],
+      "idealFlow": [
+        {
+          "min": 10,
+          "max": 80,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 3,
+      "opportunitySourceCount": 3,
+      "opportunity": "year-round-trout",
+      "evidenceState": "documented",
+      "ruleTitles": [
+        "Gatlinburg city waters permit"
+      ]
+    },
+    {
+      "id": "roaring-river",
+      "name": "Roaring River",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 2,
+      "opportunity": "warmwater-focus",
+      "evidenceState": "limited",
+      "ruleTitles": []
+    },
+    {
+      "id": "rocky-river",
+      "name": "Rocky River",
+      "gauges": [],
+      "idealFlow": [
+        {
+          "min": 15,
+          "max": 120,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 3,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "rutherford-fork-obion-river",
+      "name": "Rutherford Fork Obion River",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 3,
+      "opportunity": "warmwater-focus",
+      "evidenceState": "limited",
+      "ruleTitles": []
+    },
+    {
+      "id": "sale-creek",
+      "name": "Sale Creek",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 0,
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved",
+      "ruleTitles": []
+    },
+    {
+      "id": "salt-lick-creek",
+      "name": "Salt Lick Creek",
+      "gauges": [],
+      "idealFlow": [
+        {
+          "min": 10,
+          "max": 80,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 2,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "sequatchie-river",
+      "name": "Sequatchie River (headwaters)",
+      "gauges": [
+        "03571000"
+      ],
+      "idealFlow": [
+        {
+          "min": 100,
+          "max": 600,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 3,
+      "opportunitySourceCount": 3,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "shelby-farms-lake",
+      "name": "Shelby Farms",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 2,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "shoal-creek",
+      "name": "Shoal Creek",
+      "gauges": [
+        "03588500"
+      ],
+      "idealFlow": [
+        {
+          "min": 60,
+          "max": 400,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 3,
+      "opportunitySourceCount": 0,
+      "opportunity": "unresolved",
+      "evidenceState": "conflicting",
+      "ruleTitles": []
+    },
+    {
+      "id": "sinking-creek-wilson",
+      "name": "Sinking Creek (Wilson County)",
+      "gauges": [],
+      "idealFlow": [
+        {
+          "min": 5,
+          "max": 50,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 1,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "south-chickamauga-creek",
+      "name": "South Chickamauga Creek",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 0,
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved",
+      "ruleTitles": []
+    },
+    {
+      "id": "south-fork-cumberland",
+      "name": "South Fork Cumberland River",
+      "gauges": [
+        "03410210"
+      ],
+      "idealFlow": [
+        {
+          "min": 80,
+          "max": 500,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 0,
+      "opportunity": "unresolved",
+      "evidenceState": "conflicting",
+      "ruleTitles": []
+    },
+    {
+      "id": "south-fork-forked-deer-river",
+      "name": "South Fork Forked Deer River",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 2,
+      "opportunity": "warmwater-focus",
+      "evidenceState": "limited",
+      "ruleTitles": []
+    },
+    {
+      "id": "south-fork-obion-river",
+      "name": "South Fork Obion River",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 3,
+      "opportunity": "warmwater-focus",
+      "evidenceState": "limited",
+      "ruleTitles": []
+    },
+    {
+      "id": "south-holston-lake",
+      "name": "South Holston Lake",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 5,
+      "opportunitySourceCount": 2,
+      "opportunity": "year-round-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "south-holston-river",
+      "name": "South Fork Holston River (South Holston tailwater)",
+      "gauges": [
+        "tva:SHDT1"
+      ],
+      "idealFlow": [
+        {
+          "min": 250,
+          "max": 2500,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 3,
+      "opportunitySourceCount": 2,
+      "opportunity": "year-round-trout",
+      "evidenceState": "documented",
+      "ruleTitles": [
+        "South Fork Holston (South Holston tailwater) special regulation"
+      ]
+    },
+    {
+      "id": "south-mouse-creek",
+      "name": "South Mouse Creek",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 0,
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved",
+      "ruleTitles": []
+    },
+    {
+      "id": "spring-creek-polk",
+      "name": "Spring Creek (Polk County)",
+      "gauges": [],
+      "idealFlow": [
+        {
+          "min": 5,
+          "max": 50,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 2,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "standing-rock-creek",
+      "name": "Standing Rock Creek",
+      "gauges": [],
+      "idealFlow": [
+        {
+          "min": 3,
+          "max": 40,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 2,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "station-creek",
+      "name": "Station Creek",
+      "gauges": [],
+      "idealFlow": [
+        {
+          "min": 5,
+          "max": 40,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 2,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "stones-river",
+      "name": "Stones River (Davidson County)",
+      "gauges": [
+        "03430200",
+        "usace:JPPT1"
+      ],
+      "idealFlow": [
+        {
+          "min": 40,
+          "max": 400,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 3,
+      "opportunitySourceCount": 3,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "stoney-creek-carter",
+      "name": "Stoney Creek (Carter County)",
+      "gauges": [],
+      "idealFlow": [
+        {
+          "min": 5,
+          "max": 50,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 3,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "sulfur-fork-creek",
+      "name": "Sulfur Fork Creek",
+      "gauges": [],
+      "idealFlow": [
+        {
+          "min": 10,
+          "max": 80,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 2,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "tellico-lake",
+      "name": "Tellico Lake",
+      "gauges": [
+        "tva:TDTT1"
+      ],
+      "idealFlow": [],
+      "officialSourceCount": 4,
+      "opportunitySourceCount": 2,
+      "opportunity": "year-round-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "tellico-river",
+      "name": "Tellico River",
+      "gauges": [
+        "03518500"
+      ],
+      "idealFlow": [
+        {
+          "min": 100,
+          "max": 400,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 3,
+      "opportunitySourceCount": 3,
+      "opportunity": "year-round-trout",
+      "evidenceState": "documented",
+      "ruleTitles": [
+        "Tellico River delayed harvest + permit"
+      ]
+    },
+    {
+      "id": "tennessee-river",
+      "name": "Tennessee River",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 2,
+      "opportunity": "warmwater-focus",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "tims-ford-lake",
+      "name": "Tims Ford Lake",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 3,
+      "opportunitySourceCount": 2,
+      "opportunity": "warmwater-focus",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "trail-fork-big-creek",
+      "name": "Trail Fork (Big Creek tributary)",
+      "gauges": [],
+      "idealFlow": [
+        {
+          "min": 3,
+          "max": 25,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 3,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "tumbling-creek",
+      "name": "Tumbling Creek",
+      "gauges": [],
+      "idealFlow": [
+        {
+          "min": 5,
+          "max": 50,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 2,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "union-city-reelfoot-pond",
+      "name": "Union City Reelfoot Packing Site",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 2,
+      "opportunity": "mixed",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "upper-hills-creek",
+      "name": "Upper Hills Creek",
+      "gauges": [],
+      "idealFlow": [
+        {
+          "min": 5,
+          "max": 50,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 2,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "upper-roan-creek",
+      "name": "Upper Roan Creek",
+      "gauges": [],
+      "idealFlow": [
+        {
+          "min": 5,
+          "max": 60,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 2,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "valentine-park-pond",
+      "name": "Valentine Park",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 2,
+      "opportunity": "mixed",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "watauga-lake",
+      "name": "Watauga Lake",
+      "gauges": [
+        "tva:WTGT1"
+      ],
+      "idealFlow": [],
+      "officialSourceCount": 4,
+      "opportunitySourceCount": 2,
+      "opportunity": "year-round-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "watauga-river-wilbur-reach",
+      "name": "Watauga River (Watauga Dam to Wilbur Lake)",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 4,
+      "opportunitySourceCount": 0,
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved",
+      "ruleTitles": []
+    },
+    {
+      "id": "watauga-river",
+      "name": "Watauga River (Wilbur tailwater)",
+      "gauges": [
+        "03486000",
+        "tva:WL"
+      ],
+      "idealFlow": [
+        {
+          "min": 150,
+          "max": 1500,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 4,
+      "opportunitySourceCount": 2,
+      "opportunity": "year-round-trout",
+      "evidenceState": "documented",
+      "ruleTitles": [
+        "Watauga River Quality Trout Area"
+      ]
+    },
+    {
+      "id": "watts-bar-lake",
+      "name": "Watts Bar Lake",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 5,
+      "opportunitySourceCount": 2,
+      "opportunity": "warmwater-focus",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "west-fork-obey-river",
+      "name": "West Fork Obey River",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 0,
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved",
+      "ruleTitles": []
+    },
+    {
+      "id": "west-fork-stones-river",
+      "name": "West Fork Stones River",
+      "gauges": [
+        "03428200"
+      ],
+      "idealFlow": [
+        {
+          "min": 30,
+          "max": 250,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 3,
+      "opportunitySourceCount": 3,
+      "opportunity": "mixed",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "west-harpeth-river",
+      "name": "West Harpeth River",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 0,
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved",
+      "ruleTitles": []
+    },
+    {
+      "id": "west-prong-little-pigeon",
+      "name": "West Prong Little Pigeon River",
+      "gauges": [
+        "03469251"
+      ],
+      "idealFlow": [
+        {
+          "min": 15,
+          "max": 150,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 4,
+      "opportunitySourceCount": 3,
+      "opportunity": "year-round-trout",
+      "evidenceState": "documented",
+      "ruleTitles": [
+        "Great Smoky Mountains National Park fishing rules",
+        "Gatlinburg city waters permit"
+      ]
+    },
+    {
+      "id": "white-oak-creek",
+      "name": "White Oak Creek",
+      "gauges": [],
+      "idealFlow": [
+        {
+          "min": 5,
+          "max": 60,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 2,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "wilbur-lake",
+      "name": "Wilbur Lake",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 5,
+      "opportunitySourceCount": 3,
+      "opportunity": "seasonal-stocked-trout",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "wolf-river-fentress",
+      "name": "Wolf River (Fentress County headwaters)",
+      "gauges": [
+        "03416000"
+      ],
+      "idealFlow": [
+        {
+          "min": 10,
+          "max": 100,
+          "unit": "cfs"
+        }
+      ],
+      "officialSourceCount": 4,
+      "opportunitySourceCount": 2,
+      "opportunity": "mixed",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "wolf-river-west-tennessee",
+      "name": "Wolf River",
+      "gauges": [
+        "07031650"
+      ],
+      "idealFlow": [],
+      "officialSourceCount": 4,
+      "opportunitySourceCount": 3,
+      "opportunity": "warmwater-focus",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "woods-reservoir",
+      "name": "Woods Reservoir",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 2,
+      "opportunity": "warmwater-focus",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "yale-road-park-lake",
+      "name": "Yale Road Park",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 2,
+      "opportunity": "mixed",
+      "evidenceState": "documented",
+      "ruleTitles": []
+    },
+    {
+      "id": "yellow-creek-houston",
+      "name": "Yellow Creek (Houston/Dickson Counties)",
+      "gauges": [],
+      "idealFlow": [],
+      "officialSourceCount": 2,
+      "opportunitySourceCount": 0,
+      "opportunity": "unresolved",
+      "evidenceState": "unresolved",
+      "ruleTitles": []
+    }
+  ]
+}

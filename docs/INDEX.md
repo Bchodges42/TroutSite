@@ -44,6 +44,11 @@ instead.
 
 ## Evidence — point-in-time audits (historical; superseded by newer data wins)
 
+- [2026-10-14 live-feed audit](reports/2026-10-14-data-integrity-audit.md) and
+  [source-verification continuation](reports/2026-10-14-source-verification-followup.md):
+  regulations repairs, editorial-data gaps, and tested source alternatives; supporting
+  responses and catalog inventory in `research/2026-10-14-source-audit/`.
+
 `GEO-AUDIT.md`, `CONTINUITY-AUDIT.md`, `GEO-CONTINUITY-AUDIT-lane.md`,
 `SPECIES-REVIEW.md`, `WATERBODY-IMPLEMENTATION-CHECKLIST.md`, `audits/*`
 (hydrography, connectivity, duplicates, self-intersection, UI-conditions),

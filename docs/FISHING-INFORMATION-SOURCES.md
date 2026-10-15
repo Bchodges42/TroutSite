@@ -11,6 +11,20 @@ waterIds; an item without `appliesTo` is statewide). Nothing here is a legal
 guarantee — every item carries its official source URL and the content carries a
 standing disclaimer directing users to the current official regulation.
 
+## 2026-10-14 incremental verification
+
+The [source-verification follow-up](reports/2026-10-14-source-verification-followup.md)
+records today's targeted repairs against the live TWRA trout page: Paint Creek's
+upstream wild-trout reach and downstream delayed-harvest reach, Big Soddy Creek's
+November 1 start above Back Valley Road, and the Boone Dam reach for the Fort Patrick
+Henry rule. The special-regulations section now has 21 items (previously 18).
+Paint Creek's catalog caveat no longer incorrectly points upstream anglers to statewide
+limits. The Piney River discrepancy between TWRA pages remains unresolved.
+
+These checks do not reverify licenses, prices, or every other section of the document;
+the pack's overall `verifiedAt` stays at its earlier full-review date. Per-request source
+metadata and catalog counts are archived in `research/2026-10-14-source-audit/`.
+
 ## Regulation year and effective dates
 
 - The Tennessee fishing regulation year runs **August 1 – July 31**.
