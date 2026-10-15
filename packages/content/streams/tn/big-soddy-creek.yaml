@@ -19,7 +19,7 @@ officialSources:
   - label: TWRA — Trout Fishing & Stockings
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations
-    url: https://www.tn.gov/twra/fishing.html
+    url: https://www.tn.gov/twra/fishing-regs/trout-regulations.html
 hydroIdentity:
   gnisIds:
     - "01303712"
@@ -54,5 +54,6 @@ opportunity:
       Back Valley Road only; other reaches follow statewide rules.
     - The forecast's flow-gauge link is on North Chickamauga Creek (USGS 03566535), a different
       creek used as a rise/fall reference - it does not measure Big Soddy Creek.
-    - Verify the current C&R start date (Oct 1 vs Nov 1) with TWRA Region 3 before fishing the C&R
-      season.
+    - "The current TWRA trout-regulations page and 2026-27 changes list catch-and-release November
+      1-February 28 upstream of Back Valley Road: no trout harvest or possession; artificial lures
+      only, with use or possession of bait prohibited (verified 2026-10-14)."

@@ -26,7 +26,7 @@ officialSources:
   - label: TWRA — Trout Fishing & Stockings
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
   - label: TWRA — Tennessee fishing regulations
-    url: https://www.tn.gov/twra/fishing.html
+    url: https://www.tn.gov/twra/fishing-regs/trout-regulations.html
 hydroIdentity:
   gnisIds:
     - "01296658"
@@ -61,8 +61,10 @@ opportunity:
       pinpoint: 10 Greene County 'Paint Creek' rows - Seasonal weeks 3/8 through 6/28/2026 biweekly plus
         Delayed Harvest week 10/4/2026, Rainbow Trout
   caveats:
-    - "Upper reach (campground upstream to Munday Gap): designated wild-trout water - fish it
-      year-round under statewide trout rules."
+    - "Upper reach (USFS campground upstream to the USFS boundary south of Highway 70 near Munday
+      Gap, including tributaries): wild-trout rules apply year-round - 5 trout/day, no length
+      limit, single-hook artificials only; use or possession of bait or multiple-hook lures is
+      prohibited, with one separated single-hook dropper lure permitted."
     - "Lower corridor: DH catch-and-release Oct 1-Feb 28 with an early-October stocking; harvest
       window follows with biweekly stockings March-June 2026."
     - July-September on the lower corridor has no documented stocking program; a site-feed claim of

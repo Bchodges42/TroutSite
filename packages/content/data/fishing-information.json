@@ -163,6 +163,33 @@
           "effectiveFrom": "2026-08-01"
         },
         {
+          "title": "Paint Creek wild-trout reach",
+          "text": "Paint Creek (Greene County) and tributaries from the USFS campground upstream to the USFS boundary south of Highway 70 near Munday Gap: 5 trout/day with no length limit. Only single-hook artificial lures are allowed; use or possession of bait or multiple-hook lures is prohibited. One additional single-hook artificial lure separated from a legal lure by a length of line (a dropper fly) is permitted. The downstream delayed-harvest reach has different rules.",
+          "authority": "TWRA",
+          "sourceId": "twra-regulations",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "appliesTo": ["paint-creek-greene"],
+          "effectiveFrom": "2026-08-01"
+        },
+        {
+          "title": "Paint Creek delayed harvest",
+          "text": "Paint Creek (Greene County) from Paint Creek Campground downstream to its mouth at the French Broad River: catch-and-release October 1 - February 28. During this season, trout harvest or possession is prohibited, only artificial lures are allowed, and use or possession of bait is prohibited. The upstream wild-trout reach has separate year-round gear and creel rules.",
+          "authority": "TWRA",
+          "sourceId": "twra-regulations",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "appliesTo": ["paint-creek-greene"],
+          "effectiveFrom": "2026-08-01"
+        },
+        {
+          "title": "Big Soddy Creek delayed harvest",
+          "text": "Big Soddy Creek (Hamilton County) upstream of Back Valley Road: catch-and-release November 1 - February 28. During this season, trout harvest or possession is prohibited, only artificial lures are allowed, and use or possession of bait is prohibited. The November 1 start date appears in TWRA's 2026-27 changes and current trout-regulations page.",
+          "authority": "TWRA",
+          "sourceId": "twra-regulations",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "appliesTo": ["big-soddy-creek"],
+          "effectiveFrom": "2026-08-01"
+        },
+        {
           "title": "Buffalo Creek delayed harvest + gear rules",
           "text": "Buffalo Creek (Grainger County): delayed-harvest catch-and-release October 1 - January 31 from the mill dam downstream to the Buffalo Springs WMA boundary (no harvest or possession; artificials only; bait prohibited). Above the mill dam the creek is closed to all fishing year-round; below the dam it is open year-round to rod-and-reel only, with bait harvest prohibited and seines, cast nets, and minnow/crayfish traps banned.",
           "authority": "TWRA",
