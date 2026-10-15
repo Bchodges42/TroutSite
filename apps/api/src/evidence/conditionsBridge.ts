@@ -13,6 +13,7 @@ import {
   type TvaRow,
 } from './tva-provider.js';
 import { USACE_TAILWATER_SERIES, fetchUsaceObservations } from './usace-provider.js';
+import { fetchCwmsObservations } from './cwms-provider.js';
 import { TVA_MONITORS, TVA_SCHEDULE_MONITORS } from './monitors.js';
 
 /**
@@ -122,6 +123,9 @@ function tvaRawRowFor(obs: WaterObservation, rows: TvaRow[]): unknown {
 }
 
 export interface ConditionsBridgeOptions {
+  /** Audited CWMS is the production default; A2W remains an explicit rollback option. */
+  usaceProvider?: 'cwms' | 'a2w';
+  now?: Date;
   /** Plain user agent for the USACE A2W API. */
   userAgent: string;
   /** Browser-like user agent for tva.com (Cloudflare front). Defaults to the evidence lane's. */
@@ -152,7 +156,7 @@ export interface ConditionsBridgeResult extends JobDetail {
 
 interface FetchedBatch {
   gaugeId: string;
-  source: 'tva-restapi' | 'usace-a2w';
+  source: 'tva-restapi' | 'usace-a2w' | 'usace-cwms';
   obs: WaterObservation[];
   rawByMetric: Partial<Record<WaterObservation['metric'], unknown>>;
 }
@@ -276,16 +280,19 @@ export async function runConditionsReadingsJob(
   const usaceFetchEntries = Object.entries(USACE_TAILWATER_SERIES).filter(([station]) => station !== 'CORT1');
   for (const [station, series] of usaceFetchEntries) {
     try {
-      const result = await fetchUsaceObservations(station, {
+      const provider = opts.usaceProvider === 'a2w' ? fetchUsaceObservations : fetchCwmsObservations;
+      const result = await provider(station, {
         userAgent: opts.userAgent,
         fetchImpl: opts.fetchImpl,
         timeoutMs: opts.timeoutMs,
         spacingMs: opts.spacingMs,
         windowHours: opts.windowHours,
+        now: opts.now,
       });
+      if ('errors' in result && typeof result.errors === 'number') errors += result.errors;
       batches.push({
         gaugeId: `usace:${station}`,
-        source: 'usace-a2w',
+        source: opts.usaceProvider === 'a2w' ? 'usace-a2w' : 'usace-cwms',
         obs: result.observations,
         rawByMetric: result.rawByMetric,
       });

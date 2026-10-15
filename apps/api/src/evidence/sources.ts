@@ -40,6 +40,18 @@ export const SOURCES: Record<string, EvidenceSource> = {
       'when available; batches are capped at 50 sites per request. ' +
       'NOT a source for Tennessee reservoir elevations (no TN IV sites publish 62614/63158).',
   },
+  'usace-cwms': {
+    sourceId: 'usace-cwms',
+    label: 'USACE CWMS Data API (Nashville District)',
+    authority: 'U.S. Army Corps of Engineers',
+    infoUrl: 'https://cwms-data.usace.army.mil/cwms-data/swagger-ui.html',
+    endpoint: 'https://cwms-data.usace.army.mil/cwms-data/timeseries',
+    license: 'Public information (U.S. Government)',
+    provides: ['discharge-cfs', 'temperature-c'],
+    freshness: '15–60 min where the audited series publishes; 3-hour per-metric gate',
+    notes: 'Exact LRN series and explicit cfs/C units; original quality codes retained. ' +
+      'Unscreened is not approved. Missing/questionable/rejected, stale and future values are withheld.',
+  },
   'usace-a2w': {
     sourceId: 'usace-a2w',
     label: 'USACE Access to Water (Nashville District)',

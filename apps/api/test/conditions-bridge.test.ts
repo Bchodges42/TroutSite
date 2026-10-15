@@ -51,6 +51,7 @@ function bridgeFetch(opts: { tvaRowsFor?: (locationId: string) => unknown[] | nu
 function runBridge(db: TestEnv['db'], fetchImpl: typeof fetch) {
   return runConditionsReadingsJob(db, {
     userAgent: 'test-agent/1.0',
+    usaceProvider: 'a2w', // Recorded A2W compatibility tests; CWMS default has its own integration test.
     fetchImpl,
     spacingMs: 0,
     tvaSpacingMs: 0,
