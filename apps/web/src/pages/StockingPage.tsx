@@ -6,7 +6,12 @@ import type { Species, StockingEvent } from '@trout/contracts';
 import { snapshotUrls } from '../lib/endpoints';
 import { useSnapshotQuery } from '../lib/useSnapshotQuery';
 import { useSettingsContext } from '../lib/settings';
-import { shortDate } from '../lib/time';
+import {
+  stockingEventState,
+  stockingPrecisionDate,
+  stockingSourceFetchedAt,
+  STOCKING_SOURCE_STALE_MS,
+} from '../lib/stockingStatus';
 import { FreshnessChip } from '../components/FreshnessChip';
 import { CloseIcon, SearchIcon } from '../components/icons';
 
@@ -52,42 +57,14 @@ function sortEvents(list: StockingEvent[], key: SortKey): StockingEvent[] {
   }
 }
 
-const TODAY = () => new Date().toISOString().slice(0, 10);
+export {
+  stockingEventState,
+  stockingPrecisionDate,
+  stockingSourceFetchedAt,
+  stockingWindowEnd,
+  STOCKING_SOURCE_STALE_MS,
+} from '../lib/stockingStatus';
 
-/** Data-state copy: schedules are plans; past-dated entries are reports, not field-verified facts. */
-export function stockingEventState(event: StockingEvent): { label: string; note: string; future: boolean } {
-  const future = event.date >= TODAY();
-  if (event.datePrecision === 'month')
-    return {
-      label: future ? 'Month window · scheduled' : 'Month window · reported',
-      note: 'Published as a month window, not an exact day.',
-      future,
-    };
-  if (event.datePrecision === 'week')
-    return {
-      label: future ? 'Week of · scheduled' : 'Week of · reported',
-      note: `Published as the week of ${shortDate(event.date)}.`,
-      future,
-    };
-  return {
-    label: future ? 'Scheduled' : 'Reported completed',
-    note: future
-      ? 'Exact published day — a plan that can still change.'
-      : 'Past-dated published entry — not field-verified.',
-    future,
-  };
-}
-
-/** Precision-aware date label: an exact day never borrows a week's vagueness. */
-export function stockingPrecisionDate(event: StockingEvent): string {
-  if (event.datePrecision === 'week') return 'Week of ' + shortDate(event.date);
-  if (event.datePrecision === 'month')
-    return new Date(event.date + 'T12:00:00').toLocaleDateString(undefined, {
-      month: 'long',
-      year: 'numeric',
-    });
-  return shortDate(event.date);
-}
 
 function EventRow({ event }: { event: StockingEvent }) {
   const state = stockingEventState(event);
@@ -212,7 +189,11 @@ export function StockingPage() {
     <main className="page stocking-discovery">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <h1 className="page-title">Stocking</h1>
-        <FreshnessChip fetchedAt={stockingQuery.data?.fetchedAt} live={stockingQuery.data?.live ?? false} />
+        <FreshnessChip
+          fetchedAt={stockingQuery.data?.fetchedAt}
+          live={stockingQuery.data?.live ?? false}
+          source={{ label: 'TWRA', at: stockingSourceFetchedAt(events), staleAfterMs: STOCKING_SOURCE_STALE_MS }}
+        />
       </div>
       <p className="page-subtitle mt-1">
         {settings.speciesMode === 'all' ? 'TWRA fish stocking' : 'Trout stocking'} for {stateId}, cached on your device. A schedule is a plan —

@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { matchStocking, normalizeWaterName } from '../src/lib/stockingMatch';
+import { matchStocking, normalizeCounty, normalizeWaterName } from '../src/lib/stockingMatch';
 import type { StockingEvent } from '@trout/contracts';
 
 const event = (streamName: string, id = streamName): StockingEvent => ({
@@ -230,5 +230,52 @@ describe('T1-7 — county disambiguation against the captured 623-row TWRA feed'
     expect(oldCane.length).toBeGreaterThan(0);
     expect(oldCane.every((e) => e.county === 'Van Buren')).toBe(true);
     expect(oldCane.some((e) => /Cane Creek Park/i.test(e.streamName))).toBe(false);
+  });
+});
+
+describe('county agreement — live 2026-10-14 TWRA schedule (audit §2)', () => {
+  // Verbatim TWRA schedule grid captured 2026-10-14 (the API's regression fixture).
+  const rows = (
+    JSON.parse(
+      fs.readFileSync(path.resolve(__dirname, '../../api/fixtures/TN/2026-10-14-schedule.exceldriven.json'), 'utf8'),
+    ) as { data: Array<Record<string, string>> }
+  ).data;
+  const liveEvents: StockingEvent[] = rows.map((r, i) => ({
+    id: `live-${i}`,
+    stateId: 'TN',
+    streamName: (r.LOCATION ?? '').replace(/\s+/g, ' ').trim(),
+    county: r.COUNTY?.trim() || undefined,
+    species: 'rainbow',
+    date: '2026-03-01',
+    sourceUrl: 'https://www.tn.gov/twra/fishing/trout-information-stockings.html',
+    fetchedAt: '2026-10-14T15:00:00Z',
+  }));
+  // Catalog names, aliases and hydroIdentity counties as authored in packages/content/streams/tn/.
+  const catalog = [
+    { id: 'mill-creek-overton', name: 'Mill Creek (Overton County)', hydroIdentity: { counties: ['Overton'] } },
+    { id: 'piney-river-hickman', name: 'Piney River (Hickman County)', aliases: ['Piney River'], hydroIdentity: { counties: ['Hickman'] } },
+    { id: 'laurel-creek-johnson', name: 'Laurel Creek (Johnson County)', hydroIdentity: { counties: ['Johnson'] } },
+    { id: 'laurel-fork-carter', name: 'Laurel Fork (Carter County)', hydroIdentity: { counties: ['Carter'] } },
+  ];
+  const { byStream } = matchStocking(catalog, liveEvents);
+  const counties = (id: string) => [...new Set((byStream.get(id) ?? []).map((e) => e.county))];
+
+  it('keeps out same-named waters from other counties', () => {
+    expect(counties('mill-creek-overton')).toEqual(['Overton']); // not Hickman's Mill Creek
+    expect(byStream.get('piney-river-hickman')).toBeUndefined(); // TWRA's Piney River is in Rhea
+    expect(counties('laurel-creek-johnson')).toEqual(['Johnson']); // not Van Buren's
+    expect(counties('laurel-fork-carter')).toEqual(['Carter']); // not Campbell's
+  });
+
+  it('now finds the Overton rows TWRA files under "Mill Creek (Standing Stone State Park)"', () => {
+    const mill = byStream.get('mill-creek-overton') ?? [];
+    expect(mill.length).toBeGreaterThan(0);
+    expect(mill.every((e) => /standing stone/i.test(e.streamName))).toBe(true);
+  });
+
+  it('normalizes TWRA county spellings before comparing', () => {
+    expect(normalizeCounty('Caroll')).toBe('carroll');
+    expect(normalizeCounty('DEKALB')).toBe(normalizeCounty('DeKalb'));
+    expect(normalizeCounty('Van Buren')).toBe('vanburen');
   });
 });

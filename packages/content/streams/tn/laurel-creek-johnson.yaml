@@ -14,8 +14,8 @@ idealFlow:
     max: 50
     unit: cfs
 idealFlowSource: editorial
-notes: Spring-stocked Johnson County creek listed by TWRA for both Johnson and Van Buren county
-  access points. Small pocket water.
+notes: Spring-stocked Johnson County creek. TWRA's schedule also lists a different "Laurel Creek"
+  in Van Buren County; those rows are not this water. Small pocket water.
 officialSources:
   - label: TWRA — Trout Fishing & Stockings (verify current schedule officially)
     url: https://www.tn.gov/twra/fishing/trout-information-stockings.html

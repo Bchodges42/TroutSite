@@ -17,6 +17,7 @@ import type { RiverMapFeature } from './riverMapSelectors';
 import { FreshnessChip } from '../../components/FreshnessChip';
 import { db } from '../../lib/db';
 import { firstPartyPhotoUrl } from '../../lib/media';
+import { stockingPrecisionDate } from '../../lib/stockingStatus';
 import { BookIcon, BugIcon, CloseIcon, WavesIcon } from '../../components/icons';
 const TABS = ['Water', 'Hatch', 'Stocking', 'Reports', 'Your Log'] as const;
 type Tab = (typeof TABS)[number];
@@ -553,15 +554,12 @@ function StockingTab({ feature, error, month }: { feature: RiverMapFeature; erro
   return (
     <>
       <div className="detail-section">
-        <p className="eyebrow">Published schedule</p>
+        <p className="eyebrow">{event.status === 'reported' ? 'Stocked · TWRA report' : 'Published schedule'}</p>
         {seasonal && <p className="seasonal-chip">{seasonal}</p>}
         <h3 className="capitalize mt-2">{event.species} trout</h3>
         <p>{event.streamName}</p>
         <p className="mt-2">
-          {new Date(event.date + 'T12:00:00').toLocaleDateString(undefined, {
-            month: 'long',
-            year: 'numeric',
-          })}
+          {stockingPrecisionDate(event)}
           {event.count != null ? ' · ' + event.count.toLocaleString() + ' fish scheduled' : ''}
         </p>
       </div>

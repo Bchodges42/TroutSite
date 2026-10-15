@@ -18,6 +18,12 @@ import type { StockingEvent, Stream } from '@trout/contracts';
  *   3. containment between normalized names — only when exactly one stream
  *      claims the event; ties stay UNMATCHED rather than guessed
  *
+ * County agreement gates tiers 1 and 3: when both the TWRA row and the catalog
+ * water carry counties and they do not intersect, the name match is a
+ * DIFFERENT water (audit 2026-10-14: Mill Creek (Hickman) landed on Overton's
+ * Mill Creek, Piney River (Rhea) on Hickman's, Laurel Creek (Van Buren) on
+ * Johnson's, Laurel Fork (Campbell) on Carter's).
+ *
  * An event maps to at most one stream. Unmatched events are simply not shown
  * as a water's stocking; they remain in the schedule feed itself.
  */
@@ -83,6 +89,8 @@ export const TWRA_ALIASES: Readonly<Record<string, readonly string[]>> = {
     'parksville lake tailwater ocoee no 1 reach',
   ],
   'stones-river': ['j percy priest tailwater stones river', 'percy priest tailwater stones river'],
+  // TWRA names the Overton County water by its park; the catalog by its county.
+  'mill-creek-overton': ['mill creek standing stone state park'],
 };
 
 const byId = new Map(
@@ -108,6 +116,12 @@ const COUNTY_RESOLVES: Readonly<Record<string, Readonly<Record<string, string>>>
   },
 };
 
+/** TWRA county spellings → comparable keys (case, "DeKalb", the "Caroll" typo). */
+export function normalizeCounty(county: string): string {
+  const key = county.toLowerCase().replace(/county$/i, '').replace(/[^a-z]/g, '');
+  return key === 'caroll' ? 'carroll' : key;
+}
+
 function aliasTierFor(eventNorm: string): string[] {
   const hits: string[] = [];
   for (const [id, names] of byId) {
@@ -131,7 +145,7 @@ function wordBoundaryContains(haystack: string, needle: string): boolean {
  * (sorted newest-first by date) and the count of events left unmatched.
  */
 export function matchStocking(
-  streams: Array<Pick<Stream, 'id' | 'name' | 'aliases'>>,
+  streams: Array<Pick<Stream, 'id' | 'name' | 'aliases'> & { hydroIdentity?: { counties?: string[] } }>,
   events: StockingEvent[],
 ): { byStream: Map<string, StockingEvent[]>; unmatched: number } {
   const streamNorm = new Map(
@@ -140,9 +154,13 @@ export function matchStocking(
       {
         norms: [s.name, ...(s.aliases ?? [])].map(normalizeWaterName),
         raw: s.name.toLowerCase(),
+        counties: (s.hydroIdentity?.counties ?? []).map(normalizeCounty),
       },
     ]),
   );
+  /** True when both sides name counties and none agree — a same-named, different water. */
+  const countyConflict = (event: StockingEvent, counties: string[]): boolean =>
+    Boolean(event.county) && counties.length > 0 && !counties.includes(normalizeCounty(event.county ?? ''));
 
   const byStream = new Map<string, StockingEvent[]>();
   let unmatched = 0;
@@ -167,7 +185,7 @@ export function matchStocking(
     // more than one candidate is a same-name ambiguity — stay unresolved.
     if (!resolved) {
       const exact = [...streamNorm]
-        .filter(([, meta]) => meta.norms.includes(eventNorm))
+        .filter(([, meta]) => meta.norms.includes(eventNorm) && !countyConflict(event, meta.counties))
         .map(([id]) => id);
       if (exact.length === 1) resolved = exact[0] ?? null;
     }
@@ -186,6 +204,7 @@ export function matchStocking(
     if (!resolved) {
       const contain: string[] = [];
       for (const [id, meta] of streamNorm) {
+        if (countyConflict(event, meta.counties)) continue;
         if (
           meta.norms.some(
             (norm) =>

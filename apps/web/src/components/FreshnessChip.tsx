@@ -1,6 +1,6 @@
 import { Chip } from '@trout/ui';
 import { useOnline } from '../hooks/useOnline';
-import { ageMinutes, clockTime } from '../lib/time';
+import { ageMinutes, lastKnownTime } from '../lib/time';
 import { READING_STALE_MINUTES } from '@trout/contracts';
 
 export interface FreshnessChipProps {
@@ -21,6 +21,13 @@ export interface FreshnessChipProps {
    * the source disclosure (H4/C1).
    */
   nextExpectedAt?: number | undefined | null;
+  /**
+   * Upstream-source age for feeds without reading timestamps (e.g. TWRA
+   * stocking): `at` is when the SOURCE was last read successfully (epoch ms).
+   * When given, the live chip reports that age — a failed ingest must never
+   * read "just now" because the browser downloaded an old snapshot.
+   */
+  source?: { label: string; at: number | null; staleAfterMs: number };
   className?: string;
 }
 
@@ -38,6 +45,7 @@ export function FreshnessChip({
   live,
   observedAt,
   nextExpectedAt,
+  source,
   className,
 }: FreshnessChipProps) {
   const online = useOnline();
@@ -58,6 +66,30 @@ export function FreshnessChip({
     );
   }
   if (live && online) {
+    if (source) {
+      if (source.at == null) {
+        return (
+          <Chip tone="fair" className={className} title={`This snapshot does not say when ${source.label} was last read.`}>
+            {source.label} · fetch time unknown
+          </Chip>
+        );
+      }
+      const stale = Date.now() - source.at > source.staleAfterMs;
+      return (
+        <Chip
+          tone={stale ? 'fair' : 'neutral'}
+          className={className}
+          title={
+            stale
+              ? `${source.label} has not been read successfully recently — this data may be out of date.`
+              : `When ${source.label} was last read by the ingest, not when this page downloaded it.`
+          }
+        >
+          {stale ? `${source.label} stale · fetched ` : `${source.label} · fetched `}
+          {ageMinutes(source.at)}
+        </Chip>
+      );
+    }
     if (observedAt == null) {
       // The feed promised an update that never came: immediately overdue
       // (nextExpectedUpdate <= fetchedAt) is how the builder signals an
@@ -94,7 +126,7 @@ export function FreshnessChip({
   }
   return (
     <Chip tone="fair" className={className} title="You are seeing the last snapshot stored on this device.">
-      {online ? 'Cached' : 'Offline'} · last known {clockTime(fetchedAt)}
+      {online ? 'Cached' : 'Offline'} · last known {lastKnownTime(fetchedAt)}
     </Chip>
   );
 }

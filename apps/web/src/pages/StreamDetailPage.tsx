@@ -30,7 +30,7 @@ import { toWaterDecisionView, seasonalChipText } from '../features/map/waterDeci
 import { OpportunityCard } from '../features/map/OpportunityCard';
 import { FishabilityCard } from '../components/FishabilityCard';
 import { SolarWindowsCard } from '../components/SolarWindowsCard';
-import { stockingEventState, stockingPrecisionDate } from './StockingPage';
+import { stockingEventState, stockingPrecisionDate, stockingSourceFetchedAt } from './StockingPage';
 import { itemsForWater, useFishingInfo } from '../lib/fishingInfo';
 
 const CONDITIONS_TTL_MIN = 60;
@@ -70,6 +70,8 @@ export function StreamDetailPage() {
       .sort((a, b) => b.date.localeCompare(a.date))
       .slice(0, 6) as StockingEvent[];
   }, [stream, stockingQuery.data, streamsQuery.data]);
+
+  const stockingSourceAt = useMemo(() => stockingSourceFetchedAt(stockingQuery.data?.data ?? []), [stockingQuery.data]);
 
   const [changes, setChanges] = useState<string[] | null>(null);
   const seenHandled = useRef(false);
@@ -431,12 +433,9 @@ export function StreamDetailPage() {
               })}
             </ul>
             <p className="muted text-xs mt-2">
-              Reported entries are past-dated published schedules, not field-verified stockings.
-              Cached from the TWRA feed fetched{' '}
-              {stockingQuery.data?.fetchedAt
-                ? new Date(stockingQuery.data.fetchedAt).toLocaleString()
-                : 'at an unknown time'}
-              ; the schedule is re-read on refresh, never cached indefinitely.
+              Only rows from TWRA&apos;s Locations Report are completed stockings; schedule rows are
+              plans, even after their date. TWRA last read{' '}
+              {stockingSourceAt !== null ? new Date(stockingSourceAt).toLocaleString() : 'at an unknown time'}.
             </p>
           </>
         )}

@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { cleanup, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
@@ -33,9 +33,19 @@ const EVENTS: StockingEvent[] = [
   event({ id: 'e10', streamName: 'Harpeth River', date: '2026-07-02', datePrecision: 'day', species: 'rainbow', count: 1400, county: 'Williamson' }),
 ];
 
-function renderPage(initialEntry = '/stocking') {
+/** TWRA Locations Report row: a completed stocking (ADR 0012). */
+const REPORTED = event({
+  id: 'r1',
+  streamName: 'HIWASSEE RIVER TW',
+  date: '2026-09-02',
+  datePrecision: 'day',
+  status: 'reported',
+  county: 'POLK',
+});
+
+function renderPage(initialEntry = '/stocking', events: StockingEvent[] = EVENTS) {
   const fetchMock = vi.fn(async (url: string) =>
-    new Response(url.includes('stocking') ? JSON.stringify(EVENTS) : '[]', {
+    new Response(url.includes('stocking') ? JSON.stringify(events) : '[]', {
       status: 200,
       headers: { 'content-type': 'application/json' },
     }),
@@ -55,9 +65,17 @@ function renderPage(initialEntry = '/stocking') {
   );
 }
 
+// The fixtures are dated around early September 2026; pin the clock so the
+// 90-day window and past/future states do not drift as real time passes (this
+// suite silently started failing in October 2026 for exactly that reason).
+beforeEach(() => {
+  vi.useFakeTimers({ toFake: ['Date'], now: new Date('2026-09-05T15:00:00Z') });
+});
+
 afterEach(() => {
   cleanup();
   vi.unstubAllGlobals();
+  vi.useRealTimers();
 });
 
 describe('Stocking discovery — progressive disclosure with honest data states', () => {
@@ -75,13 +93,38 @@ describe('Stocking discovery — progressive disclosure with honest data states'
     ).toBeInTheDocument();
   });
 
-  it('distinguishes reported completions, schedules, and date precision', async () => {
-    renderPage();
+  it('never calls a past SCHEDULE row completed; only TWRA report rows read as stocked', async () => {
+    renderPage('/stocking', [...EVENTS, REPORTED]);
     await screen.findByText('Latest published');
-    expect(screen.getAllByText('Reported completed').length).toBeGreaterThan(0);
-    expect(screen.getAllByText(/Week of · reported/).length).toBeGreaterThan(0);
-    expect(screen.getAllByText(/Month window · reported/).length).toBeGreaterThan(0);
-    expect(screen.getAllByText(/not field-verified/i).length).toBeGreaterThan(0);
+    expect(screen.queryByText('Reported completed')).not.toBeInTheDocument();
+    expect(screen.queryByText(/· reported/)).not.toBeInTheDocument();
+    expect(screen.getAllByText('Scheduled · date passed').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('Month window · passed').length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/completion is only confirmed by its Locations Report/).length).toBeGreaterThan(0);
+    expect(screen.getByText('Stocked · TWRA report')).toBeInTheDocument();
+    expect(screen.getByText(/Locations Report lists this stocking on/)).toBeInTheDocument();
+  });
+
+  it('keeps a "week of" row scheduled until Sunday + 5 days (TWRA: stocked within 5 days after)', async () => {
+    // e2: week of Tue 2026-08-25 → window ends 08-30. Move the clock inside, then past it.
+    vi.setSystemTime(new Date('2026-08-29T15:00:00Z'));
+    renderPage('/stocking?q=Caney');
+    await screen.findByText('Caney Fork River');
+    expect(screen.getByText('Week of · scheduled')).toBeInTheDocument();
+    cleanup();
+    vi.setSystemTime(new Date('2026-08-31T15:00:00Z'));
+    renderPage('/stocking?q=Caney');
+    await screen.findByText('Caney Fork River');
+    expect(screen.getByText('Week of · date passed')).toBeInTheDocument();
+  });
+
+  it('dates the freshness chip by the TWRA fetch, not the download, and flags it stale after 2 days', async () => {
+    renderPage();
+    expect(await screen.findByText(/TWRA · fetched/)).toBeInTheDocument(); // fetchedAt 2026-09-04T20:00Z, ~19 h
+    cleanup();
+    vi.setSystemTime(new Date('2026-09-09T15:00:00Z'));
+    renderPage();
+    expect(await screen.findByText(/TWRA stale · fetched/)).toBeInTheDocument();
   });
 
   it('shows scheduled future entries as plans, not completed stockings', async () => {

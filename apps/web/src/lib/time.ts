@@ -16,6 +16,16 @@ export function clockTime(epochMs: number): string {
   return new Date(epochMs).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
 }
 
+/**
+ * "6:40 AM" when the moment is today, "Oct 12, 6:40 AM" otherwise — an
+ * offline chip must never pass a days-old snapshot off as this morning's.
+ */
+export function lastKnownTime(epochMs: number, now: number = Date.now()): string {
+  const d = new Date(epochMs);
+  if (d.toDateString() === new Date(now).toDateString()) return clockTime(epochMs);
+  return `${d.toLocaleDateString([], { month: 'short', day: 'numeric' })}, ${clockTime(epochMs)}`;
+}
+
 /** "Apr 12" style short date. */
 export function shortDate(isoDate: string): string {
   const d = new Date(`${isoDate}T12:00:00`); // midday avoids TZ day-shift
