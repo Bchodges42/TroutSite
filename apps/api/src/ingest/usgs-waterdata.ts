@@ -1,4 +1,4 @@
-import { GaugeReadingSchema } from '@trout/contracts';
+import { GaugeReadingSchema, READING_STALE_MINUTES } from '@trout/contracts';
 import type { GaugeReading } from '@trout/contracts';
 import { fetchWithRetry } from '../lib/retry.js';
 
@@ -26,7 +26,16 @@ export interface WaterDataFeatureCollection {
   features?: WaterDataFeature[];
 }
 
-const INVALID_QUALIFIERS = new Set(['ice', 'eqp', 'ssn', 'bkw', 'flt']);
+/**
+ * Qualifiers that make a value unusable. Legacy NWIS used short codes; the OGC
+ * API ships long-form names (captured 2026-10-14: "DISCONTINUED", "RATINGDEV",
+ * "DRY", "ZEROFLOW") — both spellings are listed. A DISCONTINUED series is a
+ * years-old last value, never a current reading.
+ */
+const INVALID_QUALIFIERS = new Set([
+  'ice', 'eqp', 'ssn', 'bkw', 'flt', 'dis',
+  'equipment', 'seasonal', 'backwater', 'flood', 'discontinued',
+]);
 const METRIC_BY_PARAMETER: Record<string, 'cfs' | 'heightFt' | 'tempC' | 'dissolvedOxygenMgL' | 'precipitationMm' | undefined> = {
   '00060': 'cfs',
   '00065': 'heightFt',
@@ -45,8 +54,9 @@ function normalizeQualifier(qualifier: string | string[] | null | undefined): st
 
 function parseValue(value: string | number | null | undefined, qualifier: string | string[] | null | undefined, parameter: string): number | undefined {
   if (value === null || value === undefined) return undefined;
-  const q = normalizeQualifier(qualifier);
-  if (q && INVALID_QUALIFIERS.has(q.trim().toLowerCase())) return undefined;
+  // Every qualifier counts, not only the first (["P", "ICE"] is still ice).
+  const qualifiers = Array.isArray(qualifier) ? qualifier : [normalizeQualifier(qualifier)];
+  if (qualifiers.some((q) => typeof q === 'string' && INVALID_QUALIFIERS.has(q.trim().toLowerCase()))) return undefined;
   const n = typeof value === 'number' ? value : Number.parseFloat(value);
   if (!Number.isFinite(n) || n <= -999_000) return undefined;
   if (parameter === '00060' && n <= 0) return undefined;
@@ -77,7 +87,17 @@ export function parseWaterDataResponse(payload: unknown): GaugeReading[] {
     if (!previous || Date.parse(timestamp) >= Date.parse(previous.timestamp)) current[field] = { value, timestamp };
     bySite.set(gaugeId, current);
   }
-  return [...bySite.entries()].flatMap(([gaugeId, fields]) => {
+  return [...bySite.entries()].flatMap(([gaugeId, all]) => {
+    // T1-6, ported from the legacy parser (pipeline/USGS audits 2026-10-14):
+    // a parameter older than READING_STALE_MINUTES behind the site's newest
+    // observation is dropped, never merged under the fresh stamp. Without this
+    // the default provider published Duck River's 2012 water temperature as
+    // a live reading next to today's flow.
+    const newestMs = Math.max(...Object.values(all).map((m) => Date.parse(m.timestamp)));
+    const fields: typeof all = {};
+    for (const [field, metric] of Object.entries(all) as [keyof typeof all, { value: number; timestamp: string }][]) {
+      if (newestMs - Date.parse(metric.timestamp) <= READING_STALE_MINUTES * 60_000) fields[field] = metric;
+    }
     const values = Object.values(fields);
     const timestamp = values.sort((a, b) => Date.parse(b.timestamp) - Date.parse(a.timestamp))[0]?.timestamp;
     if (!timestamp) return [];

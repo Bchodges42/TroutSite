@@ -24,10 +24,11 @@ describe('ingest --dry-run', () => {
     const result = dryRun(cfg);
 
     expect(result.ok).toBe(true);
-    // fixtures/USGS: 2 recorded responses; fixtures/TN: 3 dated artifact sets;
+    // fixtures/USGS: 2 recorded responses; USGS-WATERDATA: 2 (03518500 + 2026-10-14 statewide);
+    // fixtures/TN: 3 dated artifact sets;
     // fixtures/TVA: 4 observed-data captures (2026-09-04 + 2026-10-14 Noon/Midnight);
     // TN evidence parser: 2 page+json sets (2026-09-04, 2026-10-14 live capture).
-    expect(result.fixtureSets).toBe(14);
+    expect(result.fixtureSets).toBe(15);
     expect(result.readings).toBeGreaterThanOrEqual(2);
     // Evidence-layer parses of the same fixtures (data-sources lane):
     expect(result.observations).toBeGreaterThanOrEqual(2);

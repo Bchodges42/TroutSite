@@ -12,18 +12,12 @@ const fixture = JSON.parse(
 );
 
 describe('USGS Water Data OGC API', () => {
-  it('parses mixed string/number features, offsets, and DO while dropping sentinel rows', () => {
+  it('parses mixed string/number features and offsets, dropping sentinel rows and stale parameters', () => {
     const rows = parseWaterDataResponse(fixture);
-    expect(rows).toEqual([
-      {
-        gaugeId: '03518500',
-        cfs: 245,
-        heightFt: 4.2,
-        tempC: 16.4,
-        dissolvedOxygenMgL: 7.1,
-        timestamp: '2026-09-13T16:01:00.000Z',
-      },
-    ]);
+    // The offset is honoured: stage at 12:01-04:00 is 16:01Z, four hours after
+    // the 12:00Z flow/temperature/DO rows. Those are beyond the 3 h freshness
+    // window (T1-6), so they are dropped rather than re-stamped 16:01Z.
+    expect(rows).toEqual([{ gaugeId: '03518500', heightFt: 4.2, timestamp: '2026-09-13T16:01:00.000Z' }]);
   });
 
   it('drops invalid qualifiers and non-positive discharge before scoring', () => {
@@ -70,5 +64,46 @@ describe('USGS Water Data OGC API', () => {
   it('warns loudly when keyless development mode is used', async () => {
     const result = await fetchWaterDataReadings([], { userAgent: 'trout-test/1.0' });
     expect(result.warnings[0]).toMatch(/API key is not configured/i);
+  });
+});
+
+describe('USGS Water Data OGC API — live 2026-10-14 statewide capture (audit)', () => {
+  const live = JSON.parse(
+    readFileSync(join(process.cwd(), 'fixtures/USGS-WATERDATA/latest-continuous-tn-2026-10-14.json'), 'utf8'),
+  );
+  const rows = parseWaterDataResponse(live);
+  const site = (id: string) => rows.find((r) => r.gaugeId === id);
+
+  it('never stamps a years-old parameter with the current reading time (T1-6 on the default provider)', () => {
+    // Duck River tailwater 03597860: flow 2026-10-14, temperature/DO last reported 2012 (DISCONTINUED).
+    expect(site('03597860')).toEqual({ gaugeId: '03597860', cfs: 186, heightFt: 10.19, timestamp: '2026-10-14T23:30:00.000Z' });
+    // 03598000: 2009 temperature must not ride along with today's 194 cfs.
+    expect(site('03598000')?.tempC).toBeUndefined();
+    expect(site('03598000')?.cfs).toBe(194);
+    // Harpeth at Franklin 03432350: 2014 temperature + DO dropped, live flow kept.
+    expect(site('03432350')).toMatchObject({ cfs: 10.6, heightFt: 3.9 });
+    expect(site('03432350')?.tempC).toBeUndefined();
+    expect(site('03432350')?.dissolvedOxygenMgL).toBeUndefined();
+  });
+
+  it('every published metric is within 3 h of its own reading stamp', () => {
+    const features = (live.features as Array<{ properties: { monitoring_location_id: string; time: string } }>);
+    for (const r of rows) {
+      const stamps = features
+        .filter((f) => f.properties.monitoring_location_id === `USGS-${r.gaugeId}`)
+        .map((f) => Date.parse(f.properties.time));
+      expect(Date.parse(r.timestamp)).toBe(Math.max(...stamps));
+    }
+  });
+
+  it('treats OGC long-form qualifiers (DISCONTINUED) as unusable', () => {
+    const one = parseWaterDataResponse({
+      features: [
+        { properties: { monitoring_location_id: 'USGS-1', parameter_code: '00060', time: '2026-10-14T12:00:00Z', value: '50', qualifier: null } },
+        { properties: { monitoring_location_id: 'USGS-1', parameter_code: '00010', time: '2026-10-14T12:00:00Z', value: '12', qualifier: ['DISCONTINUED'] } },
+        { properties: { monitoring_location_id: 'USGS-1', parameter_code: '00065', time: '2026-10-14T12:00:00Z', value: '2', qualifier: ['P', 'ICE'] } },
+      ],
+    });
+    expect(one).toEqual([{ gaugeId: '1', cfs: 50, timestamp: '2026-10-14T12:00:00.000Z' }]);
   });
 });
