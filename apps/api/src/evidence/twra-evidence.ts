@@ -1,7 +1,7 @@
 import { EvidenceStockingEventSchema } from '@trout/contracts';
 import type { EvidenceStockingEvent } from '@trout/contracts';
 import { fetchWithRetry } from '../lib/retry.js';
-import { extractDatatableJsonPaths, parseInlineTable, resolveDate, TWRA_PAGE_URL } from '../ingest/stocking/tn.js';
+import { extractDatatableJsonPaths, parseInlineTable, resolveDate, scheduleYearFromPage, TWRA_PAGE_URL } from '../ingest/stocking/tn.js';
 import type { TwraRow } from '../ingest/stocking/tn.js';
 import { parseDatatableJson } from '../ingest/stocking/tn.js';
 
@@ -44,6 +44,8 @@ export function parseTwraSpeciesList(raw: string | undefined): string[] | undefi
 export interface TwraEvidenceOptions {
   /** Injected "now" for date resolution (deterministic tests; defaults to real clock). */
   now?: Date;
+  /** The schedule's own year (page title); month windows never leave it. Defaults to now's year. */
+  scheduleYear?: number;
 }
 
 /** Schedule rows → 'scheduled' events with the source's own date precision. */
@@ -62,7 +64,7 @@ export function scheduleRowsToEvidenceEvents(
       skipped += 1;
       continue;
     }
-    const { date, precision } = resolveDate(row, now);
+    const { date, precision } = resolveDate(row, now, opts.scheduleYear ?? now.getUTCFullYear());
     if (!date || !precision) {
       skipped += 1;
       warnings.push(`schedule row "${location}" has no usable date (kept out of evidence)`);
@@ -154,6 +156,8 @@ export function parseTwraEvidence(artifacts: { suffix: string; content: string; 
     if (paths.length > 0) warnings.push(`${paths.length} datatable URL(s) found in page but content not captured`);
   }
 
+  const scheduleYear = opts.scheduleYear ?? scheduleYearFromPage(page?.content);
+  const gridOpts: TwraEvidenceOptions = scheduleYear !== null ? { ...opts, scheduleYear } : opts;
   let sawSchedule = false;
   let sawRecent = false;
   for (const json of jsons) {
@@ -162,7 +166,7 @@ export function parseTwraEvidence(artifacts: { suffix: string; content: string; 
     const kind = classifyTwraGrid(rows as Record<string, unknown>[]);
     if (kind === 'schedule') {
       sawSchedule = true;
-      const r = scheduleRowsToEvidenceEvents(rows, pageUrl, opts);
+      const r = scheduleRowsToEvidenceEvents(rows, pageUrl, gridOpts);
       scheduleRows.push(...r.rows);
       warnings.push(...r.warnings);
     } else if (kind === 'recent') {
@@ -180,7 +184,7 @@ export function parseTwraEvidence(artifacts: { suffix: string; content: string; 
     const inline = parseInlineTable(page.content);
     if (inline.rows.length > 0) {
       warnings.push('used inline-table fallback for schedule grid');
-      const r = scheduleRowsToEvidenceEvents(inline.rows, pageUrl, opts);
+      const r = scheduleRowsToEvidenceEvents(inline.rows, pageUrl, gridOpts);
       scheduleRows.push(...r.rows);
       warnings.push(...r.warnings);
       sawSchedule = true;

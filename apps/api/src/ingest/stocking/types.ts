@@ -12,6 +12,8 @@ export interface RawArtifact {
 export interface RawFetch {
   artifacts: RawArtifact[];
   fetchedAt: string;
+  /** Non-fatal fetch problems (e.g. one datatable grid failed); surfaced by normalize. */
+  warnings?: string[];
 }
 
 export interface FetchCtx {
@@ -30,6 +32,14 @@ export interface NormalizeCtx {
 export interface NormalizeResult {
   events: StockingEvent[];
   warnings: string[];
+  /**
+   * Event kinds this fetch captured IN FULL. The job replaces the stored
+   * 'scheduled' rows only when 'scheduled' is listed; absent = scheduled only
+   * (adapters that predate the report grid).
+   */
+  complete?: Array<'scheduled' | 'reported'>;
+  /** Upstream schedule rows seen this fetch (count-drop guard input). */
+  scheduleRows?: number;
 }
 
 /**

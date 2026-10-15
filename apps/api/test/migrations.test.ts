@@ -65,7 +65,8 @@ describe('migrations', () => {
     //   main already used 008 for target species).
     // + 016_stream_hydro_identity (GNIS/HUC identity for selectable lines).
     // + 017_stream_opportunity (ADR 0010 authored fishery-opportunity block).
-    expect(applied).toHaveLength(17);
+    // + 018_stocking_status (ADR 0012 scheduled vs reported stocking rows).
+    expect(applied).toHaveLength(18);
     expect(applied[0]!.name).toMatch(/^001_/);
     expect(applied[1]!.name).toMatch(/^002_/);
     expect(applied[2]!.name).toMatch(/^003_/);

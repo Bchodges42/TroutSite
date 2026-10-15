@@ -25,18 +25,19 @@ describe('ingest --dry-run', () => {
 
     expect(result.ok).toBe(true);
     // fixtures/USGS: 2 recorded responses; fixtures/TN: 3 dated artifact sets;
-    // fixtures/TVA: 4 observed-data captures (2026-09-04 + 2026-10-14 Noon/Midnight); TN evidence parser: 1 page+json set.
-    expect(result.fixtureSets).toBe(12);
+    // fixtures/TVA: 4 observed-data captures (2026-09-04 + 2026-10-14 Noon/Midnight);
+    // TN evidence parser: 2 page+json sets (2026-09-04, 2026-10-14 live capture).
+    expect(result.fixtureSets).toBe(14);
     expect(result.readings).toBeGreaterThanOrEqual(2);
     // Evidence-layer parses of the same fixtures (data-sources lane):
     expect(result.observations).toBeGreaterThanOrEqual(2);
     expect(result.evidenceStockingEvents).toBeGreaterThan(500);
     // Real 2026 TWRA schedule → hundreds of events; redesign fallback adds a few.
     expect(result.events).toBeGreaterThan(500);
-    // The 2026-09-04 group now carries real schedule JSON, so the adapter parses
-    // it clean; its recent-report grid rows hit the schedule adapter as tolerant
-    // skips (documented noise from the two-grid page).
-    expect(result.warnings.join(' ')).toContain('row without LOCATION skipped');
+    // The two-grid page's completed-stockings report is classified by its
+    // columns (status 'reported'), so its rows no longer hit the schedule
+    // parser as LOCATION-less skips (audit 2026-10-14 §2).
+    expect(result.warnings.join(' ')).not.toContain('row without LOCATION skipped');
 
     // No writes: no snapshots, no raw captures.
     expect(existsSync(env.snapshotsDir)).toBe(false);

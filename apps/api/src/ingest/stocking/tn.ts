@@ -20,8 +20,14 @@ import type { FetchCtx, NormalizeCtx, NormalizeResult, RawArtifact, RawFetch, St
  *  - STOCKING DAY: "1/14/2026" (exact) or "TBD 12/2026" (month precision) or ""
  *  - STOCKING WEEK: Sunday "week of" date, e.g. "6/7/2026" — event occurs within 5 days after
  *  - STOCKING MONTHS: month initials "J, F, M" (no year) — recurring monthly windows
- * Mapping to StockingEvent: date = exact day > week-of > first-of-month (TBD/months,
- * months expand to their next occurrence after ctx.now); one event per species listed.
+ * Mapping to StockingEvent: date = exact day > week-of > first-of-month (TBD/months;
+ * a month list resolves inside the schedule's own year — scheduleMonthDate); one event
+ * per species listed; status 'scheduled'.
+ *
+ * The same page carries a second grid, the "Trout Stocking Locations Report" of
+ * COMPLETED stockings: { "Stocking Date", Region, County, Destination, Type, Species }.
+ * Those rows become status 'reported' events (exact day) — the only rows that may
+ * be presented as "stocked". Grids are told apart by their columns, never by order.
  */
 
 export const TWRA_PAGE_URL = 'https://www.tn.gov/twra/fishing/trout-information-stockings.html';
@@ -116,12 +122,30 @@ function parseTbdMonth(s: string): { year: number; month: number } | null {
   return null;
 }
 
-/** Next occurrence of calendar month `month` strictly at/after `from`'s month. */
-function nextMonthDate(month: number, from: Date): string {
-  const y = from.getUTCFullYear();
-  const m0 = from.getUTCMonth() + 1;
-  const year = month < m0 ? y + 1 : y;
-  return `${year}-${String(month).padStart(2, '0')}-01`;
+/**
+ * The month window to show for a recurring "J, F, M"-style row. TWRA's month
+ * lists carry no year; the page is titled "<year> Trout Stocking Schedule", so
+ * every window belongs to that year. Never project into the following year
+ * (audit 2026-10-14: "J, F, M, N, D" read in October became 2027-01-01): pick
+ * the current/next listed month inside the schedule year, else its last listed
+ * month (a past window), else its first (a schedule published early).
+ */
+export function scheduleMonthDate(months: number[], now: Date, scheduleYear: number): string | null {
+  if (months.length === 0) return null;
+  const sorted = [...months].sort((a, b) => a - b);
+  const nowYear = now.getUTCFullYear();
+  let month: number | undefined;
+  if (nowYear < scheduleYear) month = sorted[0];
+  else if (nowYear > scheduleYear) month = sorted[sorted.length - 1];
+  else month = sorted.find((m) => m >= now.getUTCMonth() + 1) ?? sorted[sorted.length - 1];
+  if (month === undefined) return null;
+  return `${scheduleYear}-${String(month).padStart(2, '0')}-01`;
+}
+
+/** "2026 Trout Stocking Schedule" in the page → 2026; null when the page does not say. */
+export function scheduleYearFromPage(html: string | undefined): number | null {
+  const m = /(20\d{2})\s+Trout\s+Stocking\s+Schedule/i.exec(html ?? '');
+  return m?.[1] ? Number(m[1]) : null;
 }
 
 function cleanWhitespace(s: string | undefined): string | undefined {
@@ -131,7 +155,7 @@ function cleanWhitespace(s: string | undefined): string | undefined {
 }
 
 /** Exported for the evidence layer (same schedule-date semantics, single source of truth). */
-export function resolveDate(row: TwraRow, now: Date): {
+export function resolveDate(row: TwraRow, now: Date, scheduleYear: number = now.getUTCFullYear()): {
   date: string | null;
   /** How precise the published source date is ('day' | 'week' | 'month'). */
   precision: 'day' | 'week' | 'month' | null;
@@ -166,11 +190,8 @@ export function resolveDate(row: TwraRow, now: Date): {
   }
 
   if (months) {
-    const list = parseMonthInitials(months);
-    const first = list[0];
-    if (first !== undefined) {
-      return { date: nextMonthDate(first, now), precision: 'month', warnings: [] };
-    }
+    const date = scheduleMonthDate(parseMonthInitials(months), now, scheduleYear);
+    if (date) return { date, precision: 'month', warnings: [] };
   }
   return { date: null, precision: null, warnings: [] };
 }
@@ -254,14 +275,14 @@ export function parseInlineTable(html: string): { rows: TwraRow[]; warnings: str
   return { rows, warnings };
 }
 
-function rowToEvents(row: TwraRow, pageUrl: string, fetchedAt: string, now: Date): {
+function rowToEvents(row: TwraRow, pageUrl: string, fetchedAt: string, now: Date, scheduleYear: number): {
   events: StockingEvent[];
   warning?: string;
 } {
   const location = cleanWhitespace(row.LOCATION);
   if (!location) return { events: [], warning: 'row without LOCATION skipped' };
 
-  const { date, precision, warnings } = resolveDate(row, now);
+  const { date, precision, warnings } = resolveDate(row, now, scheduleYear);
   if (!date) {
     return { events: [], warning: `no usable date for "${location}" (${row['STOCKING DAY'] ?? ''} / ${row['STOCKING WEEK'] ?? ''} / ${row['STOCKING MONTHS'] ?? ''})` };
   }
@@ -282,6 +303,7 @@ function rowToEvents(row: TwraRow, pageUrl: string, fetchedAt: string, now: Date
       // precision tier tells the UI to say "published schedule", never
       // "stocked today", unless the source published an exact day.
       ...(precision ? { datePrecision: precision } : {}),
+      status: 'scheduled',
       sourceUrl: pageUrl,
       fetchedAt,
     });
@@ -291,21 +313,80 @@ function rowToEvents(row: TwraRow, pageUrl: string, fetchedAt: string, now: Date
   return { events, warning: warnings.length > 0 ? warnings.join('; ') : undefined };
 }
 
+/** One row of TWRA's "Trout Stocking Locations Report" (completed stockings). */
+export interface TwraReportRow {
+  'Stocking Date'?: string;
+  Region?: string;
+  County?: string;
+  Destination?: string;
+  Type?: string;
+  Species?: string;
+}
+
+function isReportRow(row: unknown): row is TwraReportRow {
+  return Boolean(row && typeof row === 'object' && ('Destination' in row || 'Stocking Date' in row));
+}
+
+/** Completed-stocking report rows → status 'reported' events (exact published day). */
+export function reportRowsToEvents(
+  rows: TwraReportRow[],
+  pageUrl: string,
+  fetchedAt: string,
+): { events: StockingEvent[]; warnings: string[] } {
+  const events: StockingEvent[] = [];
+  const warnings: string[] = [];
+  for (const row of rows) {
+    const destination = cleanWhitespace(row.Destination);
+    const date = parseExactDate(cleanWhitespace(row['Stocking Date']) ?? '');
+    if (!destination || !date) {
+      warnings.push(`report row skipped (destination "${row.Destination ?? ''}", date "${row['Stocking Date'] ?? ''}")`);
+      continue;
+    }
+    const county = cleanWhitespace(row.County);
+    const type = cleanWhitespace(row.Type);
+    for (const sp of parseSpecies(row.Species ?? '')) {
+      const candidate = StockingEventSchema.safeParse({
+        id: deterministicId('TN', 'report', destination, county ?? '', sp, date, type ?? ''),
+        stateId: 'TN',
+        streamName: destination,
+        ...(county ? { county } : {}),
+        species: sp,
+        date,
+        datePrecision: 'day',
+        status: 'reported',
+        sourceUrl: pageUrl,
+        fetchedAt,
+      });
+      if (candidate.success) events.push(candidate.data);
+      else warnings.push(`report row "${destination}" failed contract validation: ${candidate.error.issues[0]?.message ?? 'unknown'}`);
+    }
+  }
+  return { events, warnings };
+}
+
 /** Pure normalization of captured TWRA artifacts into StockingEvents. */
 export function normalizeTwra(raw: RawFetch, ctx: NormalizeCtx): NormalizeResult {
-  const warnings: string[] = [];
+  const warnings: string[] = [...(raw.warnings ?? [])];
   const page = raw.artifacts.find((a) => a.suffix === 'html');
-  const jsonArtifact = raw.artifacts.find((a) => a.suffix.endsWith('.json'));
+  const pageUrl = page?.url ?? TWRA_PAGE_URL;
+  const scheduleYear = scheduleYearFromPage(page?.content) ?? ctx.now.getUTCFullYear();
+  const jsonArtifacts = raw.artifacts.filter((a) => a.suffix.endsWith('.json'));
 
+  // Every captured grid is classified by its columns (schedule vs completed report).
   let rows: TwraRow[] = [];
-  if (jsonArtifact) {
-    const parsed = parseDatatableJson(jsonArtifact.content);
-    rows = parsed.rows;
+  let reportRows: TwraReportRow[] | null = null;
+  for (const artifact of jsonArtifacts) {
+    const parsed = parseDatatableJson(artifact.content);
     warnings.push(...parsed.warnings);
+    if (parsed.rows.length > 0 && parsed.rows.every(isReportRow)) {
+      reportRows = [...(reportRows ?? []), ...(parsed.rows as TwraReportRow[])];
+    } else if (rows.length === 0) {
+      rows = parsed.rows;
+    }
   }
   if (rows.length === 0 && page) {
     const jsonPaths = extractDatatableJsonPaths(page.content);
-    if (jsonArtifact === undefined && jsonPaths.length > 0) {
+    if (jsonArtifacts.length === 0 && jsonPaths.length > 0) {
       warnings.push(`${jsonPaths.length} datatable JSON URL(s) found in page but content not captured`);
     }
     const inline = parseInlineTable(page.content);
@@ -313,27 +394,37 @@ export function normalizeTwra(raw: RawFetch, ctx: NormalizeCtx): NormalizeResult
     warnings.push(...inline.warnings);
     if (rows.length > 0) warnings.push('used inline-table fallback');
   }
-  if (rows.length === 0) {
-    warnings.push('no stocking rows parsed — site layout may have changed (soft-fail, stale data kept)');
-    return { events: [], warnings };
-  }
 
   const fetchedAt = raw.fetchedAt;
   const events: StockingEvent[] = [];
-  let skipped = 0;
-  for (const row of rows) {
-    const { events: evts, warning } = rowToEvents(row, page?.url ?? TWRA_PAGE_URL, fetchedAt, ctx.now);
-    if (warning) warnings.push(warning);
-    if (evts.length === 0) skipped += 1;
-    events.push(...evts);
+  const complete: NonNullable<NormalizeResult['complete']> = [];
+  if (rows.length === 0) {
+    warnings.push('no stocking rows parsed — site layout may have changed (soft-fail, stale data kept)');
+  } else {
+    complete.push('scheduled');
+    let skipped = 0;
+    for (const row of rows) {
+      const { events: evts, warning } = rowToEvents(row, pageUrl, fetchedAt, ctx.now, scheduleYear);
+      if (warning) warnings.push(warning);
+      if (evts.length === 0) skipped += 1;
+      events.push(...evts);
+    }
+    if (skipped > 0) warnings.push(`${skipped} of ${rows.length} rows produced no event`);
   }
-  if (skipped > 0) warnings.push(`${skipped} of ${rows.length} rows produced no event`);
+  if (reportRows !== null) {
+    const report = reportRowsToEvents(reportRows, pageUrl, fetchedAt);
+    warnings.push(...report.warnings);
+    events.push(...report.events);
+    complete.push('reported');
+  }
 
   // Dedupe (same row can produce identical ids when month tokens repeat) and sort.
   const byId = new Map(events.map((e) => [e.id, e]));
   return {
     events: [...byId.values()].sort((a, b) => a.date.localeCompare(b.date) || a.streamName.localeCompare(b.streamName)),
     warnings,
+    complete,
+    scheduleRows: rows.length,
   };
 }
 
@@ -356,20 +447,29 @@ export const tnAdapter: StateAdapter = {
     const html = await res.text();
 
     const artifacts: RawArtifact[] = [{ suffix: 'html', content: html, url: pageUrl }];
+    const warnings: string[] = [];
     for (const path of extractDatatableJsonPaths(html)) {
       const url = toAbsoluteUrl(path, pageUrl);
-      const jres = await fetchWithRetry(() =>
-        ctx.fetchImpl(url, {
-          headers: { 'User-Agent': ctx.userAgent, Accept: 'application/json' },
-          signal: AbortSignal.timeout(ctx.timeoutMs ?? 30_000),
-        }),
-      );
-      if (!jres.ok) {
-        throw new Error(`TWRA datatable fetch failed: HTTP ${jres.status} (${url})`);
+      // One failing grid must not sink the other (audit 2026-10-14 §2). A
+      // missing SCHEDULE grid still fails the job: it parses to zero rows.
+      try {
+        const jres = await fetchWithRetry(() =>
+          ctx.fetchImpl(url, {
+            headers: { 'User-Agent': ctx.userAgent, Accept: 'application/json' },
+            signal: AbortSignal.timeout(ctx.timeoutMs ?? 30_000),
+          }),
+        );
+        if (!jres.ok) throw new Error(`HTTP ${jres.status}`);
+        const content = await jres.text();
+        const gridRows = parseDatatableJson(content).rows;
+        // Distinct raw file names so the report grid never overwrites the schedule.
+        const suffix = gridRows.length > 0 && gridRows.every(isReportRow) ? 'report.exceldriven.json' : 'exceldriven.json';
+        artifacts.push({ suffix, content, url });
+      } catch (err) {
+        warnings.push(`TWRA datatable fetch failed: ${(err as Error).message} (${url})`);
       }
-      artifacts.push({ suffix: 'exceldriven.json', content: await jres.text(), url });
     }
-    return { artifacts, fetchedAt: ctx.now.toISOString() };
+    return { artifacts, fetchedAt: ctx.now.toISOString(), ...(warnings.length > 0 ? { warnings } : {}) };
   },
   normalize: normalizeTwra,
 };

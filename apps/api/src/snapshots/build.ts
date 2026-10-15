@@ -257,6 +257,7 @@ export function buildSnapshots(opts: BuildOptions): SnapshotResult {
     count: number | null;
     date: string;
     date_precision: string | null;
+    status: string | null;
     source_url: string;
     fetched_at: string;
   }[];
@@ -271,6 +272,7 @@ export function buildSnapshots(opts: BuildOptions): SnapshotResult {
       count: r.count ?? undefined,
       date: r.date,
       datePrecision: r.date_precision ?? undefined,
+      status: r.status ?? undefined,
       sourceUrl: r.source_url,
       fetchedAt: r.fetched_at,
     });

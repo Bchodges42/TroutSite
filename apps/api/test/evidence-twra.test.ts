@@ -87,14 +87,16 @@ describe('evidence: TWRA stocking date precision (preserved, never upgraded)', (
     expect(rows[0]?.event.date).toBe('2026-12-01');
   });
 
-  it('month-initial rows resolve to the next occurrence with month precision', () => {
+  it('month-initial rows resolve inside the schedule year with month precision (never next year)', () => {
     const { rows } = scheduleRowsToEvidenceEvents(
       [scheduleRow({ 'STOCKING DAY': '', 'STOCKING MONTHS': 'J, F, M' }) as never],
       PAGE_URL,
       { now: NOW },
     );
     expect(rows[0]?.event.datePrecision).toBe('month');
-    expect(rows[0]?.event.date).toBe('2027-01-01');
+    // "J, F, M" read in September 2026 is the past March 2026 window — the old
+    // next-occurrence rule invented 2027-01-01 (audit 2026-10-14 §2).
+    expect(rows[0]?.event.date).toBe('2026-03-01');
   });
 
   it('species text stays as published (lowercased), never inferred from water names', () => {
