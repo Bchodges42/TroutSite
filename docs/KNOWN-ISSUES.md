@@ -20,6 +20,88 @@ traceability. `[export]` = verified present in this working tree as well as the 
 
 ---
 
+## Data integrity — 2026-10 (audit 2026-10-14; branch `claude/data-integrity-20261014`)
+
+Owner's #1 complaint: the live data has not been accurate. Full findings, evidence
+and fix status: [`reports/2026-10-14-data-integrity-audit.md`](reports/2026-10-14-data-integrity-audit.md).
+Every `[x]` below is fixed on the branch with a regression test built from the
+2026-10-14 upstream captures; it reaches users only when the owner merges to `main`.
+
+**Fixed on the branch**
+- [x] **DI-1 · P0 — TVA "Noon"/"Midnight" release rows silently dropped** (Clinch showed
+  "no published schedule" while ~8,050 cfs was releasing). Parsed; end ≤ start rolls to the
+  next day; partial parses fail closed + count as job errors. `e782c29`
+- [x] **DI-2 · P2 — schedules:** status from the release fetch only; schedules older than
+  3 h withheld at build (no stale Now/Next). `e782c29`
+- [x] **DI-3 · P1 — TVA/USACE tailwater ELEVATION (≈827 ft MSL) published as "Stage"** beside
+  USGS gage heights (~2 ft). No longer stored as `heightFt` (raw kept for audit). `e782c29`
+- [x] **DI-4 · P1 — 23 stocking events invented in 2027** from the "2026" schedule. Month
+  windows stay inside the schedule year. `ca97c82`
+- [x] **DI-5 · P1 — ghost stocking rows** (upsert-only; postponed rows kept at old + new
+  dates). Schedule rows replaced per fetch. `ca97c82`
+- [x] **DI-6 · P1 — zero-row / collapsed stocking fetch recorded ok.** Now a job error
+  (keeps stored rows). One failing grid no longer fails the ingest. `ca97c82`
+- [x] **DI-7 · P1 — past schedule rows labelled "Reported completed"; TWRA's completed
+  Locations Report never shown.** Report rows published as `status: 'reported'`
+  ("Stocked · TWRA report"); past schedule rows read "date passed". ADR 0012. `ca97c82` `97d3f77`
+- [x] **DI-8 · P1 — county-blind stocking matches** (Mill Creek/Hickman, Piney/Rhea, Laurel
+  Creek/Van Buren, Laurel Fork/Campbell). County agreement required. `97d3f77`
+- [x] **DI-9 · P1 — Stocking chip showed download time ("just now" on a dead feed).** Shows
+  TWRA fetch time; "TWRA stale" after 2 days; offline chip shows the date. `97d3f77`
+- [x] **DI-10 · P2 — "week of" rows flipped to past on the Sunday.** Scheduled until Sunday + 5. `97d3f77`
+- [x] **DI-11 · P0 (ops) — refresh-data/backup failure pages never fired** (status written
+  before the push compared it). `84acac3`
+- [x] **DI-12 · P0 (ops) — stocking only ingested on deploy.** Read daily by refresh-data. `84acac3`
+- [x] **DI-13 · P1 — default USGS provider published years-old parameters as live** (Duck
+  tailwater 2012 temperature). 3 h per-parameter gate + OGC long-form qualifiers. `3a31883`
+- [x] **DI-14 · P2 — "USGS tva:HADT1" labels.** Real agency per gauge. `3800393`
+- [x] **DI-15 · P1 — /healthz blind to stale/partial data.** Degraded on ok-with-errors,
+  gauges > 6 h, stocking > 48 h (watchdog pages). `e8ab508`
+- [x] **DI-16 — Guardrail: daily truth check** (published vs USGS/TVA/TWRA; pages on
+  mismatch). `890eb10`
+- [x] **T3-50** (below) — `mill-creek-overton` already carries `gaugeIds: []` on `main`.
+
+**Owner decisions / actions**
+- [ ] **DI-O1 — DNS:** `trout.tntechclimb.com` is NXDOMAIN (2026-10-14); restore the Cloudflare
+  DNS record / Tunnel public hostname (`infra/cloudflared/`, RUNBOOK).
+- [ ] **DI-O2 — Approve ADR 0012** (`StockingEvent.status`, contracts 2.5.0) and merge the branch.
+- [ ] **DI-O3 — Out-of-range flow can still score "Good"** (Hiwassee 480 vs 500–3500 → 77;
+  Daddys 26.3 vs 30 → 81) while the reason says "water is low". Scorer policy: recommend
+  capping out-of-range flow at Fair, or a ±10% "slightly below/above" tolerance with matching copy.
+- [ ] **DI-O4 — Multi-gauge waters:** newest timestamp wins per metric, so flow and
+  temperature can come from different sites (Harpeth: Bellevue 69.3 cfs scored "Good" while
+  Franklin, the catalog reach, read 10.6). Choose a primary gauge per water.
+- [ ] **DI-O5 — Confirm `USGS_WATERDATA_API_KEY` on the production host** (keyless quota is
+  shared with the public gauge-tap route).
+- [ ] **DI-O6 — Polish line merge:** apply DI-1 to `releaseTime.ts` (`parseBlockTime`: accept
+  Noon/Midnight; roll when `endMs <= startMs`). Expect conflicts in `FreshnessChip`,
+  `StockingPage`, `conditionsBridge`, `usgs-waterdata`, `tn.ts`.
+
+**Open (not yet fixed)**
+- [ ] **DI-20 · P1 — legacy USGS WaterServices is decommissioned 2027-02-22** (slowdowns
+  from Jan 2027); the evidence lane is legacy-only with no OGC path.
+- [ ] **DI-21 · P2 — idealFlow ranges vs reality:** obed-river 100–800 (median 33 cfs);
+  powell/stones/red/S. Fork Cumberland above range on 52–62% of days; duck-river-tailwater
+  range never flags. Recalibrate from flow percentiles, season-aware.
+- [ ] **DI-22 · P2 — gauges without usable flow:** Doe 03485500 / Nolichucky 03465500
+  (-999999, rating in development since 2024), Stones 03430200 negative; dry N. Chickamauga
+  shows "No data" instead of dry. Waters with no idealFlow score a flat 50 "Fair".
+- [ ] **DI-23 · P2 — gauge-to-reach mismatches:** wolf-river-fentress (Byrdstown gauge),
+  little-river (Maryville), ocoee-river (Copperhill above Ocoee 3), caney (Stonewall incl.
+  Smith Fork), pigeon (Newport).
+- [ ] **DI-24 · P2 — one shared stocking matcher + alias table** (web and API disagree; API
+  `alias-data.ts` maps Cane Creek (Hickman/Perry) to `cane-creek`; evidence job ignores county).
+- [ ] **DI-25 · P2 — remaining silent-stale paths:** conditions `fetchedAt` is build time and
+  the watchdog's snapshots-only heal says "(fresh data)"; Conditions chip uses the newest
+  reading across all waters; open tabs never refetch; shops/reports/hatch chips show download
+  time; one bad DB row aborts the build mid-generation; no lock between refresh, watchdog and
+  autoupdate; evidence + NWS pressure/rain jobs are not scheduled in production.
+- [ ] **DI-26 · P3** — `tva:CEHT1`/`tva:DLHT1` readings nothing reads; observed "Midnight"
+  (00:00 vs 24:00) and the Nov 1 DST fall-back unverified; `latestReadings` orders by text;
+  `gauges-tn.geojson` wiring/counties stale.
+
+---
+
 ## T0 — Release blockers (in fix order)
 
 - [x] **T0-1 [REVIEW PASS1-1] · P0 — Conditional HEAD terminates the API.** A cache-
@@ -240,8 +322,9 @@ Full reasoning per item: [LOGIC-AUDIT.md](LOGIC-AUDIT.md).
 
 **Data/content backlog**
 
-- [ ] **T3-50 [PRE]** `mill-creek-overton` gauge evidence wrong in catalog (gauge
-  03539778 is actually Clear Creek at Lilly Bridge) — re-anchor from NWIS.
+- [x] **T3-50 [PRE]** `mill-creek-overton` gauge evidence wrong in catalog (gauge
+  03539778 is actually Clear Creek at Lilly Bridge) — re-anchor from NWIS. *(Verified
+  2026-10-14: the catalog now carries `gaugeIds: []` for this water.)*
 - [ ] **T3-51 [PRE]** Elk River ~6 km uncataloged NHD arm (Bradley Creek junction →
   Tims Ford pool) — deliberate content decision.
 - [x] **T3-52 [PRE]** ~35 candidate waters from the 2026-09-08 TWRA scan (Cherokee TW,
