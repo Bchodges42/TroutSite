@@ -13,5 +13,8 @@ docs/research/2026-09-22-fishery-opportunities/captures/twra-recent-report-page-
 # bytes (sha == responseSha256), re-committed raw on 2026-09-24.
 docs/research/2026-09-22-fishery-opportunities/captures/twra-trout-page.html -text -whitespace
 docs/research/2026-09-22-fishery-opportunities/captures/twra-stock-locations-meta.json -text -whitespace
+
+# Raw source-audit API responses must match the SHA-256 hashes in requests.json.
+docs/research/2026-10-14-source-audit/captures/* -text -whitespace
 docs/research/2026-09-22-fishery-opportunities/captures/twra-trout-page.html -text -whitespace
 docs/research/2026-09-22-fishery-opportunities/captures/twra-stock-locations-meta.json -text -whitespace
