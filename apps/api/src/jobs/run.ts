@@ -96,6 +96,17 @@ export function jobHealthy(db: Db, job: string): boolean {
 const HOURLY_PIPELINE_JOBS = new Set(['seed', 'snapshots']);
 /** A finished hourly-pipeline job older than this missed ~24 hourly cadences. */
 export const HOURLY_PIPELINE_MAX_AGE_HOURS = 24;
+/**
+ * DATA jobs and the age past which their last successful run means the
+ * published data is stale (audit 2026-10-14: only seed/snapshots were aged, so
+ * a snapshots-only heal re-stamped hours-old readings and health stayed green).
+ * Gauges refresh hourly; TWRA stocking is read daily by refresh-data.
+ */
+export const DATA_JOB_MAX_AGE_HOURS: Readonly<Record<string, number>> = {
+  gauges: 6,
+  'gauges-conditions': 6,
+  'stocking:TN': 48,
+};
 /** A 'running' row older than this is a stuck run, not a live one. */
 const STUCK_RUN_HOURS = 1;
 
@@ -118,6 +129,19 @@ export function jobDegradation(jobs: Record<string, JobRunSummary>, now = new Da
       const err = job.detail && typeof job.detail.error === 'string' ? `: ${job.detail.error}` : '';
       reasons.push(`${job.job}: last run errored${err}`);
       continue;
+    }
+    // A run that finished "ok" while some of its sources failed (e.g. a TVA dam
+    // 403, an unparseable release schedule) published partial data.
+    const sourceErrors = job.detail && typeof job.detail.errors === 'number' ? job.detail.errors : 0;
+    if (job.status === 'ok' && sourceErrors > 0) {
+      reasons.push(`${job.job}: last run ok but ${sourceErrors} source(s) failed — data is partial`);
+    }
+    const dataMaxAge = DATA_JOB_MAX_AGE_HOURS[job.job];
+    if (dataMaxAge !== undefined && job.status === 'ok' && job.finishedAt) {
+      const hours = (now.getTime() - Date.parse(job.finishedAt)) / 3_600_000;
+      if (Number.isFinite(hours) && hours > dataMaxAge) {
+        reasons.push(`${job.job}: last successful run ${Math.floor(hours)}h ago (data stale past ${dataMaxAge}h)`);
+      }
     }
     if (!HOURLY_PIPELINE_JOBS.has(job.job)) continue;
     if (job.status === 'running') {
