@@ -84,7 +84,7 @@ describe('buildConditionsReading (observation → GaugeReading merge)', () => {
       ...over,
     }) as WaterObservation;
 
-  it('maps discharge→cfs, stage→heightFt, temperature→tempC and keeps the raw rows in the payload', () => {
+  it('maps discharge→cfs, temperature→tempC, keeps tailwater elevation OUT of heightFt, and keeps the raw rows', () => {
     const result = buildConditionsReading(
       'usace:CETT1',
       'usace-a2w',
@@ -100,7 +100,6 @@ describe('buildConditionsReading (observation → GaugeReading merge)', () => {
     expect(result?.reading).toEqual({
       gaugeId: 'usace:CETT1',
       cfs: 250,
-      heightFt: 476.31,
       tempC: 11.1,
       timestamp: '2026-09-08T06:00:00Z',
     });
@@ -121,10 +120,10 @@ describe('buildConditionsReading (observation → GaugeReading merge)', () => {
     const result = buildConditionsReading('tva:WL', 'tva-restapi', [
       obs({ metric: 'discharge-cfs', value: 100, observedAt: '2026-09-08T14:00:00-04:00' }),
       obs({ metric: 'discharge-cfs', value: 300, observedAt: '2026-09-08T15:00:00-04:00' }),
-      obs({ metric: 'stage-ft', value: 827.69, observedAt: '2026-09-08T13:00:00-04:00' }),
+      obs({ metric: 'reservoir-level-ft', value: 1012.69, observedAt: '2026-09-08T13:00:00-04:00' }),
     ]);
     expect(result?.reading.cfs).toBe(300);
-    expect(result?.reading.heightFt).toBe(827.69);
+    expect(result?.reading.reservoirLevelFt).toBe(1012.69);
     expect(result?.reading.timestamp).toBe('2026-09-08T15:00:00-04:00');
   });
 
@@ -177,12 +176,13 @@ describe('runConditionsReadingsJob (TVA + USACE → gauge_readings_raw)', () => 
     // TVA tailwater: prefixed id, cfs + height mapped from the Norris fixture rows.
     const clinch = byId.get('tva:NRST1');
     expect(clinch?.cfs).toBeGreaterThan(0);
-    expect(clinch?.height_ft).toBeGreaterThan(0);
+    // TailwaterElevation (≈827 ft above sea level) is not gage height — never height_ft.
+    expect(clinch?.height_ft).toBeNull();
     expect(JSON.parse(clinch?.payload ?? '{}')).toMatchObject({ source: 'tva-restapi', gaugeId: 'tva:NRST1' });
     expect(JSON.parse(clinch?.payload ?? '{}').rows['discharge-cfs']).toMatchObject({ Day: expect.any(String) });
     // USACE tailwater: flow + stage + °F→°C temp from the captured CETT1 fixtures.
     const caney = byId.get('usace:CETT1');
-    expect(caney).toMatchObject({ cfs: 250, height_ft: 476.31 });
+    expect(caney).toMatchObject({ cfs: 250, height_ft: null });
     expect(caney?.temp_c).toBeCloseTo(11.1, 5);
     // TVA lake/reservoir monitors (role 'reservoir') are never written.
     expect(byId.has('tva:WBOT1')).toBe(false);

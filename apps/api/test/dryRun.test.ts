@@ -25,8 +25,8 @@ describe('ingest --dry-run', () => {
 
     expect(result.ok).toBe(true);
     // fixtures/USGS: 2 recorded responses; fixtures/TN: 3 dated artifact sets;
-    // fixtures/TVA: 2 observed-data captures; TN evidence parser: 1 page+json set.
-    expect(result.fixtureSets).toBe(10);
+    // fixtures/TVA: 4 observed-data captures (2026-09-04 + 2026-10-14 Noon/Midnight); TN evidence parser: 1 page+json set.
+    expect(result.fixtureSets).toBe(12);
     expect(result.readings).toBeGreaterThanOrEqual(2);
     // Evidence-layer parses of the same fixtures (data-sources lane):
     expect(result.observations).toBeGreaterThanOrEqual(2);

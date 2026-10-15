@@ -33,6 +33,9 @@ import { jobHealthy } from '../jobs/run.js';
 import { writeJsonAtomic } from '../lib/jsonFile.js';
 import { bandsFromReference, buildFishabilitySnapshot, spawnThresholdsFromReference, type PressureInfo, type RainInfo, type SpeciesReferenceLike, type SpawnInfo } from './fishability.js';
 
+/** TVA schedules refresh hourly; older than this they are published as unavailable. */
+export const RELEASE_SCHEDULE_STALE_MS = 3 * 60 * 60_000;
+
 export interface BuildOptions {
   db: Db;
   /**
@@ -353,7 +356,22 @@ export function buildSnapshots(opts: BuildOptions): SnapshotResult {
     .all() as { water_id: string; payload: string }[];
   const releaseIds: string[] = [];
   for (const row of releaseRows) {
-    const schedule = ReleaseScheduleSchema.parse(JSON.parse(row.payload)) as ReleaseSchedule;
+    const stored = ReleaseScheduleSchema.parse(JSON.parse(row.payload)) as ReleaseSchedule;
+    // A schedule the gauges job has not refreshed recently must not render as
+    // current "Now/Next" blocks (audit 2026-10-14 §1). retrievedAt stays the
+    // real fetch time; the blocks are withheld and the reason is published.
+    const ageMs = now.getTime() - Date.parse(stored.retrievedAt);
+    const schedule: ReleaseSchedule =
+      ageMs > RELEASE_SCHEDULE_STALE_MS
+        ? {
+            ...stored,
+            status: 'unavailable',
+            releases: [],
+            forecasts: [],
+            error: `TVA schedule last retrieved ${stored.retrievedAt}, more than ${RELEASE_SCHEDULE_STALE_MS / 3_600_000} h before this build; not shown as current`,
+          }
+        : stored;
+    if (schedule !== stored) warnings.push(`release schedule ${row.water_id} stale (retrieved ${stored.retrievedAt}) — published as unavailable`);
     const p = join(releaseDir, `${row.water_id}.json`);
     writeJsonAtomic(p, schedule);
     files.push(p);

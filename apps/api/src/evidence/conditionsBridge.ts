@@ -7,7 +7,7 @@ import {
   parseTvaNumber,
   parseTvaObservations,
   parseTvaTimestamp,
-  fetchTvaGenerationReleases,
+  fetchTvaGenerationReleaseReport,
   fetchTvaPredictedData,
   tvaSourceUrl,
   type TvaRow,
@@ -22,7 +22,7 @@ import { TVA_MONITORS, TVA_SCHEDULE_MONITORS } from './monitors.js';
  * numeric strings). The snapshot builder and the frozen source-agnostic
  * scoreConditions then treat them exactly like USGS readings — no scorer change.
  *
- * Mapping: discharge-cfs → cfs, stage-ft → height_ft, temperature-c → temp_c;
+ * Mapping: discharge-cfs → cfs, temperature-c → temp_c (stage-ft is tailwater elevation — not mapped, see METRIC_FIELD);
  * reservoir-level-ft → reservoir_level_ft for lake context only.
  * Every reading is validated with GaugeReadingSchema before insert; the payload
  * column keeps the RAW source row per metric for audit.
@@ -36,10 +36,17 @@ import { TVA_MONITORS, TVA_SCHEDULE_MONITORS } from './monitors.js';
 const TVA_BROWSER_UA =
   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36';
 
-/** metric → gauge_readings_raw column (all non-score context is additive). */
-const METRIC_FIELD: Partial<Record<WaterObservation['metric'], 'cfs' | 'heightFt' | 'tempC' | 'dissolvedOxygenMgL' | 'reservoirLevelFt' | 'precipitationMm'>> = {
+/**
+ * metric → gauge_readings_raw column (all non-score context is additive).
+ * 'stage-ft' is deliberately NOT mapped: both bridge sources report tailwater
+ * ELEVATION above sea level there (TVA TailwaterElevation ≈ 827 ft, USACE
+ * Elev-Tail ≈ 476 ft), not gage height. Stored as heightFt it rendered as
+ * "Stage 827.6 ft" beside USGS gage heights of ~2 ft and could drive the
+ * height-only score path (audit 2026-10-14 §1). The raw value stays in the
+ * audit payload; publishing it needs its own field (owner decision / ADR).
+ */
+const METRIC_FIELD: Partial<Record<WaterObservation['metric'], 'cfs' | 'tempC' | 'dissolvedOxygenMgL' | 'reservoirLevelFt' | 'precipitationMm'>> = {
   'discharge-cfs': 'cfs',
-  'stage-ft': 'heightFt',
   'temperature-c': 'tempC',
   'dissolved-oxygen-mg-l': 'dissolvedOxygenMgL',
   'reservoir-level-ft': 'reservoirLevelFt',
@@ -196,13 +203,27 @@ export async function runConditionsReadingsJob(
     for (const [waterId, monitor] of Object.entries(TVA_SCHEDULE_MONITORS)) {
       let releases: ReleaseSchedule['releases'] = [];
       let forecasts: ReleaseSchedule['forecasts'] = [];
+      // Schedule status comes from the RELEASE fetch only: a failed predicted-data
+      // call must not hide valid generation blocks (audit 2026-10-14 §1).
       let error: string | undefined;
       try {
-        releases = await fetchTvaGenerationReleases(monitor.locationId, {
+        const report = await fetchTvaGenerationReleaseReport(monitor.locationId, {
           userAgent: tvaUa,
           fetchImpl: opts.fetchImpl,
           timeoutMs: opts.timeoutMs,
         });
+        if (report.dropped.length > 0) {
+          // Fail closed: a schedule missing rows reads as "no generation" while
+          // the dam is generating. Publish nothing and alert instead.
+          errors += 1;
+          const sample = report.dropped
+            .slice(0, 3)
+            .map((r) => JSON.stringify(r))
+            .join(', ');
+          error = `generation releases: ${report.dropped.length} of ${report.rawRows} rows unparseable (${sample})`;
+        } else {
+          releases = report.blocks;
+        }
       } catch (err) {
         error = `generation releases: ${(err as Error).message}`;
       }
@@ -213,9 +234,7 @@ export async function runConditionsReadingsJob(
           timeoutMs: opts.timeoutMs,
         });
       } catch (err) {
-        error = error
-          ? `${error}; predicted data: ${(err as Error).message}`
-          : `predicted data: ${(err as Error).message}`;
+        warnings.push(`TVA forecast ${monitor.locationId} (${waterId}) unavailable: predicted data: ${(err as Error).message}`);
       }
       let schedule: ReleaseSchedule;
       try {

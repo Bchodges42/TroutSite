@@ -31,21 +31,41 @@ const TZ_OFFSET: Record<string, string> = {
 };
 
 /**
- * Parse "09/04/2026" + "2 PM EDT" → "2026-09-04T14:00:00-04:00" (contracts accept
- * the explicit offset, which preserves exactly what TVA published). Returns null
- * for anything unparseable — that row is then skipped, not zeroed.
+ * TVA clock labels → hour of day. TVA publishes "2 PM" / "12 AM" style labels
+ * and, since at least 2026-10-14, the words "Noon" and "Midnight" (e.g.
+ * "Midnight - 6 AM CDT", "8 AM - Noon EDT", "Noon EDT"). "Midnight" is 00:00 of
+ * the row's Day; a release block that ENDS at Midnight is rolled to the next
+ * day by tvaReleaseBlockInterval. Anything else → null (the row is reported,
+ * never guessed).
  */
-export function parseTvaTimestamp(day: string, time: string): string | null {
-  const dm = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/.exec(day.trim());
-  if (!dm?.[1] || !dm[2] || !dm[3]) return null;
-  const tm = /^(\d{1,2})\s*(AM|PM)\s+(EST|EDT|CST|CDT)$/i.exec(time.trim());
-  if (!tm?.[1] || !tm[2] || !tm[3]) return null;
+export function parseTvaClockHour(label: string): number | null {
+  const t = label.trim();
+  if (/^noon$/i.test(t)) return 12;
+  if (/^midnight$/i.test(t)) return 0;
+  const tm = /^(\d{1,2})\s*(AM|PM)$/i.exec(t);
+  if (!tm?.[1] || !tm[2]) return null;
   let hour = Number(tm[1]);
   const ampm = tm[2].toUpperCase();
   if (hour < 1 || hour > 12) return null;
   if (ampm === 'PM' && hour !== 12) hour += 12;
   if (ampm === 'AM' && hour === 12) hour = 0;
-  const offset = TZ_OFFSET[tm[3].toUpperCase()];
+  return hour;
+}
+
+/**
+ * Parse "09/04/2026" + "2 PM EDT" → "2026-09-04T14:00:00-04:00" (contracts accept
+ * the explicit offset, which preserves exactly what TVA published). "Noon EDT" →
+ * 12:00, "Midnight EDT" → 00:00 of that Day. Returns null for anything
+ * unparseable — that row is then skipped, not zeroed.
+ */
+export function parseTvaTimestamp(day: string, time: string): string | null {
+  const dm = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/.exec(day.trim());
+  if (!dm?.[1] || !dm[2] || !dm[3]) return null;
+  const tm = /^(.+?)\s+(EST|EDT|CST|CDT)$/i.exec(time.trim());
+  if (!tm?.[1] || !tm[2]) return null;
+  const hour = parseTvaClockHour(tm[1]);
+  if (hour === null) return null;
+  const offset = TZ_OFFSET[tm[2].toUpperCase()];
   if (!offset) return null;
   const month = dm[1].padStart(2, '0');
   const dayPart = dm[2].padStart(2, '0');
@@ -182,7 +202,7 @@ export function parseTvaReleaseBlock(row: TvaReleaseRow): ReleaseBlock | null {
   const startTime = match[1].trim();
   const endTime = match[2].trim();
   // Reuse the observed timestamp parser as the validation for each endpoint's
-  // 12-hour clock, then retain TVA's own human time labels in the contract.
+  // clock label, then retain TVA's own human time labels in the contract.
   if (!parseTvaTimestamp(day, `${startTime} ${timeZone}`) || !parseTvaTimestamp(day, `${endTime} ${timeZone}`)) return null;
   const date = parseTvaTimestamp(day, `12 PM ${timeZone}`)?.slice(0, 10);
   if (!date || row.Generators === undefined) return null;
@@ -191,12 +211,56 @@ export function parseTvaReleaseBlock(row: TvaReleaseRow): ReleaseBlock | null {
   return { date, startTime, endTime, timeZone, generators };
 }
 
+const DAY_MS = 24 * 60 * 60_000;
+
+/**
+ * A release block's real interval. The end rolls into the next day whenever it
+ * is not after the start: "9 PM - Midnight" ends at 24:00, and TVA's
+ * all-day "Midnight - Midnight" block is 24 h, never zero-length.
+ */
+export function tvaReleaseBlockInterval(block: ReleaseBlock): { startMs: number; endMs: number } | null {
+  const [y, m, d] = block.date.split('-');
+  if (!y || !m || !d) return null;
+  const day = `${m}/${d}/${y}`;
+  const start = parseTvaTimestamp(day, `${block.startTime} ${block.timeZone}`);
+  const end = parseTvaTimestamp(day, `${block.endTime} ${block.timeZone}`);
+  if (!start || !end) return null;
+  const startMs = Date.parse(start);
+  let endMs = Date.parse(end);
+  if (endMs <= startMs) endMs += DAY_MS;
+  return { startMs, endMs };
+}
+
+export interface TvaReleaseParseReport {
+  blocks: ReleaseBlock[];
+  /** Upstream rows in the payload. */
+  rawRows: number;
+  /** Rows that could not be parsed, verbatim — any entry means a partial schedule. */
+  dropped: unknown[];
+}
+
+/**
+ * Parse generation-releases and account for every upstream row. A partial
+ * parse (dropped.length > 0) must never be published as a complete schedule:
+ * that is how "Midnight"/"Noon" rows silently vanished in Oct 2026 and the app
+ * said "no generation" during generation.
+ */
+export function parseTvaGenerationReleaseReport(payload: unknown): TvaReleaseParseReport {
+  if (!Array.isArray(payload)) throw new Error('TVA generation-releases response is not an array');
+  const blocks: ReleaseBlock[] = [];
+  const dropped: unknown[] = [];
+  for (const row of payload) {
+    const block = row && typeof row === 'object' ? parseTvaReleaseBlock(row as TvaReleaseRow) : null;
+    if (block) blocks.push(block);
+    else dropped.push(row);
+  }
+  return { blocks, rawRows: payload.length, dropped };
+}
+
 /** Pure parser for TVA generation-releases/{LocationID}; [] is a valid empty state. */
 export function parseTvaGenerationReleases(payload: unknown): ReleaseBlock[] {
   if (!Array.isArray(payload)) return [];
-  return payload
-    .map((row) => (row && typeof row === 'object' ? parseTvaReleaseBlock(row as TvaReleaseRow) : null))
-    .filter((row): row is ReleaseBlock => row !== null);
+  return parseTvaGenerationReleaseReport(payload).blocks;
 }
 
 export interface TvaPredictedRow {
@@ -252,6 +316,12 @@ async function fetchTvaJson<T>(path: string, opts: TvaScheduleFetchOptions): Pro
 export async function fetchTvaGenerationReleases(locationId: string, opts: TvaScheduleFetchOptions): Promise<ReleaseBlock[]> {
   const payload = await fetchTvaJson<unknown>(`generation-releases/${encodeURIComponent(locationId)}`, opts);
   return parseTvaGenerationReleases(payload);
+}
+
+/** Fetch generation-releases with the full parse report (see parseTvaGenerationReleaseReport). */
+export async function fetchTvaGenerationReleaseReport(locationId: string, opts: TvaScheduleFetchOptions): Promise<TvaReleaseParseReport> {
+  const payload = await fetchTvaJson<unknown>(`generation-releases/${encodeURIComponent(locationId)}`, opts);
+  return parseTvaGenerationReleaseReport(payload);
 }
 
 export async function fetchTvaPredictedData(locationId: string, opts: TvaScheduleFetchOptions): Promise<ReleaseForecastRow[]> {

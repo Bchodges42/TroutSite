@@ -41,4 +41,30 @@ describe('release schedule snapshot emission', () => {
       forecasts: [{ averageOutflowCfs: 1500 }],
     });
   });
+
+  it('withholds a schedule older than 3 h instead of serving stale Now/Next blocks', () => {
+    const payload = {
+      waterId: 'clinch-river',
+      locationId: 'NRST1',
+      retrievedAt: '2026-10-14T08:00:00Z',
+      sourceUrl: 'https://www.tva.com/environment/lake-levels',
+      status: 'available',
+      releases: [{ date: '2026-10-14', startTime: '1 AM', endTime: 'Midnight', timeZone: 'EDT', generators: '2 or more' }],
+      forecasts: [{ date: '2026-10-14', averageOutflowCfs: 8048 }],
+    };
+    env.db
+      .prepare('INSERT INTO release_schedules (water_id, location_id, retrieved_at, payload) VALUES (?, ?, ?, ?)')
+      .run('clinch-river', 'NRST1', payload.retrievedAt, JSON.stringify(payload));
+
+    const fresh = buildSnapshots({ db: env.db, snapshotsDir: env.snapshotsDir, now: new Date('2026-10-14T10:59:00Z') });
+    const path = join(env.snapshotsDir, 'v1', 'release-schedule', 'clinch-river.json');
+    expect(JSON.parse(readFileSync(path, 'utf8'))).toMatchObject({ status: 'available', releases: [{ endTime: 'Midnight' }] });
+    expect(fresh.warnings.join(' ')).not.toMatch(/clinch-river stale/);
+
+    const stale = buildSnapshots({ db: env.db, snapshotsDir: env.snapshotsDir, now: new Date('2026-10-14T11:01:00Z') });
+    const published = ReleaseScheduleSchema.parse(JSON.parse(readFileSync(path, 'utf8')));
+    expect(published).toMatchObject({ status: 'unavailable', releases: [], forecasts: [], retrievedAt: '2026-10-14T08:00:00Z' });
+    expect(published.error).toMatch(/last retrieved 2026-10-14T08:00:00Z/);
+    expect(stale.warnings.join(' ')).toMatch(/release schedule clinch-river stale/);
+  });
 });

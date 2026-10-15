@@ -67,14 +67,14 @@ describe('T1-6: stale gauge metrics must not wear a fresh timestamp', () => {
     const obs: WaterObservation[] = [
       { metric: 'discharge-cfs', value: 150, observedAt: MONTH_AGO },
       { metric: 'temperature-c', value: 12, observedAt: MONTH_AGO },
-      { metric: 'stage-ft', value: 2, observedAt: NOW_ISO },
+      { metric: 'reservoir-level-ft', value: 1007.07, observedAt: NOW_ISO },
     ];
     const built = buildConditionsReading('tva:NRST1', 'tva-restapi', obs);
     expect(built).not.toBeNull();
     expect(built!.reading.timestamp).toBe(NOW_ISO);
     expect(built!.reading.cfs).toBeUndefined();
     expect(built!.reading.tempC).toBeUndefined();
-    expect(built!.reading.heightFt).toBe(2);
+    expect(built!.reading.reservoirLevelFt).toBe(1007.07);
   });
 
   it('the brief scenario: month-old discharge+temp + current stage does NOT produce a fresh-stamped high score', () => {
