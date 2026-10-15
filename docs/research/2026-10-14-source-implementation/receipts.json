@@ -1,0 +1,30 @@
+{
+  "purpose": "Exact-byte copied receipts; live-check is normalized adapter output, not raw HTTP responses.",
+  "files": [
+    {
+      "name": "live-check.json",
+      "bytes": 19164,
+      "sha256": "07cce0112399b712abceead90ffd6db11606d4e4628e58e22b1a75266dec0872"
+    },
+    {
+      "name": "taxon-tail-repair-ledger.json",
+      "bytes": 10521,
+      "sha256": "aad9209900b0f9a424b05e6310e2c3c6cfa4bb1e7a04dea02427ad3913c7bb63"
+    },
+    {
+      "name": "regulated-water-identities.json",
+      "bytes": 3586,
+      "sha256": "a656b89b901651378daa74f605bd4e0db42b4e1af64253b3b13090650e5307db"
+    },
+    {
+      "name": "twra-pond-points.json",
+      "bytes": 1717,
+      "sha256": "bd7c5c4208d524a61b7113a3138966a45a2fb310361509e8463165d7c094ec31"
+    },
+    {
+      "name": "twra-pond-request.json",
+      "bytes": 344,
+      "sha256": "02b5873e200285e846ed694a4f2656572b8cf67c4551572a47c87d85707fc462"
+    }
+  ]
+}

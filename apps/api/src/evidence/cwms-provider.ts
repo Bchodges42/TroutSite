@@ -10,6 +10,7 @@ interface Page {
   units?: unknown;
   values?: unknown;
   'next-page'?: unknown;
+  'value-columns'?: { name?: string; ordinal?: number }[];
 }
 export interface CwmsOptions {
   userAgent: string;
@@ -100,6 +101,10 @@ export async function fetchCwmsObservations(
           throw new Error('series or office does not match the audited request');
         }
         if (body.units !== request.unit) throw new Error(`unexpected units: ${String(body.units)}`);
+        if (body['value-columns'] && ['date-time', 'value', 'quality-code'].some((name, index) =>
+          body['value-columns']?.[index]?.name !== name || body['value-columns']?.[index]?.ordinal !== index + 1)) {
+          throw new Error('unexpected value column order');
+        }
         if (!Array.isArray(body.values)) throw new Error('missing values array');
         values.push(...body.values);
         const next = body['next-page'];

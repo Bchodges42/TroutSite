@@ -1,0 +1,4 @@
+{
+  "url": "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/ArcGIS/rest/services/TWRA_Trout_Stocking_Locations/FeatureServer/0/query?where=StreamName+LIKE+%27Dillard%25%27+OR+StreamName+LIKE+%27Acorn%25%27&outFields=Site_Name%2CStreamName%2CCounty%2CLATITUDE%2CLONGITUDE&returnGeometry=false&f=json",
+  "retrievedAt": "2026-10-15T04:08:51.691Z"
+}

@@ -53373,6 +53373,578 @@
           "retrieved": "2026-09-22"
         }
       ]
+    },
+    {
+      "id": "north-river-monroe",
+      "name": "North River (Monroe County)",
+      "waterbodyType": "river",
+      "regionId": "tn-se-hiwassee",
+      "counties": [
+        "Monroe"
+      ],
+      "hydroIdentity": {
+        "gnisIds": [
+          "01329033"
+        ],
+        "huc8s": [
+          "06010204"
+        ],
+        "counties": [
+          "Monroe"
+        ]
+      },
+      "mapFeature": {
+        "status": "exact",
+        "geometryType": "MultiLineString",
+        "approximate": false,
+        "source": "nhd"
+      },
+      "catalogFields": {
+        "species": "trout",
+        "fishery": "wild",
+        "yearRound": true,
+        "stockingProgram": false,
+        "notes": "North River and its tributaries (Monroe County). Five trout daily with no length limit; single-hook artificial lures only. Use or possession of bait or multiple-hook lures is prohibited. One separated single-hook artificial dropper lure is permitted. No verified local live gauge is assigned."
+      },
+      "headline": {
+        "troutOpportunity": "year-round-trout",
+        "warmwaterFocus": false,
+        "evidenceState": "documented",
+        "reachScope": "North River and its tributaries (Monroe County)",
+        "statement": "TWRA designates North River and its tributaries (Monroe County) as wild-trout water. The documented opportunity applies to that named reach.",
+        "asOf": "2026"
+      },
+      "claims": [
+        {
+          "kind": "legal-designation",
+          "state": "documented",
+          "appliesToReach": "North River and its tributaries (Monroe County)",
+          "source": {
+            "url": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+            "publisher": "TWRA",
+            "title": "TWRA Tennessee Trout Regulations — named reach",
+            "method": "legal designation",
+            "observationPeriod": "2026-27 regulations",
+            "retrieved": "2026-10-14",
+            "pinpoint": "North River and its tributaries (Monroe County)"
+          },
+          "statement": "North River and its tributaries (Monroe County): Five trout daily with no length limit; single-hook artificial lures only. Use or possession of bait or multiple-hook lures is prohibited. One separated single-hook artificial dropper lure is permitted."
+        }
+      ]
+    },
+    {
+      "id": "bald-river",
+      "name": "Bald River",
+      "waterbodyType": "river",
+      "regionId": "tn-se-hiwassee",
+      "counties": [
+        "Monroe"
+      ],
+      "hydroIdentity": {
+        "gnisIds": [
+          "01327494"
+        ],
+        "huc8s": [
+          "06010204"
+        ],
+        "counties": [
+          "Monroe"
+        ]
+      },
+      "mapFeature": {
+        "status": "exact",
+        "geometryType": "MultiLineString",
+        "approximate": false,
+        "source": "nhd"
+      },
+      "catalogFields": {
+        "species": "trout",
+        "fishery": "wild",
+        "yearRound": true,
+        "stockingProgram": false,
+        "notes": "Bald River and its tributaries (Monroe County). Five trout daily with no length limit; single-hook artificial lures only. Use or possession of bait or multiple-hook lures is prohibited. One separated single-hook artificial dropper lure is permitted. No verified local live gauge is assigned."
+      },
+      "headline": {
+        "troutOpportunity": "year-round-trout",
+        "warmwaterFocus": false,
+        "evidenceState": "documented",
+        "reachScope": "Bald River and its tributaries (Monroe County)",
+        "statement": "TWRA designates Bald River and its tributaries (Monroe County) as wild-trout water. The documented opportunity applies to that named reach.",
+        "asOf": "2026"
+      },
+      "claims": [
+        {
+          "kind": "legal-designation",
+          "state": "documented",
+          "appliesToReach": "Bald River and its tributaries (Monroe County)",
+          "source": {
+            "url": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+            "publisher": "TWRA",
+            "title": "TWRA Tennessee Trout Regulations — named reach",
+            "method": "legal designation",
+            "observationPeriod": "2026-27 regulations",
+            "retrieved": "2026-10-14",
+            "pinpoint": "Bald River and its tributaries (Monroe County)"
+          },
+          "statement": "Bald River and its tributaries (Monroe County): Five trout daily with no length limit; single-hook artificial lures only. Use or possession of bait or multiple-hook lures is prohibited. One separated single-hook artificial dropper lure is permitted."
+        }
+      ]
+    },
+    {
+      "id": "sycamore-creek-tellico",
+      "name": "Sycamore Creek (Tellico tributary)",
+      "waterbodyType": "creek",
+      "regionId": "tn-se-hiwassee",
+      "counties": [
+        "Monroe"
+      ],
+      "hydroIdentity": {
+        "gnisIds": [
+          "01327172"
+        ],
+        "huc8s": [
+          "06010204"
+        ],
+        "counties": [
+          "Monroe"
+        ]
+      },
+      "mapFeature": {
+        "status": "exact",
+        "geometryType": "MultiLineString",
+        "approximate": false,
+        "source": "nhd"
+      },
+      "catalogFields": {
+        "species": "trout",
+        "fishery": "wild",
+        "yearRound": true,
+        "stockingProgram": false,
+        "notes": "Sycamore Creek, the Tellico River tributary in Monroe County, and its tributaries. Five trout daily with no length limit; single-hook artificial lures only. Use or possession of bait or multiple-hook lures is prohibited. One separated single-hook artificial dropper lure is permitted. No verified local live gauge is assigned."
+      },
+      "headline": {
+        "troutOpportunity": "year-round-trout",
+        "warmwaterFocus": false,
+        "evidenceState": "documented",
+        "reachScope": "Sycamore Creek, the Tellico River tributary in Monroe County, and its tributaries",
+        "statement": "TWRA designates Sycamore Creek, the Tellico River tributary in Monroe County, and its tributaries as wild-trout water. The documented opportunity applies to that named reach.",
+        "asOf": "2026"
+      },
+      "claims": [
+        {
+          "kind": "legal-designation",
+          "state": "documented",
+          "appliesToReach": "Sycamore Creek, the Tellico River tributary in Monroe County, and its tributaries",
+          "source": {
+            "url": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+            "publisher": "TWRA",
+            "title": "TWRA Tennessee Trout Regulations — named reach",
+            "method": "legal designation",
+            "observationPeriod": "2026-27 regulations",
+            "retrieved": "2026-10-14",
+            "pinpoint": "Sycamore Creek, the Tellico River tributary in Monroe County, and its tributaries"
+          },
+          "statement": "Sycamore Creek, the Tellico River tributary in Monroe County, and its tributaries: Five trout daily with no length limit; single-hook artificial lures only. Use or possession of bait or multiple-hook lures is prohibited. One separated single-hook artificial dropper lure is permitted."
+        }
+      ]
+    },
+    {
+      "id": "rough-ridge-creek",
+      "name": "Rough Ridge Creek",
+      "waterbodyType": "creek",
+      "regionId": "tn-se-hiwassee",
+      "counties": [
+        "Monroe"
+      ],
+      "hydroIdentity": {
+        "gnisIds": [
+          "01639664"
+        ],
+        "huc8s": [
+          "06010204"
+        ],
+        "counties": [
+          "Monroe"
+        ]
+      },
+      "mapFeature": {
+        "status": "exact",
+        "geometryType": "MultiLineString",
+        "approximate": false,
+        "source": "nhd"
+      },
+      "catalogFields": {
+        "species": "trout",
+        "fishery": "wild",
+        "yearRound": true,
+        "stockingProgram": false,
+        "notes": "Rough Ridge Creek, a Tellico River tributary in Monroe County, and its tributaries. Five trout daily with no length limit; single-hook artificial lures only. Use or possession of bait or multiple-hook lures is prohibited. One separated single-hook artificial dropper lure is permitted. No verified local live gauge is assigned."
+      },
+      "headline": {
+        "troutOpportunity": "year-round-trout",
+        "warmwaterFocus": false,
+        "evidenceState": "documented",
+        "reachScope": "Rough Ridge Creek, a Tellico River tributary in Monroe County, and its tributaries",
+        "statement": "TWRA designates Rough Ridge Creek, a Tellico River tributary in Monroe County, and its tributaries as wild-trout water. The documented opportunity applies to that named reach.",
+        "asOf": "2026"
+      },
+      "claims": [
+        {
+          "kind": "legal-designation",
+          "state": "documented",
+          "appliesToReach": "Rough Ridge Creek, a Tellico River tributary in Monroe County, and its tributaries",
+          "source": {
+            "url": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+            "publisher": "TWRA",
+            "title": "TWRA Tennessee Trout Regulations — named reach",
+            "method": "legal designation",
+            "observationPeriod": "2026-27 regulations",
+            "retrieved": "2026-10-14",
+            "pinpoint": "Rough Ridge Creek, a Tellico River tributary in Monroe County, and its tributaries"
+          },
+          "statement": "Rough Ridge Creek, a Tellico River tributary in Monroe County, and its tributaries: Five trout daily with no length limit; single-hook artificial lures only. Use or possession of bait or multiple-hook lures is prohibited. One separated single-hook artificial dropper lure is permitted."
+        }
+      ]
+    },
+    {
+      "id": "rocky-fork-greene-unicoi",
+      "name": "Rocky Fork (Greene/Unicoi counties)",
+      "waterbodyType": "creek",
+      "regionId": "tn-east-pigeon-frenchbroad",
+      "counties": [
+        "Greene",
+        "Unicoi"
+      ],
+      "hydroIdentity": {
+        "gnisIds": [
+          "01015044"
+        ],
+        "huc8s": [
+          "06010105"
+        ],
+        "counties": [
+          "Greene",
+          "Unicoi"
+        ]
+      },
+      "mapFeature": {
+        "status": "exact",
+        "geometryType": "MultiLineString",
+        "approximate": false,
+        "source": "nhd"
+      },
+      "catalogFields": {
+        "species": "trout",
+        "fishery": "wild",
+        "yearRound": true,
+        "stockingProgram": false,
+        "notes": "Rocky Fork and tributaries upstream of the Rocky Fork Road / State Park Entrance Road junction (Greene/Unicoi counties). Five trout daily with no length limit; single-hook artificial lures only. Use or possession of bait or multiple-hook lures is prohibited. One separated single-hook artificial dropper lure is permitted. No verified local live gauge is assigned."
+      },
+      "headline": {
+        "troutOpportunity": "year-round-trout",
+        "warmwaterFocus": false,
+        "evidenceState": "documented",
+        "reachScope": "Rocky Fork and tributaries upstream of the Rocky Fork Road / State Park Entrance Road junction (Greene/Unicoi counties)",
+        "statement": "TWRA designates Rocky Fork and tributaries upstream of the Rocky Fork Road / State Park Entrance Road junction (Greene/Unicoi counties) as wild-trout water. The documented opportunity applies to that named reach.",
+        "asOf": "2026"
+      },
+      "claims": [
+        {
+          "kind": "legal-designation",
+          "state": "documented",
+          "appliesToReach": "Rocky Fork and tributaries upstream of the Rocky Fork Road / State Park Entrance Road junction (Greene/Unicoi counties)",
+          "source": {
+            "url": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+            "publisher": "TWRA",
+            "title": "TWRA Tennessee Trout Regulations — named reach",
+            "method": "legal designation",
+            "observationPeriod": "2026-27 regulations",
+            "retrieved": "2026-10-14",
+            "pinpoint": "Rocky Fork and tributaries upstream of the Rocky Fork Road / State Park Entrance Road junction (Greene/Unicoi counties)"
+          },
+          "statement": "Rocky Fork and tributaries upstream of the Rocky Fork Road / State Park Entrance Road junction (Greene/Unicoi counties): Five trout daily with no length limit; single-hook artificial lures only. Use or possession of bait or multiple-hook lures is prohibited. One separated single-hook artificial dropper lure is permitted."
+        }
+      ]
+    },
+    {
+      "id": "left-prong-hampton-creek",
+      "name": "Left Prong Hampton Creek",
+      "waterbodyType": "creek",
+      "regionId": "tn-northeast-watauga",
+      "counties": [
+        "Carter"
+      ],
+      "hydroIdentity": {
+        "gnisIds": [
+          "01290994"
+        ],
+        "huc8s": [
+          "06010103"
+        ],
+        "counties": [
+          "Carter"
+        ]
+      },
+      "mapFeature": {
+        "status": "exact",
+        "geometryType": "MultiLineString",
+        "approximate": false,
+        "source": "nhd"
+      },
+      "catalogFields": {
+        "species": "trout",
+        "fishery": "wild",
+        "yearRound": true,
+        "stockingProgram": false,
+        "notes": "Left Prong, the Hampton Creek tributary in Carter County. Five trout daily with no length limit; single-hook artificial lures only. Use or possession of bait or multiple-hook lures is prohibited. One separated single-hook artificial dropper lure is permitted. No verified local live gauge is assigned."
+      },
+      "headline": {
+        "troutOpportunity": "year-round-trout",
+        "warmwaterFocus": false,
+        "evidenceState": "documented",
+        "reachScope": "Left Prong, the Hampton Creek tributary in Carter County",
+        "statement": "TWRA designates Left Prong, the Hampton Creek tributary in Carter County as wild-trout water. The documented opportunity applies to that named reach.",
+        "asOf": "2026"
+      },
+      "claims": [
+        {
+          "kind": "legal-designation",
+          "state": "documented",
+          "appliesToReach": "Left Prong, the Hampton Creek tributary in Carter County",
+          "source": {
+            "url": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+            "publisher": "TWRA",
+            "title": "TWRA Tennessee Trout Regulations — named reach",
+            "method": "legal designation",
+            "observationPeriod": "2026-27 regulations",
+            "retrieved": "2026-10-14",
+            "pinpoint": "Left Prong, the Hampton Creek tributary in Carter County"
+          },
+          "statement": "Left Prong, the Hampton Creek tributary in Carter County: Five trout daily with no length limit; single-hook artificial lures only. Use or possession of bait or multiple-hook lures is prohibited. One separated single-hook artificial dropper lure is permitted."
+        }
+      ]
+    },
+    {
+      "id": "little-stony-creek-carter",
+      "name": "Little Stony Creek (Carter County)",
+      "waterbodyType": "creek",
+      "regionId": "tn-northeast-watauga",
+      "counties": [
+        "Carter"
+      ],
+      "hydroIdentity": {
+        "gnisIds": [
+          "01291679"
+        ],
+        "huc8s": [
+          "06010103"
+        ],
+        "counties": [
+          "Carter"
+        ]
+      },
+      "mapFeature": {
+        "status": "exact",
+        "geometryType": "MultiLineString",
+        "approximate": false,
+        "source": "nhd"
+      },
+      "catalogFields": {
+        "species": "trout",
+        "fishery": "wild",
+        "yearRound": true,
+        "stockingProgram": false,
+        "notes": "Little Stony Creek and tributaries upstream of Plot Branch, 1.3 miles upstream of the Highway 321 crossing. Five trout daily with no length limit; single-hook artificial lures only. Use or possession of bait or multiple-hook lures is prohibited. One separated single-hook artificial dropper lure is permitted. No verified local live gauge is assigned."
+      },
+      "headline": {
+        "troutOpportunity": "year-round-trout",
+        "warmwaterFocus": false,
+        "evidenceState": "documented",
+        "reachScope": "Little Stony Creek and tributaries upstream of Plot Branch, 1.3 miles upstream of the Highway 321 crossing",
+        "statement": "TWRA designates Little Stony Creek and tributaries upstream of Plot Branch, 1.3 miles upstream of the Highway 321 crossing as wild-trout water. The documented opportunity applies to that named reach.",
+        "asOf": "2026"
+      },
+      "claims": [
+        {
+          "kind": "legal-designation",
+          "state": "documented",
+          "appliesToReach": "Little Stony Creek and tributaries upstream of Plot Branch, 1.3 miles upstream of the Highway 321 crossing",
+          "source": {
+            "url": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+            "publisher": "TWRA",
+            "title": "TWRA Tennessee Trout Regulations — named reach",
+            "method": "legal designation",
+            "observationPeriod": "2026-27 regulations",
+            "retrieved": "2026-10-14",
+            "pinpoint": "Little Stony Creek and tributaries upstream of Plot Branch, 1.3 miles upstream of the Highway 321 crossing"
+          },
+          "statement": "Little Stony Creek and tributaries upstream of Plot Branch, 1.3 miles upstream of the Highway 321 crossing: Five trout daily with no length limit; single-hook artificial lures only. Use or possession of bait or multiple-hook lures is prohibited. One separated single-hook artificial dropper lure is permitted."
+        }
+      ]
+    },
+    {
+      "id": "slickrock-creek",
+      "name": "Slickrock Creek (TN/NC boundary reach)",
+      "waterbodyType": "creek",
+      "regionId": "tn-se-hiwassee",
+      "counties": [
+        "Monroe"
+      ],
+      "hydroIdentity": {
+        "gnisIds": [
+          "01015587"
+        ],
+        "huc8s": [
+          "06010204"
+        ],
+        "counties": [
+          "Monroe"
+        ]
+      },
+      "mapFeature": {
+        "status": "exact",
+        "geometryType": "MultiLineString",
+        "approximate": false,
+        "source": "nhd"
+      },
+      "catalogFields": {
+        "species": "trout",
+        "fishery": null,
+        "yearRound": null,
+        "stockingProgram": false,
+        "notes": "Only the portion of Slickrock Creek forming the Tennessee–North Carolina state boundary. See the water-specific regulation before fishing. No verified local live gauge is assigned."
+      },
+      "headline": {
+        "troutOpportunity": "unresolved",
+        "warmwaterFocus": false,
+        "evidenceState": "limited",
+        "reachScope": "Only the portion of Slickrock Creek forming the Tennessee–North Carolina state boundary",
+        "statement": "TWRA publishes special trout rules for Only the portion of Slickrock Creek forming the Tennessee–North Carolina state boundary; the regulation alone does not establish the fishery's year-round status.",
+        "asOf": "2026"
+      },
+      "claims": [
+        {
+          "kind": "legal-designation",
+          "state": "documented",
+          "appliesToReach": "Only the portion of Slickrock Creek forming the Tennessee–North Carolina state boundary",
+          "source": {
+            "url": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+            "publisher": "TWRA",
+            "title": "TWRA Tennessee Trout Regulations — named reach",
+            "method": "legal designation",
+            "observationPeriod": "2026-27 regulations",
+            "retrieved": "2026-10-14",
+            "pinpoint": "Only the portion of Slickrock Creek forming the Tennessee–North Carolina state boundary"
+          },
+          "statement": "Only the portion of Slickrock Creek forming the Tennessee–North Carolina state boundary: Tennessee or North Carolina licenses are valid. Rainbow, brown and brook trout have a combined four-fish daily limit and seven-inch minimum. Single-hook artificial lures only; use or possession of bait or multiple-hook lures is prohibited, with one separated single-hook artificial dropper lure allowed."
+        }
+      ],
+      "unresolvedQuestion": "Current reach-specific trout population and seasonal persistence need additional agency fishery evidence."
+    },
+    {
+      "id": "acorn-lake",
+      "name": "Acorn Lake (Montgomery Bell State Park)",
+      "waterbodyType": "lake",
+      "regionId": "tn-middle-nashville",
+      "counties": [
+        "Dickson"
+      ],
+      "hydroIdentity": {
+        "counties": [
+          "Dickson"
+        ]
+      },
+      "mapFeature": {
+        "status": "representative-point",
+        "geometryType": "Point",
+        "approximate": true,
+        "source": "twra"
+      },
+      "catalogFields": {
+        "species": "trout",
+        "fishery": "stocked",
+        "yearRound": false,
+        "stockingProgram": true,
+        "notes": "Acorn Lake in Montgomery Bell State Park. See the water-specific regulation before fishing. No verified local live gauge is assigned."
+      },
+      "headline": {
+        "troutOpportunity": "seasonal-stocked-trout",
+        "warmwaterFocus": false,
+        "evidenceState": "documented",
+        "reachScope": "Acorn Lake in Montgomery Bell State Park",
+        "statement": "TWRA lists a December–March delayed-harvest trout opportunity at Acorn Lake in Montgomery Bell State Park.",
+        "asOf": "2026"
+      },
+      "claims": [
+        {
+          "kind": "legal-designation",
+          "state": "documented",
+          "appliesToReach": "Acorn Lake in Montgomery Bell State Park",
+          "source": {
+            "url": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+            "publisher": "TWRA",
+            "title": "TWRA Tennessee Trout Regulations — named reach",
+            "method": "legal designation",
+            "observationPeriod": "2026-27 regulations",
+            "retrieved": "2026-10-14",
+            "pinpoint": "Acorn Lake in Montgomery Bell State Park"
+          },
+          "statement": "Acorn Lake in Montgomery Bell State Park: catch-and-release December 1–March 31. During this season no trout harvest or possession, artificial lures only, and no use or possession of bait."
+        }
+      ]
+    },
+    {
+      "id": "dillard-ponds",
+      "name": "Dillard Ponds (Greene County)",
+      "waterbodyType": "pond",
+      "regionId": "tn-northeast-watauga",
+      "counties": [
+        "Greene"
+      ],
+      "hydroIdentity": {
+        "counties": [
+          "Greene"
+        ]
+      },
+      "mapFeature": {
+        "status": "representative-point",
+        "geometryType": "Point",
+        "approximate": true,
+        "source": "twra"
+      },
+      "catalogFields": {
+        "species": "trout",
+        "fishery": null,
+        "yearRound": null,
+        "stockingProgram": true,
+        "notes": "The Dillard Ponds complex in Greene County. See the water-specific regulation before fishing. No verified local live gauge is assigned."
+      },
+      "headline": {
+        "troutOpportunity": "unresolved",
+        "warmwaterFocus": false,
+        "evidenceState": "limited",
+        "reachScope": "The Dillard Ponds complex in Greene County",
+        "statement": "TWRA publishes special trout rules for The Dillard Ponds complex in Greene County; the regulation alone does not establish the fishery's year-round status.",
+        "asOf": "2026"
+      },
+      "claims": [
+        {
+          "kind": "legal-designation",
+          "state": "documented",
+          "appliesToReach": "The Dillard Ponds complex in Greene County",
+          "source": {
+            "url": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+            "publisher": "TWRA",
+            "title": "TWRA Tennessee Trout Regulations — named reach",
+            "method": "legal designation",
+            "observationPeriod": "2026-27 regulations",
+            "retrieved": "2026-10-14",
+            "pinpoint": "The Dillard Ponds complex in Greene County"
+          },
+          "statement": "The Dillard Ponds complex in Greene County: four trout daily, one rod or pole per angler, and fishing only from 30 minutes before official sunrise until 30 minutes after official sunset."
+        }
+      ],
+      "unresolvedQuestion": "Current reach-specific trout population and seasonal persistence need additional agency fishery evidence."
     }
   ]
 }

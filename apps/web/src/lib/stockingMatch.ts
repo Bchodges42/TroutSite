@@ -145,7 +145,7 @@ function wordBoundaryContains(haystack: string, needle: string): boolean {
  * (sorted newest-first by date) and the count of events left unmatched.
  */
 export function matchStocking(
-  streams: Array<Pick<Stream, 'id' | 'name' | 'aliases'> & { hydroIdentity?: { counties?: string[] } }>,
+  streams: Array<Pick<Stream, 'id' | 'name' | 'aliases' | 'counties'> & { hydroIdentity?: { counties?: string[] } }>,
   events: StockingEvent[],
 ): { byStream: Map<string, StockingEvent[]>; unmatched: number } {
   const streamNorm = new Map(
@@ -154,7 +154,7 @@ export function matchStocking(
       {
         norms: [s.name, ...(s.aliases ?? [])].map(normalizeWaterName),
         raw: s.name.toLowerCase(),
-        counties: (s.hydroIdentity?.counties ?? []).map(normalizeCounty),
+        counties: (s.counties ?? s.hydroIdentity?.counties ?? []).map(normalizeCounty),
       },
     ]),
   );

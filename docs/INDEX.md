@@ -44,6 +44,10 @@ instead.
 
 ## Evidence — point-in-time audits (historical; superseded by newer data wins)
 
+- [2026-10-14 source implementation](reports/2026-10-14-source-implementation.md): CWMS
+  adapter, historical flow/temperature separation, primary/reference gauges, identification
+  repair, scoped hatch citations and ten regulated-water additions; live receipts and
+  updated inventory in `research/2026-10-14-source-implementation/`.
 - [2026-10-14 live-feed audit](reports/2026-10-14-data-integrity-audit.md) and
   [source-verification continuation](reports/2026-10-14-source-verification-followup.md):
   regulations repairs, editorial-data gaps, and tested source alternatives; supporting

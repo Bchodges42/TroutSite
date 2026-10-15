@@ -1,0 +1,148 @@
+[
+  {
+    "id": "north-river-monroe",
+    "name": "North River (Monroe County)",
+    "aliases": [
+      "North River"
+    ],
+    "type": "river",
+    "gnis": "01329033",
+    "huc": "06010204",
+    "counties": [
+      "Monroe"
+    ],
+    "region": "tn-se-hiwassee",
+    "reach": "North River and its tributaries (Monroe County)"
+  },
+  {
+    "id": "bald-river",
+    "name": "Bald River",
+    "type": "river",
+    "gnis": "01327494",
+    "huc": "06010204",
+    "counties": [
+      "Monroe"
+    ],
+    "region": "tn-se-hiwassee",
+    "reach": "Bald River and its tributaries (Monroe County)"
+  },
+  {
+    "id": "sycamore-creek-tellico",
+    "name": "Sycamore Creek (Tellico tributary)",
+    "aliases": [
+      "Sycamore Creek"
+    ],
+    "type": "creek",
+    "gnis": "01327172",
+    "huc": "06010204",
+    "counties": [
+      "Monroe"
+    ],
+    "region": "tn-se-hiwassee",
+    "reach": "Sycamore Creek, the Tellico River tributary in Monroe County, and its tributaries"
+  },
+  {
+    "id": "rough-ridge-creek",
+    "name": "Rough Ridge Creek",
+    "type": "creek",
+    "gnis": "01639664",
+    "huc": "06010204",
+    "counties": [
+      "Monroe"
+    ],
+    "region": "tn-se-hiwassee",
+    "reach": "Rough Ridge Creek, a Tellico River tributary in Monroe County, and its tributaries"
+  },
+  {
+    "id": "rocky-fork-greene-unicoi",
+    "name": "Rocky Fork (Greene/Unicoi counties)",
+    "aliases": [
+      "Rocky Fork"
+    ],
+    "type": "creek",
+    "gnis": "01015044",
+    "huc": "06010105",
+    "counties": [
+      "Greene",
+      "Unicoi"
+    ],
+    "region": "tn-east-pigeon-frenchbroad",
+    "reach": "Rocky Fork and tributaries upstream of the Rocky Fork Road / State Park Entrance Road junction (Greene/Unicoi counties)"
+  },
+  {
+    "id": "left-prong-hampton-creek",
+    "name": "Left Prong Hampton Creek",
+    "aliases": [
+      "Left Prong"
+    ],
+    "type": "creek",
+    "gnis": "01290994",
+    "huc": "06010103",
+    "counties": [
+      "Carter"
+    ],
+    "region": "tn-northeast-watauga",
+    "reach": "Left Prong, the Hampton Creek tributary in Carter County"
+  },
+  {
+    "id": "little-stony-creek-carter",
+    "name": "Little Stony Creek (Carter County)",
+    "aliases": [
+      "Little Stony Creek"
+    ],
+    "type": "creek",
+    "gnis": "01291679",
+    "huc": "06010103",
+    "counties": [
+      "Carter"
+    ],
+    "region": "tn-northeast-watauga",
+    "reach": "Little Stony Creek and tributaries upstream of Plot Branch, 1.3 miles upstream of the Highway 321 crossing"
+  },
+  {
+    "id": "slickrock-creek",
+    "name": "Slickrock Creek (TN/NC boundary reach)",
+    "aliases": [
+      "Slickrock Creek"
+    ],
+    "type": "creek",
+    "gnis": "01015587",
+    "huc": "06010204",
+    "counties": [
+      "Monroe"
+    ],
+    "region": "tn-se-hiwassee",
+    "special": "slickrock",
+    "reach": "Only the portion of Slickrock Creek forming the Tennessee–North Carolina state boundary"
+  },
+  {
+    "id": "acorn-lake",
+    "name": "Acorn Lake (Montgomery Bell State Park)",
+    "aliases": [
+      "Acorn Lake"
+    ],
+    "type": "lake",
+    "counties": [
+      "Dickson"
+    ],
+    "region": "tn-middle-nashville",
+    "special": "acorn",
+    "reach": "Acorn Lake in Montgomery Bell State Park"
+  },
+  {
+    "id": "dillard-ponds",
+    "name": "Dillard Ponds (Greene County)",
+    "aliases": [
+      "Dillard Ponds",
+      "Dillards Ponds",
+      "Dillard Ponds (Horse Creek)"
+    ],
+    "type": "pond",
+    "counties": [
+      "Greene"
+    ],
+    "region": "tn-northeast-watauga",
+    "special": "dillard",
+    "reach": "The Dillard Ponds complex in Greene County"
+  }
+]

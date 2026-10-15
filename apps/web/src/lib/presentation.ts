@@ -1,10 +1,18 @@
-import type { ConditionSnapshot } from '@trout/contracts';
+import { metricObservedAt, type ConditionSnapshot, type GaugeReading } from '@trout/contracts';
 import { formatTemp } from './units';
 /** Display ordering only. Availability/scoring/freshness semantics belong upstream. */
 export function orderedReadings(snapshot: ConditionSnapshot | undefined) {
   return [...(snapshot?.readings ?? [])].sort(
     (a, b) => Date.parse(b.timestamp) - Date.parse(a.timestamp),
   );
+}
+
+/** A fresh flow observation must not relabel an older temperature as current. */
+export function sensorTimeSummary(reading: GaugeReading): string {
+  if (!reading.metricTimes) return `Observed ${new Date(reading.timestamp).toLocaleString()}`;
+  const names = { cfs: 'Flow', heightFt: 'Stage', tempC: 'Temperature', dissolvedOxygenMgL: 'Oxygen', reservoirLevelFt: 'Reservoir level', precipitationMm: 'Precipitation' };
+  return (Object.keys(names) as Array<keyof typeof names>).filter((key) => reading[key] !== undefined)
+    .map((key) => `${names[key]} observed ${new Date(metricObservedAt(reading, key)).toLocaleString()}`).join(' · ');
 }
 /** Presentation-only conversion of supplied prose into the selected temperature unit. */
 export function conditionReason(reason: string, unit: 'C' | 'F'): string {

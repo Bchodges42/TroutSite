@@ -109,6 +109,9 @@ export function parseWaterDataResponse(payload: unknown): GaugeReading[] {
       ...(fields.dissolvedOxygenMgL ? { dissolvedOxygenMgL: fields.dissolvedOxygenMgL.value } : {}),
       ...(fields.precipitationMm ? { precipitationMm: fields.precipitationMm.value } : {}),
       timestamp,
+      ...(new Set(values.map((m) => m.timestamp)).size > 1 ? {
+        metricTimes: Object.fromEntries(Object.entries(fields).map(([field, m]) => [field, m.timestamp])),
+      } : {}),
     });
     return parsed.success ? [parsed.data] : [];
   });

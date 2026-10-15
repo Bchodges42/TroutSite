@@ -11,6 +11,21 @@ const items = fishing.sections.find((section) => section.id === 'special-regulat
 const forWater = (id: string) => items.filter((item) => item.appliesTo?.includes(id));
 
 describe('published water-specific regulations', () => {
+  it('covers newly cataloged wild waters, delayed harvest, and boundary/pond rules', () => {
+    const { streams } = loadContent();
+    for (const id of ['north-river-monroe', 'bald-river', 'sycamore-creek-tellico', 'rough-ridge-creek',
+      'rocky-fork-greene-unicoi', 'left-prong-hampton-creek', 'little-stony-creek-carter']) {
+      expect(streams.get(id)?.fishery).toBe('wild');
+      expect(forWater(id)).toHaveLength(1);
+      expect(forWater(id)[0].text).toMatch(/single-hook artificial/);
+    }
+    expect(forWater('acorn-lake')[0].text).toContain('December 1–March 31');
+    expect(forWater('slickrock-creek')[0].text).toContain('seven-inch minimum');
+    expect(forWater('dillard-ponds')[0].text).toContain('one rod or pole');
+    for (const id of ['slickrock-creek', 'dillard-ponds']) expect(streams.get(id)?.opportunity?.trout).toBe('unresolved');
+    expect(streams.get('acorn-lake')?.counties).toEqual(['Dickson']);
+    expect(streams.get('dillard-ponds')?.counties).toEqual(['Greene']);
+  });
   it('attaches every special rule to an existing catalog water', () => {
     const { streams } = loadContent();
     for (const item of items) {

@@ -84,11 +84,12 @@ export function buildConditionsReading(
   obs: WaterObservation[],
   rawByMetric: Partial<Record<WaterObservation['metric'], unknown>> = {},
 ): ConditionsReading | null {
-  const sorted = [...obs].sort((a, b) => b.observedAt.localeCompare(a.observedAt));
+  const sorted = [...obs].sort((a, b) => Date.parse(b.observedAt) - Date.parse(a.observedAt));
   const newest = sorted[0]?.observedAt;
   const newestMs = newest ? Date.parse(newest) : Number.NaN;
   const fields: GaugeReading = { gaugeId, timestamp: newest ?? new Date(0).toISOString() };
   const rows: Record<string, unknown> = {};
+  const metricTimes: NonNullable<GaugeReading['metricTimes']> = {};
   let timestamp: string | undefined;
   for (const o of sorted) {
     const field = METRIC_FIELD[o.metric];
@@ -102,13 +103,16 @@ export function buildConditionsReading(
       continue;
     }
     fields[field] = o.value;
+    metricTimes[field] = o.observedAt;
     rows[o.metric] = rawByMetric[o.metric] ?? { observedAt: o.observedAt, value: o.value };
-    if (timestamp === undefined || o.observedAt > timestamp) timestamp = o.observedAt;
+    if (timestamp === undefined || Date.parse(o.observedAt) > Date.parse(timestamp)) timestamp = o.observedAt;
   }
   if (timestamp === undefined) return null;
-  const parsed = GaugeReadingSchema.safeParse({ ...fields, timestamp });
+  const parsed = GaugeReadingSchema.safeParse({ ...fields, timestamp,
+    ...(new Set(Object.values(metricTimes)).size > 1 ? { metricTimes } : {}) });
   if (!parsed.success) return null;
-  return { reading: parsed.data, payload: JSON.stringify({ source, gaugeId, rows }) };
+  return { reading: parsed.data, payload: JSON.stringify({ source, gaugeId, rows,
+    ...(parsed.data.metricTimes ? { metricTimes: parsed.data.metricTimes } : {}) }) };
 }
 
 /** Find the exact TVA row behind an observation (for the raw audit payload). */

@@ -9,13 +9,14 @@
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { parseArgs } from 'node:util';
-import { ConditionSnapshotSchema, ReleaseScheduleSchema, StockingEventSchema } from '@trout/contracts';
+import { ConditionSnapshotSchema, ReleaseScheduleSchema, StockingEventSchema, StreamSchema } from '@trout/contracts';
 import { loadEnv } from '../env.js';
 import { pipelineConfig } from '../pipeline.js';
 import { TVA_BROWSER_UA } from '../evidence/conditionsBridge.js';
 import { fetchWaterDataReadings } from '../ingest/usgs-waterdata.js';
 import { scheduleYearFromPage, tnAdapter } from '../ingest/stocking/tn.js';
-import { compareTvaSchedule, compareTwraStocking, compareUsgsReadings, type TruthFinding } from '../truth/truthCheck.js';
+import { compareTvaSchedule, compareTwraStocking, compareUsgsReadings, compareCwmsReadings, type TruthFinding } from '../truth/truthCheck.js';
+import { fetchCwmsObservations } from '../evidence/cwms-provider.js';
 
 const argv = process.argv.slice(2).filter((a) => a !== '--');
 const { values } = parseArgs({ args: argv, options: { json: { type: 'boolean', default: false } }, strict: true });
@@ -34,9 +35,11 @@ function readJson(path: string): unknown {
 
 // ── USGS ────────────────────────────────────────────────────────────────────
 const conditionsPath = join(v1, 'conditions', 'latest.json');
+const streamsPath = join(v1, 'streams.json');
 if (existsSync(conditionsPath)) {
   const snapshots = ConditionSnapshotSchema.array().parse(readJson(conditionsPath));
-  const ids = [...new Set(snapshots.flatMap((s) => s.readings.map((r) => r.gaugeId)).filter((id) => /^\d+$/.test(id)))];
+  const configured = existsSync(streamsPath) ? StreamSchema.array().parse(readJson(streamsPath)).flatMap((s) => s.gaugeIds) : [];
+  const ids = [...new Set([...configured, ...snapshots.flatMap((s) => [...s.readings, ...(s.referenceReadings ?? [])].map((r) => r.gaugeId))].filter((id) => /^\d+$/.test(id)))];
   try {
     const upstream = await fetchWaterDataReadings(ids, {
       userAgent: cfg.userAgent,
@@ -47,6 +50,25 @@ if (existsSync(conditionsPath)) {
     findings.push(...usgs.findings);
   } catch (err) {
     unreachable.push(`USGS: ${(err as Error).message}`);
+  }
+}
+
+// ── CWMS: configured local Corps gauges, including missing published values ──
+if (existsSync(conditionsPath) && existsSync(streamsPath)) {
+  const snapshots = ConditionSnapshotSchema.array().parse(readJson(conditionsPath));
+  const streams = StreamSchema.array().parse(readJson(streamsPath));
+  const stations = [...new Set(streams.flatMap((s) => s.gaugeIds.filter((id) => id.startsWith('usace:') &&
+    !s.gaugePolicy?.references.some((r) => r.gaugeId === id))).map((id) => id.slice(6)))];
+  checks.cwmsMetrics = 0;
+  for (const station of stations) {
+    const source = await fetchCwmsObservations(station, { userAgent: cfg.userAgent, now });
+    if (source.errors) unreachable.push(...source.warnings);
+    const result = compareCwmsReadings(snapshots, source.observations.map((o) => ({
+      gaugeId: `usace:${station}`, timestamp: o.observedAt,
+      ...(o.metric === 'discharge-cfs' ? { cfs: o.value } : { tempC: o.value }),
+    })));
+    checks.cwmsMetrics += result.checked;
+    findings.push(...result.findings);
   }
 }
 

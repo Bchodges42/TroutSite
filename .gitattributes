@@ -16,5 +16,10 @@ docs/research/2026-09-22-fishery-opportunities/captures/twra-stock-locations-met
 
 # Raw source-audit API responses must match the SHA-256 hashes in requests.json.
 docs/research/2026-10-14-source-audit/captures/* -text -whitespace
+docs/research/2026-10-14-source-implementation/live-check.json -text -whitespace
+docs/research/2026-10-14-source-implementation/taxon-tail-repair-ledger.json -text -whitespace
+docs/research/2026-10-14-source-implementation/regulated-water-identities.json -text -whitespace
+docs/research/2026-10-14-source-implementation/twra-pond-points.json -text -whitespace
+docs/research/2026-10-14-source-implementation/twra-pond-request.json -text -whitespace
 docs/research/2026-09-22-fishery-opportunities/captures/twra-trout-page.html -text -whitespace
 docs/research/2026-09-22-fishery-opportunities/captures/twra-stock-locations-meta.json -text -whitespace

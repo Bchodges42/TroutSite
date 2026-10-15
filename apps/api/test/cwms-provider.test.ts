@@ -57,7 +57,7 @@ describe('documented CWMS adapter', () => {
     expect(result.observations[0]?.observedAt).toBe(new Date(time + 1000).toISOString());
   });
 
-  it.each(['units', 'identity', 'cursor-loop', 'failed-page', 'malformed'])('withholds a partial/bad flow series (%s), retaining healthy temperature', async (failure) => {
+  it.each(['units', 'identity', 'cursor-loop', 'failed-page', 'malformed', 'columns'])('withholds a partial/bad flow series (%s), retaining healthy temperature', async (failure) => {
     const fetchImpl = (async (input: string | URL | Request) => {
       const url = new URL(String(input));
       const name = url.searchParams.get('name')!;
@@ -66,6 +66,9 @@ describe('documented CWMS adapter', () => {
       if (failure === 'units') return Response.json(response(name, 'cms', [[time, 5, 0]]));
       if (failure === 'identity') return Response.json(response('wrong station', unit, [[time, 5, 0]]));
       if (failure === 'malformed') return new Response('not JSON');
+      if (failure === 'columns') return Response.json(response(name, unit, [[time, 5, 0]], {
+        'value-columns': [{ name: 'value', ordinal: 1 }, { name: 'date-time', ordinal: 2 }, { name: 'quality-code', ordinal: 3 }],
+      }));
       if (failure === 'failed-page' && url.searchParams.has('page')) return new Response('', { status: 503 });
       return Response.json(response(name, unit, [[time, 5, 0]], { 'next-page': 'same' }));
     }) as typeof fetch;

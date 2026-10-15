@@ -15,6 +15,7 @@
     "snapshots": "pnpm --filter @trout/contracts build && tsx src/scripts/ingest.ts --job=snapshots",
     "token": "tsx src/scripts/token.ts",
     "truth-check": "tsx src/scripts/truth-check.ts",
+    "history:temperature": "tsx src/scripts/temperature-history.ts",
     "test": "vitest run",
     "lint": "eslint ."
   },

@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { z } from 'zod';
 import { Card, EmptyState } from '@trout/ui';
-import { ConditionSnapshotSchema, newestReadingAt } from '@trout/contracts';
+import { ConditionSnapshotSchema, newestReadingAt, metricObservedAt } from '@trout/contracts';
 import type { ConditionSnapshot, Stream } from '@trout/contracts';
 import { snapshotUrls } from '../lib/endpoints';
 import { useSnapshotQuery } from '../lib/useSnapshotQuery';
@@ -464,12 +464,12 @@ function ConditionRow({
 
 export function latestFlowLabel(snapshot: ConditionSnapshot): string {
   const withCfs = [...snapshot.readings].filter((r) => typeof r.cfs === 'number');
-  const newest = withCfs.sort((a, b) => Date.parse(b.timestamp) - Date.parse(a.timestamp))[0];
+  const newest = withCfs.sort((a, b) => Date.parse(metricObservedAt(b, 'cfs')) - Date.parse(metricObservedAt(a, 'cfs')))[0];
   return newest?.cfs != null ? formatFlow(newest.cfs) : 'flow unknown';
 }
 
 export function latestTempLabel(snapshot: ConditionSnapshot, unit: 'C' | 'F'): string {
   const withTemp = [...snapshot.readings].filter((r) => typeof r.tempC === 'number');
-  const newest = withTemp.sort((a, b) => Date.parse(b.timestamp) - Date.parse(a.timestamp))[0];
+  const newest = withTemp.sort((a, b) => Date.parse(metricObservedAt(b, 'tempC')) - Date.parse(metricObservedAt(a, 'tempC')))[0];
   return newest?.tempC != null ? formatTemp(newest.tempC, unit) : 'temp unknown';
 }

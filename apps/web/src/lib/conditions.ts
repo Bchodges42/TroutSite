@@ -1,4 +1,5 @@
 import type { ConditionSnapshot, GaugeReading } from '@trout/contracts';
+import { metricObservedAt } from '@trout/contracts';
 import { formatFlow } from './units';
 
 /**
@@ -24,12 +25,12 @@ export function flowTrend(readings: GaugeReading[]): FlowTrend {
   let best: { newestTs: number; trend: FlowTrend } | null = null;
   for (const list of byGauge.values()) {
     if (list.length < 2) continue;
-    const sorted = [...list].sort((a, b) => Date.parse(b.timestamp) - Date.parse(a.timestamp));
+    const sorted = [...list].sort((a, b) => Date.parse(metricObservedAt(b, 'cfs')) - Date.parse(metricObservedAt(a, 'cfs')));
     const newest = sorted[0];
     const previous = sorted[1];
     if (!newest || !previous) continue;
-    const newestTs = Date.parse(newest.timestamp);
-    const previousTs = Date.parse(previous.timestamp);
+    const newestTs = Date.parse(metricObservedAt(newest, 'cfs'));
+    const previousTs = Date.parse(metricObservedAt(previous, 'cfs'));
     // A pair must be two distinct observations; duplicate timestamps carry no trend.
     if (!Number.isFinite(newestTs) || !Number.isFinite(previousTs) || newestTs === previousTs) continue;
     const delta = (newest.cfs as number) - (previous.cfs as number);
@@ -108,7 +109,7 @@ function newestMetric(
   for (const r of readings) {
     const v = r[key];
     if (typeof v !== 'number') continue;
-    const ts = Date.parse(r.timestamp);
+    const ts = Date.parse(metricObservedAt(r, key));
     if (!Number.isFinite(ts)) continue;
     if (!best || ts > best.ts) best = { gaugeId: r.gaugeId, value: v, ts };
   }

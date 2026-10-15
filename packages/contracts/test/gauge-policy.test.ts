@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { StreamSchema, scoreConditions, selectGaugeReadings, HistoricalFlowSchema } from '../src/index.js';
+import { StreamSchema, scoreConditions, selectGaugeReadings, HistoricalFlowSchema, metricObservedAt } from '../src/index.js';
 import { makeReading, makeStream } from './helpers.js';
 
 const stream = () => makeStream({ gaugeIds: ['primary', 'downstream'], gaugePolicy: {
@@ -8,6 +8,16 @@ const stream = () => makeStream({ gaugeIds: ['primary', 'downstream'], gaugePoli
 } });
 
 describe('primary/reference gauges', () => {
+  it('preserves sensor-specific timestamps and supports legacy readings without them', () => {
+    const reading = makeReading();
+    expect(metricObservedAt(reading, 'cfs')).toBe(reading.timestamp);
+    reading.metricTimes = { cfs: '2026-04-01T13:30Z' };
+    expect(metricObservedAt(reading, 'cfs')).toBe('2026-04-01T13:30Z');
+    const s = makeStream({ gaugePolicy: { primary: {}, references: [], note: 'one local gauge' } });
+    const selected = selectGaugeReadings(s, [reading]).readings[0]!;
+    expect(selected.metricTimes?.cfs).toBe('2026-04-01T13:30Z');
+    expect(selected.timestamp).toBe(reading.timestamp); // Stage and temperature share the original later time.
+  });
   it('keeps a newer downstream station out of local conditions and the score', () => {
     const local = makeReading({ gaugeId: 'primary', cfs: 25 });
     const downstream = makeReading({ gaugeId: 'downstream', cfs: 250, timestamp: '2026-04-01T15:00Z' });

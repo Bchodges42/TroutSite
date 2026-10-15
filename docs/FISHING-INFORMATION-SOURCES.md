@@ -25,6 +25,15 @@ These checks do not reverify licenses, prices, or every other section of the doc
 the pack's overall `verifiedAt` stays at its earlier full-review date. Per-request source
 metadata and catalog counts are archived in `research/2026-10-14-source-audit/`.
 
+The implementation continuation adds ten named waters/rules: North River, Bald River,
+Tellico's Sycamore Creek, Rough Ridge Creek, Rocky Fork (Greene/Unicoi), Left Prong
+Hampton Creek, Little Stony Creek (Carter), the Slickrock boundary reach, Acorn Lake,
+and Dillard Ponds. There are now 31 special-regulation entries and 200 catalog waters.
+Legal scope stays in each rule's text; whole-stream geometry or a pond marker does not
+define that boundary. See [the implementation report](reports/2026-10-14-source-implementation.md)
+and its `research/2026-10-14-source-implementation/` receipts. No other fees/license
+sections were recertified by this incremental addition.
+
 ## Regulation year and effective dates
 
 - The Tennessee fishing regulation year runs **August 1 – July 31**.

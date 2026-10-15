@@ -40,6 +40,16 @@ describe('normalizeWaterName', () => {
 });
 
 describe('matchStocking', () => {
+  it('uses explicit still-water counties to reject a same-name pond in another county', () => {
+    const ponds = [{ id: 'acorn-lake', name: 'Acorn Lake', counties: ['Dickson'] },
+      { id: 'dillard-ponds', name: 'Dillard Ponds', aliases: ['Dillards Ponds'], counties: ['Greene'] }];
+    const result = matchStocking(ponds, [{ ...event('Acorn Lake', 'correct'), county: 'DICKSON' },
+      { ...event('Acorn Lake', 'wrong'), county: 'CARTER' },
+      { ...event('Dillards Ponds', 'dillard'), county: 'GREENE' }]);
+    expect(result.byStream.get('acorn-lake')?.map((e) => e.id)).toEqual(['correct']);
+    expect(result.byStream.get('dillard-ponds')?.map((e) => e.id)).toEqual(['dillard']);
+    expect(result.unmatched).toBe(1);
+  });
   it('resolves tailwater compounds through the alias table, not substrings', () => {
     const { byStream } = matchStocking(streams, [
       event('Center Hill TW / Caney Fork River'),

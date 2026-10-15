@@ -79,7 +79,9 @@
           "sourceId": "twra-regulations",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "effectiveFrom": "2026-08-01",
-          "appliesTo": ["clinch-river"]
+          "appliesTo": [
+            "clinch-river"
+          ]
         },
         {
           "title": "Caney Fork River special regulation",
@@ -88,7 +90,9 @@
           "sourceId": "twra-regulations",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "effectiveFrom": "2026-08-01",
-          "appliesTo": ["caney-fork-river"]
+          "appliesTo": [
+            "caney-fork-river"
+          ]
         },
         {
           "title": "Elk River below Tims Ford special regulation",
@@ -97,7 +101,9 @@
           "sourceId": "twra-regulations",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "effectiveFrom": "2026-08-01",
-          "appliesTo": ["elk-river"]
+          "appliesTo": [
+            "elk-river"
+          ]
         },
         {
           "title": "Hiwassee River seasonal regulation",
@@ -105,7 +111,9 @@
           "authority": "TWRA",
           "sourceId": "twra-regulations",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
-          "appliesTo": ["hiwassee-river"],
+          "appliesTo": [
+            "hiwassee-river"
+          ],
           "effectiveFrom": "2026-08-01"
         },
         {
@@ -115,7 +123,9 @@
           "sourceId": "twra-regulations",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "effectiveFrom": "2026-08-01",
-          "appliesTo": ["south-holston-river"]
+          "appliesTo": [
+            "south-holston-river"
+          ]
         },
         {
           "title": "Watauga River Quality Trout Area",
@@ -124,7 +134,9 @@
           "sourceId": "twra-regulations",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "effectiveFrom": "2026-08-01",
-          "appliesTo": ["watauga-river"]
+          "appliesTo": [
+            "watauga-river"
+          ]
         },
         {
           "title": "Fort Patrick Henry special regulation",
@@ -133,7 +145,9 @@
           "sourceId": "twra-regulations",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
           "effectiveFrom": "2026-08-01",
-          "appliesTo": ["boone-tailwater"]
+          "appliesTo": [
+            "boone-tailwater"
+          ]
         },
         {
           "title": "Tellico River delayed harvest + permit",
@@ -141,7 +155,9 @@
           "authority": "TWRA",
           "sourceId": "twra-regulations",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
-          "appliesTo": ["tellico-river"],
+          "appliesTo": [
+            "tellico-river"
+          ],
           "effectiveFrom": "2026-08-01"
         },
         {
@@ -150,7 +166,9 @@
           "authority": "TWRA",
           "sourceId": "twra-regulations",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
-          "appliesTo": ["citico-creek"],
+          "appliesTo": [
+            "citico-creek"
+          ],
           "effectiveFrom": "2026-08-01"
         },
         {
@@ -159,7 +177,9 @@
           "authority": "TWRA",
           "sourceId": "twra-regulations",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
-          "appliesTo": ["doe-river"],
+          "appliesTo": [
+            "doe-river"
+          ],
           "effectiveFrom": "2026-08-01"
         },
         {
@@ -168,7 +188,9 @@
           "authority": "TWRA",
           "sourceId": "twra-regulations",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
-          "appliesTo": ["paint-creek-greene"],
+          "appliesTo": [
+            "paint-creek-greene"
+          ],
           "effectiveFrom": "2026-08-01"
         },
         {
@@ -177,7 +199,9 @@
           "authority": "TWRA",
           "sourceId": "twra-regulations",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
-          "appliesTo": ["paint-creek-greene"],
+          "appliesTo": [
+            "paint-creek-greene"
+          ],
           "effectiveFrom": "2026-08-01"
         },
         {
@@ -186,7 +210,9 @@
           "authority": "TWRA",
           "sourceId": "twra-regulations",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
-          "appliesTo": ["big-soddy-creek"],
+          "appliesTo": [
+            "big-soddy-creek"
+          ],
           "effectiveFrom": "2026-08-01"
         },
         {
@@ -195,7 +221,9 @@
           "authority": "TWRA",
           "sourceId": "twra-regulations",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
-          "appliesTo": ["buffalo-creek-grainger"],
+          "appliesTo": [
+            "buffalo-creek-grainger"
+          ],
           "effectiveFrom": "2026-08-01"
         },
         {
@@ -204,7 +232,9 @@
           "authority": "TWRA",
           "sourceId": "twra-regulations",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs.html",
-          "appliesTo": ["piney-river-rhea"],
+          "appliesTo": [
+            "piney-river-rhea"
+          ],
           "effectiveFrom": "2026-08-01"
         },
         {
@@ -213,7 +243,9 @@
           "authority": "TWRA",
           "sourceId": "twra-regulations",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
-          "appliesTo": ["clear-creek-obed"],
+          "appliesTo": [
+            "clear-creek-obed"
+          ],
           "effectiveFrom": "2026-08-01"
         },
         {
@@ -222,7 +254,9 @@
           "authority": "TWRA",
           "sourceId": "twra-regulations",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
-          "appliesTo": ["horse-creek-greene"],
+          "appliesTo": [
+            "horse-creek-greene"
+          ],
           "effectiveFrom": "2026-08-01"
         },
         {
@@ -231,7 +265,13 @@
           "authority": "NPS",
           "sourceId": "nps-gsmnp",
           "sourceUrl": "https://www.nps.gov/grsm/planyourvisit/fishing.htm",
-          "appliesTo": ["little-river", "leconte-creek", "middle-prong-little-pigeon", "west-prong-little-pigeon", "cosby-creek"]
+          "appliesTo": [
+            "little-river",
+            "leconte-creek",
+            "middle-prong-little-pigeon",
+            "west-prong-little-pigeon",
+            "cosby-creek"
+          ]
         },
         {
           "title": "Gatlinburg city waters permit",
@@ -239,7 +279,11 @@
           "authority": "TWRA",
           "sourceId": "twra-regulations",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
-          "appliesTo": ["west-prong-little-pigeon", "leconte-creek", "roaring-fork"],
+          "appliesTo": [
+            "west-prong-little-pigeon",
+            "leconte-creek",
+            "roaring-fork"
+          ],
           "effectiveFrom": "2026-08-01"
         },
         {
@@ -248,7 +292,10 @@
           "authority": "TWRA",
           "sourceId": "twra-regulations",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
-          "appliesTo": ["laurel-fork-carter", "beaverdam-creek"],
+          "appliesTo": [
+            "laurel-fork-carter",
+            "beaverdam-creek"
+          ],
           "effectiveFrom": "2026-08-01"
         },
         {
@@ -257,8 +304,121 @@
           "authority": "TWRA",
           "sourceId": "twra-regulations",
           "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
-          "appliesTo": ["little-west-fork-creek", "fletchers-fork"],
+          "appliesTo": [
+            "little-west-fork-creek",
+            "fletchers-fork"
+          ],
           "effectiveFrom": "2026-08-01"
+        },
+        {
+          "title": "North River (Monroe County) wild-trout reach",
+          "text": "North River and its tributaries (Monroe County): Five trout daily with no length limit; single-hook artificial lures only. Use or possession of bait or multiple-hook lures is prohibited. One separated single-hook artificial dropper lure is permitted.",
+          "authority": "TWRA",
+          "sourceId": "twra-regulations",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "effectiveFrom": "2026-08-01",
+          "appliesTo": [
+            "north-river-monroe"
+          ]
+        },
+        {
+          "title": "Bald River wild-trout reach",
+          "text": "Bald River and its tributaries (Monroe County): Five trout daily with no length limit; single-hook artificial lures only. Use or possession of bait or multiple-hook lures is prohibited. One separated single-hook artificial dropper lure is permitted.",
+          "authority": "TWRA",
+          "sourceId": "twra-regulations",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "effectiveFrom": "2026-08-01",
+          "appliesTo": [
+            "bald-river"
+          ]
+        },
+        {
+          "title": "Sycamore Creek (Tellico tributary) wild-trout reach",
+          "text": "Sycamore Creek, the Tellico River tributary in Monroe County, and its tributaries: Five trout daily with no length limit; single-hook artificial lures only. Use or possession of bait or multiple-hook lures is prohibited. One separated single-hook artificial dropper lure is permitted.",
+          "authority": "TWRA",
+          "sourceId": "twra-regulations",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "effectiveFrom": "2026-08-01",
+          "appliesTo": [
+            "sycamore-creek-tellico"
+          ]
+        },
+        {
+          "title": "Rough Ridge Creek wild-trout reach",
+          "text": "Rough Ridge Creek, a Tellico River tributary in Monroe County, and its tributaries: Five trout daily with no length limit; single-hook artificial lures only. Use or possession of bait or multiple-hook lures is prohibited. One separated single-hook artificial dropper lure is permitted.",
+          "authority": "TWRA",
+          "sourceId": "twra-regulations",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "effectiveFrom": "2026-08-01",
+          "appliesTo": [
+            "rough-ridge-creek"
+          ]
+        },
+        {
+          "title": "Rocky Fork (Greene/Unicoi counties) wild-trout reach",
+          "text": "Rocky Fork and tributaries upstream of the Rocky Fork Road / State Park Entrance Road junction (Greene/Unicoi counties): Five trout daily with no length limit; single-hook artificial lures only. Use or possession of bait or multiple-hook lures is prohibited. One separated single-hook artificial dropper lure is permitted.",
+          "authority": "TWRA",
+          "sourceId": "twra-regulations",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "effectiveFrom": "2026-08-01",
+          "appliesTo": [
+            "rocky-fork-greene-unicoi"
+          ]
+        },
+        {
+          "title": "Left Prong Hampton Creek wild-trout reach",
+          "text": "Left Prong, the Hampton Creek tributary in Carter County: Five trout daily with no length limit; single-hook artificial lures only. Use or possession of bait or multiple-hook lures is prohibited. One separated single-hook artificial dropper lure is permitted.",
+          "authority": "TWRA",
+          "sourceId": "twra-regulations",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "effectiveFrom": "2026-08-01",
+          "appliesTo": [
+            "left-prong-hampton-creek"
+          ]
+        },
+        {
+          "title": "Little Stony Creek (Carter County) wild-trout reach",
+          "text": "Little Stony Creek and tributaries upstream of Plot Branch, 1.3 miles upstream of the Highway 321 crossing: Five trout daily with no length limit; single-hook artificial lures only. Use or possession of bait or multiple-hook lures is prohibited. One separated single-hook artificial dropper lure is permitted.",
+          "authority": "TWRA",
+          "sourceId": "twra-regulations",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "effectiveFrom": "2026-08-01",
+          "appliesTo": [
+            "little-stony-creek-carter"
+          ]
+        },
+        {
+          "title": "Slickrock Creek (TN/NC boundary reach) special trout rules",
+          "text": "Only the portion of Slickrock Creek forming the Tennessee–North Carolina state boundary: Tennessee or North Carolina licenses are valid. Rainbow, brown and brook trout have a combined four-fish daily limit and seven-inch minimum. Single-hook artificial lures only; use or possession of bait or multiple-hook lures is prohibited, with one separated single-hook artificial dropper lure allowed.",
+          "authority": "TWRA",
+          "sourceId": "twra-regulations",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "effectiveFrom": "2026-08-01",
+          "appliesTo": [
+            "slickrock-creek"
+          ]
+        },
+        {
+          "title": "Acorn Lake (Montgomery Bell State Park) special trout rules",
+          "text": "Acorn Lake in Montgomery Bell State Park: catch-and-release December 1–March 31. During this season no trout harvest or possession, artificial lures only, and no use or possession of bait.",
+          "authority": "TWRA",
+          "sourceId": "twra-regulations",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "effectiveFrom": "2026-08-01",
+          "appliesTo": [
+            "acorn-lake"
+          ]
+        },
+        {
+          "title": "Dillard Ponds (Greene County) special trout rules",
+          "text": "The Dillard Ponds complex in Greene County: four trout daily, one rod or pole per angler, and fishing only from 30 minutes before official sunrise until 30 minutes after official sunset.",
+          "authority": "TWRA",
+          "sourceId": "twra-regulations",
+          "sourceUrl": "https://www.tn.gov/twra/fishing-regs/trout-regulations.html",
+          "effectiveFrom": "2026-08-01",
+          "appliesTo": [
+            "dillard-ponds"
+          ]
         }
       ]
     },

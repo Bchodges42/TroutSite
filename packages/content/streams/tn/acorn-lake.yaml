@@ -1,0 +1,41 @@
+id: acorn-lake
+name: Acorn Lake (Montgomery Bell State Park)
+aliases:
+  - Acorn Lake
+stateId: TN
+waterbodyType: lake
+regionId: tn-middle-nashville
+display: reference
+gaugeIds: []
+stockingProgram: true
+species: trout
+fishery: stocked
+yearRound: false
+idealFlow: []
+notes: Acorn Lake in Montgomery Bell State Park. See the water-specific
+  regulation before fishing. No verified local live gauge is assigned.
+officialSources:
+  - label: TWRA — Tennessee Trout Regulations
+    url: https://www.tn.gov/twra/fishing-regs/trout-regulations.html
+  - label: TWRA — Trout stocking program
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+opportunity:
+  trout: seasonal-stocked-trout
+  evidenceState: documented
+  statement: TWRA lists a December–March delayed-harvest trout opportunity at
+    Acorn Lake in Montgomery Bell State Park.
+  reachScope: Acorn Lake in Montgomery Bell State Park
+  asOf: "2026"
+  sources:
+    - label: TWRA Tennessee Trout Regulations — named reach
+      url: https://www.tn.gov/twra/fishing-regs/trout-regulations.html
+      kind: legal-designation
+      observationPeriod: 2026-27 regulations
+      publicationDate: 2026-27
+      retrieved: 2026-10-14
+      pinpoint: Acorn Lake in Montgomery Bell State Park
+  caveats:
+    - The map depicts the named water or a representative pond marker, not a
+      surveyed legal regulation boundary.
+counties:
+  - Dickson

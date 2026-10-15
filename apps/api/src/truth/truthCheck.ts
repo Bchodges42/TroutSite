@@ -1,4 +1,5 @@
 import type { ConditionSnapshot, GaugeReading, ReleaseSchedule, StockingEvent } from '@trout/contracts';
+import { metricObservedAt } from '@trout/contracts';
 import { parseTvaGenerationReleaseReport } from '../evidence/tva-provider.js';
 
 /**
@@ -12,7 +13,7 @@ import { parseTvaGenerationReleaseReport } from '../evidence/tva-provider.js';
  *   stale    — the source has newer data than we publish, past the tolerance
  *   unparsed — the source publishes rows our parsers cannot read
  */
-export type TruthSource = 'usgs' | 'tva' | 'twra';
+export type TruthSource = 'usgs' | 'tva' | 'twra' | 'cwms';
 export interface TruthFinding {
   kind: 'mismatch' | 'stale' | 'unparsed';
   source: TruthSource;
@@ -40,40 +41,40 @@ function close(a: number, b: number): boolean {
  * latest-continuous values. Only bare numeric (USGS) gauge ids are checked.
  */
 export function compareUsgsReadings(snapshots: ConditionSnapshot[], upstream: GaugeReading[]): { checked: number; findings: TruthFinding[] } {
-  const published = new Map<string, GaugeReading>();
+  const published = new Map<string, GaugeReading[]>();
   for (const s of snapshots) {
-    for (const r of s.readings) {
+    for (const r of [...s.readings, ...(s.referenceReadings ?? [])]) {
       if (!/^\d+$/.test(r.gaugeId)) continue;
-      const prev = published.get(r.gaugeId);
-      if (!prev || Date.parse(r.timestamp) > Date.parse(prev.timestamp)) published.set(r.gaugeId, r);
+      published.set(r.gaugeId, [...(published.get(r.gaugeId) ?? []), r]);
     }
   }
   const source = new Map(upstream.map((r) => [r.gaugeId, r]));
   const findings: TruthFinding[] = [];
   let checked = 0;
-  for (const [gaugeId, pub] of published) {
-    const up = source.get(gaugeId);
-    if (!up) continue; // nothing current upstream to compare against
+  for (const [gaugeId, up] of source) {
+    const readings = published.get(gaugeId) ?? [];
     checked += 1;
-    const pubMs = Date.parse(pub.timestamp);
-    const upMs = Date.parse(up.timestamp);
-    if (upMs - pubMs > USGS_LAG_TOLERANCE_MS) {
-      findings.push({
-        kind: 'stale',
-        source: 'usgs',
-        subject: gaugeId,
-        detail: `published ${pub.timestamp}, USGS has ${up.timestamp} (${Math.round((upMs - pubMs) / 3_600_000)} h newer)`,
-      });
-      continue;
-    }
-    if (upMs !== pubMs) continue; // different instants within tolerance — values may legitimately differ
     for (const field of VALUE_FIELDS) {
-      const a = pub[field];
+      const pub = readings.filter((r) => r[field] !== undefined).sort((a, b) =>
+        Date.parse(metricObservedAt(b, field)) - Date.parse(metricObservedAt(a, field)))[0];
+      const a = pub?.[field];
       const b = up[field];
+      if (!pub) {
+        if (typeof b === 'number') findings.push({ kind: 'unparsed', source: 'usgs', subject: gaugeId, detail: `fresh upstream ${field} is missing from published readings` });
+        continue;
+      }
+      const publishedAt = metricObservedAt(pub, field);
+      const upstreamAt = metricObservedAt(up, field);
+      const difference = Date.parse(upstreamAt) - Date.parse(publishedAt);
+      if (difference > USGS_LAG_TOLERANCE_MS) {
+        findings.push({ kind: 'stale', source: 'usgs', subject: gaugeId, detail: `${field}: published ${publishedAt}, USGS has ${upstreamAt}` });
+        continue;
+      }
+      if (difference !== 0) continue; // Different instants within tolerance may legitimately differ.
       if (typeof a === 'number' && typeof b === 'number' && !close(a, b)) {
-        findings.push({ kind: 'mismatch', source: 'usgs', subject: gaugeId, detail: `${field} published ${a}, USGS ${b} at ${pub.timestamp}` });
+        findings.push({ kind: 'mismatch', source: 'usgs', subject: gaugeId, detail: `${field} published ${a}, USGS ${b} at ${publishedAt}` });
       } else if (typeof a === 'number' && typeof b !== 'number') {
-        findings.push({ kind: 'mismatch', source: 'usgs', subject: gaugeId, detail: `${field} published ${a} at ${pub.timestamp}; USGS has no current ${field}` });
+        findings.push({ kind: 'mismatch', source: 'usgs', subject: gaugeId, detail: `${field} published ${a} at ${publishedAt}; USGS has no current ${field}` });
       }
     }
   }
@@ -81,6 +82,28 @@ export function compareUsgsReadings(snapshots: ConditionSnapshot[], upstream: Ga
 }
 
 const blockKey = (b: { date: string; startTime: string; endTime: string }) => `${b.date} ${b.startTime}-${b.endTime}`;
+
+/** CWMS observations retain per-metric timestamps. Compare them independently
+ * rather than mistaking the merged gauge timestamp for every sensor's time. */
+export function compareCwmsReadings(snapshots: ConditionSnapshot[], upstream: GaugeReading[]) {
+  const findings: TruthFinding[] = [];
+  let checked = 0;
+  for (const up of upstream) {
+    const metric = up.cfs !== undefined ? 'cfs' : 'tempC';
+    const published = snapshots.flatMap((s) => s.readings).filter((r) => r.gaugeId === up.gaugeId && r[metric] !== undefined);
+    const pub = published.sort((a, b) => Date.parse(metricObservedAt(b, metric)) - Date.parse(metricObservedAt(a, metric)))[0];
+    const publishedAt = pub ? metricObservedAt(pub, metric) : undefined;
+    checked++;
+    if (!pub) {
+      findings.push({ kind: 'unparsed', source: 'cwms', subject: up.gaugeId, detail: `fresh upstream ${metric} is missing from published local readings` });
+    } else if (Date.parse(up.timestamp) - Date.parse(publishedAt!) > USGS_LAG_TOLERANCE_MS) {
+      findings.push({ kind: 'stale', source: 'cwms', subject: up.gaugeId, detail: `${metric}: published ${publishedAt}, upstream ${up.timestamp}` });
+    } else if (Date.parse(up.timestamp) === Date.parse(publishedAt!) && !close(pub[metric]!, up[metric]!)) {
+      findings.push({ kind: 'mismatch', source: 'cwms', subject: up.gaugeId, detail: `${metric}: published ${pub[metric]}, upstream ${up[metric]} at ${up.timestamp}` });
+    }
+  }
+  return { checked, findings };
+}
 
 /** One published TVA release schedule vs TVA's raw generation-releases payload. */
 export function compareTvaSchedule(published: ReleaseSchedule, upstreamPayload: unknown, now: Date): TruthFinding[] {

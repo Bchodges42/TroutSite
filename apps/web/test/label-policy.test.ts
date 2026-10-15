@@ -22,6 +22,9 @@ const REFERENCE_IDS = [
   'lake-graham', 'martin-city-pond', 'milan-city-pond', 'paris-city-park-lake', 'shelby-farms-lake',
   'union-city-reelfoot-pond', 'valentine-park-pond', 'yale-road-park-lake', 'wilbur-lake',
   'ocoee-number-three-lake', 'sinking-creek-wilson',
+  'north-river-monroe', 'bald-river', 'sycamore-creek-tellico', 'rough-ridge-creek',
+  'rocky-fork-greene-unicoi', 'left-prong-hampton-creek', 'little-stony-creek-carter',
+  'slickrock-creek', 'acorn-lake', 'dillard-ponds',
 ] as const;
 
 /**
@@ -172,14 +175,14 @@ describe('labelPolicy.labelSpeciesNote (honest aria/title words)', () => {
 });
 
 describe('authored map display tiers', () => {
-  it('covers the complete real river index with the campaign 38/136/16 assignment (expansion waters ride labelMinZoom)', () => {
+  it('covers the complete river index with 38 featured, 136 standard and 26 reference waters', () => {
     const indexIds = new Set(riverIndex.map((r) => r.id));
     const featured = new Set(FEATURED_IDS);
     const reference = new Set(REFERENCE_IDS);
     expect(FEATURED_IDS).toHaveLength(38);
-    expect(REFERENCE_IDS).toHaveLength(16);
+    expect(REFERENCE_IDS).toHaveLength(26);
     expect(FEATURED_IDS.length + REFERENCE_IDS.length).toBeLessThan(riverIndex.length);
-    expect(new Set([...FEATURED_IDS, ...REFERENCE_IDS]).size).toBe(54);
+    expect(new Set([...FEATURED_IDS, ...REFERENCE_IDS]).size).toBe(64);
     expect([...featured, ...reference].every((id) => indexIds.has(id))).toBe(true);
     expect(riverIndex.length - featured.size - reference.size).toBe(136);
   });

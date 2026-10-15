@@ -61,6 +61,7 @@ interface StreamRow {
   id: string;
   name: string;
   aliases: string;
+  counties: string | null;
   state_id: string;
   waterbody_type: string;
   region_id: string;
@@ -111,6 +112,7 @@ function rowsToStreams(rows: StreamRow[]): Stream[] {
       id: r.id,
       name: r.name,
       ...(aliases.length ? { aliases } : {}),
+      ...(r.counties ? { counties: JSON.parse(r.counties) } : {}),
       stateId: r.state_id,
       waterbodyType: r.waterbody_type,
       regionId: r.region_id,

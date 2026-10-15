@@ -13,5 +13,11 @@ export const GaugeReadingSchema = z.object({
   /** Recent precipitation at the gauge, millimetres; context only. */
   precipitationMm: z.number().nonnegative().optional(),
   timestamp: IsoDateTimeSchema,
+  /** Present when merged sensors observed at different times. */
+  metricTimes: z.object({
+    cfs: IsoDateTimeSchema.optional(), heightFt: IsoDateTimeSchema.optional(),
+    tempC: IsoDateTimeSchema.optional(), dissolvedOxygenMgL: IsoDateTimeSchema.optional(),
+    reservoirLevelFt: IsoDateTimeSchema.optional(), precipitationMm: IsoDateTimeSchema.optional(),
+  }).optional(),
 });
 export type GaugeReading = z.infer<typeof GaugeReadingSchema>;

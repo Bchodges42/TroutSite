@@ -6,6 +6,7 @@ import {
   ConditionSnapshotSchema,
   StockingEventSchema,
   newestReadingAt,
+  metricObservedAt,
 } from '@trout/contracts';
 import type { ConditionSnapshot, GaugeReading, Stream, StockingEvent } from '@trout/contracts';
 import { snapshotUrls } from '../lib/endpoints';
@@ -24,7 +25,7 @@ import { formatFlow, formatHeight, formatNum, formatTemp } from '../lib/units';
 import { ageMinutes } from '../lib/time';
 import { FreshnessChip } from '../components/FreshnessChip';
 import { ScorePill } from '../components/ScorePill';
-import { conditionReason, waterTypeLabel } from '../lib/presentation';
+import { conditionReason, waterTypeLabel, sensorTimeSummary } from '../lib/presentation';
 import { statusForScore } from '../features/map/riverMapSelectors';
 import { toWaterDecisionView, seasonalChipText } from '../features/map/waterDecision';
 import { OpportunityCard } from '../features/map/OpportunityCard';
@@ -305,7 +306,7 @@ export function StreamDetailPage() {
               label="Flow"
               value={newestCfs != null ? formatFlow(newestCfs) : 'Not reported'}
               status={
-                stream.species === 'trout' && newestCfs != null
+                stream.species === 'trout' && stream.idealFlowSource !== 'editorial' && stream.idealFlow.length > 0 && newestCfs != null
                   ? statusForFlow(stream, newestCfs)
                   : 'unknown'
               }
@@ -575,7 +576,7 @@ function ReadingsTable({
                   {r.tempC != null ? formatTemp(r.tempC, tempUnit) : '—'}
                 </td>
                 <td className="py-2" style={{ color: 'var(--trout-color-text-muted)' }}>
-                  {ageMinutes(Date.parse(r.timestamp))}
+                  {r.metricTimes ? sensorTimeSummary(r) : ageMinutes(Date.parse(r.timestamp))}
                 </td>
               </tr>
             ))}
@@ -591,7 +592,7 @@ function newestValue(
 ): number | null {
   const sorted = [...readings]
     .filter((r) => typeof r[key] === 'number')
-    .sort((a, b) => Date.parse(b.timestamp) - Date.parse(a.timestamp));
+    .sort((a, b) => Date.parse(metricObservedAt(b, key)) - Date.parse(metricObservedAt(a, key)));
   const top = sorted[0];
   return top ? (top[key] as number) : null;
 }

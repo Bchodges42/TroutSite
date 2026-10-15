@@ -31,9 +31,19 @@ describe('truth check — USGS', () => {
     expect(result.findings).toEqual([]);
   });
 
+  it('checks reference-only gauges and each sensor time, including missing published metrics', () => {
+    const actual = { gaugeId: '01234567', timestamp: '2026-10-14T15:00:00Z', cfs: 50, tempC: 12,
+      metricTimes: { cfs: '2026-10-14T14:00:00Z', tempC: '2026-10-14T15:00:00Z' } };
+    const reference = { ...snapshot([]), referenceReadings: [{ ...actual, cfs: 500 }] };
+    expect(compareUsgsReadings([reference], [actual]).findings).toEqual([
+      expect.objectContaining({ kind: 'mismatch', detail: expect.stringContaining('cfs published 500') }),
+    ]);
+    expect(compareUsgsReadings([snapshot([])], [actual]).findings).toHaveLength(2);
+  });
+
   it('flags the pre-fix bug: a 2012 temperature published under the current stamp', () => {
     const buggy = { gaugeId: '03597860', cfs: 186, heightFt: 10.19, tempC: 21.4, timestamp: '2026-10-14T23:30:00.000Z' };
-    const { findings } = compareUsgsReadings([snapshot([buggy])], upstream);
+    const { findings } = compareUsgsReadings([snapshot([buggy])], upstream.filter((r) => r.gaugeId === buggy.gaugeId));
     expect(findings).toEqual([
       expect.objectContaining({ kind: 'mismatch', subject: '03597860', detail: expect.stringMatching(/tempC published 21.4/) }),
     ]);
@@ -41,7 +51,7 @@ describe('truth check — USGS', () => {
 
   it('flags a published reading more than 3 h behind the source', () => {
     const old = { gaugeId: '03597860', cfs: 150, timestamp: '2026-10-14T18:00:00.000Z' };
-    const { findings } = compareUsgsReadings([snapshot([old])], upstream);
+    const { findings } = compareUsgsReadings([snapshot([old])], upstream.filter((r) => r.gaugeId === old.gaugeId));
     expect(findings[0]).toMatchObject({ kind: 'stale', subject: '03597860' });
   });
 });

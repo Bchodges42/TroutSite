@@ -43,6 +43,7 @@ export function normCounty(c) {
 }
 
 export function countiesOf(doc) {
+  if (Array.isArray(doc.counties)) return doc.counties.map((c) => normCounty(c));
   return doc.hydroIdentity && Array.isArray(doc.hydroIdentity.counties)
     ? doc.hydroIdentity.counties.map((c) => normCounty(c))
     : [];

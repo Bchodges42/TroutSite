@@ -39,7 +39,9 @@ for (const f of g.features) {
   seen.add(id);
   const geom = f.geometry ?? {};
   const sources = Array.isArray(p.source) ? p.source : [];
-  const isPointAnchor = geom.type === 'Point' && sources.includes('twra-winter-ponds');
+  const isPointAnchor = geom.type === 'Point' && (sources.includes('twra-winter-ponds') ||
+    (sources.includes('twra-stock-map') && ['lake', 'pond'].includes(p.waterbodyType) && p.approximate === true &&
+      typeof p.sourceUrl === 'string' && p.sourceUrl.startsWith('https://services3.arcgis.com/PWXNAH2YKmZY7lBq/')));
   if (geom.type !== 'MultiLineString' && geom.type !== 'MultiPolygon' && geom.type !== 'Polygon' && !isPointAnchor) {
     errors.push(`${id}: unexpected geometry ${geom.type}`);
     continue;

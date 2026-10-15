@@ -1,5 +1,11 @@
 # Data-source coverage — per-water evidence provenance (data-sources lane)
 
+**2026-10-14 continuation:** the [implementation report](reports/2026-10-14-source-implementation.md)
+records the current 200-water catalog, CWMS conditions/coverage adapter, thirteen
+primary/reference policies and independent historical context. The older counts,
+A2W captures and `data-source-coverage.json` below remain a dated audit baseline;
+they are not a claim that every listed sensor is reporting now.
+
 **Lane:** external-data & fishing-information · **Base:** `5648ccca5c2b6f6fb1cba95b8ae2d421a1e07c9e` · **Machine-readable twin:** [`docs/data-source-coverage.json`](data-source-coverage.json) · **Captured:** 2026-09-04 (USGS gauge audit + TVA location capture + TWRA two-grid capture + live most-recent rows) + 2026-09-08 (USACE A2W Nashville tailwater capture)
 
 This document is the human-readable coverage report for the evidence layer

@@ -15,6 +15,10 @@ renaming existing fields or replacing historical data with an opinion. Primary g
 are chosen per metric and reach; reference-only gauges never silently become local
 measurements. Seasonal USGS percentiles are historical context, never ideal/safe fishing
 thresholds. Historical temperature samples never enter the live conditions score.
+Optional `metricTimes` preserves each instrument's observation time through storage,
+snapshot selection, scoring and display; legacy readings fall back to `timestamp`.
+Optional top-level `counties` permits verified still-water county disambiguation
+without inventing a GNIS stream identity for a pond marker.
 
 Hatch entries distinguish observed emergence, specimen records and editorial guidance.
 An article citation validates only its stated locality, collection dates and life stage.

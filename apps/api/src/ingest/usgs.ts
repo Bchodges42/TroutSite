@@ -154,15 +154,18 @@ function parseInstantValuesDetailed(payload: unknown): ParseInstantValuesResult 
     if (times.length === 0) continue;
     const newest = Math.max(...times);
     const merged: { cfs?: number; heightFt?: number; tempC?: number; dissolvedOxygenMgL?: number; precipitationMm?: number } = {};
+    const metricTimes: NonNullable<GaugeReading['metricTimes']> = {};
     let timestamp: string | undefined;
     for (const [field, metric] of Object.entries(entry) as [keyof SiteMetrics, MetricValue][]) {
       if (!metric) continue;
       if (newest - Date.parse(metric.ts) > READING_STALE_MINUTES * 60_000) continue;
       merged[field] = metric.value;
-      if (timestamp === undefined || metric.ts > timestamp) timestamp = metric.ts;
+      metricTimes[field] = metric.ts;
+      if (timestamp === undefined || Date.parse(metric.ts) > Date.parse(timestamp)) timestamp = metric.ts;
     }
     if (timestamp === undefined) continue;
-    const parsed = GaugeReadingSchema.safeParse({ gaugeId, ...merged, timestamp });
+    const parsed = GaugeReadingSchema.safeParse({ gaugeId, ...merged, timestamp,
+      ...(new Set(Object.values(metricTimes)).size > 1 ? { metricTimes } : {}) });
     if (parsed.success) readings.push(parsed.data);
   }
   return {
@@ -307,17 +310,20 @@ export async function runGaugesJob(db: Db, opts: UsgsFetchOptions): Promise<Gaug
 export function latestReadings(db: Db, nowMs = Date.now()): GaugeReading[] {
   const rows = db
     .prepare(
-      `SELECT gauge_id, cfs, height_ft, temp_c, dissolved_oxygen_mg_l, reservoir_level_ft, precipitation_mm, observed_at
+      `SELECT gauge_id, cfs, height_ft, temp_c, dissolved_oxygen_mg_l, reservoir_level_ft, precipitation_mm, observed_at, payload
        FROM gauge_readings_raw
        WHERE id IN (
          SELECT id FROM (
            SELECT id, ROW_NUMBER() OVER (PARTITION BY gauge_id ORDER BY julianday(observed_at) DESC, id DESC) AS rn
-           FROM gauge_readings_raw WHERE observed_at IS NOT NULL
+           FROM gauge_readings_raw WHERE observed_at IS NOT NULL AND julianday(observed_at) <= julianday(?)
          ) WHERE rn = 1
        )`,
     )
-    .all() as { gauge_id: string; cfs: number | null; height_ft: number | null; temp_c: number | null; dissolved_oxygen_mg_l: number | null; reservoir_level_ft: number | null; precipitation_mm: number | null; observed_at: string }[];
+    .all(new Date(nowMs).toISOString()) as { gauge_id: string; cfs: number | null; height_ft: number | null; temp_c: number | null; dissolved_oxygen_mg_l: number | null; reservoir_level_ft: number | null; precipitation_mm: number | null; observed_at: string; payload: string }[];
   return rows.flatMap((r) => {
+    let metricTimes: GaugeReading['metricTimes'];
+    try { metricTimes = GaugeReadingSchema.parse({ gaugeId: r.gauge_id, timestamp: r.observed_at,
+      metricTimes: (JSON.parse(r.payload) as { metricTimes?: unknown }).metricTimes }).metricTimes; } catch { /* legacy raw payload */ }
     const observedMs = Date.parse(r.observed_at);
     if (!Number.isFinite(observedMs) || observedMs > nowMs || nowMs - observedMs > READING_STALE_MINUTES * 60_000) return [];
     const cfs = r.cfs !== null && Number.isFinite(r.cfs) && r.cfs >= 0 ? r.cfs : null;
@@ -327,8 +333,7 @@ export function latestReadings(db: Db, nowMs = Date.now()): GaugeReading[] {
     const reservoirLevelFt = r.reservoir_level_ft !== null && r.reservoir_level_ft >= 0 ? r.reservoir_level_ft : null;
     const precipitationMm = r.precipitation_mm !== null && r.precipitation_mm >= 0 ? r.precipitation_mm : null;
     if (cfs === null && heightFt === null && tempC === null && dissolvedOxygenMgL === null && reservoirLevelFt === null && precipitationMm === null) return [];
-    return [
-      {
+    const reading: GaugeReading = {
         gaugeId: r.gauge_id,
         ...(cfs !== null ? { cfs } : {}),
         ...(heightFt !== null ? { heightFt } : {}),
@@ -337,7 +342,20 @@ export function latestReadings(db: Db, nowMs = Date.now()): GaugeReading[] {
         ...(reservoirLevelFt !== null ? { reservoirLevelFt } : {}),
         ...(precipitationMm !== null ? { precipitationMm } : {}),
         timestamp: r.observed_at,
-      },
-    ];
+      };
+    if (metricTimes) {
+      const kept: NonNullable<GaugeReading['metricTimes']> = {};
+      for (const metric of ['cfs', 'heightFt', 'tempC', 'dissolvedOxygenMgL', 'reservoirLevelFt', 'precipitationMm'] as const) {
+        if (reading[metric] === undefined) continue;
+        const at = metricTimes[metric] ?? reading.timestamp;
+        const ms = Date.parse(at);
+        if (!Number.isFinite(ms) || ms > nowMs || nowMs - ms > READING_STALE_MINUTES * 60_000) delete reading[metric];
+        else kept[metric] = at;
+      }
+      if (!Object.keys(kept).length) return [];
+      reading.metricTimes = kept;
+      reading.timestamp = Object.values(kept).sort((a, b) => Date.parse(b) - Date.parse(a))[0]!;
+    }
+    return [reading];
   });
 }

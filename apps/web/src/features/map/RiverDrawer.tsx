@@ -5,7 +5,7 @@ import { useLiveQuery } from 'dexie-react-hooks';
 import { regionName, monthName } from '../../data/regions';
 import { formatFlow, formatTemp, formatHeight } from '../../lib/units';
 import { flowTrend, TREND_LABEL } from '../../lib/conditions';
-import { orderedReadings, conditionReason, gaugeSourceLabel, waterIdentity, waterTypeLabel } from '../../lib/presentation';
+import { orderedReadings, conditionReason, gaugeSourceLabel, waterIdentity, waterTypeLabel, sensorTimeSummary } from '../../lib/presentation';
 import { useSettingsContext } from '../../lib/settings';
 import { useContentPack } from '../../lib/content';
 import { riverWorkflowUrl } from '../../lib/riverContext';
@@ -400,7 +400,7 @@ function WaterTab({
                   .filter(Boolean)
                   .join(' · ') || 'No measurements reported'}
               </span>
-              <span>Observed {new Date(r.timestamp).toLocaleString()}</span>
+              <span>{sensorTimeSummary(r)}</span>
             </div>
           ))
         )}

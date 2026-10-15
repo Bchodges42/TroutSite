@@ -17,7 +17,7 @@ import { parse as parseYaml } from 'yaml';
 import { fetchUsgsObservations } from '../evidence/usgs-provider.js';
 import { fetchTvaObservations } from '../evidence/tva-provider.js';
 import { fetchTwraArtifacts, parseTwraEvidence } from '../evidence/twra-evidence.js';
-import { fetchUsaceObservations } from '../evidence/usace-provider.js';
+import { fetchCwmsObservations } from '../evidence/cwms-provider.js';
 import { resolveWaterAlias } from '../evidence/aliases.js';
 import type { CatalogWaterName } from '../evidence/aliases.js';
 import { TVA_MONITORS, USACE_MONITORS } from '../evidence/monitors.js';
@@ -199,7 +199,8 @@ async function main(): Promise<void> {
     }
     for (const [waterId, monitor] of Object.entries(USACE_MONITORS)) {
       try {
-        const result = await fetchUsaceObservations(monitor.station, { userAgent: ua });
+        const result = await fetchCwmsObservations(monitor.station, { userAgent: ua });
+        if (result.errors) liveErrors.push(...result.warnings);
         liveObservations.set(waterId, [...(liveObservations.get(waterId) ?? []), ...result.observations.map((o) => ({ metric: o.metric, observedAt: o.observedAt, sourceId: o.sourceId, sourceUrl: o.sourceUrl, value: o.value, qualifier: o.qualifier }))]);
         await new Promise((r) => setTimeout(r, 1000));
       } catch (err) {
@@ -269,15 +270,14 @@ async function main(): Promise<void> {
     }
     if (usaceMonitors.length > 0) {
       for (const u of usaceMonitors) {
-        metrics.add('stage-ft');
         metrics.add('discharge-cfs');
         if (u.hasTemp) metrics.add('temperature-c');
       }
-      metricsProvenance = metricsProvenance ? `${metricsProvenance}; USACE A2W LRN series (2026-09-08)` : 'USACE A2W LRN series (2026-09-08)';
+      metricsProvenance = metricsProvenance ? `${metricsProvenance}; USACE CWMS LRN flow/temperature series (2026-10-14)` : 'USACE CWMS LRN flow/temperature series (2026-10-14)';
     }
 
     const liveObs = liveObservations.get(w.waterId) ?? [];
-    const newest = [...liveObs].sort((a, b) => b.observedAt.localeCompare(a.observedAt))[0];
+    const newest = [...liveObs].sort((a, b) => Date.parse(b.observedAt) - Date.parse(a.observedAt))[0];
     const mostRecent = newest
       ? { ...newest, provenance: live ? 'live fetch (coverage run)' : 'n/a' }
       : null;
@@ -342,10 +342,10 @@ async function main(): Promise<void> {
         twraCapture: { retrievedAt: '2026-09-04', fixtures: ['apps/api/fixtures/TN/2026-09-04-stockings-page.html', 'apps/api/fixtures/TN/2026-09-04-schedule.exceldriven.json', 'apps/api/fixtures/TN/2026-09-04-recent.exceldriven.json'], note: 'two grids: schedule (616 rows) + recent report (12-row rolling window)' },
         regulations: { verifiedAt: fishing.verifiedAt, source: 'packages/content/data/fishing-information.json' },
         usace: {
-          verifiedAt: '2026-09-08',
-          sourceUrl: 'https://water.usace.army.mil/cda/reporting/providers/lrn',
-          fixtures: ['apps/api/fixtures/USACE/CETT1-flow.json', 'apps/api/fixtures/USACE/CETT1-stage.json', 'apps/api/fixtures/USACE/CETT1-temp.json', 'apps/api/fixtures/USACE/CORT1-flow.json'],
-          note: 'A2W reporting API, provider lrn (Nashville District): CETT1/DHTT1/JPPT1/CORT1 Flow + Elev-Tail + Temp-Water-Tail verified live 2026-09-08; TSIDs hardcoded in USACE_TAILWATER_SERIES, never discovered at runtime; unknown TSID → 200 with an empty body (warning). The 2026-09-04 finding stands for the CWMS CDA catalog endpoint (501s), which is a different service.',
+          verifiedAt: '2026-10-14',
+          sourceUrl: 'https://cwms-data.usace.army.mil/cwms-data/timeseries',
+          fixtures: ['docs/research/2026-10-14-source-audit/captures/cwms-centerhill-flow.txt', 'docs/research/2026-10-14-source-audit/captures/cwms-CETT1-temperature.txt', 'docs/research/2026-10-14-source-implementation/live-check.json'],
+          note: 'Documented CWMS timeseries API, office LRN: audited CETT1/DHTT1/JPPT1/CORT1 flow and Celsius temperature series. Series identity, units, quality, complete pagination and three-hour freshness are checked. No tailwater elevation is advertised as gage height. CORT1 remains coverage-only for the broad Cumberland reach; conditions use three local stations. Missing/stale source metrics are withheld and recorded.',
         },
       },
       totals: {

@@ -1,0 +1,48 @@
+id: rough-ridge-creek
+name: Rough Ridge Creek
+stateId: TN
+waterbodyType: creek
+regionId: tn-se-hiwassee
+display: reference
+gaugeIds: []
+stockingProgram: false
+species: trout
+fishery: wild
+yearRound: true
+idealFlow: []
+notes: Rough Ridge Creek, a Tellico River tributary in Monroe County, and its
+  tributaries. Five trout daily with no length limit; single-hook artificial
+  lures only. Use or possession of bait or multiple-hook lures is prohibited.
+  One separated single-hook artificial dropper lure is permitted. No verified
+  local live gauge is assigned.
+officialSources:
+  - label: TWRA — Tennessee Trout Regulations
+    url: https://www.tn.gov/twra/fishing-regs/trout-regulations.html
+hydroIdentity:
+  gnisIds:
+    - "01639664"
+  huc8s:
+    - "06010204"
+  counties:
+    - Monroe
+opportunity:
+  trout: year-round-trout
+  evidenceState: documented
+  statement: TWRA designates Rough Ridge Creek, a Tellico River tributary in
+    Monroe County, and its tributaries as wild-trout water. The documented
+    opportunity applies to that named reach.
+  reachScope: Rough Ridge Creek, a Tellico River tributary in Monroe County, and
+    its tributaries
+  asOf: "2026"
+  sources:
+    - label: TWRA Tennessee Trout Regulations — named reach
+      url: https://www.tn.gov/twra/fishing-regs/trout-regulations.html
+      kind: legal-designation
+      observationPeriod: 2026-27 regulations
+      publicationDate: 2026-27
+      retrieved: 2026-10-14
+      pinpoint: Rough Ridge Creek, a Tellico River tributary in Monroe County, and its
+        tributaries
+  caveats:
+    - The map depicts the named water or a representative pond marker, not a
+      surveyed legal regulation boundary.

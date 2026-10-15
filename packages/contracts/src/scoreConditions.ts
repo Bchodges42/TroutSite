@@ -1,6 +1,7 @@
 import type { ConditionScore } from './schemas/conditions.js';
 import type { GaugeReading } from './schemas/gauge.js';
 import { selectGaugeReadings } from './selectGaugeReadings.js';
+import { metricObservedAt } from './readingFreshness.js';
 import type { IdealFlow } from './schemas/stream.js';
 import type { Stream } from './schemas/stream.js';
 
@@ -99,8 +100,10 @@ export function scoreConditions(stream: Stream, readings: GaugeReading[]): Condi
   }
 
   // Newest first; find the most recent reading that actually carries a flow value.
-  const byAge = [...relevant].sort((a, b) => timestampMs(b.timestamp) - timestampMs(a.timestamp));
-  const cfsReading = byAge.find((r) => typeof r.cfs === 'number');
+  const newest = (metric: 'cfs' | 'tempC' | 'heightFt') => relevant
+    .filter((r) => typeof r[metric] === 'number')
+    .sort((a, b) => timestampMs(metricObservedAt(b, metric)) - timestampMs(metricObservedAt(a, metric)))[0];
+  const cfsReading = newest('cfs');
 
   let value: number;
   let assessed = true;
@@ -144,7 +147,7 @@ export function scoreConditions(stream: Stream, readings: GaugeReading[]): Condi
       }
     }
   } else {
-    const heightReading = byAge.find((r) => typeof r.heightFt === 'number');
+    const heightReading = newest('heightFt');
     if (heightReading && typeof heightReading.heightFt === 'number') {
       value = HEIGHT_ONLY_BASE;
       reasons.push(
@@ -163,7 +166,7 @@ export function scoreConditions(stream: Stream, readings: GaugeReading[]): Condi
     }
   }
 
-  const tempReading = byAge.find((r) => typeof r.tempC === 'number');
+  const tempReading = newest('tempC');
   if (tempReading && typeof tempReading.tempC === 'number') {
     const t = tempReading.tempC;
     if (stream.species === 'warmwater') {

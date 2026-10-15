@@ -67,12 +67,12 @@ when the owner merges to `main`; the original feed fixes have capture-based regr
 - [ ] **DI-O1 — DNS:** `trout.tntechclimb.com` is NXDOMAIN (2026-10-14); restore the Cloudflare
   DNS record / Tunnel public hostname (`infra/cloudflared/`, RUNBOOK).
 - [ ] **DI-O2 — Approve ADR 0012** (`StockingEvent.status`, contracts 2.5.0) and merge the branch.
-- [ ] **DI-O3 — Out-of-range flow can still score "Good"** (Hiwassee 480 vs 500–3500 → 77;
-  Daddys 26.3 vs 30 → 81) while the reason says "water is low". Scorer policy: recommend
-  capping out-of-range flow at Fair, or a ±10% "slightly below/above" tolerance with matching copy.
-- [ ] **DI-O4 — Multi-gauge waters:** newest timestamp wins per metric, so flow and
-  temperature can come from different sites (Harpeth: Bellevue 69.3 cfs scored "Good" while
-  Franklin, the catalog reach, read 10.6). Choose a primary gauge per water.
+- [x] **DI-O3 — Out-of-range flow could score "Good".** Branch implementation caps
+  out-of-band scores at 69, including after temperature adjustments. Editorial guidance
+  is labeled; missing bands return `assessed:false`. See ADR 0013 and the implementation report.
+- [x] **DI-O4 — Multi-gauge waters.** Thirteen explicit primary/reference policies now
+  prevent a newer downstream sensor from substituting for the catalog reach. Per-metric
+  observation times survive storage/scoring/display. Owner review/merge still pending.
 - [ ] **DI-O5 — Confirm `USGS_WATERDATA_API_KEY` on the production host** (keyless quota is
   shared with the public gauge-tap route).
 - [ ] **DI-O6 — Polish line merge:** apply DI-1 to `releaseTime.ts` (`parseBlockTime`: accept
@@ -86,14 +86,18 @@ when the owner merges to `main`; the original feed fixes have capture-based regr
   obed-river 100–800 (earlier three-year median 33 cfs);
   powell/stones/red/S. Fork Cumberland above range on 52–62% of days; duck-river-tailwater
   range never flags. The modern USGS Statistics API returned seasonal percentiles for
-  actual catalog gauges (see follow-up report). Use them as historical flow context;
-  safe wading / productive fishing thresholds require separate reach-specific evidence.
+  actual catalog gauges; a monthly cache and separate snapshot/UI historical context are
+  implemented. These are month-of-year normals, not validated fishing thresholds.
+  All 94 bands remain editorial; safe wading / productive fishing limits still need
+  separate reach-specific evidence. See the implementation report.
 - [ ] **DI-22 · P2 — gauges without usable flow:** Doe 03485500 / Nolichucky 03465500
   (-999999, rating in development since 2024), Stones 03430200 negative; dry N. Chickamauga
-  shows "No data" instead of dry. Waters with no idealFlow score a flat 50 "Fair".
-- [ ] **DI-23 · P2 — gauge-to-reach mismatches:** wolf-river-fentress (Byrdstown gauge),
-  little-river (Maryville), ocoee-river (Copperhill above Ocoee 3), caney (Stonewall incl.
-  Smith Fork), pigeon (Newport).
+  shows "No data" instead of dry. The no-band false assessment is fixed; genuine CWMS
+  zero flow survives storage. USGS zero-sensor verification and missing upstream ratings remain open.
+- [x] **DI-23 · P2 — gauge-to-reach mismatches.** Wolf/Byrdstown and Pigeon/Newport are
+  reference-only; Little River uses Townsend; Ocoee uses Ocoee 3 release; Caney uses the
+  Center Hill tailwater series. Stonewall, Bellevue, Charleston and other references have
+  explicit reach notes and never silently feed the local score. Thirteen policies total.
 - [ ] **DI-24 · P2 — one shared stocking matcher + alias table** (web and API disagree; API
   `alias-data.ts` maps Cane Creek (Hickman/Perry) to `cane-creek`; evidence job ignores county).
 - [ ] **DI-25 · P2 — remaining silent-stale paths:** conditions `fetchedAt` is build time and
@@ -102,7 +106,8 @@ when the owner merges to `main`; the original feed fixes have capture-based regr
   time; one bad DB row aborts the build mid-generation; no lock between refresh, watchdog and
   autoupdate; evidence + NWS pressure/rain jobs are not scheduled in production.
 - [ ] **DI-26 · P3** — `tva:CEHT1`/`tva:DLHT1` readings nothing reads; observed "Midnight"
-  (00:00 vs 24:00) and the Nov 1 DST fall-back unverified; `latestReadings` orders by text;
+  (00:00 vs 24:00) and the Nov 1 DST fall-back unverified; `latestReadings` now orders by
+  parsed instant and excludes future rows before ranking;
   `gauges-tn.geojson` wiring/counties stale.
 - [x] **DI-27 · P1 — Missing Paint Creek / Big Soddy regulations.** Paint Creek now has
   separate upstream wild-trout and downstream Oct 1-Feb 28 delayed-harvest entries;
@@ -111,24 +116,35 @@ when the owner merges to `main`; the original feed fixes have capture-based regr
   Includes catalog-association / reach / date regression tests. `aa0a8a7`
 - [x] **DI-28 · P1 — Fort Patrick Henry rule on wrong water.** Preserved `8fb7674`:
   Boone Dam to Louis Milhorn Bridge applies to `boone-tailwater`, with an association test.
-- [ ] **DI-29 · P1 — Insect key invents tails for other organisms.** Both schemas allow
-  only 2/3; 63 taxa outside mayflies/stoneflies carry 2, including caddis, midges and fish.
-  `matchHatch` scores that attribute. Needs a compatible contract/observation/UI migration
-  with unknown/not-applicable semantics and taxon-specific biological review.
+- [x] **DI-29 · P1 — Insect key invented tails for other organisms.** Contract 2.6.0,
+  observation UI, ranker and detail labels now support 0/1/2/3/unknown/not-applicable.
+  Repaired 64 taxon records; eight ambiguous counts explicitly remain unknown. Unknown/NA
+  earns no attribute point. EPA identification reference and a change ledger are archived.
+  This fixes the structural error; it does not certify every other biological attribute.
 - [ ] **DI-30 · P2 — All 12 regional hatch charts lack chart citations.** Primary Smokies
   entomology studies found; their sampled dates/locations cannot validate all twelve charts.
-- [ ] **DI-31 · P2 — Fishery evidence gaps.** 156/190 have `opportunity.sources`; all 34
+  All twelve now label timing/abundance editorial; six Smokies caddis entries cite reviewed
+  Abrams Creek adult specimen records for regional presence only, not monthly emergence.
+- [ ] **DI-31 · P2 — Fishery evidence gaps.** 166/200 have `opportunity.sources`; all 34
   without it already say `opportunity.trout: unresolved` (31 unresolved, 2 conflicting,
-  1 limited evidence states). All 190 have general official links. Source presence alone
-  does not verify a fishery claim. Exact inventory is archived with the follow-up report.
-- [ ] **DI-32 · P2 — Regulation/catalog coverage gaps.** Slickrock Creek, Acorn Lake,
-  Dillards Ponds and several named wild-trout streams are absent. Piney's conflict persists
-  between TWRA's changes page and detailed trout page; retain the warning.
-- [ ] **DI-33 · P2 — Better-source integration researched, not implemented.** Documented
-  CWMS returned flow/temperature at all four existing Corps stations; modern USGS Statistics
-  returned approved percentiles; TDEC WQP returned historical temperature samples. TWRA's
-  temperature layer has missing unit/method metadata and its tailwater geometry dates to
-  2017. Validate mapping/freshness/units before replacing any production provider.
+  1 limited evidence states). The two new Slickrock/Dillard records also leave persistence
+  unresolved: 36 unresolved opportunities total. Source presence alone does not verify a
+  fishery claim. Baseline gaps are preserved, with updated counts in the implementation archive.
+- [x] **DI-32 · P2 — Named regulation/catalog coverage gaps.** Added Slickrock, Acorn,
+  Dillard and seven wild-trout waters with ten rules and source-based map locations (200
+  waters, 31 special rules). Existing 190 geometries are unchanged. Maps show named water
+  or representative pond markers, not surveyed legal boundaries. Piney's TWRA-page conflict
+  remains unresolved and its warning is retained.
+- [ ] **DI-33 · P2 — Better-source integrations / remaining metadata.** CWMS is now the
+  default conditions and coverage provider with audited LRN series, quality/unit/page
+  checks, per-metric freshness, explicit A2W rollback and daily truth comparison. USGS
+  approved monthly normals are cached separately. A historical WQP temperature-review CLI
+  retrieved 11 real TDEC samples; reviewed site-to-water mapping is still required before
+  publication. TWRA logger unit/method metadata and regulated-boundary geometry remain
+  unverified; no live temperature or legal-boundary claims were inferred from those layers.
+
+Implementation details, live receipts and validation: [2026-10-14 source implementation](reports/2026-10-14-source-implementation.md).
+All implementation statuses above describe `codex/data-sources-regulations-20261014`, not an owner merge or production deployment.
 
 ---
 

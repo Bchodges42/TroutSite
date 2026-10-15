@@ -1,0 +1,44 @@
+id: dillard-ponds
+name: Dillard Ponds (Greene County)
+aliases:
+  - Dillard Ponds
+  - Dillards Ponds
+  - Dillard Ponds (Horse Creek)
+stateId: TN
+waterbodyType: pond
+regionId: tn-northeast-watauga
+display: reference
+gaugeIds: []
+stockingProgram: true
+species: trout
+idealFlow: []
+notes: The Dillard Ponds complex in Greene County. See the water-specific
+  regulation before fishing. No verified local live gauge is assigned.
+officialSources:
+  - label: TWRA — Tennessee Trout Regulations
+    url: https://www.tn.gov/twra/fishing-regs/trout-regulations.html
+  - label: TWRA — Trout stocking program
+    url: https://www.tn.gov/twra/fishing/trout-information-stockings.html
+opportunity:
+  trout: unresolved
+  evidenceState: limited
+  statement: TWRA publishes special trout rules for The Dillard Ponds complex in
+    Greene County; the regulation alone does not establish the fishery's
+    year-round status.
+  reachScope: The Dillard Ponds complex in Greene County
+  asOf: "2026"
+  sources:
+    - label: TWRA Tennessee Trout Regulations — named reach
+      url: https://www.tn.gov/twra/fishing-regs/trout-regulations.html
+      kind: legal-designation
+      observationPeriod: 2026-27 regulations
+      publicationDate: 2026-27
+      retrieved: 2026-10-14
+      pinpoint: The Dillard Ponds complex in Greene County
+  caveats:
+    - The map depicts the named water or a representative pond marker, not a
+      surveyed legal regulation boundary.
+  unresolvedQuestion: Current reach-specific trout population and seasonal
+    persistence need additional agency fishery evidence.
+counties:
+  - Greene

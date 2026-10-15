@@ -229,6 +229,15 @@ exception is surfaced by the identity audit.
 
 ## External references (per-stream official sources)
 
+October 14, 2026 additions: eight regulated stream traces use verified GNIS/HUC graph
+identities with no synthetic bridges; Acorn Lake and Dillard Ponds use representative
+official TWRA stocking-map points (one of four Dillard pond points). All original 190
+map feature objects remain unchanged; there are now 200. Markers/traces identify named
+waters and do not delineate legal regulation boundaries. Exact points, request metadata,
+identity ledger and preservation counts are in `research/2026-10-14-source-implementation/`.
+Targeted regeneration supports `--only id,id --no-bridges` so additions preserve
+unselected reviewed recipes and geometries.
+
 Each stream in `streams.json` carries `officialSources` URLs (TWRA, USGS Water
 Data, TVA lake levels, NPS). Those URLs are the canonical regulatory/flow
 authorities; this atlas carries no flow or stocking data, only geometry.

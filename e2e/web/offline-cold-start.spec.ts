@@ -73,9 +73,10 @@ test('offline: hatch flow, charts, and last-known conditions stay fully function
   await expect(page.getByText('Tailwaters now')).toBeVisible();
   await page.locator('li', { hasText: 'Boone Tailwater' }).first().click();
   await expect(page.getByRole('heading', { name: 'Boone Tailwater' })).toBeVisible();
-  // September sits outside Boone's authored stocking window (Dec/Mar/Apr):
-  // the honest seasonal state replaces the score assessment offline.
-  await expect(page.getByText(/PROGRAMMATIC — out of season; raw readings shown/)).toBeVisible();
+  // Boone's published stocking schedule is program evidence, not proof that
+  // trout are present or absent in the current month. Raw readings stay available.
+  await expect(page.getByText('PROGRAMMATIC — stocking schedule', { exact: true }).first()).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Gauge readings' })).toBeVisible();
   await expect(page.getByText(/Offline · last known/).first()).toBeVisible();
 
   // restart resilience: the shell, catalog, and cached data survive a reload
@@ -105,7 +106,7 @@ test('wizard offers a clean start-over after an unremarkable bug', async ({ page
 async function runWizard(page: Page): Promise<void> {
   await page.getByRole('button', { name: /^#16/ }).click();
   await page.getByRole('button', { name: 'olive', exact: true }).click();
-  await page.getByRole('button', { name: /2 tails/ }).click();
+  await page.getByRole('button', { name: /2 tail filaments/ }).click();
   await page.getByRole('button', { name: /Flat plates \(lamellae\)/ }).click();
   await page.getByRole('button', { name: /slender/ }).click();
   await page.getByRole('button', { name: 'See matches' }).click();

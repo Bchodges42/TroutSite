@@ -1,6 +1,6 @@
 import type { GaugeReading } from './schemas/gauge.js';
 import type { FishabilityScore, SpeciesComfortBands, SpeciesKey } from './schemas/fishability.js';
-import { READING_STALE_MINUTES } from './readingFreshness.js';
+import { READING_STALE_MINUTES, metricObservedAt } from './readingFreshness.js';
 
 /**
  * Per-species thermal comfort scoring (ADR 0007, F4). Deterministic and
@@ -44,19 +44,21 @@ export function scoreFishability(
   // Per-metric freshness (scoreConditions pattern): newest reading that
   // actually carries a temperature — that reading's own timestamp is the
   // metric's observation time.
-  const byAge = [...readings].sort((a, b) => timestampMs(b.timestamp) - timestampMs(a.timestamp));
+  const byAge = [...readings].sort((a, b) => timestampMs(metricObservedAt(b, 'tempC')) - timestampMs(metricObservedAt(a, 'tempC')));
   const tempReading = byAge.find((r) => typeof r.tempC === 'number');
   if (!tempReading || typeof tempReading.tempC !== 'number') {
     return cannotAssess('No water-temperature reading is available for this water.');
   }
 
-  const observedAtMs = timestampMs(tempReading.timestamp);
+  const observedAt = metricObservedAt(tempReading, 'tempC');
+  const observedAtMs = timestampMs(observedAt);
   const ageMinutes = Math.max(0, Math.floor((nowMs - observedAtMs) / 60_000));
-  const freshness = { observedAt: tempReading.timestamp, ageMinutes };
+  const freshness = { observedAt, ageMinutes };
   const freshnessInvalid = !Number.isFinite(observedAtMs) || observedAtMs <= 0;
   if (freshnessInvalid) {
     return cannotAssess('The latest water-temperature observation has an unreadable timestamp.');
   }
+  if (observedAtMs > nowMs) return cannotAssess('The water-temperature observation is dated in the future.');
   if (ageMinutes > READING_STALE_MINUTES) {
     return cannotAssess(
       `The latest water-temperature observation is ${ageMinutes} minutes old (limit ${READING_STALE_MINUTES}).`,

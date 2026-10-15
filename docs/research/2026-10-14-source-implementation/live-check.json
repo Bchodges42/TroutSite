@@ -1,0 +1,448 @@
+{
+  "startedAt": "2026-10-15T04:19:45.548Z",
+  "purpose": "Read-only source verification with a temporary database",
+  "CETT1": {
+    "observations": [
+      {
+        "sourceId": "usace-cwms",
+        "sourceUrl": "https://cwms-data.usace.army.mil/cwms-data/timeseries?office=LRN&name=CETT1-CENTER_HILL.Flow.Ave.1Hour.1Hour.man-rev&unit=cfs&begin=2026-10-13T04%3A19%3A45.549Z&end=2026-10-15T04%3A19%3A45.549Z&page-size=1000",
+        "observedAt": "2026-10-15T02:00:00.000Z",
+        "metric": "discharge-cfs",
+        "value": 250.00000007062937,
+        "qualifier": "0"
+      },
+      {
+        "sourceId": "usace-cwms",
+        "sourceUrl": "https://cwms-data.usace.army.mil/cwms-data/timeseries?office=LRN&name=CETT1-CENTER_HILL.Temp-Water-Tail.Inst.30Minutes.0.dcp-rev&unit=C&begin=2026-10-13T04%3A19%3A45.549Z&end=2026-10-15T04%3A19%3A45.549Z&page-size=1000",
+        "observedAt": "2026-10-15T03:30:00.000Z",
+        "metric": "temperature-c",
+        "value": 12.74,
+        "qualifier": "0"
+      }
+    ],
+    "rawByMetric": {
+      "discharge-cfs": {
+        "sourceId": "usace-cwms",
+        "sourceUrl": "https://cwms-data.usace.army.mil/cwms-data/timeseries?office=LRN&name=CETT1-CENTER_HILL.Flow.Ave.1Hour.1Hour.man-rev&unit=cfs&begin=2026-10-13T04%3A19%3A45.549Z&end=2026-10-15T04%3A19%3A45.549Z&page-size=1000",
+        "key": "CETT1-CENTER_HILL.Flow.Ave.1Hour.1Hour.man-rev",
+        "office": "LRN",
+        "units": "cfs",
+        "value": [
+          1792029600000,
+          250.00000007062937,
+          0
+        ]
+      },
+      "temperature-c": {
+        "sourceId": "usace-cwms",
+        "sourceUrl": "https://cwms-data.usace.army.mil/cwms-data/timeseries?office=LRN&name=CETT1-CENTER_HILL.Temp-Water-Tail.Inst.30Minutes.0.dcp-rev&unit=C&begin=2026-10-13T04%3A19%3A45.549Z&end=2026-10-15T04%3A19%3A45.549Z&page-size=1000",
+        "key": "CETT1-CENTER_HILL.Temp-Water-Tail.Inst.30Minutes.0.dcp-rev",
+        "office": "LRN",
+        "units": "C",
+        "value": [
+          1792035000000,
+          12.74,
+          0
+        ]
+      }
+    },
+    "warnings": [],
+    "errors": 0
+  },
+  "DHTT1": {
+    "observations": [
+      {
+        "sourceId": "usace-cwms",
+        "sourceUrl": "https://cwms-data.usace.army.mil/cwms-data/timeseries?office=LRN&name=DHTT1-DALE_HOLLOW.Flow.Ave.1Hour.1Hour.man-rev&unit=cfs&begin=2026-10-13T04%3A19%3A47.230Z&end=2026-10-15T04%3A19%3A47.230Z&page-size=1000",
+        "observedAt": "2026-10-15T02:00:00.000Z",
+        "metric": "discharge-cfs",
+        "value": 1736.9999999892643,
+        "qualifier": "0"
+      },
+      {
+        "sourceId": "usace-cwms",
+        "sourceUrl": "https://cwms-data.usace.army.mil/cwms-data/timeseries?office=LRN&name=DHTT1-DALE_HOLLOW.Temp-Water-Tail.Inst.30Minutes.0.dcp-rev&unit=C&begin=2026-10-13T04%3A19%3A47.230Z&end=2026-10-15T04%3A19%3A47.230Z&page-size=1000",
+        "observedAt": "2026-10-15T03:30:00.000Z",
+        "metric": "temperature-c",
+        "value": 12.32,
+        "qualifier": "0"
+      }
+    ],
+    "rawByMetric": {
+      "discharge-cfs": {
+        "sourceId": "usace-cwms",
+        "sourceUrl": "https://cwms-data.usace.army.mil/cwms-data/timeseries?office=LRN&name=DHTT1-DALE_HOLLOW.Flow.Ave.1Hour.1Hour.man-rev&unit=cfs&begin=2026-10-13T04%3A19%3A47.230Z&end=2026-10-15T04%3A19%3A47.230Z&page-size=1000",
+        "key": "DHTT1-DALE_HOLLOW.Flow.Ave.1Hour.1Hour.man-rev",
+        "office": "LRN",
+        "units": "cfs",
+        "value": [
+          1792029600000,
+          1736.9999999892643,
+          0
+        ]
+      },
+      "temperature-c": {
+        "sourceId": "usace-cwms",
+        "sourceUrl": "https://cwms-data.usace.army.mil/cwms-data/timeseries?office=LRN&name=DHTT1-DALE_HOLLOW.Temp-Water-Tail.Inst.30Minutes.0.dcp-rev&unit=C&begin=2026-10-13T04%3A19%3A47.230Z&end=2026-10-15T04%3A19%3A47.230Z&page-size=1000",
+        "key": "DHTT1-DALE_HOLLOW.Temp-Water-Tail.Inst.30Minutes.0.dcp-rev",
+        "office": "LRN",
+        "units": "C",
+        "value": [
+          1792035000000,
+          12.32,
+          0
+        ]
+      }
+    },
+    "warnings": [],
+    "errors": 0
+  },
+  "JPPT1": {
+    "observations": [
+      {
+        "sourceId": "usace-cwms",
+        "sourceUrl": "https://cwms-data.usace.army.mil/cwms-data/timeseries?office=LRN&name=JPPT1-J_PERCY_PRIEST.Temp-Water-Tail.Inst.30Minutes.0.dcp-rev&unit=C&begin=2026-10-13T04%3A19%3A48.664Z&end=2026-10-15T04%3A19%3A48.664Z&page-size=1000",
+        "observedAt": "2026-10-15T03:00:00.000Z",
+        "metric": "temperature-c",
+        "value": 23.06,
+        "qualifier": "0"
+      }
+    ],
+    "rawByMetric": {
+      "temperature-c": {
+        "sourceId": "usace-cwms",
+        "sourceUrl": "https://cwms-data.usace.army.mil/cwms-data/timeseries?office=LRN&name=JPPT1-J_PERCY_PRIEST.Temp-Water-Tail.Inst.30Minutes.0.dcp-rev&unit=C&begin=2026-10-13T04%3A19%3A48.664Z&end=2026-10-15T04%3A19%3A48.664Z&page-size=1000",
+        "key": "JPPT1-J_PERCY_PRIEST.Temp-Water-Tail.Inst.30Minutes.0.dcp-rev",
+        "office": "LRN",
+        "units": "C",
+        "value": [
+          1792033200000,
+          23.06,
+          0
+        ]
+      }
+    },
+    "warnings": [
+      "CWMS JPPT1 discharge-cfs: no fresh usable observations (missing, stale, future or quality flagged)"
+    ],
+    "errors": 1
+  },
+  "temperature": {
+    "sourceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000003498&characteristicName=Temperature%2C+water&startDateLo=01-01-2024&startDateHi=12-31-2024&mimeType=csv&zip=no",
+    "retrievedAt": "2026-10-15T04:19:50.456Z",
+    "samples": [
+      {
+        "siteId": "TDECWR_WQX-TNW000003498",
+        "sampleDate": "2024-10-08",
+        "temperatureC": 17.3,
+        "originalValue": "17.3",
+        "originalUnit": "deg C",
+        "sampleTime": "10:25:00",
+        "timeZoneCode": "CST",
+        "status": "Final",
+        "sourceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000003498&characteristicName=Temperature%2C+water&startDateLo=01-01-2024&startDateHi=12-31-2024&mimeType=csv&zip=no",
+        "retrievedAt": "2026-10-15T04:19:50.456Z"
+      },
+      {
+        "siteId": "TDECWR_WQX-TNW000003498",
+        "sampleDate": "2024-09-10",
+        "temperatureC": 19.55,
+        "originalValue": "19.55",
+        "originalUnit": "deg C",
+        "sampleTime": "11:10:00",
+        "timeZoneCode": "CST",
+        "status": "Final",
+        "sourceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000003498&characteristicName=Temperature%2C+water&startDateLo=01-01-2024&startDateHi=12-31-2024&mimeType=csv&zip=no",
+        "retrievedAt": "2026-10-15T04:19:50.456Z"
+      },
+      {
+        "siteId": "TDECWR_WQX-TNW000003498",
+        "sampleDate": "2024-08-12",
+        "temperatureC": 21.51,
+        "originalValue": "21.51",
+        "originalUnit": "deg C",
+        "sampleTime": "10:05:00",
+        "timeZoneCode": "CST",
+        "status": "Final",
+        "sourceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000003498&characteristicName=Temperature%2C+water&startDateLo=01-01-2024&startDateHi=12-31-2024&mimeType=csv&zip=no",
+        "retrievedAt": "2026-10-15T04:19:50.456Z"
+      },
+      {
+        "siteId": "TDECWR_WQX-TNW000003498",
+        "sampleDate": "2024-11-06",
+        "temperatureC": 18.21,
+        "originalValue": "18.21",
+        "originalUnit": "deg C",
+        "sampleTime": "10:00:00",
+        "timeZoneCode": "CST",
+        "status": "Final",
+        "sourceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000003498&characteristicName=Temperature%2C+water&startDateLo=01-01-2024&startDateHi=12-31-2024&mimeType=csv&zip=no",
+        "retrievedAt": "2026-10-15T04:19:50.456Z"
+      },
+      {
+        "siteId": "TDECWR_WQX-TNW000003498",
+        "sampleDate": "2024-09-10",
+        "temperatureC": 19.55,
+        "originalValue": "19.55",
+        "originalUnit": "deg C",
+        "sampleTime": "11:35:00",
+        "timeZoneCode": "CST",
+        "status": "Final",
+        "sourceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000003498&characteristicName=Temperature%2C+water&startDateLo=01-01-2024&startDateHi=12-31-2024&mimeType=csv&zip=no",
+        "retrievedAt": "2026-10-15T04:19:50.456Z"
+      },
+      {
+        "siteId": "TDECWR_WQX-TNW000003498",
+        "sampleDate": "2024-08-08",
+        "temperatureC": 23.82,
+        "originalValue": "23.82",
+        "originalUnit": "deg C",
+        "sampleTime": "09:45:00",
+        "timeZoneCode": "CST",
+        "status": "Final",
+        "sourceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000003498&characteristicName=Temperature%2C+water&startDateLo=01-01-2024&startDateHi=12-31-2024&mimeType=csv&zip=no",
+        "retrievedAt": "2026-10-15T04:19:50.456Z"
+      },
+      {
+        "siteId": "TDECWR_WQX-TNW000003498",
+        "sampleDate": "2024-08-15",
+        "temperatureC": 22.25,
+        "originalValue": "22.25",
+        "originalUnit": "deg C",
+        "sampleTime": "09:10:00",
+        "timeZoneCode": "CST",
+        "status": "Final",
+        "sourceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000003498&characteristicName=Temperature%2C+water&startDateLo=01-01-2024&startDateHi=12-31-2024&mimeType=csv&zip=no",
+        "retrievedAt": "2026-10-15T04:19:50.456Z"
+      },
+      {
+        "siteId": "TDECWR_WQX-TNW000003498",
+        "sampleDate": "2024-08-05",
+        "temperatureC": 23.88,
+        "originalValue": "23.88",
+        "originalUnit": "deg C",
+        "sampleTime": "11:10:00",
+        "timeZoneCode": "CST",
+        "status": "Final",
+        "sourceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000003498&characteristicName=Temperature%2C+water&startDateLo=01-01-2024&startDateHi=12-31-2024&mimeType=csv&zip=no",
+        "retrievedAt": "2026-10-15T04:19:50.456Z"
+      },
+      {
+        "siteId": "TDECWR_WQX-TNW000003498",
+        "sampleDate": "2024-07-22",
+        "temperatureC": 22.41,
+        "originalValue": "22.41",
+        "originalUnit": "deg C",
+        "sampleTime": "11:20:00",
+        "timeZoneCode": "CST",
+        "status": "Final",
+        "sourceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000003498&characteristicName=Temperature%2C+water&startDateLo=01-01-2024&startDateHi=12-31-2024&mimeType=csv&zip=no",
+        "retrievedAt": "2026-10-15T04:19:50.456Z"
+      },
+      {
+        "siteId": "TDECWR_WQX-TNW000003498",
+        "sampleDate": "2024-12-18",
+        "temperatureC": 12.82,
+        "originalValue": "12.82",
+        "originalUnit": "deg C",
+        "sampleTime": "09:05:00",
+        "timeZoneCode": "CST",
+        "status": "Final",
+        "sourceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000003498&characteristicName=Temperature%2C+water&startDateLo=01-01-2024&startDateHi=12-31-2024&mimeType=csv&zip=no",
+        "retrievedAt": "2026-10-15T04:19:50.456Z"
+      },
+      {
+        "siteId": "TDECWR_WQX-TNW000003498",
+        "sampleDate": "2024-09-10",
+        "temperatureC": 19.58,
+        "originalValue": "19.58",
+        "originalUnit": "deg C",
+        "sampleTime": "11:45:00",
+        "timeZoneCode": "CST",
+        "status": "Final",
+        "sourceUrl": "https://www.waterqualitydata.us/data/Result/search?siteid=TDECWR_WQX-TNW000003498&characteristicName=Temperature%2C+water&startDateLo=01-01-2024&startDateHi=12-31-2024&mimeType=csv&zip=no",
+        "retrievedAt": "2026-10-15T04:19:50.456Z"
+      }
+    ],
+    "skipped": 0
+  },
+  "history": {
+    "items": 12,
+    "cached": false,
+    "warnings": []
+  },
+  "normals": [
+    {
+      "gaugeId": "03538830",
+      "month": 1,
+      "p25": 152.75,
+      "median": 204.5,
+      "p75": 293.25,
+      "sampleCount": 16,
+      "unit": "cfs",
+      "basis": "USGS approved month-of-year discharge normals",
+      "sourceUrl": "https://api.waterdata.usgs.gov/statistics/v0/observationNormals?monitoring_location_id=USGS-03538830&parameter_code=00060&computation_type=percentile&normal_type=MOY&page_size=1000",
+      "retrievedAt": "2026-10-15T04:19:50.510Z",
+      "parentTimeSeriesId": "d82a715cecc94ddeb3975fce7545e234",
+      "computationId": "018313d7-e0a2-4ac8-b73b-84556a08d002"
+    },
+    {
+      "gaugeId": "03538830",
+      "month": 2,
+      "p25": 169.12,
+      "median": 222.75,
+      "p75": 353.25,
+      "sampleCount": 16,
+      "unit": "cfs",
+      "basis": "USGS approved month-of-year discharge normals",
+      "sourceUrl": "https://api.waterdata.usgs.gov/statistics/v0/observationNormals?monitoring_location_id=USGS-03538830&parameter_code=00060&computation_type=percentile&normal_type=MOY&page_size=1000",
+      "retrievedAt": "2026-10-15T04:19:50.510Z",
+      "parentTimeSeriesId": "d82a715cecc94ddeb3975fce7545e234",
+      "computationId": "6c6abc05-f639-4c5a-a271-b3d32f63c44d"
+    },
+    {
+      "gaugeId": "03538830",
+      "month": 3,
+      "p25": 148.25,
+      "median": 236,
+      "p75": 269,
+      "sampleCount": 16,
+      "unit": "cfs",
+      "basis": "USGS approved month-of-year discharge normals",
+      "sourceUrl": "https://api.waterdata.usgs.gov/statistics/v0/observationNormals?monitoring_location_id=USGS-03538830&parameter_code=00060&computation_type=percentile&normal_type=MOY&page_size=1000",
+      "retrievedAt": "2026-10-15T04:19:50.510Z",
+      "parentTimeSeriesId": "d82a715cecc94ddeb3975fce7545e234",
+      "computationId": "722fa653-6c56-4577-9736-0c6e991db59c"
+    },
+    {
+      "gaugeId": "03538830",
+      "month": 4,
+      "p25": 95.91,
+      "median": 140.25,
+      "p75": 227.5,
+      "sampleCount": 16,
+      "unit": "cfs",
+      "basis": "USGS approved month-of-year discharge normals",
+      "sourceUrl": "https://api.waterdata.usgs.gov/statistics/v0/observationNormals?monitoring_location_id=USGS-03538830&parameter_code=00060&computation_type=percentile&normal_type=MOY&page_size=1000",
+      "retrievedAt": "2026-10-15T04:19:50.510Z",
+      "parentTimeSeriesId": "d82a715cecc94ddeb3975fce7545e234",
+      "computationId": "16230f34-f0a4-4bd2-8a08-7c59b090f431"
+    },
+    {
+      "gaugeId": "03538830",
+      "month": 5,
+      "p25": 48.8,
+      "median": 68.95,
+      "p75": 153.5,
+      "sampleCount": 16,
+      "unit": "cfs",
+      "basis": "USGS approved month-of-year discharge normals",
+      "sourceUrl": "https://api.waterdata.usgs.gov/statistics/v0/observationNormals?monitoring_location_id=USGS-03538830&parameter_code=00060&computation_type=percentile&normal_type=MOY&page_size=1000",
+      "retrievedAt": "2026-10-15T04:19:50.510Z",
+      "parentTimeSeriesId": "d82a715cecc94ddeb3975fce7545e234",
+      "computationId": "e6bdb916-da2d-41c1-9277-2f85356add9d"
+    },
+    {
+      "gaugeId": "03538830",
+      "month": 6,
+      "p25": 13.74,
+      "median": 22.88,
+      "p75": 29.51,
+      "sampleCount": 16,
+      "unit": "cfs",
+      "basis": "USGS approved month-of-year discharge normals",
+      "sourceUrl": "https://api.waterdata.usgs.gov/statistics/v0/observationNormals?monitoring_location_id=USGS-03538830&parameter_code=00060&computation_type=percentile&normal_type=MOY&page_size=1000",
+      "retrievedAt": "2026-10-15T04:19:50.510Z",
+      "parentTimeSeriesId": "d82a715cecc94ddeb3975fce7545e234",
+      "computationId": "3dcb5bd5-582f-4c82-96e1-011da7019909"
+    },
+    {
+      "gaugeId": "03538830",
+      "month": 7,
+      "p25": 12.98,
+      "median": 24.6,
+      "p75": 39.98,
+      "sampleCount": 16,
+      "unit": "cfs",
+      "basis": "USGS approved month-of-year discharge normals",
+      "sourceUrl": "https://api.waterdata.usgs.gov/statistics/v0/observationNormals?monitoring_location_id=USGS-03538830&parameter_code=00060&computation_type=percentile&normal_type=MOY&page_size=1000",
+      "retrievedAt": "2026-10-15T04:19:50.510Z",
+      "parentTimeSeriesId": "d82a715cecc94ddeb3975fce7545e234",
+      "computationId": "a44edf17-d6e6-4ace-bf34-5a493b52e532"
+    },
+    {
+      "gaugeId": "03538830",
+      "month": 8,
+      "p25": 5.56,
+      "median": 14.7,
+      "p75": 32.48,
+      "sampleCount": 16,
+      "unit": "cfs",
+      "basis": "USGS approved month-of-year discharge normals",
+      "sourceUrl": "https://api.waterdata.usgs.gov/statistics/v0/observationNormals?monitoring_location_id=USGS-03538830&parameter_code=00060&computation_type=percentile&normal_type=MOY&page_size=1000",
+      "retrievedAt": "2026-10-15T04:19:50.510Z",
+      "parentTimeSeriesId": "d82a715cecc94ddeb3975fce7545e234",
+      "computationId": "3412e6d4-a049-425c-9c28-2a6f255027c1"
+    },
+    {
+      "gaugeId": "03538830",
+      "month": 9,
+      "p25": 5.44,
+      "median": 15.4,
+      "p75": 37.35,
+      "sampleCount": 15,
+      "unit": "cfs",
+      "basis": "USGS approved month-of-year discharge normals",
+      "sourceUrl": "https://api.waterdata.usgs.gov/statistics/v0/observationNormals?monitoring_location_id=USGS-03538830&parameter_code=00060&computation_type=percentile&normal_type=MOY&page_size=1000",
+      "retrievedAt": "2026-10-15T04:19:50.510Z",
+      "parentTimeSeriesId": "d82a715cecc94ddeb3975fce7545e234",
+      "computationId": "fce0356c-b106-4197-91a2-b32a703c00f4"
+    },
+    {
+      "gaugeId": "03538830",
+      "month": 10,
+      "p25": 7.5,
+      "median": 16.6,
+      "p75": 46.6,
+      "sampleCount": 15,
+      "unit": "cfs",
+      "basis": "USGS approved month-of-year discharge normals",
+      "sourceUrl": "https://api.waterdata.usgs.gov/statistics/v0/observationNormals?monitoring_location_id=USGS-03538830&parameter_code=00060&computation_type=percentile&normal_type=MOY&page_size=1000",
+      "retrievedAt": "2026-10-15T04:19:50.510Z",
+      "parentTimeSeriesId": "d82a715cecc94ddeb3975fce7545e234",
+      "computationId": "cd2ca5a3-4681-45b8-ba99-e721160adccf"
+    },
+    {
+      "gaugeId": "03538830",
+      "month": 11,
+      "p25": 19.55,
+      "median": 49.7,
+      "p75": 79.85,
+      "sampleCount": 15,
+      "unit": "cfs",
+      "basis": "USGS approved month-of-year discharge normals",
+      "sourceUrl": "https://api.waterdata.usgs.gov/statistics/v0/observationNormals?monitoring_location_id=USGS-03538830&parameter_code=00060&computation_type=percentile&normal_type=MOY&page_size=1000",
+      "retrievedAt": "2026-10-15T04:19:50.510Z",
+      "parentTimeSeriesId": "d82a715cecc94ddeb3975fce7545e234",
+      "computationId": "34105a43-5e94-410d-b776-53a6b87d3997"
+    },
+    {
+      "gaugeId": "03538830",
+      "month": 12,
+      "p25": 121,
+      "median": 210,
+      "p75": 276,
+      "sampleCount": 15,
+      "unit": "cfs",
+      "basis": "USGS approved month-of-year discharge normals",
+      "sourceUrl": "https://api.waterdata.usgs.gov/statistics/v0/observationNormals?monitoring_location_id=USGS-03538830&parameter_code=00060&computation_type=percentile&normal_type=MOY&page_size=1000",
+      "retrievedAt": "2026-10-15T04:19:50.510Z",
+      "parentTimeSeriesId": "d82a715cecc94ddeb3975fce7545e234",
+      "computationId": "8e9d149b-9b91-4ae1-87e6-6341481d7f12"
+    }
+  ],
+  "liveRowsWrittenByHistory": {
+    "n": 0
+  },
+  "finishedAt": "2026-10-15T04:19:51.250Z"
+}

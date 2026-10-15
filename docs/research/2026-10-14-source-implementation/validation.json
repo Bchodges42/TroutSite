@@ -1,0 +1,22 @@
+{
+  "dateLocal": "2026-10-14",
+  "branch": "codex/data-sources-regulations-20261014",
+  "contracts": {"passed": 215, "statementCoveragePercent": 97.55, "branchCoveragePercent": 95.41},
+  "content": {"passed": 27},
+  "api": {"passed": 307},
+  "web": {"passed": 385, "skipped": 1},
+  "infrastructure": {"passed": 13},
+  "unitAndInfrastructureTotalPassed": 947,
+  "offlineChromium": {"passed": 4, "specs": ["e2e/web/offline-cold-start.spec.ts", "e2e/web/offline-hatch.spec.ts"]},
+  "build": "pnpm -r build passed; API rebuilt after truth-check updates",
+  "contentValidation": "passed",
+  "waterIdentityAudit": "passed",
+  "atlasValidation": "passed; 200 unique waters",
+  "originalAtlasFeaturesUnchanged": 190,
+  "modifiedCodeLint": {"errors": 0, "warnings": 1, "note": "Existing unused eslint-disable directive in opportunity/lib.mjs"},
+  "knownPackageLintLimitation": "Pre-existing content-script unused-variable errors remain outside this change.",
+  "webPrecacheMb": 12.53,
+  "webPrecacheBudgetMb": 25,
+  "contentPackBytes": 1618395,
+  "deployment": "not merged or deployed"
+}

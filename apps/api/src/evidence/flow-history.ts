@@ -64,7 +64,8 @@ export async function runFlowHistoryJob(db: Db, opts: {
 }) {
   const now = opts.now ?? new Date();
   const last = db.prepare("SELECT finished_at FROM jobs_log WHERE job='flow-history' AND status='ok' ORDER BY id DESC LIMIT 1").get() as { finished_at: string } | undefined;
-  if (!opts.force && last && now.getTime() - Date.parse(last.finished_at) < 30 * 86400000) return { items: 0, cached: true };
+  const age = last ? now.getTime() - Date.parse(last.finished_at) : Infinity;
+  if (!opts.force && age >= 0 && age < 30 * 86400000) return { items: 0, cached: true };
   const handle = startJob(db, 'flow-history');
   try {
     const streams = db.prepare('SELECT gauge_ids FROM streams').all() as { gauge_ids: string }[];

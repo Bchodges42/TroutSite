@@ -1,0 +1,48 @@
+id: slickrock-creek
+name: Slickrock Creek (TN/NC boundary reach)
+aliases:
+  - Slickrock Creek
+stateId: TN
+waterbodyType: creek
+regionId: tn-se-hiwassee
+display: reference
+gaugeIds: []
+stockingProgram: false
+species: trout
+idealFlow: []
+notes: Only the portion of Slickrock Creek forming the Tennessee–North Carolina
+  state boundary. See the water-specific regulation before fishing. No verified
+  local live gauge is assigned.
+officialSources:
+  - label: TWRA — Tennessee Trout Regulations
+    url: https://www.tn.gov/twra/fishing-regs/trout-regulations.html
+hydroIdentity:
+  gnisIds:
+    - "01015587"
+  huc8s:
+    - "06010204"
+  counties:
+    - Monroe
+opportunity:
+  trout: unresolved
+  evidenceState: limited
+  statement: TWRA publishes special trout rules for Only the portion of Slickrock
+    Creek forming the Tennessee–North Carolina state boundary; the regulation
+    alone does not establish the fishery's year-round status.
+  reachScope: Only the portion of Slickrock Creek forming the Tennessee–North
+    Carolina state boundary
+  asOf: "2026"
+  sources:
+    - label: TWRA Tennessee Trout Regulations — named reach
+      url: https://www.tn.gov/twra/fishing-regs/trout-regulations.html
+      kind: legal-designation
+      observationPeriod: 2026-27 regulations
+      publicationDate: 2026-27
+      retrieved: 2026-10-14
+      pinpoint: Only the portion of Slickrock Creek forming the Tennessee–North
+        Carolina state boundary
+  caveats:
+    - The map depicts the named water or a representative pond marker, not a
+      surveyed legal regulation boundary.
+  unresolvedQuestion: Current reach-specific trout population and seasonal
+    persistence need additional agency fishery evidence.

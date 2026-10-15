@@ -1,0 +1,25 @@
+{
+  "generatedAt": "2026-10-15T04:22:39.123Z",
+  "streams": 200,
+  "atlasFeatures": 200,
+  "originalMapFeatures": 190,
+  "originalMapFeaturesUnchanged": 190,
+  "withFisherySources": 166,
+  "withoutFisherySources": 34,
+  "unresolvedTroutOpportunity": 36,
+  "editorialFlowBands": 94,
+  "gaugePolicies": 13,
+  "specialRegulationEntries": 31,
+  "newWaters": [
+    "north-river-monroe",
+    "bald-river",
+    "sycamore-creek-tellico",
+    "rough-ridge-creek",
+    "rocky-fork-greene-unicoi",
+    "left-prong-hampton-creek",
+    "little-stony-creek-carter",
+    "slickrock-creek",
+    "acorn-lake",
+    "dillard-ponds"
+  ]
+}

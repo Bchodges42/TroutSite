@@ -12,6 +12,11 @@ const reading = (over: Partial<GaugeReading>): GaugeReading => ({
 });
 
 describe('flowTrend', () => {
+  it('does not fabricate a trend when only the temperature sensor timestamp changes', () => {
+    const sameFlowTime = '2026-09-01T13:00Z';
+    expect(flowTrend([reading({ cfs: 100, metricTimes: { cfs: sameFlowTime } }),
+      reading({ cfs: 200, timestamp: '2026-09-01T15:00Z', metricTimes: { cfs: sameFlowTime } })])).toBe('unknown');
+  });
   it('detects rising, falling, and steady flow', () => {
     const rising = [reading({ cfs: 300, timestamp: '2026-09-01T14:00Z' }), reading({ cfs: 100, timestamp: '2026-09-01T13:00Z' })];
     const falling = [reading({ cfs: 100, timestamp: '2026-09-01T14:00Z' }), reading({ cfs: 300, timestamp: '2026-09-01T13:00Z' })];

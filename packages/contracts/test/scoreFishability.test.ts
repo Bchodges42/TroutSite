@@ -21,6 +21,16 @@ function reading(overrides: Partial<GaugeReading> & { tempC?: number; ageMinutes
 }
 
 describe('scoreFishability boundaries', () => {
+  it('uses the temperature sensor time and refuses future or stale temperatures', () => {
+    const mixed = reading({ tempC: 22, ageMinutes: 0, metricTimes: { tempC: new Date(NOW - 181 * 60_000).toISOString() } });
+    expect(scoreFishability([mixed], 'smallmouth-bass', smallmouthBands, NOW).assessed).toBe(false);
+    mixed.metricTimes!.tempC = new Date(NOW + 60_000).toISOString();
+    expect(scoreFishability([mixed], 'smallmouth-bass', smallmouthBands, NOW).assessed).toBe(false);
+    const recent = reading({ tempC: 22, ageMinutes: 30 });
+    expect(scoreFishability([mixed, recent], 'smallmouth-bass', smallmouthBands, NOW).assessed).toBe(false);
+    mixed.metricTimes!.tempC = new Date(NOW - 181 * 60_000).toISOString();
+    expect(scoreFishability([mixed, recent], 'smallmouth-bass', smallmouthBands, NOW).freshness?.observedAt).toBe(recent.timestamp);
+  });
   const cases: Array<[number, number, boolean, string]> = [
     // [temp °C, expected value, expected assessed, zone]
     [smallmouthBands.lethalLow, 0, true, 'lethal-low'], // exactly lethalLow → lethal

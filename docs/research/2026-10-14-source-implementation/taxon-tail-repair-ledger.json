@@ -1,0 +1,386 @@
+[
+  {
+    "id": "alderfly-larva",
+    "old": 2,
+    "tails": 1,
+    "basis": "https://www.epa.gov/system/files/documents/2024-06/macroinvertebrate-id-tipsheet.pdf"
+  },
+  {
+    "id": "ant",
+    "old": 2,
+    "tails": 0,
+    "basis": "Taxon-level sources retained; uncertain counts are unknown, not guessed."
+  },
+  {
+    "id": "aquatic-moth",
+    "old": 2,
+    "tails": 0,
+    "basis": "Taxon-level sources retained; uncertain counts are unknown, not guessed."
+  },
+  {
+    "id": "aquatic-snail",
+    "old": 2,
+    "tails": "not-applicable",
+    "basis": "Taxon-level sources retained; uncertain counts are unknown, not guessed."
+  },
+  {
+    "id": "aquatic-worm",
+    "old": 2,
+    "tails": "not-applicable",
+    "basis": "Taxon-level sources retained; uncertain counts are unknown, not guessed."
+  },
+  {
+    "id": "autumn-mottled-sedge",
+    "old": 2,
+    "tails": 0,
+    "basis": "https://www.epa.gov/system/files/documents/2024-06/macroinvertebrate-id-tipsheet.pdf"
+  },
+  {
+    "id": "black-dancer-caddis",
+    "old": 2,
+    "tails": 0,
+    "basis": "https://www.epa.gov/system/files/documents/2024-06/macroinvertebrate-id-tipsheet.pdf"
+  },
+  {
+    "id": "black-fly",
+    "old": 2,
+    "tails": 0,
+    "basis": "https://www.epa.gov/system/files/documents/2024-06/macroinvertebrate-id-tipsheet.pdf"
+  },
+  {
+    "id": "blacknose-dace",
+    "old": 2,
+    "tails": "not-applicable",
+    "basis": "Taxon-level sources retained; uncertain counts are unknown, not guessed."
+  },
+  {
+    "id": "blood-midge",
+    "old": 2,
+    "tails": 0,
+    "basis": "https://www.epa.gov/system/files/documents/2024-06/macroinvertebrate-id-tipsheet.pdf"
+  },
+  {
+    "id": "bluntnose-minnow",
+    "old": 2,
+    "tails": "not-applicable",
+    "basis": "Taxon-level sources retained; uncertain counts are unknown, not guessed."
+  },
+  {
+    "id": "common-shiner",
+    "old": 2,
+    "tails": "not-applicable",
+    "basis": "Taxon-level sources retained; uncertain counts are unknown, not guessed."
+  },
+  {
+    "id": "crane-fly",
+    "old": 2,
+    "tails": "unknown",
+    "basis": "https://www.epa.gov/system/files/documents/2024-06/macroinvertebrate-id-tipsheet.pdf"
+  },
+  {
+    "id": "crayfish",
+    "old": 2,
+    "tails": "not-applicable",
+    "basis": "Taxon-level sources retained; uncertain counts are unknown, not guessed."
+  },
+  {
+    "id": "creek-chub",
+    "old": 2,
+    "tails": "not-applicable",
+    "basis": "Taxon-level sources retained; uncertain counts are unknown, not guessed."
+  },
+  {
+    "id": "cricket",
+    "old": 2,
+    "tails": 0,
+    "basis": "Taxon-level sources retained; uncertain counts are unknown, not guessed."
+  },
+  {
+    "id": "damselfly-nymph",
+    "old": 3,
+    "tails": 0,
+    "basis": "https://www.epa.gov/system/files/documents/2024-06/macroinvertebrate-id-tipsheet.pdf"
+  },
+  {
+    "id": "dark-blue-sedge",
+    "old": 2,
+    "tails": 0,
+    "basis": "https://www.epa.gov/system/files/documents/2024-06/macroinvertebrate-id-tipsheet.pdf"
+  },
+  {
+    "id": "dog-day-cicada",
+    "old": 2,
+    "tails": 0,
+    "basis": "Taxon-level sources retained; uncertain counts are unknown, not guessed."
+  },
+  {
+    "id": "dragonfly-nymph",
+    "old": 2,
+    "tails": 0,
+    "basis": "https://www.epa.gov/system/files/documents/2024-06/macroinvertebrate-id-tipsheet.pdf"
+  },
+  {
+    "id": "early-black-caddis",
+    "old": 2,
+    "tails": 0,
+    "basis": "https://www.epa.gov/system/files/documents/2024-06/macroinvertebrate-id-tipsheet.pdf"
+  },
+  {
+    "id": "fishfly-larva",
+    "old": 2,
+    "tails": "unknown",
+    "basis": "https://www.epa.gov/system/files/documents/2024-06/macroinvertebrate-id-tipsheet.pdf"
+  },
+  {
+    "id": "fishing-spider",
+    "old": 2,
+    "tails": "not-applicable",
+    "basis": "Taxon-level sources retained; uncertain counts are unknown, not guessed."
+  },
+  {
+    "id": "flying-ant",
+    "old": 2,
+    "tails": 0,
+    "basis": "Taxon-level sources retained; uncertain counts are unknown, not guessed."
+  },
+  {
+    "id": "gizzard-shad",
+    "old": 2,
+    "tails": "not-applicable",
+    "basis": "Taxon-level sources retained; uncertain counts are unknown, not guessed."
+  },
+  {
+    "id": "grannom",
+    "old": 2,
+    "tails": 0,
+    "basis": "https://www.epa.gov/system/files/documents/2024-06/macroinvertebrate-id-tipsheet.pdf"
+  },
+  {
+    "id": "grasshopper",
+    "old": 2,
+    "tails": 0,
+    "basis": "Taxon-level sources retained; uncertain counts are unknown, not guessed."
+  },
+  {
+    "id": "great-autumn-sedge",
+    "old": 2,
+    "tails": 0,
+    "basis": "https://www.epa.gov/system/files/documents/2024-06/macroinvertebrate-id-tipsheet.pdf"
+  },
+  {
+    "id": "green-sedge",
+    "old": 2,
+    "tails": 0,
+    "basis": "https://www.epa.gov/system/files/documents/2024-06/macroinvertebrate-id-tipsheet.pdf"
+  },
+  {
+    "id": "hellgrammite",
+    "old": 2,
+    "tails": "unknown",
+    "basis": "https://www.epa.gov/system/files/documents/2024-06/macroinvertebrate-id-tipsheet.pdf"
+  },
+  {
+    "id": "inchworm",
+    "old": 2,
+    "tails": 0,
+    "basis": "Taxon-level sources retained; uncertain counts are unknown, not guessed."
+  },
+  {
+    "id": "japanese-beetle",
+    "old": 2,
+    "tails": "unknown",
+    "basis": "Taxon-level sources retained; uncertain counts are unknown, not guessed."
+  },
+  {
+    "id": "june-beetle",
+    "old": 2,
+    "tails": "unknown",
+    "basis": "Taxon-level sources retained; uncertain counts are unknown, not guessed."
+  },
+  {
+    "id": "leafhopper",
+    "old": 2,
+    "tails": 0,
+    "basis": "Taxon-level sources retained; uncertain counts are unknown, not guessed."
+  },
+  {
+    "id": "leech",
+    "old": 2,
+    "tails": "not-applicable",
+    "basis": "Taxon-level sources retained; uncertain counts are unknown, not guessed."
+  },
+  {
+    "id": "little-black-midge",
+    "old": 2,
+    "tails": 0,
+    "basis": "https://www.epa.gov/system/files/documents/2024-06/macroinvertebrate-id-tipsheet.pdf"
+  },
+  {
+    "id": "little-black-sedge",
+    "old": 2,
+    "tails": 0,
+    "basis": "https://www.epa.gov/system/files/documents/2024-06/macroinvertebrate-id-tipsheet.pdf"
+  },
+  {
+    "id": "little-brown-sedge",
+    "old": 2,
+    "tails": 0,
+    "basis": "https://www.epa.gov/system/files/documents/2024-06/macroinvertebrate-id-tipsheet.pdf"
+  },
+  {
+    "id": "little-gray-sedge",
+    "old": 2,
+    "tails": 0,
+    "basis": "https://www.epa.gov/system/files/documents/2024-06/macroinvertebrate-id-tipsheet.pdf"
+  },
+  {
+    "id": "little-olive-net-spinner",
+    "old": 2,
+    "tails": 0,
+    "basis": "https://www.epa.gov/system/files/documents/2024-06/macroinvertebrate-id-tipsheet.pdf"
+  },
+  {
+    "id": "little-sister-sedge",
+    "old": 2,
+    "tails": 0,
+    "basis": "https://www.epa.gov/system/files/documents/2024-06/macroinvertebrate-id-tipsheet.pdf"
+  },
+  {
+    "id": "long-horned-sedge",
+    "old": 2,
+    "tails": 0,
+    "basis": "https://www.epa.gov/system/files/documents/2024-06/macroinvertebrate-id-tipsheet.pdf"
+  },
+  {
+    "id": "longnose-dace",
+    "old": 2,
+    "tails": "not-applicable",
+    "basis": "Taxon-level sources retained; uncertain counts are unknown, not guessed."
+  },
+  {
+    "id": "micro-caddis",
+    "old": 2,
+    "tails": 0,
+    "basis": "https://www.epa.gov/system/files/documents/2024-06/macroinvertebrate-id-tipsheet.pdf"
+  },
+  {
+    "id": "moth",
+    "old": 2,
+    "tails": 0,
+    "basis": "Taxon-level sources retained; uncertain counts are unknown, not guessed."
+  },
+  {
+    "id": "olive-midge",
+    "old": 2,
+    "tails": 0,
+    "basis": "https://www.epa.gov/system/files/documents/2024-06/macroinvertebrate-id-tipsheet.pdf"
+  },
+  {
+    "id": "periodical-cicada",
+    "old": 2,
+    "tails": 0,
+    "basis": "Taxon-level sources retained; uncertain counts are unknown, not guessed."
+  },
+  {
+    "id": "riffle-beetle",
+    "old": 2,
+    "tails": "unknown",
+    "basis": "Taxon-level sources retained; uncertain counts are unknown, not guessed."
+  },
+  {
+    "id": "saddle-case-caddis",
+    "old": 2,
+    "tails": 0,
+    "basis": "https://www.epa.gov/system/files/documents/2024-06/macroinvertebrate-id-tipsheet.pdf"
+  },
+  {
+    "id": "scud",
+    "old": 2,
+    "tails": "not-applicable",
+    "basis": "Taxon-level sources retained; uncertain counts are unknown, not guessed."
+  },
+  {
+    "id": "sculpin",
+    "old": 2,
+    "tails": "not-applicable",
+    "basis": "Taxon-level sources retained; uncertain counts are unknown, not guessed."
+  },
+  {
+    "id": "small-scud",
+    "old": 2,
+    "tails": "not-applicable",
+    "basis": "Taxon-level sources retained; uncertain counts are unknown, not guessed."
+  },
+  {
+    "id": "snail-case-caddis",
+    "old": 2,
+    "tails": 0,
+    "basis": "https://www.epa.gov/system/files/documents/2024-06/macroinvertebrate-id-tipsheet.pdf"
+  },
+  {
+    "id": "soldier-beetle",
+    "old": 2,
+    "tails": "unknown",
+    "basis": "Taxon-level sources retained; uncertain counts are unknown, not guessed."
+  },
+  {
+    "id": "sowbug",
+    "old": 2,
+    "tails": "not-applicable",
+    "basis": "Taxon-level sources retained; uncertain counts are unknown, not guessed."
+  },
+  {
+    "id": "spotted-sedge",
+    "old": 2,
+    "tails": 0,
+    "basis": "https://www.epa.gov/system/files/documents/2024-06/macroinvertebrate-id-tipsheet.pdf"
+  },
+  {
+    "id": "stoneroller",
+    "old": 2,
+    "tails": "not-applicable",
+    "basis": "Taxon-level sources retained; uncertain counts are unknown, not guessed."
+  },
+  {
+    "id": "sucker",
+    "old": 2,
+    "tails": "not-applicable",
+    "basis": "Taxon-level sources retained; uncertain counts are unknown, not guessed."
+  },
+  {
+    "id": "threadfin-shad",
+    "old": 2,
+    "tails": "not-applicable",
+    "basis": "Taxon-level sources retained; uncertain counts are unknown, not guessed."
+  },
+  {
+    "id": "wasp-bee",
+    "old": 2,
+    "tails": 0,
+    "basis": "Taxon-level sources retained; uncertain counts are unknown, not guessed."
+  },
+  {
+    "id": "water-boatman",
+    "old": 2,
+    "tails": 0,
+    "basis": "Taxon-level sources retained; uncertain counts are unknown, not guessed."
+  },
+  {
+    "id": "water-penny",
+    "old": 2,
+    "tails": 0,
+    "basis": "https://www.epa.gov/system/files/documents/2024-06/macroinvertebrate-id-tipsheet.pdf"
+  },
+  {
+    "id": "whirligig-beetle",
+    "old": 2,
+    "tails": "unknown",
+    "basis": "Taxon-level sources retained; uncertain counts are unknown, not guessed."
+  },
+  {
+    "id": "white-miller-caddis",
+    "old": 2,
+    "tails": 0,
+    "basis": "https://www.epa.gov/system/files/documents/2024-06/macroinvertebrate-id-tipsheet.pdf"
+  }
+]

@@ -1,0 +1,48 @@
+id: left-prong-hampton-creek
+name: Left Prong Hampton Creek
+aliases:
+  - Left Prong
+stateId: TN
+waterbodyType: creek
+regionId: tn-northeast-watauga
+display: reference
+gaugeIds: []
+stockingProgram: false
+species: trout
+fishery: wild
+yearRound: true
+idealFlow: []
+notes: Left Prong, the Hampton Creek tributary in Carter County. Five trout
+  daily with no length limit; single-hook artificial lures only. Use or
+  possession of bait or multiple-hook lures is prohibited. One separated
+  single-hook artificial dropper lure is permitted. No verified local live gauge
+  is assigned.
+officialSources:
+  - label: TWRA — Tennessee Trout Regulations
+    url: https://www.tn.gov/twra/fishing-regs/trout-regulations.html
+hydroIdentity:
+  gnisIds:
+    - "01290994"
+  huc8s:
+    - "06010103"
+  counties:
+    - Carter
+opportunity:
+  trout: year-round-trout
+  evidenceState: documented
+  statement: TWRA designates Left Prong, the Hampton Creek tributary in Carter
+    County as wild-trout water. The documented opportunity applies to that named
+    reach.
+  reachScope: Left Prong, the Hampton Creek tributary in Carter County
+  asOf: "2026"
+  sources:
+    - label: TWRA Tennessee Trout Regulations — named reach
+      url: https://www.tn.gov/twra/fishing-regs/trout-regulations.html
+      kind: legal-designation
+      observationPeriod: 2026-27 regulations
+      publicationDate: 2026-27
+      retrieved: 2026-10-14
+      pinpoint: Left Prong, the Hampton Creek tributary in Carter County
+  caveats:
+    - The map depicts the named water or a representative pond marker, not a
+      surveyed legal regulation boundary.

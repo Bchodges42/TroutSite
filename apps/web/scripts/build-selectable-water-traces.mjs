@@ -29,6 +29,11 @@ const streamDir = join(repoRoot, 'packages', 'content', 'streams', 'tn');
 const graphDir = join(repoRoot, 'data', 'nhd', 'graphs');
 const atlasPath = join(webRoot, 'public', 'atlas', 'rivers.geojson');
 const recipePath = join(webRoot, 'atlas-sources', 'selectable-water-traces.json');
+// Targeted additions must not rewrite reviewed geometry for unrelated waters.
+const onlyArg = process.argv.indexOf('--only');
+const onlyIds = onlyArg >= 0 ? new Set((process.argv[onlyArg + 1] ?? '').split(',').filter(Boolean)) : null;
+const existingRecipeDocument = JSON.parse(readFileSync(recipePath, 'utf8'));
+const existingRecipes = new Map(existingRecipeDocument.traces.map((row) => [row.id, row]));
 const additionsPath = join(webRoot, 'atlas-sources', 'selectable-river-additions.json');
 const lineTypes = new Set(['river', 'creek', 'tailrace', 'spring']);
 const rebuildIds = new Set([
@@ -40,7 +45,7 @@ const rebuildIds = new Set([
 const simplifyToleranceM = 10;
 const coordinateDecimals = 5;
 const ordinaryWeldLimitM = 15;
-const bridgeMaxKm = 30;
+const bridgeMaxKm = process.argv.includes('--no-bridges') ? 0 : 30;
 const noShrinkFactor = 0.9;
 
 const readJson = (path) => JSON.parse(readFileSync(path, 'utf8'));
@@ -451,6 +456,8 @@ function makeTrace(stream, feature) {
     ...existing,
     id: stream.id,
     name: stream.name,
+    regionId: stream.regionId,
+    gaugeIds: stream.gaugeIds,
     displayTier: displayTierFor(stream, existing),
     waterbodyType: stream.waterbodyType,
     source: 'nhd',
@@ -492,14 +499,21 @@ const builtFeatures = new Map();
 const streamById = new Map(streams.map(({ stream }) => [stream.id, stream]));
 const lineStreams = streams.filter(({ stream }) => lineTypes.has(stream.waterbodyType));
 for (const { stream } of lineStreams.sort((a, b) => a.stream.id.localeCompare(b.stream.id))) {
+  if (onlyIds && !onlyIds.has(stream.id)) {
+    const existingRecipe = existingRecipes.get(stream.id);
+    if (!existingRecipe) throw new Error(`Unselected water ${stream.id} has no existing recipe`);
+    recipes.push(existingRecipe);
+    continue;
+  }
   const existing = atlasById.get(stream.id);
   const result = makeTrace(stream, existing);
   recipes.push(result.recipe);
-  if (rebuildIds.has(stream.id) && result.feature !== existing) builtFeatures.set(stream.id, result.feature);
+  if ((onlyIds?.has(stream.id) || rebuildIds.has(stream.id)) && result.feature !== existing) builtFeatures.set(stream.id, result.feature);
 }
 
 for (const feature of atlas.features) {
   const id = feature.properties.id;
+  if (onlyIds && !onlyIds.has(id)) continue;
   const replacement = builtFeatures.get(id);
   if (replacement) continue;
   const stream = streamById.get(id);
@@ -540,14 +554,14 @@ atlas.features.sort((a, b) => String(a.properties.id).localeCompare(String(b.pro
 recipes.sort((a, b) => a.id.localeCompare(b.id));
 const recipeDocument = {
   schema: 'trout/selectable-water-traces/1',
-  generated: '2026-09-16',
+  generated: onlyIds ? '2026-10-14' : '2026-09-16',
   source: 'USGS NHDPlus HR NetworkNHDFlowline committed graph topology',
   rules: {
     identity: 'packages/content/streams/tn/*.yaml hydroIdentity',
     direction: 'downstream graph edge orientation; upstream/downstream boundary stops are explicit per record',
     ordinaryWeldMaxM: ordinaryWeldLimitM,
     syntheticConnectors: false,
-    bridgeMaxKm,
+    bridgeMaxKm: onlyIds ? existingRecipeDocument.rules.bridgeMaxKm : bridgeMaxKm,
     bridges: 'flagged straight connectors between remaining open ends, counted in properties.bridgedSegments and trace.bridgedSegments',
     noShrinkGuard: `rebuild declined when walked length < ${noShrinkFactor} x committed lengthKm`,
   },

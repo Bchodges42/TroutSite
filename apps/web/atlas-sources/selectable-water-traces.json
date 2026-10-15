@@ -1,17 +1,28 @@
 {
   "schema": "trout/selectable-water-traces/1",
-  "generated": "2026-09-16",
+  "generated": "2026-10-14",
   "source": "USGS NHDPlus HR NetworkNHDFlowline committed graph topology",
   "rules": {
     "identity": "packages/content/streams/tn/*.yaml hydroIdentity",
     "direction": "downstream graph edge orientation; upstream/downstream boundary stops are explicit per record",
     "ordinaryWeldMaxM": 15,
     "syntheticConnectors": false,
-    "bridgeMaxKm": 30,
+    "bridgeMaxKm": 0,
     "bridges": "flagged straight connectors between remaining open ends, counted in properties.bridgedSegments and trace.bridgedSegments",
     "noShrinkGuard": "rebuild declined when walked length < 0.9 x committed lengthKm"
   },
   "traces": [
+    {
+      "id": "bald-river",
+      "seedPermanentIdentifiers": [
+        "112268351"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
     {
       "id": "barren-fork-river",
       "seedPermanentIdentifiers": [
@@ -786,6 +797,17 @@
       "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
     },
     {
+      "id": "left-prong-hampton-creek",
+      "seedPermanentIdentifiers": [
+        "89955583"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
       "id": "little-buffalo-river",
       "seedPermanentIdentifiers": [
         "128955949"
@@ -846,6 +868,17 @@
       "id": "little-sequatchie-river",
       "seedPermanentIdentifiers": [
         "51392627"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "little-stony-creek-carter",
+      "seedPermanentIdentifiers": [
+        "89949063"
       ],
       "upstreamBoundary": "headwater",
       "downstreamBoundary": "mouth",
@@ -1064,6 +1097,17 @@
       "id": "north-prong-barren-fork",
       "seedPermanentIdentifiers": [
         "51180691"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "north-river-monroe",
+      "seedPermanentIdentifiers": [
+        "112268153"
       ],
       "upstreamBoundary": "headwater",
       "downstreamBoundary": "mouth",
@@ -1292,9 +1336,31 @@
       "reviewNote": "Rebuilt from committed raw NHD flowlines using GNIS/HUC identity and endpoint topology; remaining open ends are closed with flagged straight bridges up to 30 km unless the no-shrink guard declines the rebuild."
     },
     {
+      "id": "rocky-fork-greene-unicoi",
+      "seedPermanentIdentifiers": [
+        "90686147"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
       "id": "rocky-river",
       "seedPermanentIdentifiers": [
         "136994597"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "rough-ridge-creek",
+      "seedPermanentIdentifiers": [
+        "112269923"
       ],
       "upstreamBoundary": "headwater",
       "downstreamBoundary": "mouth",
@@ -1363,6 +1429,18 @@
       "id": "sinking-creek-wilson",
       "seedPermanentIdentifiers": [
         "137307977"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "slickrock-creek",
+      "seedPermanentIdentifiers": [
+        "112264485",
+        "112266185"
       ],
       "upstreamBoundary": "headwater",
       "downstreamBoundary": "mouth",
@@ -1498,6 +1576,17 @@
       "id": "sulfur-fork-creek",
       "seedPermanentIdentifiers": [
         "54400630"
+      ],
+      "upstreamBoundary": "headwater",
+      "downstreamBoundary": "mouth",
+      "allowedNameTransitions": [],
+      "allowedSharedReachIds": [],
+      "reviewNote": "Identity and deterministic raw-NHD seed recorded; existing reviewed geometry retained until its next trace refresh."
+    },
+    {
+      "id": "sycamore-creek-tellico",
+      "seedPermanentIdentifiers": [
+        "112269131"
       ],
       "upstreamBoundary": "headwater",
       "downstreamBoundary": "mouth",
